@@ -1,0 +1,1 @@
+Recorded [decision.json](<EXTERNAL_PATH>).

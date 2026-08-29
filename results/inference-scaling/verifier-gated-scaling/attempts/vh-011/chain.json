@@ -1,0 +1,103 @@
+{
+  "candidate_pool": [
+    {
+      "file": "initial--selected.cif",
+      "sha256": "8b9b2944d7f860f21abf6ef9044619f291c63226b63fbc9acc0a9e63eaee50cf",
+      "snapshot": "initial",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "initial--alternative-1.cif",
+      "sha256": "d108039a101e4056b14ecf8559961ede06150dd811533aa3071e2ee6f5d9bcef",
+      "snapshot": "initial",
+      "source_name": "alternative-1.cif"
+    },
+    {
+      "file": "continuation-01--selected.cif",
+      "sha256": "1e9b883011b421c5172dbf48d6a7c59a819f4b2d8cff20252a1df84880be5a7c",
+      "snapshot": "continuation-01",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "continuation-01--alternative-1.cif",
+      "sha256": "f45ffcce855a2ab4d5074bf963fd373c31ba5c923dfe4d4e079e8a90e3c09c3e",
+      "snapshot": "continuation-01",
+      "source_name": "alternative-1.cif"
+    },
+    {
+      "file": "fresh-02--selected.cif",
+      "sha256": "cd398658ff04a4a3e376b5bbb3110a8273e3eaa14898a08d87eed13ff4a82944",
+      "snapshot": "fresh-02",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "fresh-03--selected.cif",
+      "sha256": "bbf8b31783517bdd0b69a603883237199030527b39bb1c1a2265ab5077ade3e5",
+      "snapshot": "fresh-03",
+      "source_name": "selected.cif"
+    }
+  ],
+  "cumulative_candidates_exact": true,
+  "cumulative_matched_candidates": [
+    "selected.cif"
+  ],
+  "cumulative_selected_exact": true,
+  "problem_id": "vh-011",
+  "reviews": [
+    {
+      "decision": "continue",
+      "proposed_branch": null,
+      "reason": "The hexagonal cell is strongly indexed (all first 24 lines; DICVOL M(24)=132.9), and both CIFs parse as full-occupancy Na4V8O20 (Z=4, 32 atoms) in the same primitive P cell, with species-aware detected symmetries P63/mmc for selected and P-62c for alternative-1. However, neither submitted realization is chemically valid. The primary has periodic V-V contacts of 0.174 and 0.546 angstrom, O-O contacts of 0.278 and 0.578 angstrom, Na-O contacts of 0.758 angstrom, and no normal V-O first shell (nearest V-O about 3.10 angstrom). The alternative still has 0.897 angstrom Na-V and 0.966 angstrom V-O contacts and fails bond-valence assignment. These are pervasive instantiated-model failures, not preferences about coordination or density. The reported 0.996/0.986 correlations are stick-height comparisons obtained by sampling the observed profile at calculated line positions, not a comparable whole-profile refinement (the supplied comparable report is unavailable), and cannot rescue the overlaps. Thus the submitted set contains no sufficiently established viable ordered realization, while the blind evidence does not identify a specific viable replacement branch.",
+      "review_index": 0,
+      "snapshot": "initial"
+    },
+    {
+      "decision": "continue",
+      "proposed_branch": null,
+      "reason": "Both CIFs parse and round-trip as primitive, full-occupancy Na2V4O10 cells (16 atoms, Z=2; 7.258930 x 5.852089 x 3.379187 A, V=143.5475 A3) with explicit Na/V/O ordering; although declared P1, each detects as the same hidden Pc (nonstandard Pa) symmetry and does not reduce further. The metric gives broad peak-position coverage, but the atomic-coordinate evidence is inadequate. The comparable whole-pattern report is unavailable, and the trace's only instantiated intensity measure is an integrated-line cosine, just 0.8208 for selected and 0.9202 for alternative-1; these correspond to optimal scaled intensity-vector residuals of 0.571 and 0.391, with major errors such as strong calculated intensity at 19.47, 36.29, and 48.80 degrees where the observed lines are weak. Independent fixed-CIF profile checks likewise remain far above a Pawley-like line-intensity/noise lower bound, so indexing cannot establish either coordinate set. Searches/refinements converged to materially different tradeoff basins rather than a common map or refined realization. Complete periodic shells also weaken the claimed chemistry: the primary has many O-O contacts near 1.899 A and Na-V/V-V contacts near 2.50 A, while the alternative has pervasive O-O contacts at 1.747-1.783 A and Na-V/V-V contacts near 2.35 A; complete-shell bond-valence sums are substantially more overbonded than the trace's minimum-image values. Thus no submitted realization has convergent diffraction support plus an unambiguous chemistry pass. No specific replacement branch is established by the blind evidence, but another structure-solution attempt is likely to add a materially different viable candidate.",
+      "review_index": 1,
+      "snapshot": "continuation-01"
+    },
+    {
+      "decision": "continue",
+      "proposed_branch": null,
+      "reason": "The CIF is parseable and symmetry-expands in the primitive P63/mmc cell to ordered, fully occupied Na2V4O10 (16 atoms; a = b = 6.757998 A, c = 7.258130 A). Its diffraction support is strong: all 40 significant picked reflections match within 0.04 degrees, and an independent fixed-CIF profile fit gives Rwp = 4.38% and RMS = 0.138 against approximately 0.106 background noise, consistent with the trace's 4.27%. However, complete periodic neighbor shells show every V has two V neighbors at 1.8145 A and no O nearer than 3.379 A (the next V-O shell is 3.835 A), giving pervasive V-V overlaps and no credible V-O coordination or bond-valence realization for NaV2O5. The low profile residual cannot rescue this chemically impossible atomic model; a materially different ordering or framework remains required.",
+      "review_index": 2,
+      "snapshot": "fresh-02"
+    }
+  ],
+  "schema_version": "hybrid-case-v1",
+  "snapshots": [
+    {
+      "candidate_count": 2,
+      "candidates_exact": false,
+      "label": "initial",
+      "matched_candidates": [],
+      "selected_exact": false
+    },
+    {
+      "candidate_count": 2,
+      "candidates_exact": false,
+      "label": "continuation-01",
+      "matched_candidates": [],
+      "selected_exact": false
+    },
+    {
+      "candidate_count": 1,
+      "candidates_exact": true,
+      "label": "fresh-02",
+      "matched_candidates": [
+        "selected.cif"
+      ],
+      "selected_exact": true
+    },
+    {
+      "candidate_count": 1,
+      "candidates_exact": false,
+      "label": "fresh-03",
+      "matched_candidates": [],
+      "selected_exact": false
+    }
+  ],
+  "termination": "fresh-solver-limit"
+}

@@ -1,0 +1,118 @@
+{
+  "approximate_fwhm_deg_without_axial_asymmetry": {
+    "10": 0.0594,
+    "20": 0.0618,
+    "40": 0.068,
+    "60": 0.0769,
+    "80": 0.09
+  },
+  "background": {
+    "GSAS_chebyshev_coefficients": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "asserted_calculated_background_max_abs": 1e-10,
+    "state": "background-subtracted"
+  },
+  "engine": {
+    "calculator": "GSAS-II ycalc configured directly by sim-bench; does not call the released simulate_pxrd parameter-mutating helper",
+    "instrument_file": {
+      "path": "Ab-PXRD-Solver/pxrd_app/tools/INST_XRY.PRM",
+      "sha256": "64f8e098bbab5dea2ece42d9cfe5494a0a871841093bec26ffaf7304c4913408"
+    },
+    "parameter_application": "Both initial and active GSAS-II instrument slots are written and asserted after calculation. Size and microstrain use valid isotropic histogram/phase records.",
+    "runtime": {
+      "compatibility_note": "The Ab-PXRD-Solver release leaves GSAS-II unpinned. sim-bench uses this hash-pinned compatible runtime and records it rather than claiming a paper-era revision.",
+      "gsasii_commit": "1a0aeec6c61b54f68e6812704730a471187ac393",
+      "gsasii_revision": 5806,
+      "gsasii_source_dir": ".runs/envs/pxrdgen-gsas2full/GSAS-II/GSASII",
+      "numpy_version": "1.26.4",
+      "python_version": "3.11.9"
+    }
+  },
+  "grid": {
+    "axis": "2theta_deg",
+    "point_count": 8501,
+    "start_deg": 5.0,
+    "step_deg": 0.01,
+    "stop_deg_inclusive": 90.0
+  },
+  "instrument_profile": {
+    "SH_over_L": 0.002,
+    "U": 2.0,
+    "V": -2.0,
+    "W": 5.0,
+    "X": 0.0,
+    "Y": 0.0,
+    "family": "GSAS-II constant-wavelength type-3 pseudo-Voigt/FCJ",
+    "polarization": 0.7,
+    "zero_shift_deg": 0.0
+  },
+  "intensity": {
+    "clean_normalization": "divide GSAS-II ycalc by its maximum and multiply by 100",
+    "negative_values_possible_after_noise": true,
+    "output_normalization": "divide post-noise counts by their maximum and multiply by 100"
+  },
+  "noise": {
+    "gaussian_relative_sigma": 0.001,
+    "gaussian_sigma_counts": 5.0,
+    "generator": "numpy.random.RandomState",
+    "maximum_counts": 5000,
+    "poisson": true,
+    "seed_base": 20260721,
+    "seed_rule": "seed_base + zero-based source-manifest case index"
+  },
+  "profile_key": "fixedparams-v1",
+  "purpose": "A framework-independent controlled PXRD condition for comparing structure-determination ability while holding measurement parameters fixed.",
+  "radiation": {
+    "label": "monochromatic Cu Kalpha1",
+    "single_wavelength": true,
+    "wavelength_angstrom": 1.5406
+  },
+  "sample_broadening": {
+    "crystallite_size": {
+      "lorentzian_fraction": 1.0,
+      "micrometer": 1.0,
+      "model": "isotropic"
+    },
+    "microstrain": {
+      "lorentzian_fraction": 1.0,
+      "model": "isotropic",
+      "value_microstrain": 1000.0
+    }
+  },
+  "sample_effects": {
+    "hstrain": "zero",
+    "preferred_orientation": "none (March-Dollase ratio fixed at 1)",
+    "sample_displacement_x": 0.0,
+    "sample_displacement_y": 0.0
+  },
+  "schema_version": "1.0.0",
+  "source": {
+    "commit": "0d67964dfcbd2e2fa09e79bbbac2f5d020a121e9",
+    "files": {
+      "constants.py": {
+        "path": "Ab-PXRD-Solver/pxrd_app/constants.py",
+        "sha256": "35aba225e32688894ccdf694ec3c8f7df0d7fb0a23a6049db04bbf4882868ae4"
+      },
+      "environment": {
+        "path": "Ab-PXRD-Solver/environment.yml",
+        "sha256": "14eb34aba678dc170705cabbf5e595ea0038641a198f226e601dd7a63e2c6ee7"
+      },
+      "gsas.py": {
+        "path": "Ab-PXRD-Solver/pxrd_app/tools/gsas.py",
+        "sha256": "88a1fc063253a631532dc1552f2803ead1c3b2da39d6b41f8476fd4dae8f3d40"
+      },
+      "instrument": {
+        "path": "Ab-PXRD-Solver/pxrd_app/tools/INST_XRY.PRM",
+        "sha256": "64f8e098bbab5dea2ece42d9cfe5494a0a871841093bec26ffaf7304c4913408"
+      },
+      "synthetic_recipe.py": {
+        "path": "Ab-PXRD-Solver/pxrd_app/tools/peak_finder/predict_single.py",
+        "sha256": "882424d28a14d98d3adcb76b6b7ad75d1e54cd93863536439801263b27d1eca1"
+      }
+    },
+    "upstream_repository": "https://github.com/MaterSim/Ab-PXRD-Solver"
+  }
+}

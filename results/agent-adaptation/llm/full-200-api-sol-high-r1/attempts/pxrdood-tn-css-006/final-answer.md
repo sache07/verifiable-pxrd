@@ -1,0 +1,79 @@
+The peak positions form a cubic \(F\)-centered sequence with \(a=10.509(2)\) Å. Reflections such as 200 and 420 exclude the higher-symmetry spinel group \(Fd\bar 3m\); the best assignment is the ordered filled-spinel-derived structure in \(F\bar 43m\) (No. 216), \(Z=8\).
+
+Representative indexing:
+
+| 2θ observed | hkl |
+|---:|:---|
+| 14.59° | 111 |
+| 16.86° | 200 |
+| 23.93° | 220 |
+| 28.14° | 311 |
+| 29.42° | 222 |
+| 34.10° | 400 |
+| 37.27° | 331 |
+| 38.27° | 420 |
+| 42.09° | 422 |
+| 44.78° | 333/511 |
+| 48.99° | 440 |
+| 51.40° | 531 |
+| 52.17° | 442/600 |
+| 55.24° | 620 |
+| 58.19° | 622 |
+
+### Primary CIF
+
+```cif
+data_Cu2HgSnS4_cubic
+_audit_creation_method
+'Structure solution from Cu Kalpha1 powder pattern; symmetry-constrained filled-spinel model'
+
+_chemical_name_common              'cubic Cu2HgSnS4'
+_chemical_formula_sum              'Cu2 Hg Sn S4'
+_chemical_formula_structural       'Cu2HgSnS4'
+_cell_formula_units_Z              8
+
+_cell_length_a                     10.509(2)
+_cell_length_b                     10.509(2)
+_cell_length_c                     10.509(2)
+_cell_angle_alpha                  90
+_cell_angle_beta                   90
+_cell_angle_gamma                  90
+
+_space_group_name_H-M_alt          'F -4 3 m'
+_space_group_name_Hall             'F -4 2 3'
+_space_group_IT_number             216
+
+_diffrn_radiation_type             'Cu Kalpha1'
+_diffrn_radiation_wavelength       1.5406
+
+_exptl_crystal_description
+'cubic ordered filled-spinel-derived phase'
+
+loop_
+_atom_type_symbol
+_atom_type_oxidation_number
+Cu  1
+Hg  2
+Sn  4
+S  -2
+
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_Wyckoff_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_U_iso_or_equiv
+Hg1  Hg   4  a  0.0000  0.0000  0.0000  1.0  0.010
+Hg2  Hg   4  c  0.2500  0.2500  0.2500  1.0  0.010
+Sn1  Sn   4  b  0.5000  0.5000  0.5000  1.0  0.010
+Sn2  Sn   4  d  0.7500  0.7500  0.7500  1.0  0.010
+Cu1  Cu  16  e  0.376   0.376   0.376   1.0  0.012
+S1   S   16  e  0.127   0.127   0.127   1.0  0.015
+S2   S   16  e  0.627   0.627   0.627   1.0  0.015
+```
+
+The cell and \(F\bar43m\) symmetry are well constrained by the pattern. The three free \(16e\) coordinates are approximate symmetry-constrained values; a full Rietveld refinement against calibrated integrated intensities would be needed to quote them at crystallographic precision. No distinct tetragonal alternative survives the complete peak-position sequence.

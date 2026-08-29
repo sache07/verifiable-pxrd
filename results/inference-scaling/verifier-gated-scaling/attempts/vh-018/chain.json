@@ -1,0 +1,97 @@
+{
+  "candidate_pool": [
+    {
+      "file": "initial--selected.cif",
+      "sha256": "91fcc8d9e1ea4e9b82fcb5de3f07501d8bf691ca22e27d147961cf6856517e7b",
+      "snapshot": "initial",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "continuation-01--selected.cif",
+      "sha256": "16779bfe5730e77460d5352968a20f3759fd249ead3007dba2e1ec50a32beb21",
+      "snapshot": "continuation-01",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "continuation-01--alternative-1.cif",
+      "sha256": "1aa80b6b80e1bfc661b744468d50b8a6ebca461698907d58b516b30cfe39ea32",
+      "snapshot": "continuation-01",
+      "source_name": "alternative-1.cif"
+    },
+    {
+      "file": "fresh-02--selected.cif",
+      "sha256": "d4997888f8d6df6fc3be7d265f4c8ab46fa1173fd0c0d40f97e29f7fdb435ed4",
+      "snapshot": "fresh-02",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "fresh-03--selected.cif",
+      "sha256": "03fa7b3ba16b41e2fcbca4927bb481c48c965ef56ededdc40114d6eaae421e0a",
+      "snapshot": "fresh-03",
+      "source_name": "selected.cif"
+    }
+  ],
+  "cumulative_candidates_exact": true,
+  "cumulative_matched_candidates": [
+    "selected.cif"
+  ],
+  "cumulative_selected_exact": true,
+  "problem_id": "vh-018",
+  "reviews": [
+    {
+      "decision": "continue",
+      "proposed_branch": null,
+      "reason": "The primary CIF is parseable and symmetry-expands in primitive P23 (No. 195) to 20 fully occupied atoms with K4MgCu3F12, a = 7.39741 angstrom, and V = 404.799 angstrom^3; the observed lines also have strong primitive-cubic indexing coverage. However, the instantiated coordinates fail the chemistry veto: Mg has no bonded F neighbors, with its complete nearest shell consisting of 12 F at 4.146 angstrom (the next shell is 4.891 angstrom), while Cu has only four nearest F at 2.622 angstrom, and bond-valence assignment fails. The trace itself rejected an earlier nearly identical P23 geometry for the same Mg undercoordination (Mg-F about 4.168 angstrom), but the final CIF reintroduces it. The integrated-intensity agreement therefore cannot establish this atomic realization, and no chemically valid, comparably supported alternative is submitted; another solution attempt is warranted.",
+      "review_index": 0,
+      "snapshot": "initial"
+    },
+    {
+      "decision": "continue",
+      "proposed_branch": null,
+      "reason": "The primary CIF is valid and primitive: it parses as P1 with 20 fully occupied sites, exact K4MgCu3F12 (Z = 1), a = b = c = 7.397413 angstrom, V = 404.7992 angstrom^3, and no smaller cell or hidden symmetry through 0.1 angstrom tolerance. Its periodic chemistry has no gross veto (Mg-F 2.066-2.547 angstrom for the first six, shortest Cu-F 2.026 angstrom, shortest F-F 2.197 angstrom), and all important reflections have excellent primitive-cubic line indexing. Exact atom-coordinate recovery is nevertheless not established. The final P1 search uses 12 independent F sites, i.e. 36 positional variables, against only 40 powder-overlapped cubic shell intensities. The reported 0.9893 integrated-intensity correlation therefore masks substantial, over-parameterized discrepancies: an independent comparison using the same profile shape gives a unit-weight whole-profile residual of 9.50% for selected.cif (12.22% for alternative-1.cif), versus a 3.59% Pawley-like free-shell lower bound; the primary residual RMS is 0.402 against off-peak noise of 0.108, including an approximately 12.5-unit underfit of strong shell n = 12. The trace also shows many materially different F basins from independent starts rather than coordinate convergence, while the final F-F constraint was applied only by local refinement to two chosen basins. Formal charge assignment and plausible distances do not resolve that diffraction-relevant fluorine ordering ambiguity. Another solution attempt is therefore likely to add a materially different viable ordered realization.",
+      "review_index": 1,
+      "snapshot": "continuation-01"
+    },
+    {
+      "decision": "continue",
+      "proposed_branch": null,
+      "reason": "The CIF parses and contains the stated fully occupied K4MgCu3F12 20-atom P1 cell (a=b=5.230743 A, c=7.397388 A, Z=1), and the 32 selected observed lines index well. However, the instantiated model does not fit the complete line set: the trace's validation queried only the 32 observed n groups and ignored additional reflections predicted by the CIF. At the trace's fitted scale, important absent groups include n=17 at 50.85 degrees (calculated integrated intensity 0.747 versus about 0.022 observed), n=33 at 73.48 degrees (0.394 versus about 0.011), and n=41 at 83.64 degrees (0.456 versus about 0.058), with further spurious n=25, 34, 37, 38, and 45 peaks. The reported 0.996 correlation therefore is not a valid whole-pattern establishment. Atomic coordinates are also underdetermined: roughly 60 P1 coordinate variables plus scale were restrained/refined against only 32 extracted intensities, with no independent-map convergence or comparable profile lower bound. Periodic chemistry supplies a direct veto, including Cu-F 1.588 A, Mg-F 1.598 A, K-F 1.800 A, K-Cu 1.999 A, K-Mg 2.301 A, and F-F 1.777 A contacts; bond-valence sums are grossly inconsistent (K about +1.6 to +6.0 and two F near -3). Thus the submitted coordinates are a flexible, chemically impossible overfit rather than a sufficiently established exact realization, and another structure-solution attempt is likely to produce a materially different viable candidate.",
+      "review_index": 2,
+      "snapshot": "fresh-02"
+    }
+  ],
+  "schema_version": "hybrid-case-v1",
+  "snapshots": [
+    {
+      "candidate_count": 1,
+      "candidates_exact": true,
+      "label": "initial",
+      "matched_candidates": [
+        "selected.cif"
+      ],
+      "selected_exact": true
+    },
+    {
+      "candidate_count": 2,
+      "candidates_exact": false,
+      "label": "continuation-01",
+      "matched_candidates": [],
+      "selected_exact": false
+    },
+    {
+      "candidate_count": 1,
+      "candidates_exact": false,
+      "label": "fresh-02",
+      "matched_candidates": [],
+      "selected_exact": false
+    },
+    {
+      "candidate_count": 1,
+      "candidates_exact": false,
+      "label": "fresh-03",
+      "matched_candidates": [],
+      "selected_exact": false
+    }
+  ],
+  "termination": "fresh-solver-limit"
+}

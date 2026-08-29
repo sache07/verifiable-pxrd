@@ -1,0 +1,86 @@
+{
+  "candidate_pool": [
+    {
+      "file": "initial--selected.cif",
+      "sha256": "f7da8ba17709cb46522810314a2864d33beb2cb1ac033beee7e15636829f8adf",
+      "snapshot": "initial",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "initial--alternative-1.cif",
+      "sha256": "5742e39ff682f59ddf55f73fc6a8209ef0ab2a1854e2f190ce3f293590cc70b1",
+      "snapshot": "initial",
+      "source_name": "alternative-1.cif"
+    },
+    {
+      "file": "continuation-01--selected.cif",
+      "sha256": "0de260231466f5b16fa2e084eb655451ea9dec74e906c81bbfe9664c3ffd6cc2",
+      "snapshot": "continuation-01",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "continuation-01--alternative-1.cif",
+      "sha256": "5fe3525bc329d135b4969384bd4ef5894c8c014425c12d296d2047b3afc3015a",
+      "snapshot": "continuation-01",
+      "source_name": "alternative-1.cif"
+    },
+    {
+      "file": "fresh-02--selected.cif",
+      "sha256": "2acdfaa402dd9f97655b895ce2a95f62c388c484ec80135c559f7d6f3c814750",
+      "snapshot": "fresh-02",
+      "source_name": "selected.cif"
+    }
+  ],
+  "cumulative_candidates_exact": false,
+  "cumulative_matched_candidates": [],
+  "cumulative_selected_exact": false,
+  "problem_id": "vh-014",
+  "reviews": [
+    {
+      "decision": "continue",
+      "proposed_branch": "Instantiate and independently refine/test the surviving I222 Au(8k)+O(8k)+Li(4f)+Li(2a) branch reported in trace item_69, including a comparable whole-profile fit.",
+      "reason": "The cell/indexing is strong (24/24 low-angle lines, M20=132.3), and selected.cif validly expands in I222 to fully occupied Li6Au8O8 (22 atoms; primitive Li3Au4O4), but the exact coordinates are not established. The trace's final chemically constrained integrated-area objective for the primary is 0.02438 (sqrt residual about 15.6%), while an instantiated-CIF whole-profile check gives about 14.7% residual versus about 5.0% for independent line intensities and about 1.8% expected from the stated noise. Large intensity errors remain at important reflections, and several coordinates terminate exactly at arbitrary distance-penalty cutoffs (notably O-O = 2.200 A), showing that chemistry constraints materially selected the model. Moreover, the trace retains a chemically admissible, distinct I222 Li(4f)+Li(2a) realization with objective 0.02719, better than the submitted Imm2 alternative (0.02877), but it was not submitted or quantitatively rejected. Thus the submitted set does not yet cover or reject the surviving exact-structure ambiguity.",
+      "review_index": 0,
+      "snapshot": "initial"
+    },
+    {
+      "decision": "continue",
+      "proposed_branch": null,
+      "reason": "Both CIFs parse and symmetry-expand in I222 to fully occupied Li6Au8O8 conventional cells (22 atoms, Z=2) and primitive Li3Au4O4 cells (11 atoms); they are distinct ordered realizations. Indexing is strong and no important observed reflection is unexplained. However, neither atomic model is sufficiently established by intensities: the trace gives instantiated whole-profile residuals of 0.13255 and 0.13121, far above the 0.03425 free-line/profile lower bound and about 0.0175 expected from the measured baseline noise. Unconstrained coordinate refinements improve the fit only by producing impossible O-O contacts of 1.26-1.36 A and Au-O contacts of 1.61-1.65 A, whereas both submitted refinements terminate exactly at the imposed O-O = 2.100 A constraint and the alternative also at Li-Li = 2.000 A. Full neighbor shells show no fatal overlap in the submitted CIFs, but chemistry constraints are materially selecting their coordinates rather than corroborating a convergent diffraction solution. The two Li-ordering branches cover the identified discrete ordering ambiguity, yet the large atomic-intensity gap and lack of independent coordinate convergence leave materially different periodic realizations viable, so another solution attempt is warranted.",
+      "review_index": 1,
+      "snapshot": "continuation-01"
+    },
+    {
+      "decision": "stop",
+      "proposed_branch": null,
+      "reason": "The primary CIF parses cleanly and symmetry-expands in Immm to fully occupied Li6Au8O8 (22 atoms, Z = 2), reducing to a primitive 11-atom Li3Au4O4 cell with the reported conventional cell and ordering. The I-orthorhombic cell indexes all 20 initial lines with M(20) = 138.5, and an independent audit matches every observed reflection of prominence at least 0.7 within 0.019 degrees, with no important unexplained peak. The instantiated coordinates give integrated-intensity R = 2.87% and correlation = 0.99925; the trace's profile RMSE of 0.2166 is close to its Pawley-like lower bound of about 0.2048. Explicit site searches isolate Au 8n and O 4g+4e by large fit margins, and Li 4f+2b remains best among the tested multiplicity-compatible orderings; the closest 4f+2d branch is profile-inferior and has an approximately 1.67 angstrom Li-O contact, while 4f+2a and the other assignments are quantitatively worse. Periodic geometry has no overlaps (minimum distance about 1.821 angstrom), with plausible complete Au-O and Li-O shells. No concrete viable incompatible ordering, symmetry-lowered model, occupancy variant, or superstructure remains unsupported by the submitted set.",
+      "review_index": 2,
+      "snapshot": "fresh-02"
+    }
+  ],
+  "schema_version": "hybrid-case-v1",
+  "snapshots": [
+    {
+      "candidate_count": 2,
+      "candidates_exact": false,
+      "label": "initial",
+      "matched_candidates": [],
+      "selected_exact": false
+    },
+    {
+      "candidate_count": 2,
+      "candidates_exact": false,
+      "label": "continuation-01",
+      "matched_candidates": [],
+      "selected_exact": false
+    },
+    {
+      "candidate_count": 1,
+      "candidates_exact": false,
+      "label": "fresh-02",
+      "matched_candidates": [],
+      "selected_exact": false
+    }
+  ],
+  "termination": "judge-stop-j2"
+}

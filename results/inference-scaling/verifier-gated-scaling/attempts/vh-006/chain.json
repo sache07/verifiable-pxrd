@@ -1,0 +1,99 @@
+{
+  "candidate_pool": [
+    {
+      "file": "initial--selected.cif",
+      "sha256": "c286ebaad38de5000de5d0f840306dd875eee9cc9fab5f08f89ab8e623f18f9a",
+      "snapshot": "initial",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "initial--alternative-1.cif",
+      "sha256": "2c54e519fb1e6a9b4cd6c24c1429170fe240a0221168db6b0e4b8f1261c63419",
+      "snapshot": "initial",
+      "source_name": "alternative-1.cif"
+    },
+    {
+      "file": "continuation-01--selected.cif",
+      "sha256": "3a4ef3df45923c1b4b4a39bbe955094af331dbb8cbdfe10d1f333f82e7e313f8",
+      "snapshot": "continuation-01",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "fresh-02--selected.cif",
+      "sha256": "2a7465a4acf2233c38eafaee24918c5b4902812dfddfb348dde69cd2af2f8221",
+      "snapshot": "fresh-02",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "fresh-03--selected.cif",
+      "sha256": "842607319f42b3b05736f4d808b5d4707183eb1ffa0937715db0bde1884953f9",
+      "snapshot": "fresh-03",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "fresh-03--alternative-1.cif",
+      "sha256": "85e6b9d7b4a92eee265651cba70c1bc8ffa274779ef6d3a8d33142c4b7f9ef65",
+      "snapshot": "fresh-03",
+      "source_name": "alternative-1.cif"
+    }
+  ],
+  "cumulative_candidates_exact": false,
+  "cumulative_matched_candidates": [],
+  "cumulative_selected_exact": false,
+  "problem_id": "vh-006",
+  "reviews": [
+    {
+      "decision": "continue",
+      "proposed_branch": null,
+      "reason": "The indexed primitive hexagonal metric is strong (40/40 strong lines indexed, M20 = 159), and the primary CIF parses cleanly as full-occupancy P1 Ba3In2O6 with 11 atoms (Z = 1) in the stated cell; alternative-1 likewise parses as full-occupancy P1 Ba6In4O12 (Z = 2). Primitive standardization leaves both as distinct P1 realizations in the same cell, not equivalent settings. However, neither submitted realization passes chemistry or coordinate-establishment checks. In selected.cif, periodic contacts include Ba-O = 1.417/1.428 A and O-O = 1.538 A, while the two In sites have no O neighbor closer than 3.292 and 3.568 A, respectively. Alternative-1.cif has pervasive overlaps, including Ba-O = 1.418-1.453 A, In-O = 1.419-1.428 A, O-O = 1.427 A, and In-In = 2.083 A. The trace explicitly recognized the unconstrained models as chemically unacceptable, but the submitted CIFs contain those unconstrained coordinates rather than the later chemistry-constrained refinements. Moreover, the claimed 0.9984 correlation was obtained by sampling local peak maxima only at calculated positions and retaining positions with observed intensity > 0.3; it is not a whole-profile refinement, its selected-model normalized line residual is 0.055 with individual intensity errors up to 2.94 against about 0.12 background noise, and the single charge-flip runs do not quantitatively converge onto or assign the submitted coordinates. Thus the set contains no sufficiently established chemically valid ordered realization, and another attempt is likely to add a materially different viable coordinate model.",
+      "review_index": 0,
+      "snapshot": "initial"
+    },
+    {
+      "decision": "continue",
+      "proposed_branch": null,
+      "reason": "The primary CIF parses and round-trips as an ordered, fully occupied primitive P1 cell with 22 sites (Ba6In4O12, reduced Ba3In2O6, Z = 2), a = b = 12.39633 A, c = 2.66380 A, gamma = 120 degrees, and no hidden higher symmetry or translational cell reduction. The indexed metric gives strong line-position coverage, but the atomic coordinates are not sufficiently established. The trace's instantiated-CIF whole-profile fit has residual 0.236 and RMS error 0.818 intensity units, versus background noise about 0.122; an independent fit gives residual 0.228, while the same indexed cell with independently fitted reflection intensities gives a Pawley-like lower bound of 0.073. Large intensity errors remain at major reflections, so the claimed 0.971 correlation is not a noise-level exact-structure fit. Independent P1 searches ended at materially different coordinates and did not converge to the submitted model; the selected coordinates came from one local refinement of a pre-existing chemistry seed, without convergent maps or a comparable competing-model rejection. Chemistry also fails as a veto: complete-shell bond-valence sums are Ba 1.30-5.22 (expected 2), In 3.50-4.29 (expected 3), and O 1.62-4.98 (expected 2), with RMSE 1.42 valence units; several oxygen sites are pervasively overbonded despite the absence of literal overlaps. Thus only the cell is well established, and another attempt is likely to produce a materially different viable atomic realization.",
+      "review_index": 1,
+      "snapshot": "continuation-01"
+    },
+    {
+      "decision": "continue",
+      "proposed_branch": null,
+      "reason": "The CIF does parse and symmetry-expand at tight tolerances to the stated primitive P-6c2 cell (a=b=12.39493 A, c=5.32728 A), Ba12In8O24/44 atoms (Z=4), and unit occupancies, and primitive standardization does not remove the problem. However, the instantiated structure is chemically invalid: symmetry expansion produces six O-O pairs at 0.00470 A, two In-In pairs at 0.0213 A, six Ba-Ba pairs at 0.288 A, and additional O-O pairs at 1.111 A. These are the multiplicity-changing special-position collapses explicitly encountered in the trace, not unconventional coordination. The trace accepted that collapsing branch on a custom integrated-intensity residual after chemistry-constrained and alternative P-6c2 partitions fit worse or also collapsed; the supplied comparable report has no whole-profile score, and the final check tested mainly peak positions. Thus no valid explicit ordered realization has convergent atomic-coordinate support, and another attempt is required.",
+      "review_index": 2,
+      "snapshot": "fresh-02"
+    }
+  ],
+  "schema_version": "hybrid-case-v1",
+  "snapshots": [
+    {
+      "candidate_count": 2,
+      "candidates_exact": false,
+      "label": "initial",
+      "matched_candidates": [],
+      "selected_exact": false
+    },
+    {
+      "candidate_count": 1,
+      "candidates_exact": false,
+      "label": "continuation-01",
+      "matched_candidates": [],
+      "selected_exact": false
+    },
+    {
+      "candidate_count": 1,
+      "candidates_exact": false,
+      "label": "fresh-02",
+      "matched_candidates": [],
+      "selected_exact": false
+    },
+    {
+      "candidate_count": 2,
+      "candidates_exact": false,
+      "label": "fresh-03",
+      "matched_candidates": [],
+      "selected_exact": false
+    }
+  ],
+  "termination": "fresh-solver-limit"
+}

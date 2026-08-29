@@ -1,0 +1,462 @@
+#!/usr/bin/env python3
+"""Translate explicit indexing choices into a native DICVOL14 run."""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import hashlib
+import json
+import math
+import re
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+from typing import Sequence
+
+
+SYSTEMS = (
+    "cubic",
+    "tetragonal",
+    "hexagonal",
+    "orthorhombic",
+    "monoclinic",
+    "triclinic",
+)
+INPUT_KINDS = {"q": 0, "theta": 1, "two-theta": 2, "d": 3}
+FATAL_OUTPUT = re.compile(
+    r"(?:!\s*ERROR\s+(?:READING|OPENING)|ERROR IN READING|forrtl:\s*severe|"
+    r"THE CALCULATION HAS BEEN STOPPED|Program stopped)",
+    re.IGNORECASE,
+)
+
+
+def finite_float(value: str) -> float:
+    parsed = float(value)
+    if not math.isfinite(parsed):
+        raise argparse.ArgumentTypeError("must be finite")
+    return parsed
+
+
+def positive_float(value: str) -> float:
+    parsed = finite_float(value)
+    if parsed <= 0:
+        raise argparse.ArgumentTypeError("must be greater than zero")
+    return parsed
+
+
+def nonnegative_float(value: str) -> float:
+    parsed = finite_float(value)
+    if parsed < 0:
+        raise argparse.ArgumentTypeError("must be nonnegative")
+    return parsed
+
+
+def nonnegative_int(value: str) -> int:
+    parsed = int(value)
+    if parsed < 0:
+        raise argparse.ArgumentTypeError("must be nonnegative")
+    return parsed
+
+
+def parser() -> argparse.ArgumentParser:
+    result = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        epilog=(
+            "This adapter does not extract peaks from a profile or rank DICVOL14 "
+            "solutions. It retains the generated native input, all native outputs, "
+            "console logs, and a provenance record in OUTPUT_DIR."
+        ),
+    )
+    peaks = result.add_argument_group("explicit peak input")
+    peaks.add_argument(
+        "--peaks-file",
+        type=Path,
+        help="chosen peak list as delimited text; this must not be a full profile",
+    )
+    peaks.add_argument(
+        "--peak",
+        action="append",
+        type=positive_float,
+        default=[],
+        metavar="VALUE",
+        help="append one chosen peak value; may be repeated after file values",
+    )
+    peaks.add_argument(
+        "--column",
+        default="1",
+        help="1-based file column number or exact header name",
+    )
+    peaks.add_argument(
+        "--delimiter",
+        choices=("auto", "comma", "tab", "whitespace"),
+        default="auto",
+        help="file delimiter; auto inspects the first retained row",
+    )
+    peaks.add_argument(
+        "--skip-rows",
+        type=nonnegative_int,
+        default=0,
+        help="physical rows to skip before blank/comment filtering",
+    )
+    peaks.add_argument(
+        "--sort",
+        action="store_true",
+        help="sort all supplied values numerically before writing native input",
+    )
+
+    native = result.add_argument_group("native DICVOL14 choices")
+    native.add_argument(
+        "--input-kind",
+        choices=tuple(INPUT_KINDS),
+        required=True,
+        help="q=1/d^2, theta and two-theta are degrees, d is angstrom",
+    )
+    native.add_argument(
+        "--wavelength",
+        type=positive_float,
+        required=True,
+        metavar="ANGSTROM",
+        help="radiation wavelength written to native input",
+    )
+    native.add_argument(
+        "--systems",
+        required=True,
+        metavar="LIST",
+        help="comma-separated systems or 'all': " + ", ".join(SYSTEMS),
+    )
+    native.add_argument("--max-a", type=positive_float, default=25.0, help="maximum a in angstrom")
+    native.add_argument("--max-b", type=positive_float, default=25.0, help="maximum b in angstrom")
+    native.add_argument("--max-c", type=positive_float, default=25.0, help="maximum c in angstrom")
+    native.add_argument(
+        "--volume-min", type=nonnegative_float, default=0.0, help="minimum volume in angstrom^3"
+    )
+    native.add_argument(
+        "--volume-max", type=positive_float, default=2500.0, help="maximum volume in angstrom^3"
+    )
+    native.add_argument("--beta-min", type=finite_float, default=90.0, help="minimum beta in degrees")
+    native.add_argument("--beta-max", type=finite_float, default=125.0, help="maximum beta in degrees")
+    native.add_argument(
+        "--error", type=positive_float, default=0.03, help="common experimental error in input-kind units"
+    )
+    native.add_argument(
+        "--minimum-fom", type=positive_float, default=10.0, help="minimum printed de Wolff figure of merit"
+    )
+    native.add_argument(
+        "--max-unindexed",
+        type=nonnegative_int,
+        default=0,
+        help="tolerated unindexed lines among the supplied peaks",
+    )
+    native.add_argument("--zero-shift", type=finite_float, default=0.0, help="initial zero shift")
+    native.add_argument(
+        "--refine-zero-shift", action="store_true", help="ask DICVOL14 to refine the zero shift"
+    )
+    native.add_argument("--title", default="DICVOL14 adapter run", help="native run title, at most 64 ASCII characters")
+
+    run = result.add_argument_group("execution and retained outputs")
+    run.add_argument(
+        "--output-dir",
+        type=Path,
+        required=True,
+        help="new or empty directory that will retain every run artifact",
+    )
+    run.add_argument(
+        "--backend",
+        default="dicvol14",
+        help="DICVOL14 executable name or explicit path",
+    )
+    run.add_argument(
+        "--timeout",
+        type=positive_float,
+        help="terminate the backend after this many seconds",
+    )
+    run.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="write native input and provenance without invoking DICVOL14",
+    )
+    return result
+
+
+def split_row(line: str, delimiter: str) -> list[str]:
+    active = delimiter
+    if active == "auto":
+        active = "comma" if "," in line else "tab" if "\t" in line else "whitespace"
+    if active == "whitespace":
+        return line.split()
+    character = "," if active == "comma" else "\t"
+    return next(csv.reader([line], delimiter=character))
+
+
+def file_peaks(path: Path, column: str, delimiter: str, skip_rows: int) -> list[float]:
+    try:
+        raw_lines = path.read_text(encoding="utf-8").splitlines()
+    except OSError as error:
+        raise ValueError(f"could not read peaks file {path}: {error}") from error
+    lines = [
+        line.strip()
+        for line in raw_lines[skip_rows:]
+        if line.strip() and not line.lstrip().startswith("#")
+    ]
+    if not lines:
+        raise ValueError(f"peaks file {path} has no data rows")
+
+    if column.isdecimal():
+        index = int(column) - 1
+        if index < 0:
+            raise ValueError("--column numbers are 1-based")
+        data = lines
+    else:
+        header = [value.strip() for value in split_row(lines[0], delimiter)]
+        if column not in header:
+            raise ValueError(f"column {column!r} is not present in peaks-file header {header!r}")
+        index = header.index(column)
+        data = lines[1:]
+        if not data:
+            raise ValueError(f"peaks file {path} contains a header but no data rows")
+
+    values: list[float] = []
+    for line_number, line in enumerate(
+        data, start=skip_rows + (2 if not column.isdecimal() else 1)
+    ):
+        fields = split_row(line, delimiter)
+        if index >= len(fields):
+            raise ValueError(f"line {line_number} has no column {index + 1}: {line!r}")
+        try:
+            value = float(fields[index])
+        except ValueError as error:
+            raise ValueError(
+                f"line {line_number}, column {index + 1} is not numeric: {fields[index]!r}"
+            ) from error
+        if not math.isfinite(value) or value <= 0:
+            raise ValueError(f"line {line_number} peak must be finite and positive: {value!r}")
+        values.append(value)
+    return values
+
+
+def selected_systems(value: str) -> tuple[str, ...]:
+    requested = tuple(part for part in re.split(r"[\s,]+", value.strip().lower()) if part)
+    if not requested:
+        raise ValueError("--systems must select at least one crystal system")
+    if "all" in requested:
+        if len(requested) != 1:
+            raise ValueError("use 'all' alone or list individual systems")
+        return SYSTEMS
+    unknown = sorted(set(requested) - set(SYSTEMS))
+    if unknown:
+        raise ValueError(f"unknown crystal system(s): {', '.join(unknown)}")
+    return tuple(system for system in SYSTEMS if system in requested)
+
+
+def resolve_backend(value: str) -> Path:
+    candidate = Path(value)
+    if candidate.parent != Path("."):
+        resolved = candidate.resolve()
+        if not resolved.is_file():
+            raise ValueError(f"backend is not a file: {resolved}")
+    else:
+        found = shutil.which(value)
+        if found is None:
+            raise ValueError(f"backend executable is not on PATH: {value}")
+        resolved = Path(found).resolve()
+    if not resolved.stat().st_mode & 0o111:
+        raise ValueError(f"backend is not executable: {resolved}")
+    return resolved
+
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def write_json(path: Path, value: object) -> None:
+    path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def output_records(directory: Path) -> list[dict[str, object]]:
+    records = []
+    for path in sorted(directory.iterdir()):
+        if path.is_file() and path.name != "provenance.json":
+            records.append({"name": path.name, "bytes": path.stat().st_size, "sha256": sha256(path)})
+    return records
+
+
+def decode_timeout(value: str | bytes | None) -> str:
+    if value is None:
+        return ""
+    return value.decode("latin-1", errors="replace") if isinstance(value, bytes) else value
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    args = parser().parse_args(argv)
+    try:
+        systems = selected_systems(args.systems)
+        peaks = (
+            file_peaks(args.peaks_file, args.column, args.delimiter, args.skip_rows)
+            if args.peaks_file
+            else []
+        )
+        peaks.extend(args.peak)
+        if not peaks:
+            raise ValueError("provide --peaks-file and/or at least one --peak")
+        if args.sort:
+            peaks.sort()
+        if args.max_unindexed >= len(peaks):
+            raise ValueError("--max-unindexed must be smaller than the number of supplied peaks")
+        if args.volume_min >= args.volume_max:
+            raise ValueError("--volume-min must be smaller than --volume-max")
+        if not 0 < args.beta_min < args.beta_max < 180:
+            raise ValueError("beta bounds must satisfy 0 < beta-min < beta-max < 180")
+        if not args.title or "\n" in args.title or "\r" in args.title:
+            raise ValueError("--title must be nonempty and contain no newlines")
+        if len(args.title) > 64:
+            raise ValueError("--title must be at most 64 characters")
+        try:
+            args.title.encode("ascii")
+        except UnicodeEncodeError as error:
+            raise ValueError("--title must contain only ASCII characters") from error
+        backend = resolve_backend(args.backend)
+        output_dir = args.output_dir.resolve()
+        if output_dir.exists() and any(output_dir.iterdir()):
+            raise ValueError(f"output directory is not empty: {output_dir}")
+        output_dir.mkdir(parents=True, exist_ok=True)
+    except (OSError, ValueError) as error:
+        parser().error(str(error))
+
+    flags = [1 if system in systems else 0 for system in SYSTEMS]
+    native_lines = [
+        args.title,
+        f"{len(peaks)} {INPUT_KINDS[args.input_kind]} {' '.join(map(str, flags))} /",
+        (
+            f"{args.max_a:.12g} {args.max_b:.12g} {args.max_c:.12g} "
+            f"{args.volume_min:.12g} {args.volume_max:.12g} "
+            f"{args.beta_min:.12g} {args.beta_max:.12g} /"
+        ),
+        f"{args.wavelength:.12g} /",
+        (
+            f"{args.error:.12g} {args.minimum_fom:.12g} {args.max_unindexed} "
+            f"{args.zero_shift:.12g} {1 if args.refine_zero_shift else 0} /"
+        ),
+        *(f"{value:.12g}" for value in peaks),
+    ]
+    native_input = output_dir / "input.dat"
+    native_input.write_text("\n".join(native_lines) + "\n", encoding="ascii")
+    provenance: dict[str, object] = {
+        "schema_version": "1",
+        "adapter": "dicvol14-adapter",
+        "status": "native_input_generated",
+        "backend": {"path": str(backend), "sha256": sha256(backend)},
+        "native_input": {"name": native_input.name, "sha256": sha256(native_input)},
+        "request": {
+            "peak_count": len(peaks),
+            "peaks_file": str(args.peaks_file.resolve()) if args.peaks_file else None,
+            "input_kind": args.input_kind,
+            "wavelength_angstrom": args.wavelength,
+            "systems": list(systems),
+            "bounds": {
+                "max_a": args.max_a,
+                "max_b": args.max_b,
+                "max_c": args.max_c,
+                "volume_min": args.volume_min,
+                "volume_max": args.volume_max,
+                "beta_min": args.beta_min,
+                "beta_max": args.beta_max,
+            },
+            "controls": {
+                "error": args.error,
+                "minimum_fom": args.minimum_fom,
+                "max_unindexed": args.max_unindexed,
+                "zero_shift": args.zero_shift,
+                "refine_zero_shift": args.refine_zero_shift,
+            },
+            "sorted": args.sort,
+        },
+    }
+    provenance_path = output_dir / "provenance.json"
+    if args.dry_run:
+        provenance["status"] = "dry_run"
+        provenance["outputs"] = output_records(output_dir)
+        write_json(provenance_path, provenance)
+        print(f"Native input retained in {output_dir}")
+        return 0
+
+    try:
+        completed = subprocess.run(
+            [str(backend)],
+            input=native_input.name + "\n",
+            cwd=output_dir,
+            capture_output=True,
+            text=True,
+            encoding="latin-1",
+            errors="replace",
+            timeout=args.timeout,
+            check=False,
+        )
+        stdout = completed.stdout
+        stderr = completed.stderr
+        returncode = completed.returncode
+        timed_out = False
+    except subprocess.TimeoutExpired as error:
+        stdout = decode_timeout(error.stdout)
+        stderr = decode_timeout(error.stderr)
+        returncode = 124
+        timed_out = True
+
+    (output_dir / "stdout.log").write_text(stdout, encoding="utf-8")
+    (output_dir / "stderr.log").write_text(stderr, encoding="utf-8")
+    sys.stdout.write(stdout)
+    sys.stderr.write(stderr)
+    native_output = (
+        (output_dir / "input.ind").read_text(encoding="latin-1", errors="replace")
+        if (output_dir / "input.ind").is_file()
+        else ""
+    )
+    fatal = bool(FATAL_OUTPUT.search("\n".join((stdout, stderr, native_output))))
+    missing = [name for name in ("input.ind", "input.ucp") if not (output_dir / name).is_file()]
+    provenance["backend"] = {
+        **provenance["backend"],
+        "returncode": returncode,
+        "stdin": native_input.name,
+        "timed_out": timed_out,
+    }
+    provenance["status"] = (
+        "timeout"
+        if timed_out
+        else "backend_error"
+        if returncode or fatal or missing
+        else "backend_completed"
+    )
+    provenance["missing_expected_outputs"] = missing
+    provenance["outputs"] = output_records(output_dir)
+    write_json(provenance_path, provenance)
+
+    print(f"\nNative input, outputs, logs, and provenance retained in {output_dir}")
+    if timed_out:
+        print(f"DICVOL14 exceeded --timeout={args.timeout:g} seconds", file=sys.stderr)
+        return 124
+    if returncode:
+        print(f"DICVOL14 exited with status {returncode}", file=sys.stderr)
+        return returncode if 0 < returncode < 126 else 1
+    if fatal:
+        print(
+            "DICVOL14 reported an input or runtime error; inspect stdout.log and input.ind",
+            file=sys.stderr,
+        )
+        return 1
+    if missing:
+        print(
+            "DICVOL14 did not create expected native output(s): " + ", ".join(missing),
+            file=sys.stderr,
+        )
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

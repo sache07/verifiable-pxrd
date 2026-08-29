@@ -1,0 +1,84 @@
+{
+  "candidate_pool": [
+    {
+      "file": "initial--selected.cif",
+      "sha256": "c13a9a7c0aca89276bcfe05d27c525bb2f2a8a1c3d5277a2503d202e3ebad58f",
+      "snapshot": "initial",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "continuation-01--selected.cif",
+      "sha256": "6c8a82b78b0a397c6cfe501048338c902caef0151db24ccccec39825f4e3ddfc",
+      "snapshot": "continuation-01",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "fresh-02--selected.cif",
+      "sha256": "a9f893f67e8cef2632d7b38e9b20b3d0a36a57983c8f0bcda10af0e374a0f2df",
+      "snapshot": "fresh-02",
+      "source_name": "selected.cif"
+    }
+  ],
+  "cumulative_candidates_exact": true,
+  "cumulative_matched_candidates": [
+    "selected.cif",
+    "selected.cif",
+    "selected.cif"
+  ],
+  "cumulative_selected_exact": true,
+  "problem_id": "vh-002",
+  "reviews": [
+    {
+      "decision": "continue",
+      "proposed_branch": null,
+      "reason": "The submitted CIF is crystallographically valid: it parses and symmetry-expands in P3m1 (No. 156) to a primitive, unchanged 88.53588 \u00c5^3 cell with a=b=2.89820 \u00c5, c=12.17116 \u00c5, Z=1, seven fully occupied ordered sites, and composition Li1Nb2S4. Indexing is strong (22/22 selected lines, M20=201.9), and an independent whole-profile fit of the instantiated CIF is close to a free-intensity Pawley-style bound (equal-weight Rwp 0.0531 versus 0.05135), with no important unexplained reflection; registry testing also supports the submitted diffraction-equivalent ordering class. However, complete periodic neighbor shells reveal a decisive chemistry failure omitted from the trace: each Nb has six S neighbors at only 2.121 \u00c5, yielding a Brese\u2013O'Keeffe bond-valence sum of about +13.27 per Nb, incompatible with both normal Nb valences and the charge-required average +3.5, while S sums are about -6.6 to -7.3 instead of approximately -2. This is pervasive overbonding, not a coordination-cutoff artifact. The trace searched a tightly assumed layered registry family and reported only minimum distances, without a bond-valence audit or a chemically unconstrained independent structure search. Thus the excellent residual cannot establish this exact realization as viable, and another attempt is warranted to seek a materially different, chemically valid framework. No specific viable branch is established by the blind evidence.",
+      "review_index": 0,
+      "snapshot": "initial"
+    },
+    {
+      "decision": "continue",
+      "proposed_branch": null,
+      "reason": "The sole submitted CIF parses and symmetry-expands as claimed: primitive P3m1 (No. 156), a=b=2.89820 A, c=12.17116 A, V=88.53588 A^3, Z=1, seven fully occupied ordered sites, and Li1Nb2S4. Its indexed hexagonal cell covers the important observed lines, and the trace reports a strong instantiated atomic-intensity fit while rejecting tested registry/order variants and higher-volume monoclinic/orthorhombic indexings. However, the explicit realization fails a decisive chemistry veto confirmed from complete periodic neighbor shells: each Nb has six S neighbors at 2.1214 A and a Brese-O'Keeffe bond-valence sum of about +13.38, grossly incompatible with both normal Nb chemistry and the charge-required average +3.5; the S sums are about -6.69 to -7.35 rather than approximately -2. This is pervasive overbonding, not a cutoff artifact. Chemistry-restrained P1 searches in the trace found more plausible bond valences only with dramatically worse diffraction objectives, and no such model was submitted. Thus the set contains no chemically viable, diffraction-established exact realization, so another attempt is warranted to seek a materially different framework; no specific viable branch is established by the blind evidence.",
+      "review_index": 1,
+      "snapshot": "continuation-01"
+    },
+    {
+      "decision": "stop",
+      "proposed_branch": null,
+      "reason": "The primary CIF parses and symmetry-expands as a primitive seven-atom, fully occupied LiNb2S4 cell (Z=1) with a=2.898405 A, c=12.172397 A and P3m1 symmetry; primitive/conventional standardization does not reveal a distinct cell. Indexing covers all 20 reliable lines (M20 about 180), and the trace contains auditable atomic-intensity evidence from the instantiated CIF: 23 fitted integrated line areas give an R_Bragg-like residual of 0.041. Independent whole-profile reconstruction gives unweighted Rwp about 0.050 and RMSE 0.128 versus a 0.100 noise floor, close to an independent-intensity Pawley-like bound (Rwp about 0.0479, RMSE 0.122), with calculated and fitted line areas correlated at 0.9997; there are no important unexplained reflections. The coordinate/registry search sharply selects sulfur u about 0.1085 and the submitted Nb/S stacking over the familiar prototype and other registries. Complete periodic shells are chemically coherent (each Nb has six S at 2.132 A and Li has six S at 2.401 A), with no overlaps and charge balance requiring plausible average Nb(+3.5). The two viable Li registry descriptions tested are structure-equivalent, while the distinct registry has a 1.72 A Li-S overlap; remaining framework registries fit materially worse. No concrete incompatible ordering, symmetry, superstructure, occupancy, or framework branch survives, so another attempt is unlikely to add a materially different viable candidate.",
+      "review_index": 2,
+      "snapshot": "fresh-02"
+    }
+  ],
+  "schema_version": "hybrid-case-v1",
+  "snapshots": [
+    {
+      "candidate_count": 1,
+      "candidates_exact": true,
+      "label": "initial",
+      "matched_candidates": [
+        "selected.cif"
+      ],
+      "selected_exact": true
+    },
+    {
+      "candidate_count": 1,
+      "candidates_exact": true,
+      "label": "continuation-01",
+      "matched_candidates": [
+        "selected.cif"
+      ],
+      "selected_exact": true
+    },
+    {
+      "candidate_count": 1,
+      "candidates_exact": true,
+      "label": "fresh-02",
+      "matched_candidates": [
+        "selected.cif"
+      ],
+      "selected_exact": true
+    }
+  ],
+  "termination": "judge-stop-j2"
+}

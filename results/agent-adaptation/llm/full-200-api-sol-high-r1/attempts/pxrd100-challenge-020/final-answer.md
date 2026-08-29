@@ -1,0 +1,64 @@
+The pattern indexes as an orthorhombic primitive cell, with systematic absences consistent with **Pnma (No. 62)**. The resulting phase is lithium iodide monohydrate, **LiI·H₂O**, with \(Z=4\). Representative indexing is 20.21° (200), 20.98° (011), 28.08° (020), 29.29° (211), 31.51° (002), 34.85° (220), and 37.73° (202).
+
+Hydrogen is effectively invisible in this Cu X-ray pattern, so its position was geometrically constrained to a water molecule; the Li and H coordinates should be regarded as less certain than the I/O framework.
+
+```cif
+data_LiI_monohydrate
+_audit_creation_method
+;Structure solution from powder X-ray diffraction.
+ Cu Kalpha1 wavelength = 1.5406 Angstrom.
+ Hydrogen position constrained to water geometry.
+;
+
+_chemical_name_common              'lithium iodide monohydrate'
+_chemical_formula_sum              'H2 I Li O'
+_chemical_formula_structural       'LiI(H2O)'
+_chemical_formula_weight           151.86
+_cell_formula_units_Z              4
+
+_symmetry_space_group_name_H-M      'P n m a'
+_symmetry_space_group_name_Hall     '-P 2ac 2n'
+_symmetry_Int_Tables_number         62
+
+_cell_length_a                      8.7807
+_cell_length_b                      6.3495
+_cell_length_c                      5.6740
+_cell_angle_alpha                   90
+_cell_angle_beta                    90
+_cell_angle_gamma                   90
+_cell_volume                        316.34
+
+_exptl_crystal_density_diffrn       3.19
+_diffrn_radiation_type              'Cu Kalpha1'
+_diffrn_radiation_wavelength        1.5406
+
+loop_
+_space_group_symop_id
+_space_group_symop_operation_xyz
+1  'x,y,z'
+2  '1/2-x,-y,1/2+z'
+3  '-x,1/2+y,-z'
+4  '1/2+x,1/2-y,1/2-z'
+5  '-x,-y,-z'
+6  '1/2+x,y,1/2-z'
+7  'x,1/2-y,z'
+8  '1/2-x,1/2+y,1/2+z'
+
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_Wyckoff_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_adp_type
+_atom_site_B_iso_or_equiv
+Li1  Li  4  c  0.3446  0.2500  0.0612  1.0  Biso  1.20
+I1   I   4  c  0.0565  0.2500  0.2218  1.0  Biso  0.80
+O1   O   4  c  0.3527  0.2500  0.4134  1.0  Biso  1.00
+H1   H   8  d  0.2910  0.1280  0.4630  1.0  Biso  1.50
+```
+
+No distinct alternative cell or space group survives the low-angle indexing and extinction constraints.

@@ -1,0 +1,1 @@
+Recorded `decision.json` with decision: `"stop"`.

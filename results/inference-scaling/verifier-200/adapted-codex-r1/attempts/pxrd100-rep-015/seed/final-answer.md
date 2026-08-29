@@ -1,0 +1,1 @@
+Decision recorded in [decision.json](<EXTERNAL_PATH>): `stop`.

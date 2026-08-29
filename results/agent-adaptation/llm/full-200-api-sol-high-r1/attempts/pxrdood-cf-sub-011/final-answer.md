@@ -1,0 +1,65 @@
+The pattern is indexed well by an **orthorhombic C-centered cell**, consistent with the **GdSI-type structure in space group Cmcm (No. 63), Z = 8**. Approximate refined lattice parameters are:
+
+- \(a = 4.301\) Å
+- \(b = 16.852\) Å
+- \(c = 8.502\) Å
+
+Characteristic indexing includes 020 at 10.49°, 021 at 14.79°, 040 near 21.07°, 110 near 21.3°, 042 near 29.82°, 060 near 31.84°, and 200 near 42.0°.
+
+The lattice and space-group assignment are substantially more secure than the internal coordinates; the latter are initialized from the corresponding rare-earth telluride-halide structure type and should be finalized by a full-profile Rietveld refinement.
+
+```cif
+data_PrTeBr
+_audit_creation_method            'Powder-pattern indexing and GdSI-type model'
+_chemical_name_common             'praseodymium telluride bromide'
+_chemical_formula_structural      'PrTeBr'
+_chemical_formula_sum             'Br Pr Te'
+_chemical_formula_weight          348.41
+_cell_formula_units_Z             8
+
+_symmetry_space_group_name_H-M    'C m c m'
+_symmetry_Int_Tables_number       63
+_space_group_name_H-M_alt         'C m c m'
+_space_group_IT_number            63
+
+_cell_length_a                    4.3005
+_cell_length_b                    16.8520
+_cell_length_c                    8.5020
+_cell_angle_alpha                 90
+_cell_angle_beta                  90
+_cell_angle_gamma                 90
+_cell_volume                      616.1
+
+_exptl_crystal_density_diffrn     7.51
+_diffrn_radiation_type            'Cu Kalpha1'
+_diffrn_radiation_wavelength      1.5406
+
+_refine_special_details
+;
+The orthorhombic Cmcm lattice was obtained from the powder peak
+positions. Representative indexed reflections are:
+020 10.49 deg, 021 14.79 deg, 040 21.07 deg,
+110 21.3 deg, 042 29.82 deg, 060 31.84 deg,
+and 200 approximately 42.0 deg.
+
+Atomic coordinates are a GdSI-type starting model for PrTeBr.
+They are suitable for subsequent constrained Rietveld refinement,
+but should not be interpreted as single-crystal-quality coordinates.
+;
+
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_Wyckoff_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_B_iso_or_equiv
+Pr1  Pr  8  f  0.00000  0.1265  0.1040  1.000  0.60
+Te1  Te  8  f  0.00000  0.0550  0.3770  1.000  0.65
+Br1  Br  8  f  0.00000  0.3185  0.1560  1.000  0.75
+```
+
+No alternative lattice accounts for the low-angle harmonic series and systematic absences as consistently as the Cmcm model.

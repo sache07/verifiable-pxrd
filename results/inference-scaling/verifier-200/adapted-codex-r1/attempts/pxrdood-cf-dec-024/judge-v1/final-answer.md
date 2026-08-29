@@ -1,0 +1,1 @@
+Recorded `continue` in [decision.json](<EXTERNAL_PATH>), identifying the distinct surviving mer-B ordering as the proposed branch.

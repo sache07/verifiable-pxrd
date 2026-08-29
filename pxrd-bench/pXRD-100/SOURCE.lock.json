@@ -1,0 +1,131 @@
+{
+  "corpus_revision": "v2-fourway-train-20260720",
+  "decifer_serialized_train": {
+    "membership_field": "cif_name",
+    "path": ".runs/pxrd100-v2/sources/noma/serialized/train.h5",
+    "sha256": "66ec75ce7b4c267f31cfff1815709f9fa5be0eeb2e663d4bbb6ac5e2d59b5df1",
+    "size_bytes": 11077920280
+  },
+  "diffractgpt_membership_caveat": "The official released train.parquet postdates the paper checkpoint and is used only as an explicitly labeled proxy for paper-era membership.",
+  "exposure_index": {
+    "path": ".runs/pxrd-ood/indexes/exposure.sqlite3",
+    "sha256": "34ade87e310c553cbec4a958a3375a62b4596e5a4d18c542c830a4a7f8406884"
+  },
+  "framework_training_sources": {
+    "crystalyze_mp20": {
+      "details": {
+        "archive": {
+          "boundary": "exact_released_full_corpus",
+          "path": ".runs/pxrd-ood/sources/crystalyze-mp_20_final.zip",
+          "sha256": "b96ec2c56c80f1569d4e16674836014a9b5b45585d72c164a44165dd8805ae93",
+          "size_bytes": 3419310082
+        },
+        "split_hashes": {
+          "test": "2b73586819290b31f80faf8810196ce2c34048d0753fd61dfd276cee71cd3d4a",
+          "train": "2cf5ddd5398e061f4d6e2b2c0e79c516b07bb06da5dda481036a72a8b420f2c0",
+          "val": "600224c223dd45846fbad4ccd766ea1add6ac98ef8804900fd39ff49328da6bc"
+        }
+      },
+      "failed_count": 0,
+      "record_count": 45052,
+      "sha256": "b96ec2c56c80f1569d4e16674836014a9b5b45585d72c164a44165dd8805ae93",
+      "status": "complete"
+    },
+    "decifer_noma": {
+      "details": {
+        "archive": {
+          "boundary": "exact_released_full_corpus_conservative_documented_count_superset",
+          "path": ".runs/pxrd-ood/sources/noma_cifs_raw.pkl.gz",
+          "sha256": "ec5d0a08ef63d33db3ecf8f6407df01f184d961ec0721a12d5abac097aaea328",
+          "size_bytes": 418137968
+        },
+        "pickle_parser": "pickletools TUPLE2 opcode stream",
+        "raw_tuple_count": 2285914,
+        "records_above_paper_reported_count": 2568,
+        "recovered_after_completed_insert_audit": true,
+        "unique_source_id_count": 2285914
+      },
+      "failed_count": 0,
+      "record_count": 2285914,
+      "sha256": "ec5d0a08ef63d33db3ecf8f6407df01f184d961ec0721a12d5abac097aaea328",
+      "status": "complete"
+    },
+    "diffractgpt_released": {
+      "details": {
+        "assets": {
+          "diffractgpt_test": {
+            "boundary": "exact_released_split",
+            "path": ".runs/pxrd-ood/sources/diffractgpt-test.parquet",
+            "sha256": "1016af848b4b88e9c746ea0f9407d99ae9fd1fc543982249f8a131de7238e9fb",
+            "size_bytes": 972264
+          },
+          "diffractgpt_train": {
+            "boundary": "exact_released_split",
+            "path": ".runs/pxrd-ood/sources/diffractgpt-train.parquet",
+            "sha256": "62784a3e4f516a20a424ab865a607845f45365d4c421a372c60cf3e84b1cae81",
+            "size_bytes": 15922927
+          }
+        },
+        "duplicate_jid_excess_retained_by_split_ordinal_identity": 4,
+        "released_example_count": 75997,
+        "unique_raw_jid_count": 75993
+      },
+      "failed_count": 0,
+      "record_count": 75997,
+      "sha256": null,
+      "status": "complete"
+    },
+    "pxrdgen_mp20": {
+      "details": {
+        "commit": "f857f598d6f6cca5dc1ea0582d228f12dcc2c2ea",
+        "files": {
+          "test": "dd605c7543cf95a13e150aed630d0915e74edc8dea17e85301ee6fbfeb7f500a",
+          "train": "133bab58dba02d316f9f91174839f17802dce648be4e8659d1a42b32b97fa01d",
+          "val": "7b5f4085464b3eac9fd2123acee97ec372214004ce7e983b535b33395abc3e29"
+        }
+      },
+      "failed_count": 0,
+      "record_count": 45229,
+      "sha256": null,
+      "status": "complete"
+    }
+  },
+  "materials_project": {
+    "api_key_committed": false,
+    "api_pymatgen_version": "2026.5.18",
+    "api_version": "0.87.2.dev13+g62063a867",
+    "database_version": "2026.04.13",
+    "terms": "Materials Project terms of use"
+  },
+  "mp20": {
+    "commit": "f857f598d6f6cca5dc1ea0582d228f12dcc2c2ea",
+    "files": {
+      "test": {
+        "filename": "test.csv",
+        "rows": 9046,
+        "sha256": "dd605c7543cf95a13e150aed630d0915e74edc8dea17e85301ee6fbfeb7f500a"
+      },
+      "train": {
+        "filename": "train.csv",
+        "rows": 27136,
+        "sha256": "133bab58dba02d316f9f91174839f17802dce648be4e8659d1a42b32b97fa01d"
+      },
+      "val": {
+        "filename": "val.csv",
+        "rows": 9047,
+        "sha256": "7b5f4085464b3eac9fd2123acee97ec372214004ce7e983b535b33395abc3e29"
+      }
+    },
+    "repository": "https://github.com/txie-93/cdvae"
+  },
+  "pxrd_ood_formula_guard": {
+    "manifest": "pXRD-ood/manifest.json",
+    "manifest_sha256": "613d12b8def084113332c7d94184bb4456adf9f9a7caa9bc2185b6c32d42d00e"
+  },
+  "schema_version": "1.1.0",
+  "selection_seed": 20260720,
+  "supersedes": {
+    "archive": "pXRD-100-v1-mixed-framework-exposure-20260718",
+    "manifest_sha256": "f8ed7db24ee246cfb682341d14dcb415e537c64e1adfbb48cffa9fbe9344c707"
+  }
+}

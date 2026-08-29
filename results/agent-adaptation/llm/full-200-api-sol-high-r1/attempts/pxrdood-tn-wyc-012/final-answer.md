@@ -1,0 +1,87 @@
+The peak positions are indexed very accurately by an orthorhombic metric
+
+\[
+a \simeq 5.766\ \text{Å},\quad b \simeq 8.154\ \text{Å},\quad
+c \simeq 11.532\ \text{Å}.
+\]
+
+The reciprocal metric is approximately
+
+\[
+d^{-2}=q_0(4h^2+2k^2+l^2),\qquad q_0\simeq0.007519\ {\rm Å^{-2}}.
+\]
+
+For example, the strong low-angle series at 7.66, 15.35, 23.12, 31.00, 39.03, 47.26, 55.76, 64.59, 73.93, and 83.85° is indexed as 001–0010. The most plausible structure type is an ordered orthorhombic double tungstate, with **Pmmn** as the leading space-group assignment. However, the supplied pattern does not contain enough independent reflections to determine reliable unconstrained atomic coordinates: many reflections are exactly overlapped by the pseudo-metric, and oxygen coordinates in particular cannot be recovered uniquely. Therefore, inventing a coordinate-complete CIF would not be defensible.
+
+The following is the maximum defensible primary CIF: a Le Bail/indexing model suitable for subsequent Rietveld or direct-space refinement.
+
+```cif
+data_RbIn_WO4_2_indexed_primary
+_audit_creation_method
+;Indexed from the supplied Cu Kalpha1 powder pattern.
+This is a lattice and space-group model; atomic coordinates have not
+been inserted because they are not uniquely determined by the pattern.
+;
+_chemical_name_common                 'rubidium indium ditungstate'
+_chemical_formula_sum                 'Rb In W2 O8'
+_chemical_formula_structural          'RbIn(WO4)2'
+_chemical_formula_weight              695.97
+
+_cell_length_a                        5.7660
+_cell_length_b                        8.1540
+_cell_length_c                        11.5320
+_cell_angle_alpha                     90
+_cell_angle_beta                      90
+_cell_angle_gamma                     90
+_cell_volume                          542.1
+
+_space_group_crystal_system           orthorhombic
+_space_group_name_H-M_alt             'P m m n'
+_space_group_IT_number                59
+
+_diffrn_radiation_type                'Cu Kalpha1'
+_diffrn_radiation_wavelength          1.5406
+
+_pd_proc_2theta_range_min             5.0
+_pd_proc_2theta_range_max             90.0
+
+loop_
+_pd_peak_2theta
+_pd_peak_intensity
+_pd_peak_index_h
+_pd_peak_index_k
+_pd_peak_index_l
+7.660   100.0   0 0 1
+15.350   23.3   0 0 2
+23.120   11.6   0 0 3
+26.765    9.8   0 2 2
+31.000    3.2   0 0 4
+31.970    0.7   2 0 1
+38.210   20.1   0 2 4
+39.030   12.5   0 0 5
+41.410   17.7   2 2 2
+45.140   12.7   2 2 3
+47.260    1.9   0 0 6
+49.990    2.9   3 0 2
+52.600    2.2   3 2 0
+55.150    2.5   2 4 0
+55.760    3.3   0 0 7
+60.580    4.3   2 4 3
+62.330    3.2   3 2 4
+64.590    0.6   0 0 8
+66.860    0.9   3 4 0
+69.060    4.5   4 2 0
+69.610    2.1   4 2 1
+71.240    2.0   4 2 2
+73.930    4.0   0 0 9
+77.610    1.7   4 2 4
+78.130    0.9   4 0 5
+79.690    1.1   2 6 2
+81.780    1.2   4 4 0
+82.300    2.3   4 4 1
+83.850    1.7   0 0 10
+86.400    2.6   4 4 3
+87.940    1.0   4 2 6
+```
+
+A surviving lower-symmetry alternative is the same metric in **P2/m** or **P2/c**, with the unique axis along the 11.532 Å direction and \(\beta\) extremely close to 90°. Peak positions alone cannot discriminate this from the orthorhombic model. Single-crystal data, PDF data, or a known prototype coordinate model would be required for a coordinate-complete CIF.

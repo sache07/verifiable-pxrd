@@ -1,0 +1,62 @@
+{
+  "background": "none",
+  "broadening": {
+    "fwhm_inv_angstrom": 0.05,
+    "fwhm_type": "constant in Q",
+    "gaussian_sigma_equation": "FWHM / (2*sqrt(2*ln(2)))",
+    "lorentzian_half_width_equation": "FWHM / 2",
+    "profile": "pseudo-Voigt (linear combination of height-normalized components)",
+    "pseudo_voigt_eta": 0.5
+  },
+  "grid": {
+    "last_point_inv_angstrom": 9.99,
+    "point_count": 1000,
+    "quantity": "Q = 4*pi*sin(theta)/wavelength",
+    "start_inv_angstrom": 0.0,
+    "step_inv_angstrom": 0.01,
+    "stop_inv_angstrom_exclusive": 10.0
+  },
+  "intensity": {
+    "clipping": "clip below zero after optional noise; no effect for clean profiles",
+    "normalization": "divide summed broadened profile by its maximum",
+    "range": [
+      0.0,
+      1.0
+    ]
+  },
+  "noise": {
+    "clean_evaluation_variance": 0.0,
+    "distribution": "none for these deterministic targets",
+    "paper_training_range": [
+      0.001,
+      0.05
+    ],
+    "paper_training_range_interpretation": "paper labels this Gaussian-noise variance; released code uses the sampled value as torch.randn standard-deviation scale"
+  },
+  "preferred_orientation": "none",
+  "stick_calculation": {
+    "calculator": "pymatgen.analysis.diffraction.xrd.XRDCalculator",
+    "debye_waller_factors": "none",
+    "pymatgen_version": "2026.5.4",
+    "scaled_maximum": 100.0,
+    "symprec": 0.0,
+    "two_theta_range": null,
+    "two_theta_range_note": "released code selects Pymatgen's full limiting sphere because Qmax exceeds 4*pi/wavelength"
+  },
+  "training_augmentation_not_applied": {
+    "fwhm_uniform_inv_angstrom": [
+      0.001,
+      0.1
+    ],
+    "noise_uniform": [
+      0.001,
+      0.05
+    ]
+  },
+  "wavelength": {
+    "paper_nominal_angstrom": 1.5406,
+    "radiation": "Cu K-alpha",
+    "released_code_pymatgen_key": "CuKa",
+    "resolved_angstrom_for_targets": 1.54184
+  }
+}

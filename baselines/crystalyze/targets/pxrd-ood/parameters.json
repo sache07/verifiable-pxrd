@@ -1,0 +1,54 @@
+{
+  "background": "none",
+  "broadening": {
+    "caglioti": {
+      "U": 0.05,
+      "V": -0.06,
+      "W": 0.07
+    },
+    "fwhm_equation": "sqrt(U*tan(theta)^2 + V*tan(theta) + W)",
+    "profile": "gaussian",
+    "pseudo_voigt_eta": 0.0,
+    "theta_definition": "theta = two_theta_peak / 2, in radians inside tan"
+  },
+  "debye_waller_factors": "none",
+  "grid": {
+    "last_point_deg": 89.99,
+    "point_count": 8500,
+    "start_deg": 5.0,
+    "step_deg": 0.01,
+    "stop_deg_exclusive": 90.0
+  },
+  "intensity": {
+    "normalization": "divide broadened profile by its maximum",
+    "range": [
+      0.0,
+      1.0
+    ]
+  },
+  "model_preprocessing": {
+    "effective_nonzero_range_deg": [
+      15.0,
+      90.0
+    ],
+    "inference_resampling": "np.linspace(5, 90, 8500)",
+    "masked_leading_bins": 1000,
+    "note": "Mask is applied by CrystDataset after loading; files retain the unmasked physical profile."
+  },
+  "preferred_orientation": "none",
+  "stick_calculation": {
+    "calculator": "pymatgen.analysis.diffraction.xrd.XRDCalculator",
+    "pymatgen_version": "2023.8.10",
+    "scaled_maximum": 100.0,
+    "symprec": 0.0,
+    "two_theta_range_deg": [
+      0.0,
+      90.0
+    ]
+  },
+  "wavelength": {
+    "angstrom": 1.54184,
+    "pymatgen_key": "CuKa",
+    "radiation": "Cu K-alpha"
+  }
+}

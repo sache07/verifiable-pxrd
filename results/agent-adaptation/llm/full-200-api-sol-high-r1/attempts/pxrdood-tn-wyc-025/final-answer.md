@@ -1,0 +1,55 @@
+The reflections index on a primitive cubic cell with \(a \approx 7.397\) Å. The first peaks correspond to 100, 110, 111, 200, 210, 211, and 220. The intensity classes are consistent with a cubic 1:3 ordered model in \(Pm\bar 3m\) (No. 221), with \(Z=1\).
+
+### Primary structure CIF
+
+```cif
+data_K4MgCu3F12
+_audit_creation_method              'Structure solution from powder XRD'
+_chemical_name_common               'potassium magnesium copper fluoride'
+_chemical_formula_sum               'K4 Mg Cu3 F12'
+_chemical_formula_structural        'K4MgCu3F12'
+_chemical_formula_weight            599.317
+_cell_formula_units_Z               1
+
+_cell_length_a                      7.3972
+_cell_length_b                      7.3972
+_cell_length_c                      7.3972
+_cell_angle_alpha                   90
+_cell_angle_beta                    90
+_cell_angle_gamma                   90
+_cell_volume                        404.75
+
+_space_group_crystal_system         cubic
+_space_group_name_H-M_alt           'P m -3 m'
+_space_group_IT_number              221
+
+_diffrn_radiation_type              'Cu Kalpha1'
+_diffrn_radiation_wavelength        1.5406
+
+_exptl_crystal_density_diffrn       2.459
+
+loop_
+_atom_type_symbol
+_atom_type_oxidation_number
+K   1
+Mg  2
+Cu  2
+F  -1
+
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_Wyckoff_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_B_iso_or_equiv
+K1   K   1a   0.000000   0.000000   0.000000   1.0   0.50
+K2   K   3d   0.500000   0.000000   0.000000   1.0   0.50
+Mg1  Mg  1b   0.500000   0.500000   0.500000   1.0   0.40
+Cu1  Cu  3c   0.000000   0.500000   0.500000   1.0   0.35
+F1   F   12i  0.000000   0.250000   0.250000   1.0   0.65
+```
+
+An equivalent origin choice places Mg at \(1a\), Cu at \(3d\), K at \(1b+3c\), and F on \(12h\); it is the same structure rather than a distinct alternative. The isotropic displacement parameters above are provisional because they are not independently determined by the supplied pattern.

@@ -1,0 +1,59 @@
+schema_version = 1
+id = "pxrd-gepa-stop-continue-v1"
+
+[paths]
+benchmark_repo = "../../../.."
+condition = "../../../../experiments/agent-adaptation/conditions/adapted-codex.toml"
+examples = "data/examples.jsonl"
+splits = "data/splits.json"
+run_root = "runs"
+
+[prompts]
+wrapper = "prompts/reviewer-wrapper.md"
+seed_policy = "prompts/seed-judge-policy.md"
+reflection = "prompts/reflection.md"
+feedback = "prompts/evaluator-feedback.md"
+continuation = "prompts/continuation-policy.md"
+
+[reviewer]
+model = "gpt-5.6-sol"
+reasoning_effort = "high"
+parallel = 10
+timeout_seconds = 1800
+cpu_quota = "200%"
+memory_max = "5G"
+tasks_max = 128
+network = false
+
+[reflection]
+model = "gpt-5.6-sol"
+reasoning_effort = "high"
+timeout_seconds = 600
+max_policy_words = 450
+
+[objective]
+# A needless continuation spends compute; a false stop permanently strands a miss.
+# Partial credit makes that asymmetry visible to GEPA while keeping correct decisions
+# at 1 and preventing an always-continue policy from becoming optimal.
+false_continue_credit = 0.5
+
+[gepa]
+candidate_selection_strategy = "pareto"
+frontier_type = "instance"
+reflection_minibatch_size = 3
+batch_sampler = "epoch_shuffled"
+skip_perfect_score = true
+use_merge = false
+max_merge_invocations = 0
+max_metric_calls = 180
+val_evaluation_policy = "full_eval"
+acceptance_criterion = "strict_improvement"
+cache_evaluation = true
+seed = 0
+
+[finalist_evaluation]
+candidate_count = 3
+validation_repeats = 2
+development_repeats = 3
+# A false stop strands a miss, so preserve miss recall before optimizing compute.
+selection_order = ["false_stop_rate", "balanced_accuracy", "continuation_rate", "word_count"]

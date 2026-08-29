@@ -1,0 +1,85 @@
+The pattern is consistent with a **single tetragonal, low-density SiO₂ phase**. The strongest reflections index with:
+
+| 2θ observed (°) | d (Å) | hkl |
+|---:|---:|---:|
+| 12.70 | 6.97 | 100 |
+| 13.68 | 6.47 | 001 |
+| 18.70 | 4.74 | 101 |
+| 22.67 | 3.92 | 111 |
+| 27.55 | 3.24 | 002 |
+| 28.63 | 3.12 | 210 |
+| 29.09 | 3.07 | 201 |
+| 30.43 | 2.94 | 102 |
+| 31.85 | 2.81 | 211 |
+| 36.44 | 2.46 | 220 |
+| 37.92 | 2.37 | 202 |
+| 41.27 | 2.19 | 301 |
+
+A least-squares indexing gives approximately:
+
+\[
+a=b=6.97\ \text{Å},\qquad c=6.47\ \text{Å}.
+\]
+
+The assignment is a **BCT-framework tetragonal silica**, represented in the primitive tetragonal space group \(P\overline{4}m2\) (No. 115), with \(Z=4\). This is not quartz, cristobalite, coesite, or stishovite.
+
+The lattice assignment is high confidence. The coordinates below are a topology-constrained idealized BCT model rather than a full unconstrained Rietveld refinement; small coordinate relaxation is advisable against the original profile.
+
+```cif
+data_SiO2_BCT_tetragonal
+_audit_creation_method
+;
+Indexed from the supplied Cu Kalpha1 powder pattern.
+BCT-framework topology-constrained starting model.
+Atomic coordinates should be refined against the original profile.
+;
+
+_chemical_name_common                 'BCT-type tetragonal silica'
+_chemical_formula_structural          'SiO2'
+_chemical_formula_sum                 'Si4 O8'
+_cell_formula_units_Z                 4
+
+_cell_length_a                        6.969
+_cell_length_b                        6.969
+_cell_length_c                        6.470
+_cell_angle_alpha                     90
+_cell_angle_beta                      90
+_cell_angle_gamma                     90
+_cell_volume                          314.18
+
+_space_group_crystal_system           tetragonal
+_space_group_name_H-M_alt             'P -4 m 2'
+_space_group_IT_number                115
+
+_diffrn_radiation_type                'Cu Kalpha1'
+_diffrn_radiation_wavelength          1.5406
+
+_exptl_crystal_density_diffrn         1.270
+
+loop_
+_space_group_symop_id
+_space_group_symop_operation_xyz
+1  'x,y,z'
+2  '-x,-y,z'
+3  '-y,x,-z'
+4  'y,-x,-z'
+5  'x,-y,-z'
+6  '-x,y,-z'
+7  'y,x,z'
+8  '-y,-x,z'
+
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_Wyckoff_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_B_iso_or_equiv
+Si1 Si 4 h  0.2200  0.0000  0.1930  1.0  0.50
+O1  O  8 i  0.0800  0.1700  0.0700  1.0  0.70
+```
+
+A doubled \(c\)-axis description, \(a\approx6.97\) Å and \(c\approx12.94\) Å, is metrically possible, but the observed reflections show an effective \(c/2\) translation. The primitive BCT description above is therefore preferred.

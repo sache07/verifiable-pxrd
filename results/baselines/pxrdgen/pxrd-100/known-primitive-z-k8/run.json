@@ -1,0 +1,215 @@
+{
+  "candidate_directory": {
+    "candidate_cif_count": 800,
+    "candidate_record_count": 800,
+    "case_count": 100,
+    "cifs_published": true,
+    "manifest_sha256": "9b5dbe315f4afb0707e5c96316c6624ce68066ece0a44939f303f6e0004bd7ed",
+    "path": "candidates",
+    "verifier_result_file_count": 100
+  },
+  "condition": "known primitive-cell Z",
+  "condition_slug": "known-primitive-z-k8",
+  "corpus": "pXRD-100",
+  "corpus_slug": "pxrd-100",
+  "framework": "PXRDGen",
+  "framework_slug": "pxrdgen",
+  "input_contract": "pXRD, composition, and known primitive-cell Z",
+  "oracle_input": true,
+  "raw_run_archive": {
+    "filename": "candidates.tar.zst",
+    "published": true,
+    "regular_file_count": 1620,
+    "scope": "complete frozen shard directories: requests, results, candidates, raw outputs, and logs",
+    "sha256": "0b7c4106c565c6397b46a7bc3ccf26d21d5485278e88d4726015d41348ea2d6a",
+    "size_bytes": 555211
+  },
+  "results": {
+    "candidate_record_count": 800,
+    "case_count": 100,
+    "exact_structure_matches_at_1": 47,
+    "exact_structure_matches_at_generated_k": 84,
+    "exact_structure_matches_at_reported_k": 84,
+    "formula_matches_at_1": 99,
+    "formula_matches_at_generated_k": 100,
+    "formula_matches_at_reported_k": 100,
+    "generated_candidate_count": 800,
+    "generated_k": 8,
+    "invalid_candidate_count": 0,
+    "reported_k": 8,
+    "valid_structure_candidate_count": 798
+  },
+  "sampling": {
+    "generated_k": 8,
+    "reported_k": [
+      1,
+      8
+    ]
+  },
+  "schema_version": "1.1.0",
+  "source": {
+    "evaluation_sha256": "81e4c8fd5c087aad715e30885f264c26d5e781bd5d821b0cb57083b79be00f8d",
+    "relative_path": "pXRD-100/results/pxrdgen/pxrdgen-20260720-v2-fourway-primitive-oracle-bof8-raw-l4",
+    "run_id": "pxrdgen-20260720-v2-fourway-primitive-oracle-bof8-raw-l4",
+    "run_summary_sha256": "d28ab2aa65549285cf1de67c1f7a00dbf891d628224c3e6ac93261ea6791985b",
+    "source_dataset_id": "pXRD-100",
+    "source_manifest_sha256": "2497ce44c92d69ecb436c5b0aa1aae22b6bc46a02f65209cadfa0416b6cc9b46"
+  },
+  "source_run_summary": {
+    "artifact_audit": {
+      "candidate_hashes_checked": 800,
+      "hash_mismatch_count": 0,
+      "missing_or_extra_candidate_count": 0,
+      "raw_hashes_checked": 800
+    },
+    "caveat": "Oracle caveat: the primitive-cell formula and exact atom count were derived from each hidden target CIF. This is more information than pXRD plus reduced composition.",
+    "conditioning": "pXRD plus exact primitive-cell composition and atom count",
+    "conditioning_audit": {
+      "candidate_inputs_checked": 800,
+      "mismatch_count": 0,
+      "primitive_formula_differs_from_reduced_case_count": 54,
+      "statement": "Every candidate received the hidden target's exact primitive-cell formula and atom count."
+    },
+    "framework": "PXRDGen",
+    "generation": {
+      "aggregate_container_seconds": 131.62701031600005,
+      "first_shard_provenance": {
+        "checkpoint_sha256": "a92b0194e167cfc654448d2f748785ca883ed3ffccbefcb69345e44d91acab91",
+        "encoder_checkpoint_sha256": "f2bf33649a6417ebc0d3e7032d21dd1c2f0647d22f7b499e31d491704aa56eee",
+        "inference": {
+          "atom_count_source": "hidden target CIF primitive cell",
+          "infer_timesteps": 200,
+          "input_mode": "primitive_cell_formula_oracle_from_hidden_cif",
+          "seed_base": 20260719,
+          "step_lr": 5.0
+        }
+      },
+      "shard_count": 10
+    },
+    "import_audit": null,
+    "metric": {
+      "best_of_1": "candidate sample_index 0",
+      "best_of_k": "oracle over sample_index 0 through 7",
+      "evaluator_pymatgen": "2026.5.4",
+      "formula_match": {
+        "absolute_tolerance": 1e-08,
+        "basis": "reduced elemental composition",
+        "oxidation_states": "ignored",
+        "relative_tolerance": 1e-05
+      },
+      "structure_matcher": {
+        "allow_subset": false,
+        "angle_tol": 5,
+        "attempt_supercell": true,
+        "boolean_predicate": "StructureMatcher.fit",
+        "comparator": "ElementComparator",
+        "lattice_feasibility_prefilter": "symmetric volume-per-site bound implied by ltol with scale=False",
+        "ltol": 0.2,
+        "memory_limit_bytes": 4294967296,
+        "primitive_cell": true,
+        "process_isolation": true,
+        "rms_units": "normalized by (volume / site count) ** (1/3)",
+        "scale": false,
+        "stol": 0.3,
+        "symmetric": true,
+        "timeout_seconds": 30.0
+      },
+      "structure_validity": {
+        "minimum_distance_angstrom": 0.5,
+        "volume_min": 0.1
+      }
+    },
+    "run_id": "pxrdgen-20260720-v2-fourway-primitive-oracle-bof8-raw-l4",
+    "schema_version": "1.1.0",
+    "solver_native_metrics": null,
+    "source_dataset_id": "pXRD-100",
+    "source_manifest_sha256": "2497ce44c92d69ecb436c5b0aa1aae22b6bc46a02f65209cadfa0416b6cc9b46",
+    "summary": {
+      "all": {
+        "best_of_1_formula_match_count": 99,
+        "best_of_1_formula_match_rate": 0.99,
+        "best_of_1_structure_match_count": 47,
+        "best_of_1_structure_match_rate": 0.47,
+        "best_of_k_formula_match_count": 100,
+        "best_of_k_formula_match_rate": 1.0,
+        "best_of_k_structure_match_count": 84,
+        "best_of_k_structure_match_rate": 0.84,
+        "case_count": 100
+      },
+      "candidate_count": 800,
+      "candidate_status_counts": {
+        "generated": 800
+      },
+      "panels": {
+        "challenge": {
+          "best_of_1_formula_match_count": 29,
+          "best_of_1_formula_match_rate": 0.9666666666666667,
+          "best_of_1_structure_match_count": 11,
+          "best_of_1_structure_match_rate": 0.36666666666666664,
+          "best_of_k_formula_match_count": 30,
+          "best_of_k_formula_match_rate": 1.0,
+          "best_of_k_structure_match_count": 22,
+          "best_of_k_structure_match_rate": 0.7333333333333333,
+          "case_count": 30
+        },
+        "polymorph": {
+          "best_of_1_formula_match_count": 40,
+          "best_of_1_formula_match_rate": 1.0,
+          "best_of_1_structure_match_count": 15,
+          "best_of_1_structure_match_rate": 0.375,
+          "best_of_k_formula_match_count": 40,
+          "best_of_k_formula_match_rate": 1.0,
+          "best_of_k_structure_match_count": 32,
+          "best_of_k_structure_match_rate": 0.8,
+          "case_count": 40
+        },
+        "representative": {
+          "best_of_1_formula_match_count": 30,
+          "best_of_1_formula_match_rate": 1.0,
+          "best_of_1_structure_match_count": 21,
+          "best_of_1_structure_match_rate": 0.7,
+          "best_of_k_formula_match_count": 30,
+          "best_of_k_formula_match_rate": 1.0,
+          "best_of_k_structure_match_count": 30,
+          "best_of_k_structure_match_rate": 1.0,
+          "case_count": 30
+        }
+      },
+      "samples_per_case": 8,
+      "streams": {},
+      "valid_structure_candidate_count": 798
+    }
+  },
+  "verifier": {
+    "best_of_1": "candidate sample_index 0",
+    "best_of_k": "oracle over sample_index 0 through 7",
+    "evaluator_pymatgen": "2026.5.4",
+    "formula_match": {
+      "absolute_tolerance": 1e-08,
+      "basis": "reduced elemental composition",
+      "oxidation_states": "ignored",
+      "relative_tolerance": 1e-05
+    },
+    "structure_matcher": {
+      "allow_subset": false,
+      "angle_tol": 5,
+      "attempt_supercell": true,
+      "boolean_predicate": "StructureMatcher.fit",
+      "comparator": "ElementComparator",
+      "lattice_feasibility_prefilter": "symmetric volume-per-site bound implied by ltol with scale=False",
+      "ltol": 0.2,
+      "memory_limit_bytes": 4294967296,
+      "primitive_cell": true,
+      "process_isolation": true,
+      "rms_units": "normalized by (volume / site count) ** (1/3)",
+      "scale": false,
+      "stol": 0.3,
+      "symmetric": true,
+      "timeout_seconds": 30.0
+    },
+    "structure_validity": {
+      "minimum_distance_angstrom": 0.5,
+      "volume_min": 0.1
+    }
+  }
+}

@@ -1,0 +1,108 @@
+The pattern indexes well as a strongly pseudosymmetric **orthorhombic** phase. The principal indexing is:
+
+| 2θ (°) | hkl |
+|---:|:---|
+| 18.990 | 200 |
+| 19.575 | 020 |
+| 21.785 | 120 |
+| 27.405 | 220 |
+| 34.245 | 004 |
+| 34.940 | 320 |
+| 35.610 | 104 |
+| 38.530 | 400 |
+| 39.450 | 204 |
+| 39.760 | 040/024 |
+| 40.955 | 124 |
+| 43.580 | 420 |
+| 44.400 | 240/224 |
+| 45.240 | 304 |
+| 49.730 | 324 |
+| 52.490 | 404 |
+| 52.980 | 520 |
+| 53.450 | 044 |
+| 54.430 | 144 |
+
+The refined metric is approximately
+
+\[
+a=9.3381,\quad b=9.0627,\quad c=10.4650\ {\rm \AA},
+\]
+
+with \(V\approx885.6\ {\rm \AA^3}\). The chemically reasonable assignment is the β-eucryptite-related **oP84**, \(Z=12\), model in **\(P2_12_12_1\)** (No. 19). This gives a calculated density of about \(3.48\ {\rm g\,cm^{-3}}\).
+
+### Primary CIF
+
+The profile supports the cell and structure type, but not a unique set of 63 independent positional parameters. Therefore the CIF below is the defensible diffraction-derived **metric and space-group model**; atomic coordinates are deliberately not fabricated.
+
+```cif
+data_LiFeSiO4_primary
+_audit_creation_method
+'Le Bail indexing of supplied Cu Kalpha1 powder pattern; beta-eucryptite-related structure-type assignment'
+_audit_update_record
+'Atomic coordinates require a P212121 LiFeSiO4 prototype or subsequent Rietveld/direct-space refinement'
+
+_chemical_name_common                 'lithium iron(III) orthosilicate'
+_chemical_formula_sum                 'Li Fe Si O4'
+_chemical_formula_structural          'LiFeSiO4'
+_cell_formula_units_Z                 12
+
+_space_group_crystal_system           orthorhombic
+_space_group_name_H-M_alt             'P 21 21 21'
+_space_group_IT_number                19
+
+_cell_length_a                        9.3381
+_cell_length_b                        9.0627
+_cell_length_c                        10.4650
+_cell_angle_alpha                     90
+_cell_angle_beta                      90
+_cell_angle_gamma                     90
+_cell_volume                          885.6
+
+_exptl_crystal_density_diffrn         3.48
+_diffrn_radiation_probe              x-ray
+_diffrn_radiation_type               'Cu Kalpha1'
+_diffrn_radiation_wavelength          1.5406
+
+loop_
+_space_group_symop_id
+_space_group_symop_operation_xyz
+1 'x,y,z'
+2 '-x+1/2,-y,z+1/2'
+3 '-x,y+1/2,-z+1/2'
+4 'x+1/2,-y+1/2,-z'
+
+loop_
+_atom_type_symbol
+_atom_type_oxidation_number
+Li  1
+Fe  3
+Si  4
+O  -2
+
+loop_
+_refln_index_h
+_refln_index_k
+_refln_index_l
+_refln_angle_2theta
+200  2 0 0 18.990
+020  0 2 0 19.575
+120  1 2 0 21.785
+220  2 2 0 27.405
+004  0 0 4 34.245
+320  3 2 0 34.940
+104  1 0 4 35.610
+400  4 0 0 38.530
+204  2 0 4 39.450
+040  0 4 0 39.760
+124  1 2 4 40.955
+420  4 2 0 43.580
+240  2 4 0 44.400
+304  3 0 4 45.240
+324  3 2 4 49.730
+404  4 0 4 52.490
+520  5 2 0 52.980
+044  0 4 4 53.450
+144  1 4 4 54.430
+```
+
+The principal surviving alternatives are the non-centrosymmetric orthorhombic subgroups **Pna2₁** and **Pca2₁** with essentially the same cell. The supplied conventional powder pattern does not contain enough independent superstructure intensity information to discriminate these rigorously or to recover an atom-complete CIF without a prototype-constrained Rietveld/direct-space refinement.

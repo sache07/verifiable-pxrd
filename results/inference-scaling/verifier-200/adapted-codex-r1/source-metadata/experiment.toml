@@ -1,0 +1,37 @@
+schema_version = "verifier-200-experiment-v1"
+result_id = "adapted-codex-r1-verifier-200"
+solver_bundle = "results/agent-adaptation/adapted-codex/full-200-chatgpt-sol-high-r1/bundle.json"
+
+[sources]
+seed = "judge-v1-seed102-no-rwp-adapted-full200-chatgpt-sol-high-r1-20260829"
+judge_v1 = "llm-verifier-adapted-full200-chatgpt-sol-high-r1-20260826"
+judge_v1_retry = "llm-verifier-adapted-pxrdood-tn-css-014-rerun-20260826"
+rwp = "rwp-verifier-adapted-full200-r1-20260826"
+
+[judge_v1_retry]
+problem_id = "pxrdood-tn-css-014"
+reason = "The initial reviewer call ended with a model-capacity error and emitted no decision."
+
+[[rwp_cutoffs]]
+id = "rwp-1-false-stop"
+threshold_percent = 5.924
+expected_correct = 127
+expected_false_stops = 1
+expected_false_continues = 72
+
+[[rwp_cutoffs]]
+id = "rwp-7-false-stops"
+threshold_percent = 6.66
+expected_correct = 149
+expected_false_stops = 7
+expected_false_continues = 44
+
+[expected.seed]
+correct = 126
+false_stops = 1
+false_continues = 73
+
+[expected.judge_v1]
+correct = 155
+false_stops = 7
+false_continues = 38

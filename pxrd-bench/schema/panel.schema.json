@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://characterizagent.org/schemas/verifiable-pxrd-panel-v1.json",
+  "title": "Verifiable pXRD lightweight panel",
+  "type": "object",
+  "required": ["schema_version", "panel_id", "cases"],
+  "properties": {
+    "schema_version": {"const": "1"},
+    "panel_id": {"type": "string", "minLength": 1},
+    "path_root": {"type": "string"},
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["case_id", "formula", "pattern_path", "reference_path"],
+        "properties": {
+          "case_id": {"type": "string", "minLength": 1},
+          "formula": {"type": "string", "minLength": 1},
+          "pattern_path": {"type": "string", "minLength": 1},
+          "reference_path": {"type": "string", "minLength": 1},
+          "wavelength": {"type": "number", "exclusiveMinimum": 0},
+          "radiation": {"type": "string"}
+        }
+      }
+    }
+  }
+}

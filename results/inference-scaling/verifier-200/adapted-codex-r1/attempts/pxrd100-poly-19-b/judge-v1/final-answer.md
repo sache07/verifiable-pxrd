@@ -1,0 +1,1 @@
+Recorded the verifier decision: [decision.json](<EXTERNAL_PATH>).

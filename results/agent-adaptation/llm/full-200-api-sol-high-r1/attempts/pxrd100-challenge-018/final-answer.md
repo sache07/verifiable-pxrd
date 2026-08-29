@@ -1,0 +1,57 @@
+The pattern indexes as a monoclinically distorted, ordered derivative of the hexagonal C40 (CrSi₂-type) structure. The six successive metal layers follow the ordering Ta–Ta–V–Ta–V–V, up to reversal and cyclic origin choice. The refined metric is approximately \(a=4.705\), \(b=13.000\), \(c=4.682\) Å, \(\beta=119.60^\circ\), with space group \(P2\) and \(Z=3\).
+
+The low-angle series at 6.79, 13.61, 20.46, 27.41, and 34.45° corresponds to the long 13.00 Å repeat. The triplet splitting of the pseudohexagonal reflection families establishes the monoclinic distortion.
+
+### Primary structure CIF
+
+```cif
+data_TaVSi4_ordered_C40
+_audit_creation_method              'Structure solution from supplied Cu Kalpha1 powder pattern'
+_chemical_name_common               'tantalum vanadium tetras silicide'
+_chemical_formula_structural        'TaVSi4'
+_chemical_formula_sum               'Ta3 V3 Si12'
+_cell_formula_units_Z               3
+
+_diffrn_radiation_type              'Cu Kalpha1'
+_diffrn_radiation_wavelength        1.5406
+
+_space_group_crystal_system         monoclinic
+_space_group_name_H-M_alt           'P 1 2 1'
+_space_group_IT_number              3
+
+_cell_length_a                      4.705
+_cell_length_b                      13.000
+_cell_length_c                      4.682
+_cell_angle_alpha                   90
+_cell_angle_beta                    119.60
+_cell_angle_gamma                   90
+
+loop_
+_space_group_symop_id
+_space_group_symop_operation_xyz
+1  'x,y,z'
+2  '-x,y,-z'
+
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+Ta1  Ta  1  0.500000  0.000000  0.000000  1
+Ta2  Ta  1  0.500000  0.833333  0.500000  1
+Ta3  Ta  1  0.500000  0.500000  0.000000  1
+V1   V   1  0.000000  0.666667  0.500000  1
+V2   V   1  0.500000  0.333333  0.500000  1
+V3   V   1  0.000000  0.166667  0.500000  1
+Si1  Si  2  0.166667  0.000000  0.333333  1
+Si2  Si  2  0.833333  0.833333  0.166667  1
+Si3  Si  2  0.666667  0.666667  0.833333  1
+Si4  Si  2  0.166667  0.500000  0.333333  1
+Si5  Si  2  0.833333  0.333333  0.166667  1
+Si6  Si  2  0.666667  0.166667  0.833333  1
+```
+
+The inverted structure obtained by applying \((x,y,z)\rightarrow(-x,-y,-z)\) is powder-diffraction equivalent and represents the unresolved opposite hand/layer-sequence reversal; a separate CIF is therefore unnecessary.

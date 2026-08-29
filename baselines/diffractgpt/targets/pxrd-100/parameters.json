@@ -1,0 +1,64 @@
+{
+  "background": "none for deterministic simulated benchmark inputs",
+  "broadening": {
+    "applied_in_reproducible_transform": false,
+    "article_claim": "The article states that a Gaussian broadening function was applied.",
+    "profile": "Gaussian (article claim)",
+    "reconciliation": "No Gaussian width is reported in the article or SI, and no paper-era preprocessing implementation was released. The first later AtomGPT helper bins JARVIS sticks without a Gaussian operation. No unreported width is invented here.",
+    "width": null
+  },
+  "format": {
+    "decimal_places": 3,
+    "separator": "newline",
+    "vector_length": 180
+  },
+  "grid": {
+    "last_point_deg": 89.5,
+    "point_count": 180,
+    "start_deg": 0.0,
+    "step_deg": 0.5,
+    "stop_deg_exclusive": 90.0
+  },
+  "intensity": {
+    "jarvis_native_filter": "retain native integrated intensities strictly greater than 0.5 after scaling their sum to 100",
+    "normalization": "divide JARVIS sticks by their maximum, assign each retained stick to its nearest grid point with replacement semantics, then divide the binned vector by its maximum",
+    "range": [
+      0.0,
+      1.0
+    ],
+    "rounding_for_model": "round-half-even through Python format .3f"
+  },
+  "noise": "none",
+  "preferred_orientation": "none (JARVIS po factor is 1)",
+  "preprocessing_reproducibility": {
+    "exact_released_implementation_available": false,
+    "later_code_reference": "AtomGPT commit 6ceecec86c7ae5e16776deca54b0fcf8027311ca discloses nearest-bin replacement and max normalization, but emits two decimals; it is not an exact executable match for the paper.",
+    "paper_is_authoritative_for": [
+      "180 values",
+      "0.5-degree interval",
+      "three-decimal serialization"
+    ]
+  },
+  "prompt": {
+    "alpaca_template": "### Instruction:\n{}\n### Input:\n{}\n### Output:\n{}",
+    "benchmark_composition": "reduced composition supplied by pXRD-100 manifest.json; the model formula is a flattened serialization of that composition",
+    "formula_template": "The chemical formula is {formula} . The  XRD is {vector}. Generate atomic structure description with lattice lengths, angles, coordinates and atom types.",
+    "instruction": "Below is a description of a material."
+  },
+  "stick_calculation": {
+    "calculator": "jarvis.analysis.diffraction.xrd.XRD",
+    "intensity_tol": 0.5,
+    "jarvis_commit": "ac16eb5e6b5eb89360bcada5b1356e8144510422",
+    "jarvis_tools_version": "2024.10.30",
+    "lorentz_polarization": true,
+    "max_miller_index_seed": 5,
+    "scaling_factor": 100.0,
+    "structure_factor": "atomic scattering factors and fractional coordinates",
+    "two_theta_tolerance_deg": 1e-05
+  },
+  "threshold_note": "The SI's 0.04 cutoff is an experimental-pattern preprocessing step. It is not added to ideal simulations; JARVIS's native intensity_tol already defines the simulated training sparsity.",
+  "wavelength": {
+    "angstrom": 1.54184,
+    "radiation": "Cu K-alpha"
+  }
+}

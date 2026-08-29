@@ -1,0 +1,1 @@
+Recorded the verdict as `stop` in [decision.json](<EXTERNAL_PATH>). No CIFs were altered or generated.

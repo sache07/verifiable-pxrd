@@ -1,0 +1,247 @@
+{
+  "candidate_directory": {
+    "candidate_cif_count": 595,
+    "candidate_record_count": 800,
+    "case_count": 100,
+    "cifs_published": true,
+    "manifest_sha256": "00edf8849a7051fdd42f1f0d6482c5d1ff2091147251ff9dae3045cfc3728e59",
+    "path": "candidates",
+    "verifier_result_file_count": 100
+  },
+  "condition": "reduced-composition conditioning",
+  "condition_slug": "reduced-composition-k8",
+  "corpus": "pXRD-ood",
+  "corpus_slug": "pxrd-ood",
+  "framework": "deCIFer",
+  "framework_slug": "decifer",
+  "input_contract": "pXRD and reduced composition",
+  "oracle_input": false,
+  "raw_run_archive": {
+    "filename": "candidates.tar.zst",
+    "published": true,
+    "regular_file_count": 1415,
+    "scope": "complete frozen shard directories: requests, results, candidates, raw outputs, and logs",
+    "sha256": "c25be71796aa34252baf0a69a899846071cb9b76faa97817706bd5ec807ae412",
+    "size_bytes": 165039
+  },
+  "results": {
+    "candidate_record_count": 800,
+    "case_count": 100,
+    "exact_structure_matches_at_1": 0,
+    "exact_structure_matches_at_generated_k": 1,
+    "exact_structure_matches_at_reported_k": 1,
+    "formula_matches_at_1": 12,
+    "formula_matches_at_generated_k": 17,
+    "formula_matches_at_reported_k": 17,
+    "generated_candidate_count": 595,
+    "generated_k": 8,
+    "invalid_candidate_count": 205,
+    "reported_k": 8,
+    "valid_structure_candidate_count": 576
+  },
+  "sampling": {
+    "generated_k": 8,
+    "reported_k": [
+      1,
+      8
+    ]
+  },
+  "schema_version": "1.1.0",
+  "source": {
+    "evaluation_sha256": "6b1493a919faea385423fbdab51b9e914e954e88156892a0797dd1c5d788dd5d",
+    "relative_path": "pXRD-ood/results/decifer/decifer-20260720-ood-paper-bof8-l4",
+    "run_id": "decifer-20260720-ood-paper-bof8-l4",
+    "run_summary_sha256": "0d4150bcd81874618015dac573d0ec8db4cbf386c1a56d508a64794672fd7ca8",
+    "source_dataset_id": "pXRD-ood-v1",
+    "source_manifest_sha256": "613d12b8def084113332c7d94184bb4456adf9f9a7caa9bc2185b6c32d42d00e"
+  },
+  "source_run_summary": {
+    "artifact_audit": {
+      "candidate_hashes_checked": 800,
+      "hash_mismatch_count": 0,
+      "missing_or_extra_candidate_count": 0,
+      "raw_hashes_checked": 800
+    },
+    "caveat": null,
+    "conditioning": "pXRD plus reduced composition",
+    "conditioning_audit": null,
+    "framework": "deCIFer",
+    "generation": {
+      "aggregate_container_seconds": 4427.8970035,
+      "first_shard_provenance": {
+        "checkpoint_sha256": "6d97e352f99dc6dbc5ced102ed10ee0693651a81f429f20ea50c2bc1fe18b78b",
+        "framework_commit": "91ace18de9aa118f1174942fbe1ec85f127c7864",
+        "inference": {
+          "composition": "reduced formula",
+          "composition_mode": "reduced",
+          "max_new_tokens": 3076,
+          "seed_base": 20260719,
+          "space_group_conditioning": false,
+          "temperature": 1.0,
+          "top_k": 50
+        }
+      },
+      "shard_count": 10
+    },
+    "import_audit": null,
+    "metric": {
+      "best_of_1": "candidate sample_index 0",
+      "best_of_k": "oracle over sample_index 0 through 7",
+      "evaluator_pymatgen": "2026.5.4",
+      "formula_match": {
+        "absolute_tolerance": 1e-08,
+        "basis": "reduced elemental composition",
+        "oxidation_states": "ignored",
+        "relative_tolerance": 1e-05
+      },
+      "structure_matcher": {
+        "allow_subset": false,
+        "angle_tol": 5,
+        "attempt_supercell": true,
+        "boolean_predicate": "StructureMatcher.fit",
+        "comparator": "ElementComparator",
+        "lattice_feasibility_prefilter": "symmetric volume-per-site bound implied by ltol with scale=False",
+        "ltol": 0.2,
+        "memory_limit_bytes": 4294967296,
+        "primitive_cell": true,
+        "process_isolation": true,
+        "rms_units": "normalized by (volume / site count) ** (1/3)",
+        "scale": false,
+        "stol": 0.3,
+        "symmetric": true,
+        "timeout_seconds": 30.0
+      },
+      "structure_validity": {
+        "minimum_distance_angstrom": 0.5,
+        "volume_min": 0.1
+      }
+    },
+    "run_id": "decifer-20260720-ood-paper-bof8-l4",
+    "schema_version": "1.1.0",
+    "solver_native_metrics": null,
+    "source_dataset_id": "pXRD-ood-v1",
+    "source_manifest_sha256": "613d12b8def084113332c7d94184bb4456adf9f9a7caa9bc2185b6c32d42d00e",
+    "summary": {
+      "all": {
+        "best_of_1_formula_match_count": 12,
+        "best_of_1_formula_match_rate": 0.12,
+        "best_of_1_structure_match_count": 0,
+        "best_of_1_structure_match_rate": 0.0,
+        "best_of_k_formula_match_count": 17,
+        "best_of_k_formula_match_rate": 0.17,
+        "best_of_k_structure_match_count": 1,
+        "best_of_k_structure_match_rate": 0.01,
+        "case_count": 100
+      },
+      "candidate_count": 800,
+      "candidate_status_counts": {
+        "generated": 595,
+        "invalid": 205
+      },
+      "panels": {
+        "composition-novel-topology-familiar": {
+          "best_of_1_formula_match_count": 2,
+          "best_of_1_formula_match_rate": 0.04,
+          "best_of_1_structure_match_count": 0,
+          "best_of_1_structure_match_rate": 0.0,
+          "best_of_k_formula_match_count": 2,
+          "best_of_k_formula_match_rate": 0.04,
+          "best_of_k_structure_match_count": 0,
+          "best_of_k_structure_match_rate": 0.0,
+          "case_count": 50
+        },
+        "topology-novel": {
+          "best_of_1_formula_match_count": 10,
+          "best_of_1_formula_match_rate": 0.2,
+          "best_of_1_structure_match_count": 0,
+          "best_of_1_structure_match_rate": 0.0,
+          "best_of_k_formula_match_count": 15,
+          "best_of_k_formula_match_rate": 0.3,
+          "best_of_k_structure_match_count": 1,
+          "best_of_k_structure_match_rate": 0.02,
+          "case_count": 50
+        }
+      },
+      "samples_per_case": 8,
+      "streams": {
+        "crystal-search": {
+          "best_of_1_formula_match_count": 4,
+          "best_of_1_formula_match_rate": 0.16,
+          "best_of_1_structure_match_count": 0,
+          "best_of_1_structure_match_rate": 0.0,
+          "best_of_k_formula_match_count": 7,
+          "best_of_k_formula_match_rate": 0.28,
+          "best_of_k_structure_match_count": 1,
+          "best_of_k_structure_match_rate": 0.04,
+          "case_count": 25
+        },
+        "ordered-decoration": {
+          "best_of_1_formula_match_count": 1,
+          "best_of_1_formula_match_rate": 0.04,
+          "best_of_1_structure_match_count": 0,
+          "best_of_1_structure_match_rate": 0.0,
+          "best_of_k_formula_match_count": 1,
+          "best_of_k_formula_match_rate": 0.04,
+          "best_of_k_structure_match_count": 0,
+          "best_of_k_structure_match_rate": 0.0,
+          "case_count": 25
+        },
+        "substitution": {
+          "best_of_1_formula_match_count": 1,
+          "best_of_1_formula_match_rate": 0.04,
+          "best_of_1_structure_match_count": 0,
+          "best_of_1_structure_match_rate": 0.0,
+          "best_of_k_formula_match_count": 1,
+          "best_of_k_formula_match_rate": 0.04,
+          "best_of_k_structure_match_count": 0,
+          "best_of_k_structure_match_rate": 0.0,
+          "case_count": 25
+        },
+        "wyckoff-enumeration": {
+          "best_of_1_formula_match_count": 6,
+          "best_of_1_formula_match_rate": 0.24,
+          "best_of_1_structure_match_count": 0,
+          "best_of_1_structure_match_rate": 0.0,
+          "best_of_k_formula_match_count": 8,
+          "best_of_k_formula_match_rate": 0.32,
+          "best_of_k_structure_match_count": 0,
+          "best_of_k_structure_match_rate": 0.0,
+          "case_count": 25
+        }
+      },
+      "valid_structure_candidate_count": 576
+    }
+  },
+  "verifier": {
+    "best_of_1": "candidate sample_index 0",
+    "best_of_k": "oracle over sample_index 0 through 7",
+    "evaluator_pymatgen": "2026.5.4",
+    "formula_match": {
+      "absolute_tolerance": 1e-08,
+      "basis": "reduced elemental composition",
+      "oxidation_states": "ignored",
+      "relative_tolerance": 1e-05
+    },
+    "structure_matcher": {
+      "allow_subset": false,
+      "angle_tol": 5,
+      "attempt_supercell": true,
+      "boolean_predicate": "StructureMatcher.fit",
+      "comparator": "ElementComparator",
+      "lattice_feasibility_prefilter": "symmetric volume-per-site bound implied by ltol with scale=False",
+      "ltol": 0.2,
+      "memory_limit_bytes": 4294967296,
+      "primitive_cell": true,
+      "process_isolation": true,
+      "rms_units": "normalized by (volume / site count) ** (1/3)",
+      "scale": false,
+      "stol": 0.3,
+      "symmetric": true,
+      "timeout_seconds": 30.0
+    },
+    "structure_validity": {
+      "minimum_distance_angstrom": 0.5,
+      "volume_min": 0.1
+    }
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "base_model": {
+    "artifacts": [
+      {
+        "path": "README.md",
+        "sha256": "bcf42a774c917b05c970586ddcfd907b15232b52d3dd94826e07c967f26ee28e",
+        "size_bytes": 3132
+      },
+      {
+        "path": "config.json",
+        "sha256": "c7de91d03589df922e216938bc8b930faf7e463f706812a208e121c72ead8267",
+        "size_bytes": 1187
+      },
+      {
+        "path": "generation_config.json",
+        "sha256": "8d21133b5e3ddcb37596359878871a836bca27437d95ed66d3ef85b308e3728b",
+        "size_bytes": 155
+      },
+      {
+        "path": "model.safetensors",
+        "sha256": "5dd9ab1b69aa46a86d5a62d030c9bf82af60ac6525aaa1c7b0d9d4419aecb37d",
+        "size_bytes": 4125687906
+      },
+      {
+        "path": "special_tokens_map.json",
+        "sha256": "719833ff26ac897a3ec8ed946028a135de2a351470af59b4008744ab1f0ee9b7",
+        "size_bytes": 438
+      },
+      {
+        "path": "tokenizer.json",
+        "sha256": "11c08db21487c885d8c792180f0be237f6a261b89a46f128a6a80a3aa4bd1720",
+        "size_bytes": 1795188
+      },
+      {
+        "path": "tokenizer.model",
+        "sha256": "dadfd56d766715c61d2ef780a525ab43b8e6da4de6865bda3d95fdef5e134055",
+        "size_bytes": 493443
+      },
+      {
+        "path": "tokenizer.model.v1",
+        "sha256": "dadfd56d766715c61d2ef780a525ab43b8e6da4de6865bda3d95fdef5e134055",
+        "size_bytes": 493443
+      },
+      {
+        "path": "tokenizer_config.json",
+        "sha256": "3beb80ecd8e4b3dbe7d04502190bb5411197a18332943afb5336b6c0e5239c71",
+        "size_bytes": 1025
+      }
+    ],
+    "destination": ".runs/diffractgpt-model/base",
+    "download_by_default": false,
+    "license": "Apache-2.0",
+    "repository": "unsloth/mistral-7b-bnb-4bit",
+    "revision": "3c47be0aa392c058e26ede776ecd2d5416fa5d28"
+  },
+  "checkpoint": {
+    "artifacts": [
+      {
+        "path": "README.md",
+        "sha256": "37808096f03c2ccd5691090524c1149feb46c24d4dd682d5bd0ee6b90f31c9cc",
+        "size_bytes": 5101
+      },
+      {
+        "path": "adapter_config.json",
+        "sha256": "befa252dd725b432c73d280da0e36d111541ec05720b31d918bc2a6797eecf66",
+        "size_bytes": 732
+      },
+      {
+        "path": "adapter_model.safetensors",
+        "sha256": "82b0a486d083f374141287e7cbbd15e4142c3f63468bef618bffa1ae5d878855",
+        "size_bytes": 167832240
+      },
+      {
+        "path": "special_tokens_map.json",
+        "sha256": "4859e5dbde90e059988a0a2136d8df3f2773d4d2fc4c4543690028f0b2166e7f",
+        "size_bytes": 552
+      },
+      {
+        "path": "tokenizer.model",
+        "sha256": "dadfd56d766715c61d2ef780a525ab43b8e6da4de6865bda3d95fdef5e134055",
+        "size_bytes": 493443
+      },
+      {
+        "path": "tokenizer_config.json",
+        "sha256": "ac142c93fca4b5b5a85afafb006fb4c69664a9fe0fd4e3b0fff9ce1d8d1e4e1a",
+        "size_bytes": 1000
+      }
+    ],
+    "destination": ".runs/diffractgpt-model/paper-formula",
+    "license": "not-specified",
+    "license_status": "review-required",
+    "repository": "knc6/diffractgpt_mistral_chemical_formula",
+    "revision": "4080c1e4ece70b82f4defc622141fc733fc2dce2"
+  },
+  "notes": [
+    "The checkpoint revision is the 2025-01-06 paper-era upload.",
+    "The Hugging Face adapter revision declares no license; redistribution and benchmark use require review. The base model declares Apache-2.0.",
+    "Hugging Face main was overwritten on 2025-10-24 with a find_peaks model and is not compatible with the paper's 180-bin representation.",
+    "No released AtomGPT code revision exactly implements all of the paper's 180-value, 0.5-degree, three-decimal preprocessing contract.",
+    "The 4.13 GB base model is locked but intentionally not downloaded by default; Modal should fetch this immutable revision during image construction."
+  ],
+  "schema_version": "1.0.0",
+  "source_checkout": {
+    "commit": "f2f4d58c4dcab9ae1a3cdd30c8f13d94f4da7928",
+    "directory": ".upstream/atomgpt",
+    "license": "NIST Terms of Use/public-service grant",
+    "license_file": "LICENSE.rst",
+    "license_status": "licensed",
+    "repository": "https://github.com/usnistgov/atomgpt.git",
+    "later_binning_reference": {
+      "commit": "6ceecec86c7ae5e16776deca54b0fcf8027311ca",
+      "exact_paper_preprocessing_match": false,
+      "mismatch": "Uses a 0.5-degree default and nearest-bin replacement but actively serializes two decimals; retained only as method-family evidence."
+    }
+  }
+}

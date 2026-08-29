@@ -1,0 +1,45 @@
+The pattern indexes consistently as an **ordered tetragonal ThMn₁₂-type structure**, space group **I4/mmm (No. 139)**, with approximately \(a=8.370\) Å and \(c=4.940\) Å. Ga occupies the 8i site, while Co occupies 8f and 8j.
+
+Representative indexing includes 110 at 14.96°, 101 at 20.86°, 211/220 at 29.92/30.17°, 310 at 33.84°, 002/301 at 36.34/36.97°, and 202/321/400 at 42.46/43.01/43.20°.
+
+```cif
+data_TbCo8Ga4
+_audit_creation_method              'Powder-pattern indexing and ThMn12-type structure solution'
+_chemical_name_common               'terbium cobalt gallide'
+_chemical_formula_sum               'Tb Co8 Ga4'
+_chemical_formula_structural        'Tb(Co2Ga)4'
+_cell_formula_units_Z               2
+
+_diffrn_radiation_type              'Cu Kalpha1'
+_diffrn_radiation_wavelength        1.5406
+
+_space_group_crystal_system         tetragonal
+_space_group_name_H-M_alt           'I 4/m m m'
+_space_group_name_Hall              '-I 4 2'
+_space_group_IT_number              139
+
+_cell_length_a                      8.370(2)
+_cell_length_b                      8.370(2)
+_cell_length_c                      4.940(2)
+_cell_angle_alpha                   90
+_cell_angle_beta                    90
+_cell_angle_gamma                   90
+_cell_volume                        346.08
+_exptl_crystal_density_diffrn       8.73
+
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_Wyckoff_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+Tb1  Tb  2  a  0.00000  0.00000  0.00000  1.000
+Ga1  Ga  8  i  0.345(3) 0.00000  0.00000  1.000
+Co1  Co  8  f  0.25000  0.25000  0.25000  1.000
+Co2  Co  8  j  0.277(2) 0.50000  0.00000  1.000
+```
+
+The Ga/Co scattering contrast under Cu radiation is modest, so small Ga–Co antisite disorder cannot be quantified reliably from this pattern alone; the CIF gives the fully ordered primary model. No distinct alternative lattice or structure type survives the peak-position indexing.

@@ -1,0 +1,61 @@
+The pattern indexes as a primitive trigonal cell with approximately \(a=3.868\) Å and \(c=11.474\) Å. The low-angle series at 7.70, 15.43, 23.24 and 31.16° corresponds to 001–004. The dominant series is consistent with 10\(l\) reflections. A chemically reasonable solution is the centrosymmetric layered \(P\overline{3}m1\) structure, \(Z=1\).
+
+Atomic \(z\) coordinates are powder-derived estimates and should be finalized by Rietveld refinement.
+
+```cif
+data_SmBi2BrO4
+_audit_creation_method              'Structure solution from supplied Cu Kalpha1 powder pattern'
+_chemical_name_common               'samarium dibismuth bromide oxide'
+_chemical_formula_structural        'SmBi2O4Br'
+_chemical_formula_sum               'Bi2 Br O4 Sm'
+_cell_formula_units_Z               1
+
+_cell_length_a                      3.8675(3)
+_cell_length_b                      3.8675(3)
+_cell_length_c                      11.4740(8)
+_cell_angle_alpha                   90
+_cell_angle_beta                    90
+_cell_angle_gamma                   120
+_cell_volume                        148.62
+_exptl_crystal_density_diffrn       7.96
+
+_space_group_crystal_system         trigonal
+_space_group_name_H-M_alt           'P -3 m 1'
+_space_group_IT_number              164
+
+_diffrn_radiation_type              'Cu Kalpha1'
+_diffrn_radiation_wavelength        1.5406
+
+loop_
+_space_group_symop_id
+_space_group_symop_operation_xyz
+1  'x,y,z'
+2  '-y,x-y,z'
+3  '-x+y,-x,z'
+4  '-x,-y,-z'
+5  'y,-x+y,-z'
+6  'x-y,x,-z'
+7  'y,x,-z'
+8  'x-y,-y,-z'
+9  '-x,-x+y,-z'
+10 '-y,-x,z'
+11 '-x+y,y,z'
+12 'x,x-y,z'
+
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_B_iso_or_equiv
+Sm1  Sm  1  0.000000  0.000000  0.000000  1.0  0.55
+Br1  Br  1  0.000000  0.000000  0.500000  1.0  0.75
+Bi1  Bi  2  0.333333  0.666667  0.2800    1.0  0.60
+O1   O   2  0.333333  0.666667  0.0800    1.0  0.90
+O2   O   2  0.000000  0.000000  0.2870    1.0  0.90
+```
+
+The polar subgroup \(P3m1\) cannot be rigorously excluded from powder data alone, but the supplied pattern does not require symmetry lowering from the \(P\overline{3}m1\) model.

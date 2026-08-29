@@ -1,0 +1,1 @@
+Recorded the verifier decision in [decision.json](<EXTERNAL_PATH>). Decision: `continue`.

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://characterizagent.org/schemas/verifiable-pxrd-result-bundle-v1.json",
+  "title": "Verifiable pXRD result bundle",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "result_id",
+    "panel",
+    "completed_count",
+    "exact_count",
+    "exact_case_ids",
+    "cases"
+  ],
+  "properties": {
+    "schema_version": {"const": "1"},
+    "result_id": {"type": "string", "minLength": 1},
+    "panel": {"type": "string", "minLength": 1},
+    "completed_count": {"type": "integer", "minimum": 0},
+    "exact_count": {"type": "integer", "minimum": 0},
+    "exact_case_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "cases": {"type": "array", "items": {"type": "object"}}
+  }
+}

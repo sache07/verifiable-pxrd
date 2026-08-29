@@ -1,0 +1,269 @@
+{
+  "candidate_directory": {
+    "candidate_cif_count": 77,
+    "candidate_record_count": 100,
+    "case_count": 100,
+    "cifs_published": true,
+    "manifest_sha256": "a10c6e02d36396b8e87a65b59f7c2d1b4ed7e7b68cf9946571c90395fabb4045",
+    "path": "candidates",
+    "verifier_result_file_count": 100
+  },
+  "condition": "reduced-composition solver",
+  "condition_slug": "reduced-composition-k1",
+  "corpus": "pXRD-100",
+  "corpus_slug": "pxrd-100",
+  "framework": "Ab-PXRD-Solver",
+  "framework_slug": "ab-pxrd-solver",
+  "input_contract": "pXRD and reduced composition",
+  "oracle_input": false,
+  "raw_run_archive": {
+    "filename": "candidates.tar.zst",
+    "published": true,
+    "regular_file_count": 800,
+    "scope": "complete frozen shard directories: requests, results, candidates, raw outputs, and logs",
+    "sha256": "1c62adb3222d26ca98fd7ffde2c420bb371f0d6e5820d0afcce0ab05d9d8a7f0",
+    "size_bytes": 1178566
+  },
+  "results": {
+    "candidate_record_count": 100,
+    "case_count": 100,
+    "exact_structure_matches_at_1": 42,
+    "exact_structure_matches_at_generated_k": 42,
+    "exact_structure_matches_at_reported_k": 42,
+    "formula_matches_at_1": 77,
+    "formula_matches_at_generated_k": 77,
+    "formula_matches_at_reported_k": 77,
+    "generated_candidate_count": 77,
+    "generated_k": 1,
+    "invalid_candidate_count": 23,
+    "reported_k": 1,
+    "valid_structure_candidate_count": 77
+  },
+  "sampling": {
+    "generated_k": 1,
+    "reported_k": [
+      1
+    ]
+  },
+  "schema_version": "1.1.0",
+  "source": {
+    "evaluation_sha256": "b538f66c4e101b00a996945b9ab54a9ec209f6f2b067ba09b5d4c935ef258497",
+    "relative_path": "pXRD-100/results/ab-pxrd-solver/ab-pxrd-solver-20260722-v2-fourway-reduced-cpu4h",
+    "run_id": "ab-pxrd-solver-20260722-v2-fourway-reduced-cpu4h",
+    "run_summary_sha256": "0a1151949d153dad05eda42a397642b55d074ee0637438c0d21e9301b18530d2",
+    "source_dataset_id": "pXRD-100",
+    "source_manifest_sha256": "2497ce44c92d69ecb436c5b0aa1aae22b6bc46a02f65209cadfa0416b6cc9b46"
+  },
+  "source_run_summary": {
+    "artifact_audit": {
+      "candidate_hashes_checked": 100,
+      "hash_mismatch_count": 0,
+      "missing_or_extra_candidate_count": 0,
+      "raw_hashes_checked": 0
+    },
+    "caveat": "The deterministic solver emits at most one selected structure. Space group is inferred from the input rather than supplied. Its released input-generation profile is distinct from its internal fast candidate-screening profile. Each case has a four-hour wall-time cap; a candidate emitted before the cap remains eligible and is explicitly labeled timeout-with-candidate.",
+    "conditioning": "released benchmark-style GSAS pXRD plus reduced composition",
+    "conditioning_audit": {
+      "candidate_inputs_checked": 100,
+      "expanded_parenthesized_formula_case_count": 17,
+      "mismatch_count": 0,
+      "statement": "Every candidate received the target manifest's reduced composition. Parenthesized pymatgen formula presentations were flattened to equivalent integer element counts for the released regex-only parser."
+    },
+    "framework": "Ab-PXRD-Solver",
+    "generation": {
+      "aggregate_container_seconds": 661453.7970313749,
+      "first_shard_provenance": {
+        "gsasii_commit": "1a0aeec6c61b54f68e6812704730a471187ac393",
+        "inference": {
+          "case_timeout_seconds": 14400,
+          "compute": "AWS EC2 CPU",
+          "input_mode": "reduced_formula_and_pxrd_infer_spacegroup",
+          "qrs": "halton",
+          "seed_base": 20260721,
+          "space_group_supplied": false
+        },
+        "mace_model_sha256": "2ddb079cee0e131eaaf6912ba581b394551ead283e95c99cfe78c605d10b5736",
+        "source_commit": "0d67964dfcbd2e2fa09e79bbbac2f5d020a121e9"
+      },
+      "shard_count": 100
+    },
+    "import_audit": {
+      "case_count": 100,
+      "formula_repair_case_count": 17,
+      "formula_repair_case_ids": [
+        "pxrd100-challenge-004",
+        "pxrd100-challenge-007",
+        "pxrd100-challenge-010",
+        "pxrd100-challenge-023",
+        "pxrd100-challenge-026",
+        "pxrd100-challenge-027",
+        "pxrd100-poly-06-a",
+        "pxrd100-poly-06-b",
+        "pxrd100-poly-08-a",
+        "pxrd100-poly-08-b",
+        "pxrd100-poly-13-a",
+        "pxrd100-poly-13-b",
+        "pxrd100-rep-006",
+        "pxrd100-rep-013",
+        "pxrd100-rep-017",
+        "pxrd100-rep-024",
+        "pxrd100-rep-028"
+      ],
+      "metadata_alias_count_added": 249,
+      "path": "IMPORT-AUDIT.json",
+      "raw_runs_preserved": true,
+      "sha256": "ad0052a98d1bdc277998719eb053706a1c2cbc0de50181ce0de06081940c1c44"
+    },
+    "metric": {
+      "best_of_1": "candidate sample_index 0",
+      "evaluator_pymatgen": "2026.5.4",
+      "formula_match": {
+        "absolute_tolerance": 1e-08,
+        "basis": "reduced elemental composition",
+        "oxidation_states": "ignored",
+        "relative_tolerance": 1e-05
+      },
+      "structure_matcher": {
+        "allow_subset": false,
+        "angle_tol": 5,
+        "attempt_supercell": true,
+        "boolean_predicate": "StructureMatcher.fit",
+        "comparator": "ElementComparator",
+        "lattice_feasibility_prefilter": "symmetric volume-per-site bound implied by ltol with scale=False",
+        "ltol": 0.2,
+        "memory_limit_bytes": 4294967296,
+        "primitive_cell": true,
+        "process_isolation": true,
+        "rms_units": "normalized by (volume / site count) ** (1/3)",
+        "scale": false,
+        "stol": 0.3,
+        "symmetric": true,
+        "timeout_seconds": 30.0
+      },
+      "structure_validity": {
+        "minimum_distance_angstrom": 0.5,
+        "volume_min": 0.1
+      }
+    },
+    "run_id": "ab-pxrd-solver-20260722-v2-fourway-reduced-cpu4h",
+    "schema_version": "1.1.0",
+    "solver_native_metrics": {
+      "chi2": {
+        "coverage": 0.57,
+        "expected_count": 100,
+        "finite_count": 57,
+        "max": 0.527,
+        "mean": 0.05861754385964913,
+        "median": 0.0358,
+        "min": 0.0105,
+        "population_std": 0.08208703152657287
+      },
+      "definition": "Upstream GSAS-II refinement diagnostics for the selected structure. Rwp is reported in percent by Ab-PXRD-Solver and is distinct from sim-bench's independently normalized fixed-profile Rwp.",
+      "outcome_counts": {
+        "no_selected_structure": 8,
+        "selected_structure": 58,
+        "timeout": 15,
+        "timeout_with_candidate": 19
+      },
+      "r2": {
+        "coverage": 0.57,
+        "expected_count": 100,
+        "finite_count": 57,
+        "max": 0.9992,
+        "mean": 0.9964701754385966,
+        "median": 0.9976,
+        "min": 0.9802,
+        "population_std": 0.0038559120664193314
+      },
+      "rwp_percent": {
+        "coverage": 0.57,
+        "expected_count": 100,
+        "finite_count": 57,
+        "max": 13.7095,
+        "mean": 5.228603508771929,
+        "median": 4.542,
+        "min": 2.7802,
+        "population_std": 2.4100712297084477
+      },
+      "status_counts": {
+        "C-Success": 6,
+        "Failure": 3,
+        "Success": 51,
+        "missing": 40
+      }
+    },
+    "source_dataset_id": "pXRD-100",
+    "source_manifest_sha256": "2497ce44c92d69ecb436c5b0aa1aae22b6bc46a02f65209cadfa0416b6cc9b46",
+    "summary": {
+      "all": {
+        "best_of_1_formula_match_count": 77,
+        "best_of_1_formula_match_rate": 0.77,
+        "best_of_1_structure_match_count": 42,
+        "best_of_1_structure_match_rate": 0.42,
+        "case_count": 100
+      },
+      "candidate_count": 100,
+      "candidate_status_counts": {
+        "generated": 77,
+        "invalid": 23
+      },
+      "panels": {
+        "challenge": {
+          "best_of_1_formula_match_count": 15,
+          "best_of_1_formula_match_rate": 0.5,
+          "best_of_1_structure_match_count": 5,
+          "best_of_1_structure_match_rate": 0.16666666666666666,
+          "case_count": 30
+        },
+        "polymorph": {
+          "best_of_1_formula_match_count": 34,
+          "best_of_1_formula_match_rate": 0.85,
+          "best_of_1_structure_match_count": 16,
+          "best_of_1_structure_match_rate": 0.4,
+          "case_count": 40
+        },
+        "representative": {
+          "best_of_1_formula_match_count": 28,
+          "best_of_1_formula_match_rate": 0.9333333333333333,
+          "best_of_1_structure_match_count": 21,
+          "best_of_1_structure_match_rate": 0.7,
+          "case_count": 30
+        }
+      },
+      "samples_per_case": 1,
+      "streams": {},
+      "valid_structure_candidate_count": 77
+    }
+  },
+  "verifier": {
+    "best_of_1": "candidate sample_index 0",
+    "evaluator_pymatgen": "2026.5.4",
+    "formula_match": {
+      "absolute_tolerance": 1e-08,
+      "basis": "reduced elemental composition",
+      "oxidation_states": "ignored",
+      "relative_tolerance": 1e-05
+    },
+    "structure_matcher": {
+      "allow_subset": false,
+      "angle_tol": 5,
+      "attempt_supercell": true,
+      "boolean_predicate": "StructureMatcher.fit",
+      "comparator": "ElementComparator",
+      "lattice_feasibility_prefilter": "symmetric volume-per-site bound implied by ltol with scale=False",
+      "ltol": 0.2,
+      "memory_limit_bytes": 4294967296,
+      "primitive_cell": true,
+      "process_isolation": true,
+      "rms_units": "normalized by (volume / site count) ** (1/3)",
+      "scale": false,
+      "stol": 0.3,
+      "symmetric": true,
+      "timeout_seconds": 30.0
+    },
+    "structure_validity": {
+      "minimum_distance_angstrom": 0.5,
+      "volume_min": 0.1
+    }
+  }
+}

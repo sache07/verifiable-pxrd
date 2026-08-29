@@ -1,0 +1,62 @@
+The peak positions index closely on a primitive orthorhombic cell:
+
+\[
+a=13.066\ \text{Å},\quad b=4.514\ \text{Å},\quad c=3.192\ \text{Å}.
+\]
+
+Diagnostic assignments include 100 at 6.76°, 200 at 13.55°, 010 at 19.65°, 300 at 20.38°, 210 at 23.95°, 400 at 27.30°, and 001 at 27.93°. The highest symmetry consistent with these reflections is \(Pmmm\). The CIF below is a chemically constrained average-structure solution; subtle symmetry lowering cannot be excluded without Rietveld refinement or complementary diffraction data.
+
+```cif
+data_V2Zn2O7
+_audit_creation_method             'Powder-XRD indexing and chemically constrained structure solution'
+_chemical_name_common              'zinc pyrovanadate'
+_chemical_formula_structural       'V2 Zn2 O7'
+_chemical_formula_sum              'V2 Zn2 O7'
+_chemical_formula_weight           344.63
+_cell_formula_units_Z              1
+
+_cell_length_a                     13.0655
+_cell_length_b                     4.5140
+_cell_length_c                     3.1916
+_cell_angle_alpha                  90
+_cell_angle_beta                   90
+_cell_angle_gamma                  90
+_cell_volume                       188.25
+
+_exptl_crystal_density_diffrn      3.040
+_diffrn_radiation_type             'Cu Kalpha1'
+_diffrn_radiation_wavelength       1.5406
+
+_space_group_crystal_system        orthorhombic
+_space_group_name_H-M_alt          'P m m m'
+_space_group_IT_number             47
+
+loop_
+_space_group_symop_id
+_space_group_symop_operation_xyz
+1  'x,y,z'
+2  '-x,y,z'
+3  'x,-y,z'
+4  'x,y,-z'
+5  '-x,-y,z'
+6  '-x,y,-z'
+7  'x,-y,-z'
+8  '-x,-y,-z'
+
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_U_iso_or_equiv
+Zn1  Zn  2  0.2500  0.5000  0.5000  1.0  0.010
+V1   V   2  0.1240  0.0000  0.0000  1.0  0.008
+O1   O   1  0.0000  0.0000  0.0000  1.0  0.012
+O2   O   2  0.2575  0.0000  0.0000  1.0  0.012
+O3   O   4  0.1240  0.2500  0.5000  1.0  0.012
+```
+
+The principal surviving alternatives are symmetry-lowered derivatives of the same translational cell, particularly \(Pmm2\) or \(P222\). Their distinction depends primarily on weak intensities rather than peak positions, so separate unconstrained CIFs would not be justified from this pattern alone.

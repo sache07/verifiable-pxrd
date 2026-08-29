@@ -1,0 +1,65 @@
+The pattern is consistent with a strongly distorted, cation-ordered rocksalt derivative. Indexing the main reflections gives a triclinic supercell with \(V\approx502\ \text{Å}^3\), \(Z=2\), and space group \(P\bar1\). The closely spaced reflections near 24.3–24.6° require the doubled cell rather than the approximately 251 Å³ pseudocell.
+
+The Fe/Cu assignment is weakly constrained because their Cu Kα scattering factors are similar; global interchange of the Fe and Cu site sets is the principal surviving alternative.
+
+```cif
+data_Sr2FeCu_PbO3_2_primary
+_audit_creation_method
+;
+Indexed and chemically constrained from the supplied Cu Kalpha1
+powder pattern. Ordered, distorted rocksalt-derived model.
+;
+_chemical_name_common               'strontium iron copper lead oxide'
+_chemical_formula_structural        'Sr2FeCu(PbO3)2'
+_chemical_formula_sum               'Sr2 Fe Cu Pb2 O6'
+_cell_formula_units_Z               2
+
+_space_group_name_H-M_alt            'P -1'
+_space_group_IT_number               2
+
+_cell_length_a                       7.473
+_cell_length_b                       7.950
+_cell_length_c                       9.629
+_cell_angle_alpha                    76.40
+_cell_angle_beta                     95.57
+_cell_angle_gamma                    67.43
+_cell_volume                         502.0
+
+_exptl_crystal_density_diffrn        5.33
+_diffrn_radiation_type               'Cu Kalpha1'
+_diffrn_radiation_wavelength         1.5406
+
+loop_
+_space_group_symop_id
+_space_group_symop_operation_xyz
+1  'x,y,z'
+2  '-x,-y,-z'
+
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_B_iso_or_equiv
+Sr1  Sr  2  0.333333  0.333333  0.666667  1.0  0.60
+Sr2  Sr  2  0.166667  0.166667  0.333333  1.0  0.60
+Pb1  Pb  2  0.333333  0.833333  0.666667  1.0  0.45
+Pb2  Pb  2  0.833333  0.333333  0.666667  1.0  0.45
+Fe1  Fe  1  0.000000  0.000000  0.000000  1.0  0.45
+Fe2  Fe  1  0.500000  0.500000  0.000000  1.0  0.45
+Cu1  Cu  1  0.000000  0.500000  0.000000  1.0  0.45
+Cu2  Cu  1  0.500000  0.000000  0.000000  1.0  0.45
+O1   O   2  0.166667  0.166667  0.833333  1.0  0.80
+O2   O   2  0.333333  0.333333  0.166667  1.0  0.80
+O3   O   2  0.833333  0.333333  0.166667  1.0  0.80
+O4   O   2  0.333333  0.833333  0.166667  1.0  0.80
+O5   O   1  0.500000  0.500000  0.500000  1.0  0.80
+O6   O   1  0.000000  0.000000  0.500000  1.0  0.80
+O7   O   1  0.500000  0.000000  0.500000  1.0  0.80
+O8   O   1  0.000000  0.500000  0.500000  1.0  0.80
+```
+
+The surviving Fe/Cu alternative is obtained by changing `Fe1, Fe2` to Cu and `Cu1, Cu2` to Fe, without changing the cell or coordinates. The lattice and topology are substantially better determined than the individual oxygen displacements; a final Rietveld refinement should therefore allow the oxygen coordinates to relax from the idealized ordered-rocksalt positions above.

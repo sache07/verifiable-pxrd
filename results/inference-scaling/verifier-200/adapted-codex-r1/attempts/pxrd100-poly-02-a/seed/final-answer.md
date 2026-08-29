@@ -1,0 +1,1 @@
+Recorded `"stop"` in [decision.json](<EXTERNAL_PATH>).

@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "purpose": "Model-specific pXRD-ood exposure recertification",
+  "realpxrd_solver": {
+    "source_commit": "5e7e60176e1875071a12fb4583a1f0112bc3bcad",
+    "checkpoint": "pxrd-all",
+    "checkpoint_sha256": "804eca827d9135256df04a7629bbbc224ba1a79ad439279451537f35ba62dd71",
+    "released_dataset_folder_id": "1WHXuSx9LD5NVFeSkeQs3_AZ8G_ZBm6MX"
+  },
+  "splits": {
+    "train": {
+      "file_id": "1BojB749H1smpeA6DMjvZ6ZrCFhAv17wE",
+      "filename": "pxrd_all_train.lmdb",
+      "role": "primary gradient-training exposure boundary"
+    },
+    "valid": {
+      "file_id": "12MwaOQ5OmKKE801F0iifw8A-fHa5z3pq",
+      "filename": "pxrd_all_valid.lmdb",
+      "role": "released validation exposure"
+    },
+    "test": {
+      "file_id": "1y7Hdhgu185KVu6T5cvGw0pM4chW4qEeH",
+      "filename": "pxrd_all_test.lmdb",
+      "role": "released held-out corpus exposure"
+    }
+  },
+  "matcher": {
+    "ltol": 0.2,
+    "stol": 0.3,
+    "angle_tol": 5,
+    "primitive_cell": true,
+    "scale": true,
+    "attempt_supercell": false
+  },
+  "certificate_semantics": {
+    "primary": "absence from the released train split",
+    "conservative": "absence from the union of released train, valid, and test splits",
+    "shortlists": "reduced formula for strict matching; anonymous reduced stoichiometry and primitive site count for anonymous matching",
+    "scientific_test": "pymatgen StructureMatcher fit or fit_anonymous; shortlist absence alone is used only for exhaustive composition absence"
+  }
+}

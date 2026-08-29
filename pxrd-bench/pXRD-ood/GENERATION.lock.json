@@ -1,0 +1,57 @@
+{
+  "derived_topology_index": {
+    "path": ".runs/pxrd-ood/indexes/candidate-topology.sqlite3",
+    "role": "candidate-keyed physical-layout cache; frozen exposure index remains authoritative",
+    "sha256": "f10b29a5a926fec07f355e211de6418b59e45aad447ca1f853f3a8e566138975"
+  },
+  "environment_lock_path": "pxrd-bench/generation/runtime/pxrd-ood-uv.lock",
+  "environment_lock_sha256": "69c5058bbcebc1d868b193df0edb033b26776d80a5f77026a0ccb711da8ab36f",
+  "mace": {
+    "execution": {
+      "backends": [
+        "Modal"
+      ],
+      "device_names": [
+        "NVIDIA A100 80GB PCIe",
+        "NVIDIA A100-SXM4-40GB",
+        "NVIDIA A100-SXM4-80GB"
+      ],
+      "modal_gpu_types": [
+        "A100-40GB"
+      ],
+      "modal_run_ids": [
+        "mace-mh-1-a100-20260720"
+      ],
+      "modal_worker_counts": [
+        10
+      ]
+    },
+    "fmax_ev_per_angstrom": 0.1,
+    "head": "omat_pbe",
+    "max_steps": 1000,
+    "model": "MACE-MH-1",
+    "model_sha256": "a522eb7f59c7879963d41586528f4980baf33e086c94aa92e3eafdeccad3be47",
+    "model_url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_mh_1/mace-mh-1.model",
+    "optimizer": "ASE FIRE + FrechetCellFilter + FixSymmetry"
+  },
+  "packages": {
+    "ase": "3.29.0",
+    "numpy": "2.4.6",
+    "pyarrow": "23.0.1",
+    "pymatgen": "2026.5.4",
+    "pyxtal": "1.1.4",
+    "scipy": "1.17.1",
+    "spglib": "2.7.0"
+  },
+  "python": "3.11.15",
+  "schema_version": "1.0.0",
+  "selection_seed": 20260719,
+  "structure_matcher": {
+    "angle_tol": 5,
+    "attempt_supercell": false,
+    "ltol": 0.2,
+    "primitive_cell": true,
+    "scale": true,
+    "stol": 0.3
+  }
+}

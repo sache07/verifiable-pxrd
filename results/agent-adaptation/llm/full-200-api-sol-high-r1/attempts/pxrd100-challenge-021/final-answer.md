@@ -1,0 +1,84 @@
+The pattern indexes as a primitive triclinic cell. The strongest low-angle reflections are consistent with approximately:
+
+- 17.10°: 100  
+- 17.63°: 001  
+- 24.23°: overlapping 101/011  
+- 25.08°: 10−1  
+- 25.20°: 1−10  
+- 25.40°: 01−1  
+- 34.60°, 35.12°, 35.68°: 200, 020, 002  
+
+The preferred structural interpretation is centrosymmetric \(P\overline1\), \(Z=2\), containing discrete approximately trigonal-bipyramidal \(\mathrm{GaF_3(NH_3)_2}\) units. Ga–F and Ga–N distances in the constrained powder model are approximately 1.82 and 2.05 Å, respectively. Hydrogen positions are geometrically idealized because Cu X-ray powder data do not determine them reliably.
+
+```cif
+data_GaF3_2NH3_primary
+_audit_creation_method              'Powder indexing and chemically constrained structure solution'
+_chemical_name_common               'gallium trifluoride diammoniate'
+_chemical_formula_sum               'Ga F3 N2 H6'
+_chemical_formula_structural        'GaF3(NH3)2'
+_chemical_formula_weight            160.78
+
+_cell_length_a                      5.1952
+_cell_length_b                      5.1224
+_cell_length_c                      5.0352
+_cell_angle_alpha                   87.258
+_cell_angle_beta                    87.897
+_cell_angle_gamma                   86.415
+_cell_volume                        133.5
+_cell_formula_units_Z               2
+
+_exptl_crystal_density_diffrn       4.00
+
+_symmetry_cell_setting              triclinic
+_symmetry_space_group_name_H-M      'P -1'
+_symmetry_Int_Tables_number         2
+
+loop_
+_symmetry_equiv_pos_as_xyz
+  'x,y,z'
+  '-x,-y,-z'
+
+_diffrn_radiation_probe             x-ray
+_diffrn_radiation_type              'Cu Kalpha1'
+_diffrn_radiation_wavelength        1.5406
+
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_U_iso_or_equiv
+Ga1  Ga  2  0.12500  0.25000  0.12500  1.0  0.008
+F1   F   2  0.38265  0.99235  0.12500  1.0  0.012
+F2   F   2  0.12500  0.50970  0.86530  1.0  0.012
+F3   F   2  0.86870  0.25000  0.38130  1.0  0.012
+N1   N   2  0.34565  0.47065  0.34565  1.0  0.015
+N2   N   2  0.90435  0.02935  0.90435  1.0  0.015
+H11  H   2  0.5159   0.3713   0.3812   1.0  0.035
+H12  H   2  0.3778   0.6411   0.2444   1.0  0.035
+H13  H   2  0.2519   0.5082   0.5202   1.0  0.035
+H21  H   2  0.7341   0.1287   0.8688   1.0  0.035
+H22  H   2  0.8722   0.8589   0.0056   1.0  0.035
+H23  H   2  0.9981   0.9918   0.7298   1.0  0.035
+
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_distance
+Ga1  F1   1.82
+Ga1  F2   1.82
+Ga1  F3   1.82
+Ga1  N1   2.05
+Ga1  N2   2.05
+N1   H11  1.01
+N1   H12  1.01
+N1   H13  1.01
+N2   H21  1.01
+N2   H22  1.01
+N2   H23  1.01
+```
+
+The unit-cell metric is substantially better determined than the light-atom coordinates. The latter should be treated as a chemically constrained powder model and refined against the original profile, preferably with restrained Ga–F, Ga–N, and N–H geometry.

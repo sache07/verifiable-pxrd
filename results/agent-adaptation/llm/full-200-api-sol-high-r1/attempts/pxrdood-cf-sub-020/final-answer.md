@@ -1,0 +1,67 @@
+The pattern indexes best with a **C-centered monoclinic cell**, most consistently in **\(C2/c\) (No. 15)**:
+
+- \(a \approx 13.655\) Å  
+- \(b \approx 9.453\) Å  
+- \(c \approx 13.473\) Å  
+- \(\beta \approx 112.90^\circ\)  
+- \(Z=8\)
+
+Diagnostic assignments include 200 at 14.07°, 002 at 14.26°, 020 at 18.76°, \(3\,1\,\bar3\) at 25.43°, 221 at 26.19°, 400 at 28.36°, and 004 at 28.75°. The lattice parameters and space group are substantially better determined than the atomic coordinates. The coordinates below are therefore a **chemically constrained starting model**, suitable for subsequent Rietveld or DFT refinement, rather than publication-grade refined coordinates.
+
+```cif
+data_Sr2HfTe4_C2c_candidate
+_audit_creation_method
+'Powder indexing followed by chemically constrained C2/c starting model'
+_chemical_name_common                 'strontium hafnium telluride'
+_chemical_formula_sum                 'Sr2 Hf Te4'
+_chemical_formula_structural          'Sr2HfTe4'
+_chemical_formula_weight              864.12
+
+_symmetry_space_group_name_H-M         'C 1 2/c 1'
+_symmetry_space_group_name_Hall        '-C 2yc'
+_symmetry_Int_Tables_number            15
+
+_cell_length_a                         13.6545
+_cell_length_b                          9.4527
+_cell_length_c                         13.4733
+_cell_angle_alpha                      90
+_cell_angle_beta                      112.897
+_cell_angle_gamma                      90
+_cell_volume                         1602.0
+_cell_formula_units_Z                   8
+_exptl_crystal_density_diffrn           7.17
+
+_diffrn_radiation_type                 'Cu Kalpha1'
+_diffrn_radiation_wavelength            1.5406
+
+loop_
+_symmetry_equiv_pos_as_xyz
+'x,y,z'
+'-x,y,-z+1/2'
+'-x,-y,-z'
+'x,-y,z+1/2'
+'x+1/2,y+1/2,z'
+'-x+1/2,y+1/2,-z+1/2'
+'-x+1/2,-y+1/2,-z'
+'x+1/2,-y+1/2,z+1/2'
+
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_Wyckoff_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_U_iso_or_equiv
+Hf1 Hf 8 f 0.0832 0.1261 0.1664 1.0 0.010
+Sr1 Sr 8 f 0.2508 0.0615 0.4212 1.0 0.015
+Sr2 Sr 8 f 0.4195 0.3098 0.2490 1.0 0.015
+Te1 Te 8 f 0.2725 0.1240 0.3555 1.0 0.012
+Te2 Te 8 f 0.8928 0.1268 0.1650 1.0 0.012
+Te3 Te 8 f 0.0838 0.4251 0.1669 1.0 0.012
+Te4 Te 8 f 0.2724 0.1257 0.1658 1.0 0.012
+```
+
+A possible surviving subgroup is **\(P2_1/c\), \(Z=8\)** if weak reflections violating \(h+k=2n\) are confirmed after profile decomposition. The present pattern does not require that lower symmetry, so \(C2/c\) is the preferred indexing solution.

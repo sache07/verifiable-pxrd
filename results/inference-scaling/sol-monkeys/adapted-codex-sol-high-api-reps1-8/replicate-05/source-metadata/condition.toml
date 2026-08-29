@@ -1,0 +1,194 @@
+schema_version = 1
+status = "paper-frozen"
+id = "adapted-codex-sol-high-api-monkeys"
+adapter = "codex"
+model = "gpt-5.6-sol"
+reasoning_effort = "high"
+capability = "learned_harness/artifacts/adapted-codex/package"
+prompt = "prompts/solve.md"
+cpu_quota = "200%"
+memory_max = "5G"
+tasks_max = 128
+timeout_seconds = 3600
+network = false
+systemd_scope = true
+codex = "${VPBENCH_CODEX}"
+auth_method = "api"
+auth_home = "${VPBENCH_AUTH_HOME}"
+
+[environment]
+path_entries = [
+  "${VPBENCH_DICVOL_ROOT}/bin",
+  "${VPBENCH_MATSCI_ENV}/bin",
+]
+read_paths = [
+  "${VPBENCH_MATSCI_ENV}",
+  "${VPBENCH_GSAS_ENV}",
+  "${VPBENCH_DICVOL_ROOT}",
+  "${VPBENCH_COD_METADATA}",
+  "${VPBENCH_COD_CIFS}",
+]
+optional_read_paths = [
+  "${VPBENCH_UV_PYTHON}",
+  "${VPBENCH_CODEX_STANDALONE}",
+]
+deny_paths = [
+  "${VPBENCH_MATSCI_ENV}/lib/python3.11/site-packages/ase/test",
+  "${VPBENCH_MATSCI_ENV}/lib/python3.11/site-packages/pyocse/data",
+  "${VPBENCH_MATSCI_ENV}/lib/python3.11/site-packages/pyxtal/database/cifs",
+  "${VPBENCH_MATSCI_ENV}/lib/python3.11/site-packages/pyxtal/database/bug.json",
+  "${VPBENCH_MATSCI_ENV}/lib/python3.11/site-packages/pyxtal/database/mech.db",
+  "${VPBENCH_MATSCI_ENV}/lib/python3.11/site-packages/pyxtal/database/test.db",
+]
+
+[environment.variables]
+GSAS2_PYTHON = "${VPBENCH_GSAS_ENV}/bin/python"
+
+[environment.installation.matsci]
+python_version = "3.11.15"
+requirements_input = '''
+numpy
+scipy
+pymatgen
+spglib
+ase
+pyxtal
+matplotlib
+pandas
+'''
+requirements_lock = '''
+ase==3.29.0
+bibtexparser==1.4.4
+certifi==2026.7.22
+charset-normalizer==3.4.9
+contourpy==1.3.3
+cycler==0.12.1
+fonttools==4.63.0
+idna==3.18
+importlib-metadata==9.0.0
+joblib==1.5.3
+kiwisolver==1.5.0
+lxml==6.1.1
+matplotlib==3.11.1
+monty==2026.7.16
+mpmath==1.3.0
+narwhals==2.24.0
+networkx==3.6.1
+numpy==2.4.6
+orjson==3.11.9
+packaging==26.2
+palettable==3.3.3
+pandas==3.0.3
+pillow==12.3.0
+plotly==6.9.0
+psutil==7.2.2
+pymatgen-core==2026.7.16
+pymatgen==2026.5.4
+pyocse==0.1.3
+pyparsing==3.3.2
+python-dateutil==2.9.0.post0
+pyxtal==1.1.4
+requests==2.34.2
+ruamel-yaml==0.19.1
+scipy==1.17.1
+six==1.17.0
+spglib==2.7.0
+sympy==1.14.0
+tabulate==0.10.0
+toml==0.10.2
+tqdm==4.69.1
+typing-extensions==4.16.0
+uncertainties==3.2.3
+urllib3==2.7.0
+vasprun-xml==1.0.4
+xmltodict==1.0.4
+zipp==4.1.0
+'''
+install_script = '''
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+  echo "usage: $0 ENVIRONMENT_DIRECTORY" >&2
+  exit 2
+fi
+
+target=$1
+script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+command -v uv >/dev/null || { echo "uv is required" >&2; exit 1; }
+uv venv --python 3.11 "$target"
+uv pip sync --python "$target/bin/python" "$script_dir/requirements.lock"
+"$target/bin/python" -c 'import ase, numpy, pymatgen, pyxtal, scipy, spglib'
+echo "materials-science environment installed at $target"
+'''
+
+[environment.installation.gsasii]
+commit = "c8f97a500d7e48fddbaf8586948c24b174d8bab3"
+reported_revision = 5837
+requirements_lock = '''
+numpy==1.26.4
+ply==3.11
+prettytable==3.18.0
+pycifrw==5.0.1
+scipy==1.17.1
+wcwidth==0.8.2
+'''
+install_script = '''
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+  echo "usage: $0 INSTALL_ROOT" >&2
+  exit 2
+fi
+
+install_root=$1
+source_dir=$install_root/source
+venv_dir=$install_root/venv
+script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+commit=c8f97a500d7e48fddbaf8586948c24b174d8bab3
+command -v git >/dev/null || { echo "git is required" >&2; exit 1; }
+command -v uv >/dev/null || { echo "uv is required" >&2; exit 1; }
+if [[ -e "$source_dir" || -e "$venv_dir" ]]; then
+  echo "refusing to overwrite $source_dir or $venv_dir" >&2
+  exit 1
+fi
+mkdir -p "$install_root"
+git clone https://github.com/AdvancedPhotonSource/GSAS-II.git "$source_dir"
+git -C "$source_dir" checkout --detach "$commit"
+uv venv --python 3.11 "$venv_dir"
+uv pip install --python "$venv_dir/bin/python" -r "$script_dir/gsas-requirements.lock"
+uv pip install --python "$venv_dir/bin/python" -e "$source_dir"
+"$venv_dir/bin/python" -c \
+  'from GSASII import GSASIIpath, GSASIIscriptable; print(GSASIIpath.GetVersionNumber())'
+echo "GSAS-II installed at $install_root"
+'''
+
+[environment.installation.dicvol14]
+binary_sha256 = "317430d2806ec8e4ed8f87b70940d9315092cab0869f84e479ec1c6e3bb5e586"
+install_script = '''
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 2 ]]; then
+  echo "usage: $0 AUTHORIZED_DICVOL14_BINARY INSTALL_ROOT" >&2
+  exit 2
+fi
+
+source_binary=$1
+install_root=$2
+expected=317430d2806ec8e4ed8f87b70940d9315092cab0869f84e479ec1c6e3bb5e586
+actual=$(sha256sum "$source_binary" | cut -d ' ' -f 1)
+if [[ "$actual" != "$expected" ]]; then
+  echo "DICVOL14 SHA-256 mismatch: $actual" >&2
+  exit 1
+fi
+if [[ -e "$install_root/bin/dicvol14" ]]; then
+  echo "refusing to overwrite $install_root/bin/dicvol14" >&2
+  exit 1
+fi
+mkdir -p "$install_root/bin"
+cp "$source_binary" "$install_root/bin/dicvol14"
+chmod 0755 "$install_root/bin/dicvol14"
+echo "DICVOL14 installed at $install_root"
+'''

@@ -1,0 +1,1 @@
+Recorded the verdict **continue** in [decision.json](<EXTERNAL_PATH>).

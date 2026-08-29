@@ -1,0 +1,267 @@
+{
+  "api_key_committed": false,
+  "framework_exposure_boundaries": {
+    "AGAPI-XRD": {
+      "boundary": "frozen JARVIS plus the 2026-07-06 active COD snapshot and every official live-only CIF through 2026-07-19, conservatively approximating the reported stores",
+      "classification": "inferred_conservative",
+      "sources": [
+        "jarvis_dft_2022",
+        "cod_current"
+      ]
+    },
+    "Crystalyze": {
+      "boundary": "all 45,052 records in the exact released MP-20 split archive",
+      "classification": "exact",
+      "sources": [
+        "crystalyze_mp20"
+      ]
+    },
+    "DARA": {
+      "boundary": "exact bundled public-COD index plus the complete 2026-07-06 active snapshot and every official live-only CIF through 2026-07-19; ICSD unchecked",
+      "classification": "exact_public_plus_licensed_unchecked",
+      "sources": [
+        "dara_cod_2024",
+        "cod_current"
+      ]
+    },
+    "DiffractGPT": {
+      "boundary": "union of the official 75,993-entry JARVIS snapshot and 75,997 released examples",
+      "classification": "conservative_superset",
+      "sources": [
+        "jarvis_dft_2022",
+        "diffractgpt_released"
+      ]
+    },
+    "Materials Project supplemental guard": {
+      "boundary": "all structures returned by MP database release 2026.04.13",
+      "classification": "dynamic_frozen",
+      "sources": [
+        "materials_project_2026_04_13"
+      ]
+    },
+    "PXRDGen": {
+      "boundary": "all 45,229 records in the standard CDVAE MP-20 split",
+      "classification": "exact",
+      "sources": [
+        "pxrdgen_mp20"
+      ]
+    },
+    "deCIFer": {
+      "boundary": "all 2,285,914 unique records in the released NOMA pickle, including 2,568 records above the 2,283,346 count stated in the paper",
+      "classification": "conservative_superset",
+      "sources": [
+        "decifer_noma"
+      ]
+    }
+  },
+  "freeze_date": "2026-07-19",
+  "index": {
+    "path": ".runs/pxrd-ood/indexes/exposure.sqlite3",
+    "sha256": "34ade87e310c553cbec4a958a3375a62b4596e5a4d18c542c830a4a7f8406884"
+  },
+  "schema_version": "1.0.0",
+  "sources": {
+    "cod_current": {
+      "details": {
+        "archive": {
+          "boundary": "complete_active_public_cod_snapshot_2026_07_06",
+          "path": ".runs/pxrd-ood/sources/cod-full-2026-07-06.parquet",
+          "sha256": "bd87b1279c2d17278b037cb35e052cc252c84c80b56ceaedd13e0c6d42822a88",
+          "size_bytes": 30397863592
+        },
+        "boundary_components": {
+          "live_delta_merkle_sha256": "7f7203ec954153b46034a40e8bc47b11ffe5a9e82a7a5c62fdff4ed7b0b5adfc",
+          "official_inventory_sha256": "a751157069c42d7e9bdfd8ff5dae0522e6dfbf36ee433d75a1f38193e68fc0b5",
+          "parquet_sha256": "bd87b1279c2d17278b037cb35e052cc252c84c80b56ceaedd13e0c6d42822a88"
+        },
+        "changed_existing_count": 1,
+        "compressed_snapshot_date": "2026-07-06",
+        "embedded_shelx_bytes_removed_from_index_payloads": 90420891043,
+        "frozen_union_record_count": 534823,
+        "huggingface_commit": "7d0b1c92860e8092ac469c6d3780f9666c305692",
+        "huggingface_repository": "LMucko/crystallography-open-database",
+        "live_only_count": 1337,
+        "nonstructural_policy": "raw active COD record retained with record-specific sentinel keys; not treated as a formula-bearing or parseable periodic structure",
+        "nonstructural_record_count": 40,
+        "nonstructural_record_ids": [
+          1569816,
+          2000020,
+          2104629,
+          2300146,
+          2300247,
+          2300248,
+          2300253,
+          2300257,
+          4100125,
+          4101298,
+          4101299,
+          4101301,
+          4301069,
+          4302275,
+          4304667,
+          4304997,
+          4305198,
+          4305598,
+          4306301,
+          4307811,
+          4338993,
+          5000041,
+          5000044,
+          5000089,
+          5000226,
+          6000073,
+          6000152,
+          6000382,
+          6000422,
+          6000430,
+          6000699,
+          7000304,
+          7001328,
+          7003101,
+          7010797,
+          7200586,
+          7203809,
+          7203810,
+          7203811,
+          7203814
+        ],
+        "official_delta_freeze_date": "2026-07-19",
+        "official_delta_record_count": 1343,
+        "official_inventory_report": ".runs/pxrd-ood/sources/cod-official-rsync-inventory-2026-07-19.json",
+        "official_inventory_report_sha256": "56190b4aac1c3eda6ec4c231f0626b2bd22fa778914a1c966591565ac65c57fd",
+        "official_rsync_cif_count": 534823,
+        "on_hold_entries_excluded_by_snapshot_publisher": 411,
+        "parquet_only_count": 0,
+        "raw_cif_text_covered_by_archive_hash": true,
+        "snapshot_active_record_count": 533486,
+        "snapshot_missing_cif_count": 5,
+        "source_cif_download_count": 533862
+      },
+      "failed_count": 0,
+      "record_count": 534823,
+      "sha256": "c8e07b0f615f996ae928037c1f4c48229f5134f191b46ed73fddb8335d187d33",
+      "status": "complete"
+    },
+    "crystalyze_mp20": {
+      "details": {
+        "archive": {
+          "boundary": "exact_released_full_corpus",
+          "path": ".runs/pxrd-ood/sources/crystalyze-mp_20_final.zip",
+          "sha256": "b96ec2c56c80f1569d4e16674836014a9b5b45585d72c164a44165dd8805ae93",
+          "size_bytes": 3419310082
+        },
+        "split_hashes": {
+          "test": "2b73586819290b31f80faf8810196ce2c34048d0753fd61dfd276cee71cd3d4a",
+          "train": "2cf5ddd5398e061f4d6e2b2c0e79c516b07bb06da5dda481036a72a8b420f2c0",
+          "val": "600224c223dd45846fbad4ccd766ea1add6ac98ef8804900fd39ff49328da6bc"
+        }
+      },
+      "failed_count": 0,
+      "record_count": 45052,
+      "sha256": "b96ec2c56c80f1569d4e16674836014a9b5b45585d72c164a44165dd8805ae93",
+      "status": "complete"
+    },
+    "dara_cod_2024": {
+      "details": {
+        "archive": {
+          "boundary": "exact_released_retrieval_index",
+          "path": ".runs/pxrd-ood/sources/dara-cod_filtered_info_2024.json.gz",
+          "sha256": "03599f54f03f04420523dca36cc06927b74ce0070a4a80e6d859faa38a6c5aed",
+          "size_bytes": 885508
+        },
+        "chemical_system_buckets": 27311
+      },
+      "failed_count": 0,
+      "record_count": 62098,
+      "sha256": "03599f54f03f04420523dca36cc06927b74ce0070a4a80e6d859faa38a6c5aed",
+      "status": "complete"
+    },
+    "decifer_noma": {
+      "details": {
+        "archive": {
+          "boundary": "exact_released_full_corpus_conservative_documented_count_superset",
+          "path": ".runs/pxrd-ood/sources/noma_cifs_raw.pkl.gz",
+          "sha256": "ec5d0a08ef63d33db3ecf8f6407df01f184d961ec0721a12d5abac097aaea328",
+          "size_bytes": 418137968
+        },
+        "pickle_parser": "pickletools TUPLE2 opcode stream",
+        "raw_tuple_count": 2285914,
+        "records_above_paper_reported_count": 2568,
+        "recovered_after_completed_insert_audit": true,
+        "unique_source_id_count": 2285914
+      },
+      "failed_count": 0,
+      "record_count": 2285914,
+      "sha256": "ec5d0a08ef63d33db3ecf8f6407df01f184d961ec0721a12d5abac097aaea328",
+      "status": "complete"
+    },
+    "diffractgpt_released": {
+      "details": {
+        "assets": {
+          "diffractgpt_test": {
+            "boundary": "exact_released_split",
+            "path": ".runs/pxrd-ood/sources/diffractgpt-test.parquet",
+            "sha256": "1016af848b4b88e9c746ea0f9407d99ae9fd1fc543982249f8a131de7238e9fb",
+            "size_bytes": 972264
+          },
+          "diffractgpt_train": {
+            "boundary": "exact_released_split",
+            "path": ".runs/pxrd-ood/sources/diffractgpt-train.parquet",
+            "sha256": "62784a3e4f516a20a424ab865a607845f45365d4c421a372c60cf3e84b1cae81",
+            "size_bytes": 15922927
+          }
+        },
+        "duplicate_jid_excess_retained_by_split_ordinal_identity": 4,
+        "released_example_count": 75997,
+        "unique_raw_jid_count": 75993
+      },
+      "failed_count": 0,
+      "record_count": 75997,
+      "sha256": null,
+      "status": "complete"
+    },
+    "jarvis_dft_2022": {
+      "details": {
+        "archive": {
+          "boundary": "official_snapshot_conservative_full_corpus",
+          "path": ".runs/pxrd-ood/sources/jdft_3d-12-12-2022.json.zip",
+          "sha256": "d4c64660e9e1fa45c82bd8868a96ec10162195eed69636445972c05550d8d0d6",
+          "size_bytes": 40811489
+        },
+        "member": "jdft_3d-12-12-2022.json"
+      },
+      "failed_count": 0,
+      "record_count": 75993,
+      "sha256": "d4c64660e9e1fa45c82bd8868a96ec10162195eed69636445972c05550d8d0d6",
+      "status": "complete"
+    },
+    "materials_project_2026_04_13": {
+      "details": {
+        "api_key_committed": false,
+        "api_pymatgen_version": "2026.5.18",
+        "api_version": "0.87.2.dev13+g62063a867",
+        "database_version": "2026.04.13",
+        "snapshot_path": ".runs/pxrd-ood/sources/materials-project-2026.04.13.jsonl.gz",
+        "snapshot_sha256": "a8e09ef34a2f05a57519d1754f70b8adf4ffdeb4f7b5a852b9cc2cd3a0ab66bd"
+      },
+      "failed_count": 0,
+      "record_count": 154377,
+      "sha256": "a8e09ef34a2f05a57519d1754f70b8adf4ffdeb4f7b5a852b9cc2cd3a0ab66bd",
+      "status": "complete"
+    },
+    "pxrdgen_mp20": {
+      "details": {
+        "commit": "f857f598d6f6cca5dc1ea0582d228f12dcc2c2ea",
+        "files": {
+          "test": "dd605c7543cf95a13e150aed630d0915e74edc8dea17e85301ee6fbfeb7f500a",
+          "train": "133bab58dba02d316f9f91174839f17802dce648be4e8659d1a42b32b97fa01d",
+          "val": "7b5f4085464b3eac9fd2123acee97ec372214004ce7e983b535b33395abc3e29"
+        }
+      },
+      "failed_count": 0,
+      "record_count": 45229,
+      "sha256": null,
+      "status": "complete"
+    }
+  }
+}

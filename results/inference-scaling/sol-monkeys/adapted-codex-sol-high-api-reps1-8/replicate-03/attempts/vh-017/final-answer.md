@@ -1,0 +1,1 @@
+Solved and saved the validated primary structure as [selected.cif](<ATTEMPT_WORKSPACE>/selected.cif).

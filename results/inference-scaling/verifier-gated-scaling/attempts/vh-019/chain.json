@@ -1,0 +1,97 @@
+{
+  "candidate_pool": [
+    {
+      "file": "initial--selected.cif",
+      "sha256": "a98c8744c482330138121ec970b5719db1365eec195f5b6e1554fd3b2e71eb7c",
+      "snapshot": "initial",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "continuation-01--selected.cif",
+      "sha256": "8a6d011f097c41e3db74ae36fa440115de519fe977bd2e76d536e725f2c28a7b",
+      "snapshot": "continuation-01",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "continuation-01--alternative-1.cif",
+      "sha256": "d3fff53b53115339b0878be67490cfdb44474004843ee958045bd3a7366025b9",
+      "snapshot": "continuation-01",
+      "source_name": "alternative-1.cif"
+    },
+    {
+      "file": "continuation-01--alternative-2.cif",
+      "sha256": "71807c621081258b86af78efd9bdd9600329abb8d68eaec591bd709be51c5194",
+      "snapshot": "continuation-01",
+      "source_name": "alternative-2.cif"
+    },
+    {
+      "file": "fresh-03--selected.cif",
+      "sha256": "cb785030dcc14f88800b6cc3fa2eff34b1318408e0df5818fd732d72fa437586",
+      "snapshot": "fresh-03",
+      "source_name": "selected.cif"
+    }
+  ],
+  "cumulative_candidates_exact": true,
+  "cumulative_matched_candidates": [
+    "selected.cif"
+  ],
+  "cumulative_selected_exact": true,
+  "problem_id": "vh-019",
+  "reviews": [
+    {
+      "decision": "continue",
+      "proposed_branch": null,
+      "reason": "The CIF is parseable and primitive P1, symmetry-expands to exactly 10 Y + 6 Sn atoms (Y5Sn3, 16 fully occupied sites, Z=2) in the stated 9.15944 x 9.15944 x 6.36883 A cell, and the tetragonal indexing itself is strong (20/20 early lines, M20 about 194). Exact atomic recovery is not established, however. The comparable score is unavailable, and the trace's final approximately 0.199 residual is an integrated square-root structure-factor/amplitude objective rather than a whole-profile comparison of the instantiated CIF. Independent calculation from that CIF predicts important reflections absent from the observed profile, especially 25.840 degrees (about 11.1% of the strongest calculated line versus a local observed maximum of only about 0.37%); analogous false intensity occurs at 9.648 and 38.108 degrees. Independent maps also did not converge to the same coordinates, while the ordering enumeration only reassigned elements at fixed final coordinates. Finally, the periodic model has a severe 2.310 A Y-Sn contact (versus a 3.25 A sum of tabulated atomic radii), reinforcing that this is an intensity-overfit coordinate realization rather than a chemically validated exact structure. A fresh coordinate solution/refinement is therefore likely to produce a materially different viable candidate; no specific surviving branch is established enough to propose.",
+      "review_index": 0,
+      "snapshot": "initial"
+    },
+    {
+      "decision": "continue",
+      "proposed_branch": null,
+      "reason": "The submitted CIFs are valid explicit ordered models: the primary parses as primitive P1 with a = b = 9.158518 A, c = 6.367348 A, 90-degree angles, 10 Y + 6 Sn fully occupied sites (Y5Sn3, Z = 2), and primitive standardization retains all 16 atoms. Its coordinates have a two-operation Cm pseudosymmetry/exact symmetry at the stated tolerance; the doubled Cm conventional cell is only a setting change. The alternatives share the same primitive framework but are genuinely distinct Y/Sn orderings, and together cover the three reported mirror-plane ordering permutations. Chemistry is not a veto: the primary minimum periodic contact is 2.930 A, complete neighbor shells contain no overlaps, and the other models are similarly plausible. Peak-position indexing is strong, but exact atom-coordinate recovery is not sufficiently established. The trace's instantiated-primary whole-profile residual is 0.1278 versus an unrestricted/Pawley-like profile bound of 0.0936, a material gap for this low-noise pattern; an independent fixed-profile calculation gives 0.144. The primary still predicts numerous unsupported reflections, including calculated intensities of about 1.15%, 1.60%, 1.25%, 1.31%, 1.94%, 1.70%, 1.43%, and 2.32% of maximum at 9.649, 44.906, 47.159, 51.437, 71.519, 80.571, 82.718, and 89.951 degrees, where observed local maxima are only about 0.155%, 0.413%, 0.283%, 0.424%, 0.670%, 0.498%, 0.375%, and 0.885%. More decisively, this framework was obtained by one distance-restrained local deformation of the previously rejected P1 coordinates and subsequent projection/refinement in approximate Cm; no independent map or coordinate search converged to it. The submitted alternatives test only element swaps on that same locally derived framework. A further independent coordinate solution is therefore likely to add a materially different viable realization; no specific surviving branch is established well enough to propose.",
+      "review_index": 1,
+      "snapshot": "continuation-01"
+    },
+    {
+      "decision": "continue",
+      "proposed_branch": null,
+      "reason": "No CIF was submitted, so there is no explicit ordered realization whose parsing, symmetry-expanded Y5Sn3 composition, occupancies, cell, coordinates, periodic geometry, or diffraction fit can be verified. The trace establishes a strong tetragonal metric but then rejects or leaves unresolved multiple incompatible symmetry and cell hypotheses; it ends during Wyckoff-combination enumeration without a coordinate-refined atomic model or an auditable whole-profile/integrated-intensity comparison. The absent comparable score does not drive the decision; the decisive issue is that exact structure recovery was not instantiated or validated. Another attempt is therefore likely to add the first materially viable candidate.",
+      "review_index": 2,
+      "snapshot": "fresh-02"
+    }
+  ],
+  "schema_version": "hybrid-case-v1",
+  "snapshots": [
+    {
+      "candidate_count": 1,
+      "candidates_exact": false,
+      "label": "initial",
+      "matched_candidates": [],
+      "selected_exact": false
+    },
+    {
+      "candidate_count": 3,
+      "candidates_exact": true,
+      "label": "continuation-01",
+      "matched_candidates": [
+        "selected.cif"
+      ],
+      "selected_exact": true
+    },
+    {
+      "candidate_count": 0,
+      "candidates_exact": false,
+      "label": "fresh-02",
+      "matched_candidates": [],
+      "selected_exact": false
+    },
+    {
+      "candidate_count": 1,
+      "candidates_exact": false,
+      "label": "fresh-03",
+      "matched_candidates": [],
+      "selected_exact": false
+    }
+  ],
+  "termination": "fresh-solver-limit"
+}

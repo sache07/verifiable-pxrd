@@ -1,0 +1,104 @@
+The pattern indexes as an **A-site-ordered 4H hexagonal-perovskite derivative**. The weak low-angle superstructure reflections require an orthohexagonal cell rather than the average \(P6_3/mmc\) cell:
+
+\[
+a_o=5.538\ \text{Å},\quad b_o=9.584\ \text{Å},\quad c_o=9.534\ \text{Å}.
+\]
+
+Here \(b_o\approx\sqrt3a_o\), and the cell contains \(Z=2\) BaSr\(_3\)Co\(_4\)O\(_{12}\). Representative indexing includes 010 at 9.22°, 100 at 15.99°, 112 near 26.35°, 200 at 32.32°, 004 near 37.71°, and the resolved 222/114 pair near 42.17/42.32°. The Co sublattice consists of face-sharing CoO\(_6\) dimers characteristic of the 4H polytype.
+
+Because the powder data do not uniquely determine the low-symmetry subgroup, the CIF below uses conservative \(P1\) symmetry while explicitly containing the ordered orthohexagonal cell. The coordinates retain the underlying 4H pseudosymmetry.
+
+```cif
+data_BaSr3Co4O12_ordered_4H
+
+_audit_creation_method
+'Powder-indexed ordered 4H-perovskite model; Cu Kalpha1, lambda = 1.5406 Angstrom'
+
+_chemical_name_common                 'barium strontium cobalt oxide'
+_chemical_formula_sum                 'Ba Sr3 Co4 O12'
+_chemical_formula_structural          'BaSr3(CoO3)4'
+_cell_formula_units_Z                 2
+
+_diffrn_radiation_wavelength          1.5406
+
+_space_group_name_H-M_alt             'P 1'
+_space_group_IT_number                1
+
+_cell_length_a                         5.5380
+_cell_length_b                         9.5840
+_cell_length_c                         9.5340
+_cell_angle_alpha                     90
+_cell_angle_beta                      90
+_cell_angle_gamma                     90
+_cell_volume                          506.2
+
+loop_
+_space_group_symop_id
+_space_group_symop_operation_xyz
+1 'x,y,z'
+
+loop_
+_atom_type_symbol
+_atom_type_oxidation_number
+Ba  2
+Sr  2
+Co  4
+O  -2
+
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_B_iso_or_equiv
+Ba1  Ba  0.000000  0.000000  0.000000  1.0  0.8
+Ba2  Ba  0.000000  0.000000  0.500000  1.0  0.8
+
+Sr1  Sr  0.500000  0.500000  0.000000  1.0  0.8
+Sr2  Sr  0.500000  0.500000  0.500000  1.0  0.8
+Sr3  Sr  0.000000  0.333333  0.250000  1.0  0.8
+Sr4  Sr  0.500000  0.166667  0.750000  1.0  0.8
+Sr5  Sr  0.500000  0.833333  0.250000  1.0  0.8
+Sr6  Sr  0.000000  0.666667  0.750000  1.0  0.8
+
+Co1  Co  0.000000  0.333333  0.111500  1.0  0.5
+Co2  Co  0.500000  0.166667  0.611500  1.0  0.5
+Co3  Co  0.500000  0.166667  0.888500  1.0  0.5
+Co4  Co  0.000000  0.333333  0.388500  1.0  0.5
+Co5  Co  0.500000  0.833333  0.111500  1.0  0.5
+Co6  Co  0.000000  0.666667  0.611500  1.0  0.5
+Co7  Co  0.000000  0.666667  0.888500  1.0  0.5
+Co8  Co  0.500000  0.833333  0.388500  1.0  0.5
+
+O1   O   0.500000  0.000000  0.000000  1.0  1.0
+O2   O   0.750000  0.250000  0.000000  1.0  1.0
+O3   O   0.250000  0.250000  0.000000  1.0  1.0
+O4   O   0.000000  0.500000  0.000000  1.0  1.0
+O5   O   0.250000  0.750000  0.000000  1.0  1.0
+O6   O   0.750000  0.750000  0.000000  1.0  1.0
+
+O7   O   0.500000  0.000000  0.500000  1.0  1.0
+O8   O   0.750000  0.250000  0.500000  1.0  1.0
+O9   O   0.250000  0.250000  0.500000  1.0  1.0
+O10  O   0.000000  0.500000  0.500000  1.0  1.0
+O11  O   0.250000  0.750000  0.500000  1.0  1.0
+O12  O   0.750000  0.750000  0.500000  1.0  1.0
+
+O13  O   0.000000  0.176000  0.250000  1.0  1.0
+O14  O   0.736000  0.912000  0.250000  1.0  1.0
+O15  O   0.264000  0.912000  0.250000  1.0  1.0
+O16  O   0.500000  0.676000  0.250000  1.0  1.0
+O17  O   0.236000  0.412000  0.250000  1.0  1.0
+O18  O   0.764000  0.412000  0.250000  1.0  1.0
+
+O19  O   0.000000  0.824000  0.750000  1.0  1.0
+O20  O   0.264000  0.088000  0.750000  1.0  1.0
+O21  O   0.736000  0.088000  0.750000  1.0  1.0
+O22  O   0.500000  0.324000  0.750000  1.0  1.0
+O23  O   0.764000  0.588000  0.750000  1.0  1.0
+O24  O   0.236000  0.588000  0.750000  1.0  1.0
+```
+
+The Ba/Sr column exchanged model is an origin/order-domain equivalent and gives the same powder intensities. An average disordered \(P6_3/mmc\) 4H model is a possible approximation, but it does not account for the weak 9.22°, 15.99°, 24.54°, and 30.97° superstructure peaks.

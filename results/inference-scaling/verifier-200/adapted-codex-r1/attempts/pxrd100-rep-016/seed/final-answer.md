@@ -1,0 +1,1 @@
+Recorded the verifier decision as `stop` in [decision.json](<EXTERNAL_PATH>).

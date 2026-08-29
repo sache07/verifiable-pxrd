@@ -1,0 +1,58 @@
+{
+  "candidate_pool": [
+    {
+      "file": "initial--selected.cif",
+      "sha256": "e557baa07b06506f4280d1830d7efa4445dd2783685149be821cf5729bbbf33f",
+      "snapshot": "initial",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "continuation-01--selected.cif",
+      "sha256": "fe16b8dfb3e5dde4b275e9bf63d4101c9aa716ae014171a0cbf0b7df7690b035",
+      "snapshot": "continuation-01",
+      "source_name": "selected.cif"
+    }
+  ],
+  "cumulative_candidates_exact": true,
+  "cumulative_matched_candidates": [
+    "selected.cif"
+  ],
+  "cumulative_selected_exact": true,
+  "problem_id": "vh-013",
+  "reviews": [
+    {
+      "decision": "continue",
+      "proposed_branch": null,
+      "reason": "The submitted CIF is valid and primitive P2_1, symmetry-expands to fully occupied Ti2Cr2Ag2S8 (Z=2), indexes all important reflections, and passes overlap, coordination-shell, charge-balance, and bond-valence checks. However, the exact atomic realization is not sufficiently established: the trace's instantiated whole-profile fit has Rwp=0.09133, while an audit using the same indexed cell and profile shape gives a Pawley-like lower bound of 0.04043 (profile RMS 0.456 versus 0.209, with pre-peak noise about 0.103). Thus substantial intensity information remains unexplained. The chemically constrained final searches all restarted from one unconstrained map, and the only ordering test was an unrefined Cr/Ti coordinate swap (Rwp=0.09897), so it does not close the element-ordering ambiguity while both orderings remain chemically plausible. Another attempt with independent atomic searches and coordinate-refined ordering alternatives is likely to add a materially different viable candidate.",
+      "review_index": 0,
+      "snapshot": "initial"
+    },
+    {
+      "decision": "stop",
+      "proposed_branch": null,
+      "reason": "The submitted CIF is valid and already contains a sufficiently established ordered realization. It parses and symmetry-expands as primitive P2_1 (No. 4) with the stated cell a=6.54156 A, b=6.97703 A, c=5.93445 A, beta=91.46968 degrees, 14 fully occupied atoms Ti2Cr2Ag2S8 (reduced TiCrAgS4), and Z=2; primitive standardization does not reveal a distinct smaller cell or ordering. All 68 significant observed peaks are indexed within 0.03 degrees, with no important unmatched reflection. The trace contains an instantiated whole-profile comparison, independently reproducible from the CIF: Rwp is about 0.0551 for the submitted coordinate-refined Cr/Ti ordering versus about 0.0908 for the prior ordering and about 0.0400 for a Pawley-like lower bound; local integrated intensities have correlation 0.9995 and an absolute area discrepancy of about 3.4%. The selected basin recurs across multiple coordinate-refinement perturbation batches, while explicit refinement of all cation-site permutations rejects the original Cr/Ti order and other assignments by substantially worse fits or invalid contacts. Periodic chemistry also passes: the minimum distance is 2.286 A, Ag, Cr, and Ti have complete six-S shells without overlaps, bond-valence analysis assigns Ag(+1), Cr(+3), Ti(+4), and S(-2), and charge is balanced. No concrete incompatible symmetry, superstructure, occupancy, ordering, or framework realization survives the diffraction and chemistry evidence, so another attempt is unlikely to add a materially different viable candidate.",
+      "review_index": 1,
+      "snapshot": "continuation-01"
+    }
+  ],
+  "schema_version": "hybrid-case-v1",
+  "snapshots": [
+    {
+      "candidate_count": 1,
+      "candidates_exact": false,
+      "label": "initial",
+      "matched_candidates": [],
+      "selected_exact": false
+    },
+    {
+      "candidate_count": 1,
+      "candidates_exact": true,
+      "label": "continuation-01",
+      "matched_candidates": [
+        "selected.cif"
+      ],
+      "selected_exact": true
+    }
+  ],
+  "termination": "judge-stop-j1"
+}

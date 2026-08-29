@@ -1,0 +1,1 @@
+Recorded `"decision": "continue"` in [decision.json](<EXTERNAL_PATH>).

@@ -1,0 +1,74 @@
+{
+  "background": {
+    "explicit_background": "none",
+    "profile_tail_note": "Nonzero low baseline values are deterministic peak tails in GSAS-II ycalc."
+  },
+  "capsule": {
+    "doi": "10.24433/CO.6347299.v1",
+    "uuid": "75fac1ae-f64b-41ef-9680-ef896215fa3c",
+    "version": "1.0"
+  },
+  "engine": {
+    "calculator": "GSASIIscriptable.G2Project.add_simulated_powder_histogram",
+    "data_channel": "ycalc",
+    "max_refinement_cycles": 0,
+    "runtime": {
+      "gsasii_commit": "1a0aeec6c61b54f68e6812704730a471187ac393",
+      "gsasii_revision": 5806,
+      "numpy_version": "1.26.4",
+      "python_version": "3.11.9"
+    },
+    "scale": 1.0
+  },
+  "grid": {
+    "gsasii_inclusive_point_count": 7501,
+    "model_last_point_deg": 79.99,
+    "model_point_count": 7500,
+    "start_deg": 5.0,
+    "step_deg": 0.01,
+    "stop_deg_gsasii_inclusive": 80.0,
+    "transformation": "normalize inclusive ycalc, then drop its final 80.00-degree point"
+  },
+  "instrument": {
+    "azimuth_deg": 0.0,
+    "geometry": "Bragg-Brentano constant-wavelength X-ray (PXCR)",
+    "instrument_file": {
+      "sha256": "364f124b53f956f2d1f876134d1df1dff6c6cabdd612fc5d8272c1de3ae9c9e8",
+      "upstream_path": "code/Rietveld/INST_XRY_Cu.PRM"
+    },
+    "polarization": 0.7,
+    "profile": {
+      "SH_over_L": 0.002,
+      "U": 2.0,
+      "V": -2.0,
+      "W": 5.0,
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0,
+      "legacy_gsas_profile_function": 3,
+      "note": "Effective GSAS-II pseudo-Voigt/profile coefficients after loading the legacy PRM file; retain the PRM rather than treating them as a constant FWHM."
+    },
+    "radiation": {
+      "I_Kalpha2_over_I_Kalpha1": 0.5,
+      "Kalpha1_angstrom": 1.54056,
+      "Kalpha2_angstrom": 1.54433,
+      "source_code": "CuKa (IRAD=3)"
+    },
+    "zero_shift_deg": 0.0
+  },
+  "intensity": {
+    "file_format": "one normalized scalar per line, fixed to seven decimal places",
+    "noise": "none (calculated ycalc is used, not noisy observed y)",
+    "normalization": "ycalc / max(ycalc), before dropping the inclusive endpoint",
+    "range": [
+      0.0,
+      1.0
+    ]
+  },
+  "model_input": {
+    "encoder": "published flow_CNN (CNN PXRD encoder)",
+    "shape": [
+      7500
+    ]
+  }
+}

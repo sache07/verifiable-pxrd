@@ -1,0 +1,1 @@
+Recorded the decision in [decision.json](<EXTERNAL_PATH>).

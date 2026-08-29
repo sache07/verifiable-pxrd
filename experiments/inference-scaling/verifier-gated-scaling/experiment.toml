@@ -1,0 +1,32 @@
+schema_version = 1
+status = "paper-frozen"
+id = "verifier-gated-scaling"
+schedule = ["s0", "j0", "c1", "j1", "s2", "j2", "s3"]
+
+panel = "pxrd-bench/panels/inference-scaling-20/manifest.json"
+initial_source = "results/inference-scaling/verifier-gated-scaling"
+judge_condition = "experiments/agent-adaptation/conditions/adapted-codex.toml"
+solver_condition = "experiments/agent-adaptation/conditions/adapted-codex.toml"
+judge_wrapper = "experiments/inference-scaling/llm-verifier/judge-v1/wrapper.md"
+judge_policy = "experiments/inference-scaling/llm-verifier/judge-v1/policy.md"
+continuation_prompt = "experiments/inference-scaling/verifier-gated-scaling/prompts/continuation.md"
+
+parallel_agent_calls = 16
+judge_timeout_seconds = 1800
+solver_timeout_seconds = 3600
+cpu_quota = "200%"
+memory_max = "5G"
+oracle_available_to_agents = false
+alternatives_count_as_exact = true
+
+[cost]
+source_bill_usd = 446.15
+base_cost_calibration_factor = 1.0056867828494387
+uncached_input_per_million_usd = 4.00
+cached_input_per_million_usd = 0.40
+cache_write_input_per_million_usd = 5.00
+output_per_million_usd = 20.00
+
+# One launched S2 call lacks terminal usage. This frozen same-stage mean is in
+# pre-calibration USD and prevents the incomplete call from being counted free.
+s2_missing_usage_imputation_base_usd = 3.585285875360331

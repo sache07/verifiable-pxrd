@@ -1,0 +1,30 @@
+{
+  "model_input": {
+    "encoder_behavior": "released BertModel casts two-theta values to integer degree bins and uses them as position-embedding indices",
+    "intensity_filter": "strictly greater than 5 after max=100 normalization",
+    "representation": "discrete two-theta/intensity list"
+  },
+  "primitive_cell": {
+    "angle_tolerance_degrees": 5.0,
+    "implementation": "pymatgen SpacegroupAnalyzer.find_primitive",
+    "symprec_angstrom": 0.1
+  },
+  "released_inference_defaults": {
+    "candidates_per_case": 20,
+    "infer_timesteps": 200,
+    "step_lr": 5.0
+  },
+  "simulation": {
+    "background": "none",
+    "broadening": "none; Pymatgen sticks",
+    "calculator": "pymatgen.analysis.diffraction.xrd.XRDCalculator",
+    "intensity_normalization": "Pymatgen maximum=100",
+    "paper_nominal_wavelength_angstrom": 1.5406,
+    "pymatgen_radiation_key": "CuKa",
+    "resolved_wavelength_angstrom": 1.54184,
+    "two_theta_range_degrees_inclusive": [
+      5.0,
+      80.0
+    ]
+  }
+}

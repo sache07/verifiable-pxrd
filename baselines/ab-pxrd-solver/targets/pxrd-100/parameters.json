@@ -1,0 +1,102 @@
+{
+  "background": {
+    "added_background": false,
+    "ratio_to_maximum": 0.0
+  },
+  "clean_profile": {
+    "noise": "none",
+    "retained_for_audit": true
+  },
+  "engine": {
+    "calculator": "released pxrd_app.tools.gsas.simulate_pxrd using GSAS-II ycalc",
+    "instrument_file": {
+      "sha256": "64f8e098bbab5dea2ece42d9cfe5494a0a871841093bec26ffaf7304c4913408",
+      "upstream_path": "pxrd_app/tools/INST_XRY.PRM"
+    },
+    "runtime": {
+      "compatibility_note": "The Ab-PXRD-Solver release leaves GSAS-II unpinned. This adapter uses hash-pinned compatible runtime and records it rather than claiming a paper-era revision.",
+      "gsasii_commit": "1a0aeec6c61b54f68e6812704730a471187ac393",
+      "gsasii_revision": 5806,
+      "numpy_version": "1.26.4",
+      "python_version": "3.11.15"
+    }
+  },
+  "framework": "Ab-PXRD-Solver",
+  "grid": {
+    "axis": "2theta_deg",
+    "point_count": 3501,
+    "start_deg": 10.0,
+    "step_deg": 0.02,
+    "stop_deg_inclusive": 80.0
+  },
+  "intensity": {
+    "clean_normalization": "divide GSAS-II ycalc by its maximum and multiply by 100",
+    "native_normalization": "divide by the post-noise maximum and multiply by 100",
+    "negative_native_values_possible": true
+  },
+  "model_input": {
+    "format": "two-column CSV with 2theta,intensity header",
+    "formula": "benchmark reduced composition, passed explicitly with --formula",
+    "one_process_per_case": "required because the stock batch CLI has only one global --formula override",
+    "space_group": "not supplied; --infer-spg is required"
+  },
+  "native_noise": {
+    "consumed_by_benchmark": true,
+    "gaussian_relative_sigma": 0.001,
+    "generator": "numpy.random.RandomState",
+    "maximum_counts": 5000,
+    "poisson": true,
+    "seed_base": 20260721,
+    "seed_rule": "seed_base + zero-based source-manifest case index"
+  },
+  "paper": {
+    "citation": "Su et al., Ab-initio Crystal Structure Determination from Powder X-Ray Diffraction (2026)",
+    "documented": [
+      "Stage 1.1: adaptive background subtraction, smoothing, SciPy peak detection, and CNN filtering",
+      "Stage 3.2: normalized cross-correlation screening",
+      "Stage 3.3: GSAS-II Rietveld refinement"
+    ],
+    "parameter_gap": "The paper does not report wavelength, angle grid, profile coefficients, crystallite size, or synthetic-noise values; these come from the released code.",
+    "url": "https://arxiv.org/abs/2605.24594"
+  },
+  "profile": {
+    "U": 0.2,
+    "V": -0.2,
+    "W": 2.0,
+    "X": 0.5,
+    "Y": 0.5,
+    "crystallite_size_micrometer": 20.0,
+    "family": "GSAS-II constant-wavelength type-3 profile with released Caglioti overrides"
+  },
+  "radiation": {
+    "label": "Cu Kalpha average",
+    "wavelength_angstrom": 1.54184
+  },
+  "schema_version": "1.0.0",
+  "source": {
+    "commit": "0d67964dfcbd2e2fa09e79bbbac2f5d020a121e9",
+    "files": {
+      "constants.py": {
+        "sha256": "35aba225e32688894ccdf694ec3c8f7df0d7fb0a23a6049db04bbf4882868ae4",
+        "upstream_path": "pxrd_app/constants.py"
+      },
+      "environment": {
+        "sha256": "14eb34aba678dc170705cabbf5e595ea0038641a198f226e601dd7a63e2c6ee7",
+        "upstream_path": "environment.yml"
+      },
+      "gsas.py": {
+        "sha256": "88a1fc063253a631532dc1552f2803ead1c3b2da39d6b41f8476fd4dae8f3d40",
+        "upstream_path": "pxrd_app/tools/gsas.py"
+      },
+      "instrument": {
+        "sha256": "64f8e098bbab5dea2ece42d9cfe5494a0a871841093bec26ffaf7304c4913408",
+        "upstream_path": "pxrd_app/tools/INST_XRY.PRM"
+      },
+      "synthetic_recipe.py": {
+        "sha256": "882424d28a14d98d3adcb76b6b7ad75d1e54cd93863536439801263b27d1eca1",
+        "upstream_path": "pxrd_app/tools/peak_finder/predict_single.py"
+      }
+    },
+    "repository": "https://github.com/MaterSim/Ab-PXRD-Solver"
+  }
+}

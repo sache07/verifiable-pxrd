@@ -1,0 +1,67 @@
+{
+  "candidate_pool": [
+    {
+      "file": "initial--selected.cif",
+      "sha256": "720fff4e9146dccece2360f4cc14b7aa9d8715abdc8f882a74997162bf8fda35",
+      "snapshot": "initial",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "continuation-01--selected.cif",
+      "sha256": "be964b55e264c01945f04661a1070d95bb95e035c24c79358fa60235853d3c09",
+      "snapshot": "continuation-01",
+      "source_name": "selected.cif"
+    },
+    {
+      "file": "continuation-01--alternative-1.cif",
+      "sha256": "59a91ca9aade3d83bdb02184aced52f4a434c6ab679c7db3537de9a830be9e08",
+      "snapshot": "continuation-01",
+      "source_name": "alternative-1.cif"
+    }
+  ],
+  "cumulative_candidates_exact": true,
+  "cumulative_matched_candidates": [
+    "selected.cif",
+    "alternative-1.cif"
+  ],
+  "cumulative_selected_exact": true,
+  "problem_id": "vh-015",
+  "reviews": [
+    {
+      "decision": "continue",
+      "proposed_branch": "A-site-disordered P21/c parent realization with 50:50 Sr/Ca occupancy on the A orbit and retained rock-salt Sc/Ta order",
+      "reason": "The submitted CIF is parseable and symmetry-expands as a primitive 259.16685 A^3, 20-atom Z=2 realization of SrCaScTaO6 with full occupancies; its actual symmetry is Pc (No. 7), not the declared P1. It has charge-balanced Sr2+/Ca2+/Sc3+/Ta5+, no overlaps, complete six-coordinate Sc/Ta octahedra (Sc-O 2.099-2.145 A; Ta-O 2.037-2.093 A), and strong orthorhombic indexing coverage. The trace instantiated and refined a whole-profile model, and its enumeration rejects the other two 2:2 Sr/Ca ordering classes through absent low-angle superlattice lines. However, the selected Pc ordering retains an exactly P21/c-symmetric parent framework and was not compared with Sr/Ca occupational averaging. An independent like-for-like whole-profile comparison gives unweighted RMSE 0.199 for 50:50 Sr/Ca on the parent A orbit versus 0.221 for the submitted ordered model, while a free-intensity profile bound is 0.179 and peak-free background noise is about 0.102. This concrete A-site-disordered P21/c realization preserves composition, indexed reflections, ordered rock-salt Sc/Ta topology, and chemistry, yet is absent from the submitted set and fits better. Thus the exact Sr/Ca occupancy/order choice is not established and another attempt is likely to add a materially different viable candidate.",
+      "review_index": 0,
+      "snapshot": "initial"
+    },
+    {
+      "decision": "stop",
+      "proposed_branch": null,
+      "reason": "The submitted set is sufficient. The primary CIF parses without warnings and symmetry-expands in P21/c (No. 14) to 20 sites with site-occupancy sums of 1, Sr2Ca2Sc2Ta2O12 = 2(SrCaScTaO6), Z = 2, and V = 259.16685 A^3. The ordered alternative parses as Pc (No. 7) with the same composition, atom count, occupancy completeness, and primitive volume; primitive standardization shows that its monoclinic cell is only a different setting of the same indexed lattice, while its Sc/Ta/O framework matches the primary framework. Both round-trip, are charge-balanced as Sr2+/Ca2+/Sc3+/Ta5+/O2-, have no overlaps (minimum distance 2.037-2.047 A), complete eight-neighbor A-site shells, and six-coordinate ScO6/TaO6 octahedra with chemically credible distances (Sc-O 2.099-2.145 A; Ta-O 2.037-2.093 A); bond-valence analysis assigns the intended oxidation states. Indexing is strong: the trace fits 67 reflections from 18.9 to 87.5 degrees with 0.010 degrees RMS position error, and an independent peak audit matches all 70 reflections above the stated detection threshold within 0.065 degrees, with no important unindexed line. Atomic coordinates were instantiated and refined in repeated direct-space/profile trials, not inferred from a prototype name. A common-profile whole-pattern calculation of the actual primary CIF gives RMSE 0.201 and correlation 0.9981, close to the fixed-position, free-integrated-intensity lower bound RMSE 0.182; peak-free noise is about 0.104. The ordered Pc realization is explicitly supplied and is profile-inferior (RMSE 0.234), so the surviving Sr/Ca disorder-versus-order ambiguity is covered. The other 2:2 Sr/Ca order classes predict absent 11-16 degree superlattice peaks, while Sc/Ta disorder and non-rock-salt orderings are strongly rejected by comparable fits (RMSE 1.28-1.87); reversing the rock-salt sublattices is also profile-inferior and inverts the chemically supported short-Ta/long-Sc octahedral assignment. The unavailable standalone comparable-score report is therefore not a deficiency because the trace and independent CIF calculations provide auditable equivalent whole-pattern evidence. No concrete incompatible realization remains likely to justify another attempt.",
+      "review_index": 1,
+      "snapshot": "continuation-01"
+    }
+  ],
+  "schema_version": "hybrid-case-v1",
+  "snapshots": [
+    {
+      "candidate_count": 1,
+      "candidates_exact": true,
+      "label": "initial",
+      "matched_candidates": [
+        "selected.cif"
+      ],
+      "selected_exact": true
+    },
+    {
+      "candidate_count": 2,
+      "candidates_exact": true,
+      "label": "continuation-01",
+      "matched_candidates": [
+        "alternative-1.cif"
+      ],
+      "selected_exact": false
+    }
+  ],
+  "termination": "judge-stop-j1"
+}

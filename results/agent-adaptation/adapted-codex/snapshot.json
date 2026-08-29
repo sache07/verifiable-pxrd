@@ -1,0 +1,45 @@
+{
+  "schema_version": "1",
+  "condition": "adapted-codex",
+  "status": "paper-evaluated",
+  "artifact": {
+    "path": "experiments/agent-adaptation/artifacts/adapted-codex/package",
+    "package_sha256": "a2803fd4807ccea23915e368d3c23455f80b88156df81bb4b744979df3ccd5aa",
+    "trainer_source_commit": "4701bedb466d970174c78c0fc0743ba486e3d99e",
+    "trainer_source_tag": "pxrd-capability-freeze-2026-08-24",
+    "trainer_prompt_sha256": "f9b4b7710d4c7a67d2916ccf0667c7d21b89e29263473217e1d73caf8d2abc17",
+    "trainer_skill_sha256": "8d53b746e62f931a676c2ee36547084108be5768b69133602115ffd9ae7a6c32"
+  },
+  "training": {
+    "curriculum": "experiments/agent-adaptation/curriculum/train-50/manifest.json",
+    "baseline_condition": "pxrd-codex",
+    "baseline_cases": 50,
+    "baseline_selected_exact": 30,
+    "behavioral_validation_attempts": 23,
+    "behavioral_validation_selected_exact": 9,
+    "newly_recovered_baseline_failures": 6,
+    "regression_controls": 3,
+    "regression_controls_selected_exact": 3
+  },
+  "evaluation": {
+    "path": "results/agent-adaptation/adapted-codex/full-200-chatgpt-sol-high-r1",
+    "panel": "pxrd-bench/panels/full-200.json",
+    "cases": 200,
+    "completed": 200,
+    "selected_exact": 138,
+    "candidates_exact": 141,
+    "timeouts": 3,
+    "failed_workers": 0,
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "auth_method": "chatgpt",
+    "codex_release": "0.149.0-x86_64-unknown-linux-musl",
+    "parallel_workers": 16,
+    "cpu_quota": "200%",
+    "memory_max": "5G",
+    "timeout_seconds": 3600,
+    "condition_sha256": "50ca423b9d9d0d3b3a274e9f249a426eefbcd2567ebf681519a3368d6135eed4",
+    "prompt_sha256": "cf34d02be45b81176a25d11cb984e010b6da1d5b9d7a0faf8dccaf05bc0debc9",
+    "panel_sha256": "e8e165cb9386342f5783b75bf98b956e1b4c58c6a88ef53964d183490b28ca6f"
+  }
+}
