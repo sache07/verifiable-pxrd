@@ -52,6 +52,12 @@ for candidate ranking. Experiment definitions are under [`experiments/`](experim
 and normalized result bundles, submitted CIFs, verifier outputs, and checksums are
 indexed under [`results/`](results/README.md).
 
+The AI4Mat camera-ready appendix experiments are under
+[`experiments/appendix/`](experiments/appendix/README.md), with saved outputs under
+[`results/appendix/`](results/appendix/README.md). They include method-specific
+specialist refinement, completed Crystalyze stage-one results, and the native/shared
+fixed-profile Rwp distributions.
+
 ## License and provenance
 
 Repository-authored software and documentation are available under the

@@ -1,0 +1,28 @@
+{
+  "id": "specialist-native-refinement-v3-released-export",
+  "implementation": {
+    "pxrdgen": "Released functions and GSAS export formatting; only paths and benchmark input wiring adapted",
+    "ab-pxrd-solver": "Released optimizer; fitted-phase export added using default GSAS formatting",
+    "realpxrd-solver": "Paper-guided reconstruction, unchanged from precision-export pilot; not author-released code",
+    "crystalyze": "Existing GPU campaign retains its immutable v2 runner and protocol"
+  },
+  "seed": 20260915,
+  "gsas_commit": "1a0aeec6c61b54f68e6812704730a471187ac393",
+  "crystalyze_commit": "d265e8b4687fda9586a73f3eb881bb881171b05b",
+  "ab_commit": "0d67964dfcbd2e2fa09e79bbbac2f5d020a121e9",
+  "methods": {
+    "crystalyze": {"variant": "element-set-k8", "slots": 8, "timeout_seconds": 3600},
+    "pxrdgen": {"variant": "known-primitive-z-k8", "slots": 8, "timeout_seconds": 1800},
+    "ab-pxrd-solver": {"variant": "reduced-composition-k1", "slots": 1, "timeout_seconds": 60},
+    "realpxrd-solver": {"variant": "known-primitive-z-k20", "slots": 20, "timeout_seconds": 900}
+  },
+  "evaluation": {
+    "denominator_per_method_corpus": 100,
+    "candidate_order": "original sampler order",
+    "execution_failure": "retain original candidate; report status separately",
+    "pending": "never treated as completed",
+    "reference_access": "local post-hoc scoring only",
+    "profile_residual": "fresh exported-CIF simulation; identical fixed profile, nonnegative scale and four Chebyshev background coefficients before/after"
+  },
+  "pilot": {"per_method_per_corpus": 4, "selection": "first available candidate; evenly spaced ranks by candidate site count, ties by case ID; no match labels"}
+}

@@ -1,0 +1,179 @@
+{
+  "diagnostic_rechecks": {
+    "realpxrd-solver/completed": 508
+  },
+  "failures": [
+    {
+      "corpus": "pxrd-100",
+      "count": 1,
+      "failure_type": "unreadable-refined-cif",
+      "method": "ab-pxrd-solver"
+    },
+    {
+      "corpus": "pxrd-100",
+      "count": 11,
+      "failure_type": "cif-import-error",
+      "method": "pxrdgen"
+    },
+    {
+      "corpus": "pxrd-100",
+      "count": 1,
+      "failure_type": "export-composition-change",
+      "method": "pxrdgen"
+    },
+    {
+      "corpus": "pxrd-100",
+      "count": 42,
+      "failure_type": "inter-pass-symmetry-conversion",
+      "method": "pxrdgen"
+    },
+    {
+      "corpus": "pxrd-100",
+      "count": 100,
+      "failure_type": "unreadable-refined-cif",
+      "method": "pxrdgen"
+    },
+    {
+      "corpus": "pxrd-ood",
+      "count": 2,
+      "failure_type": "cif-import-error",
+      "method": "pxrdgen"
+    },
+    {
+      "corpus": "pxrd-ood",
+      "count": 45,
+      "failure_type": "inter-pass-symmetry-conversion",
+      "method": "pxrdgen"
+    },
+    {
+      "corpus": "pxrd-ood",
+      "count": 1,
+      "failure_type": "numerical-refinement-error",
+      "method": "pxrdgen"
+    },
+    {
+      "corpus": "pxrd-ood",
+      "count": 173,
+      "failure_type": "unreadable-refined-cif",
+      "method": "pxrdgen"
+    },
+    {
+      "corpus": "pxrd-100",
+      "count": 3,
+      "failure_type": "cif-import-error",
+      "method": "realpxrd-solver"
+    },
+    {
+      "corpus": "pxrd-ood",
+      "count": 21,
+      "failure_type": "cif-import-error",
+      "method": "realpxrd-solver"
+    },
+    {
+      "corpus": "pxrd-ood",
+      "count": 1,
+      "failure_type": "no-reflections-in-observation-range",
+      "method": "realpxrd-solver"
+    }
+  ],
+  "independent_diagnostic_failures": {
+    "realpxrd-solver": 508
+  },
+  "notes": [
+    "A completed refinement need not be structurally correct.",
+    "Stage rejections in the RealPXRD adapter restore the last accepted state; they are not full-run failures.",
+    "Failure types are derived from exception, stage, and log records; unreadable exports are not silently repaired.",
+    "Original candidates are retained on full failure; missing original submissions remain missing."
+  ],
+  "paired_first_candidate_rwp": [
+    {
+      "corpus": "pxrd-100",
+      "mean_after": 30.502127030551843,
+      "mean_before": 41.47003462728932,
+      "median_after": 17.70470071720863,
+      "median_before": 36.53938781374654,
+      "median_paired_change": -7.6615257075862475,
+      "method": "ab-pxrd-solver",
+      "n": 76
+    },
+    {
+      "corpus": "pxrd-ood",
+      "mean_after": 46.1174351155426,
+      "mean_before": 54.65982922238505,
+      "median_after": 30.671192059754837,
+      "median_before": 53.0820198840701,
+      "median_paired_change": -4.018884043002366,
+      "method": "ab-pxrd-solver",
+      "n": 83
+    },
+    {
+      "corpus": "pxrd-100",
+      "mean_after": 51.10057535451892,
+      "mean_before": 89.46671594348983,
+      "median_after": 51.60483973801945,
+      "median_before": 93.78890596847238,
+      "median_paired_change": -30.183357323833437,
+      "method": "pxrdgen",
+      "n": 76
+    },
+    {
+      "corpus": "pxrd-ood",
+      "mean_after": 82.10138794233092,
+      "mean_before": 93.09664104243939,
+      "median_after": 92.09347921830768,
+      "median_before": 96.16531704777933,
+      "median_paired_change": -2.7368943408108066,
+      "method": "pxrdgen",
+      "n": 71
+    },
+    {
+      "corpus": "pxrd-100",
+      "mean_after": 85.52404619278995,
+      "mean_before": 94.70537383221132,
+      "median_after": 96.34460917695424,
+      "median_before": 97.67564990982882,
+      "median_paired_change": -0.0051590104261123315,
+      "method": "realpxrd-solver",
+      "n": 100
+    },
+    {
+      "corpus": "pxrd-ood",
+      "mean_after": 94.01547453091196,
+      "mean_before": 96.97778983173637,
+      "median_after": 98.03721386110311,
+      "median_before": 98.0567900473626,
+      "median_paired_change": 0.0,
+      "method": "realpxrd-solver",
+      "n": 99
+    }
+  ],
+  "rejected_stages": {
+    "realpxrd-solver": {
+      "background/accepted": 2121,
+      "background/rejected": 1854,
+      "cell/accepted": 2970,
+      "cell/rejected": 1005,
+      "coordinates/accepted": 2480,
+      "coordinates/rejected": 1495,
+      "joint/accepted": 2852,
+      "joint/rejected": 1123,
+      "profile/accepted": 116,
+      "profile/rejected": 3859,
+      "scale/accepted": 3967,
+      "scale/rejected": 8,
+      "zero/accepted": 2612,
+      "zero/rejected": 1363
+    }
+  },
+  "stage_rejection_errors": {
+    "realpxrd-solver": {
+      "FloatingPointError: underflow encountered in square": 1611,
+      "G2Exception: ' Ouch #8: no reflections in data range - rethink PWDR limits'": 123,
+      "UnpicklingError: invalid load key, '\\x00'.": 1,
+      "UnpicklingError: invalid load key, '\\x06'.": 2,
+      "UnpicklingError: unpickling stack underflow": 4,
+      "ValueError: Invalid CIF file with no structures!": 7,
+      "ValueError: Residual, geometry, composition, or profile bound failed": 8959
+    }
+  }
+}

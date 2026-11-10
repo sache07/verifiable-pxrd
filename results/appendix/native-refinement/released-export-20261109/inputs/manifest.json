@@ -1,0 +1,54 @@
+{
+  "count": 5760,
+  "missing": 40,
+  "pilot": false,
+  "pilot_exclusions": [],
+  "protocol": {
+    "ab_commit": "0d67964dfcbd2e2fa09e79bbbac2f5d020a121e9",
+    "crystalyze_commit": "d265e8b4687fda9586a73f3eb881bb881171b05b",
+    "evaluation": {
+      "candidate_order": "original sampler order",
+      "denominator_per_method_corpus": 100,
+      "execution_failure": "retain original candidate; report status separately",
+      "pending": "never treated as completed",
+      "profile_residual": "fresh exported-CIF simulation; identical fixed profile, nonnegative scale and four Chebyshev background coefficients before/after",
+      "reference_access": "local post-hoc scoring only"
+    },
+    "gsas_commit": "1a0aeec6c61b54f68e6812704730a471187ac393",
+    "id": "specialist-native-refinement-v3-released-export",
+    "implementation": {
+      "ab-pxrd-solver": "Released optimizer; fitted-phase export added using default GSAS formatting",
+      "crystalyze": "Existing GPU campaign retains its immutable v2 runner and protocol",
+      "pxrdgen": "Released functions and GSAS export formatting; only paths and benchmark input wiring adapted",
+      "realpxrd-solver": "Paper-guided reconstruction, unchanged from precision-export pilot; not author-released code"
+    },
+    "methods": {
+      "ab-pxrd-solver": {
+        "slots": 1,
+        "timeout_seconds": 60,
+        "variant": "reduced-composition-k1"
+      },
+      "crystalyze": {
+        "slots": 8,
+        "timeout_seconds": 3600,
+        "variant": "element-set-k8"
+      },
+      "pxrdgen": {
+        "slots": 8,
+        "timeout_seconds": 1800,
+        "variant": "known-primitive-z-k8"
+      },
+      "realpxrd-solver": {
+        "slots": 20,
+        "timeout_seconds": 900,
+        "variant": "known-primitive-z-k20"
+      }
+    },
+    "pilot": {
+      "per_method_per_corpus": 4,
+      "selection": "first available candidate; evenly spaced ranks by candidate site count, ties by case ID; no match labels"
+    },
+    "seed": 20260915
+  },
+  "tasks_sha256": "f55f8ee73ad208219b95ffd53f64eb276fce10ad24ba31ca172f1d679cca4be2"
+}

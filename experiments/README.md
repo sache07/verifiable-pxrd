@@ -8,6 +8,8 @@ analysis scripts. Shared execution and evaluation code is under
   curriculum, continual-learning contract, and frozen `adapted-codex` capability.
 - `inference-scaling/` contains repeated sampling, blind comparable-fit Rwp selection,
   verifier-gated continuation, and LLM-verifier experiments.
+- [`appendix/`](appendix/README.md) contains specialist native-refinement experiments
+  and native/shared fixed-profile Rwp distribution analyses.
 
 Conditions shared by both experiment groups are stored under
 `agent-adaptation/conditions/` and resolved relative to the repository root.

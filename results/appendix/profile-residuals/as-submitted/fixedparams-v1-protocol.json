@@ -1,0 +1,21 @@
+{
+  "build_script": "agente-caracterizacion/sim-bench/scripts/build_ab_pxrd_solver_targets.py",
+  "build_script_sha256": "0d8778b331a38328677265f4c6686080857d7851dc8c99bdb022a02c6fa63c2a",
+  "candidate_preflight": "reject parsed CIF cell lengths below 0.1 or above 100 Angstrom",
+  "candidate_profile": "clean fixedparams-v1 GSAS-II simulation",
+  "fitted": [],
+  "fixed": [
+    "crystal structure",
+    "unit cell",
+    "coordinates",
+    "occupancies",
+    "instrument profile",
+    "sample broadening"
+  ],
+  "metric_basis": "fixedparams-v1-clean-reference",
+  "normalization": "reference and candidate profiles independently max-normalized",
+  "profile": "clean fixedparams-v1 GSAS-II reference versus clean fixedparams-v1 GSAS-II candidate; independent max normalization; no fitting",
+  "profile_residual": "100*sqrt(sum((yref-ycandidate)^2)/sum(yref^2))",
+  "reference_profile": "clean fixedparams-v1 GSAS-II simulation of hidden reference CIF",
+  "schema_version": "1.0.0"
+}
