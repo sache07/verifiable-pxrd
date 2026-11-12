@@ -1,0 +1,42 @@
+I’ll inspect the measurement metadata, pattern, and the provided analysis framework first, then identify candidate phases and refine them together in a single GSAS‑II project. I’ll keep residual-directed substitutions as common-state trials and finish by replaying the best physical model on the full grid.
+
+The chemistry points first to Ca–W–O products with possible residual CaCO₃ or WO₃, but I’m treating that only as a prior. I’m now extracting peak positions and checking the frozen COD index plus the GSAS‑II/DICVOL interfaces so the phase inventory is driven by the full pattern.
+
+The peak positions now close cleanly with scheelite CaWO₄ plus room-temperature monoclinic WO₃. In particular, both CaWO₄ reflections near 28.7/29.0° map to the observed 28.43/28.77° pair under one specimen-displacement curve, while the WO₃ triplet and its weaker lines recur throughout the residual. I’m comparing the distinct monoclinic/triclinic WO₃ references in a joint refinement rather than choosing by the strongest triplet alone.
+
+The first joint fit reaches \(R_{wp}\approx4.23\%\) (counting-statistics floor \(\approx3.14\%\)), confirming both phases. The remaining gap is now dominated by reference choice, constrained calibration/profile terms, and atomic/intensity details—not missing strong peaks. I’m benchmarking the alternative WO₃ symmetries in the same two-phase refinement state before adding any extra phase.
+
+The fresh replay exposed an important trap: the nominally lower \(R_{wp}\) trial after a singular refinement actually replays at 11.47%, whereas the saved pre-failure project replays correctly at 3.62% with no physical flags. I’ve discarded the failed state and am resuming from that checkpoint with explicit bounds on calibration, widths, crystallite sizes, strain, polarization, and common per-phase \(U_\mathrm{iso}\).
+
+The bounded refinement improves fresh-replay \(R_{wp}\) to about 3.45% after refining the CaWO₄ oxygen and WO₃ tungsten sites. Unconstrained WO₃ oxygen refinement lowers it only another ~0.03 percentage point but creates implausible 1.44 Å W–O contacts, so I’m rejecting that overfit. I’m constraining the accepted coordinate shifts to the synthetic reference-mismatch ranges (0.05 Å for O, 0.04 Å for W) and replaying that physical branch.
+
+The residual is not random after all: its 29.06° maximum and weaker peaks at 22.65, 35.67, 39.16, 42.83, 47.25, 48.29, and 56.99° form the shifted R‑3c calcite fingerprint. I’m adding CaCO₃ as a trace third phase and testing the calcite references in the unchanged two-phase project; this is precisely the common-state residual test the pattern calls for.
+
+The two-phase model is physically stable but leaves a residual pattern matching calcite. I’m now testing calcite as a third phase in the existing joint project—first with only its scale free, then with restrained cell/line broadening—before allowing any broader refinement.
+
+Calcite is decisively retained: with every pre-existing parameter fixed, its scale converged twice to the same positive value and reduced fresh-replay Rwp from 3.461% to 3.268%. The crystalline-only estimate at this stage is about 4.3 wt% calcite. I’m checking CaCO₃ polymorph alternatives and plausible precursor/intermediate additions in that same common state before final joint refinement.
+
+The accepted three-phase model now fresh-replays at Rwp 3.230% (noise floor 3.138%) with no profile warnings. Joint peak-shape refinement indicates the calcite is genuinely broadened, raising its integrated crystalline fraction to roughly 6.1 wt%; I’m testing whether that width is finite size alone or requires microstrain/anisotropy before fixing the quantitative result.
+
+All tested texture axes refined essentially to unity, and calcite strain gave only a negligible improvement; neither is retained. The remaining residuals are intensity/shape mismatches at already modeled peaks, not a coherent new peak set, so residual-directed prototype transfer is not warranted. I’m packaging the best physically bounded state and validating its CIF/project/profile consistency now.
+
+The packaged submission passes the scorer’s own public checks: all three CIFs parse, each matches its corresponding project phase within export tolerances, fractions sum exactly to 1, and every structure passes the physical screen. I’m doing one final grid/hash consistency check before handing it over.
+
+Completed the three-phase refinement:
+
+- CaWO₄ scheelite: 79.82 wt%
+- Monoclinic WO₃: 13.64 wt%
+- Calcite CaCO₃: 6.54 wt%
+
+Fresh full-grid replay: Rwp 3.2171%, Rp 2.4830%, GOF 1.027. Physical and project/CIF consistency checks passed.
+
+Files:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-c078bba24459/workspace/final.gpx)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-c078bba24459/workspace/result.json)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-c078bba24459/workspace/fit.csv)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-c078bba24459/workspace/report.md)
+- [CaWO4_scheelite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-c078bba24459/workspace/CaWO4_scheelite.cif)
+- [WO3_monoclinic.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-c078bba24459/workspace/WO3_monoclinic.cif)
+- [CaCO3_calcite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-c078bba24459/workspace/CaCO3_calcite.cif)
+

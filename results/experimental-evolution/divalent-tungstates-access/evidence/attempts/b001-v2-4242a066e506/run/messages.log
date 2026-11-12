@@ -1,0 +1,41 @@
+I’ll inspect the measurement metadata, pattern, and the provided PXRD workflow/tooling first. Then I’ll identify candidate phases, refine them together in GSAS-II, validate the physical models, and export the requested project, CIFs, profile, JSON, and report.
+
+The chemistry narrows the search to Zn–W–O phases and residual ZnO/WO₃, but the pattern must decide whether that simple inventory is sufficient. I’m now checking the frozen reference index and the supplied GSAS-II automation so candidate structures can be compared and refined in a common multiphase state.
+
+The dominant phase is the wolframite framework: its low-angle line at 18.99° and the 30.53/30.77° doublet match an FeWO₄ P2/c analogue after Fe→Zn substitution and lattice contraction. Coherent extra peaks at 23.24° and 23.73° support residual WO₃; weaker zincite lines are also plausible. I’m constructing these models and will test the WO₃ polymorphs and ZnO only in the shared refinement, as required.
+
+The first common-state trials show ZnO’s scale collapsing to numerical zero, so I’m holding its unconstrained cell fixed while leaving its scale active; this prevents a zero-information cell refinement from destabilizing the fit. I’m not yet treating ZnO as absent—the collapse must remain stable after the target and WO₃ models are fully optimized.
+
+The WO₃ screen is discriminating cleanly: the full-cell monoclinic room-temperature references (COD 1528915/2311041) are substantially better than the high-pressure, orthorhombic, and reduced-cell alternatives. The two best references are equivalent settings of the same framework, so I’ll retain the better physical coordinate model and continue refining that shared state.
+
+The first refinements exposed an important replay issue: parameters clipped to physical bounds had left stale calculated arrays in some trial files. A fresh recalculation gives the honest current-state Rwp, so I’m rebuilding the best two-phase state with staged, bounded refinements and an explicit zero-cycle replay after every stage. This is the state that will be eligible for the final project.
+
+The fresh common-state replacements strongly favor monoclinic WO₃ COD 2311041 (Rwp 6.96%) over the other completed alternatives (7.76–17.60%). The triclinic trial has not completed its second refinement and will remain scientifically “unknown” if it cannot finish; I will not count an interrupted run as a rejection.
+
+The transferred wolframite model is now physically sensible and the coordinate refinement lowered fresh Rwp from 15.80% to 7.13%; refining the retained WO₃ framework brought it to 6.95%. Zn–O, W–O, and O–O contacts pass the stated screens. I’m now testing the generator’s remaining discrete line-shape possibilities (uniaxial microstrain axes) in common-state branches before locking the final nuisance model.
+
+I’ve narrowed the model to wolframite ZnWO₄ plus monoclinic WO₃, with ZnO repeatedly collapsing to zero scale. I’m now doing the clean two-phase replay, physical checks, and final export so every submitted file comes from the same saved GSAS-II state.
+
+The clean replay improved substantially after removing the zero-scale ZnO phase: the full-pattern Rwp has fallen from 6.46% to about 5.49% through ordinary two-phase refinement. I’m letting the last coupled atom/profile stages finish, then I’ll reject any numerically better state if its geometry is not chemically credible.
+
+The lowest numerical state fails the physical screen for WO₃ (a 1.52 Å W–O contact), so I’m not submitting it. I’m rolling back to the last chemically credible WO₃ coordinates and will re-optimize only the cells, intensity, texture, and line-shape terms around that structure; this keeps the phase assignment while avoiding an overfit oxygen model.
+
+The physically screened replay is now stable at Rwp 5.58% over all 8,301 measured points. It gives 80.10 wt% ZnWO₄ and 19.90 wt% WO₃; I’m running the same read-only verifier used by the framework to catch any project/CIF/fraction mismatch or negative-background/profile issue before writing the report.
+
+A residual audit changed the phase inventory: the positive residuals at 31.84°, 34.48°, 47.56°, 56.61°, 62.82°, and 67.92° form the zincite ZnO fingerprint. I’m therefore reopening the precursor test in the current two-phase state—holding the accepted phases and nuisance parameters fixed—because the earlier zero-scale result is no longer sufficient evidence to exclude ZnO.
+
+The current-state precursor test is decisive: ZnO refines to a positive ~4–5 wt% contribution and drops full-grid Rwp from 5.58% to 3.66% with its characteristic peaks accounted for. I’m retaining it and now resuming ordinary three-phase refinement from that accepted common state, while keeping the physically screened WO₃ coordinates fixed.
+
+The three-phase model now fits at Rwp 3.04%, and the remaining residuals are mostly positive/negative shoulders around already modeled peaks rather than a new line set. Zincite texture tests stayed essentially random and changed Rwp by only ~0.002%, so I’m treating that as unsupported; I’m doing one last anisotropic-broadening check for this nanocrystalline minor phase before the final replay.
+
+The final three-phase project passes the framework’s read-only replay with no profile review flags, and the exported curve matches that replay numerically. The refined residual ZnO and WO₃ amounts are also equimolar to within ~0.7%, exactly what incomplete ZnO + WO₃ → ZnWO₄ conversion predicts; I’m recording the structural caveats and this mass-balance evidence in the report now.
+
+Completed and validated with a fresh GSAS-II forward replay.
+
+- ZnWO₄, wolframite P2/c: 75.062 wt%
+- WO₃, monoclinic P2₁/c: 18.490 wt%
+- ZnO, zincite P6₃mc: 6.448 wt%
+- Full-grid Rwp: 3.041%; Rp: 2.255%
+
+Files: [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-4242a066e506/workspace/result.json), [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-4242a066e506/workspace/report.md), [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-4242a066e506/workspace/fit.csv), [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-4242a066e506/workspace/final.gpx), [ZnWO4_wolframite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-4242a066e506/workspace/ZnWO4_wolframite.cif), [WO3_monoclinic.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-4242a066e506/workspace/WO3_monoclinic.cif), and [ZnO_zincite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-4242a066e506/workspace/ZnO_zincite.cif).
+

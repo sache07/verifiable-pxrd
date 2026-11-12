@@ -1,0 +1,48 @@
+I’ll inspect the specimen metadata, pattern, and the frozen analysis utilities first, then build and refine a chemically constrained multiphase GSAS-II model. I’ll preserve physical checkpoints and only pursue residual phases while coherent unassigned peak families remain.
+
+The chemistry points first to scheelite CaWO₄, with CaCO₃/CaO/WO₃ and calcium-rich tungstates as plausible residuals at 650 °C. I’m now extracting the experimental peak families and querying only exact-composition or chemically supported entries in the frozen COD index.
+
+The first two-phase fit confirms that all major and secondary families are explained by scheelite CaWO₄ plus monoclinic WO₃, reaching a low residual. That branch also exposed a calibration/profile degeneracy: unconstrained zero, specimen height, and peak-width terms wandered outside the known instrument ranges. I’m rebuilding candidate checkpoints with the laboratory bounds enforced before comparing WO₃ polymorphs.
+
+The bounded cell/calibration fit settles at the physical angular-offset limit and retains positive scales; the main phase cells remain close to their references. The next profile cycle is unusually slow after GSAS-II froze an out-of-range parameter, so I’m checking that branch rather than trusting a potentially stalled refinement.
+
+The fresh physical branch is now stable: CaWO₄ and monoclinic WO₃ cells reproduce the indexed peak positions with about 0.02° RMS, and profile terms remain inside the specimen ranges. Its current Rwp is 5.64%, with positive scales and plausible phase-specific broadening. I’m mapping the remaining residuals next to distinguish coordinate/intensity mismatch from any genuinely missing phase.
+
+A coherent third family is present: the residual at 29.04° is accompanied at the calcite 104/110/113/202/116 positions near 35.6°, 39.1°, 42.8°, 48.2°, and 64.3°. Because CaCO₃ is the stated precursor and the family has broad support, I’m adding a bounded calcite phase rather than treating the 29° residual as a profile artifact.
+
+Calcite refines to a stable positive contribution of roughly 10 wt% and lowers Rwp to 4.11%; its family is therefore accepted, though its broad profile makes that fraction less precise than the formal covariance suggests. I’m now comparing the close WO₃ exact-composition references against this complete three-phase state, with cells and profile terms physically bounded.
+
+The WO₃ checkpoint comparison is decisive. COD 2311041 (monoclinic P2₁/c in a nonstandard cell) gives Rwp 3.82% with normal geometry and interior profile values; the earlier monoclinic reference gives 4.11%, while triclinic and orthorhombic alternatives are substantially worse and/or hit profile bounds. I’m adopting 2311041 and refining the complete CaWO₄ + WO₃ + calcite inventory from that checkpoint.
+
+I’ve reached a complete three-phase model—scheelite CaWO₄, monoclinic WO₃, and residual calcite—with all coherent reflection families assigned. The current stable checkpoint is Rwp ≈ 3.31%; I’m now testing only the remaining low-risk calibration/coordinate refinements, with automatic rollback if they introduce singularity or implausible bonding, before exporting the final replayable project and reports.
+
+The extra W/U profile test confirms the earlier checkpoint is the safer one: the small Rwp gain requires multiple phase-strain terms to freeze at their limits. I’m rejecting that branch and retaining the stable instrument model. Next I’m refining atomic coordinates in bounded stages, starting with the WO₃ tungsten sublattice, and checking bond geometry after each stage.
+
+The coordinate tests are behaving as expected for a broad multiphase pattern: the dominant CaWO₄ oxygen position gives a clear, stable improvement and preserves sensible W–O/Ca–O distances. Calcite oxygen refinement shortens C–O implausibly and the 18-parameter WO₃ oxygen branch gives only a marginal gain, so both are being rolled back. I’m retaining the physical CaWO₄ coordinate refinement (and the modest, still physical WO₃ heavy-atom adjustment), then doing the final joint profile/cell refinement.
+
+The accepted model is now statistically at the counting-noise level (GOF ≈ 1.03). A surface-roughness test is rejected: both terms collapse to their lower bounds, are 99.99% correlated, and introduce an SVD singularity. I also verified that the current project’s default limits omit 17 edge points from the supplied CSV; I’m expanding the final refinement to the entire measured grid so `final.gpx` and `fit.csv` cover every input point.
+
+The final three-phase model is complete and exported. I’m doing the last consistency checks now: reloading and replaying `final.gpx`, verifying every `fit.csv` row against its stored GSAS-II profile, parsing all three CIFs independently, and checking that the JSON fractions sum to one.
+
+Completed and validated the three-phase refinement:
+
+| Phase | Weight fraction |
+|---|---:|
+| Scheelite CaWO₄ | 79.23(25)% |
+| Monoclinic WO₃ | 13.567(60)% |
+| Calcite CaCO₃ | 7.20(28)% |
+
+Rwp = 3.2149%, Rp = 2.4934%, GOF = 1.0265 across all 8,301 points. No coherent reflection family remains unassigned. Calcite’s formal fraction uncertainty is likely underestimated because its broadening reached the allowed microstrain limit.
+
+Deliverables:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-4444e0bb014d/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-4444e0bb014d/workspace/fit.csv)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-4444e0bb014d/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-4444e0bb014d/workspace/report.md)
+- [CaWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-4444e0bb014d/workspace/CaWO4.cif)
+- [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-4444e0bb014d/workspace/WO3.cif)
+- [CaCO3_calcite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-4444e0bb014d/workspace/CaCO3_calcite.cif)
+
+The final project replayed cleanly without SVD singularities or frozen refinement variables.
+

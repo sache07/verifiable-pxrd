@@ -1,0 +1,35 @@
+I’ll inspect the pattern, metadata, and the provided PXRD workflow guidance first, then identify candidate phases and build/refine the multiphase GSAS-II model. I’ll keep phase additions tied to coherent unindexed reflection families and validate the final files against a fresh profile calculation.
+
+The chemistry is Ca–W–O with possible residual carbonate at 650 °C, and the scan has a high, decaying background. I’m now extracting peak positions and querying the frozen COD for Ca/W/O/C candidates; the first goal is to establish which reflection families are present before any refinement.
+
+Two coherent families are now clear: scheelite CaWO₄ accounts for the broad dominant reflections, while monoclinic WO₃ accounts for the sharp 23–24°, 26°, 33°, 41°, 50°, and 56° families. Calcite, CaO, Ca₃WO₆, and the tetragonal-bronze calcium tungstate each predict strong absent peaks, so I’m proceeding with a two-phase model and will revisit that only if the refined residual contains another coherent family.
+
+The first two-phase refinement reaches Rwp ≈ 5.2% with about 84 wt% CaWO₄ / 16 wt% WO₃. I’m now giving the main monoclinic and triclinic WO₃ coordinate starts the same staged treatment; this is necessary because their peak positions are similar, while their intensity distributions—and therefore the defensible structure—differ.
+
+Removing the provisional surface-roughness correction lowered Rwp further, to about 3.77%, and left no new reflection family. The clean comparison makes COD 2311041 monoclinic WO₃ and the triclinic model nearly tied before coordinate refinement; the older monoclinic COD 1528915 model is clearly poorer. I’m now refining the shared CaWO₄ oxygen coordinate in isolation, then replaying the full grid, before resolving that remaining WO₃ polymorph ambiguity.
+
+The two-phase model is now chemically and crystallographically closed: scheelite CaWO₄ plus monoclinic WO₃. I’m finishing the last physical profile checks, then I’ll export and replay the exact final GSAS-II project to ensure every submitted artifact agrees.
+
+The displacement-factor test produced a real, large improvement and converged to phase-common values inside the allowed physical range (about 0.0093 Å² for CaWO₄ and 0.0055 Å² for WO₃). I also found that an inherited GSAS-II flag ordering was unintentionally leaving correlated position/profile terms active; I’m now rerunning the finish in explicitly isolated stages so the final covariance and fractions are stable.
+
+The isolated profile replay is now stable at Rwp ≈ 3.435% with no frozen or out-of-range parameters. The broad CaWO₄ and sharper WO₃ components each support a modest uniaxial strain term; removing either worsens χ² significantly. I’m doing the final orientation and export-consistency checks now.
+
+Completed the crystalline phase analysis:
+
+- Scheelite CaWO₄ (`I 41/a`): 85.39 wt%
+- Monoclinic WO₃ (`P 21/c`): 14.61 wt%
+- Rwp: 3.4305%; goodness of fit: 1.094
+
+Fractions are normalized over crystalline phases; amorphous content is not determined.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-e8e5867c0095/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-e8e5867c0095/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-e8e5867c0095/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-e8e5867c0095/workspace/fit.csv)
+- [phase_CaWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-e8e5867c0095/workspace/phase_CaWO4.cif)
+- [phase_WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-e8e5867c0095/workspace/phase_WO3.cif)
+
+The final project was independently replayed successfully, with matching CIFs, fractions, and profile and no physical-profile warnings.
+

@@ -1,0 +1,7 @@
+# Complete model first
+
+Work from the specimen inputs, pattern, and frozen reference index; autonomous-evolution, controller, generator, and scorer sources are not specimen evidence and normally need no inspection. Build the chemically ordinary phases first and save a complete, physical, replayable project and outputs before optional branches.
+
+Map coherent residual reflection families in that best multiphase state. Test exact-composition references and plausible residual precursors or products there; require physical geometry, stable positive scale, and broad family support. When same-composition checkpoint fits are close, choose the physical model; a small Rwp gain never justifies known bad geometry. Numerical failure is unknown, not rejection. Use cross-chemistry transfer only when a family remains genuinely unassigned and its target stoichiometry has chemical support.
+
+Once every coherent family indexes to accepted phases, stop all library and prototype search. Refine the accepted inventory from the best checkpoint: scales/background and cells/calibration; heavy then light coordinates with physical rollback; then specimen and phase-profile terms, one supported complexity at a time. If an accepted topology has correct peak positions but wrong relative intensities, try a small number of bounded coordinate starts rather than another phase. Preserve a complete physical replay after each improvement and submit the best full-grid checkpoint, not the last branch attempted.

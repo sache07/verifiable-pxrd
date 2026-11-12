@@ -1,0 +1,38 @@
+I’ll first inspect the measurement metadata, pattern, and the provided diffraction workflow documentation. Then I’ll identify candidate phases, build and refine a multiphase GSAS-II model, and verify that every submitted artifact is generated from the final project.
+
+The chemistry narrows the search strongly to the Sr–W–O system, but the 650 °C treatment makes residual precursor and intermediate phases plausible. I’m now extracting the exact output requirements and the frozen-library access paths before assigning peaks.
+
+The major phase is unambiguous: its full peak sequence is the scheelite structure of SrWO₄. Two weak peak families align with monoclinic WO₃ and orthorhombic SrCO₃ after the same specimen/zero displacement, consistent with an incomplete 1:1 precursor reaction. I’m testing those three assignments against all relevant library polymorphs before refinement.
+
+The initial three-phase model is now in GSAS-II. I’m refining in conservative stages—background and scales, then cells/displacement, then line broadening—so I can catch parameter correlations rather than letting a single unconstrained fit absorb the weak phases.
+
+The unconstrained fit exposed a classic GSAS-II trap: size/strain terms wandered outside physical limits, and the saved tree was then clipped, so its stored curve no longer replayed. I’ve rejected that numerical minimum and am iterating from bounded, physically meaningful values; replay consistency is being checked after each refinement.
+
+The bounded replay now fits at Rwp ≈ 4.39%, only modestly above the Poisson floor of 3.98%. The refined fractions are stabilizing near 83% SrWO₄, 11% WO₃, and 6% SrCO₃. I’m checking the remaining small residuals for phase-specific texture rather than treating them as extra phases.
+
+The three-phase model is now stable at essentially the counting-statistics limit: scheelite SrWO₄ with minor monoclinic WO₃ and orthorhombic SrCO₃. I’m doing the final replay-consistency pass now—freezing the model, exporting directly from that GSAS-II project, and checking the CIFs, fractions, and profile against one another.
+
+The zero-variable replay reproduces the saved refinement exactly at \(R_\mathrm{wp}=4.1230\%\), so the project is internally consistent rather than relying on stale calculated arrays. I’m exporting the structures from that frozen project and will then run the evaluator-style fresh reflection regeneration as an independent check.
+
+The exports and fraction vector pass the submission parser, and the fresh GSAS regeneration matches `fit.csv` to numerical precision. One chemistry screen did flag an implausibly short O–O contact in the current WO₃ reference model, so I’m tracing that transformation before declaring the model final; this may be a cell-setting/coordinate conversion issue rather than a diffraction-fit issue.
+
+The WO₃ check resolved the issue: a later neutron-derived γ-WO₃ model in the same monoclinic setting removes the short O–O contact and fits better after its displacement factor is reoptimized. It also brings the refined fractions to an internally plausible ~82/11/7 split. I’m replacing the diagnostic older WO₃ coordinates with this physically valid model in the frozen final project.
+
+The final frozen project now passes all consistency checks: three CIFs parse cleanly and pass the contact screen, their structures and fractions match the project exactly, `fit.csv` covers all 8,301 measured points, and fresh reflection regeneration gives \(R_\mathrm{wp}=4.0835\%\) with no review flags.
+
+Resolved as a three-phase crystalline mixture:
+
+- SrWO₄, scheelite: **81.88 wt%**
+- Monoclinic WO₃: **11.29 wt%**
+- SrCO₃, strontianite: **6.83 wt%**
+
+Final fit: \(R_p=3.1321\%\), \(R_{wp}=4.0835\%\). Fractions are normalized over crystalline phases only.
+
+Artifacts:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-87121f974fd1/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-87121f974fd1/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-87121f974fd1/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-87121f974fd1/workspace/final.gpx)
+- CIFs: [SrWO₄](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-87121f974fd1/workspace/srwo4.cif), [WO₃](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-87121f974fd1/workspace/wo3.cif), [SrCO₃](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-87121f974fd1/workspace/srco3.cif)
+

@@ -1,0 +1,14 @@
+2026-11-08T11:33:09.379307Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in <EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-4f4479282234/workspace/analysis/refine_coordinates.py:
+    for index, atom in enumerate(phase.atoms()):
+        if atom.element.strip().upper() == element.upper():
+            atom.refinement_flags = flag
+            selected.append((index, atom.label))
+            if "X" in flag:
+                for axis in "xyz":
+                    var = f"{phase.id}::dA{axis}:{index}"
+                    project.set_Controls("parmMin", -0.015, variable=var)
+                    project.set_Controls("parmMax", 0.015, variable=var)
+2026-11-08T11:34:56.318463Z ERROR codex_core::tools::router: error=exec_command failed: CreateProcess { message: "Rejected(\"Failed to create unified exec process: No such file or directory (os error 2)\")" }
+2026-11-08T11:41:39.666041Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in <EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-4f4479282234/workspace/analysis/refine_one.py:
+    group.add_argument("--sample", choices=SAMPLE_KEYS)
+    group.add_argument("--cell", choices=None)

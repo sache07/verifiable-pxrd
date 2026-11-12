@@ -1,0 +1,84 @@
+I’ll inspect the metadata, pattern, and the provided divalent-tungstate tooling first, then identify candidate phases, refine them in GSAS-II, and validate that every submitted artifact is internally consistent.
+
+The chemistry points first to manganese tungstates, but the raw scan can also contain residual Mn₃O₄/WO₃ or off-stoichiometric oxides. I’m now extracting the peak set and checking the frozen COD index rather than assuming a single MnWO₄ phase.
+
+The dominant peak sequence matches wolframite-type MnWO₄ one-for-one after an approximately +0.34° specimen/instrument shift. I’m fitting that phase first so the residual pattern can expose whether the remaining peaks belong to residual precursor or a distinct manganese tungstate.
+
+Adding monoclinic γ-WO₃ explains the residual triplet at roughly 23.50/23.95/24.74° and its higher-angle companions. The two-phase refinement is running with physically bounded instrument and specimen parameters; I’ll use the remaining residuals to test whether a third phase is justified.
+
+The remaining unmatched peaks are not consistent with residual Mn₃O₄ alone. Their low-angle/high-angle sequence is characteristic of an Mn-rich tungstate framework; I’m testing Mn₂WO₆ and Mn₃WO₆ analogue-derived structures alongside precursor oxides, using full-profile refinement rather than peak coincidence alone.
+
+The screening refinements are stable now. I’m comparing each candidate on the same bounded nuisance model; the decisive check is whether it lowers the residual without collapsing its scale or distorting its unit cell beyond a plausible analogue substitution.
+
+Several candidates require large cells and are slower to evaluate, but the comparison is still progressing. The current two-phase reference is Rwp ≈18.36%; a credible third phase should produce a substantial reduction and retain a positive, stable scale.
+
+The direct oxide candidates refine to essentially zero abundance, so Mn₃O₄/Mn₂O₃ are ruled out at the modeled sensitivity. The first Mn₂WO₆ trirutile trial also collapses to zero; the ordered Mn-rich frameworks are still running.
+
+The first analogue tests do not account for all strong residuals. I’m now checking reduced tungsten oxides and alternate WO₃ polymorphs, since several residual peaks form the characteristic 21–35–47–55° sequence of Magnéli-type W–O frameworks.
+
+The residual indexes cleanly to a primitive orthorhombic metric, approximately a=4.47, b=4.33, c=3.16 Å: the 20.32° and 20.88° peaks sum in reciprocal space to the 29.14° peak, and the same cell predicts the 35.3/35.6, 46.2/47.0, 55–60°, and high-angle residuals. I’m matching that metric against the available analogue structures now.
+
+The remaining strong reflections form a coherent primitive orthorhombic metric (about 4.47 × 4.33 × 3.16 Å), so they are not random misfit or merely peak-shape error. I’m now testing chemically plausible Mn–W–O structure analogues against that indexed cell, then I’ll lock the defensible phase set into a physically constrained GSAS-II refinement and export the required deliverables.
+
+The indexed residual cell is close in volume to a reported C2/m AlWO₄ framework; replacing Al with Mn gives a chemically sensible MnWO₄ polymorph candidate. I’m checking all equivalent cell settings and axis assignments because the conventional centered cell obscures the simple primitive metric, and a wrong setting can look like a false structural rejection.
+
+The AlWO₄-derived MnWO₄ phase is confirmed by refinement: adding it drops Rwp from 18.36% to 14.25%, and its independently refined cell converges to a = 4.333, b = 3.148, c = 4.456 Å, β = 90.21° without needing a different prototype. Its strongest calculated reflections coincide with the previously unexplained peaks at 20.32°, 20.88°, 29.14°, 35.32/35.62°, 46.20/47.02°, and 54.9–55.8°. I’m now separating genuine remaining phases from artifacts caused by the deliberately loose screening profile.
+
+The cell has several symmetry-related AB O₄ framework analogues in the frozen library, so I’m screening those as a control rather than assuming the first chemical substitution is unique. The key discriminator is intensity, not peak position: the AlWO₄ framework gets every residual peak family in the right place, but its untextured model misallocates intensity between symmetry-related reflections, which can indicate either a different cation framework or phase-specific preferred orientation.
+
+The control screens reject the higher-symmetry Imma, tetragonal, and Cmmm AB O₄ relatives: their scales collapse or their fits return to the three-phase baseline. The low-symmetry AlWO₄-type model is therefore structurally discriminated, not just a convenient indexing cell. A constrained three-phase refinement is now running with the documented instrument and specimen limits, including crystallite size and microstrain rather than allowing the instrument profile to absorb all broadening.
+
+The constrained fit reaches Rwp ≈13.9%, but its largest residuals are intensity—not position—errors within the new phase. Refining that phase’s oxygen coordinates reduces Rwp to ≈12.6% only by moving O atoms by more than 1 Å, which is chemically implausible, so I’m rejecting that apparent improvement. I’m testing the two physically plausible explanations next: a preferred-orientation axis transformed by the nonstandard cell setting, and a weak fourth phase responsible for residual peaks near 25.91°, 32.26°, and 32.98°.
+
+A physically bounded coordinate refinement improves Rwp to 11.41% while keeping individual shifts near the generator’s allowed mismatch scale (mostly ≤0.1 Å). This is qualitatively different from the rejected unconstrained fit: the Mn and W framework remains fixed where symmetry requires it, and no atom migrates to a different coordination site. The fourth-phase screens collapse to zero scale, so the residual peaks near 26–33° are better explained by imperfect intensities/coordinates of the three identified structures than by Mn oxides, reduced tungsten oxides, scheelite MnWO₄, or another WO₃ polymorph.
+
+A residual-profile search found one non-obvious fourth-phase candidate worth serious testing: hexagonal/wurtzite-type MnO (COD 4117966). Unlike the conventional rocksalt MnO and other oxide candidates, it lowers the replay-consistent Rwp from 12.76% to 11.56% because its reflections overlap specific underfit features near 31, 35.3, 46.2, 54.9, and 65.5°. I’m checking whether that improvement represents a chemically/quantitatively defensible phase or merely broad-peak overfitting—the initial crystallite size hits the allowed 0.04 µm lower bound, so it is not yet safe to include.
+
+The wurtzite-MnO improvement is not robust: when its lattice is constrained to the ≤0.5% reference mismatch allowed by the experiment, it requires extreme broadening (size at 0.04 µm, strain at 8000 ppm) and an implausibly large scale. Its unconstrained fit also contracts c by ~2.9%, far beyond the synthetic reference perturbation. I’m treating it as a decoy/overfit unless a conventional residual Mn oxide gives the same improvement under physical constraints; the starting 1:1 Mn:W balance makes that final check important.
+
+The physically constrained checks leave three defensible phases. Conventional Mn₃O₄ adds only a negligible improvement with both size and strain at their bounds; rocksalt MnO and Mn₂O₃ collapse to zero. I’m doing one final persistence-safe coordinate pass now: each trial profile is regenerated from the saved atomic model before it is accepted, so transient GSAS-II coordinate-shift arrays cannot make the reported Rwp look better than the project will actually replay.
+
+The final persistence audit exposed an important GSAS-II caching issue: coordinate-refinement trial profiles can retain stale structure factors even after the atom table is updated. I’m rebuilding the project from exported refined CIFs and re-refining only non-atomic parameters; this forces every structure factor to be regenerated from the submitted coordinates. Only the rebuilt project’s replayed Rwp will be reported.
+
+The three-phase model is now selected. I’m doing the final replay and consistency checks, then I’ll export the CIFs, profile, JSON summary, report, and the exact GSAS-II project behind them.
+
+The replay is stable at Rwp 12.43%, so the saved model is reproducible rather than a cached fit. I’m also checking the output schema and physical plausibility (cells, bond distances, normalized scale-derived fractions) before writing the final files.
+
+The residual audit is useful: the three dominant inventories are secure, but several reproducible weak peaks remain. I’m testing whether they support a real fourth phase or only improve the fit by forcing an analogue’s cell/profile to nonphysical bounds; I’ll include a fourth phase only if it survives that test.
+
+The fourth-phase tests did not survive physical constraints: apparent improvements required 1–3% cell distortions and/or breadth parameters at limits, while the supported three phases remain chemically and geometrically reasonable. I’m finalizing that three-phase result and explicitly documenting the unmatched weak residuals and semiquantitative nature of the minor fractions.
+
+I’ve narrowed the pattern to three crystalline components. I’m doing one final model-quality check on the WO₃ structure so the submitted refinement is both reproducible and chemically credible, not merely the lowest numerical residual.
+
+The chemically sound γ-WO₃ reference fits essentially as well as the earlier coarse model (Rwp 12.22% versus 12.19%) and passes the contact checks for all three phases. I’m now testing only a restrained isotropic displacement-factor adjustment; any gain must survive export into a fresh GSAS-II project before I accept it.
+
+The coordinate test exposed a GSAS-II export-detail issue: standard CIF export was rounding refined coordinates according to very large powder-only uncertainties, discarding part of a real profile improvement. I’m preserving the refined values at five decimal places and rebuilding from those CIFs; the model itself remains symmetry constrained and chemically screened.
+
+The accepted model is now fixed: 74.65 wt% wolframite MnWO₄, 16.14 wt% γ-WO₃, and 9.21 wt% of the tentative AlWO₄-type MnWO₄ polymorph. The final weighted profile residual is Rwp 12.03%. I’m replaying the saved project independently now to verify that the CIFs, fractions, and `fit.csv` are exactly reproducible.
+
+The replay is exact and all three exported structures pass the geometry screen. The residual review also shows that the tentative third phase has substantial h0l intensity mismatches, so I’m checking whether the known March–Dollase texture axis—not another phase—accounts for them before I close the analysis.
+
+The texture screen confirms [100] is the only defensible axis for the minor P2/m phase; alternative axes worsen Rwp by 0.12–0.45 percentage points. A restrained oxygen-coordinate step gives only a small additional gain and begins shortening one W–O contact, so I’m checking the nearest competing texture/coordinate combination before deciding whether to retain that adjustment.
+
+Completed the PXRD analysis and refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| Wolframite MnWO₄ | 74.62 wt% |
+| γ-monoclinic WO₃ | 16.16 wt% |
+| Tentative AlWO₄-type MnWO₄ polymorph | 9.22 wt% |
+
+Final fit: Rwp 11.99%, Rp 6.67%, GOF 6.77. Fractions are normalized over modeled crystalline phases. The third structure and its fraction remain semiquantitative; weak unidentified residual peaks persist.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-70ef19fe9710/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-70ef19fe9710/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-70ef19fe9710/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-70ef19fe9710/workspace/final.gpx)
+- [Wolframite CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-70ef19fe9710/workspace/phase_1_MnWO4_wolframite.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-70ef19fe9710/workspace/phase_2_WO3_gamma.cif)
+- [AlWO₄-type MnWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-70ef19fe9710/workspace/phase_3_MnWO4_AlWO4_type.cif)
+
+The saved project was independently replayed without refinement; its calculated profile and phase fractions reproduce the submitted files, and all CIFs pass the geometry/contact screen.
+

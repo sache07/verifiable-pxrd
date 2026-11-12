@@ -1,0 +1,47 @@
+I’ll first inspect the specimen metadata, pattern range/resolution, and the frozen analysis utilities/reference index. Then I’ll identify the ordinary chemistry-supported phases, build a replayable GSAS-II refinement, and only pursue residual families if the complete model still requires them.
+
+The chemistry points first to CuWO₄, with unreacted CuO/WO₃ as the most plausible secondary phases. I’m now checking the supplied analysis interface and extracting the observed peak families before choosing any reference structures.
+
+Three coherent families are now evident: triclinic CuWO₄, monoclinic WO₃, and cubic Cu₃WO₆. In particular, the Cu₃WO₆ family independently explains the 15.18°, 19.80°, 21.76°, 32.51°, and 33.76° reflections after the common specimen shift; this is broader evidence than a single coincident peak. I’m moving these three into a full-profile GSAS-II model, then I’ll check whether any CuO family remains.
+
+The first full-profile branch is refining now. The initial GSAS-II setup exposed and I removed an otherwise redundant histogram-scale parameter, so the phase scales now carry the quantitative fractions without a scale degeneracy.
+
+The three-phase model already reaches Rwp ≈ 8.17% before atomic or phase-specific profile refinement, with all three phase scales strongly positive. I’m now comparing the room-temperature monoclinic WO₃ references against the lower-symmetry checkpoint; this is important because a marginal numerical advantage for an over-flexible or thermally inappropriate WO₃ model would not be enough to select it.
+
+CuO is a genuine fourth phase, not just an opportunistic extra component: it refines to a positive scale, a normal tenorite cell, and lowers Rwp from 7.95% to 7.20% by explaining the residual 35.1°/38.3°/61.2° family. The high-pressure CuWO₄ alternative fails broadly (Rwp ≈ 44%), while the ambient triclinic model is decisive. All coherent reflection families are now assigned, so I’m stopping phase/library search and refining this four-phase checkpoint.
+
+The calibration/coordinate refinement is proceeding from the accepted four-phase checkpoint with profile terms frozen. Coordinates are being introduced in symmetry-constrained blocks (heavy atoms first, then oxygen) and each block is saved separately so any chemically bad geometry can be rolled back without losing the complete model.
+
+All refined coordinate blocks passed the geometry screen: shortest W–O is 1.68 Å, Cu–O 1.91 Å, and O–O 2.35 Å or longer; the CuWO₄ and Cu₃WO₆ coordinate shifts also stay within about 0.05 Å. The profile stage is now separating phase-specific size/strain from the common instrumental width under positive physical bounds.
+
+The supported profile/Uiso model now reaches Rwp 2.286% (GOF 1.42) with no frozen or boundary parameters: CuWO₄ size ≈ 0.18 μm, WO₃ microstrain ≈ 1664 ppm, and positive phase-wide Uiso values. I’m testing only bounded March–Dollase corrections now; any axis that does not improve a broad set of intensities with an interior ratio will be discarded.
+
+The complete four-phase model is now at Rwp 2.29% with physical structures. I’m finishing the last bounded line-shape/specimen checks, then I’ll revalidate geometry and export the replayed final project and deliverables.
+
+The preferred-orientation branches all returned essentially unity ratios and no material fit gain, so I’m excluding texture. I’m now checking the one remaining plausible specimen correction—low-angle surface roughness—against the complete model, using only bounded physical values.
+
+Surface roughness was rejected: all starts ran to bounds or became highly correlated without improving the fit. A modest but stable WO₃ uniaxial microstrain along [001] did improve Rwp to 2.26%, with positive interior values; I’m retaining that supported term and now letting each accepted structure make one final bounded coordinate adjustment.
+
+The first coordinate pass lowered Rwp from 2.26% to 1.86%, and the resulting bond geometry is sound (shortest W–O 1.73–1.80 Å, Cu–O 1.92–1.95 Å, O–O ≥2.44 Å). Some coordinate cycles had not fully converged, so I’m doing one final local pass from this physical checkpoint with the correct coordinate-shift bounds before freezing the structures.
+
+The bounded convergence pass is complete: Rwp is 1.817%, all variables converged without freezing, and an independent GSAS-II forward replay reports no negative background or peak-width issues. I’m now exporting the exact replayed model and generating the normalized fractions/profile files from that same project.
+
+Identified four crystalline phases, normalized over modeled crystalline material:
+
+| Phase | Weight fraction |
+|---|---:|
+| CuWO₄ | 64.892 wt% |
+| Cu₃WO₆ | 13.328 wt% |
+| WO₃ | 19.148 wt% |
+| CuO | 2.633 wt% |
+
+Final full-grid fit: Rwp 1.8169%, Rp 1.3719%, GOF 1.1260. Independent GSAS-II replay passed all profile and structure-consistency checks.
+
+Deliverables:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-6e2505ec91fd/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-6e2505ec91fd/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-6e2505ec91fd/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-6e2505ec91fd/workspace/final.gpx)
+- CIFs: [CuWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-6e2505ec91fd/workspace/CuWO4.cif), [Cu3WO6.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-6e2505ec91fd/workspace/Cu3WO6.cif), [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-6e2505ec91fd/workspace/WO3.cif), [CuO.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-6e2505ec91fd/workspace/CuO.cif)
+

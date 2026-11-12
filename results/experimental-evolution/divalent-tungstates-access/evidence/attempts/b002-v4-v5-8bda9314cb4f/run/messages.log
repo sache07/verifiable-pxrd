@@ -1,0 +1,45 @@
+I’ll first inspect the specimen metadata, pattern, and the frozen analysis tooling/reference index. Then I’ll build and verify a complete multiphase GSAS-II refinement, preserving physical checkpoints and only branching on coherent residual peak families.
+
+The chemistry points to the ZnO–WO₃ reaction at 700 °C, so ZnWO₄ is the ordinary product hypothesis, with unreacted ZnO/WO₃ or alternate zinc tungstates as residual candidates. I’m querying only those chemically supported entries first and independently mapping the observed peak families before refinement.
+
+Peak-family mapping now gives a clean two-phase hypothesis: monoclinic wolframite ZnWO₄ accounts for the dominant sequence (15.78, 19.21, 24.11/24.79, 30.76/30.98, 31.49°…), while monoclinic WO₃ accounts coherently for the otherwise unassigned families at 23.41, 26.97, 28.90/29.23, 33.59/34.49, 42.19, 44.56/45.70, and 47.47°. I’m testing the equivalent WO₃ references and a ZnO branch quantitatively; ZnO will only be retained if it has an independent positive scale and residual support.
+
+The three-phase branch remains chemically and crystallographically plausible: ZnO refines to about 4 wt% with a sensible wurtzite cell, but its early Rwp benefit is small because many lines overlap the two dominant phases. I’m now broadening each phase independently (size first, then microstrain); this is the key test for whether the ZnO scale survives once peak-shape mismatches can no longer masquerade as an extra phase.
+
+The coordinate-start audit converged reproducibly for the major wolframite phase (Zn y ≈ 0.690, W y ≈ 0.186), but WO₃ heavy-atom refinements wandered among nearly equal minima and one coordinate hit its bound. I’m rolling those WO₃ shifts back to the published neutron geometry and refining only the well-supported ZnWO₄ coordinates; that preserves the physical model even though the unconstrained branch was numerically a little better.
+
+The [111] March–Dollase branch is decisively supported: it drops Rwp from about 15.2% to 6.84% with a moderate coefficient of 0.713, while all other low-index axes are much worse. With that texture included, bounded oxygen refinement gives a physical ZnO₆/WO₆ geometry and a settled Rwp of 6.60%. I’m proceeding to the final supported profile terms and will then re-test phase inventory and full-grid replay consistency.
+
+The accepted three-phase model is now chemically and geometrically consistent: wolframite ZnWO₄, monoclinic WO₃, and minor wurtzite ZnO. I’m finishing convergence, then I’ll run leave-one-phase-out checks and a fresh GSAS-II replay before exporting the deliverables.
+
+The phase-profile refinement has settled reproducibly at Rwp 5.649% with fractions 84.32% ZnWO₄, 10.57% WO₃, and 5.11% ZnO. I’m now testing only the common instrumental Gaussian width terms; I’ll retain them only if they remain positive across the measured range and improve the full-pattern fit without destabilizing phase sizes.
+
+The omission checks are decisive: removing ZnO raises Rwp from 5.61% to 6.88% and exposes its 32.05°, 34.93°, 36.60°, 56.81°, and 63.39° family; removing WO₃ raises Rwp to about 14.5%. I’m making one final intensity-model check on WO₃ because its indexed peaks at 29.2° and 34.4° dominate the remaining residual, while keeping the published physical WO₃ coordinates fixed.
+
+WO₃ shows a clear, moderate [100] March–Dollase effect (coefficient 1.118), lowering Rwp to 5.331% while remaining well inside bounds; competing axes are substantially worse. This accounts for relative-intensity mismatch without distorting the WO₃ structure. All remaining coherent peaks belong to the three accepted phases, so I’m stopping phase/prototype search and moving to final replay/export.
+
+The clean final checkpoint converged with maximum shift/esd 0.004. A separate read-only GSAS-II forward replay regenerated all structure factors on all 8,301 points, left the project unchanged, and raised no profile or geometry review flags; it reproduces fractions of 0.84306, 0.10726, and 0.04969.
+
+The deliverables are written and pass the submission parsers: three normalized phase records, all CIFs pass occupancy/contact checks, and `fit.csv` exactly covers the original grid. I’m doing one last audit from the actual final checkpoint so the omission statistics quoted in the report are directly comparable to the submitted model.
+
+The final audit caught an important reproducibility detail: merely querying GSAS-II’s frozen-variable list caused its scripting layer to rewrite the project pickle. I’m restoring the byte-identical, already replay-verified checkpoint and will verify its hash without reopening it.
+
+Completed and replay-verified on all 8,301 observations.
+
+- ZnWO₄ (wolframite): 84.31 wt%
+- WO₃ (monoclinic): 10.73 wt%
+- ZnO (wurtzite): 4.97 wt%
+- Rwp: 5.3315%; Rp: 4.2372%; GOF: 2.0184
+
+Fractions are normalized over modeled crystalline phases. Detailed oxygen positions remain less certain than phase identities and fractions.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-8bda9314cb4f/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-8bda9314cb4f/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-8bda9314cb4f/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-8bda9314cb4f/workspace/final.gpx)
+- [ZnWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-8bda9314cb4f/workspace/phase_ZnWO4.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-8bda9314cb4f/workspace/phase_WO3.cif)
+- [ZnO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-8bda9314cb4f/workspace/phase_ZnO.cif)
+

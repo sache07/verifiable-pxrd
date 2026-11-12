@@ -1,0 +1,66 @@
+I’ll inspect the measurement metadata, pattern, and the framework’s analysis tooling first, then identify candidates and refine all credible phases together in GSAS-II. I’ll preserve failed trials as diagnostic evidence and select the final model by replaying the best physical state on the full grid.
+
+The context is a Mn–W–O reaction at 800 °C from WO₃ and Mn₃O₄, with raw Cu Kα1/Kα2 Bragg–Brentano data and substantial possible specimen/instrument shifts. The framework explicitly requires an environment verification before analysis, so I’m running that check now; if it passes, I’ll proceed with peak/index/library work.
+
+That check failed only because the separate automated “evolution workshop” is intentionally undeployed (`deployment_complete: false`). It does not indicate a missing scientific dependency, and the user explicitly excluded running that research process, so I’m not using its controller. I’ll continue with the local COD snapshot, crystallography libraries, indexing tools, and GSAS-II, while directly verifying each dependency I need.
+
+A first stick-pattern check shows MnWO₄ explains the dominant wolframite series, but it leaves a coherent second series at about 19.85, 20.40, 23.08, 26.56, 28.62, 33.24, and 34.12°. Those positions are characteristic of residual WO₃, not random misfit. I’m now screening every available WO₃ polymorph and the Mn-oxide precursors in the same observed pattern before committing to a phase set.
+
+I’m moving from stick matching to common-state Rietveld trials. The first project will contain MnWO₄ and the best ambient monoclinic WO₃ reference together, with the same background, calibration, specimen displacement, and line-broadening model that later candidate additions will inherit. Its residual peak list will be the basis for any prototype transfer.
+
+The two-phase refinement is still running; GSAS-II is spending most of its time generating/refining the dense full-grid reflection model rather than reporting stage output. I’m letting this first common-state fit finish, then I’ll use its saved residual—not an isolated candidate fit—to decide whether a third phase is justified.
+
+The common-state fit confirms a genuine unmodeled crystalline component: its strongest residual lines are 20.400, 28.637, 35.114, and 46.491°, with a second low-angle line at 19.846°. The current two-phase Rwp is 17.0%, and the broadening tried to become nonphysical to absorb those peaks, so I’m rejecting that state. I’m indexing this residual series and then will screen stoichiometrically plausible analogue frameworks in the unchanged multiphase setup.
+
+The residual index is not unique by itself—several monoclinic/orthorhombic cells can index the contaminated line list—so I’m treating indexing only as a filter. The analogue screen is now evaluating charge-plausible MnₘWₙOₓ stoichiometries (including Mn₂WO₅, Mn₃WO₆, Mn₃W₂O₉, and related oxidized variants), with one- and two-cation substitutions from the frozen COD; every survivor will still face the full three-phase refinement.
+
+The broad screen is still computing diffraction patterns for several hundred substituted frameworks. This is intentionally wider than the likely answer because the residual series contains overlap from both established phases; once ranked, I’ll narrow to structurally distinct candidates and retain only those whose scale remains positive and stable in the shared project.
+
+The leading R‑3 Mn₃WO₆ transfer is strongly supported in the required common state: with every established phase and nuisance value frozen, adding only its scale lowers Rwp from 17.02% to 14.50%; allowing only that candidate’s hexagonal cell lowers it to 13.94%. Its refined cell is already stable near a = 8.903 Å, c = 10.669 Å. I’m completing the candidate-width check, then applying the same frozen-state test to the competing symmetries.
+
+The strongest alternative, Pnnm Mn₂WO₅ from the one-substitution Mn₂AsO₅ parent, also has a real positive scale but is already worse at the matched stage (Rwp 14.19% versus 13.94% for R‑3 Mn₃WO₆). I’m allowing its candidate-specific size to refine before judging; this avoids favoring one framework merely because its starting peak width happened to be closer.
+
+The initially aborted P2₁/c Mn₂WO₅ trial was a CIF-setting incompatibility, so I treated it as unknown, transformed it to the standard P2₁/c setting, and reran it. It remains inferior after scale and cell refinement (Rwp 14.27%). This is a useful check that the R‑3 result is not merely selecting against an unreadable alternative.
+
+The distinct monoclinic C2/c Mn₃WO₆ framework is also decisively poorer (Rwp 15.59% after its scale/cell refinement), despite a nonzero scale. The discrimination is coming from the full residual line set, not only the four strongest peaks: the R‑3 model captures the 31.8°, 45–46°, 54–55°, 59°, 63°, 66°, and 70° series together.
+
+The cubic Ia‑3 Mn₃WO₆ alternative is likewise poor (Rwp 15.79% with scale/cell); its single cubic metric cannot reproduce the observed splitting. I’ll finish its width check, then test the nearest competing stoichiometries and the Mn₃O₄ precursor so the final phase inventory is supported by both positive identification and explicit common-state exclusions.
+
+The nearest alternative stoichiometries are also weaker in the frozen common state: P6₃/mmc Mn₃W₂O₉ reaches 15.06% and P2₁2₁2₁ Mn₂WO₆ reaches 16.16%, versus 9.17% for R‑3 Mn₃WO₆ after the same candidate-width allowance. I’m now checking whether any Mn₃O₄ precursor remains once that R‑3 phase is present; a precursor will only be rejected if its common-state scale collapses.
+
+The first hausmannite test did drive its scale to the GSAS-II floor, but the refinement then became numerically singular and invalidated the reported Rwp. Per the requested rule, I am not counting that failed run as a rejection. I’m repeating a scale-only insertion from a near-zero positive start, with the cell fixed, to determine whether the precursor scale collapses stably.
+
+Both ambient hausmannite and the high-pressure Pbcm Mn₃O₄ reference now collapse cleanly to the scale floor (1×10⁻¹²) with the R‑3 Mn₃WO₆ model present, so no crystalline precursor is retained. Phase selection is closed at MnWO₄ + WO₃ + R‑3 Mn₃WO₆. I’m resuming ordinary refinement from that best saved three-phase project, resetting any exploratory nonphysical width values and refining the full-grid physical model.
+
+Phase selection is now closed at MnWO₄ + WO₃ + a residual-directed R\(\bar{3}\) Mn₃WO₆ model. I’m resuming from that best common-state project to replace exploratory/nonphysical profile terms with a constrained physical refinement, then I’ll replay the full grid and export the deliverables.
+
+The residual-phase alternatives have been compared in the same multiphase state, and both Mn₃O₄ precursor polymorphs collapse reproducibly to zero scale once the three selected phases are present. The remaining work is parameter refinement: I’m enforcing the synthesis generator’s physical width, displacement, texture, and displacement-factor ranges rather than carrying forward the exploratory fit’s negative broadening terms.
+
+The first bounded pass confirms why the exploratory fit looked deceptively good: when common width terms are released together, GSAS-II tries to drive the Gaussian \(U\) term strongly negative. That step has been rejected. I’m allowing the staged phase-width and coordinate refinements to run so I can identify which terms are actually supported, then I’ll re-open the common profile one parameter at a time.
+
+The bounded convergence succeeded: the full three-phase model reaches \(R_{wp}=3.199\%\) with every retained parameter inside the benchmark’s physical domain. MnWO₄ converges to the “no added microstrain / large-crystallite” boundary, while WO₃ is strain-dominated and the residual Mn₃WO₆ phase is nanoscale; I’m now testing whether anisotropy, texture, or roughness is actually supported before locking the model.
+
+The first physical-screen caught an important overfit: unconstrained WO₃ oxygen coordinates produced an impossible 1.02 Å W–O contact. I restored the literature P2₁/c framework and limited oxygen relaxation to the generator’s displacement scale; that raises \(R_{wp}\) to 4.055% but removes the nonphysical geometry. I’m treating the lower 3.199% state as rejected and will only submit a screened structure.
+
+Common-state nuisance tests support three specific effects: nonzero Suortti roughness (turning it off worsens \(R_{wp}\) from 4.06% to 5.13%), weak WO₃ [100] March–Dollase texture (ratio ≈0.926), and modest WO₃ uniaxial strain anisotropy. MnWO₄ and Mn₃WO₆ texture/anisotropy trials collapse toward the random/isotropic limits, so I’m not retaining them.
+
+The combined model converged cleanly at \(R_{wp}=3.496\%\). Once polarization and WO₃ texture were included, the apparent WO₃ strain anisotropy collapsed to an axial/equatorial ratio of 1.009, so I removed that extra parameter and reconverged isotropically. I’m now performing the required independent full-grid atomic replay from `final.gpx`; its regenerated profile—not cached GSAS arrays—will populate `fit.csv`.
+
+Completed the phase analysis and GSAS-II refinement.
+
+- MnWO₄, P2/c: 59.51 wt%
+- WO₃, P2₁/c: 20.80 wt%
+- Mn₃WO₆, R-3 prototype-transfer model: 19.69 wt% — provisional assignment
+
+Independent 8301-point replay: Rwp 3.4959%, Rp 2.5471%, GOF 1.759. All CIFs passed physical contact/occupancy screening. Fractions are normalized over modeled crystalline material; amorphous content is undetermined.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v2-1c116d7c0d16/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v2-1c116d7c0d16/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v2-1c116d7c0d16/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v2-1c116d7c0d16/workspace/final.gpx)
+- [MnWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v2-1c116d7c0d16/workspace/phase_1_MnWO4.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v2-1c116d7c0d16/workspace/phase_2_WO3.cif)
+- [Mn3WO6 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v2-1c116d7c0d16/workspace/phase_3_Mn3WO6_R-3.cif)
+

@@ -1,0 +1,58 @@
+I’ll first inspect the specimen metadata, diffraction range, and the frozen analysis guidance/tools. Then I’ll identify the ordinary chemically supported phases, build a replayable GSAS-II refinement, audit residual peak families, and only run the staged polish after the phase inventory is stable.
+
+The chemistry points first to MnWO₄, with residual WO₃ and/or Mn₃O₄ as the most ordinary secondary phases after a one-hour 800 °C firing. I’m now checking the frozen COD index and extracting the observed peak families before committing to that inventory; the raw pattern has a relatively high background, so phase decisions need to come from whole families rather than isolated peaks.
+
+Three coherent families are now evident: wolframite MnWO₄ is dominant; monoclinic WO₃ explains the 22.9–24.2° triplet and its higher-angle repeats; rhombohedral Mn₃WO₆ explains the paired peaks near 19.7/20.2°, plus repeats near 28.5°, 35°, 46°, and 54.7°. That three-phase inventory is also mass-balance sensible for a 1:1 Mn:W charge: the Mn-rich tungstate is paired with residual WO₃. I’ll refine these three before considering any precursor oxide.
+
+The first physical three-phase refinement is stable and already gives approximately 67% MnWO₄, 20% WO₃, and 13% Mn₃WO₆. Refined cells moved by only about 0.1–0.3% from their COD parents, and the zero/height correction converged to a modest specimen shift, which supports the phase assignment rather than forcing it through implausible lattice changes. Profile terms are still being settled before residual auditing.
+
+The phase inventory is holding, but the first profile branch exposed a parameter-correlation trap: common instrumental broadening and phase-specific size were competing while calibration and cells remained free. I rejected that branch because several terms hit bounds and it did not converge. I’m restarting from the preserved 12.5% Rwp physical checkpoint with calibration/cells frozen, then separating common optics from each phase’s specimen broadening within the laboratory’s stated bounds.
+
+The controlled width model is now physical: approximate coherent sizes are 0.10 µm (MnWO₄), 0.046 µm (Mn₃WO₆), and 0.63 µm (WO₃), with appreciable isotropic microstrain supported only for WO₃. Rwp has fallen to about 7.0%. A simultaneous cell/zero/height reopen proved underdetermined and drove calibration to limits, so I will retain the interior calibration checkpoint and refine cell and calibration blocks separately.
+
+Residuals are centered on accepted reflections, not at a new coherent family. Two strongly supported texture terms explain much of the intensity mismatch: MnWO₄ along [111] and WO₃ along [010]; their single-term trials improve the replayed Rwp from about 7.0% to 6.3% and 5.3%, respectively. The other tested axes give much smaller gains. I’m combining those terms and checking whether Mn₃WO₆ needs any texture at all.
+
+With all three supported texture terms combined, the refinement is stable at Rwp 4.17%. Refining the unknown polarization gives a well-converged interior value of 0.8205 and lowers Rwp to 4.01%. A surface-roughness branch gives only a tiny gain while pinning its amplitude at the allowed limit, so that branch is being rejected as unsupported.
+
+Before final coordinate polishing, I’m checking the plausible exact-composition WO₃ references against the full three-phase model. Each candidate is being allowed its own cell, bounded size/strain, common isotropic Uiso, and all five laboratory-supported texture axes. This guards against mistaking the strong [010] correction for the wrong WO₃ polymorph.
+
+The first WO₃ branch confirms that a wrong texture axis degrades the fit sharply and forces Uiso/profile terms to limits, so the comparison is discriminating rather than merely adding flexibility. I’m letting the monoclinic parent complete its axis screen first; if [010] remains uniquely physical, the other references can be screened more narrowly against that checkpoint.
+
+The parent monoclinic WO₃ model is strongly and uniquely favored with [010] texture: Rwp is 3.79%, versus 5.6–5.9% for the other tested axes. Its cell remains within about 0.2% of the COD metric. The temporary size/Uiso tradeoff lands on a bound, so I’m treating those values as provisional until coordinates are polished, not as evidence against the phase.
+
+An equivalent monoclinic WO₃ setting/reference (COD 2311041, P2₁/c) is fitting better than the initial parent: Rwp 3.60% with interior WO₃ Uiso and a small cell adjustment, versus 3.79% with Uiso pinned for COD 1528915. Because these are the same ordinary monoclinic framework in different settings/refinements, I’m favoring the physical interior solution while the remaining polymorph checks finish.
+
+The exact-reference check is now decisive enough to stop searching: P2₁/c WO₃ (COD 2311041) gives the best physical fit at Rwp 3.60%; triclinic P-1 is close numerically (3.63%) but requires cell-shear and Uiso limits, while two higher-symmetry trials failed numerically and remain “unknown,” not rejected. I’m now refining the accepted structures’ symmetry-allowed coordinates within ±0.10 Å and auditing contacts before the one permitted staged final polish.
+
+The ordinary coordinate branch was correctly rejected: several WO₃ oxygen components and one Mn₃WO₆ oxygen component ran to the ±0.10 Å limits. That is exactly the “small Rwp gain does not justify bad geometry” case. I’m restoring the published-coordinate checkpoint, repairing the exploratory Uiso constraints into one fixed scalar value per phase, and producing a fully replayable physical baseline for the bounded staged polish.
+
+The replayable physical checkpoint is complete: Rwp 3.856%, fractions 61.76% MnWO₄ / 19.23% Mn₃WO₆ / 19.01% WO₃, positive background everywhere, and no short-contact flags. I’m now running the bounded staged polish exactly once; its branch audit will reject coordinate bounds, nonconvergence, geometry contraction, or fraction collapse automatically.
+
+The first polish branch rolled boundary-hit atoms back to their checkpoint coordinates, then converged the remaining interior coordinates and cell/scale/background settle. It is currently physical at Rwp 3.632% with fractions stable within 0.1 percentage point; the helper is now comparing the heavy/light and phasewise coordinate orders before selecting anything.
+
+Two polished branches have now converged after rollback and geometry screening, both near Rwp 3.631% with phase fractions stable. The phasewise branch is still being audited; as expected, its WO₃ oxygen step hit coordinate bounds, so those atoms will not be accepted unless rollback and the final settle fully converge.
+
+The staged polish selected the heavy/light branch at Rwp 3.631%. It passed every audit: no coordinate-bound atoms remained, all refinement blocks converged, no catastrophic contacts or excessive pair contractions occurred, and phase fractions shifted by less than 0.13 percentage point from the checkpoint. I’m accepting it, replacing `final.gpx`, and exporting every deliverable from that exact project.
+
+All required files are now present and tied to the same accepted project. I’m doing the final consistency pass now: CIF/project structural agreement, normalized fractions, full-grid `fit.csv`, raw occupancy/geometry screens, and an independent no-refinement replay hash check.
+
+Completed and validated by a fresh, parameter-free GSAS-II replay.
+
+| Phase | Weight fraction |
+|---|---:|
+| MnWO₄, P2/c | 61.65% |
+| Mn₃WO₆, R-3 | 19.35% |
+| WO₃, P2₁/c | 19.00% |
+
+Rwp = 3.6309%, Rp = 2.6144%, goodness-of-fit = 2.5495. Fractions are normalized over crystalline phases; systematic uncertainty is approximately 2–3 wt% per phase.
+
+Files:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-91b0db5b9a41/workspace/final.gpx)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-91b0db5b9a41/workspace/result.json)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-91b0db5b9a41/workspace/fit.csv)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-91b0db5b9a41/workspace/report.md)
+- [MnWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-91b0db5b9a41/workspace/MnWO4.cif)
+- [Mn3WO6.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-91b0db5b9a41/workspace/Mn3WO6.cif)
+- [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-91b0db5b9a41/workspace/WO3.cif)
+

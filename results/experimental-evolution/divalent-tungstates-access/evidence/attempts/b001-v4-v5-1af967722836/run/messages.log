@@ -1,0 +1,80 @@
+I’ll inspect the specimen metadata, pattern, and the frozen analysis tooling first. I’ll then identify candidate phases, build a multiphase GSAS-II model, and preserve a replayable checkpoint before testing any optional structural branches.
+
+The specimen is a 1:1 CuO/WO₃ mixture fired at 700 °C, so CuWO₄ plus residual precursor or an off-stoichiometric Cu–W–O intermediate are the chemically natural starting hypotheses. I’m now extracting the coherent peak families and querying only the frozen COD index for Cu–W–O and precursor structures.
+
+Peak-position mapping strongly supports triclinic wolframite CuWO₄: its main reflections all land on observed peaks after a common Bragg–Brentano specimen shift of about −0.49° 2θ. A second coherent triplet at 22.67/23.07/23.89° matches monoclinic WO₃ under the same shift. I’m testing the chemically required residual CuO simultaneously, because a CuWO₄+WO₃-only inventory would not close the 1:1 Cu:W precursor balance.
+
+The first physical three-phase checkpoint is now saved. All three scales remain positive, and the initial model already reaches Rwp ≈21.9% before atomic-coordinate or specimen-profile refinement. I’m refining widths under the laboratory’s stated physical bounds; the unconstrained profile fit tried to trade instrumental broadening against unrealistically large crystallite sizes for the weak phases, so that branch is being treated as diagnostic rather than accepted.
+
+The residual map reveals a decisive fourth candidate that changes the inventory: the unexplained peaks at 15.18, 19.80, 32.51, and 33.77° form the four strongest reflections of cubic Pa-3 Cu₃WO₆ under the same specimen shift. Its additional lines also match residuals at 21.76, 42.86, 49.67, 50.61, 57.60, and 63.28°. This exact-composition reference also closes the Cu:W balance naturally with WO₃, so I’m adding it to the checkpoint and testing whether the tentative CuO scale collapses.
+
+All coherent residual peak families are now indexed by CuWO₄, Cu₃WO₆, monoclinic WO₃, and CuO; no additional reference search is warranted. Heavy-atom refinement improved Rwp to 12.45% with physical coordination. CuWO₄ oxygen refinement gave a small, geometry-safe improvement; analogous free oxygen refinements for Cu₃WO₆ and WO₃ produced 1.1–1.4 Å W–O bonds and were rolled back despite lower numerical Rwp. I’m now refining only supported profile/specimen terms from that physical checkpoint.
+
+The four-phase model is physically closed and fits all coherent peak families. I’m now tightening the final bounded refinement, then I’ll export and independently validate the CIFs, fractions, profile, and replayable GSAS-II project.
+
+The dominant CuWO₄ phase currently carries inconsistent reference thermal factors. I’m testing a single phase-wide isotropic displacement parameter—one constrained variable, physically bounded in interpretation—to see whether the high-angle intensities support it without destabilizing the model.
+
+The CuWO₄ and WO₃ phase-wide thermal factors are supported and remain physical; they reduce Rwp from 4.37% to 3.93%. Equivalent parameters for weak CuO and Cu₃WO₆ are not supported, so those branches are rejected. I’m now simplifying marginal texture terms and checking the final geometry/residuals before export.
+
+The largest remaining residuals are intensity mismatches within the known WO₃ triplet, not extra peaks. Before touching weak oxygen coordinates, I’m rechecking the small set of physically allowed preferred-orientation axes in the same four-phase state; this is the cleaner explanation if one axis improves the whole pattern.
+
+The texture recheck is still running; early alternatives are clearly worse than the accepted [001] branch. I’m letting the remaining bounded axes finish so the comparison is complete and comparable.
+
+The [001] texture remains the only viable WO₃ orientation branch. I’m making one restrained light-atom trial now: each existing short W–O bond is tethered to its physical starting distance while oxygen coordinates are allowed small shifts. This tests whether the remaining triplet mismatch contains real oxygen-position information without permitting the collapsed bonds seen in the unconstrained trial.
+
+The all-oxygen trial is rejected: although it lowers Rwp, it creates 0.64 Å W–O contacts and a large restraint penalty. I’m narrowing the test to one oxygen site at a time; each branch has only three added coordinates, which exposes whether any site is genuinely supported while keeping geometry screening decisive.
+
+The site-by-site oxygen screen is still computing; output is being held until all six branches finish so their fits and bond ranges can be compared on the same basis. No branch will be accepted without a physical W–O geometry.
+
+Only O1 and O2 give small, physical improvements; the dramatic O6 fit is rejected because it collapses a W–O contact to 0.80 Å. I’m converging the physical O1 branch, then testing whether adding O2 remains independently supported.
+
+The second O1 cycle is numerically unstable because the two refined WO₃ W sites are strongly correlated. I’m repeating the limited light-atom test with the already-refined W coordinates held fixed—a standard staged refinement step that preserves the heavy-atom solution and removes that instability.
+
+The staged test resolves cleanly: O2 gives a stable physical improvement; O1 remains numerically unstable despite plausible geometry, and the combined branch fails. I’m retaining only O2, rerunning it to a stable endpoint, and then I’ll evaluate the analogous Cu₃WO₆ oxygen sites once—again with heavy atoms fixed.
+
+The final accepted checkpoint is now a stable four-phase model with only one supported WO₃ oxygen-site adjustment; Cu₃WO₆ oxygen trials did not move before numerical failure and are not accepted. I’m freezing that physical checkpoint and producing the requested deliverables, then I’ll reopen and cross-check every exported file.
+
+A final geometry audit caught one important issue: the WO₃ parent has a 1.58 Å O–O contact, so it cannot be submitted despite its good W–O distances. That invalidates the current checkpoint. I’m reopening only the WO₃ same-topology choice to replace or repair this parent; all other phase assignments and the closed four-phase inventory remain unchanged.
+
+A suitable physical replacement is available: COD 2311041 is the same monoclinic WO₃ peak topology in a transformed standard P2₁/c cell, with six-coordinate W and no short O–O contacts. I’m inserting it into the unchanged four-phase state and giving it the same staged scale/cell/profile treatment for a fair comparison.
+
+The physical WO₃ replacement is decisively better: Rwp drops from 3.92% to 2.63% while preserving six-coordinate W and a 1.72 Å minimum contact. I’m converging this branch, then I’ll test only bounded heavy/light coordinate refinements and the small texture-axis set; this is now the leading physical model.
+
+The replacement WO₃ heavy-atom refinement gives a further physical improvement to about 2.59% Rwp. I’m now doing the prescribed limited light-atom pass: each oxygen site is tested separately with W held at its refined coordinates, and any branch with short contacts or unstable shifts will be rolled back.
+
+All oxygen-site trials remain physical. Against a W-fixed baseline, O4 and O5 are the only meaningful improvements; I’m retesting just those two with W still active so the comparison does not trade oxygen information against the heavy-atom degrees of freedom.
+
+The WO₃ model is physical, but GSAS-II is alternating between two nearly identical nonlinear profile states and its stored last-cycle curve can lag the saved parameters. I’m checking both checkpoints with zero refinement cycles, which forces a pure replay and identifies the truly consistent lower-residual state before any further decisions.
+
+The replay check found the cause: GSAS-II’s saved last-cycle profile is one step out of phase with the saved nonlinear parameters. The parameter set in the nominally higher-Rwp checkpoint actually replays at 2.593%, while the other replays at 2.604%. I’m damping one final update and ranking it by zero-cycle replay, so the submitted project and `fit.csv` reflect the same parameters.
+
+The consistent replay minimum lies just before a high-angle reflection-list cutoff; I’ve selected the physical side of that boundary (Rwp 2.593%). Before freezing it, I’m checking the five allowed WO₃ March–Dollase axes by direct replay over a narrow ratio grid, avoiding the nonlinear refinement lag entirely.
+
+The remaining large residuals are paired positive/negative lobes around accepted Cu₃WO₆ and WO₃ peaks, indicating low-angle line-shape mismatch rather than a missing phase. I’m checking the physical axial-divergence range by direct replay; this is the last profile term worth testing before export.
+
+Axial divergence and specimen displacement replay exactly at their accepted physical values (SH/L 0.030; shift ≈795 µm). The only conspicuous low-angle residual family is Cu₃WO₆, so I’m making a narrow cubic-cell replay check to confirm that its refined cell—not an unmodeled phase—is the correct compromise across all its reflections.
+
+The bounded profile checks are complete: SH/L = 0.030, specimen shift ≈795 µm, and the Cu₃WO₆ cell are all at sharp replay minima; no coherent unassigned peaks remain. I’m now writing the final physical replay (with the unsupported CuWO₄ texture removed), exporting the four CIFs and profile, and then validating cross-file consistency.
+
+All requested files are written. I’m doing the final acceptance check now: independent zero-cycle replay of `final.gpx`, exact profile/JSON fraction agreement, CIF parsing, and interatomic-distance screening.
+
+Completed and independently replay-validated.
+
+- CuWO₄: 65.068 wt%
+- WO₃: 19.069 wt%
+- Cu₃WO₆: 13.099 wt%
+- CuO: 2.763 wt%
+
+Crystalline-phase normalized; Rwp = 2.593%, Rp = 1.796%, GOF = 1.611.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-1af967722836/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-1af967722836/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-1af967722836/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-1af967722836/workspace/final.gpx)
+- [CuWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-1af967722836/workspace/phase_CuWO4.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-1af967722836/workspace/phase_WO3.cif)
+- [Cu3WO6 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-1af967722836/workspace/phase_Cu3WO6.cif)
+- [CuO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-1af967722836/workspace/phase_CuO.cif)
+

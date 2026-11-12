@@ -1,0 +1,50 @@
+I’ll inspect the pattern, metadata, and the framework’s analysis tooling first, then identify candidate phases and perform a GSAS-II refinement. I’ll validate the exported CIFs, phase fractions, profile, project file, and internal consistency before handing over the result.
+
+The chemistry is Cu–W–O after a 700 °C firing, so the first candidates are CuWO₄ plus residual WO₃/CuO or a Cu–W–O intermediate. The scan has a high, strongly sloping background and unknown specimen/instrument shifts, so I’m separating peak-location matching from intensity/refinement effects before deciding the phase count.
+
+Peak positions already give a coherent three-phase explanation: triclinic CuWO₄ accounts for the strong lines near 15.01°, 18.81°, 29.09°, and 30.08°; cubic Cu₃WO₆ accounts for 15.18°, 19.79°, 32.49°, and 33.77°; monoclinic WO₃ accounts for the triplet near 22.67°, 23.07°, and 23.89°. All three sets share an approximately −0.45° displacement, which is physically consistent with the uncalibrated Bragg–Brentano specimen height. I’m now testing whether weaker residuals require CuO or another Cu–W–O phase.
+
+The three-phase fit leaves a complete, internally consistent tenorite CuO residual series at 35.10°, 38.32°, 48.45°, 53.04°, 58.11°, 65.35°, and higher angles. That is decisive evidence for a fourth crystalline phase, not just profile mismatch. I’m adding CuO and will then test whether any remaining peak series supports a fifth phase.
+
+The CuO-inclusive model is now secure, at roughly a few weight percent. A crystallographically equivalent but better monoclinic WO₃ reference cuts the profile residual substantially (Rwp from 8.22% to 6.99%), showing that the earlier mismatch was chiefly WO₃ atomic/intensity modeling rather than an extra phase. The provisional four-phase fractions are about 66% CuWO₄, 13% Cu₃WO₆, 19% WO₃, and 2% CuO; these will still move as texture, coordinates, and broadening are refined.
+
+The competing WO₃ models confirm that orthorhombic WO₃ is incompatible, while monoclinic/triclinic room-temperature variants remain close. I’m now using physically bounded refinements (the documented instrument, size, strain, displacement, and texture ranges) and explicitly scanning the allowed March–Dollase axes. This prevents the lower Rwp from being bought with impossible negative broadening or sub-nanometre crystallite sizes.
+
+The bounded model is now at Rwp ≈4.9% on the full submitted grid, with the four-phase fractions stable near 64.2/13.4/19.8/2.5 wt%. The large remaining improvement came from phase-wise Uiso and surface roughness. A simultaneous coordinate step was unstable, so I’m reverting that step and refining each phase’s heavy atoms and oxygens separately within the known reference-mismatch bounds, with unit cells fixed during each coordinate block.
+
+The chemically constrained four-phase model is now being completed with bounded atomic-coordinate refinements. I’m checking each accepted step for physical geometry and then will freeze the exact GSAS-II state used for every submitted artifact.
+
+The dominant phase’s bounded coordinate refinement produced a substantial, stable improvement (weighted-profile R factor from about 4.23% to 3.14% so far), while the very weak CuO coordinate trial was correctly rejected as unsupported. The phase fractions remain chemically coherent and nearly unchanged.
+
+The profile now supports all four phases without any preferred-orientation correction; the apparent CuO texture refined back to essentially 1.00. I also found that surface roughness is not resolved—the best roughness trial sits on the model boundary—so I’m treating the specimen as smooth while testing the physically allowed size/strain and polarization terms.
+
+Resolving the common instrument width from the phase-specific broadening made the expected large difference: Rwp has fallen from 3.10% to about 2.18%, with no phase change and all profile terms inside the documented physical ranges. The remaining scan is testing whether any phase truly needs uniaxial strain or texture.
+
+The bounded structure refinement is behaving cleanly after enforcing the generator’s aggregate displacement limits. Rwp is now about 1.94%, close to the Poisson floor (~1.62%); both the CuWO₄ and Cu₃WO₆ coordinate updates improve the likelihood while retaining the parent symmetries and displacement bounds.
+
+The physically constrained model has reached Rwp 1.766%, only modestly above counting statistics. One remaining nuisance term is now statistically visible: a low-angle surface correction improves the likelihood, but its two parameters are correlated. I’m resolving that with a fixed-grid scan before deciding whether it is supportable.
+
+All four structures now pass the geometry screen, including the refined CuO oxygen coordinate. The constrained residual is at Rwp 1.745%; I’m doing one final alternating relaxation of profile, intensity, and cell terms, then I’ll export and independently replay the exact saved project.
+
+The independent no-refinement replay reproduces the submitted curve to numerical precision (Rwp 1.733%), with identical phase fractions and no flags for negative widths, background, displacement tensors, or polarization. I’m finishing the CIF geometry/export-consistency checks and the concise evidence report now.
+
+Completed the four-phase GSAS-II refinement:
+
+- CuWO₄: 64.91 wt%
+- Cu₃WO₆: 13.17 wt%
+- Monoclinic WO₃: 19.30 wt%
+- CuO tenorite: 2.62 wt%
+
+Fit statistics: Rwp 1.733%, Rp 1.298%, goodness of fit 1.072. Independent replay reproduced the profile and fractions exactly with no physical-review flags. CuO is the least certain fraction because of its low abundance and peak overlap.
+
+Artifacts:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-558bd727f1b0/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-558bd727f1b0/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-558bd727f1b0/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-558bd727f1b0/workspace/final.gpx)
+- [CuWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-558bd727f1b0/workspace/phase_cuwo4.cif)
+- [Cu3WO6 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-558bd727f1b0/workspace/phase_cu3wo6.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-558bd727f1b0/workspace/phase_wo3.cif)
+- [CuO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-558bd727f1b0/workspace/phase_cuo.cif)
+

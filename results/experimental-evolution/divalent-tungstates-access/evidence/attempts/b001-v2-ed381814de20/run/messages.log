@@ -1,0 +1,212 @@
+I’ll inspect the measurement metadata, pattern, and the supplied PXRD workflow guidance first. Then I’ll identify candidates, build a multiphase GSAS-II refinement, test residual-directed alternatives in the common project state, and export the requested reproducible files.
+
+The chemistry is the Mn–W–O system after firing WO₃ with Mn₃O₄ at 800 °C. I’m now mapping the observed peak set against the frozen reference library and checking the exact GSAS-II/replay export requirements so the submitted artifacts all come from one consistent project.
+
+The dominant peak positions and relative intensities already match monoclinic wolframite MnWO₄ (P2/c); the reference is a high-pressure refinement, which explains why its cell is unusually compact. I’m fitting that phase first with the full Cu Kα₁/Kα₂ doublet, specimen displacement, background, and broadening terms before judging whether any coherent residual phase remains.
+
+The single-phase fit exposes a clear second crystalline component: strong residual maxima at 20.32°, 20.88°, 23.49°, 29.15°, 32.26°, 34.52°, and 35.64° cannot be explained by the wolframite model. I’m treating those as a separate phase now—indexing their peak lattice and screening same-stoichiometry oxide frameworks from other chemistries in the shared multiphase state.
+
+The bounded base model is stable and physically plausible (specimen shift about −533 µm, positive instrument widths, crystallite size ≈0.23 µm, microstrain ≈4,850 ppm), but its Rwp remains 24.5% because of the missing phase. The broad prototype screen is still running; I’m keeping candidates distinct by symmetry and will only accept one if its scale remains positive in the shared two-phase refinement.
+
+The ordinary-reference controls are now being tested one by one in the same fixed project: Mn₃O₄ polymorphs, Mn₂O₃ polymorphs, and four WO₃ structures. In parallel, the physically valid MnWO₄ prototype shortlist spans Pmn2₁, C2/m, Pnma, P‑1, Imma, Cmcm, and I4₁/a; two disorder-derived models were discarded before fitting because they produced sub-ångström contacts.
+
+Among ordinary references, monoclinic WO₃ gives the strongest valid improvement so far (Rwp 24.54% → 22.56%, about 8.4 wt% in the provisional two-phase state). Mn₂O₃ and high-pressure Mn₃O₄ variants improve much less; several other WO₃ trials aborted from source-model numerical issues, so I’m retaining those as unknown rather than treating them as negative evidence. The symmetry-distinct prototype trials are still completing.
+
+The prototype fits are computationally heavier because several cells have 24–48 atoms and low symmetry. I’m letting the common-state refinements finish rather than judging the residual from the faster isolated-pattern screen; no candidate will be carried forward solely on the screening score.
+
+A key quality check changed the ordinary-phase interpretation: the WO₃ reference that gave the largest numerical gain contains a 0.46 Å O–O overlap and is not physically admissible. I have excluded it and am rerunning the valid WO₃ polymorphs from normalized CIFs with stable ADPs; the earlier aborted trials therefore remain unresolved until these replacements finish.
+
+The repaired ordinary-reference replay now resolves the earlier uncertainty: physical triclinic WO₃ (P‑1) improves the common fit to Rwp 19.86% with a provisional 13.9 wt% fraction; orthorhombic WO₃ is slightly worse. I’m promoting the P‑1 model as the incumbent second phase and restarting every residual prototype/precursor addition from that two-phase project, with both incumbent phases present.
+
+The residual after MnWO₄ + physical P‑1 WO₃ still has a coherent family at 20.32°, 20.88°, 29.15°, 32.26°, 35.62°, and 47.01°. The prototype shortlist was re-registered against this new residual before the current three-phase trials; the strongest physically reasonable starts are now Pnma, Cmcm, Imma, and scheelite-type I4₁/a MnWO₄ frameworks.
+
+The three-phase matrix is still running; several low-symmetry candidates require many cell derivatives. I’m also tracking bond-length plausibility independently of Rwp—C2/m, C2/c, and P‑1 starts that require W–O distances near 1.4–1.6 Å will remain diagnostic even if they reduce the residual.
+
+In the strict MnWO₄ + WO₃ common state, most ABO₄ alternatives drive their scale to zero; the orthorhombic Pmn2₁ analogue remains positive but only lowers Rwp from 19.86% to 19.46% at ~2.8 wt%, so it does not explain the dominant residual family. I’m now testing manganese-oxide controls in that same three-component competition before broadening the stoichiometry search.
+
+The manganese-oxide controls are taking longer because the low-symmetry Mn₂O₃ models have large cells. I’m preserving the fixed incumbent MnWO₄ and WO₃ structures/profile terms during these tests; only phase scales and the trial phase’s lattice are allowed to respond.
+
+The Mn-oxide controls collapse to zero once WO₃ is present, so the remaining peaks are not explained by ordinary Mn₃O₄/Mn₂O₃. The phase balance points toward a Mn-rich ternary intermediate paired with residual WO₃; I’m screening Mn₂WO₅, Mn₂WO₆, Mn₃WO₆, and Mn₃W₂O₈ frameworks across one- and two-element analogue substitutions next.
+
+The non-ABO₄ screen is running against the residual from the physical two-phase project, with the shared angular correction fixed. Candidate ranking is based only on residual direction; each surviving framework will still be rebuilt at the target composition, physically screened, and tested as a third phase in GSAS-II.
+
+The broader stoichiometry screen has finished. I’m narrowing it to the strongest distinct Mn–W–O frameworks now, then I’ll test each directly in the current MnWO₄ + WO₃ project so the residual evidence—not an isolated fit—decides the final phase set.
+
+The screen has a clear lead: an M₂XO₅ Pnnm/P2₁/c family matches the unmodeled peak set substantially better than the Mn₂WO₆, Mn₃WO₆, or Mn₃W₂O₈ families. I’m checking several independent M₂XO₅ parents—including a direct Mn₂AsO₅ analogue—because the near-tied orthorhombic/monoclinic entries may represent the same framework under slightly different symmetry descriptions.
+
+All shortlisted M₂XO₅ models pass the hard-contact screen, but the P2₁/P321/Cmc2₁ substitutions have implausibly short starting W–O bonds (about 1.1–1.4 Å), so they are diagnostic trials rather than likely final structures. The chemically better Pnnm/P2₁/c candidates span independent Cu/Co/Mn/Zn arsenate and phosphate parents. I’m now running all ten as third phases with the MnWO₄, WO₃, and nuisance parameters held in the same incumbent state.
+
+The first low-ranking low-symmetry alternatives have already collapsed to zero scale in the common state; their attempted cell steps then became singular, so those cell trials remain non-evidence but the scale-only rejection is stable. The higher-ranked Pnnm/P2₁/c family is still running.
+
+The batch revealed a numerical issue rather than a scientific result: a failed trigonal trial changed the GSAS-II process’s floating-point state, causing every later Pnnm refinement to abort before evaluating its first objective function. I’m isolating each serious candidate in a fresh GSAS-II process and converting the monoclinic analogue to GSAS-II’s standard setting; those aborted entries remain unknown until rerun.
+
+The isolated reruns are still computing. Each candidate now has its own process and output project, so a singular model cannot contaminate the remaining tests; I’ll compare both scale-only survival and cell-refined Rwp once the six finish.
+
+The first group is taking longer because the leading Pnnm models retain positive scale and proceed into lattice refinement—unlike the collapsed alternatives, which terminate quickly. That is encouraging but not yet sufficient; I’m waiting for the independent projects and their final residual statistics.
+
+Two independent Pnnm analogues survive reproducibly: the direct Mn₂AsO₅ parent and Zn₂AsO₅ parent. The Zn-derived model is currently better (Rwp 18.74% versus 18.86%) and both converge toward nearly the same ~466 Å³ orthorhombic cell, while the other Pnnm/P2₁/c coordinate models collapse to zero scale. I’m extending both surviving lattice refinements to convergence before allowing any coordinate or profile freedom.
+
+Both surviving Pnnm cells are continuing to move, so the initial 16-cycle comparison was not fully converged. I’m keeping only scales and the candidate lattice free in these extensions; all incumbent structures, profiles, background, specimen, and instrument terms remain frozen as required for a fair prototype decision.
+
+The converged Pnnm fits stop near Rwp 18.64% and leave several strong coherent peaks, so that phase alone does not close the pattern. Before ordinary refinement, I’m completing the residual-directed comparison across the other chemically plausible off-stoichiometries (Mn₂WO₆, Mn₃WO₆, Mn₃W₂O₈), including their leading one- and two-substitution frameworks and distinct symmetries, all against the same two-phase incumbent.
+
+The expanded models are built and physically screened. The strongest direct analogues are chemically reasonable at the starting geometry—for example Mn₃TeO₆→Mn₃WO₆ (R-3, minimum W–O 1.89 Å) and Y₂WO₆→Mn₂WO₆ (P2₁2₁2₁, 1.73 Å). A few low-ranking diagnostic frameworks retain short 1.2–1.5 Å W–O contacts and will only be considered if refinement both improves the common fit and restores plausible bonding.
+
+The common-state matrix is still running. The first batch includes the P2₁2₁2₁ and P2₁/c Mn₂WO₆ models; any candidate that survives scale refinement is allowed only its own lattice parameters, while collapsed candidates leave the incumbent unchanged.
+
+Several candidates are evidently proceeding beyond the quick collapse path, so this comparison is more consequential than the earlier rejected oxide precursors. I’m letting the independent lattice steps finish rather than ranking partly refined projects.
+
+The run has moved into later symmetry groups and remains healthy. Once complete I’ll separate genuine positive-scale survivors from numerical failures; failed cell refinements will not be treated as rejection evidence, consistent with the residual-phase test rules.
+
+The expanded comparison isolates one serious alternative: R-3 Mn₃WO₆ transferred from direct Mn₃TeO₆ survives at 5.7 wt% and reaches Rwp 18.79% after its initial cell run. Cubic Ia-3 survives only at 0.8 wt% with negligible improvement; all Mn₂WO₆ and tested Mn₃W₂O₈ models stably collapse to zero scale (one monoclinic Mn₃W₂O₈ import failed and remains unknown). I’m converging the R-3 model against the Pnnm contender before choosing either.
+
+After full lattice convergence, Pnnm Mn₂WO₅ remains better than R-3 Mn₃WO₆ (Rwp 18.63% versus 18.81%) with virtually identical nuisance state, so Pnnm is the provisional third phase. I’m now testing whether the R-3 phase, weak cubic Mn₃WO₆, or the earlier Pmn2₁ MnWO₄ analogue survives as an additional fourth phase in that exact three-phase project; this distinguishes complementary peak sets from competing explanations.
+
+All three fourth-phase additions collapse to the lower scale bound when Pnnm Mn₂WO₅ is present. Thus R-3/Ia-3 Mn₃WO₆ and Pmn2₁ MnWO₄ were competing descriptions of the same residual intensity, not additional phases. I’m closing the prototype search with MnWO₄ + WO₃ + Pnnm Mn₂WO₅ and resuming ordinary staged refinement from that saved project.
+
+The accepted three-phase project currently forces all phases to share the MnWO₄ crystallite size and microstrain, which is a major remaining modeling deficiency. I’m refining background/shift/cells first, then independent phase sizes and strains, and finally the bounded instrumental W/X/axial terms. Coordinate freedom remains off during this profile pass.
+
+The profile pass is still running through the phase-specific broadening stages. The refinements are bounded to the laboratory ranges (size 0.04–1.5 µm, microstrain 0–8000 ppm, W/X/SH-L within the stated instrument envelope), so any improvement remains physically admissible.
+
+The joint strain/instrument stages are slower because peak widths are now evaluated independently for three phases across the full 8301-point grid. I’m preserving each completed checkpoint, so a later correlated stage cannot overwrite a better physical state.
+
+The run remains active and has not emitted an error. At completion I’ll select by both Rwp and parameter behavior; a nominally lower residual will be rejected if a width or fraction is merely pinned at an unphysical boundary.
+
+The calculation is taking longer than the earlier common-state tests because the background, three cells, six phase-broadening terms, and global profile are being solved jointly. It is still within a normal GSAS-II runtime for this dense scan; I’m continuing rather than interrupting a valid stage.
+
+The staged project is checkpointing internally, so even if the last profile stage proves over-correlated the earlier size/strain solution is retained. No user action is needed; I’m waiting for the full-grid refinement to finish.
+
+The job is still alive after six minutes, consistent with multiple 20-cycle nonlinear stages rather than a hang. I’ll use the first converged checkpoint if later cycles add negligible improvement, which keeps the final model efficient and avoids over-refinement.
+
+The ordinary profile refinement lowered Rwp from 18.63% to 15.36%. Fractions moved to about 76.2% MnWO₄, 15.4% WO₃, and 8.4% Mn₂WO₅. Mn₂WO₅ wants the narrowest allowed peaks (size at 1.5 µm), while all other widths remain interior; I’m retaining that bound and now refining heavy-atom coordinates, followed by the transferred Pnnm oxygen framework, from the saved profile checkpoint.
+
+The coordinate pass is active. I’m refining only heavy sites in all phases first; oxygen coordinates are then opened only for the well-established wolframite and the transferred Pnnm phase, while the 16-site triclinic WO₃ oxygen network stays fixed to avoid an underdetermined 36-parameter drift.
+
+The heavy-coordinate stage is slower but still progressing on the full grid. I’ll physically screen each checkpoint for short contacts and displacement magnitudes before accepting any residual improvement.
+
+Opening the transferred Pnnm coordinates produces a large, coherent improvement to Rwp 12.68% and raises its fraction to 9.4%; the heavy-only checkpoint was 14.88%. The coordinate stage is not yet converged, so before extending it I’m exporting both checkpoints and checking interatomic contacts and bond ranges to ensure the gain is structural rather than a distorted framework.
+
+The unconstrained Pnnm oxygen refinement is chemically unacceptable: it drives one W–O contact to 0.95 Å and creates close O–O contacts, so I am rejecting that checkpoint despite its lower Rwp. The heavy-only checkpoint passes the physical screen. I’m separating the legitimate wolframite oxygen adjustment from the Pnnm adjustment, then I’ll refine the latter only with explicit W–O distance restraints.
+
+The isolated wolframite-coordinate run is progressing from the physically valid heavy checkpoint. This will show how much of the earlier Rwp gain belongs to the dominant MnWO₄ phase before any restrained Pnnm oxygen refinement is attempted.
+
+The isolated MnWO₄ coordinate refinement is physically valid and lowers Rwp to 13.98%, so most of the rejected unconstrained gain did belong to the dominant phase. I’m now comparing restrained Pnnm refinements that preserve either chemically typical W–O distances or the parent-framework distances, with and without weak Mn–O restraints and at multiple weights. Selection will require both the best common fit and a clean contact screen.
+
+The restrained trials are running in isolated projects. The W–O restraints cover the four tetrahedral contacts only; the optional Mn–O terms are deliberately weak, so they prevent collapse without forcing an artificial rigid polyhedron.
+
+The first three projects are still refining, which indicates the restrained coordinates remain coupled to real profile intensity rather than immediately freezing. I’ll compare the achieved bond distances, not merely the target settings, because the data can still move sites against finite restraints.
+
+The comparison has entered its second batch. Each run starts from the same 13.98% physical checkpoint, so differences in Rwp and geometry directly reflect the restraint strategy rather than different starting nuisance parameters.
+
+The first restrained matrix confirms that finite restraints prevent a hard failure but most low-weight solutions still create review-level contacts. The only clean candidate is the strong W-only restraint project (Rwp 13.33%), yet its shortest W–O distance is still only 1.25 Å—likely an originally nonbonded oxygen moving into the W coordination sphere. I’m identifying that contact and adding the missing exclusion/coordination restraint rather than accepting the scorer’s broad geometric pass as chemical validity.
+
+The strong bond-restraint runs are trapped in poor local minima: GSAS-II reports large restraint residuals and moves the sites farther from their targets, so those fits are not trustworthy. I’m switching to a more stable physical control—bounded symmetry-allowed coordinate shifts from the valid Pnnm framework—and testing 0.005–0.03 fractional limits. These bounds directly prevent the large 0.1–0.23 fractional excursions that caused the collapse.
+
+The bounded-coordinate projects are still running. Because all four retain identical profile, cell, scale, and dominant-phase freedoms, the comparison will isolate how much Pnnm coordinate motion is actually supported before geometry degrades.
+
+The coordinate-limit sweep remains healthy. I’ll favor the loosest limit that still passes both the hard-contact and oxide O–O review screens; if a parameter repeatedly lands on its limit, the report will treat that site precision as uncertain.
+
+The sweep is taking multiple nonlinear cycles because several oxygen terms are hitting and being frozen at the imposed limits. That behavior is itself diagnostic: the powder data prefer larger excursions, so geometric admissibility—not unconstrained least squares—must determine the final model.
+
+The first coordinate-bound implementation exposed a GSAS-II convention: its `dAx/dAy/dAz` limit keys are checked against absolute fractional coordinates, not zero-centered increments. That sweep therefore collapsed every coordinate toward the numerical limit and is invalid; I’m discarding all four projects. I’ve corrected the bounds to each atom’s current coordinate ± the requested tolerance and will rerun from the untouched physical checkpoint.
+
+The corrected sweep is now refining from the valid atom positions, with separate absolute bounds around each site. This rerun is the first scientifically interpretable coordinate-limit comparison; the discarded sweep will not inform the final choice.
+
+The corrected projects remain active and independent. After completion I’ll verify both the exported multiplicities/occupancies and the expanded-cell contacts, since those checks caught the prior implementation error immediately.
+
+The jobs are in later cycles; no import or objective-function failure has occurred. The expected outcome is a monotonic fit improvement with looser bounds until the contact screen begins to flag a distortion, which gives a defensible stopping point.
+
+All corrected Pnnm geometries pass the contact screen, but GSAS-II saved the bound coordinates after freezing them while retaining the pre-freeze profile arrays—hence their identical reported Rwp. Per the requested closure rule, I’m now replaying each saved geometry on the full grid with coordinates fixed and ordinary nuisance/profile terms re-refined. Only those fresh replay statistics will be used.
+
+The full-grid replay is active with all Pnnm coordinates fixed. This removes the stale-array ambiguity and also lets phase fractions and peak widths readjust consistently to each admissible geometry.
+
+Fresh replay shows a sensible monotonic trend: 0.005, 0.010, 0.020, and 0.030 fractional Pnnm limits give Rwp 13.90, 13.83, 13.67, and 13.51%. I’m retaining the 0.010 model for subsequent work because its shortest W–O bond remains chemically plausible at 1.63 Å; looser models gain only modest fit while shortening W–O to 1.54–1.48 Å. The transferred oxygen positions remain a stated uncertainty. Next I’m testing the allowed March–Dollase texture axes phase by phase.
+
+The texture sweep is evaluating five generator-supported axes for each phase with all structural and nuisance terms fixed; only the three scales and one March–Dollase coefficient move. This makes a texture signal distinguishable from coordinate/profile compensation.
+
+The first phase’s axis tests have completed and later phases are running. I’ll require a meaningful Rwp reduction and an interior 0.7–1.4 coefficient; boundary-pinned texture will be treated as unsupported.
+
+The texture matrix is in its final phase. Any accepted orientation will then be replayed jointly with the ordinary profile terms, because the scale-only common-state statistic is a screening result, not the final fit.
+
+Texture is negligible for MnWO₄ and WO₃, but decisive for Pnnm Mn₂WO₅: the [010] model lowers common-state Rwp from 13.83% to 11.82% and moves its fraction to 10.3%. Its March–Dollase coefficient reaches the laboratory lower bound of 0.70, so strong [010] texture is supported but its magnitude is boundary-limited. I’m now replaying that texture jointly with the full ordinary profile/background/cell model.
+
+The joint texture replay reaches Rwp 11.64% with fractions 72.0% MnWO₄, 17.5% WO₃, and 10.5% Mn₂WO₅. However, coherent residual peaks remain at 29.12°, 32.26°, 35.64°, and 47.01°, among others. I’m checking whether these are underfit reflections of the accepted textured phase/WO₃ polymorph or evidence for another crystalline component before finalizing nuisance parameters.
+
+Reflection-level inspection shows the remaining peaks are not new lines: they coincide with underfit Pnnm and triclinic WO₃ reflections (for example Pnnm 130 at 32.24°, Pnnm 240 at 46.20°, and overlapping WO₃/Pnnm reflections near 35.6°). I’m therefore keeping the three-phase inventory and refining the 18 wt% WO₃ oxygen network only within the generator’s small reference-mismatch scale, followed again by a fixed-coordinate replay.
+
+The bounded WO₃ coordinate runs are active. Their limits correspond to roughly 0.02–0.08 Å in this cell, spanning the stated synthetic reference mismatch without allowing the large distortions seen in the unconstrained Pnnm trial.
+
+All three bounded WO₃ geometries pass the contact screen; as expected, their pre-replay Rwp values are stale and identical after bound freezing. I’m running fixed-coordinate joint texture replays now. The tightest 0.003 limit remains the chemically safest (minimum W–O 1.57 Å), so a looser model must show a real replay benefit to be considered.
+
+Fresh replay shows WO₃ coordinate freedom yields only a small gain: Rwp 11.61% at the tight physical limit versus 11.64% without it; looser models reach 11.56% but shorten W–O to about 1.52 Å. I’m retaining the tight 0.003 fractional model and now testing the remaining global intensity terms—polarization and specimen surface roughness—before the final replay.
+
+The global-intensity trials are still running from multiple roughness starting points plus a polarization-only control. Convergence to the same interior A/B values would support a real surface effect; seed-dependent or boundary solutions will be rejected.
+
+The runs are in later nonlinear cycles. These are diagnostic common-state fits only; any accepted global term will be reintroduced into the full ordinary refinement and replayed before submission.
+
+The surface-roughness tests are slower than polarization because A and B are strongly nonlinear and correlated with the three phase scales. I’m waiting for all seeds so that this correlation is evaluated rather than hidden by a single starting choice.
+
+The global tests show no defensible surface roughness: different seeds converge to incompatible A values while B collapses near zero, with only ~0.01% Rwp gain. I’m rejecting roughness. Polarization converges cleanly to about 0.763 with a similarly small but interior improvement, so it can remain refinable. I’m checking phase-wise isotropic displacement parameters next, since the generator assigns one Uiso per phase and this directly affects high-angle intensity and quantitative fractions.
+
+Constrained phase-wise Uiso refinement is stable and interior: WO₃ refines to 0.01484 Å² and Mn₂WO₅ to 0.00464 Å², lowering Rwp to 11.58% and giving 71.75/18.03/10.23 wt%. The available MnWO₄ reference mixes anisotropic and isotropic ADPs, so I left its published ADPs fixed rather than impose an artificial scalar constraint. I’m now combining the accepted cells, profiles, [010] texture, polarization, and constrained Uiso terms in one joint refinement.
+
+The fully joint run exposes one over-correlation: WO₃ Uiso is driven beyond the 0.020 Å² laboratory ceiling through the equality constraint, so I’m rejecting that state. I’m fixing WO₃ at its independently stable 0.01484 Å² value and allowing only the Pnnm phase Uiso to remain refinable in the final joint model. All other accepted terms stay unchanged.
+
+The physical joint state is now stable at Rwp 11.565% with 71.65% MnWO₄, 18.04% WO₃, and 10.31% Mn₂WO₅; all accepted ADPs are within bounds. Before locking it, I’m running the last profile diagnostic: uniaxial microstrain along the three allowed axes for each phase, with all other terms fixed. This tests whether the remaining residual is peak-shape anisotropy rather than another structure.
+
+The microstrain matrix is running phase by phase. A supported anisotropy should produce reproducible unequal axial/equatorial values and a clear Rwp gain; near-equal values will confirm the existing isotropic model.
+
+The first phase’s tests are complete and the WO₃/Pnnm tests are proceeding. I’ll only add anisotropy if it survives the same fixed-state comparison and then improves a joint full-grid replay.
+
+The strain sweep is in its final phase. The accepted final project will retain only one profile model per phase—there will be no averaging across these alternatives.
+
+The strain test supports one additional term: Mn₂WO₅ uniaxial microstrain along [010] lowers Rwp from 11.565% to 11.246%, with ~8000 ppm equatorial and 4845 ppm axial strain. This is physically within the laboratory model but equatorial strain is boundary-limited. MnWO₄ gains only 0.009% Rwp, and WO₃’s best trial requires an implausibly near-zero axial strain, so both remain isotropic. I’m jointly replaying only the supported Mn₂WO₅ anisotropy.
+
+The anisotropic joint refinement is still running. The Pnnm axial strain is allowed up to the ratio-derived physical ceiling, while its equatorial component remains bounded by the stated 8000 ppm laboratory range; texture and Uiso constraints are retained.
+
+The supported anisotropic model converges at Rwp 11.413% with 71.67% MnWO₄, 18.08% WO₃, and 10.25% Mn₂WO₅. Mn₂WO₅ retains [010] texture (MD 0.70), 8000/4660 ppm equatorial/axial strain, and an interior Uiso of 0.00634 Å². I’m now performing the required fresh full-grid replay from this accepted physical state into `final.gpx`; no rejected alternatives are being carried forward.
+
+The fresh replay is unchanged (Rwp 11.4131%, maximum shift/esd 0.000), confirming the selected physical state rather than a failed alternative. I’m exporting the three CIFs directly from `final.gpx`, generating the observed/calculated/difference profile from its saved full-grid arrays, and running final occupancy/contact/ADP and project-consistency checks before writing the report and result manifest.
+
+The exported profile is internally consistent (Rwp 11.4131%, Rp 6.5237%, 8301 points), and all backgrounds remain positive. One final bookkeeping issue surfaced: GSAS-II carried its accumulated “frozen at bound” list into the replay, so it calculated the correct profile but marked the least-squares pass as aborted with zero shifts. I’m clearing that stale frozen list and rerunning the same bounded model once more so `final.gpx` records a clean active replay rather than an inherited abort flag.
+
+The clean replay is now genuinely re-solving the active variables rather than inheriting 52 frozen entries. Current boundary terms may be re-frozen if the data still push outward, but only in this accepted state; that is the correct GSAS-II bookkeeping.
+
+Clearing the stale list allowed a real replay and improved Rwp to 11.1426%, with fractions 71.22/17.70/11.08 wt%. Four parameters were rediscovered at physical bounds (Mn₂WO₅ size, equatorial strain and Uiso; instrumental X), and the size derivative became singular there. I’m fixing those four accepted boundary values and performing one last refinement of only the remaining identifiable parameters, which should preserve the profile while producing a clean covariance state.
+
+I’m checking the cleaned boundary-fixed refinement now. I’ll use it only if the replayed model remains converged and improves or preserves the fit; then I’ll regenerate every deliverable from that exact project and run consistency/physical checks.
+
+The clean-boundary experiment is not acceptable: it backed away to Rwp 11.365% and ended aborted. I’m retaining the prior converged physical state (Rwp 11.143%) as the best project, as required, and will now perform a fresh full-grid calculation/export from that saved state—not from the failed alternative.
+
+The evaluator-style sandbox replay cannot start because this kernel disables unprivileged namespaces; that is an environment limitation, not a project failure. I’m running the same read-only replay worker directly against `final.gpx`, which still regenerates reflection lists and the full-grid profile while ignoring cached calculated arrays.
+
+The fresh replay passed: all 8,301 measured points were regenerated from atomic structure factors, the project hash stayed unchanged, and no profile-review flags were raised. It reproduced the three project fractions exactly (71.222%, 17.698%, 11.080%). I’m exporting those replay-verified CIFs and profile now, then checking CIF/project identity and bond/contact plausibility.
+
+One important caveat surfaced in the saved covariance record: the best fit is converged, but four parameters had been frozen at limits and one candidate-size direction was singular. The prior “clean” attempt changed more than those boundary flags, explaining its poorer fit. I’m testing a narrowly scoped polish that preserves every accepted value and coordinate while merely holding those non-identifiable boundary directions fixed; it will replace the final only if a fresh replay confirms the same or better physical fit.
+
+The narrow polish also fails the acceptance criterion: fixing the flat directions changes the constrained candidate intensity enough to worsen Rwp to 11.482%. I’m therefore discarding that alternative and keeping the previously replayed best project unchanged. This confirms that the Mn₂WO₅ microstructure/ADP block is non-identifiable and must be reported as a model-dependent uncertainty, not “cleaned” into a different result.
+
+The accepted outputs now pass the project/CIF consistency and physical screens: all occupancies are valid, densities are 5.34–7.36 g cm⁻³, shortest metal–O contacts are 1.58–1.78 Å, and shortest O–O contacts are at least 2.36 Å. I’m writing the final machine-readable result and a concise report that explicitly separates robust phase evidence from the model-dependent Mn₂WO₅ assignment and fraction.
+
+The project/CIF/fraction validation is exact and complete. One formatting check caught only a header-label issue in `fit.csv` (`two_theta_deg` was not recognized by the supplied profile checker); I’m changing that label to the accepted `two_theta` form and rerunning the final checks.
+
+Completed. Best crystalline model:
+
+- MnWO₄, P2/c: 71.22 wt%
+- WO₃, P-1: 17.70 wt%
+- Mn₂WO₅-like, Pnnm: 11.08 wt% — provisional/model-dependent
+
+Fractions are normalized over modeled crystalline material only. Fresh full-grid replay gives Rwp 11.939%; the saved GSAS-II refinement reports Rwp 11.143%.
+
+Outputs:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-ed381814de20/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-ed381814de20/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-ed381814de20/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-ed381814de20/workspace/final.gpx)
+- [MnWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-ed381814de20/workspace/phase_mnwo4.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-ed381814de20/workspace/phase_wo3.cif)
+- [Mn₂WO₅ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-ed381814de20/workspace/phase_mn2wo5.cif)
+
+All CIFs passed occupancy/contact screening and match the replayed GSAS-II project exactly. The Mn₂WO₅ symmetry and fraction remain the principal uncertainty.
+

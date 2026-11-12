@@ -1,0 +1,68 @@
+I’ll inspect the specimen metadata, diffraction pattern, and the frozen analysis/tooling guidance first. Then I’ll identify and refine ordinary candidate phases, check residual peak families for any missing phase, and only invoke the mandated bounded polish once the model is terminal.
+
+The chemical system is Mn–W–O, synthesized from WO₃ and Mn₃O₄ at 800 °C with Cu Kα reflection data. I’m now extracting the exact scan range/resolution, peak families, allowed laboratory bounds, and frozen COD index location so the initial phase search and refinement are tied to this specimen rather than formula expectations alone.
+
+The index contains two direct Mn–W–O references—wolframite MnWO₄ and rhombohedral Mn₃WO₆—plus multiple manganese-oxide and tungsten-oxide polymorphs. The strongest observed lines already separate into more than one family, so I’m comparing whole reflection families (with common angular displacement allowed) before committing to a phase inventory.
+
+The line-family comparison now supports a three-phase ordinary model: MnWO₄, Mn₃WO₆, and orthorhombic Pnma WO₃. Their independent diagnostic lines recur from low to high angle; Mn₃O₄ remains a serious fourth-phase test because several of its strongest lines overlap those phases. I’m moving these candidates into GSAS‑II so the residual—not overlap at one or two peaks—decides whether Mn₃O₄ contributes positively.
+
+The first GSAS pass confirms the three phases explain most of the pattern (Rwp fell from 28.5% to about 8.6%), but that trial is not acceptable: zero and displacement were 99.9% correlated, profile terms hit bounds, and size/strain became singular. I’m treating it only as a diagnostic checkpoint, rolling those terms back, and using its residual families to decide the inventory before rebuilding a bounded, stable model.
+
+The rollback comparison is decisive enough: a displacement-only branch is slightly better (Rwp 8.728% vs 8.766%) and keeps the MnWO₄/Mn₃WO₆ cells closer to their references, while avoiding the 99.9%-correlated zero/displacement pair. I’m retaining displacement only and now giving the Mn₃O₄ hypothesis the same refinement depth; its fraction must remain positive and be supported by its non-overlapped reflections to survive.
+
+Mn₃O₄ does not survive the family test: although a 1.6 wt% scale lowers Rwp by 0.023 points, it improves overlapped lines while worsening its strong diagnostic families near 17.77°, 32.22°, and 58.22°. I’m discarding it explicitly. The remaining large residuals sit on reflections of the three accepted phases—especially the Pnma WO₃ triplet—so the next work is structural/intensity refinement, not adding another phase.
+
+The first texture screen found strong physical basins but also exposed a checkpoint issue: MnWO₄ [111] and WO₃ [100] cut Rwp by roughly 0.59 and 0.65 points, respectively, yet had not settled within the single pass, while weaker axes converged. I’m repeating every axis to equal convergence depth before choosing; early Rwp alone will not decide the texture model.
+
+The ordinary three-phase model is accounting for every coherent reflection family. I’m finishing the equal-convergence texture/profile comparisons now; Mn₃O₄ has already been rejected because its nominal gain came only from overlaps while its diagnostic lines worsened.
+
+The converged texture tests support physically distinct orientation effects for all three phases: MnWO₄ [111], Mn₃WO₆ [001], and orthorhombic WO₃ [100]. The two strong effects reduce Rwp from 8.56% to 7.23%; the Mn₃WO₆ effect is small but reproducible and interior to its allowed range. Next I’m resolving the one remaining bound-sensitive crystallite-width term and checking profile residuals before the required final polish.
+
+The residual map shows underfit centers and compensating wings on reflections already indexed to the accepted phases, so this is profile work rather than evidence for another phase. I’m first re-settling background/scales, the three accepted texture ratios, specimen displacement, and cells together at the post-texture checkpoint; profile-family tests will then be compared from that same structural state.
+
+The post-texture structural checkpoint is stable at Rwp 7.12% with no short contacts. Coordinate changes that tried to run to their imposed bounds were rolled back. Before choosing any extra width term, I’m checking the generator’s documented profile family and the GSAS-II parameter correlations; this matters because common Lorentzian X and isotropic crystallite size can be mathematically inseparable.
+
+The profile decomposition confirms the expected X/size degeneracy, and Mn₃WO₆’s absolute domain size remains only an upper-limit estimate. I’m therefore keeping X fixed during all further work and testing only the physically generated alternatives—three allowed uniaxial microstrain axes—at equal convergence. Any axis that reaches a ratio/range bound or gives only a numerical one-line improvement will be discarded.
+
+The profile grid has now bracketed the physical basin: fixing X too low pins Mn₃WO₆ size, while X = 5.5 drives strain outside its generated range. I’m testing the interior bridge (X = 4.3), where interpolation predicts all three sizes and strains will remain strictly inside the laboratory ranges. X itself stays fixed because the powder trace cannot identify it separately from isotropic size.
+
+The anisotropic-width alternatives all tried to push WO₃’s equatorial strain to its upper bound or failed replay convergence, so they are rejected. The physical profile is now bound-free: no supported microstrain for MnWO₄/Mn₃WO₆, an interior fixed WO₃ checkpoint, and all sizes/calibration terms inside range. I’m now testing only the remaining generated nuisance families—axial asymmetry, polarization, and surface roughness—one at a time.
+
+The three-phase model is physically closed, so I’m now testing only the remaining instrument/specimen terms against that fixed phase set. I’ll retain a term only if it improves the full reflection families, converges away from its bounds, and remains stable with the phase fractions.
+
+The first checks are already discriminating: polarization gives a small stable improvement, while surface roughness is numerically inseparable (A/B >99.9% correlated and B repeatedly pins at its lower active bound). I’m letting the second roughness start finish to confirm that this is not a starting-basin artifact.
+
+The two instrument corrections are mutually stable and remain well inside the supplied ranges. The background-order comparison still has a smooth, positive improvement through 20 coefficients, so I’m checking the generator’s actual background family before deciding whether that trend is real baseline structure or a polynomial beginning to absorb model error.
+
+The background test has reached a clear physical stopping point: 8 coefficients give one smooth broad minimum; 10–12 add only a tiny fit gain but introduce several broad oscillations, and higher orders visibly absorb intensity/profile mismatch. I’m retaining the smooth 8-term background and doing the final replay-stability sequence for cells, displacement, and supported peak widths.
+
+The terminal checks are doing what the bounds were meant to do: a joint U/W update tries to drive U to the laboratory ceiling and is being rejected, while the cell/displacement replay stays interior. The first phase-size update is stable and improves a full family of widths; the remaining two phase widths are still being checked independently.
+
+The terminal checkpoint now replays at Rwp 6.801% with interior cells, displacement, asymmetry, polarization, and retained widths. Bound-seeking U/W and Mn₃WO₆-size updates were explicitly rolled back. I’m saving this checkpoint as `final.gpx` and will now invoke the required bounded polish exactly once; after that I will only audit, select the physical branch, and export.
+
+The polish is still running its three prescribed coordinate paths. The first path is physical but improves Rwp by less than the script’s 0.02-point acceptance threshold; the heavy/light path is currently lower in Rwp but has hit coordinate windows, so its built-in rollback/stabilization must finish before it can be considered.
+
+The required polish completed and selected its baseline branch: all coordinate alternatives failed to clear the mandated 0.02 Rwp-point gain after bound-hit atoms were rolled back and convergence restored. That is a valid, physical “no polish accepted” outcome. I’m now doing the promised read-only audit and will export from the accepted `polished.gpx` state.
+
+Exports are complete. I’m running the final consistency checks now: CIF parse/composition, fraction normalization, exact project hash, full-grid profile alignment, and recomputed fit statistics.
+
+Completed the PXRD analysis with three crystalline phases:
+
+- MnWO₄ wolframite: 63.465 wt%
+- Mn₃WO₆ rhombohedral: 19.077 wt%
+- Orthorhombic WO₃: 17.459 wt%
+
+Final fit: Rwp 6.801%, Rp 4.131%, GoF 4.773. Fractions are normalized over modeled crystalline phases.
+
+Artifacts:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v7-86114fb931d0/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v7-86114fb931d0/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v7-86114fb931d0/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v7-86114fb931d0/workspace/final.gpx)
+- [MnWO4_wolframite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v7-86114fb931d0/workspace/MnWO4_wolframite.cif)
+- [Mn3WO6_rhombohedral.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v7-86114fb931d0/workspace/Mn3WO6_rhombohedral.cif)
+- [WO3_orthorhombic.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v7-86114fb931d0/workspace/WO3_orthorhombic.cif)
+
+The required bounded polish selected the unchanged physical baseline; fresh replay and CIF geometry checks passed without profile or contact flags.
+

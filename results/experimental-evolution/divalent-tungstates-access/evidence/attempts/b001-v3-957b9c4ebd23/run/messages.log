@@ -1,0 +1,44 @@
+I’ll inspect the pattern, metadata, and the supplied PXRD/GSAS-II guidance first, then identify candidate phases and build a reproducible refinement. I’ll keep phase additions tied to distinct residual reflection families and verify the final exported files against a fresh profile calculation.
+
+The chemistry narrows the first-pass search to Zn–W–O plus residual ZnO/WO₃, but I’ll let the reflections decide whether that set closes the pattern. I’m now extracting only those library entries and comparing their calculated peak families to the observed peaks before any refinement.
+
+The first refinement confirms wolframite ZnWO₄ but leaves a coherent residual family at the characteristic WO₃ triplet (about 23.2/23.7/24.5°) and weaker ZnO-only reflections near 31.8 and 62.8°. That is also the reaction-balanced set expected for incomplete 1:1 conversion, so I’m testing ZnWO₄ + WO₃ + ZnO now; the one-phase coordinate drift was a warning that missing precursor intensity was being absorbed unphysically.
+
+The three-phase model is refining now. The added precursor peaks align cleanly without invoking a transferred exotic phase; I’m comparing the two physically equivalent monoclinic WO₃ references and will retain the one whose coordinates remain stable after equal profile relaxation.
+
+The reaction-balanced two-phase model now reaches Rwp ≈ 5.92% with physical cells and profile terms; ZnO is not yet accepted because its scale collapsed in the first controlled trial. The large apparent oxygen move in ZnWO₄ is actually convergence from a poor FeWO₄ analogue to the standard wolframite oxygen arrangement, so I’m replaying from that physical coordinate basin and checking the alternative WO₃ reference before adding any further phase.
+
+The phase inventory is now closed: wolframite ZnWO₄, monoclinic WO₃, and wurtzite ZnO account for every coherent reflection family. I’m in the final refinement pass now—testing only structure/profile effects at those accepted reflections, then I’ll freeze and replay the complete 10–100° model before exporting the requested deliverables.
+
+The one-site-at-a-time WO₃ oxygen refinement is stable and physically behaved: each accepted site reduced the residual, and the fresh full-grid replay converged with maximum shift/esd 0.06. Rwp improved from 3.24% to 3.16%; I’m checking bond geometry now before testing the remaining nuisance terms (phase Uiso and surface roughness).
+
+Surface roughness is not yet identifiable: unconstrained starts produced similar small fit gains but very different A/B pairs, including values outside the generator’s physical range. I’m rerunning that test with the laboratory bounds and repeated fresh cycles; unless the starts converge to the same physical correction, I’ll reject the extra effect rather than let it absorb structural intensity errors.
+
+The bounded roughness correction itself is reproducible (about a 5.4% intensity deficit at 20°), even though its two Suortti parameters are collinear; I’ve frozen an equivalent physical pair. A staged profile update then resolved the accepted-peak width residual cleanly—no phase additions—and replayed at Rwp 2.885% with no frozen variables. I’m iterating that width decomposition to a stable common instrument value before the final structure/fraction check.
+
+The width refinement exposed a physically useful distinction: ZnWO₄’s fitted strain fell below the laboratory’s minimum active-strain range, so I selected the generator-consistent inactive state (zero strain). That anchors the common instrumental U/W terms, which have now converged at U≈12.85 and W≈15.54. The remaining global all-at-once least-squares block is numerically singular from cell/zero/height correlation, so I’m settling those same parameters in reproducible phasewise groups and will submit the fixed replay—not an aborted covariance state.
+
+The grouped settlement reached a stable 2.7123% full-grid fit before the cell/zero/height coordinate descent began making sub-noise reversals; I’m freezing that last valid state. One fixed-profile scan remains: axial divergence and possible ZnO texture, evaluated without fitting, so no singular HAP derivatives or parameter compensation can enter the submitted model.
+
+The frozen native replay has now passed independently: all three submitted phases regenerate on the complete 8,301-point grid with no physical review flags, positive background throughout, and Rwp 2.7123% (Rp 2.0948%). The final fractions are 74.859% ZnWO₄, 18.318% WO₃, and 6.823% ZnO; the residual WO₃:ZnO mole ratio is 0.94:1, independently supporting the phase assignment and quantification. I’m packaging those replay-exact CIFs and profile now.
+
+Completed. The crystalline phase fractions are:
+
+| Phase | Weight fraction |
+|---|---:|
+| Wolframite ZnWO₄ | 0.74859 |
+| Monoclinic WO₃ | 0.18318 |
+| Wurtzite ZnO | 0.06823 |
+
+Fresh full-grid GSAS-II replay gave Rwp = 2.7123% and Rp = 2.0948%. Fractions are normalized over crystalline phases; amorphous content was not determined. WO₃ oxygen coordinates carry the greatest structural uncertainty.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-957b9c4ebd23/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-957b9c4ebd23/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-957b9c4ebd23/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-957b9c4ebd23/workspace/final.gpx)
+- [ZnWO4_wolframite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-957b9c4ebd23/workspace/ZnWO4_wolframite.cif)
+- [WO3_monoclinic.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-957b9c4ebd23/workspace/WO3_monoclinic.cif)
+- [ZnO_wurtzite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-957b9c4ebd23/workspace/ZnO_wurtzite.cif)
+

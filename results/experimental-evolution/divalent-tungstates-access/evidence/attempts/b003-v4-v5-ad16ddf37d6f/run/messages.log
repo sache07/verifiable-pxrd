@@ -1,0 +1,33 @@
+I’ll inspect the specimen metadata, pattern, and the frozen analysis guidance first, then build and refine a replayable multiphase GSAS-II model. I’ll prioritize a complete physical fit before investigating any residual phase.
+
+The chemistry points first to MnWO₄, with Mn₃O₄/WO₃ or another manganese tungstate as plausible residuals. I’m now extracting peak families and querying the frozen reference index so phase acceptance is based on the full pattern, not just the strongest lines.
+
+The three-phase inventory is strongly supported and already gives ~67% MnWO₄, ~12% Mn₃WO₆, and ~20% WO₃, but the current Rwp (~13.8%) is dominated by peak-shape and intensity mismatches rather than unindexed families. I’m keeping that inventory fixed while refining physical broadening and then atomic coordinates.
+
+A coherent residual family around the split WO₃ peaks indicates the initial monoclinic checkpoint may be the wrong same-composition reference. I’m testing the lower-symmetry triclinic WO₃ reference before allowing larger coordinate shifts; this is the key physical-model check.
+
+The closer-fit monoclinic WO₃ entry has a known nonphysical O–O contact (~1.57 Å) and incomplete W coordination, so I’m rejecting it despite the small Rwp advantage. The accurate neutron-derived monoclinic WO₃ model preserves sixfold W coordination; I’m refining that physical checkpoint instead.
+
+The phase inventory is now well constrained: MnWO₄, Mn₃WO₆, and residual WO₃ account for the coherent reflection families. I’m finishing the physically screened refinement—especially the WO₃ model and bounded atomic adjustments—then I’ll export and independently reopen-check the complete GSAS-II deliverables.
+
+The bounded heavy-atom trials improve the fit smoothly, but unconstrained coordinates try to move several sites by ~0.1–0.14 Å—too large to trust from this powder pattern alone. I’m retaining a conservative 0.04 Å branch as the structural checkpoint and testing oxygen shifts and specimen-intensity corrections separately, so fit quality is not purchased with implausible geometry.
+
+Two specimen effects are strongly supported and remain physically moderate: March–Dollase terms for WO₃ along [010] (1.32) and MnWO₄ along [111] (1.16). Surface roughness is singular/nonphysical and the axial-divergence change is marginal and highly correlated, so both are rejected. I’m now combining only the supported terms and rechecking whether the earlier coordinate shifts remain necessary once texture is modeled.
+
+The remaining misfit is mainly profile shape, not unindexed peaks. Isotropic MnWO₄ microstrain is strongly supported (~1330 ppm), while Mn₃WO₆/WO₃ strain and instrument X add negligible information. Instrument U improves the fit but lands just above the stated physical range when used alone, so I’m testing it jointly with the supported MnWO₄ strain and checking the three allowed strain axes before accepting any added complexity.
+
+The accepted final checkpoint now has physical coordination throughout, stable phase fractions, and no extra coherent peak family. I’m expanding the refinement to the exact 9.9034–100.0946° input grid, then exporting every deliverable from a freshly reopened copy of that same `final.gpx` so the CIFs, fractions, fit profile, and statistics are internally identical.
+
+Completed and independently reopened/verified the final GSAS-II project.
+
+- MnWO₄ (P2/c): 63.93 wt%
+- Mn₃WO₆ (R-3): 18.80 wt%
+- WO₃ (P2₁/c): 17.27 wt%
+- Rwp: 2.660%; goodness of fit: 1.865
+
+Fractions are crystalline-normalized; realistic systematic uncertainty is approximately 1–2 percentage points.
+
+Files: [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-ad16ddf37d6f/workspace/result.json), [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-ad16ddf37d6f/workspace/report.md), [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-ad16ddf37d6f/workspace/fit.csv), and [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-ad16ddf37d6f/workspace/final.gpx).
+
+CIFs: [MnWO4](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-ad16ddf37d6f/workspace/phase_MnWO4.cif), [Mn3WO6](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-ad16ddf37d6f/workspace/phase_Mn3WO6.cif), [WO3](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-ad16ddf37d6f/workspace/phase_WO3.cif).
+

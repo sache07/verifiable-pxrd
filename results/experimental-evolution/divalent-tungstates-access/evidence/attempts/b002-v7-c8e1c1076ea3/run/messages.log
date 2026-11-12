@@ -1,0 +1,90 @@
+I’ll inspect the specimen metadata, pattern, frozen index, and the supplied GSAS-II workflow first. Then I’ll build and refine the smallest physically supported phase set, run the required one-time bounded polish, and export everything from the accepted project.
+
+The chemistry is a ZnO + WO₃ firing at 700 °C, so ZnWO₄ is the natural principal candidate, with residual oxides or an off-stoichiometric tungstate still possible. I’m now checking the supplied refinement constraints and the frozen COD subset before assigning peaks; I’ll treat any unindexed reflection family as evidence for an additional phase rather than forcing the principal phase to absorb it.
+
+The dominant reflection family matches wolframite-type ZnWO₄ very closely: the diagnostic low-angle peaks near 19.2°, 24.1/24.8°, the 30.98° maximum, and the 36.7°, 41.55°, 49–54°, and 62–65° groups all occur in the expected P2/c sequence. A CoMoO₄ wolframite analogue is the best physical start so far after Co→Zn and Mo→W substitution; I’m keeping a second independent wolframite start for a basin check and testing whether the smaller/narrower features require residual ZnO or WO₃.
+
+The one-phase model explains every coherent reflection family; the remaining residuals sit on ZnWO₄ peaks (center/wing and intensity errors), not at a separate set of d-spacings. Trial inclusion of the second calibration term drove both zero and specimen shift to their allowed bounds for only a 0.07-point Rwp gain, so I’m discarding that correlated branch and retaining the interior, shift-only calibration. The isotropic microstrain term likewise pinned at its lower bound and will be removed rather than reported as evidence.
+
+The equally developed parent comparison is now decisive: the CoMoO₄-derived wolframite basin gives Rwp 17.96% with an interior [111] March–Dollase ratio (0.708), while FeNbO₄, InNbO₄, InTaO₄, and MnReO₄ starts remain at 18.53–20.67%; the latter two also pin texture at the allowed limit. I’m retaining the CoMoO₄ basin. Before final profile work, I’m explicitly testing the weak residual sequence against wurtzite ZnO and the plausible WO₃ polymorphs, because several small features near 32°, 47.9°, 56.8°, and 62.8° could form a ZnO family.
+
+The phase screen confirms a real second family: monoclinic WO₃ drops Rwp from 17.61% to about 14% at a stable positive scale (~7 wt% at the first checkpoint), far more than ZnO (0.15-point gain and a size term immediately pinned at 0.04 µm). I’m completing the equal cell/size development of the credible WO₃ settings now; ZnO is currently unsupported as a retained phase.
+
+The complete three-phase model is now stable and chemically coherent: ZnWO₄ + residual monoclinic WO₃ + residual wurtzite ZnO refines to 84.63/10.00/5.37 wt%, with all three positive scales stable, interior cell/size parameters, and Rwp 11.02%. The WO₃ P2₁/c basin beats the triclinic alternative at an equally developed checkpoint; the triclinic cell also pins two metric terms, so it is discarded. I’m now addressing the remaining center/wing residuals with the permitted phase-broadening models before the one-time final polish.
+
+The three-phase solution is chemically and crystallographically closed. I’m correcting one confounded profile-term screen, then I’ll test whether either minor phase has independently supported texture before locking the terminal pre-polish model.
+
+The corrected screen supports polarization at 0.881 (interior, ΔRwp ≈ 0.10 percentage point). Axial divergence changes Rwp by only 0.002 and roughness runs to supplied bounds, so I’m retaining polarization and rejecting those two nuisance refinements.
+
+Both residual phases show modest but coherent texture: WO₃ favors [100] (ratio 1.126), while ZnO favors its physically natural [001] c-axis (0.854). Competing axes either fit less well or hit a bound. I’ll now combine those interior solutions and re-settle the full model in the prescribed parameter order.
+
+The joint model drove only the dominant-phase texture to the tested lower bound. I’m rolling that refinement back to its independently supported interior checkpoint (0.70565) while keeping the term fixed; all calibration, profile, WO₃/ZnO texture, and polarization parameters remained interior.
+
+The remaining large feature near 41.6° is not an unindexed peak family: it is paired with excess calculated intensity on adjacent accepted reflections. I’m checking its reflection assignment now; that distinction determines whether the bounded coordinate polish can legitimately resolve it.
+
+The 41.56° and 41.81° pair are both ZnWO₄ reflections whose calculated intensities are reversed; their positions are already correct. The earlier analogue-coordinate path stopped exactly at its first 0.10 Å oxygen bound, so I’m preserving that boundary geometry as a second physical start and comparing it against the original CoMoO₄-derived start at equal bounded checkpoints.
+
+Both independent starts converged to the same oxygen basin and improved Rwp by about 0.54 point, but the same O3 coordinate again reached the edge of its local 0.10 Å window with no short contacts. I’m continuing that shared physical basin from the common endpoint until the coordinate becomes interior or geometry fails.
+
+The continued basin is now interior and contact-free: O3 moved ~0.19 Å from the CoMoO₄ analogue, while the other ZnWO₄ coordinates converged consistently from both starts. This resolves much of the swapped-intensity residual. I’m re-settling all accepted cells, profile, and specimen terms around that structural model now.
+
+The refined oxygen geometry remains chemically plausible but does not explain the 41.58° intensity, so I’m treating that peak as genuinely unassigned rather than forcing the ZnWO₄ coordinates. I’ll rank the short reaction-compatible set—other WOₓ/ZnOₓ structures and symmetry-distinct precursor polymorphs—against the entire weighted residual family, then develop only serious matches.
+
+The residual-family ranking points first to W₃O₈, with the P2₁/m WO₃ polymorph as the only comparably plausible oxidized alternative; W₂O₇ is chemically invalid for tungsten and ZnO₂ is unstable at 700 °C. I’m comparing both available W₃O₈ structures plus P2₁/m WO₃ at the same GSAS-II checkpoint, and retaining only positive, family-wide contributions.
+
+Neither W₃O₈ reference contributes stably (≤0.1 wt%, one cell term and size hit bounds), while P2₁/m WO₃ gives only a 0.3 wt% scale-only improvement before numerical failure. That is insufficient to assign the family. I’m therefore testing the remaining balanced possibility: a second ZnWO₄ topology, using symmetry-diverse ABO₄ parents from substituted chemistries and identical target-volume adaptation.
+
+The broad parent screen is still processing the 418 frozen ABO₄ references and both cation mappings. So far this is only a topology ranking—no candidate has been added to the model or allowed to absorb intensity.
+
+One result is structurally important: the residual is strongly matched by the same P2/c wolframite framework with the Zn and W sites interchanged. Because both sites are octahedral, I’m testing this as an alternative ordered basin—not adding a correlated duplicate phase—to determine whether the original site assignment itself is wrong.
+
+The alternative ordered site assignment is decisive: at identical phase inventory and nuisance development it reduces Rwp from 10.15% to 5.71%, while all fractions remain stable and every retained term stays interior. I’m now validating that inverse-wolframite basin against additional parent-coordinate starts and its local bond geometry before accepting it.
+
+All five inverse-parent starts converge to the same joint intensity basin (Rwp 4.424% before cell settling). The FeNbO₄-derived start leaves all oxygen coordinates interior and reaches the lowest equal checkpoint, while the others retain one or more local coordinate-bound atoms. I’m fully settling every branch before making the basin choice, so the provisional 0.2-point spread is not being used prematurely.
+
+The fully settled comparison confirms the FeNbO₄-derived inverse basin as the physical winner: Rwp 3.818%, versus 4.010–4.415% for the other starts. Its oxygen sites are interior and contact-free; the one Fe-start cation-window edge is independently bracketed by the Co/In/Ta starts at the same coordinate, so it is not an unresolved boundary solution. The other basins are discarded.
+
+The inverse model closes the previously unassigned 41.6° family. The largest remaining residuals sit on accepted ZnO/WO₃ reflections rather than forming a new lattice family. Before calling that profile closure, I’m rechecking all three texture axes in the accepted structural basin; coordinate changes can otherwise make an inherited texture choice look artificially favorable.
+
+The re-screen changes one accepted term: WO₃ [110] texture is now clearly superior and interior (ratio 1.3605; Rwp 3.301% versus 3.818% for [100]). ZnWO₄ remains uniquely [111], and ZnO retains the slightly better, physically natural [001] axis, though its axis choice is weakly distinguished. I’m rebuilding the terminal model with that corrected WO₃ term.
+
+The remaining profile is already close to counting noise, but a few accepted high-angle reflections still show width-sign residuals. I’m doing one bounded phase-by-phase microstrain screen now; any branch that returns to 300 ppm will be rejected as the supplied lower-bound result.
+
+Only WO₃ isotropic microstrain is potentially supported: 325 ppm, interior, with ΔRwp ≈ 0.015. Every ZnWO₄/ZnO strain branch and every uniaxial branch hits a lower bound. I’m testing that single WO₃ term in the full joint model; it will be retained only if it remains interior after all accepted profile terms are re-settled.
+
+The WO₃ strain survives the full model at 1819 ± 97 ppm and improves Rwp to 3.192%; its strongest correlation with WO₃ size is 0.874, substantial but still separately determined. I’m retaining it provisionally and doing the last profile audit on the previously fixed U and X terms, with W, sizes, and WO₃ strain equally re-developed in every branch.
+
+The audit supports U: it converges to 11.71 with ΔRwp ≈ 0.073 and only modest correlation (|r|max 0.31 to W). X produces no measurable gain and is strongly entangled with W/size, so X stays fixed at 1.0. I’m incorporating U and re-running the complete terminal sequence once more.
+
+I’ve finished the phase-assignment comparisons and am closing the terminal refinement now. The accepted model is inverse-ordered wolframite ZnWO₄ with monoclinic WO₃ and wurtzite ZnO; I’m checking the last supported profile term and replay stability before the one permitted bounded polish.
+
+The terminal model now replays cleanly: the joint refinement converged with maximum shift/error 0.042, no frozen parameters, and Rwp 3.116%. The crystalline fractions are already stable at roughly 83.24% ZnWO₄, 11.88% WO₃, and 4.88% ZnO; I’m doing the final bound/correlation and residual-family audit next.
+
+The terminal audit is physical and bounded: every retained specimen/profile term is interior, all phase scales are positive, no short contacts are present, and the remaining residual maxima do not form a consistent unindexed reflection family. The WO₃ size/strain pair is correlated (0.88) but remains separately determined (about 2.3% and 6.3% relative uncertainty), so I’m retaining it. I’m now invoking the supplied bounded polish exactly once; afterward I will only replay-check and export this selected branch.
+
+The polish is still running its three prescribed coordinate paths. The first completed path converged without frozen parameters and improved Rwp to 2.929%; several WO₃ coordinates that initially met their ±0.10 Å limits were automatically restored before the accepted interior-only settle, exactly as the audit procedure requires.
+
+The prescribed audit selected the phasewise branch at Rwp 2.9287%. It is eligible, converged (maximum shift/error 0.0119), has no frozen/bound-hit parameters or short contacts, preserves all three fractions, and contracts no monitored bond family beyond the allowed limit. I’m accepting that branch unchanged and moving to read-only replay plus exact-project exports.
+
+One read-only diagnostic exposed a GSAS-II API quirk: calling its ID-indexing helper rewrote serialization metadata in `final.gpx` even though no scientific parameter changed. The accepted `polished.gpx` remains byte-for-byte intact. I’m restoring that exact file, removing the mutating helper from the export path, and will verify the project hash before and after the replay/export.
+
+The exact-project replay succeeded on all 8,301 measured bins with no profile review flags. All exported CIFs pass the occupancy/contact screen and recover the expected compositions and symmetries. I’m writing the concise evidence/uncertainty report now, then I’ll restore and hash-check the untouched accepted project as the submitted `final.gpx`.
+
+Completed the three-phase refinement:
+
+- Ordered inverse-wolframite ZnWO₄: 83.11 wt%
+- Monoclinic WO₃: 12.05 wt%
+- Wurtzite ZnO: 4.83 wt%
+
+Final Rwp is 2.9287% with goodness of fit 1.1084. Fractions are relative to modeled crystalline material; amorphous content and trace additional phases cannot be quantified reliably.
+
+Files:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-c8e1c1076ea3/workspace/final.gpx)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-c8e1c1076ea3/workspace/result.json)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-c8e1c1076ea3/workspace/fit.csv)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-c8e1c1076ea3/workspace/report.md)
+- [ZnWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-c8e1c1076ea3/workspace/phase_1_ZnWO4_inverse_wolframite.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-c8e1c1076ea3/workspace/phase_2_WO3_monoclinic.cif)
+- [ZnO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-c8e1c1076ea3/workspace/phase_3_ZnO_wurtzite.cif)
+

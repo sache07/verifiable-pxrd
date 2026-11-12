@@ -1,0 +1,46 @@
+I’ll inspect the specimen metadata and diffraction pattern first, then identify the intended GSAS-II/reference workflow in the frozen framework. I’ll prioritize a physically consistent multiphase checkpoint before exploring any ambiguous residual phase branches.
+
+The chemical inventory is Cu–W–O at 700 °C, so CuWO₄ is the leading product hypothesis, but I’ll let peak positions and full-pattern closure decide whether CuO/WO₃ or another Cu–W–O phase remains. The scan has a high background and unknown displacement/profile, so I’m separating peak indexing from intensity-based phase ranking.
+
+Peak families now support a three-phase partial-reaction model: triclinic CuWO₄ gives the strong 18.81°, 25.46°, 29.09°, 30.08°, 31.48°, and 36.53° peaks; monoclinic WO₃ gives the 22.67°/23.07°/23.89° triplet and related peaks; CuO accounts for the weaker 35.09°, 38.31°, and ~61.2° family. This also closes the 1:1 Cu:W precursor balance without inventing an off-stoichiometric phase. I’m moving that complete model into GSAS-II before testing close WO₃ setting/topology alternatives.
+
+The first full branch already refines to roughly 74 wt% CuWO₄, 23 wt% WO₃, and 3 wt% CuO. The CuO scale is stable rather than collapsing, which validates the weak third phase. Zero and specimen displacement are almost perfectly correlated, as expected without an internal standard; I’ll retain only the combination needed to reproduce peak positions and avoid treating either value as independently physical.
+
+The serious WO₃ alternatives separate cleanly except for monoclinic γ-WO₃ versus triclinic WO₃: after identical relaxation they are effectively tied (Rwp 16.58% vs 16.54%). Orthorhombic WO₃ remains far worse (~22.35%), and the P2₁/m model does not index the split family and becomes numerically unstable. Because the scan is a room-temperature recovered powder and γ-WO₃ is the stable ambient topology, the 0.03-point triclinic advantage is not enough to overturn the monoclinic assignment; I’ll still geometry-screen both checkpoints before locking it.
+
+The residual map exposed a genuine missing phase, not a profile defect: the unmodeled 15.184°, 19.792°, 32.495°, 33.77°, and 57.60° family matches cubic Pa‑3 Cu₃WO₆ after the same displacement correction. This is chemically coherent too—Cu-rich Cu₃WO₆ can coexist with W-rich WO₃ while preserving the starting 1:1 Cu:W balance. I’m adding that phase and rebuilding the complete checkpoint before any more specimen/profile tuning.
+
+With Cu₃WO₆ included, every coherent peak family is assigned, so I’m stopping phase/reference search. The four-phase triclinic-WO₃ checkpoint reaches Rwp 4.17% before oxygen refinement and also closes the precursor balance (Cu:W ≈ 1.01); the analogous monoclinic-WO₃ checkpoint is 6.58%. Unconstrained oxygen refinement lowered Rwp further but created impossible W–O distances (down to 1.21 Å, and 0.92 Å in the monoclinic branch), so I’m rolling that back and refining from the last physical checkpoint.
+
+The replay-stable physical checkpoint is now at Rwp 4.10%. Refining the previously unknown polarization is strongly supported and gives 0.578 with Rwp 3.30%; surface roughness collapses to zero and is rejected. I’m now testing one preferred-orientation family at a time against that fixed checkpoint, beginning with the dominant CuWO₄ phase.
+
+The physically constrained four-phase model is now replay-stable at \(R_\mathrm{wp}=3.14\%\). The accepted model combines triclinic CuWO₄ and WO₃, monoclinic CuO, and cubic Cu₃WO₆; I’m packaging that exact checkpoint and validating that the CIFs, fractions, and exported profile all reproduce it.
+
+The replay check is exact: the calculated profile regenerates the saved \(R_\mathrm{wp}\) with all parameters frozen. The only deliberately retained anisotropic terms are one microstrain axis each for CuWO₄ and WO₃; texture and roughness tests collapsed to negligible values, while unconstrained oxygen refinement was rejected because it created impossible W–O distances.
+
+The final quantification is 64.13 wt% CuWO₄, 20.28 wt% WO₃, 13.12 wt% Cu₃WO₆, and 2.48 wt% CuO (normalized over modeled crystalline phases). Formal scale-covariance errors are small, but I’ll report broader model uncertainty—especially for the weak CuO contribution—because overlap and fixed light-atom coordinates dominate over counting statistics.
+
+All four exported CIFs pass the geometry screen. Key nearest-neighbor ranges remain chemically sensible: CuWO₄ has W–O 1.78–2.15 Å and Cu–O 1.93–2.37 Å; cubic Cu₃WO₆ has W–O 1.78–2.10 Å and Cu–O 1.91–2.20 Å. I’m now running the evaluator-style independent GSAS-II forward replay, which ignores the stored calculated curve.
+
+Completed the four-phase GSAS-II refinement.
+
+| Phase | Space group | Weight fraction |
+|---|---:|---:|
+| CuWO₄ | P−1 | 64.13% |
+| WO₃ | P−1 | 20.28% |
+| Cu₃WO₆ | Pa−3 | 13.12% |
+| CuO | C2/c | 2.48% |
+
+Independent full-grid replay gives \(R_\mathrm{wp}=3.1435\%\) and \(R_\mathrm{p}=2.3691\%\), with no profile-review or geometry flags. CuO is the least certain fraction; oxygen coordinates and weakly constrained displacement parameters were not independently determined.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-a9e040908c9b/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-a9e040908c9b/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-a9e040908c9b/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-a9e040908c9b/workspace/final.gpx)
+- [CuWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-a9e040908c9b/workspace/phase_CuWO4.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-a9e040908c9b/workspace/phase_WO3.cif)
+- [Cu₃WO₆ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-a9e040908c9b/workspace/phase_Cu3WO6.cif)
+- [CuO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-a9e040908c9b/workspace/phase_CuO.cif)
+

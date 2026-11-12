@@ -1,0 +1,8 @@
+2026-11-08T16:26:34.444571Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in <EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-51dca648a689/workspace/analysis/refine_bounded_coords.py:
+def bound_atom(gpx, phase_id, atom_index, axes, delta):
+    c = gpx['Controls']['data']['parmMinDict']
+    d = gpx['Controls']['data']['parmMaxDict']
+    for axis in axes:
+        key = f'{phase_id}::dA{axis}:{atom_index}'
+        c[key] = -delta
+        d[key] = delta

@@ -1,0 +1,51 @@
+I’ll first inspect the measurement metadata, pattern, and the framework’s analysis/scoring guidance. Then I’ll build a falsifiable candidate ledger, screen phases against the full peak set, and only refine the surviving inventory in GSAS-II.
+
+The context narrows the chemistry to Zn–W–O after a 700 °C firing, but it does not justify assuming pure ZnWO₄: residual ZnO/WO₃, polymorphs, and off-stoichiometric intermediates remain live hypotheses. I’m now inventorying the supplied structure library and extracting the observed peak families before nominating candidates.
+
+The first pattern check strongly supports a wolframite-type phase: its diagnostic doublets and families occur near 18.99°, 23.7–24.6°, 30.52/30.76°, 36.44°, 38.37°, and 53.64°. The exact Zn–W–O entries are deliberately absent from the supplied library, so I’m testing all 15 available AWO₄ prototypes after Zn substitution, alongside every usable ZnO and WO₃ polymorph; I will not treat an unimportable or physically broken source as a rejection.
+
+The FeWO₄ parent is decisively the best topology by profile, but its published coordinates contain implausibly short 1.50 Å W–O bonds, so I’m keeping it only as a diagnostic parent. I found broader one- and two-substitution options—including ZnMoO₄, CoMoO₄, MnMoO₄, MgMoO₄, and columbite/wolframite oxides—and am framework-matching those now to obtain a physically sound starting geometry rather than refining through a bad source.
+
+The physically sound CoMoO₄-derived P2/c model now explains the major pattern and refines stably; the scale/background-only Rwp was 40.7%, dropping to 29.9% after only the four symmetry-independent cell terms and common angular zero. This is still an inventory trial—not the final fit. I’m next separating instrumental/specimen broadening from coherent residual peaks, then testing ZnO and each viable WO₃ polymorph on the same saved project.
+
+The first precursor trials are not yet conclusive: several raw COD CIFs carried problematic atom/ADP encodings that made GSAS-II abort, so those branches are “unknown,” not rejected. Wurtzite ZnO only helped after an implausibly large/unstable cell shift; zincblende gave a small stable gain but is chemically uneconomical. A monoclinic WO₃ source gave a stronger positive scale, yet that particular record has a 0.46 Å O–O contact and failed its cell trial. I’m repeating every affected branch with oxidation labels and ADPs normalized while preserving topology and occupancies.
+
+The repaired trials resolve the main inventory: monoclinic WO₃ (COD 2311041, a valid alternate setting) gives a stable ~20 wt% contribution and lowers Rwp from 29.88% to 21.64% with only a ~0.3% volume change. Triclinic and orthorhombic WO₃ also absorb some intensity, but their cell refinements are nonconvergent or much less effective; they remain unknown/rejected only where the test was stable. I’m now checking structural equivalence among those WO₃ settings and retesting ZnO against the accepted two-phase model, where false minor-phase gains should collapse.
+
+The three-phase inventory survives common refinement: wolframite ZnWO₄, monoclinic WO₃, and wurtzite ZnO. Rocksalt ZnO collapses; zincblende falls to ~0.3 wt%; wurtzite remains ~3 wt% with only ~0.35% cell adjustment, so it is retained provisionally. Common profile plus phase-isotropic strain terms are physical and stable (Rwp 20.12%); size refinement added no supported improvement and was rolled back. I’m now refining only symmetry-allowed coordinates, beginning with the eight independent wolframite coordinates.
+
+The dominant remaining effect is now clear: a single March–Dollase term for ZnWO₄ along [100] refines to 0.750 and lowers Rwp from 19.53% to 8.45%, while all four alternative axes are much worse. This term is within the physically allowed range and stable. Surface roughness was boundary-hitting/correlated and was rejected; common phase Uiso refinements stay near 0.01 Å². I’m testing texture on each minor phase and then one supported anisotropic broadening term at a time.
+
+The phase inventory is now narrowed to wolframite ZnWO₄, monoclinic WO₃, and wurtzite ZnO. I’m doing the final closure checks now: equivalent WO₃ models and plausible Zn-rich oxide prototypes, followed by a clean GSAS-II replay and artifact export.
+
+The strongest unexplained residual is an overlapped 41° family, not a set of new isolated peaks. I’m testing whether it is better explained by an alternative WO₃ setting/coordinate model before allowing any extra phase into the inventory.
+
+The broader prototype screen found a few Zn₃WO₆ analogues that can place intensity near the 41° residual, plus weak Zn₂WO₅ and fractional tungsten-bronze matches. I’m now requiring them to survive an actual common-project GSAS-II scale/cell trial; profile coincidence alone is not enough.
+
+The late-stage tests favor a smoother 12-term background, but not extra structural freedom: WO₃ oxygen refinements either worsened the fit or required implausibly large shifts, and instrument U was strongly correlated with microstrain/profile X. I’m retaining the simpler structural model and stabilizing only the supported background change.
+
+The controlled shortlist closes the principal topology question: the selected P2/c wolframite analogue reaches the correct cells and phase balance, while triclinic, scheelite, and C2/c alternatives remain near 50% Rwp; the Fe-derived P2/c model is geometrically poor and its cell trial does not converge. Next I’m quantifying each retained phase by omission before export.
+
+All three exported CIFs pass the physical screen: full occupancies, sensible densities, and shortest contacts of 1.76 Å (ZnWO₄), 1.72 Å (WO₃), and 1.98 Å (ZnO). I’m now replaying `final.gpx` from saved atomic/profile parameters, ignoring its cached calculated curve, to generate the submitted profile and verify consistency.
+
+The required deliverables already pass replay and physical checks. Before handing off, I’m doing one last sensitivity audit on late-stage peak broadening and the dominant wolframite coordinate basin, because the remaining 41° mismatch is larger than counting noise and could otherwise bias the minor-phase fraction.
+
+Completed and independently replay-verified.
+
+- ZnWO₄ (wolframite): 74.60 wt%
+- Monoclinic WO₃: 18.91 wt%
+- Wurtzite ZnO: 6.49 wt%
+- Rwp: 7.9024%; Rp: 4.3751%; GOF: 3.496
+
+No reliable fourth crystalline phase was found. The main remaining uncertainty is an overlapping residual near 41.35° 2θ; realistic fraction uncertainty is approximately 1–2 percentage points.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-a32e48127d88/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-a32e48127d88/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-a32e48127d88/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-a32e48127d88/workspace/final.gpx)
+- [ZnWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-a32e48127d88/workspace/phase_1_ZnWO4.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-a32e48127d88/workspace/phase_2_WO3.cif)
+- [ZnO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-a32e48127d88/workspace/phase_3_ZnO.cif)
+

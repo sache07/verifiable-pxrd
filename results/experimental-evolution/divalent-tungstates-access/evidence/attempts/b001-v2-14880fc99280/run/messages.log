@@ -1,0 +1,52 @@
+I’ll first inspect the metadata, diffraction grid, and the provided analysis toolkit, then identify candidates and refine them jointly in GSAS‑II. I’ll keep residual-driven prototype tests inside the best multiphase project and validate the final outputs by replaying the full grid.
+
+The chemistry narrows the credible inventory to Ca–W–O phases plus residual carbonate/oxide, but the 650 °C, one-hour firing does not justify assuming complete CaWO₄ formation. I’m now extracting peak positions and checking them against the frozen COD index before building any refinement model.
+
+The peak set supports two phases: scheelite CaWO₄ accounts for the broad dominant reflections, while monoclinic γ‑WO₃ accounts for the coherent 22.76/23.18/23.98° triplet and its higher-angle companions. I’m starting a joint refinement with both phases; polymorph and precursor alternatives will be tested against that same state rather than as isolated fits.
+
+The first unconstrained fit reached the expected counting-noise neighborhood, but only by driving angular and peak-width terms outside the laboratory’s physical ranges. I’ve bounded zero, specimen height, profile coefficients, size, strain, polarization, and cell changes to the stated generator ranges and am rerunning from the published cells; this prevents a numerically good but nonphysical submission.
+
+A coherent third-phase signature is present in the two-phase residual: the unmodeled maxima at about 29.07, 39.17, 42.83, 48.17, and 57° match calcite CaCO₃ under the same angular displacement. That is also chemically mass-balanced with residual WO₃ for a partially reacted 1:1 CaCO₃ + WO₃ charge, so I’m adding calcite to the joint project and will quantify all three together.
+
+Calcite materially improves the joint fit and refines to roughly 82% CaWO₄, 14% WO₃, and 4% CaCO₃ in the current model. I found a GSAS‑II state-consistency issue in a checkpoint, however: its stored curve does not survive a zero-cycle recalculation after changing refinement flags. I’m auditing native replay now and will only use a project whose fresh calculation reproduces its submitted profile.
+
+The replay-consistent model now gives Rwp 3.62% versus a Poisson floor of about 3.14%, with fractions near 80.4% CaWO₄, 13.2% WO₃, and 6.4% CaCO₃. The remaining residual is dominated by line-shape/asymmetry rather than unexplained peaks, so I’m refining common instrumental and phase broadening terms sequentially to keep each parameter identifiable and physical.
+
+Preferred-orientation trials collapse to ratios near 1 for the major phases, so texture is not supported. One important provenance issue emerged: the calcite CIF used for identification contains anisotropic ADPs, while this synthetic laboratory applies a single isotropic Uiso per phase; I’m screening all calcite references for a generator-compatible parent before refining coordinates and displacement factors.
+
+The normalized-reference convention explains most of the remaining intensity error: forcing the generator’s common isotropic Uiso model produces a clear CaWO₄ optimum near 0.012 Å², while WO₃ is weakly favored near 0.008 Å² and calcite trends toward the upper allowed range. I’m combining and fine-scanning those values before any coordinate refinement.
+
+Coordinate refinement improves Rwp to 3.41%, and the heavy-atom WO₃ shifts remain small and well determined. Unconstrained oxygen shifts in WO₃ exceed the synthetic mismatch envelope, so I’m not accepting them as-is; I’m projecting each element’s displacement back to the known 0.04 Å heavy-atom / 0.05 Å oxygen RMS caps, replaying, and screening the resulting geometry.
+
+The main phase assemblage is now closed as scheelite CaWO₄, monoclinic WO₃, and residual calcite CaCO₃. I’m finishing common-state model checks, physical screening, and a fresh full-grid GSAS-II replay before writing the deliverables.
+
+The first directional-strain sweep exposed a GSAS-II scripting API quirk before any trial ran: the documented list form is rejected by this build. I’ve switched to its equivalent Boolean form and am rerunning the same nine fixed-state tests.
+
+Directional broadening is not supported by the data: the best nine uniaxial variants improve Rwp by only 0.0004 percentage point, while one minor-phase fit runs into a strain bound. I’m retaining the simpler isotropic broadening and now testing alternative CaWO₄/WO₃/CaCO₃ references as true replacements inside the same three-phase state.
+
+Three imported alternatives carried symmetry-specific hidden HAP arrays that cannot be copied between space groups; GSAS-II correctly aborted those trials, so they remain unknown for now. I’m rebuilding each replacement with only transferable scale/size/strain settings while preserving its own symmetry arrays, then rerunning all candidates for a clean comparison.
+
+The next profile pass tried to drive the common Gaussian \(U\) term negative, outside the physically allowed instrument model, so I’m rejecting that branch. I’m continuing from the last physical checkpoint (Rwp 3.373%) with \(U=0.568\), refining only phase widths, displacement, polarization, scales, and background before replay.
+
+The selected state is physically bounded and replay-consistent at Rwp 3.366% (Poisson floor 3.138%). I’m now freezing all flags, replaying all 8,301 points into `final.gpx`, and exporting CIF/profile/result files from that exact state.
+
+All three exported CIFs pass the scorer’s occupancy/contact screen, and `fit.csv` independently reproduces Rwp 3.366% on all 8,301 original bins. I’m doing the final project-to-CIF/fraction consistency audit and then writing the brief evidence/uncertainty report.
+
+Completed the phase analysis and GSAS-II refinement.
+
+- Scheelite CaWO₄: 79.11 wt%
+- Monoclinic WO₃ (`P 21/c`): 13.69 wt%
+- Calcite CaCO₃: 7.21 wt%
+
+Fractions are normalized over modeled crystalline phases. Fresh full-grid replay gives Rwp = 3.3665% and Rp = 2.6129%; all CIFs passed physical screening.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-14880fc99280/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-14880fc99280/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-14880fc99280/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-14880fc99280/workspace/final.gpx)
+- [CaWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-14880fc99280/workspace/phase_1_CaWO4.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-14880fc99280/workspace/phase_2_WO3.cif)
+- [CaCO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-14880fc99280/workspace/phase_3_CaCO3.cif)
+

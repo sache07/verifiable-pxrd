@@ -1,0 +1,108 @@
+I’ll inspect the specimen metadata, diffraction grid, and the frozen reference/tooling layout first. Then I’ll build and checkpoint a physical multiphase model before testing any optional structural alternatives.
+
+The chemistry is a 1:1 Mn:W firing at 800 °C, so MnWO₄ is the expected balance-closing product, but the scan can still contain residual Mn oxide, WO₃, or an off-stoichiometric intermediate. I’m now enumerating only the relevant frozen COD entries and extracting the observed peak families before choosing models.
+
+I have a strong first assignment for the dominant family: monoclinic wolframite MnWO₄, with its major reflections shifted in the angle-dependent way expected from specimen displacement plus a small cell mismatch. I’m putting that phase into GSAS‑II now so the residual—not visual peak picking—drives the secondary-phase search.
+
+The wolframite-only checkpoint reaches Rwp ≈25.6% and leaves several coherent families, so it is incomplete. I’m comparing WO₃ polymorphs and both ambient tetragonal versus orthorhombic Mn₃O₄ branches under the same staged refinement; the latter is being treated as a diagnostic only because the orthorhombic form is not physically expected at ambient pressure.
+
+WO₃ is definitely present: its split 23–24.6°, 33–34.5°, and 42° families reduce Rwp to about 18.3%. The physically expected monoclinic γ‑WO₃ and a triclinic variant fit almost identically; the refined triclinic cell collapses toward monoclinic metrics, so I’m retaining γ‑WO₃ as the physical checkpoint. A third phase remains, defined by strong peaks near 20.32, 20.88, 29.14, 35.32/35.62, and 46.20/47.02°.
+
+The residual cell search is running across tetragonal, orthorhombic, monoclinic, and triclinic lattices after correcting the specimen-height shift. In parallel with indexing, the chemistry constrains any Mn-rich intermediate to be paired with enough WO₃ to restore the original 1:1 Mn:W inventory; that balance will be used to reject otherwise tempting pattern matches.
+
+Indexing gives a compact primitive monoclinic metric (about 4.329 × 4.447 × 6.204 Å, β ≈ 92.14°), but that cell alone is non-unique. I’m therefore screening complete calculated profiles—including penalties for predicted peaks that are absent—rather than accepting the highest indexing figure of merit. The leading structural interpretation I’m testing is a distinct distorted tungstate topology, because it closes Mn:W without inventing compensating phases.
+
+The broad screen ranks several Mn oxides, but none can be accepted from correlation alone. I’m now refining each serious oxide topology as an actual third phase in the same MnWO₄ + γ‑WO₃ checkpoint. This will reveal whether the scale remains stable near the ~6 wt% required by Mn:W balance, or collapses when all predicted reflections are considered.
+
+The residual indexing is now chemically informative: every strong unassigned line maps nearly exactly to a primitive P2/c-type sequence—010, 100, 110, 11̅1, 10̅2, 012, and higher members—with no orphan family. I’m searching one physical parent per compatible P2/c topology and will reject any adaptation that yields implausible Mn–O or W–O geometry, even if its profile score is slightly better.
+
+The residual family indexes cleanly to a small monoclinic cell; I’m finishing the nearest-parent search now, then I’ll compare the serious topology branches under the same three-phase refinement before locking the replayable checkpoint.
+
+The broad database rank was polluted by dense unrelated structures, so I’m restricting the comparison to chemically plausible Mn–W–O topology parents. I’m now testing wolframite, scheelite, fergusonite, and triclinic/CuWO₄-type alternatives in the identical accepted MnWO₄ + γ-WO₃ state; this satisfies the topology check without over-screening duplicate records.
+
+The indexed lines match the characteristic scheelite/fergusonite sequence (first line near 20°, then 112/004, split 200/020, and the higher-angle multiplets). The scheelite branch takes a stable nonzero scale but cannot reproduce the monoclinic splitting, so I’m converting the two fergusonite parents into GSAS-II’s standard settings and testing those next; this is the decisive topology comparison.
+
+A stronger clue emerged: the indexed cell is exactly viable for a four-cation Mn oxide (density about 4.4–4.8 g cm⁻³), and its extinction pattern is P2/c. I’m screening the finite set of P2/c oxide parents in the frozen index by transferring their fractional-coordinate topology into the indexed cell, with Mn-oxide and Mn–W–O substitutions, then scoring the complete residual—not just peak positions. This should distinguish a real structural relative from an arbitrary indexed cell.
+
+All four chemistry variants are refining against the same checkpoint now. Their cells are already registered to the residual, so the comparison will be driven by intensities, stable scale, mass balance, and geometry rather than by whether a distant reference happened to fall into the right local minimum.
+
+The registered P2/c branches all hold stable scale. MnWO₄ gives the lowest pre-coordinate Rwp, but it cannot close the 1:1 precursor balance; MnO₂/Mn₂O₃/Mn₃O₄ variants do close it and give physically plausible densities. I’m now giving each the same heavy-then-oxygen coordinate relaxation and will reject any numerical gain that creates short contacts or implausible coordination.
+
+The coordinate stages are computationally slower because four branches are running together, but they remain active. I’ll retain each heavy-only checkpoint separately; if oxygen relaxation improves Rwp while breaking Mn–O/W–O geometry, the heavy-only replay—not the lower numerical minimum—will be the accepted branch.
+
+The free coordinate fits are numerically excellent but all fail geometry (contacts down to 0.3–1.3 Å), so I am rejecting them as overfits. The whole-inventory balance now narrows the physically serious alternatives: a manganese oxide would require roughly 6 wt%, Mn₃WO₆ about 13 wt%, Mn₂WO₆ about 21 wt%, and Mn₃W₂O₉ about 33 wt%. I’m completing the missing Mn-rich tungstate topology branches before deciding whether the indexed family is an oxide or an intermediate.
+
+The cubic and rhombohedral Mn-rich tungstate branches have already collapsed to zero scale; they do not explain the indexed family. The large monoclinic Mn₃W₂O₉ branch is still running, but its starting scale behavior is being treated as unknown until it converges—numerical slowness alone is not a rejection.
+
+The remaining C2/c branch is unusually expensive because its large low-symmetry cell generates many overlapping reflections. I’m allowing it to finish this controlled comparison, while preserving the completed checkpoints; no accepted model depends on this branch.
+
+I found a bookkeeping bug in the exploratory coordinate bounds: GSAS-II treats those variables as absolute fractional coordinates, so the first bounded runs pulled atoms toward zero. I’m correcting the bounds around each parent coordinate and rerunning the four chemically plausible manganese-oxide compositions on the same three-phase refinement state; those invalid runs will not enter the result.
+
+The corrected refinements are still running in parallel. The comparison is intentionally like-for-like: fixed MnWO₄ and γ-WO₃ phases, identical indexed P2/c cell, and only small coordinate excursions from the physically nearest wolframite parent. This makes the composition/mass-balance decision interpretable instead of rewarding unconstrained profile overfit.
+
+The bounded comparison confirms that the residual family is real and structururally coherent, but composition is not uniquely encoded by peak positions: the same P2/c topology can be populated as an oxygen-deficient Mn oxide or as a dense MnWO₄ polymorph. The tungsten-bearing version fits best, but it conflicts with the measured 1:1 Mn:W inventory and has strained W–O geometry. I’m now checking the exact reference neighborhood and whole-pattern residual intensities before deciding whether that improvement is chemically defensible or should be reported as an unresolved manganese-oxide model.
+
+The stable replay resolves the earlier numerical ambiguity. A defect-wolframite Mn₂O₃ model with the unshifted physical parent coordinates gives about 7.35 wt% and closes the bulk Mn:W molar inventory to roughly 1.06:1; pushing atoms to the allowed coordinate bounds raises the inferred oxide to 9–10 wt% and worsens that balance. I’m retaining the parent-coordinate checkpoint and testing only global, physically interpretable line-shape terms now. The much lower-Rwp dense MnWO₄ alternative remains rejected because it makes the specimen substantially W-rich and requires an unusually compressed, short-bond polymorph not supported at 800 °C.
+
+The residual audit caught an important limitation: the provisional Mn₂O₃ cell indexes the family, but its parent coordinates give near-zero calculated intensity for several of the strongest indexed lines (especially 010, 100, and 012). So the phase topology is not yet closed even though the cell is. I’m holding the two secure phases fixed and moving to intensity extraction/structure solution within the indexed P2/c cell; the final report will not promote the defect-wolframite model unless it can reproduce those reflections with acceptable geometry.
+
+The Le Bail extraction is running over the full 10–100° range. This step separates “right cell” from “right structure”: it estimates the indexed phase’s reflection intensities without assuming atom positions, while the secure MnWO₄ and γ-WO₃ contributions remain in the profile. Those extracted intensities will constrain candidate cation arrangements and expose systematic-absence mistakes.
+
+Charge flipping is slower than the profile extraction because several independent phase-retrieval runs are being tested. It is using only the extracted P2/c amplitudes and symmetry—no chemical template—so recurrent density maxima can distinguish a genuine general-position Mn sublattice from the inherited wolframite special positions.
+
+The first structure-factor screen rejects the inherited wolframite coordinates and also shows why unconstrained refinements looked deceptively good: their symmetry-related atoms collapse onto sub-ångström contacts. The current search adds explicit Mn–O, O–O, and cation-separation penalties and compares ordered Mn₂O₃, MnO₂, Mn₃O₄, and MnWO₄ arrangements against the same 24 strongest extracted reflection groups.
+
+The ordered-oxide solutions improve the profile but require about 19–20 wt% Mn oxide, which violates the measured 1:1 Mn:W balance by a wide margin. That points to a four-phase interpretation: the indexed family needs a W-bearing scatterer, while a separate minor Mn oxide supplies the Mn needed to balance the observed γ-WO₃. I’m testing that explicitly now—dense P2/c W-bearing phase plus the nearest thermally plausible Mn-oxide topologies—rather than forcing one phase to satisfy both intensity and mass balance.
+
+The residual cell is now well indexed, but its atom assignment is still the limiting uncertainty. I’m testing the chemically important alternative that it is a compact P2/c WO₃ polymorph—not another Mn tungstate—then I’ll compare that branch in the same full multiphase refinement and freeze the best physical replay before producing the deliverables.
+
+The compact WO₃ assignment has the right density and reflection lattice, but all symmetry-allowed site arrangements either leave W severely under-bonded (nearest six O around 2.47 Å or worse) or create O–O overlaps. I’m rejecting it on geometry rather than fit alone and returning to the W-bearing P2/c model, where I’ll try bounded coordinate starts to reproduce the residual intensities without sacrificing sensible Mn–O/W–O polyhedra.
+
+A geometry-constrained MnWO₄-like P2/c start is materially better: before any cell relaxation it lowers Rwp from 18.35% to about 12.92% and accounts for the previously unassigned low-angle family. The branch is still refining slowly; I’m preserving each stage and will reject it if the relaxed cell or coordination becomes nonphysical.
+
+The first bounded oxygen refinement did improve Rwp, but it created a 1.65 Å O–O contact, so I discarded it. The heavy-atom-only adjustment is replay-stable at Rwp ≈11.70% with no new short contacts; I’m now searching a small set of stricter octahedral coordinate starts to see whether the remaining 100-family intensity can be recovered physically.
+
+The stricter search is computationally heavier because it enforces sixfold coordination for both Mn and W. While it runs, the current defensible checkpoint remains the three-phase model with fixed coordinates; no unstable refinement has displaced it.
+
+The two additional starts confirm the same P2/c topology, but the numerical best has under-bonded Mn while the alternative over-compresses Mn–O. I’m adding bond-length targets derived from the chemically valid wolframite coordination, scaled to the indexed cell, so the final choice is based on both the profile and realistic octahedra—not the lowest Rwp in isolation.
+
+The bond-valence-aware search is still running. Its role is narrow: find one physically credible coordinate start for the already accepted indexed phase. I’m not reopening phase identity or broad reference screening, since the coherent reflection family is now assigned.
+
+I’m also checking the exact-balance alternative MnO₂ in this same indexed P2/c cell. It is chemically plausible by density and would close the Mn:W inventory with only a few weight percent, but it will be retained only if an octahedral MnO₂ geometry survives the full-profile refinement.
+
+The MnO₂ search has not displaced the checkpoint yet; these runs are exploring independent coordinate starts because unconstrained MnO₂ solutions readily create atom overlaps. I’m waiting for the geometry-constrained outcomes rather than treating a numerical minimum as structural evidence.
+
+The low-weight MnO₂ trials collapsed onto special positions and generated near-zero Mn–Mn/O–O separations, so they are invalid. I’ve tightened the geometry penalty for a final MnO₂ check; if that cannot produce a valid octahedral network, this indexed phase remains W-bearing and the Mn balance must be supplied by a separate weak oxide phase.
+
+The strict MnO₂ topology fails the diffraction test once its contacts are made physical, so I am rejecting that assignment. One final wolframite-coordinate search is enforcing the known MnO₆/WO₆ bond pattern; after that I’ll select the best physical checkpoint and proceed to the weak balance-closing oxide and final exports.
+
+The bond-valence check identifies the s200 start as the chemically consistent one (Mn²⁺/W⁶⁺); the lower-Rwp alternatives assign implausible +4-like environments to both cations. I’ve therefore frozen s200 as the accepted P2/c model and am comparing six distinct Mn-oxide closure topologies from that same checkpoint.
+
+The four-phase inventory closes almost exactly: the refined phases give Mn:W = 0.998:1, while wurtzite MnO refines to 4.52 wt%. Competing Mn₃O₄ and Mn₂O₃ topologies collapse to zero scale, and rocksalt MnO remains only 0.29 wt%; this makes the wurtzite assignment and the overall phase set strongly self-consistent. I’m now in the final refinement stage only.
+
+The accepted four-phase replay is stable at Rwp 10.77%. Minor-phase broadening tests behaved diagnostically: MnO drove to a 1 nm size and inflated its fraction to 12.4%, so that branch is rejected; the P2/c phase showed only a modest strain benefit. I’m separating size from strain once to retain only a bounded, supported term.
+
+The final bounded model is chemically and numerically stable: the P2/c phase retains Mn²⁺/W⁶⁺ bond-valence assignments, and only its isotropic microstrain is supported. I found that earlier projects excluded the outer ~0.1° at each end, so I’m doing the required final replay over every measured grid point before exporting; this avoids zero calculated values at the profile edges.
+
+Completed the full-grid GSAS-II refinement.
+
+Crystalline phase fractions:
+
+- MnWO₄ wolframite: 70.19 wt%
+- γ-WO₃: 14.76 wt%
+- Indexed P2/c MnWO₄ polymorph: 10.86 wt%
+- Wurtzite MnO: 4.19 wt%
+
+Fit: Rwp 10.65%, Rp 6.62%, GOF 6.01. The indexed MnWO₄ structure and minor MnO topology retain greater systematic uncertainty, documented in the report.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-51dca648a689/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-51dca648a689/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-51dca648a689/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-51dca648a689/workspace/fit.csv)
+- [MnWO₄ wolframite CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-51dca648a689/workspace/phase_1_mnwo4_wolframite.cif)
+- [γ-WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-51dca648a689/workspace/phase_2_gamma_wo3.cif)
+- [Indexed P2/c MnWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-51dca648a689/workspace/phase_3_mnwo4_p2c_indexed.cif)
+- [Wurtzite MnO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-51dca648a689/workspace/phase_4_mno_wurtzite.cif)
+

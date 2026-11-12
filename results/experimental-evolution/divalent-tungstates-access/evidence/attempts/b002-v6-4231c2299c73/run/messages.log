@@ -1,0 +1,64 @@
+I’ll first inspect the specimen metadata, pattern, frozen reference index, and the provided GSAS-II workflow notes. Then I’ll establish the chemically ordinary phase inventory, refine a replayable multiphase checkpoint, and only pursue residual families that remain coherently unassigned.
+
+The chemistry is the expected ZnO–WO₃ solid-state system at 700 °C, so ZnWO₄ is the ordinary product, with ZnO/WO₃ or off-stoichiometric intermediates as plausible companions. I’m now matching the measured reflection families against the frozen COD subset and checking the supplied GSAS-II interfaces before constructing any model.
+
+The dominant family is consistent with wolframite ZnWO₄, while the exact Zn–W–O references are intentionally absent from the case index. I have therefore built a chemically conservative Zn-for-Co wolframite model from an available P2/c analogue, repairing the old source’s duplicated asymmetric-unit listing. I’m fitting this first as the physical checkpoint; the remaining narrow peaks will then determine whether ZnO, WO₃, or another phase is actually required.
+
+The WO₃ family is now unambiguous: the three low-angle residuals and their higher-angle companions index together to room-temperature monoclinic WO₃, and adding it gives a stable positive scale near 10 wt % with a substantial Rwp reduction. A second coherent family remains at the wurtzite ZnO positions, including reflections near 32.05, 34.90, 56.81, 63.49, 66.91, 76.98, and 81.22°, so I’m testing ZnO against that residual next.
+
+The same-composition WO₃ references fit very closely, but the slightly lower-Rwp 1960 model contains an implausible 1.58 Å O–O contact from its coarse historical coordinates. I’m therefore selecting the 1966 neutron-derived monoclinic model, whose oxygen framework is physical (shortest O–O ≈ 2.54 Å), consistent with the instruction to prefer geometry over a marginal profile gain.
+
+The dominant intensity mismatch is not a structural failure: a targeted texture screen shows a unique, strong March–Dollase response along wolframite [111], with a physical ratio of about 0.704. The other four ordinary axes refine back to 1.00. Accepting only the supported [111] term lowers Rwp from 18.16% to 12.59% without coordinate distortion or phase collapse.
+
+The phase inventory is now stable: wolframite ZnWO₄, monoclinic WO₃, and minor wurtzite ZnO, with no coherent residual peak family left over. I’m finishing the nuisance/profile refinement from the last clean physical checkpoint, then I’ll run the required bounded polish once and export every deliverable from the exact accepted project.
+
+The clean branch prefers keeping the positive instrumental Gaussian term (`U≈14.2`) rather than pinning it at zero; it also gives the lower Rwp (11.376% versus 11.421%) and avoids a boundary solution. I’m carrying that branch forward and checking whether a final cell/zero resettling materially improves it before the mandated coordinate-polish pass.
+
+The remaining peak-position offsets are angle-dependent, which is exactly what a Bragg–Brentano specimen-height term can produce; a constant zero correction alone cannot represent it. The generator permits both effects independently, so I’m testing a bounded joint zero/height refinement and then minor-phase broadening, while keeping the accepted inventory and topology fixed.
+
+The joint calibration fit confirms severe zero/height collinearity (99.8% correlation), so those two values are not independently identifiable in one step. The physical bound puts zero at +0.25° with a near-zero height correction and changes Rwp by only 0.002%; I’m now resettling the unit cells at that physical calibration before deciding whether the specimen-height term is actually supported.
+
+The physically decomposed calibration branches replay consistently but fit worse by 0.48–2.59 Rwp points, while the current constant-offset project replays exactly. I’m therefore retaining the better-supported effective calibration (the zero/height split is not independently recoverable) and now checking whether the weak ZnO component supports its own size/strain parameters after the instrument model is fixed.
+
+ZnO does support a distinct broadening term once strain is held at the physically supported zero: an isotropic size of about 0.061 µm lowers Rwp to 11.245% and gives roughly 5.25 wt% ZnO. I’m keeping that stable solution and testing the only phase with nonzero strain (WO₃) against the three uniaxial directions allowed by the experiment model.
+
+The WO₃ [010] uniaxial branch is physical (about 2529 ppm perpendicular and 993 ppm axial, ratio 0.39) and gives the best allowed profile, though its gain over isotropic strain is modest (0.013 Rwp point). I’m retaining it provisionally and now fitting the per-phase scalar displacement parameters used by the synthetic measurement; this is important for high-angle intensity and avoids letting coordinates absorb thermal-factor error.
+
+Common isotropic displacement factors are weakly determined, but the physically constrained optima are approximately 0.0077 Å² (ZnWO₄) and the lower tested bound 0.003 Å² for WO₃ and ZnO. The raw ZnO reference’s anisotropic factors fit noise slightly better, but they are not transferable to this specimen, so I’m using the scalar model and checking the last plausible whole-specimen effect: low-angle surface roughness.
+
+Every active surface-roughness trial worsened the fit, so the specimen is best modeled without that correction. I’m doing one final bounded resettling of the instrumental width terms against the now-fixed phase profiles; this guards against correlations introduced when ZnO size and WO₃ anisotropic strain were added.
+
+The final profile loop remains stable and physical: ZnWO₄ size ≈0.0572 µm, WO₃ size ≈0.116 µm, and ZnO size ≈0.0564 µm. The instrumental terms stay inside the laboratory ranges and Rwp is now 11.157%; I’m resettling the accepted WO₃ [010] strain once, then the model is ready for the required coordinate-polish helper.
+
+The pre-polish checkpoint replays exactly at Rwp 11.1565%, has no active refinement flags or frozen variables, and passes the geometry audit (no short-contact failures). I’m now invoking the required staged polish exactly once; I’ll accept it only if its own convergence, bounds, fraction-stability, and geometry checks pass.
+
+The first branch cut Rwp to 10.485%, but many coordinates initially hit their bounds; the helper rolled those atoms back and converged only the interior coordinates before its cell/scale settle. It is continuing through the independent heavy/light and phasewise branches, which will determine whether that gain survives the physical audit.
+
+The helper completed and selected its “all coordinates” branch at Rwp 10.4848% (a 0.672-point material gain). Its bound-hit atoms were restored to their checkpoint coordinates; the surviving interior-coordinate solution converged, and all three branch orderings landed on the same final profile. I’m now independently checking the JSON audit, local geometry, fraction stability, and a zero-cycle replay before accepting it.
+
+The polished branch passes all independent checks: no audit violations, no catastrophic contacts, no frozen variables, stable fractions (≈84.11/11.09/4.80 wt%), and an exact zero-cycle replay at Rwp 10.4848%. Only physically modest Zn and W shifts survived in ZnWO₄; bound-hit oxygen/WO₃/ZnO coordinates were restored. I’m accepting `polished.gpx` as the submitted `final.gpx` and exporting all CIF/profile/result files from that exact project.
+
+All requested artifacts now exist. I’m doing the final consistency pass against the scorer’s own conventions: full-grid profile columns, fraction normalization, CIF parseability/occupancies, and agreement between each exported CIF and the corresponding phase regenerated from `final.gpx`.
+
+The scorer-format checks now pass: all three CIFs parse and pass physical screens, each matches its `final.gpx` phase including ADPs/occupancies, fractions normalize to unity, and `fit.csv` covers all 8301 points with a recognized observed/calculated profile and Rwp 10.4759%. I’m doing only the final hash/file inventory now.
+
+Completed the crystalline phase analysis:
+
+- ZnWO₄ (wolframite, P 2/c): 84.11 wt%
+- WO₃ (monoclinic, P 21/c): 11.09 wt%
+- ZnO (wurtzite, P 63 m c): 4.80 wt%
+
+Fractions are normalized over modeled crystalline material. Fresh full-grid replay gives Rwp 10.4759% and Rp 5.8888%.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v6-4231c2299c73/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v6-4231c2299c73/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v6-4231c2299c73/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v6-4231c2299c73/workspace/fit.csv)
+- [ZnWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v6-4231c2299c73/workspace/ZnWO4.cif)
+- [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v6-4231c2299c73/workspace/WO3.cif)
+- [ZnO.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v6-4231c2299c73/workspace/ZnO.cif)
+
+The ZnWO₄ topology is well supported, but its oxygen coordinates remain analogue-derived; ZnO’s minor-phase fraction also has greater systematic uncertainty than its formal ESD.
+

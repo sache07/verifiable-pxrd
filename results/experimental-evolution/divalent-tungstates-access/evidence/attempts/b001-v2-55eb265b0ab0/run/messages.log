@@ -1,0 +1,40 @@
+I’ll inspect the measurement metadata, pattern, and the provided PXRD workflow documentation, then build and verify a multiphase GSAS-II refinement. I’ll keep residual-phase trials in a common refinement state and finish with a fresh replay of the best physical model.
+
+The sample is a 700 °C ZnO + WO₃ reaction measured over 10–100° with Cu Kα₁/Kα₂ and no supplied calibration. I’m now screening the frozen reference library for Zn–W–O candidates and extracting the observed peak/residual structure before committing to phase identities.
+
+The dominant peaks identify wolframite-type ZnWO₄, while separate peak sets match monoclinic WO₃ and wurtzite ZnO. Because Zn–W–O entries are intentionally absent from the available library, I found a physically sound P2/c CoMoO₄ analogue (two substitutions, unlike the geometrically poor FeWO₄ entry) and am retaining P2/c, P‑1, scheelite, and fergusonite target-composition variants for common-state comparison.
+
+The first three-phase common fit confirms all three phases have positive, stable scales (roughly 77% ZnWO₄, 20% WO₃, 3% ZnO), but the nuisance refinement is not yet trustworthy: zero and specimen displacement became nearly singular and the profile stalled near 20% Rwp. I’m freezing that interpretation and diagnosing the residual/peak-position correlations before refining structure or reporting fractions.
+
+The [100] March–Dollase model is decisive for ZnWO₄ (Rwp fell from 20.2% to 10.7%, ratio ≈0.75); WO₃ and ZnO texture effects are much smaller. Refining the transferred P2/c coordinates and physically constrained phase-wide Uiso values brings the fit to ~8.95% Rwp. I rejected unconstrained per-atom ADPs and full WO₃ oxygen refinement because they produced negative/very large ADPs or implausibly large oxygen shifts despite a lower residual.
+
+The three-phase model is stable: wolframite ZnWO₄ dominates, with monoclinic WO₃ and wurtzite ZnO as crystalline residuals. I’m now testing the remaining nuisance/profile choices and alternative WO₃/ZnO structures in the same multiphase state, then I’ll replay and export the best physically valid project.
+
+The alternative monoclinic WO₃ reference improves the common-state fit from 8.64% to 8.21% Rwp, while orthorhombic and high-pressure models are decisively worse. A triclinic description is close but less stable. I’m checking whether the improved monoclinic coordinates and bond geometry remain physical before adopting that structure.
+
+The adopted WO₃ model has sensible W–O octahedra (1.73–2.16 Å) and no short O–O contacts. Isotropic profile refinement yields only a small, stable gain for ZnWO₄; WO₃ is effectively unchanged, and ZnO’s size parameter is not independently resolvable. I’m screening only the physically allowed uniaxial microstrain axes now, rather than adding unconstrained profile terms.
+
+The closure refinement is now at 8.10% Rwp with all phase-wide displacement parameters positive and physical. The refined crystalline fractions are converging near 77.5% ZnWO₄, 17.8% WO₃, and 4.7% ZnO. I’m doing one final coordinate-sensitivity test for WO₃; it will be retained only if the oxygen shifts and octahedral geometry remain credible.
+
+The final candidate has converged at 8.096% project Rwp with three positive, physical structures. I’ve frozen that state into `final.gpx`; the next check regenerates every reflection and the calculated profile from the saved atoms and profile parameters on the full original grid, ignoring cached calculated intensities.
+
+The independent replay passed cleanly: all 8301 points were regenerated with zero optimized parameters, the project remained unchanged, and there were no negative-background, peak-width, or displacement-tensor flags. The exported CIFs also pass the occupancy/contact screen and match the structures embedded in `final.gpx` exactly.
+
+Completed the three-phase refinement:
+
+- ZnWO₄ (wolframite, P2/c): 77.4883 wt%
+- WO₃ (monoclinic, P2₁/c): 17.8253 wt%
+- ZnO (wurtzite, P6₃mc): 4.6864 wt%
+
+Fresh full-grid replay gave Rwp = 8.0959% and Rp = 4.6994%, with no physical-profile flags. No coherent residual peak series supports a fourth crystalline phase.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-55eb265b0ab0/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-55eb265b0ab0/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-55eb265b0ab0/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-55eb265b0ab0/workspace/fit.csv)
+- [ZnWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-55eb265b0ab0/workspace/ZnWO4.cif)
+- [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-55eb265b0ab0/workspace/WO3.cif)
+- [ZnO.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-55eb265b0ab0/workspace/ZnO.cif)
+

@@ -1,0 +1,68 @@
+I’ll inspect the measurement metadata, pattern, and the provided diffraction-analysis guidance first, then identify candidate phases and build/refine a common multiphase GSAS-II model. I’ll keep residual tests inside that shared project and validate the final files with a fresh profile replay.
+
+The metadata points to the Mn–W–O system after an 800 °C WO₃ + Mn₃O₄ reaction. The supplied lab model allows target Mn tungstates, residual oxides, and off-stoichiometric intermediates, with unknown specimen displacement, profile broadening, texture, and background; I’ll account for those rather than treating unmatched peaks as phases immediately.
+
+The framework’s research-controller self-check reports that the workshop/evolution infrastructure is intentionally undeployed. That check governs launching the automated research process the prompt explicitly excludes; it does not block this direct case analysis. The local crystallography stack, frozen COD resources, DICVOL, and GSAS-II remain the relevant tools, so I’m continuing with those.
+
+A first peak-by-peak check identifies monoclinic wolframite MnWO₄ unambiguously: its reference lines require a common positive angular shift of about 0.33°, and then match the dominant 15.87, 18.86, 24.05/24.61, 30.36/30.81, 31.67, 36.58, 37.85, 41.51, and higher-angle groups. Coherent extra peaks remain (notably near 20.32, 20.88, 23.50, 29.14, and 34–35.6°), so this is not yet a defensible single-phase result.
+
+The dominant residual is ordinary monoclinic WO₃, not an exotic phase: its characteristic 23.17/23.63/24.39° triplet maps directly to the residual 23.50/23.95/24.74° group under the same specimen shift, with matching lines near 26.94, 29.14, 33.66–34.52, and 41.8–42.2°. I’m refining MnWO₄ + WO₃ together now; only the residual after that common fit will drive any prototype-transfer search.
+
+The two-phase fit confirms WO₃ at a substantial scale and drops Rwp from 25.7% to 18.3%, but it also exposes a third coherent pattern rather than noise. Its strongest unmatched lines are 20.32, 20.88, 29.14, 35.62, 47.02, and 54.89°, with a consistent high-angle continuation. I’m now testing all ordinary Mn oxides in the unchanged MnWO₄+WO₃ state and indexing that residual before considering analogue substitution.
+
+The controlled ordinary-phase tests are separating real and spurious candidates. Rocksalt MnO gives only a small improvement (~2.3 wt%), while tetragonal hausmannite Mn₃O₄ and one Pbcm Mn₃O₄ model collapse below 0.4 wt% in the same fixed state. A hexagonal MnO analogue improves Rwp by about one point and remains at ~11 wt%, so it warrants a full common refinement—but it still cannot explain the 20.3/20.9° doublet. One alternate Pbcm trial became numerically invalid and is being retained as unknown, not counted as a rejection.
+
+Residual indexing and analogue screening now point to a chemically coherent off-stoichiometric phase: Mn₃WO₆. Both Mn₃TeO₆ (R‑3) and Zn₃TeO₆ (C2/c) frameworks, after Te→W and cell adjustment, reproduce the 20.3/20.9°, 29.14°, 32.26°, 35.62°, 46–47°, and 55–57° sequences. This also explains why WO₃ coexists: for a 1:1 Mn:W charge, forming Mn₃WO₆ requires two moles of excess WO₃ per mole of Mn₃WO₆. I’ll test both symmetries, plus the strongest Mn₂WO₆ alternatives, as replacements and additions in the same project.
+
+The common-state analogue trials are running now. I’m evaluating each candidate twice: once replacing the provisional hexagonal MnO surrogate, and once adding it while retaining that phase. All background, instrument, specimen, and established-phase parameters are frozen during these tests; only the trial phase scale, cell, and physically bounded width are allowed to move.
+
+The decisive result is in: replacing the MnO surrogate with the R‑3 Mn₃WO₆ model drops Rwp from 17.18% to 9.66% on cell refinement and 7.56% with a physical phase width (0.159 µm, ~1070 ppm strain), at ~13.8 wt%. The C2/c alternative only reaches 16.15% and demands an implausibly narrow/boundary-like profile. I’m completing the remaining symmetry controls and addition tests before selecting R‑3.
+
+The remaining replacement controls are all substantially worse than R‑3: P2₁/c Mn₃WO₆ stays near 18%, P2₁2₁2₁ Mn₂WO₆ near 17.6%, and P‑31m Mn₂WO₆ near 16.6% while pushing profile terms to limits. This makes the R‑3 framework both the profile and physical winner; the run is now checking whether retaining the provisional MnO adds any independent intensity.
+
+The R‑3 addition test is worse than its replacement test (9.42% versus 7.56% Rwp), so the provisional hexagonal MnO is not an independent phase; it was borrowing intensity from Mn₃WO₆. I’ll exclude it from the final inventory and resume ordinary refinement from the saved R‑3 replacement project after the last negative controls finish.
+
+The phase inventory is now closed at three crystalline phases: MnWO₄, monoclinic WO₃, and R‑3 Mn₃WO₆. I’m resuming a conventional refinement from that saved project, constraining the sample shift and profile terms to the laboratory ranges, then refining cell/scale/background, common instrument profile, phase widths, symmetry-allowed coordinates, and isotropic displacement factors in stages.
+
+Ordinary refinement has reduced Rwp to 4.31%, and symmetry-allowed MnWO₄ coordinate recovery lowers it further to 3.52%. The common instrument fit wants U≈44.7 (slightly beyond the stated 0–40 laboratory draw), so I’ll clamp/replay that term at the allowed edge before final selection; all analytic widths remain positive.
+
+The refined fractions independently satisfy the precursor mass balance: WO₃/Mn₃WO₆ is 1.046 by weight, essentially the 1.043 expected for the required 2:1 molar pair. I also caught an unstable WO₃ oxygen-coordinate trial that had persisted despite being marked rejected; I’m restoring those oxygen sites to the last stable checkpoint, clamping U to 40, and re-refining widths before any final export.
+
+Physical screening passes MnWO₄ and R‑3 Mn₃WO₆. The initial monoclinic WO₃ reference has a 1.58 Å O–O contact and therefore only “needs adjudication”; an equivalent monoclinic WO₃ COD setting (2311041) passes the same screen and already ranked slightly better in the residual search. I’m testing that physically valid setting as a direct replacement in the otherwise frozen three-phase model.
+
+The physically valid monoclinic WO₃ replacement is successful: with all shared settings frozen, COD 2311041 lowers Rwp from 3.03% to 2.17% and stays within physical size/strain ranges. The triclinic equivalent reaches 2.26%, so the monoclinic P2₁/c model is currently preferred.
+
+The physical WO₃ setting plus ordinary full-model refinement is now at Rwp 2.06%; a W-only coordinate adjustment lowers it to 2.02% with ~0.07–0.08 Å shifts, while unconstrained WO₃ displacement factors became nonphysical and were rejected. I’ve restored the common Uiso=0.0127 and am testing only bounded specimen/texture/profile nuisances from this 2.02% state.
+
+Texture tests so far refine to March–Dollase ratios essentially equal to 1.00 and improve Rwp by at most ~0.015 percentage points, indicating no meaningful preferred orientation in MnWO₄ or Mn₃WO₆. I’m finishing the WO₃ axes and will keep texture off unless a bounded, nontrivial ratio is supported.
+
+The bounded nuisance tests support no texture or surface roughness. Two modest uniaxial strain terms are statistically supported and physically plausible—Mn₃WO₆ along [010] (axial/equatorial ≈1.94) and WO₃ along [010] (≈1.58)—while MnWO₄ remains isotropic. I’m combining only those terms with the refined polarization and reconverging the full three-phase model.
+
+The combined bounded model converged at Rwp 2.005% with 68.996 wt% MnWO₄, 15.296 wt% R‑3 Mn₃WO₆, and 15.709 wt% monoclinic WO₃. Texture and roughness remain off; all retained instrument/profile terms are within the stated ranges. I’m exporting directly from this project, physically screening the exact CIFs, and then replaying the saved project over the full original grid.
+
+The three-phase model is now refined. I’m verifying the exported CIFs against the final project, then I’ll perform the required fresh full-grid replay and generate the submitted profile, statistics, and report from that replay.
+
+All three submitted CIFs pass the geometry/occupancy screen with no flagged short contacts. I’m now replaying the saved atomic models over all 8,301 measured points; this discards any cached calculated profile and is the final selection check.
+
+The fresh replay succeeded with no profile-validity flags. It reproduces the refined fractions—MnWO₄ 68.996 wt%, Mn₃WO₆ 15.296 wt%, and WO₃ 15.709 wt%—and gives \(R_{wp}=2.0053\%\) over the complete measured grid.
+
+The submission now passes the local evaluator checks: all three phase records parse, fractions sum exactly to 1.0, each CIF matches its corresponding phase exported from `final.gpx`, and `fit.csv` covers the original grid with the replayed \(R_{wp}\). I’m doing one final artifact audit now.
+
+Completed the phase analysis and refinement.
+
+- MnWO₄, P 2/c: 68.996 wt%
+- Mn₃WO₆, R -3: 15.296 wt%
+- WO₃, P 2₁/c: 15.709 wt%
+
+Fresh full-grid GSAS-II replay: Rwp 2.0053%, Rp 1.5348%, goodness-of-fit 1.1322. All submitted CIFs passed physical screening. The analogue-derived Mn₃WO₆ coordinates carry the greatest structural uncertainty.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-484212bf16f7/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-484212bf16f7/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-484212bf16f7/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-484212bf16f7/workspace/final.gpx)
+- [phase_MnWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-484212bf16f7/workspace/phase_MnWO4.cif)
+- [phase_Mn3WO6.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-484212bf16f7/workspace/phase_Mn3WO6.cif)
+- [phase_WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-484212bf16f7/workspace/phase_WO3.cif)
+

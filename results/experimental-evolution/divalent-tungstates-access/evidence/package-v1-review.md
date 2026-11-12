@@ -1,0 +1,30 @@
+# Package v1 review
+
+Status: b002 P0 baseline complete; guidance-only v1 is ready to freeze.
+
+## Causal evidence
+
+- b001-c02 and c05 split primarily on exhaustive same-formula enumeration, hard geometry rejection and fair rollback. The same clean WO3 framework reached the floor when tested stably; failures either omitted it, retained a short-contact model, or misread a singular trial as negative evidence.
+- b001-c02 also separates candidate validity from phase closure: selecting clean WO3 did not by itself preserve the weak calcite phase.
+- b001-c04 shows that analogue substitution is already a strong solver capability when the parent is considered: three of three runs recovered hidden SrWO4 from two different scheelite relatives.
+- b001-c06 failed zero of three because candidate accounting was incomplete. Two searches made Mn-O-Te unreachable. The third built the correct R-3 parent but never executed that branch and still called it rejected.
+- A controlled replay makes that c06 diagnosis causal: identity-based phase handling, nonzero candidate initialization and wider independent cell bounds drove the correct R-3 branch to Rwp 5.359 and 14.5 wt% versus 15.46 wt% truth. The original index-based comparison had left the preceding wrong candidate active and the correct candidate at zero scale. The route works; candidate execution/accounting failed.
+- b001-c03 shows the downstream issue: once inventory is correct, correlated nuisance terms can improve or nearly preserve Rwp while moving away from the generating physics.
+- All three b002-c01 baselines reconstructed hidden major ZnWO4 through tier-2/manual wolframite transfer and retained weak ZnO plus WO3. Two recovered; none reached the floor. The provisional failure knowingly retained a short-contact WO3 model and drove profile terms near bounds, while another only restored ZnO after revisiting the final residual. This supports the existing physical-screen, closure and nuisance gates without justifying an enumeration helper.
+- The first b002-c02 baseline found the hidden Mn3WO6 composition and fraction but chose a wrong C2/c framework. Its screen had enumerated the intended surviving R-3 Cd3TeO6 route, then a peak-position rank and space-group-15 precommitment prevented that distinct family from being constructed. Candidate breadth without topology/symmetry diversity is therefore insufficient.
+- The second b002-c02 baseline screened only W-containing frameworks plus Mn-O, making every Te-derived R-3 parent unreachable. It generated but did not fit alternative Mn3WO6 models, selected wrong P212121 Mn2WO6, and added MnO to close the Mn/W balance. This independently supports cross-chemistry enumeration and explicit unknown status for untested models; chemistry and mass balance cannot validate an untested topology.
+- The final b002-c02 baseline restricted candidates to element sets contained in Mn-W-O and refined six decoy phases, including an incomplete Pnnm W-O framework with no defensible cation occupancy. It never constructed Mn3WO6 or any R-3 parent. Harder-secondary recovery is 0/3, and each failure maps directly to v1's enumeration, candidate-accounting, diversity, closure, or physical-screen gates.
+
+## Intervention
+
+The guidance imposes four gates in causal order: broad candidate enumeration and construction; explicit tested/unknown accounting under a common fit state; residual-based phase closure; and conservative staged nuisance refinement with rollback. The c06 replay adds an execution check that only the intended identity is active with a positive starting scale, avoiding silent positional-index errors. The first b002-c02 outcome adds topology- and symmetry-diversity to the compared shortlist so an isolated metric or peak-position score cannot silently discard a distinct framework. It deliberately avoids case formulas, record IDs, hidden effects and generator-derived numerical thresholds.
+
+No helper is included. Solvers already demonstrated the required searches and model construction in individual runs, so guidance is the smallest intervention. Although b002 repeatedly searched too narrowly, the research-only enumerator produces too many unrelated same-stoichiometry structures and its residual ranker dropped the intended harder-secondary route; shipping either would add an unsafe selection surface.
+
+As a tooling check, `investigations/prototype_routes.py` enumerated every composition-preserving cation relabelling. It retrieves the b001 Mn3TeO6 route, but on the harder withheld libraries the intended Cd3TeO6 and NbInO4 parents rank only 189th and 205th by chemistry metadata because many unrelated topologies share the same stoichiometry. An unranked helper would create attention cost and false leads; any later helper must combine enumeration with residual/topology evidence.
+
+`rank_prototype_routes.py` then tested that requirement on a saved two-phase c06 residual. Approximate target-composition powder fingerprints moved Cd3TeO6 from 189th to 3rd and Mn3TeO6 to 4th among 294 scored routes. On the public b002-c01 pattern, where hidden ZnWO4 is the 82 wt% major phase, the two NbInO4 mappings moved from 205th to 13th/14th. In contrast, Cd3TeO6 did not enter the top 40 against raw b002-c02 because MnWO4 and WO3 dominate; a clean base-phase subtraction is necessary. A false Ba3WO6-derived route also remained first for c06. The tool is therefore a shortlist only after phase-specific residual isolation, feeding common-state Rietveld and physical checks. Keep it outside v1 until b002 and the guidance-only comparison establish whether its implementation and attention cost are warranted.
+
+## Expected changes and risks
+
+Expected gains are lower variance on candidate selection, recovery of hidden intermediates, and fewer invalid-structure submissions. The main risk is attention cost or excessive candidate expansion. The ordering therefore asks for broad enumeration only before fine refinement and uses chemistry/topology plus a shared stable fit state to shortlist candidates.

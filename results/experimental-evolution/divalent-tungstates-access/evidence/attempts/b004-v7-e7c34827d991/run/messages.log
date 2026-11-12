@@ -1,0 +1,54 @@
+I’ll inspect the specimen metadata, pattern, and the frozen analysis guidance first, then identify candidate phases and build/refine a GSAS-II model. I’ll preserve the supplied measurement constraints and only invoke the required one-shot polish after the model is terminal.
+
+The specimen is a fired 1:1 Ba–W oxide/carbonate mixture (800 °C), measured with Cu Kα1/Kα2 over 10–100°. The main chemical possibilities are BaWO₄ plus residual or intermediate Ba/W oxides/carbonate, but I’ll let the reflection families—not stoichiometry alone—set the phase count.
+
+Two reflection families are already clear: rhombohedral Ba₃W₂O₉ accounts for the broad dominant peaks (for example 16.42, 17.72, 26.20, 30.78, 40.75, 42.96°), while monoclinic WO₃ accounts for the 23.35/23.82/24.61° triplet and its higher-angle family. A narrower third family near 19.69, 24.13, 34.81, 42.23 and 45.07° is consistent with orthorhombic BaCO₃; I’ll test whether that contribution remains positive and stable through refinement.
+
+The three-phase model is physically stable so far. Joint zero/displacement refinement was rejected because the two terms were 99.8% correlated and slightly worsened Rwp; I retained specimen displacement only, within the supplied ±800 µm range. Heavy-atom shifts that hit the ±0.10 Å coordinate window were also rolled back; only interior, converged heavy-site adjustments were kept. Oxygen shifts are not yet supportable at the current profile resolution and remain at their reference positions pending the mandated bounded polish.
+
+The remaining large residuals are intensity, not missing peaks. The Ba₃W₂O₉ family strongly supports [110] March–Dollase texture (Rwp 8.97→5.25%, stable and interior); WO₃ supports a weaker [111] term (5.25→5.06%). I also found that the initial 1960 WO₃ reference predicts the 23.35/23.82/24.61° triplet less well than the available 1966 neutron parent, so I’m now developing that second physical start to the same checkpoint before selecting the WO₃ basin.
+
+The 1966 parent is being refined under the same bounds and stage order. Its untextured checkpoint already fits better than the 1960 parent at the corresponding cell stage (Rwp 15.95% vs 16.44%), while the same BaCO₃ carbon-site boundary behavior recurs—evidence that the rollback rule is working consistently rather than favoring one WO₃ start.
+
+The symmetry-diverse parent comparison is now decisive: the 1966 neutron monoclinic WO₃ model gives Rwp ≈3.74% after the same development, versus ≈5.0% for the 1960 parent. I’ve retained that physical basin with Ba₃W₂O₉ and minor BaCO₃; next I’m testing only bounded profile/specimen terms that could explain residuals on those accepted reflections, before the single required polish run.
+
+The accepted branch is numerically stable and all three phase scales remain positive (about 72.7/22.7/4.6 wt%). The largest covariance is between size and strain for the two broader phases, so I’m explicitly checking anisotropic strain and the remaining instrument terms rather than mistaking center/wing residuals for another compound.
+
+Two instrument checks separated cleanly. Polarization is not supportable: it is 97.9% correlated with Ba₃W₂O₉ Uiso and drives every phase Uiso to the 0.003 Å² lower bound, so that branch is rolled back. SH/L converges reproducibly at 0.02829, stays inside 0.005–0.10, has no frozen variables, and lowers Rwp to 3.54%; I’m carrying that branch into the phase-profile comparisons.
+
+The strain-axis comparisons do not support extra anisotropy. The apparent best axes change Rwp by only ~0.013 percentage point, while axial/equatorial differences are smaller than their uncertainties (for example BaCO₃ 835±246 vs 794±203 ppm); WO₃ gives essentially the same numerical improvement for incompatible axes. I’m retaining isotropic strain and moving to the final minor-phase texture check from a no-change settled control.
+
+BaCO₃ does show a small but reproducible preferred-orientation signal. The [001] branch is best (MD 0.9638±0.0066; Rwp 3.516%), ahead of the equally developed [110] branch (1.0425±0.0106; Rwp 3.518%) and the other axes; I’ve accepted [001]. I’m now checking whether the correlated isotropic strain terms remain independently necessary before freezing the terminal model.
+
+The correlated strain terms are still independently required: removing Ba₃W₂O₉ or WO₃ strain raises Rwp to 4.37% or 4.05%, and even the 4–5 wt% BaCO₃ strain raises converged χ² by about 196 when removed. Four bounded surface-roughness starts all ran to A/B limits, became singular or froze Uiso, so roughness is explicitly discarded. The pre-polish model is now physically closed.
+
+The accepted checkpoint replays at Rwp 3.5157% with no frozen variables (max shift/esd 0.026). Its exported pre-polish structures are chemically physical: shortest W–O ≈1.66 Å, carbonate C–O ≈1.27 Å, and Ba₃W₂O₉ W–O ≈1.89 Å. I’m saving this terminal checkpoint as `final.gpx` and will now make the single mandated bounded-polish invocation; after that I will only audit and export.
+
+The one bounded polish run completed and selected its “all-coordinate” physical branch: Rwp 2.91091%, with converged final settling (max shift/esd 0.030) and fractions about 72.58/22.58/4.84 wt%. I’m reviewing the audit’s contact/contraction and fraction-stability checks now; if they pass, I’ll adopt `polished.gpx` unchanged and export every deliverable from it.
+
+The polish audit passes: no catastrophic contacts, no pair contraction beyond 0.18 Å, no phase-fraction collapse, no frozen variables in the selected endpoint, and all three independently developed polish routes converge to the same structure and fractions. Replay is exact against all 8,301 input points, with stored and recomputed Rwp both 2.910908%. I’m adopting that project byte-for-byte as `final.gpx` and exporting from it only.
+
+The final exports are written. I’m doing the last consistency pass now: CIF parsing and symmetry, exact fraction normalization, full-grid `fit.csv` reproduction, and byte-hash confirmation that exporting did not alter `final.gpx`.
+
+Completed with a three-phase crystalline model:
+
+| Phase | Weight fraction |
+|---|---:|
+| Ba₃W₂O₉, R−3c | 72.5777 wt% |
+| WO₃, P2₁/c | 22.5836 wt% |
+| BaCO₃, Pmcn | 4.8386 wt% |
+
+Final fit: Rwp 2.91091%, Rp 2.21885%, GOF 1.2673. A fresh GSAS-II replay passed without profile or geometry flags.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-e7c34827d991/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-e7c34827d991/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-e7c34827d991/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-e7c34827d991/workspace/final.gpx)
+- [Ba₃W₂O₉ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-e7c34827d991/workspace/phase_Ba3W2O9.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-e7c34827d991/workspace/phase_WO3.cif)
+- [BaCO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-e7c34827d991/workspace/phase_BaCO3.cif)
+
+Fractions are normalized over modeled crystalline phases; amorphous content is not determined.
+

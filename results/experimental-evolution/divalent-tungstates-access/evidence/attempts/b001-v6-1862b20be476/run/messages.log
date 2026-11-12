@@ -1,0 +1,44 @@
+I’ll start by reading the specimen metadata, pattern, and the frozen workflow/tool notes, then identify candidate phases from the reference index. I’ll preserve a replayable GSAS-II checkpoint before any optional polishing and keep all exported deliverables tied to the exact submitted project.
+
+The chemistry narrows the ordinary inventory to Cu–W–O products plus residual CuO/WO₃, but I won’t assume a single CuWO₄ phase. I’m now extracting the observed peak families and querying the frozen COD index for exact Cu/W/O compositions so candidates can be tested by whole-pattern fits rather than peak-by-peak guesswork.
+
+The first three-phase checkpoint is already chemically coherent: triclinic CuWO₄ is dominant, monoclinic WO₃ is substantial, and CuO refines to a small positive fraction. The line families sharpen markedly after calibration and cell refinement; I’m continuing profile/specimen refinement, then I’ll test same-composition references and phase omissions against this checkpoint.
+
+A coherent missing family is now clear. The strongest residuals at 15.18°, 19.80°, 32.50°, 33.78°, 49.7°, and 57.6° match cubic Cu₃WO₆ after the same specimen displacement; this is broad family support, not a one-peak improvement. It also explains why a tiny CuO component had collapsed to an unphysical crystallite size. I’m replacing that spurious branch with Cu₃WO₆ and will only reconsider CuO if a distinct residual family remains.
+
+All remaining large residuals now sit on reflections of the four accepted phases, so the inventory is closed: CuWO₄, Cu₃WO₆, WO₃, and CuO. I’m doing the required same-composition reference checks next—especially the closely related monoclinic WO₃ entries—before investing in profile, texture, and coordinate refinement.
+
+The four-phase checkpoint reaches Rwp ≈13.1% before line-shape refinement. A simultaneous profile fit dropped correlated size terms and worsened when U was added, so I rejected that numerical branch. I’m now refining phase strain/size and common instrument terms in small replayable blocks, accepting only improvements; this keeps “numerical failure” separate from scientific phase rejection.
+
+The stable isotropic profile is now converged at Rwp ≈9.08% with positive scales and sensible broadening for the three major phases; CuO crystallite size is only a lower-resolution limit, so that size is not reliably determined. The remaining mismatch is mostly intensity, including systematic high-angle overprediction, so I’m testing phase-common isotropic displacement factors, surface roughness, and polarization before any texture or coordinate branch.
+
+Texture tests gave only negligible gains with ratios essentially 1; I rejected them. The cubic Cu₃WO₆ texture branch failed numerically, which remains unknown rather than evidence against texture, but its residuals do not demand a texture term. I’m now checking the supported uniaxial microstrain axes; after that, the inventory/profile model will be frozen for the one bounded coordinate polish requested.
+
+The complete pre-polish checkpoint is saved as `final.gpx`: Rwp ≈4.12%, four positive phases, positive background, converged cells/calibration, phase-common Uiso, surface roughness, polarization, and supported profile terms. I’m now running the requested bounded coordinate polish exactly once; I’ll accept it only if its geometry/fraction audit passes, then re-export everything from the selected project.
+
+The polished branch passed the geometry and phase-fraction audit and is now the submitted `final.gpx`. I’m doing the final replay/consistency checks, then I’ll write the machine-readable result and concise uncertainty report from that exact project.
+
+The independent native replay succeeded with no profile-review flags: it regenerated the four atomic phases from `final.gpx`, reproduced the fractions exactly, and gave \(R_\mathrm{wp}=2.7827\%\) over all 8,301 measured points. I’m recording those exact replay-consistent values and the one meaningful caveat: the minor CuO distortion is not uniquely resolvable between very close monoclinic descriptions.
+
+Completed the four-phase Rietveld analysis:
+
+- CuWO₄ (`P -1`): 64.208 wt%
+- WO₃ (`P 21/c`): 20.069 wt%
+- Cu₃WO₆ (`P a -3`): 13.436 wt%
+- CuO (`C 2/c`): 2.287 wt%
+
+Final fit: \(R_\mathrm{wp}=2.7827\%\), \(R_\mathrm{p}=2.1479\%\), GOF = 1.7247. Independent GSAS-II replay reproduced the fit and fractions with no profile-audit flags.
+
+Deliverables:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-1862b20be476/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-1862b20be476/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-1862b20be476/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-1862b20be476/workspace/final.gpx)
+- [CuWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-1862b20be476/workspace/phase_CuWO4.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-1862b20be476/workspace/phase_WO3.cif)
+- [Cu3WO6 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-1862b20be476/workspace/phase_Cu3WO6.cif)
+- [CuO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-1862b20be476/workspace/phase_CuO.cif)
+
+The principal remaining ambiguity is that the minor CuO component’s `C 2/c` and `Cc` descriptions cannot be distinguished reliably from this powder pattern alone.
+

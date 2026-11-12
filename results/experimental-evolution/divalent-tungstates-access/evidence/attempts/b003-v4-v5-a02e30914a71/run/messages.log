@@ -1,0 +1,42 @@
+I’ll inspect the specimen metadata, pattern, and the frozen analysis guidance first, then build and refine a multiphase GSAS-II model. I’ll checkpoint the first physically complete fit before testing any ambiguous topology branches.
+
+The chemistry points first to MnWO₄, but the raw scan may contain residual Mn₃O₄/WO₃ or an off-stoichiometric manganese tungstate. I’m now extracting the peak families and querying only the frozen COD entries in the Mn–W–O / precursor systems, keeping distinct structure types rather than duplicate records.
+
+Three coherent families are now evident: wolframite MnWO₄, rhombohedral Mn₃WO₆, and residual WO₃. The Mn₃WO₆ + WO₃ pairing is also chemically meaningful: in a 1:2 molar pairing it restores the starting 1:1 Mn:W balance. I’m comparing the physically relevant monoclinic/orthorhombic WO₃ topologies in the same three-phase fit rather than choosing from the strongest low-angle triplet alone.
+
+The first complete three-phase checkpoint already fits all major peak families and gives provisional crystalline fractions near 67% MnWO₄, 12% Mn₃WO₆, and 21% WO₃. The current Rwp is still profile-limited (~13.8%) before crystallite-size/microstrain relaxation; the apparent zero/height parameters are nearly perfectly correlated, so I’ll retain specimen displacement as the physically interpretable offset and avoid reporting a spurious zero correction.
+
+The physically bounded checkpoint settles at Rwp 6.64% with all three phase scales stable. I’ve now frozen that replay and am running the orthorhombic and triclinic WO₃ alternatives through the identical stages; this tests whether the monoclinic assignment is genuinely selected by the full profile, not just by chemistry or one peak cluster.
+
+The topology comparison is decisive enough physically: monoclinic WO₃ gives Rwp 6.64%, triclinic 6.77%, and orthorhombic 8.15% under the same constrained model. The triclinic gain is absent—it adds symmetry freedom but fits worse—and room-temperature monoclinic WO₃ is the physical choice. I’m now checking whether the remaining residual maxima are intensity/line-shape errors on accepted reflections or a coherent fourth phase before refining atomic coordinates.
+
+A geometry screen exposed an important issue before submission: the 1960 monoclinic WO₃ record used for the first branch has an implausible 1.58 Å O–O contact. I’m therefore rejecting that coordinate model despite its Rwp lead and substituting the later neutron-derived monoclinic parent in the same topology; this is exactly the case where profile agreement alone would select a nonphysical structure.
+
+The replacement neutron WO₃ model remains physical after bounded heavy-atom refinement (shortest W–O 1.68 Å; shortest O–O 2.53 Å) and reaches Rwp 6.53%. I’m keeping that checkpoint as the incumbent and testing only small, symmetry-preserving oxygen shifts next; any gain that creates short contacts will be rolled back.
+
+Two texture terms are strongly supported and physically bounded: MnWO₄ March–Dollase [111] ≈1.15 and WO₃ [010] ≈1.31. Together they lower the replayed Rwp from about 6.3% to 3.11%; alternative axes are materially worse. I’m testing whether the remaining mismatch warrants one final Mn₃WO₆ texture/anisotropic-width term, otherwise I’ll stop adding phase-specific complexity.
+
+The phase inventory is closed as MnWO₄, Mn₃WO₆, and residual WO₃. I’m checking the last displacement-parameter branches now, then I’ll replay the best physical model into the final GSAS-II project and export all requested artifacts from that exact checkpoint.
+
+The ADP trials changed Rwp by less than 0.001 percentage point and did not add defensible information, so I’m rejecting them. The accepted model keeps literature displacement parameters and only the supported MnWO₄ [010] strain anisotropy plus the two clear preferred-orientation corrections.
+
+The final replay is stable: three successive refinements hold at Rwp 2.70293% with no frozen or clipped active variables. I’m validating the exported CIF geometry and checking the CSV/project numerically before writing the concise evidence report and machine-readable result.
+
+Completed the three-phase refinement:
+
+- MnWO₄: 63.10 wt%
+- Mn₃WO₆: 18.50 wt%
+- WO₃: 18.40 wt%
+
+Final fit: Rwp 2.7029%, Rp 1.9590%. Fractions are normalized over crystalline phases; realistic systematic uncertainty is about ±1–2 wt%.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-a02e30914a71/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-a02e30914a71/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-a02e30914a71/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-a02e30914a71/workspace/final.gpx)
+- [MnWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-a02e30914a71/workspace/MnWO4.cif)
+- [Mn3WO6.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-a02e30914a71/workspace/Mn3WO6.cif)
+- [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-a02e30914a71/workspace/WO3.cif)
+

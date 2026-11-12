@@ -1,0 +1,58 @@
+I’ll first inspect the specimen metadata, pattern, frozen reference index, and the provided refinement workflow. Then I’ll identify coherent peak families, build/refine candidate phases in GSAS-II, verify replay/geometry, and invoke the bounded polish exactly once only after the model is terminal.
+
+The specimen is a Cu Kα Bragg–Brentano scan from WO₃ + ZnO fired at 700 °C. I’m now narrowing the frozen library to Zn–W–O and precursor/decomposition candidates, while independently extracting the observed peak families so that phase selection is driven by the pattern rather than formula expectation alone.
+
+The dominant family is unambiguously wolframite-type ZnWO₄: its low-angle sequence (≈15.78, 19.21, 24.11/24.79, 30.76/30.98°) and the dense 54° and 64–66° multiplets match a P2/c wolframite parent. The exact Zn–W–O composition is absent from the frozen index, so I’m preserving multiple analogue starts (including CoMoO₄-II and ScNbO₄) plus symmetry-diverse ZnMoO₄/scheelite controls, then developing them under the same cell/profile schedule before choosing a basin. Residual precursor phases will be tested only against coherent leftover families.
+
+The symmetry-diverse scheelite control remains poor even after the same bounded development (Rwp ≈53.6%, with several profile terms forced to limits), so that topology is rejected. The remaining analogue refinements are still running; I’m waiting for their equally developed checkpoints before selecting the wolframite start.
+
+Both independent P2/c wolframite starts converge to essentially the same metric cell (about 4.706 × 5.741 × 4.938 Å, β≈90.62°), while the FeNbO₄-basis control and scheelite model remain much worse. The ScNbO₄-derived coordinate basin currently gives the best one-phase checkpoint, but the profile is visibly incomplete and several terms are compensating for missing intensity; I’m withholding final basin selection until secondary families are modeled and the physical geometry is compared.
+
+The coherent residual families identify two ordinary residual precursors: monoclinic WO₃ (23.4/24.0/26.97/29.23/33.59/34.49/42.19/56.19°) and wurtzite ZnO (32.06/34.91/36.69/47.93/56.80/63.46/68.25/69.22/76.97°). I found and corrected a stale-wrapper issue in the first multiphase screening script; the corrected three-phase refinement is now progressing through cells, calibration, and bounded profile terms.
+
+With identical cells, calibration, backgrounds, and secondary phases, the two physical wolframite starts are essentially tied before coordinate work (Rwp 35.308% vs 35.329%). I’m now applying the same bounded heavy-atom and oxygen-coordinate sequence to both. The earlier ScNb-derived branch pushed its Zn coordinate against the 0.10 Å adaptation window, so boundary behavior and geometry—not a tiny early Rwp difference—will decide the retained basin.
+
+The retained physical basin is the CoMoO₄-II-derived wolframite model: its heavy-atom refinement stays interior and matches known wolframite geometry, whereas the ScNbO₄-derived Zn coordinate runs to the adaptation bound. The dominant phase needs very small coherent domains (~0.047 µm) plus ~2065 ppm isotropic strain; both are stable on replayed refinement. Trial minor-phase broadening and the initial joint instrument fit ran to laboratory limits, so those compensating branches are being discarded while I re-estimate the common instrument profile from the stabilized dominant-phase model.
+
+The three-phase model is chemically and diffraction-wise closed (ZnWO₄, monoclinic WO₃, and wurtzite ZnO). I’m now resolving the remaining reflection-intensity mismatch—chiefly preferred orientation of ZnWO₄—before the one permitted final polish and exact-project exports.
+
+The allowed March–Dollase axes were screened on equal checkpoints. Four axes give only marginal gains; [111] drives to the permitted 0.70 limit, so I’m rejecting that bound-pinned branch. This points back to structural intensities—especially oxygen positions—rather than a defensible texture correction.
+
+The two analogue basins are now informative: the ScNbO₄-derived framework fits better only by distorting Zn–O to 1.72 Å and W–O to 2.50 Å, so that numerical minimum is not physically acceptable. I’m repeating the comparison with identical, tight 0.10 Å coordinate neighborhoods from each pristine physical start; this prevents structural parameters from absorbing unresolved profile effects.
+
+The major cell/zero recalibration materially improved the fit. ZnWO₄ and WO₃ cells now replay stably, but the weak ZnO cell branch becomes unstable on repetition (its \(c\) axis leaves the allowed reference-mismatch range while scale doubles), so I’m rolling that cell refinement back and retaining ZnO’s physical reference-derived cell with an explicitly larger fraction uncertainty.
+
+Profile terms are now physically closed: ZnWO₄ and WO₃ sizes are interior and stable; ZnO broadening cannot be separated from its weak scale (both size and strain run to bounds), so those terms are rolled back and its fraction will be flagged as less certain. Minor-phase texture is supported only for WO₃ along [010]; ZnO texture is indistinguishable from random. I’m doing the final bounded coordinate-support checks before freezing the terminal project.
+
+The terminal pre-polish checkpoint is now replay-stable: 87.23 wt% ZnWO₄, 10.07 wt% monoclinic WO₃, and 2.70 wt% ZnO, with no frozen variables. The ScNbO₄-derived wolframite basin remains decisively better than the equally developed CoMoO₄-derived basin (Rwp 19.88% versus 21.57%, with the latter’s texture pinned at its bound). I’m freezing this checkpoint and invoking the required bounded polish exactly once; after that I’ll only audit and export.
+
+The bounded polish is still evaluating its predefined coordinate branches. Several low-Rwp excursions are being rejected internally because they freeze coordinates or drive the weak ZnO cell to a bound; I’m waiting for its audited branch selection rather than intervening.
+
+The polish audit selected the original terminal baseline; every coordinate-improved branch either failed convergence, froze bounded variables, or drove ZnO’s cell to a limit. I’m accepting that physical branch and will now perform only read-only replay/geometry checks and exact-project exports.
+
+The polished project is now locked. I’m validating its replay and hash integrity, then I’ll export the phase CIFs and assemble the exact-project deliverables.
+
+Replay succeeded from freshly regenerated GSAS-II structure factors: the project stayed byte-for-byte unchanged, all three phase scales are positive, and no profile-physics flags were raised. I’m checking the exported structures for close contacts before packaging them.
+
+The phase inventory is closed: all significant residual maxima fall on accepted ZnWO₄, WO₃, or ZnO reflection families. The remaining mismatch is chiefly peak-intensity/profile error, so I’m documenting the structural and quantitative limits rather than adding an unsupported phase.
+
+Completed the three-phase refinement:
+
+| Phase | Weight fraction |
+|---|---:|
+| Wolframite ZnWO₄ | 0.872319 |
+| Monoclinic WO₃ | 0.100680 |
+| Wurtzite ZnO | 0.027001 |
+
+Fresh GSAS-II replay gives Rwp = 19.8826%, Rp = 15.1178%, and GOF = 7.5184. No coherent unassigned reflection family remains. ZnO quantification is semi-quantitative, and the detailed WO₃ oxygen geometry is not reliably determined; fractions exclude amorphous material.
+
+Deliverables:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-e7b9d70e5fdb/workspace/final.gpx)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-e7b9d70e5fdb/workspace/result.json)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-e7b9d70e5fdb/workspace/fit.csv)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-e7b9d70e5fdb/workspace/report.md)
+- [ZnWO4_wolframite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-e7b9d70e5fdb/workspace/ZnWO4_wolframite.cif)
+- [WO3_monoclinic.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-e7b9d70e5fdb/workspace/WO3_monoclinic.cif)
+- [ZnO_wurtzite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-e7b9d70e5fdb/workspace/ZnO_wurtzite.cif)
+

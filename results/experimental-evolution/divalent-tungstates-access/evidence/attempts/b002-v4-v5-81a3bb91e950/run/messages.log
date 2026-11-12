@@ -1,0 +1,40 @@
+I’ll inspect the specimen metadata, pattern, and frozen reference index first, then build the smallest chemically balanced multiphase model. I’ll preserve a replayable GSAS-II checkpoint as soon as all coherent peak families are assigned, and only then refine coordinates/profile terms.
+
+The chemistry is a 1:1 Mn:W charge fired at 800 °C, so MnWO₄ is the first mass-balance candidate, with Mn oxides/WO₃ and Mn-rich tungstates as plausible incomplete-reaction products. I’m now separating observed peak families and querying only the Mn–W–O, Mn–O, and W–O portions of the frozen index.
+
+The apparent “anisotropic broadening” is actually a coherent residual family. Its strongest members at 26.56, 28.60, 33.23/33.52/34.12, 41.90, 50.72, 54–56, and 59.32° match monoclinic WO₃; a separate 20.39° peak and several overlaps may indicate residual Mn₃O₄. I’m rolling back the unphysical profile branch and comparing exact-composition WO₃ and Mn₃O₄ topologies with bounded, identical refinement stages.
+
+The precursor-only oxides do not survive a fixed-cell scale test: tetragonal Mn₃O₄ collapses to ~0.02 wt%, Mn₂O₃ stays below ~0.7 wt%, and their Rwp changes are negligible. The remaining family instead matches a balanced Mn-rich tungstate: a corundum-related Mn₃WO₆ analogue predicts 20.35, 23.07, 31.80, 47.15, 51.70, 54.52, 55.30, and 59.32°, all observed. I’m now carrying Mn₂WO₆ and Mn₃WO₆ topology branches through identical cell and coordinate relaxation before selecting the physical model.
+
+Topology screening now favors a physical C2/c Mn₃WO₆-type minority model alongside wolframite MnWO₄ and monoclinic WO₃. I rejected unconstrained coordinate branches that produced sub-ångström bonds; I’m refining from the saved physical checkpoint and will only retain bounded profile/structural improvements that preserve sensible geometry.
+
+The saved C2/c checkpoint was not fully converged: repeated scale/cell cycles are still moving its cell modestly and increasing its supported fraction, while the exact MnWO₄/WO₃ cells remain stable. I’m letting matched branches converge before judging background order so that this drift is not mistaken for a background improvement.
+
+The MnWO₄ oxygen adjustment stayed chemically sensible (Mn–O 2.05–2.19 Å; W–O 1.87–2.13 Å), so it is provisionally acceptable. Its branch also exposed continued movement of the weak C2/c cell; I’m freezing coordinates and testing whether that minority cell reaches a stable, still-parent-like minimum before accepting the gain.
+
+Phase-specific broadening is strongly supported: MnWO₄ refines to about 350 ppm strain, while WO₃ can be described either by ~85 nm domains or high (~0.75%) microstrain. I’m testing the combined model; I’ll keep both terms only if each remains finite and the fit improvement is material rather than a size/strain tradeoff.
+
+The accepted broadening model is now stable and physically interpretable: MnWO₄ has low strain (~300 ppm), WO₃ is strongly broadened (~0.77% isotropic strain), and the C2/c phase has ~45 nm coherent domains. Texture collapsed to unity and surface roughness was unstable, so neither is retained. I’m making the final background-order comparison with all structural/profile terms fixed.
+
+One topology check remains before I lock the result: the R3 Ni₃TeO₆-type Mn₃WO₆ branch was the only close physical competitor to C2/c. I’m replaying it with the same refined background and phase-broadening treatment; this directly tests whether C2/c’s lead survives comparable relaxation, as opposed to relying on the earlier coarse Rwp ranking.
+
+The same-treatment replay resolves the topology ambiguity: the R3 branch finishes at Rwp 14.92% with only ~4 wt% support, versus 8.09% and ~20 wt% for physical C2/c. The C2/c inventory also closes the measured precursor balance (Mn:W = 1.016), so I’m locking that checkpoint and generating the requested deliverables from it.
+
+Completed the three-phase refinement:
+
+- MnWO₄ wolframite: 60.13 wt.%
+- Monoclinic WO₃: 19.76 wt.%
+- C2/c Mn₃WO₆ model: 20.11 wt.%
+
+Fit: Rwp 8.09%, Rp 5.51%, GOF 4.07. The Mn₃WO₆ structure remains provisional; fractions are normalized over crystalline phases only.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-81a3bb91e950/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-81a3bb91e950/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-81a3bb91e950/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-81a3bb91e950/workspace/final.gpx)
+- [MnWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-81a3bb91e950/workspace/phase_MnWO4.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-81a3bb91e950/workspace/phase_WO3.cif)
+- [Mn3WO6 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-81a3bb91e950/workspace/phase_Mn3WO6_C2c.cif)
+

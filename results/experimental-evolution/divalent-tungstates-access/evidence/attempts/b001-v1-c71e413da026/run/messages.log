@@ -1,0 +1,41 @@
+I’ll first inspect the metadata, diffraction range, and the supplied analysis framework, then build a candidate ledger before refining anything. I’ll keep the final model tied to a replayable GSAS-II project and validate the exported CIFs/profile against it.
+
+The chemistry points first to CaWO₄ plus possible residual WO₃/CaCO₃, but I’m treating that only as a hypothesis. The scan has a high, decaying background and unknown displacement/profile, so I’m now extracting peak families and querying every relevant Ca–W–O and precursor structure in the frozen COD before nominating phases.
+
+Peak-family matching has now falsified the obvious alternatives: the broad dominant family is ambient scheelite CaWO₄, while the sharp triplet near 22.76/23.18/23.98° and its higher-angle companions match monoclinic WO₃. High-pressure fergusonite CaWO₄, Ca₃WO₆, Ca-rich tungsten bronze, CaCO₃, and CaO each predict strong absent peaks. I’m moving into controlled GSAS-II branches to distinguish the closely related monoclinic/triclinic WO₃ models and quantify the phases.
+
+The first two-phase refinement drops Rwp from 11.5% (scheelite alone) to 4.2% and gives roughly 85% CaWO₄ / 15% WO₃, so the sharp family is a stable positive phase rather than background. I’m now replaying a symmetry-diverse WO₃ shortlist under the same 12-term background, calibration, cell, and isotropic profile settings; branches that fail or hit invalid cells are being kept “unknown,” not counted as rejections.
+
+The best stable WO₃ model is now the ambient monoclinic Loopstra/Boldrini structure (COD 2311041) after a unimodular basis change; it reaches Rwp 3.84% with only modest cell adjustment. The lower-symmetry triclinic model gains little and only by shearing its published cell toward monoclinic metrics, so I’m retaining it as a rejected decoy rather than choosing by Rwp alone. Limited coordinate refinement has brought the simple model to 3.40%; I’m checking whether that gain is actually roughness, texture, or anisotropic broadening before accepting any extra term.
+
+A coherent residual family remains, and it is chemically meaningful: positive residuals at about 29.09, 35.67, 39.17, 42.81, 47.2–48.2, 57.0, and 64.39° all map to displaced calcite CaCO₃ reflections. I’m reopening the inventory and testing calcite against aragonite/vaterite, CaO, Ca₃WO₆, and the Ca-rich tungsten bronze from the same stable project; the two-phase fractions are therefore provisional.
+
+Calcite closes the remaining peak family with a stable ~6 wt% contribution; I’m now regularizing its structural parameters and checking that this third phase survives replay and physical validation before exporting the deliverables.
+
+The calcite oxygen coordinate gives a real but weak intensity improvement; its unconstrained shift exceeds the laboratory’s allowed reference mismatch, so I’m testing a capped coordinate model and simpler line-broadening alternatives rather than accepting that overfit.
+
+The finalized three-phase model now replays cleanly from `final.gpx` with fresh reflection generation: Rwp is 3.2002%, goodness-of-fit 1.022, and the evaluator-style replay raises no physical/profile flags. I’m completing the structural geometry checks and documenting the candidate ledger and uncertainty.
+
+One last closure check is testing monoclinic WO3 texture in the completed three-phase project; it was the only phase-specific nuisance not yet screened in that final inventory. The submitted simple model remains the rollback unless a stable, material improvement appears.
+
+Completed the three-phase refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| CaWO₄ scheelite, I4₁/a | 80.74 wt% |
+| Monoclinic WO₃, P2₁/n | 13.86 wt% |
+| CaCO₃ calcite, R-3c | 5.40 wt% |
+
+Final replay: Rwp 3.2002%, Rp 2.4708%, goodness-of-fit 1.0218, with no profile or physical-screen flags.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-c71e413da026/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-c71e413da026/workspace/report.md)
+- [candidate_ledger.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-c71e413da026/workspace/candidate_ledger.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-c71e413da026/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-c71e413da026/workspace/final.gpx)
+- [CaWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-c71e413da026/workspace/phase_CaWO4_scheelite.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-c71e413da026/workspace/phase_WO3_monoclinic.cif)
+- [CaCO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-c71e413da026/workspace/phase_CaCO3_calcite.cif)
+

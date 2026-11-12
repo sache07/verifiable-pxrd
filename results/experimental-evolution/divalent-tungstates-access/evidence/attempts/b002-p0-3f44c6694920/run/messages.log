@@ -1,0 +1,105 @@
+I’ll first inspect the pattern metadata and the supplied crystallography workflow, then identify candidate phases, refine them in GSAS-II, and verify that every submitted artifact is internally consistent. I’ll keep the phase count conservative and report any ambiguity rather than forcing weak components.
+
+The metadata narrows the chemistry to Mn–W–O after an 800 °C firing, but the provided lab model allows residual Mn₃O₄/WO₃, stoichiometric MnWO₄, and off-stoichiometric intermediates. Before fitting, I’m running the environment’s required access/tool check and then I’ll inventory the frozen reference library for Mn–W–O candidates.
+
+The copied research-process controller reports `deployment_complete: false`; that check belongs to the explicitly out-of-scope automated workshop, not to this standalone diffraction analysis, so I’m not launching that process. The required local crystallography stack and frozen COD resources remain available, and I’m continuing with those directly.
+
+The frozen library contains the expected wolframite MnWO₄ structure (P2/c), tetragonal hausmannite Mn₃O₄, several WO₃ polymorphs, MnO, and Mn₂O₃. I’m now matching the observed peak inventory against all chemically plausible candidates; this will reveal whether the scan is a single reacted product or retains precursor/decomposition phases.
+
+The full observed peak sequence—from 15.47° through the dense high-angle region—indexes to monoclinic wolframite MnWO₄; I do not yet see an independent line requiring Mn₃O₄ or WO₃. The available MnWO₄ reference was measured at 2.4 GPa, so its small systematic peak offset is expected; I’m using it as a parent and refining the ambient-pressure cell and atomic coordinates rather than treating the mismatch as a second phase.
+
+The first refinement confirms a one-phase topology but exposed avoidable parameter degeneracies: GSAS-II was refining two equivalent scale terms, and unconstrained size/strain drove to nonphysical values. The current 26.6% Rwp is therefore only a diagnostic fit. I’m separating instrument from specimen broadening, fixing the redundant scale, and inspecting the residual profile before accepting any structural parameters.
+
+The phase identity remains secure, but the fit is still limited by relative intensities and line-shape coupling, not by unexplained peaks. The pressure-derived parent is close enough to index every line, yet its unconstrained coordinate refinement overfits. I’m now comparing ambient-pressure wolframite analogues (with Mn substituted onto the divalent site) and testing their intensity agreement before further profile refinement.
+
+The residual inspection changes the phase inventory: MnWO₄ explains its own lines well, but distinct peaks at 19.86°, 20.40°, 23.08°, 28.62°, 33.23°, 34.12°, and 35.11° are not wolframite reflections. That sequence is characteristic of residual monoclinic WO₃. I’m adding and discriminating the available WO₃ polymorphs now; only after that will the MnWO₄ coordinates and weight fractions be meaningful.
+
+The candidate screen is evaluating every Mn–O and W–O reference against the one-phase residual, including small cell/zero offsets. This is intentionally broader than testing only “expected” precursor phases, because the 19.9–20.4° double feature may indicate an additional oxide polymorph.
+
+The two-phase MnWO₄ + WO₃ model lowers Rwp from 26.7% to 18.3%, confirming WO₃ as a substantial component. A targeted third-phase test is now comparing all plausible Mn oxide polymorphs; this is necessary because several residual lines overlap WO₃ and MnWO₄, while others could arise from coordinate-sensitive weak WO₃ reflections.
+
+The third-phase test favors hexagonal wurtzite-type MnO: its independent reflections at about 33.2°, 35.1°, 45.7°, 54.4°, and 60.5° align with the residual and lower Rwp to 17.4%. The provisional mass contribution is only several percent. I’m now refining phase-specific crystallite broadening—especially for WO₃ and MnO—before deciding whether the remaining 19.9–20.4° intensity requires a fourth phase or reflects the WO₃ structural model.
+
+The phase-specific broadening fit is a major improvement: WO₃ refines to a much smaller coherent domain than MnWO₄, and MnO is extremely broad. The corresponding provisional fractions cluster near 61% MnWO₄, 20% WO₃, and 19% MnO—chemically and numerically coherent rather than trace overfitting. I’m testing the allowed preferred-orientation axes phase by phase before refining coordinates.
+
+The three-phase model is now well supported (wolframite MnWO₄, triclinic WO₃, and broad wurtzite-type MnO). I’m checking the coordinate-refinement branch now, then I’ll screen the remaining profile mismatch for strain/broadening before freezing the project and exports.
+
+The unconstrained oxygen-coordinate branches lower the residual but produce chemically impossible geometries, so I’m rejecting those. The restrained choice is the branch with modest MnWO₄ coordinate shifts and tungsten-only adjustment in WO₃; I’ll validate its bond distances and then optimize peak broadening without moving atoms further.
+
+Bond screening confirms the MnWO₄ refinement is chemically sound. The free WO₃ tungsten-coordinate branch creates an implausibly short ~1.61 Å W–O contact for only a small fit gain, so I’m keeping the published WO₃ coordinates and treating remaining intensity mismatch through specimen/profile terms, which is the safer structural model.
+
+The profile search is testing strain independently for each phase and jointly. This is the main remaining ambiguity because crystallite size, instrumental width, and microstrain are correlated; I’m comparing branches rather than accepting a boundary-hit refinement.
+
+The joint fit is taking longer than the single-phase branches because several width terms are near-collinear. I’m letting this comparison finish, but any strain result that is unstable or sits on a limit will be excluded from the final model.
+
+The strain comparison is decisive for WO₃: adding ~6,800 ppm isotropic microstrain improves the fit and restores stable fractions near 60/20/20, while MnWO₄ strain collapses to zero and MnO strain is limit-bound. I’m now checking whether WO₃’s broadening is uniaxial, as permitted by the measurement model.
+
+The uniaxial branches are still running. Once ranked, I’ll use the simplest statistically supported width model, then refine a single tied isotropic displacement parameter per phase so the scale factors—and therefore weight fractions—are not biased by arbitrary atom-by-atom thermal factors.
+
+These branches are converging slowly because the broad WO₃ peaks make axial strain and domain size partially interchangeable. That covariance itself will be reflected in the uncertainty statement; I won’t report the microstructural values as uniquely determined.
+
+The first tied-U refinement exposed another covariance: allowing profile terms to move simultaneously drove WO₃ domain size from one boundary to the other and pushed MnO’s displacement factor outside its physically allowed range. I’m separating those parameter blocks now—holding broadening fixed while refining tied Uiso—so the fraction estimate is not based on that unstable branch.
+
+I found the source of the apparent profile gains: GSAS-II had evaluated several size variables beyond their allowed ranges, then clipped only the saved values. A fresh atomic replay correctly rejected those stale low Rwp values. I’m rebuilding from the clipped physical values with all boundary parameters fixed and fitting the entire scan; this guarantees that the saved project reproduces the reported profile.
+
+The rebuilt project now replays exactly: full-scan Rwp is 14.614% with no profile-review flags. I’m using that reproducible baseline to inspect residual peak positions and decide whether the remaining mismatch is structural, textural, or evidence for another phase.
+
+The residual is not random: a Pnnm WO₄ library framework reproduces the independent lines near 31.8, 45.7/46.5, 55.3/56.5, 64.4, 70.1, 77.1, and 78.8°, as well as the low-angle doublet topology. Its reported chemistry is suspect, so I’m treating it as a structural lead—not yet as a phase assignment—and checking its provenance and whether a chemically valid Mn–W–O adaptation is required.
+
+I’m fitting the leading residual candidates as explicit fourth phases with fixed physical broadening, then comparing reproducible projects. The test includes rutile MnO₂, orthorhombic Mn₃O₄, Mn₅O₈, and the Pnnm W–O framework; a phase will only be retained if it explains multiple independent lines without an implausible cell distortion.
+
+The fourth-phase refinements are still converging. Cell shifts are being inspected alongside Rwp, since a numerically improved fit obtained by deforming a database structure far beyond the stated reference-mismatch scale would not be a defensible identification.
+
+Rutile MnO₂ is supported: it lowers Rwp to 14.288%, refines to a = 4.4156 Å and c = 2.8670 Å (within the allowed reference-mismatch scale), and accounts for multiple independent residual lines. The competing Mn₃O₄ and Mn₅O₈ fits require 1–5% cell distortions, so I’m rejecting them. I’m now rescreening the MnO₂-corrected residual for the low-angle phase.
+
+The five-phase topology lowers replay Rwp to 12.887%, but the dominant lines remain systematically underfit. That points to phase-specific intensity/width effects rather than another inventory change. I’m inspecting the peak shapes now, then I’ll refine size and texture for MnO₂ and the Pnnm-derived phase before attempting any further coordinate changes.
+
+The peak-shape check confirms the Pnnm-derived reflections were overbroadened in the first fit. I’m refining its coherent-domain size separately, followed by MnO₂’s, while keeping the already boundary-limited widths fixed so the saved profile remains replayable.
+
+Both new size refinements ran below the physical 0.04 µm limit, so their apparent Rwp gains are the same stale-profile artifact identified earlier. I’m discarding those gains and recomputing with both sizes fixed at the allowed minimum; only this replay-consistent branch will be used.
+
+The consistency rerun is still converging with all size limits fixed. This step is slower because scale, background, cells, WO₃ strain, and the two tied Uiso parameters must readjust to the physically clipped widths.
+
+I’ve narrowed the pattern to a five-component model, with four chemically recognizable phases and one orthorhombic W–O framework whose cation occupancy remains ambiguous. I’m now testing the last physically bounded texture terms, then I’ll replay the selected GSAS-II project and export every deliverable from that exact project so the CIFs, fractions, and profile remain internally consistent.
+
+The first texture trial improved the rutile-like component but drove its March–Dollase ratio exactly to the allowed boundary. That is a warning sign rather than an accepted refinement, so I’ll only retain it if a fixed-boundary replay reproduces the gain; several other texture axes have already failed or shown no benefit.
+
+The orthorhombic component shows a reproducible, interior texture optimum for the [100] axis and improves the fit without violating bounds. That supports the framework’s diffraction assignment, though it does not resolve the missing cation chemistry; I’m finishing the alternative-axis check before locking it in.
+
+The fixed-boundary check is decisive: the texture gains are real but smaller than the initially reported clipped refinements. The best valid branch is currently \(R_{wp}=12.39\%\). Before combining texture terms, I’m rechecking the orthorhombic assignment against the supplied structure library because its refined cell is several percent from the provisional template—too large to treat that COD entry as a definitive phase identity.
+
+A chemically expected residual precursor, tetragonal Mn₃O₄, now passes the crucial cell test: its refined lattice differs from the reference by only 0.13–0.39%, within the synthetic reference-mismatch range. It contributes about 2.5 wt% in that branch and gives independent peak support, so I’m treating it as a serious phase candidate rather than forcing those peaks into the uncertain W–O framework.
+
+Profile testing shows the wurtzite MnO peaks are broader than the minimum crystallite-size model and prefer the maximum allowed microstrain, while rutile MnO₂ prefers zero strain. I’ll validate the MnO boundary by fixing it at 8000 ppm and replaying; the resulting MnO fraction is profile-sensitive, so it will need an explicit uncertainty note even if retained.
+
+The sixth-phase screen found a small cubic W₂O₇-like component (about 1.1 wt%) whose lattice refines by +0.479%, just inside the allowed reference-mismatch envelope, and it improves \(R_{wp}\) by 0.17 percentage point. Its chemistry is unusual and its COD model is low quality, so I’m keeping it provisional while comparing alternative minor phases rather than accepting it on fit alone.
+
+Once the rutile [001] texture is fixed at its physically allowed upper bound, the apparent rocksalt-MnO fraction collapses from 1.5 wt% to 0.15 wt% with essentially no fit gain. I’m therefore rejecting rocksalt MnO as a separate phase; its evidence was an intensity-ratio artifact. The chemically coherent five-phase model now gives a valid \(R_{wp}=13.78\%\).
+
+The unexplained peaks index naturally on the adapted Pnnm cell, and its volume is 68.2 Å³ per W—essentially the same formula volume as MnWO₄. That makes the “extra W–O phase” more plausibly an orthorhombic MnWO₄ analogue than an impossible WO₄ composition. I’m now searching the supplied library for complete Pnnm A₂BO₄ analogues to recover the missing divalent-cation site instead of submitting an incomplete W/O-only structure.
+
+The first Mn-coordinate refinement exposed a bounds-convention mistake: GSAS-II interpreted the limits as absolute coordinates and pinned all three values to 0.05. I’m discarding that branch and rerunning from the octahedral void with absolute bounds centered on the physically screened site.
+
+The orthorhombic component’s breadth is reproducibly described by 8000 ppm isotropic microstrain at the allowed limit; after a fixed-boundary rerun the gain remains valid (\(R_{wp}=12.72\%\), ~7.3 wt% under the provisional W/O mass model). I’m combining this verified broadening with the independently supported rutile and orthorhombic texture terms next.
+
+I’ve narrowed the pattern to a wolframite-dominant multiphase model and am now validating the last two minor-phase decisions. The main remaining issue is an orthorhombic W–O component whose diffraction evidence is strong but whose cation occupancy is not uniquely recoverable; I’ll keep that uncertainty explicit rather than overstate the model.
+
+The unconstrained coordinate test improved the residual only slightly but drove a W–O bond to about 1.54 Å, so I’m rejecting that refinement as chemically implausible. I’m retaining the physically reasonable analogue coordinates and testing whether the small residual hausmannite (Mn₃O₄) component remains independently supported once the orthorhombic contribution is present.
+
+The hausmannite contribution remains at about 1.7 wt% with its cell within 0.35% of the reference and lowers the weighted residual significantly relative to the extra parameters, so I’m retaining it. The six-phase model is now stable with no frozen/out-of-range refinement variables; I’m moving to an independent read-only GSAS-II replay so the reported profile and fractions come from the saved project rather than cached arrays.
+
+Analysis complete. The crystalline fractions, normalized across six modeled phases, are:
+
+| Phase | Weight fraction |
+|---|---:|
+| [Wolframite MnWO₄](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-3f44c6694920/workspace/phase_mnwo4_wolframite.cif) | 53.41% |
+| [Triclinic WO₃](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-3f44c6694920/workspace/phase_wo3_triclinic.cif) | 20.96% |
+| [Wurtzite-type MnO](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-3f44c6694920/workspace/phase_mno_wurtzite.cif) | 10.83% |
+| [Rutile-type MnO₂](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-3f44c6694920/workspace/phase_mno2_rutile.cif) | 7.44% |
+| [Orthorhombic Pnnm W–O framework](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-3f44c6694920/workspace/phase_orthorhombic_wo_framework_pnnm.cif) | 5.68% provisional |
+| [Hausmannite Mn₃O₄](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-3f44c6694920/workspace/phase_mn3o4_hausmannite.cif) | 1.68% |
+
+Native GSAS-II replay gives Rwp 11.872% and Rp 6.906%. The orthorhombic component is diffraction-supported, but its cation occupancy and complete composition cannot be determined reliably; its reported fraction uses the W/O-only framework mass.
+
+Files: [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-3f44c6694920/workspace/result.json), [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-3f44c6694920/workspace/report.md), [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-3f44c6694920/workspace/fit.csv), and [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-3f44c6694920/workspace/final.gpx).
+

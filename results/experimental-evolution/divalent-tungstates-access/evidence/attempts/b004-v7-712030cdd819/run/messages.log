@@ -1,0 +1,48 @@
+I’ll inspect the specimen metadata, pattern, and the frozen divalent-tungstate tooling first, then identify/index ordinary phases and build a replay-stable GSAS-II refinement. I’ll reserve the mandated bounded-polish command for the terminal model and export every deliverable from the accepted project.
+
+The specimen is a BaCO₃ + WO₃ firing at 800 °C, so BaWO₄ is the expected ordinary product, but the raw low-angle count level alone does not establish whether residual precursors or an intermediate are present. I’m now extracting peak families and checking the frozen COD index; phase acceptance will be based on whole-family agreement, not isolated peaks.
+
+Two coherent families are already clear: rhombohedral Ba₃W₂O₉ accounts for the dominant lines with a consistent ≈+0.22° displacement from its COD parent, while monoclinic WO₃ accounts for the 23.35/23.82/24.62° triplet and its higher-angle repeats. Their stoichiometries also complement the 1:1 Ba:W feed (Ba₃W₂O₉ + WO₃ → 3 BaWO₄ equivalents). I’m building equal-development refinements now and will use residual-family tests to decide whether any third crystalline phase is warranted.
+
+The two-phase model has reached Rwp ≈10.54% before structural-coordinate work. Profile refinement confirms genuinely different broadening for the two families (Ba₃W₂O₉ broader than WO₃), and all accepted values are currently inside the laboratory ranges; a calibration-only branch that pinned U/W/X at bounds has been explicitly rejected. The remaining residual is concentrated on accepted reflections, so I’m treating it as unfinished intensity/profile work rather than adding a phase.
+
+The residual-family check revealed a real third phase: witherite BaCO₃. Its strongest residual at 24.12° and repeats at 19.69, 34.81, 42.24, 44.42, 45.07, 46.93, 55.0–56.48, and 68.43° all track COD 9010928 under the same common angular displacement. I’m adding it as residual precursor and will re-run closure checks before any terminal polish.
+
+The three-phase model now accounts for the coherent peak families: Ba₃W₂O₉ is dominant, monoclinic WO₃ is substantial, and residual witherite BaCO₃ is minor. I’m at the terminal-model audit now—checking whether the small calibration improvement is genuinely identifiable, then testing only the remaining supported specimen terms before freezing the project for the one mandated polish run.
+
+The sample-displacement branch is rejected: it improves Rwp by only 0.001 percentage point and is 99.91% correlated with zero offset, exactly the kind of inseparable calibration term the instructions prohibit. I’m retaining the zero-only calibration and will now compare surface roughness, polarization, and modest background flexibility from identical checkpoints; only stable, interior terms that improve the whole pattern will survive.
+
+The comparisons are decisive on two points: the Suortti roughness model is not identifiable (A/B correlation 99.6–99.97%, bound hits, and start dependence), so it is discarded; polarization converges reproducibly to 0.6864 and gives a statistically strong whole-pattern gain. A smooth 14-term background remains positive and is favored over 8–12 terms, so I’m checking the next two modest orders and the final residual before fixing the minimum adequate background.
+
+Profile testing found one supported anisotropy: Ba₃W₂O₉ microstrain along [100] lowers χ² by 37.7 for one added degree of freedom and is stable; the alternative axes are worse. WO₃ anisotropy is either negligible or replay-unstable, and BaCO₃ gains are below the model-selection penalty, so both remain isotropic. I’m retaining only the Ba₃W₂O₉ term and finishing background-order selection before a joint convergence check.
+
+The joint check exposed a real identifiability limit: allowing polarization and per-phase Uiso to move together gives 98.6% correlation and drives all three Uiso values out of their laboratory bounds. I’ve stopped that invalid branch. The defensible choice is to retain the previously stable common-per-phase Uiso values as fixed and refine polarization; the report will flag that displacement parameters are not independently determined.
+
+The terminal checkpoint is now stable at Rwp 3.962% with no frozen variables and a replay shift/esd of 0.0003. The 30-term smooth background is the minimum selected by BIC (order 32 gains only Δχ²=12.1 for two parameters), stays positive over the scan, and fractions are stable. Remaining residual extrema sit on reflections of the three accepted phases; an attempted further profile refit moved uphill and was explicitly rejected, leaving coordinate/intensity mismatch for the bounded polish to adjudicate.
+
+All pre-polish checks pass: the project contains the original 8,301-point grid and counts exactly, calculated intensity/background are positive, and every refinement flag is off. I’ve saved this terminal checkpoint as `final.gpx` and am invoking the required bounded polish now, exactly once; after it returns I will only audit geometry/replay and export from the accepted branch.
+
+The bounded polish completed successfully and selected the all-coordinate branch: Rwp fell from 3.962% to 2.836%. Bound-hit coordinates were rolled back, the remaining coordinates converged, and the final cell/scale/background settle converged without frozen variables. I’m now reviewing the audit’s geometry and fraction-stability gates; if they pass, `polished.gpx` becomes the submitted `final.gpx` unchanged.
+
+The independent atomic replay passed cleanly: it regenerated fresh reflection lists over the entire original scan, changed zero project parameters, preserved the project checksum, found no negative widths/background or other profile review flags, and reproduced normalized fractions of 72.456% Ba₃W₂O₉, 22.788% WO₃, and 4.757% BaCO₃. The selected polished project is now byte-identical to `final.gpx`; I’m exporting the CIFs and profile from that exact checksum.
+
+The final exports are written. I’m doing one last non-mutating consistency pass now: CIF physical screening and project/CIF correspondence, `fit.csv` grid/profile checks, normalized-fraction/schema checks, and a final checksum comparison.
+
+Completed and replay-verified from the submitted GSAS-II project.
+
+- Ba₃W₂O₉ (R -3 c): 72.456 wt%
+- Monoclinic WO₃ (P 21/c): 22.788 wt%
+- BaCO₃ witherite (P m c n): 4.757 wt%
+
+Final fit: Rwp 2.836%, Rp 2.140%, GOF 1.236. Fractions are normalized over crystalline phases; minor BaCO₃ has greater practical uncertainty.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-712030cdd819/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-712030cdd819/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-712030cdd819/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-712030cdd819/workspace/fit.csv)
+- [Ba3W2O9.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-712030cdd819/workspace/Ba3W2O9.cif)
+- [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-712030cdd819/workspace/WO3.cif)
+- [BaCO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-712030cdd819/workspace/BaCO3.cif)
+

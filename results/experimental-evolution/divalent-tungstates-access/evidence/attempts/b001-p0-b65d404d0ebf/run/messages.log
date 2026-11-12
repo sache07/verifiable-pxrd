@@ -1,0 +1,36 @@
+I’ll inspect the measurement metadata, pattern, and the supplied tungstate-analysis framework first. Then I’ll identify candidate phases, refine them in GSAS-II, validate the exported CIFs/profile/fractions against the final project, and document any ambiguity.
+
+The chemistry is ZnO + WO₃ fired at 700 °C, so ZnWO₄ is the likely principal product, but residual oxides and Zn–W–O intermediates remain plausible. I’m now testing that hypothesis against peak positions and the case-specific crystallographic library rather than assuming a single-phase product.
+
+Peak positions confirm at least two phases: monoclinic wolframite-type ZnWO₄ and monoclinic WO₃. Several weaker lines are consistent with residual ZnO, which is chemically expected for an incomplete 1:1 reaction; I’ll let the quantitative refinement determine whether its scale is significant and check for unexplained peaks afterward.
+
+The two-phase model is supported; adding ZnO drives its refined scale to zero and produces no improvement, so I am excluding it. The remaining mismatch is primarily relative peak intensity, not missing peak positions—consistent with specimen texture and phase-specific broadening—so I’m testing the allowed March–Dollase axes and enforcing the stated physical bounds on profile parameters.
+
+A broad residual sequence at 31.8, 34.4, 47.6, 56.6, and 62.9° matches wurtzite ZnO exactly. Its crystallites are much smaller than the other phases, which explains why a conventional-width ZnO trial was initially rejected by the scale refinement. I’m reintroducing ZnO with size broadening before finalizing the phase inventory.
+
+The fit now resolves three crystalline components: wolframite ZnWO₄, monoclinic WO₃, and a broadened wurtzite ZnO minor phase. I’m doing the last structural cross-check on the WO₃ model now, because its oxygen coordinates are the main remaining source of model ambiguity; then I’ll freeze the GSAS-II project and export the requested deliverables.
+
+The WO₃ cross-check is decisive: the alternative published monoclinic model reproduces the pattern better even before any coordinate fitting, and its normalized setting yields the exact allowed anisotropic-broadening direction seen in the data. That removes the earlier oxygen-coordinate instability; I’m now refining only small, physically bounded displacements around that model and rebalancing the three phase fractions.
+
+The three-phase model is now close to the counting-statistics limit (Rwp ≈2.36–2.38% versus a theoretical 2.27%). The broad ZnO contribution remains about 7 wt%, while the main remaining ambiguity is whether a weak low-angle intensity loss is true specimen surface roughness or simply correlated with thermal factors and polarization. I’m resolving that correlation before fixing the quantitative result.
+
+The refinement has converged at Rwp 2.284% (GOF 1.010), essentially at the Poisson limit of 2.267%. The phase assignments are stable; I’m now exporting the exact project state, CIFs, fractions, and full-grid fit, then running consistency and short-contact checks on those exported artifacts.
+
+Completed the three-phase Rietveld analysis:
+
+- Wolframite ZnWO₄: 74.85 wt%
+- Monoclinic WO₃: 18.51 wt%
+- Wurtzite ZnO: 6.64 wt%
+
+Final fit: Rwp 2.2839%, Rp 1.6837%, GOF 1.0102. Fractions are normalized over crystalline phases; broad ZnO peaks and oxygen coordinates carry the largest uncertainty.
+
+Artifacts:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-b65d404d0ebf/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-b65d404d0ebf/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-b65d404d0ebf/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-b65d404d0ebf/workspace/fit.csv)
+- [ZnWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-b65d404d0ebf/workspace/phase_ZnWO4_wolframite.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-b65d404d0ebf/workspace/phase_WO3_monoclinic.cif)
+- [ZnO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-b65d404d0ebf/workspace/phase_ZnO_wurtzite.cif)
+

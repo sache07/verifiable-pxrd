@@ -1,0 +1,56 @@
+I’ll inspect the specimen metadata, diffraction range/resolution, and the frozen analysis tooling first. Then I’ll identify coherent peak families, build a replayable GSAS-II multiphase checkpoint, refine only physically supported parameters, and export every deliverable from the submitted project.
+
+The chemistry narrows the ordinary inventory to Ca–W–O products plus residual WO₃/CaCO₃ or CaO, but I won’t assume a single scheelite product. I’m now extracting the observed peak families and querying the frozen COD index for exact-composition candidates, including CaWO₄ and plausible Ca-rich intermediates.
+
+The observed peaks split cleanly into a broad scheelite CaWO₄ family and a much sharper monoclinic WO₃ family: the latter’s low-angle triplet at 22.77/23.18/23.99° rules out the tetragonal and hexagonal WO₃ references. I’m setting up matched GSAS-II refinements for the remaining monoclinic WO₃ references so the inventory decision is based on the full profile, not a few peaks.
+
+The first full-profile branch is running normally, though the 32-atom WO₃ cell makes each least-squares cycle comparatively heavy. I’m keeping coordinates fixed during this screen so the comparison measures phase/topology and lattice/profile support, not how many atomic degrees of freedom a candidate can exploit.
+
+A stable two-phase checkpoint now reaches Rwp ≈ 3.89% (the counting-statistics minimum is ≈3.14%), with about 86 wt% CaWO₄ and 14 wt% WO₃ before coordinate/specimen refinement. No coherent peak family is left obviously unmodeled. I’m comparing the closely related monoclinic/triclinic WO₃ settings next; they share most peak positions, so the full-profile and geometry checks are needed to avoid overclaiming a specific polymorph.
+
+The coarse P2₁/m WO₃ reference became numerically singular during cell refinement, so I’m treating that branch as indeterminate rather than as evidence against it. The better-resolved P2₁/c and P\(\bar{1}\) branches are still converging; their extra lattice freedom makes the comparison slower and also raises the bar for accepting a small Rwp improvement.
+
+The best checkpoint’s remaining intensity mismatch has a concrete source: the raw COD files carry inconsistent displacement parameters (CaWO₄ sites at 0.011–0.026 Å², WO₃ at 0), while the frozen reference-registration convention uses 0.005 Å² before specimen perturbation. I’m correcting that provenance mismatch and refining one constrained isotropic U value per phase, then I’ll separate angular zero from specimen displacement and settle the profile.
+
+The unconstrained zero/height branch is statistically acceptable but physically poor: it drives zero to −0.99°, height to −1.04 mm, and contracts both cells by roughly 0.8%. I’m rejecting it. Because zero and specimen height are 99.9% correlated here, I’m testing fixed, modest zero values with only specimen displacement refined and will choose the branch that preserves plausible cells and profile agreement.
+
+Fixing the zero–height degeneracy materially improves the physical fit: all three constrained branches are now around Rwp 3.54–3.56%, versus 3.84% for the degenerate branch, while keeping phase fractions near 85.2/14.8 wt%. The remaining boundary flags correspond to CaWO₄ strain refining to zero and WO₃ size becoming effectively instrument-limited; I’ll freeze those null/insensitive terms in the selected checkpoint rather than report unstable values.
+
+I found an important GSAS-II checkpoint issue: the apparent 3.54% fits had width parameters clipped at bounds after the last calculated profile, so their stored parameter values and curve were not replay-consistent. I’m discarding those numerical artifacts. I’m restarting from the last clean 3.89% checkpoint, fixing unsupported boundary terms, and requiring a calculation-only replay to reproduce the reported Rwp before proceeding.
+
+The clean profile is now replay-consistent at Rwp 3.5442% (statistical minimum 3.1382%), with no frozen parameters. Fixed WO₃ domain sizes from 0.3–3 μm produce indistinguishable fits, so that size is not determinable; I’m using 0.3 μm as a neutral physical value and will report the uncertainty. Residuals are centered on accepted CaWO₄/WO₃ reflections, with no coherent unindexed family, so I’m starting the required one-shot bounded coordinate polish now.
+
+The one-shot polish completed and selected its heavy/light coordinate order. It reduced replay-consistent Rwp from 3.5442% to 3.4192%, while fractions shifted only from 85.23/14.77 to 85.30/14.70 wt%. I’m reviewing the branch’s bond geometry, bound audit, and an independent calculation-only replay before accepting it as `final.gpx`.
+
+The polished branch passes review: no short-contact failures, Ca–O ≈2.42 Å and W–O minima of 1.79 Å (CaWO₄) and 1.70 Å (terminal/distorted WO₃) are chemically plausible, and all coordinate/fraction audits pass. A calculation-only reload reproduces Rwp to 2×10⁻⁸ percentage points with positive background throughout, so I’m accepting `polished.gpx` and exporting all reported values from that exact project.
+
+A final residual-family audit caught a weak but coherent precursor signature that the two-phase fit had not modeled: peaks near 29.06, 35.66, 47.25, and 57.35° track shifted calcite CaCO₃ reflections. I’m reopening the inventory and testing calcite as a positive-scale third phase across the full pattern. The current two-phase deliverables are provisional until that check is resolved.
+
+Calcite is decisively supported: adding it gives a stable positive 3.6 wt% scale and lowers replay-consistent Rwp from 3.419% to 3.234%, close to the 3.138% counting-statistics floor. Its cell also refines stably, and the main-phase fractions become about 82.15% CaWO₄ and 14.24% WO₃. I’m checking calcite peak-width sensitivity and the new residual once before locking the corrected three-phase project.
+
+The calcite width refines stably to about 0.076 μm, and the three-phase replay reaches Rwp 3.2228% versus the 3.1382% statistical floor. The fractions are now 81.05% CaWO₄, 14.08% WO₃, and 4.87% CaCO₃; this also restores near-1:1 Ca:W molar balance. I’m making one last supported check of calcite’s common isotropic displacement parameter, while leaving its light-atom coordinates at the published model because this minor phase does not constrain them reliably.
+
+The calcite Uiso branch gives only a 0.0008-point Rwp gain while driving Uiso to 0.0207 Å² and shifting the phase fraction by ~0.5 wt%; that parameter is strongly scale-correlated at this abundance, so I’m rejecting it as unsupported. The selected model keeps calcite Uiso at the normalized reference value, with a stable refined size of 0.076 μm and fractions 81.05/14.08/4.87 wt%.
+
+The three-phase model is complete: scheelite CaWO₄, monoclinic WO₃, and residual calcite. I’m doing the final independent replay and file-consistency checks now, then I’ll write the concise uncertainty report.
+
+The replay passed cleanly: the project regenerates the submitted profile to numerical precision, all three exported CIFs pass the geometry/occupancy screen, and the reported fractions normalize exactly. I’m now recording the phase evidence and the limits on minor-phase and oxygen-coordinate certainty.
+
+Analysis complete. The crystalline-phase fractions are:
+
+- CaWO₄ scheelite: **81.05 wt.%**
+- Monoclinic WO₃: **14.08 wt.%**
+- CaCO₃ calcite: **4.87 wt.%**
+
+Final fit: **Rwp 3.2228%**, **Rp 2.4922%**, **GOF 1.0283**. Independent GSAS-II replay reproduced the submitted profile and fractions exactly. Fractions exclude any unmeasurable amorphous content.
+
+Files:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-242b3796d085/workspace/final.gpx)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-242b3796d085/workspace/result.json)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-242b3796d085/workspace/fit.csv)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-242b3796d085/workspace/report.md)
+- [CaWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-242b3796d085/workspace/phase_CaWO4_scheelite.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-242b3796d085/workspace/phase_WO3_monoclinic.cif)
+- [CaCO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-242b3796d085/workspace/phase_CaCO3_calcite.cif)
+

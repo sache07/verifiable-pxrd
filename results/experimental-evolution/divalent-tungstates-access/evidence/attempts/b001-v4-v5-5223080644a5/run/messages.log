@@ -1,0 +1,46 @@
+I’ll inspect the specimen metadata, diffraction grid, frozen reference index, and the provided analysis tooling first. Then I’ll build and refine a complete multiphase GSAS-II model, checking that every coherent reflection family is assigned before finalizing the requested files.
+
+The chemistry points first to MnWO₄, with unreacted WO₃ and/or Mn₃O₄ as the most plausible secondary phases. I’m now matching the observed peak families against exact-composition entries in the frozen index, while keeping those precursor phases in the candidate set rather than assuming a single-phase product.
+
+The MnWO₄ reference explains the dominant family after a common positive angular shift. A second coherent family remains—especially near 20.3/20.9°, 33–35°, 50°, 58°, and 64°—and it resembles a Mn-rich tungstate framework more than ordinary residual WO₃ or tetragonal Mn₃O₄. I’m refining the dominant phase first so the residual family can be indexed without overlap bias.
+
+The WO₃ phase is now strongly supported: the monoclinic P2₁/c model accounts for the residual 23–25° triplet and related higher-angle reflections, and its refined scale is positive. The remaining peaks form a separate family consistent with a Mn-rich Pbcn tungstate analogue; I’m comparing Mn₂WO₆ and Mn₃WO₆ transfer models under the same constrained refinement so that an intensity-only improvement does not decide the assignment.
+
+The cross-chemistry candidates tested so far only take small, unstable-looking fractions and do not explain the full residual family. I’m therefore returning to the chemically ordinary inventory, as required: the residual precursor models (ambient tetragonal Mn₃O₄ and plausible Mn₂O₃) are being tested before accepting any transferred tungstate topology.
+
+Indexing the still-unassigned residual family gives a strong hexagonal solution, approximately a = 8.906 Å and c = 10.476 Å (M20 ≈ 96 for the selected residual peaks). That rules out the weak cubic/monoclinic transfer branches as primary explanations and gives a much sharper target for the remaining analogue search.
+
+The residual indexing gives a strong lead: a hexagonal/trigonal cell near \(a=8.906\) Å, \(c=10.476\) Å explains the unassigned family. I’m testing whether this is the chemically plausible Mn-rich tungstate coexisting with WO₃, then I’ll refine the complete three-phase model and export the replayable GSAS-II project.
+
+The same cell indexes as rhombohedral with \(M_{20}\approx149\) and no unindexed peaks—substantially stronger than the primitive-hexagonal solution. That makes an R-centered Mn-rich tungstate model testable rather than speculative; I’m now checking its full intensity pattern, not just peak positions.
+
+The indexed R-centered phase is real, but the first Ba₃W₂O₉-derived intensity model only refines to about 7 wt% and leaves too much intensity unexplained. I’m treating that as a topology/intensity mismatch—not forcing the fraction—and using a Le Bail checkpoint plus same-framework reference search to distinguish the correct structure from a merely matching cell.
+
+The three phases now account for all peak positions, and an unconstrained profile fit drops to \(R_\mathrm{wp}\approx6.8\%\). Its instrument \(U\) and \(X\) inflate far beyond the laboratory ranges, which is diagnostic of phase broadening being put in the wrong place. I’m rolling back to the physical checkpoint and assigning crystallite-size/microstrain broadening phase by phase before allowing the instrument terms to move.
+
+The heavy-atom refinement is both effective and chemically sound, lowering \(R_\mathrm{wp}\) to about 3.46%. It also exposed that the old low-precision WO₃ entry contains an impossible 1.58 Å O–O contact. I’m replacing that reference with the physically valid neutron WO₃ structure in the same monoclinic polymorph and will only retain it if the full-pattern fit remains supported.
+
+The physical WO₃ replacement is decisively better (\(R_\mathrm{wp}\approx2.65\%\), then 2.60% after its W sites refine). Bounded oxygen refinement is accepted for MnWO₄ and Mn₃WO₆, but rejected for WO₃ because the unconstrained fit shortened W–O to 1.65 Å; the retained WO₃ parent remains physical (W–O 1.70–2.18 Å, O–O ≥2.54 Å). I’m now testing only profile/specimen terms that have clear residual support.
+
+The remaining texture, asymmetric broadening, Gaussian-floor, anisotropic-strain, and roughness tests either return essentially null effects or leave the physical parameter range, so they are being excluded. The only supported added term is polarization (\(\approx0.764\)), yielding a stable \(R_\mathrm{wp}\approx2.23\%\). I’m doing one last physically constrained thermal-factor check before freezing the project.
+
+The thermal-factor test is strongly supported: one common isotropic \(U_\mathrm{iso}\) per phase stays within 0.003–0.02 Å² and lowers \(R_\mathrm{wp}\) to 2.067%, with a fully converged final cycle. The refined crystalline fractions are 69.00% MnWO₄, 15.19% Mn₃WO₆, and 15.81% monoclinic WO₃. I’ve exported the project and profiles; I’m now replay-checking them and screening the submitted CIF geometry before writing the brief uncertainty report.
+
+Completed the three-phase refinement:
+
+- MnWO₄: 69.00 wt%
+- Mn₃WO₆ (R-3, analogue-derived): 15.19 wt%
+- Monoclinic WO₃: 15.81 wt%
+
+Final fit: Rwp 2.067%, Rp 1.576%, GOF 1.167. The Mn₃WO₆ atomic topology carries greater uncertainty than its indexed lattice and fraction.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-5223080644a5/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-5223080644a5/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-5223080644a5/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-5223080644a5/workspace/fit.csv)
+- [MnWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-5223080644a5/workspace/MnWO4.cif)
+- [Mn3WO6_R-3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-5223080644a5/workspace/Mn3WO6_R-3.cif)
+- [WO3_monoclinic.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-5223080644a5/workspace/WO3_monoclinic.cif)
+

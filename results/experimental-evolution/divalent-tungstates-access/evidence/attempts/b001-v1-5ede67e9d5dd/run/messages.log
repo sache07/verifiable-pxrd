@@ -1,0 +1,47 @@
+I’ll first inspect the pattern metadata and the framework’s analysis utilities, then build a candidate ledger before refining. I’ll keep phase discovery and final GSAS-II replay tied to the same measured pattern so the CIFs, fractions, profile, and project remain internally consistent.
+
+The chemistry narrows the allowed crystalline elements to Cu–W–O (with possible ambient C/H), but I’m not assuming CuWO₄ is the only product. I’m now extracting the peak families and enumerating every Cu/W/O entry in the frozen COD, plus plausible unreacted oxides and Cu–W–O intermediates, before any structural refinement.
+
+The first peak-family test is decisive: the dominant family follows ambient triclinic CuWO₄ (P-1), while the 22.67/23.07/23.89° and 32.8–33.8° families form a separate monoclinic WO₃ pattern. I’m setting up identity-addressed GSAS-II trials now; CuO and the Cu-rich tungstates remain pending until residual maps show whether they contribute positively.
+
+A third phase is now unambiguous rather than speculative: the strongest positive residuals line up as one fingerprint with Cu₃WO₆ (15.20, 19.80, 32.51, 33.78, 36.24, 49.70, 57.60, 63.29, and 70.23°). This is also chemically economical: Cu₃WO₆ plus roughly twice its molar amount of WO₃ preserves the 1:1 Cu:W precursor balance. The three-phase trial is refining now.
+
+The three-phase model drops Rwp from 18.8% to 7.65%, but phase closure still fails in a very specific way: positive residuals at 35.09, 38.32, 48.45, 53.04, 58.11, and 65.34° match CuO as a family. I’m testing both available CuO structures under identical settings; their near-equivalence means the choice will rely on the full-profile comparison and physical structure, not one isolated line.
+
+All nine WO₃ entries have now been screened at the scale/background and cell/shift levels. Hexagonal, tetragonal, orthorhombic, and P2₁/m models fail the triplet/splitting pattern or become invalid; the meaningful shortlist is P2₁/c in two settings and its triclinic distortion. The alternative P2₁/c cell and P-1 model slightly outperform the first WO₃ model before profile refinement, so I’m carrying both forward instead of locking onto the first plausible match.
+
+One important generator detail affects structural fidelity: every source was normalized before synthesis to neutral elements, symmetry at 0.001 Å, and a common isotropic Uiso per phase. I’m recreating that exact normalization from the public COD parents before fine refinement. This removes source-specific anisotropic ADPs and CIF-setting quirks that otherwise bias both intensities and phase fractions.
+
+The profile branches are separating cleanly. Surface roughness is rejected (both parameters lock to bounds and are 99.98% correlated); polarization and a 16-term smooth background are supported. Phase-specific broadening is strongly supported for CuWO₄ (interior size parameter, Rwp 5.76→4.58%) and moderately for WO₃; CuO’s size is not supportable, while Cu₃WO₆ is essentially resolution-limited and will be treated as a bound rather than over-interpreted.
+
+Atomic refinement has now reached the expected perturbation scale: CuWO₄ heavy atoms move about 0.03 Å and its oxygen sublattice about 0.02 Å RMS, while Cu₃WO₆ heavy-atom shifts are similarly modest. WO₃ oxygen refinement tried to move atoms by ~0.3 Å and is rejected as overfit; its common Uiso refines stably to ~0.011 Å². The current physically screened model is at Rwp ≈2.72% before any texture test.
+
+The phase inventory is now down to four stable contributors—CuWO₄, monoclinic WO₃, Cu₃WO₆, and minor CuO. I’m finishing the final profile-complexity check, then I’ll freeze and replay the GSAS-II project before exporting the CIFs and quantitative results.
+
+The final complexity test did not justify anisotropic broadening: every uniaxial WO₃ branch converged back toward isotropy and worsened the fit. I’m retaining the simpler isotropic model; this also avoids a weakly identified extra parameter.
+
+A profile-likelihood check around the CuWO₄ broadening minimum confirms that both size and strain components are needed: forcing zero strain worsens Rwp from 2.59% to 2.77%, while large strain also degrades it. I’m narrowing that fixed-strain scan so the retained broadening is supported without co-refining two strongly correlated terms.
+
+The frozen project has now passed an independent read-only GSAS-II replay: it reproduces the entire original grid, includes exactly the four active atomic phases, and triggers no profile-validity flags. The replay-derived crystalline fractions are approximately 65.16% CuWO₄, 19.32% WO₃, 12.95% Cu₃WO₆, and 2.57% CuO.
+
+The output set is assembled. I’m running the same structural parser and profile-format checks used by the evaluation framework, plus a final hash/replay consistency audit, so any path, normalization, or CIF interpretation issue is caught before handoff.
+
+One final plausibility check turned up a setting-sensitive point in the WO₃ cell, so I’m auditing the reduced lattice rather than relying on the displayed monoclinic axes. This is important because raw monoclinic cell parameters can look substantially different under equivalent basis choices; I’ll only revise the model if the reduced metrics show a real distortion.
+
+Completed the four-phase refinement:
+
+- CuWO₄ (P -1): 65.16 wt%
+- WO₃ (P 2₁/c): 19.32 wt%
+- Cu₃WO₆ (Pa-3): 12.95 wt%
+- CuO (C 2/c): 2.57 wt%
+
+Final full-grid replay: Rwp 2.593%, Rp 1.876%, GOF 1.611. All CIFs passed geometry/occupancy screening. CuO’s C2/c versus Cc distinction remains uncertain.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-5ede67e9d5dd/workspace/result.json)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-5ede67e9d5dd/workspace/fit.csv)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-5ede67e9d5dd/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-5ede67e9d5dd/workspace/final.gpx)
+- CIFs: [CuWO₄](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-5ede67e9d5dd/workspace/phase_0.cif), [WO₃](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-5ede67e9d5dd/workspace/phase_1.cif), [Cu₃WO₆](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-5ede67e9d5dd/workspace/phase_2.cif), [CuO](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-5ede67e9d5dd/workspace/phase_3.cif)
+

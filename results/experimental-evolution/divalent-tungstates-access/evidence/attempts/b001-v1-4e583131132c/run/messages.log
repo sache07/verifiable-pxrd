@@ -1,0 +1,114 @@
+I’ll first inspect the measurement metadata, pattern, and the provided crystallography workflow/tooling. I’ll then build a candidate ledger, screen phase hypotheses under common settings, and only proceed to staged GSAS-II refinement once the peak inventory is closed.
+
+The sample is a Cu Kα reflection scan (9.90–100.09° 2θ) from WO₃ + Mn₃O₄ heated at 800 °C. That makes Mn–W–O products, residual oxides, and polymorphs the first inventory—not a single assumed MnWO₄ phase. I’m now extracting the exact GSAS-II/output conventions and querying the frozen structure index so all same-formula candidates and plausible analogue topologies are screened consistently.
+
+The first falsifiable inventory test is already informative: the unexplained low-angle doublet at 20.32/20.88° and its companion family near 26.94, 32–37, 44.6, 46.2, 53–55, 61.9, and 65–66° matches the Pbcn Fe₂WO₆ topology after the chemically charge-balanced substitution Fe³⁺→Mn³⁺. I’ve constructed an Mn₂WO₆ analogue model preserving the parent’s sites and multiplicities. I’m testing it alongside residual WO₃/Mn₃O₄ and topology-diverse MnWO₄ alternatives; it is not yet accepted merely from peak coincidences.
+
+The common-setting trials now support two phases securely: wolframite MnWO₄ and monoclinic P2₁/c WO₃. All nine library WO₃ structures were compared; the monoclinic model gives the best stable fit, while the nearest triclinic alternative is slightly worse and uses lower symmetry. Mn₂WO₆ remains a live minor-phase hypothesis (positive ~2.5% in the simple trial), but its profile refinement runs to width limits, so I am treating it as unresolved and screening a broader one-substitution W-oxide prototype set against the remaining coherent peaks before accepting it.
+
+The broad prototype screen is computationally heavier than the direct phase trials because it is allowing lattice rescaling, zero offset, and peak-width variation for every ternary W oxide. I’m pruning it to the chemically charge-balanced stoichiometries and will use the screen only to nominate models; acceptance still requires a stable GSAS-II import/refinement and physical geometry check.
+
+The broader screen found a better, chemically sensible intermediate topology: orthorhombic P2₁2₁2₁ Mn₂WO₆ derived from Y₂WO₆ by Y³⁺→Mn³⁺. Under identical nuisance settings it gives a stable positive contribution, a physically reasonable cell contraction for the smaller cation, and an interior (non-boundary) isotropic profile. Competing Mn₂WO₆ topologies either fit worse or required profile parameters at hard limits. I’m now checking whether the remaining peak family demands another phase or instead exposes coordinate/texture mismatch in this analogue model.
+
+I’m comparing the fractional-occupancy Mn₂WO₆ prototypes against the ordered Mn₂WO₆ model from the same two-phase baseline. The key test is whether their improvement survives cell/profile refinement without distorted geometry or boundary-hitting broadening.
+
+The disordered Pbcn models refine cleanly but contribute only about 2.1 wt% and remain substantially worse than the ordered P2₁2₁2₁ Mn₂WO₆ branch. I’m retaining them as tested alternatives and now checking the strongest remaining tetragonal A₂WO₆ prototype plus direct manganese-oxide precursors against the accepted three-phase residual.
+
+The fourth Pbcn contribution remains positive after profile refinement (about 2.4 wt%) and lowers Rwp from 16.14% to 15.66% with non-boundary size/strain values. That makes it a credible separate polymorph, not merely a scale artifact; I’m now re-screening the remaining residual before accepting it.
+
+A joint zero/height/cell fit improved Rwp to 14.97%, but zero and specimen height were 99.99% correlated and the estimated zero moved outside the laboratory’s allowed ±0.25° range. I’m rejecting that unconstrained branch and tightening all nuisance bounds to the stated instrument/specimen ranges before continuing.
+
+With nuisance terms restricted to the laboratory ranges, the instrumental width settles near W≈19.1 and X≈0.91; U wants the physical lower limit and is therefore being kept fixed rather than counted as a supported refinement. I’m now re-estimating each phase’s size/strain separately so the old over-broadened values cannot mask missing peaks.
+
+The bounded profile test exposes an important problem: the P2₁2₁2₁ analogue wants the minimum crystallite size and previously required texture beyond the laboratory range, while WO₃ wants the strain ceiling. I’m rolling back that branch and rebuilding the secure MnWO₄ + WO₃ baseline from zero nuisance settings so the unknown-phase comparison is not biased by inherited over-broadening.
+
+The full Mn–O library screen finds a decisive additional family: hexagonal wurtzite MnO (P6₃mc), not rocksalt MnO or the Mn₃O₄ precursor. In GSAS-II it contributes about 5.1 wt% and lowers Rwp from 15.66% to 15.04% before any cell/profile adjustment; the next-best direct manganese oxides collapse below 0.13 wt%. I’m refining this candidate and checking whether it closes the remaining coherent peaks.
+
+The ordered Mn₂WO₆ phase’s peak positions are compelling, but unconstrained W-coordinate refinement only improves the fit by creating 1.33–1.39 Å W–O contacts, so that structural branch is rejected. This is exactly the analogue-mismatch case the prompt warns about; I’m expanding the prototype search to A₂BO₆ oxides requiring two cation substitutions, looking for the same residual family with a physically credible topology.
+
+The expanded screen is evaluating all exact A₂BO₆ stoichiometries in the frozen library with both cations remapped to Mn/W, allowing the analogue cell to rescale before ranking. This is broader than the direct tungstate search and is aimed specifically at replacing the unphysical P2₁2₁2₁ coordinate fit.
+
+The two-substitution library screen is still running; it is substantially larger than the W-only search. In parallel conceptually, the direct Mn–O result is already secure: rocksalt MnO, Mn₂O₃, MnO₂, and both Mn₃O₄ polymorphs all fail the same-scale contribution test relative to wurtzite MnO.
+
+The two-substitution alternatives do not replace the ordered phase: the best Pbcn Zr/Ti analogue drives both size and strain to opposite bounds, while the cubic model is stable but fits much worse. The P2₁2₁2₁ topology remains the least-bad structural explanation, but its detailed coordinates and abundance are intrinsically less reliable; I’m carrying that uncertainty into the final model instead of accepting the unphysical coordinate refinement.
+
+The secure phases now refine with interior instrumental parameters (U≈12.6, W≈19.3, X≈0.78) and stable major/disordered-phase profiles. WO₃ size is also interior; MnO size/strain are too correlated and run to bounds, so I’m keeping the simpler fixed MnO profile and treating its fraction as less precise. Next I’m testing only symmetry-allowed coordinates for the well-established phases, with geometry checks after each accepted step.
+
+The five-phase model is numerically stable, but phase closure is not yet adequate: a coherent family remains at 20.32/20.88/29.14/35.62/47.02°. These are not random residuals. I’m doing one final residual-driven prototype screen on the fully staged model before freezing the inventory.
+
+The five-phase inventory is now stable. I’m doing the last model-selection check: whether the Mn₂WO₆ intensity mismatch can be improved by a physically credible preferred-orientation/coordinate model, or whether that branch must be rejected as boundary-driven. Then I’ll freeze and replay the final GSAS-II project and write the deliverables.
+
+The texture branch improves the profile, but its March–Dollase coefficient is pinned at the allowed limit (1.40). Refining the W position lowers Rwp further to 13.07%, so I’m now checking whether that apparent gain preserves plausible Mn–O/W–O geometry and whether the texture term moves off its bound; otherwise the entire branch will be rolled back.
+
+The coordinate-refined texture model is not physically credible: W moves by about 0.43 Å and creates a 1.34 Å W–O contact. Together with the texture coefficient at its bound, that makes the large Rwp gain unsafe. I’m rejecting that branch and retaining the simpler five-phase refinement (Rwp 15.08%), with the orthorhombic Mn₂WO₆ model explicitly reported as structurally uncertain.
+
+The retained project is now frozen with no active refinement flags, and its exported profile and five CIFs have been regenerated directly from that project. The nominal crystalline fractions are 67.78% MnWO₄, 16.61% WO₃, 8.20% orthorhombic Mn₂WO₆, 2.81% disordered Mn₂WO₆, and 4.60% wurtzite MnO. Next I’m validating every exported structure and independently replaying the saved project.
+
+The independent replay is clean: it regenerates exactly the submitted curve (maximum numerical difference \(3.6\times10^{-12}\) counts), preserves all fractions, and raises no profile or structural validity flags. One issue remains before I call the analysis complete: the residual still contains an intensity family associated with the provisional P2₁2₁2₁ Mn₂WO₆ model. I’m mapping those residuals once more against the screened prototype families so that the stated structural uncertainty is justified rather than merely inferred from Rwp.
+
+The residual mapping shows the dominant unclosed peaks are not a new random family: they coincide with reflections of the P2₁2₁2₁ candidate, while one of that model’s strongest reflections is overpredicted. That points to a structure-factor/texture problem rather than a simple missing scale. Because the synthetic measurement allows small symmetry-preserving coordinate shifts, I’m testing each independent oxygen site separately and will retain only shifts of physically plausible magnitude that improve several reflections—not an unconstrained all-atom fit.
+
+The site-by-site refinements are computationally heavier than expected, but the first completed branch is already diagnostic: O4 moved far beyond the allowed reference mismatch and made the fit worse, so it is rejected. The other five independent oxygen branches are still running; I’ll classify each by displacement, geometry, and distributed profile gain as they complete.
+
+All six oxygen-site refinements are rejected. Each sought a 1.0–3.2 Å displacement—orders of magnitude above the plausible 0.01–0.05 Å mismatch—and several created 0.82–1.38 Å cation–oxygen contacts. This confirms that coordinate refinement is merely compensating for a wrong intensity model. I’m now screening the missing-phase signal with the provisional P2₁2₁2₁ phase disabled, which avoids biasing replacement candidates through its overpredicted reflections.
+
+With the provisional phase disabled, the Y₂WO₆-derived P2₁2₁2₁ topology remains the strongest one-substitution match, so its lattice is real evidence rather than an artifact of the existing fit. I found several additional P2₁2₁2₁ A₂BO₆ parents (tellurates, phosphates, and related oxides) that have different internal coordinates; the exhaustive two-substitution replacement screen is running now to test whether one gives the observed intensity ratios without extreme texture.
+
+The replacement screen found a genuinely stronger topology: trigonal P‑31m derived from MnSb₂O₆, transformed by Sb→Mn and Mn→W. Its projected gain is 13.85% versus 7.69% for the current orthorhombic model. I’m promoting it to a full GSAS-II replacement trial now; its cation geometry is unusual enough that it must pass bond-length and stable-scale checks before it can displace the current assignment.
+
+The trigonal candidate survives full refinement as a positive ~5.1 wt% replacement and improves Rwp to 14.87%, but its profile-only refinement drives both size and strain to opposite bounds, so that extra complexity is rejected. Crucially, the cell/scale-only model is stable and better than the orthorhombic-only model. I’m now testing the falsifiable alternative that both polymorph families are present; acceptance requires both scales to remain positive under a common refinement and no cell/profile distortion.
+
+The six-phase branch is numerically stable (Rwp 14.05%; both Mn₂WO₆ scales positive), but it does not close the dominant 20.3/20.9/35.6° family, and the trigonal analogue has an unusually long 2.15 Å W–O octahedron. I’m therefore treating it as provisional, not accepted. The next discriminating test is three chemically better P2₁2₁2₁ tellurate parents, whose Te–O/Mn-site geometries map more naturally to W–O/Mn–O while retaining the indexed orthorhombic lattice family.
+
+The three P2₁2₁2₁ tellurate variants all converge cleanly but fit worse (Rwp 15.41–16.82%) than the Y₂WO₆-derived model, so the latter remains the best orthorhombic topology. I’m now testing one texture term at a time on the stable six-phase branch. This will show whether the trigonal phase merely absorbs preferred-orientation error or remains independently required.
+
+The phase inventory now supports six crystalline components, but the sixth is a provisional Mn₂WO₆ analogue. I’m finishing the stability checks on its modest texture improvement, then I’ll freeze, replay, and cross-check the exact project-to-CIF/profile outputs.
+
+The trigonal phase’s [001] March–Dollase term converged reproducibly at 1.1765, safely inside the allowed range, with only a small fit gain (Rwp 14.0475% → 14.0191%). I’m retaining it cautiously as the single supported texture correction and am now rechecking the two overlapping Mn₂WO₆ cells independently.
+
+The orthorhombic analogue’s cell re-refinement oscillates between nearly equivalent solutions for a negligible 0.0005-point Rwp change, so that branch is being rolled back as unstable. The trigonal cell gives a larger, chemically modest shift and a measurable fit gain; I’m repeating it once to test reproducibility before accepting it.
+
+The trigonal model’s cell refinement is not stationary enough to justify its small added gain, so I’m retaining the earlier stable cell. Its crystallite-size term, however, converged inside the physical range (about 0.51 µm) and lowers Rwp by 0.058 points; I’m comparing that against a strain-only branch before choosing the simpler stable profile.
+
+The profile comparison is decisive: strain-only changes Rwp by just 0.001, while an interior isotropic size of 0.53 µm gives a reproducible 0.058-point improvement. With that size fixed, the texture term settles at 1.1597 and the whole refinement is stationary (maximum shift/esd 0.087). I’m using this stable branch for the final closure and physical checks.
+
+The residual remains structured, especially at 20.32°, 20.90°, and 35.62°. Those peaks survived broad direct-library and one/two-substitution screens, so I’m checking whether they are reflections of the accepted low-symmetry Mn₂WO₆ family with mismatched intensities—or evidence for one still-missing topology—before freezing the inventory.
+
+The dominant residual peaks coincide with calculated P2₁2₁2₁ reflections, confirming an intensity-model mismatch rather than a wholly unindexed family. A bounded W-coordinate trial drives every component to its prior limit and is rejected. I’m now checking several independent P‑31m parent structures under the same five-phase baseline so the provisional sixth phase is not chosen from a single analogue.
+
+Two alternate P‑31m parents are still running through the identical scale → cell → scale sequence. No inventory decision has been changed; this is a controlled analogue comparison, and any interrupted branch will remain “unknown,” not rejected.
+
+The analogue comparison is now falsifiable: the MnSb₂O₆-derived P‑31m model gives 3.2 wt% and Rwp 13.9609%; Pb/Sb and Ca/Sb variants give only 0.8 and 0.4 wt% with Rwp ≈15.00–15.06%, while the Hg/As variant collapses to zero. I’m accepting only the Mn/Sb-derived topology, explicitly as provisional, and freezing the six-phase project now.
+
+The replay is clean: all six phases regenerate natively, the project hash is unchanged, there are no profile-review flags, and the replayed curve agrees with `fit.csv` to \(7.3\times10^{-12}\) counts. One final discipline check remains: two inherited isotropic strain values are exactly at the laboratory ceiling, so I’m auditing the simpler rollback instead of silently carrying boundary-hitting nuisance terms into the submission.
+
+The honest rollback to the pre-profile values (0.3 µm, 1000 ppm) is stable but raises Rwp to 16.33%. A size-only WO₃ trial exceeded the command window and is therefore “unknown,” not rejected; I’m rerunning it in a persistent session so the nuisance audit has a valid outcome.
+
+Both size-only replacements drive directly to the 0.04 µm lower bound, so they are rejected as well. I’m therefore using the true simpler rollback—0.3 µm and 1000 ppm for WO₃ and P2₁2₁2₁ Mn₂WO₆—even though Rwp rises to 16.33%. This materially changes their fractions, so the report will flag those values as profile-model dependent rather than present false precision.
+
+The boundary-free model has converged cleanly: Rwp 16.3133%, maximum shift/esd 0.001, and the retained P‑31m size/texture are interior (0.161 µm, MD 1.127). The fit is worse but the nuisance model is now defensible; I’m replacing the provisional export and replaying this exact rollback-based project.
+
+The final deliverables are written. I’m running the same submission parser and consistency checks used by the evaluator now—CIF readability/occupancy, normalized fractions, `fit.csv` format, and one-to-one correspondence between each submitted CIF and the replayed GSAS-II phase.
+
+Completed with a six-phase crystalline model.
+
+| Phase | Weight fraction |
+|---|---:|
+| MnWO₄ wolframite | 73.60% |
+| WO₃, P2₁/c | 10.45% |
+| MnO, P6₃mc | 5.70% |
+| Mn₂WO₆, P2₁2₁2₁ analogue | 3.21% |
+| Mn₂WO₆-type, disordered Pbcn | 2.76% |
+| Mn₂WO₆, provisional P-31m analogue | 4.29% |
+
+Rwp = 16.3133%; all CIFs passed physical screening and the final project replayed cleanly. The Mn₂WO₆ structures and minor-phase fractions remain model-dependent, particularly the provisional trigonal phase.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-4e583131132c/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-4e583131132c/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-4e583131132c/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-4e583131132c/workspace/fit.csv)
+- [candidate_ledger.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-4e583131132c/workspace/candidate_ledger.md)
+- CIFs: [MnWO₄](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-4e583131132c/workspace/MnWO4_wolframite.cif), [WO₃](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-4e583131132c/workspace/WO3_P21c_C.cif), [MnO](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-4e583131132c/workspace/MnO_wurtzite.cif), [P2₁2₁2₁ Mn₂WO₆](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-4e583131132c/workspace/Mn2WO6_P212121.cif), [Pbcn Mn₂WO₆-type](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-4e583131132c/workspace/Mn2WO6_dis156.cif), [P-31m Mn₂WO₆](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-4e583131132c/workspace/Mn2WO6_P31m.cif)
+

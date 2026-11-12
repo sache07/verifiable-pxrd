@@ -1,0 +1,67 @@
+I’ll first inspect the measurement metadata, pattern characteristics, and the supplied divalent-tungstate workflow. Then I’ll identify candidate phases, build/refine the multiphase GSAS-II model, and verify that every submitted artifact is internally consistent.
+
+The chemistry is the ZnO + WO₃ system fired at 700 °C, so ZnWO₄ is the leading product hypothesis, but residual ZnO/WO₃ or an off-stoichiometric intermediate remain plausible. I’m now matching the observed peak set against the frozen COD library and checking the exact export/replay requirements before refinement.
+
+The strongest reflections form the characteristic wolframite doublet/singlet sequence of monoclinic ZnWO₄. Several sharp peaks near 23–24° and their higher-angle companions also align with monoclinic WO₃, so I’m testing a ZnWO₄ + WO₃ model first; ZnO will be admitted only if its independent reflections improve the residual.
+
+The two-phase model accounts for essentially every independent peak, with an initial crystalline fraction near 76 wt% ZnWO₄ / 24 wt% WO₃. The remaining large intensity mismatch is diagnostic: the ZnWO₄ (100)/(200) family is strongly enhanced while (021)/(002) is suppressed, indicating [100] March–Dollase texture. I’m adding that specimen effect and removing exact scale/profile degeneracies before refining coordinates.
+
+The coordinate refinement recovered the expected published ZnWO₄ geometry (including W \(y\approx0.177\) and the two oxygen sites near \((0.256,0.375,0.391)\) and \((0.220,0.105,0.949)\)), reducing Rwp from 16.3% to 6.93%. A small unmodeled line at ~31.84° and correlated residuals at the ZnO 100/002/101 positions now justify testing residual ZnO as a third phase before further tuning the two-phase model.
+
+The third-phase test is decisive: wurtzite ZnO lowers Rwp from 6.93% to 4.88%, and WO₃ [010] texture lowers it further to 4.33%. The refined fractions cluster near a chemically plausible 0.72/0.19/0.09. I’m now tightening profile parameters to the physically allowed crystallite/strain regime; unconstrained oxygen-coordinate refinements improved Rwp but produced implausible WO₃ geometry, so those are being rejected rather than submitted.
+
+The physically constrained three-phase model is now stable: ZnWO₄ dominates, with monoclinic WO₃ and a small ZnO remainder. I’m resolving the last size/strain and sample-correction correlations, then I’ll export the phase CIFs from the same final GSAS-II project and replay that project against the full measured grid.
+
+The remaining gap is mostly model detail, not phase identity. The generator perturbs source coordinates slightly, so I found and am correcting a refinement-bound issue that had previously forced WO₃ oxygen coordinates toward zero; I’ll now refine them only within a small, physically plausible neighborhood of the source structure and test the allowed anisotropic broadening directions independently.
+
+The bounded coordinate refinement is behaving as intended and has lowered Rwp from 3.83% to about 2.7–2.8%, close to the 2.27% counting-statistics floor. The ZnWO₄/W–O frameworks remain chemically sensible; I’m comparing “no roughness” against a roughness model constrained to the laboratory’s allowed range so the final fractions are not driven by an unphysical nuisance parameter.
+
+The constrained roughness solution is preferred so far and lands at the physically allowed boundary (A=0.05, B=0.02), while the coordinate trajectory is still improving. I’m extending only those small coordinate steps; this is a sensitivity check to locate the point where fit improvement stops without letting the WO₃ oxygen sublattice drift into an implausible unconstrained solution.
+
+A source-model check exposed an important alternative: the WO₃ database contains two metrically similar monoclinic models with different intensities. The current fit requires coordinate shifts larger than the generator permits from COD 1528915, so I’m testing COD 2311041 in its native setting before accepting any WO₃ refinement. This may remove the apparent oxygen drift rather than merely regularizing it.
+
+The alternative WO₃ model is being refined through the same staged protocol—cells, profile, specimen displacement, texture, then ZnWO₄ coordinates—so its comparison is fair. Once that finishes, I’ll retain the model that both fits better and stays within the documented structural-perturbation bounds.
+
+The staged comparison is slower because the alternative cell setting generates more reflections, but it is still progressing normally. No additional phases have emerged in the residuals; the decision remains between two WO₃ structural descriptions, not a change in phase inventory.
+
+The native-setting comparison rejects COD 2311041 (Rwp remained ~16.6% versus ~3.1% for COD 1528915), so the WO₃ assignment is secure. Resetting COD 1528915 to its published coordinates and allowing only generator-sized shifts gives a sensible no-roughness model; forcing allowed surface roughness worsens Rwp to 3.82%, indicating the specimen roughness effect was inactive. Next I’m testing only the three permitted uniaxial strain directions.
+
+The physically constrained profile now has three independently plausible specimen signatures: ZnWO₄ texture ([100], MD≈0.748), WO₃ texture ([010], MD≈0.903) plus uniaxial strain, and ZnO texture (basal-axis equivalent, MD≈1.287). ZnO texture lowers replay-consistent Rwp to 3.60%; adding ZnO strain anisotropy does not help. I’m now enforcing the documented angular-zero range and checking the model with the scorer’s fresh-profile replay rather than trusting GSAS’s cached curve.
+
+The fresh replay exactly reproduces Rwp=3.595%, with no verifier warnings. Residual intensity around the WO₃ (022) peak is now the dominant systematic feature; alternative allowed WO₃ texture axes are much worse, confirming [010]. I’m doing one final coordinate test using four 0.001-fractional steps from the published WO₃ model, keeping the same 0.05 Å displacement envelope but avoiding the artifact where every coordinate hits a box boundary in one Newton step.
+
+The phase identities are stable. I’m doing one final constrained-coordinate check for WO₃: projecting its refinement onto the same physically plausible displacement limits used by the pattern generator, then replaying the best candidate before packaging the CIFs and project.
+
+That constrained projection did not improve the fit (best projected model Rwp 3.66% versus 3.60% for the bounded model), so I’m retaining the bounded WO₃ structure. Its W and O displacements remain within the generator’s physically allowed ranges; the less constrained solution was visibly overfit and chemically implausible. I’m now replay-validating and exporting the retained model.
+
+A useful source-model check turned up the likely ZnWO₄ parent: the Zn-rich sanmartinite entry COD 9005254, not the poorer FeWO₄ analogue used for the initial indexing model. Its cell is within the generator’s permitted strain of the refined cell, and its oxygen coordinates map directly onto the recovered sites. I’m using that parent to impose the generator’s symmetry-preserving displacement rule; this should reduce coordinate overfitting while preserving the identified phase.
+
+The sanmartinite-parent constraint is confirmed, but it exposes a limitation of the data: once the exact displacement bounds are imposed, oxygen-coordinate directions change Rwp by only a few thousandths of a percent and are highly correlated with profile terms. I’m stopping that direction search at the physically allowed boundary and will report the oxygen positions as the least certain structural part.
+
+The constrained ZnWO₄ search converged to a heavy-atom displacement of about 0.028 Å and the allowed 0.050 Å oxygen boundary, consistent with the synthetic protocol. The remaining gain is negligible, so after one nuisance-parameter re-refinement I’ll choose between this protocol-consistent model and the slightly lower-Rwp but less defensible coordinate fit.
+
+The generator-aware refinement is now better than the unconstrained alternative: Rwp improved to 3.576% while keeping ZnWO₄ and WO₃ coordinate displacements inside their allowed element-wise RMS limits. This resolves the earlier tradeoff; I’m doing one short alternating pass to remove the last coordinate/profile coupling, then I’ll freeze and replay the project.
+
+The retained project now has a fresh Rwp of 3.539% with all modeled displacement parameters positive and within the stated synthetic ranges. The three crystalline fractions are approximately 72.9% ZnWO₄, 18.9% WO₃, and 8.2% ZnO; I’m freezing those values and running the evaluator-style full-grid replay before writing the deliverables.
+
+The full-grid replay passed with no profile flags, and each submitted CIF matches its phase in `final.gpx` including occupancies and displacement parameters. I also corrected the profile header to a machine-checkable format; `fit.csv` now reproduces the replayed Rwp of 3.538879% over all 8301 bins.
+
+Completed and replay-validated.
+
+- ZnWO₄: 72.90 wt%
+- Monoclinic WO₃: 18.87 wt%
+- Wurtzite ZnO: 8.23 wt%
+- Full-grid Rwp: 3.5389%; Rp: 2.4699%; GOF: 1.565
+
+Fractions are normalized over crystalline phases. Realistic uncertainty is approximately ±1–2 wt% absolute; WO₃ oxygen coordinates are the least reliable structural parameters.
+
+Artifacts:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-2c1be525702d/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-2c1be525702d/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-2c1be525702d/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-2c1be525702d/workspace/final.gpx)
+- [ZnWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-2c1be525702d/workspace/ZnWO4.cif)
+- [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-2c1be525702d/workspace/WO3.cif)
+- [ZnO.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-2c1be525702d/workspace/ZnO.cif)
+

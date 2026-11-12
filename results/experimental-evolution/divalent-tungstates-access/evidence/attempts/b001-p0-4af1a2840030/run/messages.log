@@ -1,0 +1,32 @@
+I’ll inspect the pattern, metadata, and the provided divalent-tungstate tooling, then identify candidate phases and carry the best-supported model through a GSAS-II refinement. I’ll keep the reported fractions limited to modeled crystalline phases and explicitly flag any ambiguity.
+
+The chemistry is a low-temperature WO₃–ZnO reaction (200 °C), so the first hypotheses are residual WO₃ and ZnO, with ZnWO₄ only if partial reaction is evident. The scan has raw Cu Kα1/Kα2 counts and an intentionally uncalibrated profile, displacement, roughness, strain, and texture; I’ll therefore use whole-pattern evidence rather than peak-height matching alone.
+
+The phase inventory is now well constrained: monoclinic WO₃ accounts for the diagnostic 23.13/23.58/24.39° triplet and its split higher-angle families, while wurtzite ZnO accounts for 31.80/34.58/36.32° and the corresponding high-angle peaks. ZnWO₄ is ruled out at meaningful abundance by the absence of its strong ∼18.9° and 30–31° cluster. I’m moving these two structures into quantitative refinement and will test the competing monoclinic WO₃ references by whole-profile residuals.
+
+The first quantitative pass gives about 72 wt% WO₃ and 28 wt% ZnO, already close to the precursor mass balance. I found one important model issue in the raw database imports: their displacement parameters are not in the normalized form used by the pattern generator, which biases low- versus high-angle intensities. I’m correcting that explicitly and refining a single physically bounded isotropic displacement parameter per phase before judging texture or minor effects.
+
+After correcting the neutral surface condition, the refinement converged essentially to the counting-noise limit: Rwp ≈ 3.02% versus an expected minimum of ≈ 2.80%. The refined phase balance is 73.95 wt% WO₃ / 26.05 wt% ZnO, matching the 1:1 molar precursor charge almost exactly. I’m now checking the remaining small profile residuals and project/export consistency rather than adding unsupported phases.
+
+The requested deliverables are now written. I’m doing a final independent replay of `final.gpx`—regenerating the calculated profile from the saved atomic models rather than trusting cached GSAS-II arrays—and checking that the exported CIFs and fractions match the project within the evaluator’s tolerances.
+
+Analysis complete. The crystalline mixture is:
+
+| Phase | Weight fraction |
+|---|---:|
+| Monoclinic WO₃, P2₁/c | 74.02 wt% |
+| Wurtzite ZnO, P6₃mc | 25.98 wt% |
+
+Rwp = 2.853%, GOF = 1.023. No ZnWO₄ or additional crystalline phase is supported above the practical detection limit. Fractions exclude any amorphous material.
+
+Files:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-4af1a2840030/workspace/final.gpx)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-4af1a2840030/workspace/result.json)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-4af1a2840030/workspace/fit.csv)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-4af1a2840030/workspace/report.md)
+- [phase_WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-4af1a2840030/workspace/phase_WO3.cif)
+- [phase_ZnO.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-4af1a2840030/workspace/phase_ZnO.cif)
+
+An independent atomic replay of `final.gpx` reproduced Rwp = 2.853%, matched both submitted CIFs and fractions, and raised no profile-validity flags.
+

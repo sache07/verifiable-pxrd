@@ -1,0 +1,110 @@
+I’ll first inspect the specimen metadata, diffraction pattern, frozen index, and the supplied refinement workflow. Then I’ll identify candidate phases, build and refine an ordinary multiphase model, and only run the mandated bounded polish once the model is terminal.
+
+The chemistry is the ZnO–WO₃ system fired at 700 °C, so ZnWO₄ is the expected principal product, but residual ZnO/WO₃ and off-stoichiometric tungsten oxides remain plausible. I’m now checking the frozen-index schema and the exact GSAS-II/export requirements before assigning peaks.
+
+The exact Zn–W–O key is absent from the frozen index, consistent with a deliberately missing principal-composition reference. I’ll therefore use the diffraction data itself to decide the topology; I’m not assuming wolframite merely from the nominal reaction. The first pass is peak-family extraction and comparison against ordinary ZnO/WO₃ references plus multiple substituted tungstate parents.
+
+Peak families already indicate a wolframite-like ZnWO₄ product (strong lines near 19.2°, 31.0°, and 36.7°) plus a distinct monoclinic WO₃ family around 23–25°, 27°, 29°, and 34°. I’m testing whether any ZnO family is independently present rather than treating shoulders or profile mismatch as a third phase.
+
+I found two independent physical wolframite starts in the frozen library—CoMoO₄ and MnReO₄, both P2/c—and will substitute them to ZnWO₄ and develop them with the same refinement sequence. This satisfies the missing-reference check without assuming the first analogue is uniquely correct. I’ll compare those alongside symmetry-related WO₃ references and a wurtzite ZnO test phase.
+
+The first full branch is behaving physically: after cell/calibration and profile work, the scale-derived composition is already about 87 wt% ZnWO₄, 11 wt% WO₃, and 2 wt% ZnO. The initial Rwp drop from 45.6% to 18.9% confirms all three ordinary phase families contribute, though one profile parameter has hit its bound, so this is not yet a terminal comparison.
+
+One WO₃ branch has driven both zero and specimen shift to bounds and then worsened the fit; I’m treating that as numerical failure, not phase rejection. The comparison will be rerun from a shared physical calibration checkpoint for any such branch, as required, before selecting the WO₃ reference.
+
+The triclinic WO₃ start is also materially worse at the equally developed profile checkpoint (Rwp ≈22.1% versus 18.9% for the first monoclinic model), with two instrumental widths pinned. I’ll still let its physical refinement complete, then compare reflection-family residuals rather than relying on the early scalar alone.
+
+The low-symmetry WO₃ branch is taking longer but is still active; that is consistent with its larger parameter set rather than evidence for or against the phase. No new model changes are being made while it completes.
+
+This branch’s profile refinement is substantially slower than the monoclinic alternatives, so I’m allowing it to finish rather than terminating a potentially valid basin. If it remains nonresponsive, I’ll preserve the checkpoint and classify the run as numerical unknown rather than rejection.
+
+The triclinic branch has now exceeded the normal runtime by several-fold with no refinement output. I’ll give the current cycle one more interval; if it does not return, I’ll stop only this numerical branch, retain its last saved GPX, and continue with the physical monoclinic starts.
+
+The triclinic stage completed physically but remained worse (Rwp ≈21.7%) and pinned both WO₃ size/strain and ZnO size/strain. Its final joint settle is underway; the saved intermediate is intact, so there is no risk of losing the comparison if that last step fails.
+
+The final low-symmetry settle is again slow because it jointly varies six triclinic cell terms with the profile parameters. I’m not using this delay as evidence; it is simply a costly, ill-conditioned branch.
+
+This branch has had enough opportunity to converge, but its current joint solve remains nonresponsive. I’m preserving the prior completed checkpoint as the valid comparison; if the process does not return in the next interval, I’ll terminate this solve and run the remaining high-symmetry branch separately.
+
+The small-cell WO₃ file exposed an importer defect: its charged atom labels were read by GSAS-II as hydrogen, so its current fractions are invalid and cannot be compared. I’m stopping that branch and will normalize the same occupied structure through pymatgen before any fair test.
+
+The second wolframite start fell into a scale-zero basin because its parent cell was not pre-adapted enough for the observed peaks; that is a setup failure, not topology rejection. I’m stopping this run and will repeat both starts with the same observed-cell seed before comparing their coordinate basins.
+
+Using the refined cell without its paired calibration over-corrected peak positions, so the “identical cell” rerun is not yet an equal checkpoint. I’ll restart both starts with the same physical cell and the same shared zero/height seed from the successful branch; only their internal coordinates will differ.
+
+With the shared cell/calibration seed, the second comparison is now peak-aligned, but allowing zero and shift to re-refine immediately drives them back to bounds. I’ll use the shared nuisance checkpoint as fixed for the analogue comparison; the purpose here is to compare coordinate basins, not let calibration correlations decide between them.
+
+With nuisance terms held fixed, the first wolframite basin is stable: Rwp improves from 18.01% to 17.52% on Zn/W coordinates and 16.34% on oxygen coordinates. Several oxygen components reached the ±0.10 Å adaptation window, so those bound-hit components will not be accepted blindly; the comparison is diagnostic until the second basin and geometry checks complete.
+
+After rolling back the bound-hit oxygen shifts, both wolframite starts converge cleanly. The MnReO₄-derived basin is reproducibly better at the same nuisance checkpoint (Rwp 16.081% versus 17.524%), with no bound hits and max shift/σ 0.081; I’m accepting that physical basin and explicitly discarding the CoMoO₄-derived basin. Next I’m testing ZnO retention and the competing exact WO₃ references from this common checkpoint.
+
+The full three-phase model is now closed at the inventory level. Removing ZnO worsens Rwp from 16.081% to 16.337%, and ZnO improves independent windows at 32.0°, 34.9°, 36.5°, 47.9°, and 56.7°; removing WO₃ worsens Rwp to 20.83%. I’m retaining all three phases and now diagnosing the remaining center/wing and intensity residuals before any texture or roughness terms are considered.
+
+The dominant residual was texture, not a missing phase: only the [111] March–Dollase branch is strongly supported, lowering Rwp from 16.081% to 9.854% with a converged ratio of 0.71655. The other allowed axes remain near random powder and improve Rwp by at most 0.085%. The accepted ratio is inside the supplied 0.7–1.4 range, so I’m carrying the [111] branch forward while checking its remaining profile residuals.
+
+Polarization alone lowers Rwp but pins at the upper bound (1.0) and remains non-stationary, so it fails the acceptance rule and will be rolled back to 0.8. The roughness branches are still running; only an interior, converged solution will be retained.
+
+Both intensity-nuisance tests fail physically: polarization pins at 1.0, roughness pins at a supplied bound (B = 0.5 alone or 0.02 jointly). I’m rejecting those apparent Rwp gains and restoring polarization 0.8 with zero roughness. The remaining residuals are reflection-width/wing mismatches, so I’m moving to bounded phase-profile tests.
+
+The first uniaxial-strain test was initialized with a zero equatorial strain inherited from the isotropic model, causing GSAS-II’s uniaxial derivative to become undefined. I’m stopping that numerical branch, resetting both strain components to the same positive physical start, and rerunning; this is an initialization failure, not rejection of anisotropy.
+
+Uniaxial microstrain is not supported: every tested direction collapses one or both strain components to zero and then becomes numerically singular. I’m rejecting those branches. A better isotropic-size basin was reached while a trial strain hit zero; I’m now removing the failed strain term and replay-settling size, texture, scales, and background to verify that the lower Rwp is stable without the bound-hit parameter.
+
+The major phase model is physically closed: ZnWO₄ + WO₃ + ZnO, with all three supported by independent reflection families. I’m now resolving the last profile-term tests, then I’ll freeze the terminal model and invoke the required bounded polish exactly once.
+
+The minor-phase test is decisive in a useful way: WO₃’s size/strain refinement is stable but changes the fit negligibly; ZnO’s strain collapses to zero and makes the derivative matrix singular. I’m retaining the stable WO₃ checkpoint and keeping ZnO broadening fixed, then checking only the remaining high-angle intensity/profile terms for support.
+
+A concrete mismatch remains in the starting references: the product was loaded with \(U_\mathrm{iso}=0.010\), WO₃ with zero displacement, and ZnO with source anisotropic values, while this laboratory’s registered/generated models use one isotropic displacement value per phase in 0.003–0.020 Å². I’m testing that physically defined three-parameter model from several starts, with each phase’s atoms constrained together; unsupported boundary solutions will be discarded.
+
+The first constrained refinement exposed an implementation problem rather than a scientific result: GSAS-II froze the product master variable and propagated unequal dependent values, so that branch is invalid and has been stopped. I’m switching to fixed common-\(U_\mathrm{iso}\) profile scans, which enforce the laboratory model exactly and avoid interpreting a broken constraint.
+
+The joint intensity model is also non-identifiable: polarization pins at 1.0 while WO₃/ZnO displacement values run above the laboratory range. I’m rejecting that correlated branch and normalizing all references to the documented 0.005 Å² registration value. This is a physical fixed checkpoint, not a claimed measurement of thermal motion.
+
+The reference normalization improves \(R_\mathrm{wp}\) from 8.77% to 8.51% and replays stably. The next ambiguity is common Lorentzian instrument broadening versus crystallite size, so I’m restarting the instrument \(X\) term from three interior values and refining identical checkpoints. Agreement between starts is required before accepting it.
+
+The common \(X\) term runs directly to 6.0 while WO₃ size simultaneously runs to 1.5 µm, confirming the expected correlation; that branch is rejected. I’m rolling \(X\) back to the neutral 1.0 instrument seed and refining only distinguishable common Gaussian/asymmetry terms plus bounded phase sizes.
+
+With \(X=1.0\), both minor-phase sizes collapse to the 0.04 µm floor; this is the same correlation in the opposite direction, so that checkpoint is also rejected. I’m restoring the last accepted fixed \(X=5.8\) checkpoint and allowing only the common Gaussian/asymmetry terms and the well-supported product size/texture to settle; minor broadening remains fixed.
+
+The supported profile checkpoint now converges cleanly at \(R_\mathrm{wp}=7.703\%\): \(U=20.66\), \(W=4.03\), SH/L=0.0513, product size 0.103 µm, and [111] March–Dollase ratio 0.702. All refined terms are interior and unfrozen; the correlated \(X\), minor-size, polarization, roughness, and strain alternatives remain excluded.
+
+The read-only terminal audit confirms exact replay (\(R_\mathrm{wp}=7.7027\%\)), positive background, no active/frozen parameters, and normalized fractions 0.8345/0.1127/0.0528. One geometry diagnostic deserves review before the irreversible polish: the published WO₃ reference reports a short O–O neighbor (~1.58 Å), so I’m checking whether that is a setting/rounding artifact or a reason to reject the reference.
+
+The physical WO₃ model is valid, but its transformed near-orthogonal basis is the \(P2_1/n\) setting; the generated CIF mislabeled it \(P2_1/c\), and GSAS-II correctly refused the mismatch. I’m correcting only that setting label and rerunning the equal-nuisance comparison.
+
+The corrected comparison resolves the WO₃ concern: the adapted 1966 \(P2_1/n\) model is physical and improves \(R_\mathrm{wp}\) from 7.703% to 7.320% under the same nuisance model, with stable ~11.21 wt% WO₃. I’m accepting it and explicitly discarding the coarse 1960 reference with the 1.58 Å O–O contact.
+
+A follow-up WO₃ broadening refinement was invalid: after renumbering, a stale bound let its size exceed the 1.5 µm laboratory maximum. I’ve discarded that numerical branch. The accepted physical-reference checkpoint is the earlier equal comparison at 7.320%, where WO₃ profile terms remained at their prior supported values; I’m cleaning that exact three-phase project without further refinement.
+
+The terminal three-phase model now passes replay and geometry checks, and every significant positive residual maximum lies within 0.20° of an accepted ZnWO₄, WO₃, or ZnO reflection—there is no remaining coherent unassigned family. I’m invoking the required bounded polish now, exactly once; from this point onward I’ll perform only read-only audit and export operations.
+
+The bounded polish is behaving as designed: the first all-coordinate pass hit several coordinate limits, those atoms were rolled back automatically, and the remaining interior coordinates have now converged. It is continuing through cell/scale settling and the two alternate coordinate sequences.
+
+The required polish completed successfully and selected the converged “heavy-light” branch at \(R_\mathrm{wp}=5.30085\%\), a substantial improvement over 7.31993%. I’m reviewing its recorded geometry/fraction audit now; if it is clean, I’ll make that exact polished project `final.gpx` and export all deliverables without further refinement.
+
+The selected branch’s audit is clean: no geometry or fraction violations, no frozen parameters, and the final replayed fit gives \(R_\mathrm{wp}=5.30085\%\), \(R_p=3.9310\%\), with fractions 82.412/11.694/5.894 wt%. I’m now doing the permitted fresh forward-replay consistency check, then exporting CIFs and tabular outputs from that exact `final.gpx`.
+
+Fresh native replay succeeded without optimization, left `final.gpx` byte-for-byte unchanged, and raised no profile or physical-review flags. I’m using that replayed profile for `fit.csv`, while exporting the saved atomic models and mass fractions directly from the same project.
+
+The exact exports are complete: 82.412 wt% ZnWO₄, 11.694 wt% WO₃, and 5.894 wt% ZnO, with replayed \(R_\mathrm{wp}=5.3009\%\). I’m adding the concise evidence/uncertainty report, then I’ll run only file-consistency and CIF-geometry checks.
+
+Validation is clean: all three CIFs parse at full occupancy with physical minimum distances, fractions sum exactly to 1, `fit.csv` covers all 8301 original points exactly, and its reported difference column is internally exact. The root CIFs are byte-identical to those produced by the successful native replay.
+
+Completed the phase analysis:
+
+- ZnWO₄: 82.412 wt%
+- WO₃: 11.694 wt%
+- ZnO: 5.894 wt%
+
+Fresh GSAS-II replay: Rwp 5.3009%, Rp 3.9310%, GOF 2.0061. Fractions are normalized over modeled crystalline phases only.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-ca9876455e52/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-ca9876455e52/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-ca9876455e52/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-ca9876455e52/workspace/final.gpx)
+- [ZnWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-ca9876455e52/workspace/ZnWO4.cif)
+- [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-ca9876455e52/workspace/WO3.cif)
+- [ZnO.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-ca9876455e52/workspace/ZnO.cif)
+

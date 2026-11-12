@@ -1,0 +1,59 @@
+I’ll inspect the pattern metadata and the supplied PXRD workflow/tooling first, then identify candidate phases, build a shared multiphase refinement, and validate the final GSAS-II state by replaying the full profile. I’ll keep residual-driven substitutions inside the common refinement, as requested, and physically screen every submitted CIF.
+
+The chemistry narrows the search to Cu–W–O (with possible residual CuO/WO₃), but the scan has a high, sloping low-angle background and unknown specimen/instrument offsets. I’m now extracting peak positions and querying the frozen COD index for all relevant Cu/W/O structures and close framework analogues before committing to phase identities.
+
+Peak positions establish four ordinary-reference candidates before refinement: triclinic CuWO₄, cubic Cu₃WO₆, room-temperature WO₃, and residual tenorite CuO. Their independent diagnostic lines all share the same cosine-like displacement (about −0.45° at low angle), strongly indicating specimen-height error rather than unrelated lattice shifts. I’m building the common four-phase GSAS-II model now; WO₃ polymorph and CuO setting will be selected only by shared-state refinements.
+
+The first shared refinement reached an encouraging ~7.5% Rwp, but it exposed strong correlations that drove unconstrained peak-width and roughness terms outside the laboratory’s physical range. I’ve tightened the refinement to the stated instrument/specimen bounds and separated Gaussian, size, strain, and Lorentzian stages; the phase fractions are already stable at roughly 66% CuWO₄, 13% Cu₃WO₆, 19% WO₃, and 3% CuO pending the physically bounded replay.
+
+The bounded model improves to 5.27% Rwp with converged positive scales and a physically valid analytic profile. The ~2.6 wt% CuO scale remains stable, so the precursor is supported rather than merely plausible. I’m now comparing WO₃ polymorphs in that same four-phase state; one older monoclinic reference became numerically invalid during cell refinement and is being retained as an inconclusive failed trial, not counted as evidence against it.
+
+The triclinic WO₃ reference is decisively better than orthorhombic WO₃ (fresh-replay Rwp 4.30% versus ~15.3% in the same model), and its scale is stable near 19 wt%. Remaining residuals coincide with modeled peaks and are mostly relative-intensity errors, so they point to the synthetic scan’s small coordinate/Uiso/texture perturbations rather than an unindexed extra phase. I’m finishing equivalent-setting checks before refining those structural details.
+
+A key modeling detail emerged from the supplied generator: registered reference CIFs are symmetry-normalized and assigned a common isotropic Uiso before the private perturbations are applied. I’ve regenerated the candidate pool with that exact public convention and am repeating the two best WO₃/CuO combinations; this removes a real bias from raw COD anisotropic displacement parameters and will make the submitted CIFs consistent with the generating model class.
+
+The normalized trial also exposed a near-degeneracy among specimen shift, zero, and independently refined phase cells. The cubic Cu₃WO₆ peak sequence breaks that degeneracy: its angle-dependent shifts indicate approximately +0.78 mm specimen displacement with only a small zero offset, not the boundary solution produced by unconstrained least squares. I’m anchoring those two corrections for the next structural refinement so cell metrics are not sacrificed to calibration correlation.
+
+The recalibrated projects are running with specimen roughness fixed to its data-supported null value and with immutable stage snapshots. Once they finish, I’ll refine only the symmetry-allowed atomic coordinates and one shared isotropic displacement parameter per phase, then replay the winning project from the original full grid.
+
+With the physically anchored calibration, the normalized triclinic WO₃ model has already fallen to 3.70% Rwp and stable fractions (~65.8/13.2/18.9/2.2 wt%). This confirms that the earlier boundary-calibration solution was masking the correct cell/profile state. The monoclinic-equivalent trial is still finishing under the same constraints.
+
+The monoclinic WO₃ run is substantially slower because its lower symmetry and strongly split metric add more correlated cell terms; it remains active rather than failed. I’m letting that common-state comparison complete, since prematurely treating a slow trial as negative evidence would violate the requested residual-phase protocol.
+
+Refining the normalized structures reduced Rwp from 3.70% to 2.34% using only heavy-atom coordinates, and to 2.27% when WO₃ oxygen coordinates were released. The weak CuO coordinate refinement slightly worsened the fit, so that step will not be retained. I’m now screening the coordinate-shift magnitudes and interatomic contacts to decide whether the small WO₃ oxygen gain is physically defensible or over-parameterized.
+
+The physically bounded WO₃ oxygen refinements replay at 2.31–2.32% Rwp, while the freer oxygen model replays at 2.29% but requires many coordinates at their wide bounds. I’m favoring the bounded model unless a genuine texture term explains the residual. CuWO₄ texture has already refined essentially to unity on every tested axis, so no texture is supported there.
+
+The four-phase model is now well constrained: triclinic CuWO₄, cubic Cu₃WO₆, triclinic WO₃, and minor monoclinic CuO. I’m finishing the shared-project stress tests—anisotropic broadening and plausible alternate/additional phases—then I’ll replay the chosen physical state on the original grid and package the GSAS-II project, CIFs, profile, JSON, and report.
+
+The broadening checks are behaving sensibly so far: CuWO₄ and Cu₃WO₆ gain less than 0.002 Rwp percentage point from uniaxial terms, with no compelling axis. I’m letting the WO₃ and CuO trials finish because WO₃ carries the largest microstrain and is the only phase where anisotropy could materially affect the phase fractions.
+
+WO₃ shows a reproducible [001] uniaxial-broadening signature: the fresh replay improves from 2.309% to 2.236% Rwp, with 4483 ppm transverse and 3674 ppm axial microstrain. That is large enough to retain and changes every phase fraction by under 0.1 percentage point. The remaining phase tests are much weaker; I’m treating numerical failures or unstable low-fraction behavior as unknown rather than as negative evidence.
+
+The explicit Cu₂WO₄ precursor-addition test did not support a reportable fifth phase: three starts (0.5, 2, and 5 wt%) all converged to only 0.0506 wt%. Because that scale did not go exactly to zero, I will not claim the precursor is absent; I’m checking whether allowing its own cell perturbation changes that trace result. If it remains sub‑0.1 wt%, it will be documented as below reliable determination rather than promoted to a quantified phase.
+
+The ordinary closure refinement lowered Rwp to 2.178% by re-equilibrating the smooth background and scales. A subsequent attempt to refine CuO’s displacement parameter drove it to the physical lower bound, so that weak-phase parameter is not reliably determined; I’m discarding that boundary state and continuing from the saved pre-boundary project, refining only the well-supported phases before the final replay.
+
+The supported closure state has converged cleanly: fresh full-grid replay gives Rwp 2.17674%, χ² 15056.33, GOF 1.348, and no profile-review flags. All four fractions are stable to much better than 0.1 percentage point across the late refinements. I’m now freezing that state, exporting its exact saved atoms, and running the submission-consistency and contact screens.
+
+The submission parser accepts all four models and their normalized fractions, and every CIF passes the exact physical screen. The scorer’s extra isolated wrapper cannot create its nested sandbox in this environment, but the underlying read-only replay already completed successfully; I’m completing the same consistency checks directly against its exported phase CIFs and the submitted `fit.csv`.
+
+Completed the four-phase refinement. Crystalline weight fractions are:
+
+| Phase | Weight fraction |
+|---|---:|
+| CuWO₄ | 65.7987% |
+| Cu₃WO₆ | 12.9318% |
+| WO₃ | 18.8437% |
+| CuO | 2.4259% |
+
+Fresh full-grid replay gives Rwp = 2.17674% and GOF = 1.348, with no physical/profile flags. A possible ~0.05 wt% Cu₂WO₄ trace was below reliable determination and was not included.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-750f580f47ea/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-750f580f47ea/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-750f580f47ea/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-750f580f47ea/workspace/final.gpx)
+- [CuWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-750f580f47ea/workspace/CuWO4.cif), [Cu3WO6.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-750f580f47ea/workspace/Cu3WO6.cif), [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-750f580f47ea/workspace/WO3.cif), [CuO.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-750f580f47ea/workspace/CuO.cif)
+

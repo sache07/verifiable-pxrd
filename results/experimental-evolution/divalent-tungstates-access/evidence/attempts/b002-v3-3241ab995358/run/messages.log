@@ -1,0 +1,56 @@
+I’ll inspect the measurement metadata, pattern format, and the supplied diffraction-analysis guidance first. Then I’ll identify coherent reflection families, build the smallest chemically plausible phase set, and carry the accepted models through GSAS-II refinement and export.
+
+The chemistry is a 1:1 ZnO + WO₃ firing at 700 °C, so ZnWO₄ is the economical principal hypothesis, with ZnO/WO₃ or off-stoichiometric tungsten oxides as plausible residuals. I’m now testing that hypothesis against the full peak-position and intensity pattern rather than assuming complete reaction.
+
+The dominant broad family matches wolframite-type ZnWO₄, including its diagnostic low-angle lines and the intense cluster near 31°. The exact Zn–W–O library entries are deliberately absent, but a CoMoO₄ P2/c analogue has the correct wolframite topology and nearly the expected cell; I’m adapting that framework and will only add another phase if a separate residual family survives.
+
+The first unconstrained Rietveld pass confirmed a single P2/c indexing, but it exposed two exact/near-exact parameter correlations: instrument X versus crystallite size, and zero offset versus specimen height. Letting both sides float drove nonphysical values. I’m restarting with Le Bail peak extraction and one representative parameter from each correlated pair, then I’ll recover specimen displacement by a bounded grid and return to atomic intensities.
+
+The [111] March–Dollase test is decisive: only that axis gives a large, stable gain, with a ratio near 0.72; the other four allowed axes collapse to a random-powder ratio. That explains the anomalously strong 31° family without adding a phase. I’ve retained the modern wolframite coordinate start and am now replacing the effective broadening terms with a physical size/strain profile before re-optimizing the texture.
+
+A distinct residual family remains after the accepted ZnWO₄ model is adapted: prominent lines at about 23.41°, 26.97°, 29.23°, 33.60°, and 34.49° are not ZnWO₄ reflections. This is exactly the condition for a second-phase search. I’m testing the ordinary precursor references first; the family is characteristic of monoclinic WO₃ and does not match wurtzite ZnO.
+
+The residual search is now a controlled same-composition comparison across six WO₃ references. Each candidate is receiving the same cell, scale, crystallite-size, and strain relaxation; this avoids selecting a polymorph just because one reference happened to start closer.
+
+Monoclinic WO₃ is strongly supported: adding it drops Rwp from about 15.6% to 9.6% at roughly 9–10 wt%. Orthorhombic and alternative monoclinic polymorphs fit materially worse. I’m finishing the symmetry-setting/texture comparison among the three nearly equivalent γ-WO₃ descriptions before locking the exported cell.
+
+The two-phase model is now ZnWO₄ (wolframite) plus monoclinic γ-WO₃, with the current full-pattern fit at about Rwp = 5.87% and crystalline fractions near 86.5/13.5 wt%. I’m doing the final residual and coordinate-stability checks now, then I’ll freeze and replay the GSAS-II project before exporting the requested files.
+
+The residual is now mostly intensity mismatch at accepted reflections rather than an unindexed peak family, so the phase search is closed. I’m testing each γ-WO₃ atomic site independently from the same refined baseline; only reproducible, physically small coordinate gains will be retained.
+
+The ZnWO₄ coordinates give a substantial and physical improvement (all Zn–O/W–O distances remain sensible); the γ-WO₃ oxygen sites are too weakly constrained and move implausibly for tiny gains, so they are being held at the reference values. The two WO₃ tungsten sites do refine stably and remain physically valid. I’m now re-relaxing only the profile and lattice terms against that accepted structural model.
+
+A chemically decisive check changed the model: wurtzite ZnO does not collapse—it contributes a coherent third reflection family, lowers Rwp from 5.35% to 3.76%, and refines to about 4.7 wt%. Together with residual WO₃, that restores the expected 1:1 Zn:W reaction balance. I’m incorporating ZnO and re-running the staged structural/profile checks on the full three-phase model.
+
+The three crystalline fractions already satisfy Zn:W balance to within about 1%, which is strong independent support for the ZnO assignment. The current pass is replacing the transferred ZnO reference’s anisotropic displacement factors with the experiment’s physically appropriate per-phase isotropic model and selecting those values by full-grid replay.
+
+The ZnO phase is not merely a few overlapping peaks: its scale is stable, its wurtzite cell refines cleanly, and a physically allowed [100] March–Dollase correction gives the best of the tested texture axes. The earlier large ZnO oxygen shift was therefore rejected pending this texture correction; texture is being applied first, then that coordinate will be retested.
+
+At this point every coherent reflection family is assigned. The remaining width residual is phase-specific: ZnWO₄ supports a [100] uniaxial microstrain model (Rwp 3.41→3.37%, positive and within the synthesis prior), while analogous WO₃ and ZnO anisotropy tests give negligible gains and are rejected. I’m doing one final coupled refinement cycle with only these accepted effects.
+
+The accepted three-phase model now reaches Rwp ≈ 3.23% with physically sensible coordinates and positive background throughout. I’m checking the specimen-height/cell correlation on a fixed displacement grid because that parameter can leave the profile nearly unchanged while biasing the submitted lattice constants; this is the last substantive model-selection check.
+
+The refined three-phase model shifted the displacement optimum away from the preliminary two-phase estimate; the coarse scan now favors roughly −400 µm and is still descending toward less-negative values. I’m extending the same fixed-grid test rather than allowing the highly correlated displacement, zero, and cell terms to drift together.
+
+The displacement envelope has a clear minimum at −380 µm; a local refinement lands at −380.6 µm. After replaying the accepted coordinate, texture, and profile terms at that calibration, the fit is Rwp ≈ 3.09% (GOF near 1.17). I’m now freezing the project, validating all exported structures and fractions against it, and generating the deliverables.
+
+Completed and verified by fresh full-grid GSAS-II replay.
+
+| Crystalline phase | Weight fraction |
+|---|---:|
+| Wolframite ZnWO₄ | 82.08% |
+| Monoclinic γ-WO₃ | 12.82% |
+| Wurtzite ZnO | 5.10% |
+
+Fit: Rwp 3.090%, Rp 2.344%, GOF 1.169. Fractions are normalized over modeled crystalline material; amorphous content is undetermined. WO₃ oxygen coordinates remain comparatively uncertain.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v3-3241ab995358/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v3-3241ab995358/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v3-3241ab995358/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v3-3241ab995358/workspace/final.gpx)
+- [phase_ZnWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v3-3241ab995358/workspace/phase_ZnWO4.cif)
+- [phase_WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v3-3241ab995358/workspace/phase_WO3.cif)
+- [phase_ZnO.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v3-3241ab995358/workspace/phase_ZnO.cif)
+

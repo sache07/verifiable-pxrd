@@ -1,0 +1,48 @@
+I’ll first inspect the specimen metadata, pattern, and the frozen analysis tooling/reference index. Then I’ll build and verify a complete multiphase GSAS-II refinement, keeping physical structure and replayability ahead of marginal fit gains.
+
+The chemistry narrows the ordinary inventory to Cu–W–O reaction products plus residual CuO/WO₃. I’m now querying the frozen COD index for exact-composition references and comparing their full peak families to the measured pattern before introducing any less ordinary phase.
+
+The three-phase inventory is supported, but the unconstrained calibration branch is drifting beyond the laboratory’s physical displacement range and pulling the cells with it. I’m rolling back to the physical checkpoint and separating specimen displacement from zero/cell refinement with bounded calibration branches.
+
+A coherent fourth family is now clear: the large residuals at 15.18, 19.80, 32.51, 33.78, 42.86, 49.70, 57.60, 63.29, 70.23, and 86.96° all track the full Pa-3 Cu₃WO₆ reference family after the same specimen shift. I’m adding that exact-composition phase and will re-refine the complete four-phase state before any further model search.
+
+The light-coordinate trial lowered Rwp, but it fails the physical screen: monoclinic WO₃ developed ~1.07 Å W–O and ~1.04 Å O–O contacts. I’m rejecting that branch and returning to the heavy-coordinate checkpoint; oxygen coordinates will be tested phase-by-phase with bounded starts and retained only when geometry remains credible.
+
+The WO₃ parent itself contains a 1.58 Å O–O contact, so even its heavy-only checkpoint is not an acceptable submitted structure. I’m replacing it with the physically sound, same-composition P2₁/c COD model 2311041 (same ambient monoclinic framework and peak family), then rebuilding the complete four-phase project from that physical reference.
+
+All coherent peak families are now assigned, so phase searching is finished. The accepted physical checkpoint is CuWO₄ + monoclinic WO₃ + CuO + Cu₃WO₆; I’m moving on to supported specimen/profile terms, beginning with phase-specific isotropic crystallite sizes while holding the instrument profile fixed.
+
+Polarization is strongly supported (Rwp fell from 5.07% to 3.65%, refining to 0.514), but the coupled profile fit drove U negative. I’m keeping the polarization result while enforcing the physical U ≥ 0 boundary and re-optimizing the remaining supported terms.
+
+A lower instrument Lorentzian term (X = 4) resolves the phase broadening cleanly for CuWO₄ (~0.22 µm) and WO₃ (~0.54 µm), dropping Rwp to 2.75%. CuO and Cu₃WO₆ are instrument-limited and run to unconstrained “infinite” size, so I’m fixing those weakly determined sizes at the laboratory’s 1.5 µm upper bound rather than submitting the numerical runaway.
+
+The phase inventory is now stable: CuWO₄, residual WO₃ and CuO, plus Cu₃WO₆. The four-phase refinement reaches Rwp ≈ 2.08%; I’m packaging that physical checkpoint now and checking that the exported CIFs, fractions, profile, and replayable GSAS-II project all agree.
+
+One consistency issue surfaced before export: the saved refinement window used the nominal 10–100° range, while the supplied grid extends by about 0.095° at each edge. I’m extending the same accepted model to the entire supplied grid and re-refining only its already-supported parameters, so `fit.csv` and the replayed project cover every observation.
+
+The full-grid model converged cleanly after removing the redundant global/phase scale degree of freedom (69 refined parameters, no SVD singularity). Its normalized crystalline fractions are 65.729% CuWO₄, 18.488% WO₃, 13.109% Cu₃WO₆, and 2.674% CuO; I’m now running independent structural and replay checks on the packaged files.
+
+Completed the four-phase GSAS-II refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| CuWO₄, P-1 | 65.729% |
+| WO₃, P2₁/c | 18.488% |
+| Cu₃WO₆, Pa-3 | 13.109% |
+| CuO, C2/c | 2.674% |
+
+Full-grid fit: Rwp 2.0836%, Rp 1.5969%, GOF 1.2945. Independent replay reproduced the fit and fractions without profile-physics warnings.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-d40aac290058/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-d40aac290058/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-d40aac290058/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-d40aac290058/workspace/final.gpx)
+- [CuWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-d40aac290058/workspace/phase_CuWO4.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-d40aac290058/workspace/phase_WO3.cif)
+- [Cu₃WO₆ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-d40aac290058/workspace/phase_Cu3WO6.cif)
+- [CuO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-d40aac290058/workspace/phase_CuO.cif)
+
+The CuO fraction is the least certain because of its low abundance and overlap. Minority-phase oxygen coordinates were not reliably refinable and retain physically screened reference positions.
+

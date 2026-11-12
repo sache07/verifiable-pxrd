@@ -1,0 +1,30 @@
+I’ll inspect the measurement metadata, pattern, and the supplied PXRD workflow guidance, then identify candidate phases, refine them in GSAS-II, and validate that every submitted artifact is generated from the final project.
+
+The chemistry is a low-temperature WO₃–ZnO reaction, so plausible phases include unreacted WO₃/ZnO and one or more zinc tungstates; the scan itself will decide this. I’m checking the scientific runtime and extracting peak positions before committing to any structure candidates.
+
+Peak matching is now decisive at the inventory level: the dense monoclinic WO₃ fingerprint matches COD 2311041 line-for-line, while the unmatched peaks form the wurtzite ZnO series; diagnostic ZnWO₄ peaks near 18.9° and 30.4–30.7° are absent. I’m moving to a two-phase Rietveld model and will test whether any systematic residual demands a third phase.
+
+The two-phase refinement already reaches the counting-statistics limit: the independent full-grid replay gives Rwp 2.847%, versus 2.800% as GSAS-II’s theoretical minimum, with no profile or physical-review flags. I’m now removing exact parameter degeneracies (overall scale, ZnO origin, and instrumental/sample Lorentzian width) so the final project is stable and interpretable without changing the fitted profile.
+
+The nuisance tests support a control-style specimen: no ZnWO₄ scale, no texture, no roughness, no measurable microstrain, common 1 μm broadening, Uiso ≈0.005 Å², and zero specimen/angle offset. Refining polarization is the only significant added effect. The background is unambiguously exponential; I’m replacing the noise-following polynomial with an exponential-constrained equivalent before the final export.
+
+The final project and exports are now in place. I’m running the same artifact-level checks the evaluator uses—CIF parsing/physical screening, fraction normalization, fit.csv grid identity, and fresh GSAS-II replay consistency—before handing it back.
+
+Completed the two-phase refinement:
+
+- Monoclinic WO₃: 73.98 wt%
+- Wurtzite ZnO: 26.02 wt%
+- Full-grid Rwp: 2.819%; goodness of fit: 1.010
+- No supported ZnWO₄ phase; sub-percent impurities remain possible.
+
+Artifacts:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-8cbdd0a95afd/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-8cbdd0a95afd/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-8cbdd0a95afd/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-8cbdd0a95afd/workspace/final.gpx)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-8cbdd0a95afd/workspace/phase_WO3_monoclinic.cif)
+- [ZnO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-8cbdd0a95afd/workspace/phase_ZnO_wurtzite.cif)
+
+Fresh GSAS-II replay passed with no physical/profile flags, and both CIFs match the submitted project.
+

@@ -1,0 +1,32 @@
+I’ll inspect the measurement metadata, pattern, and the provided powder-XRD tooling/reference library first. Then I’ll identify candidate phases, refine them in GSAS-II, validate the quantitative fit, and write all requested artifacts from that final project.
+
+The chemistry is Sr–W–O with possible carbonate carryover at 650 °C, so I’ll treat SrWO₄, residual WO₃/SrCO₃, and Sr-rich intermediates as hypotheses—not assumptions. I’m now extracting peak positions and querying the frozen COD subset for all compatible Sr/W/O/C structures, then I’ll compare full-pattern simulations rather than rely on a few diagnostic lines.
+
+Peak matching supports three phases: scheelite-type SrWO₄ plus monoclinic WO₃ and orthorhombic SrCO₃. The weak lines at about 22.8/23.27/24.08° track the WO₃ triplet, while 24.98/25.55° and associated higher-angle lines track strontianite. I’m now refining these jointly and comparing all plausible WO₃ references; this is also where a hidden fourth phase would become evident in the residual.
+
+The three-phase model is now at Rwp ≈ 4.17% (GOF ≈ 1.05), essentially at the counting-statistics floor of 3.98%. The refined crystalline fractions are stable near 81.3% SrWO₄, 11.7% WO₃, and 7.1% SrCO₃; the WO₃:SrCO₃ residual ratio also matches the precursor stoichiometry. I’m doing the final nuisance/texture checks and physical validation before exporting the deliverables.
+
+The refinement is complete. I’m doing one last consistency check across the project, exported CIFs, profile, JSON, and report before handing over the files.
+
+The files themselves are intact. One validation helper needed its module path adjusted, so I’m rerunning that check directly against the scorer’s parser; this does not alter the refinement.
+
+Completed the three-phase GSAS-II refinement.
+
+| Phase | Space group | Weight fraction |
+|---|---|---:|
+| SrWO₄ (scheelite) | I4₁/a | 81.29% |
+| WO₃ (monoclinic) | P2₁/c | 11.67% |
+| SrCO₃ (strontianite) | Pnma | 7.05% |
+
+Final fit: Rwp 4.166%, Rp 3.179%, GOF 1.049. Fractions are normalized over crystalline phases; amorphous content cannot be quantified without an internal standard. Estimated uncertainty is approximately 1–2 percentage points for SrWO₄ and 1 point for each minor phase.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-cf5a2dfd18b7/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-cf5a2dfd18b7/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-cf5a2dfd18b7/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-cf5a2dfd18b7/workspace/fit.csv)
+- [SrWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-cf5a2dfd18b7/workspace/phase_SrWO4.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-cf5a2dfd18b7/workspace/phase_WO3.cif)
+- [SrCO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-cf5a2dfd18b7/workspace/phase_SrCO3.cif)
+

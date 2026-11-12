@@ -1,0 +1,56 @@
+I’ll first inspect the specimen metadata, diffraction grid, frozen reference index, and the supplied GSAS-II workflow notes. Then I’ll build the simplest chemically supported multiphase model, refine it, and verify that the saved project reproduces every submitted artifact.
+
+The chemistry points first to Mn–W–O products with possible residual Mn₃O₄ and WO₃. I’m now extracting all exact Mn/O/W references from the frozen index and comparing their simulated peak families against the observed pattern before committing any phase to refinement.
+
+A one-phase MnWO₄ refinement leaves a strong, internally consistent residual triplet at about 23.10/23.55/24.32°, plus matching families near 28.60° and 33–35°. That is the fingerprint of residual monoclinic WO₃, not random misfit. I’m testing the available WO₃ polymorph references against the full profile and will retain the physically ordinary ambient structure unless another model has broad, coherent support.
+
+After adding physical monoclinic WO₃, the residual is still phase-like: prominent peaks near 19.86, 20.39, 31.78, 35.09, 45.68–46.48, 54.44, and 56.46° recur across the scan. These are not explained by Mn₃O₄ or the accepted MnWO₄/WO₃ phases. I’m treating this as a genuine third-phase family and checking chemically plausible Mn–W–O topologies through divalent-tungstate analogues.
+
+The best chemically supported analogue is Pbcn Fe₂WO₆ with Fe→Mn substitution, which is charge-balanced Mn₂WO₆ (Mn³⁺/W⁶⁺) and naturally complements residual WO₃. Its reflection topology matches several residual families, but the parent cell is offset enough that direct least-squares refinement collapses its scale. I’m indexing that residual family first so the analogue enters GSAS-II with a defensible starting cell rather than interpreting the numerical collapse as rejection.
+
+The Cu₃WO₆→Mn₃WO₆ cubic analogue gives a stable positive scale and a sensible refined cell, but only a marginal full-profile improvement; it does not account for the residual intensity broadly enough to accept. I’m now ranking all chemically compatible M–W–O framework references against the signed two-phase residual, allowing modest analogue cell scaling, then I’ll test only the top physically plausible topology in GSAS-II.
+
+The orthorhombic Y₂WO₆→Mn₂WO₆ analogue is the only physically usable high-ranking topology: after a 3.5% parent-cell contraction it places independent residual families at 19.81/20.39, 28.60, 34.77, 46.43, 51.60, 55.49–56.80, and 63.26° with a stable positive scale. Its parent intensities overpredict two low-angle reflections, so I’m following the requested topology-first route: bounded heavy-site coordinate refinement, then light sites only if Mn–O/W–O geometry remains physical.
+
+The bounded coordinate tests confirm the third-phase topology but also show that unconstrained intensity fitting drives the analogue toward implausible W–O distances; I have rolled that branch back to the physical parent coordinates. The accepted MnWO₄ and WO₃ coordinate refinements remain physical. I’m now refining only bounded instrument and isotropic phase-broadening terms, with a replay after every bound is applied so the reported fit always corresponds to the saved physical model.
+
+The three-phase model is now physically stable, with the broad residual family assigned to an Mn₂WO₆-type phase. I’m testing bounded microstrain and specimen terms from that checkpoint, then I’ll freeze the best replayable state and export the requested files.
+
+The broadening test is still solving; the important safeguard here is that each bounded trial is recalculated after removing GSAS-II’s automatic bound freeze. That prevents a deceptively good, stale profile from being selected.
+
+The major MnWO₄ peaks require the lowest allowed microstrain (300 ppm), which materially improves the full-pattern fit after replay. WO₃ gives a stable interior value, while the very broad Mn₂WO₆-type component tends toward the upper strain limit; I’m now alternating those accepted strain values with the size terms once to remove profile-parameter bias.
+
+The replayed profile fit has reached Rwp ≈15.19% before the final size/strain alternation. The third phase remains at the broadening limits, so its amount and detailed topology will be reported as less certain even if its reflection family is real.
+
+Polarization is strongly supported (interior value ≈0.909; replayed Rwp ≈14.73%). Surface roughness also improves the fit, but its two coefficients are 99.3% correlated; I’m testing whether it remains independently useful after polarization before deciding whether to retain it.
+
+Surface roughness is rejected: after a clean replay it worsens the polarization-only model and one coefficient sits at its bound. I’m keeping the supported polarization correction and doing one final bounded alternation of phase broadening and instrumental width parameters.
+
+The final alternation is behaving consistently: MnWO₄ and the Mn₂WO₆-type phase remain at opposite physical broadening limits, while WO₃ refines to interior size/strain values. I’m retaining only the clean replays, not the lower but stale bounded statistics.
+
+I found that the measured grid extends slightly beyond the nominal 10–100° range (9.903–100.095°). The prior project left 17 edge points uncalculated, so I’m extending the refinement limits to every measured point and will submit that true full-grid replay.
+
+The full-grid refinement converged cleanly at Rwp 14.368% over all 8,301 points, with no frozen parameters or active parameter bounds. Final phase fractions are about 64.68% MnWO₄, 20.43% WO₃, and 14.89% Mn₂WO₆-type; I’m exporting this exact project state now.
+
+All requested artifacts are written. I’m doing a final consistency pass now: JSON schema/fraction sum, CIF physical screening, full-grid fit identity, and a reload of `final.gpx` to confirm the submitted project reproduces the declared phases and statistics.
+
+Completed the full-grid GSAS-II analysis.
+
+Crystalline phase fractions:
+
+- MnWO₄ (wolframite): 64.68 wt%
+- Monoclinic WO₃: 20.43 wt%
+- Tentative Mn₂WO₆-type phase: 14.89 wt%
+
+Final fit: Rwp 14.368%, Rp 8.795% over 8,301 points. The Mn₂WO₆ structure and fraction remain model-dependent because its broadening reached the imposed physical limits.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-afa6077d52d4/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-afa6077d52d4/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-afa6077d52d4/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-afa6077d52d4/workspace/fit.csv)
+- [MnWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-afa6077d52d4/workspace/MnWO4.cif)
+- [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-afa6077d52d4/workspace/WO3.cif)
+- [Mn2WO6_P212121.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v4-v5-afa6077d52d4/workspace/Mn2WO6_P212121.cif)
+

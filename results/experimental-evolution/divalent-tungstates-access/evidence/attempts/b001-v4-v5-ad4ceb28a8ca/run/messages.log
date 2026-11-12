@@ -1,0 +1,54 @@
+I’ll inspect the specimen metadata, diffraction grid, frozen reference index, and the analysis tooling already provided. I’ll first establish a complete physical multiphase checkpoint, then refine and validate residual peak coverage before writing the CIFs, profile, report, JSON, and replayable GSAS-II project.
+
+The chemistry points first to Ca–W–O products plus residual WO₃/CaCO₃ or decomposition products, but I’ll let the peak families decide. I’m now extracting robust peak positions and querying only the frozen COD index for exact and chemically plausible phases.
+
+Peak-family matching is now internally consistent with two crystalline phases: tetragonal scheelite CaWO₄ and monoclinic WO₃. The sharp WO₃ triplet near 22.8–24.0° and its split higher-angle families distinguish it from tetragonal/hexagonal WO₃ references; the broad scheelite family accounts for the dominant peaks. I’m building the first full-grid two-phase GSAS-II checkpoint now, before testing alternative WO₃ topologies or any weak third phase.
+
+The first complete checkpoint fits the full grid at Rwp 4.28% (statistical minimum 3.14%) with about 85.45 wt% CaWO₄ and 14.55 wt% WO₃. Residuals are mostly positive/negative lobes at already assigned reflections rather than a new coherent peak family. I’m now running the required same-state topology checks for WO₃; these use identical scale, cell, calibration, and profile stages so a lower-symmetry model is not favored merely by extra relaxation.
+
+Both lower-symmetry WO₃ comparisons are still refining; the runtime reflects the identical full-grid staging rather than a search stall. The accepted two-phase checkpoint remains safely saved, so these branches cannot overwrite it.
+
+The initial monoclinic WO₃ entry had under-resolved 1960 coordinates and a nonphysical 5+1 W environment, so it is unsuitable for submission even though its peak positions fit. Per the geometry rule, I’m replacing it with the chemically equivalent neutron-refined P2₁/c parent (COD 2311041), which has complete WO₆ octahedra, and will compare it against the physical triclinic parent.
+
+A bounded-coordinate trial exposed a GSAS-II parameter-limit subtlety: coordinate-shift variables are checked against absolute coordinates, so naïve ±shift limits forced atoms toward the origin. I caught this in the saved rollback points; none of those trial files will be used. I’m restarting from the untouched accepted checkpoint with absolute coordinate windows and independent snapshots.
+
+The corrected coordinate sequence is stable. Refining the scheelite oxygen site improved Rwp to 3.98% with normal W–O/Ca–O distances; attempting all WO₃ oxygens drove W–O to 1.58 Å and was rejected. A physically bounded CaWO₄ displacement-parameter refinement plus WO₃ Uiso at its supported lower bound improves Rwp to 3.90%. I’m now adding only phase/profile terms that earn a reproducible improvement.
+
+A second profile basin was found without adding extra phases or texture: a physically ordinary isotropic-strain model reaches Rwp 3.42%, close to the 3.14% counting-statistical minimum. The earlier apparent extreme [110] anisotropy was only a route into this basin; once restarted there, both phases refine isotropically and the fit is stable. I’m checking whether any bounded anisotropy is genuinely supported before freezing the final model.
+
+The residual map reveals a coherent third family that the two-phase fit could not explain: 29.07, 35.66, 39.16, 42.83, 47.25, 48.17, and 57.00° all track shifted calcite reflections. This is also exactly the Ca-bearing phase needed to close the 1:1 precursor balance against residual WO₃. I’m adding physical R-3c CaCO₃ as the third phase and will require its scale to remain stable through cell and profile relaxation.
+
+The main scheelite CaWO₄ and monoclinic WO₃ model is established. A residual family also matches unreacted calcite, so I’m checking the completed three-phase refinement now and will retain it only if the calcite scale is stable and the full-pattern residual improves coherently.
+
+Calcite is retained: it refines to 4.99(24) wt% of the crystalline material, lowers Rwp from 3.418% to 3.233%, and gives a physically normal calcite cell and stable crystallite-size/strain terms. The three-phase molar inventory is also nearly balanced (Ca:W ≈ 0.97), which supports residual precursor rather than an unrelated trace assignment. I’m now doing the final clean replay, residual-family audit, and geometry checks before exporting the deliverables.
+
+The clean replay converged in one cycle at Rwp = 3.23257% with no frozen-at-limit variables. Its strongest smoothed positive residuals are all below 2.2σ, so there is no remaining coherent unassigned peak family. The calcite fraction is clearly nonzero, though its breadth parameters are poorly separated; I’ll report its abundance with a realistic systematic caveat rather than treating the formal 0.24 wt% ESD as absolute accuracy.
+
+One topology question remains worth closing cleanly: the triclinic WO₃ alternative was the only close competitor before calcite was recognized. I’m carrying that alternative through the same three-phase staged refinement so the symmetry choice is compared in an identical phase inventory, as required; the accepted final files will change only if that branch is both better and geometrically physical.
+
+The fully relaxed triclinic branch can lower Rwp slightly to 3.2084%, but only by driving its 88.81°/90.93° parent angles to 90.02°/89.97° (effectively the monoclinic metric) and pushing heavy-atom coordinates to the imposed windows. Its bond lengths remain plausible, so I’m treating this as a genuine close ambiguity rather than dismissing it numerically. I’m checking a few bounded oxygen-site trials; selection will then be based on the physically nearest topology, not the last decimal of Rwp.
+
+The topology audit is complete. I’m retaining P2₁/c WO₃: the P−1 branch’s tiny numerical advantage comes from collapsing its distinctly triclinic parent metric toward monoclinic symmetry and using extra coordinate freedom. The submitted model is the physically nearer, parsimonious room-temperature topology; the report now records this as the main remaining structural ambiguity. Final file consistency checks are next.
+
+Completed and verified.
+
+Refined crystalline composition:
+
+- Scheelite CaWO₄ (*I*4₁/*a*): 81.17 wt%
+- Monoclinic WO₃ (*P*2₁/*c*): 13.84 wt%
+- Calcite CaCO₃ (*R*−3*c*): 5.00 wt%
+
+Full-grid fit: Rwp 3.2326%, Rp 2.4888%, goodness-of-fit 1.0301. The GSAS-II project independently replays all 8,301 points with no physical-profile flags.
+
+Deliverables:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-ad4ceb28a8ca/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-ad4ceb28a8ca/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-ad4ceb28a8ca/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-ad4ceb28a8ca/workspace/final.gpx)
+- [phase_CaWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-ad4ceb28a8ca/workspace/phase_CaWO4.cif)
+- [phase_WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-ad4ceb28a8ca/workspace/phase_WO3.cif)
+- [phase_CaCO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-ad4ceb28a8ca/workspace/phase_CaCO3.cif)
+
+The main uncertainty is the exact WO₃ symmetry; *P*2₁/*c* was selected over a slightly lower-Rwp but over-flexible pseudo-monoclinic *P*−1 model. Fractions are crystalline-only; amorphous content was not measurable.
+

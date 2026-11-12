@@ -1,0 +1,66 @@
+I’ll inspect the measurement metadata, pattern, and the provided tungstate workflow/tooling first. Then I’ll identify candidate phases, refine them together in GSAS-II, replay the final model on the full grid, and validate the CIFs and phase fractions before saving the requested deliverables.
+
+The chemistry points first to CuWO₄ with possible residual CuO/WO₃ or an off-stoichiometric copper tungstate, but I’ll let the diffraction pattern decide. I’m now mapping the available COD index and GSAS-II helpers, then I’ll extract peak positions and search/refine candidates in a shared multiphase state.
+
+Three phases are already strongly supported by independent peak families after a common ≈−0.46° displacement/offset: triclinic CuWO₄, monoclinic WO₃, and cubic Cu₃WO₆. I’m moving them into one GSAS-II project now; candidate additions will only be retained if their scale remains stable in that shared refinement and they remove coherent residual peaks.
+
+The shared refinement is running through staged scale/background, position, cell, and line-broadening fits. The initial candidate match is close enough that the main remaining work is discriminating genuine residual phases from profile/texture effects, which I’ll do from identical saved project states.
+
+CuO is a genuine fourth phase: its scale stabilizes at about 2.7 wt% and removes the residual family at 35.1°, 38.3°, 48.4°, 58.1°, and 65.3° 2θ. Cu₂O collapsed; Cu₄O₃ gave only a marginal sub‑1% fit and is not yet justified. I’m now re-refining the four-phase model with positive-bounded instrument/profile parameters before testing the remaining 15.0° residual.
+
+The four-phase profile is now physically bounded, and the residual is dominated by intensity ratios rather than unexplained peak positions. I’m refining phase-common displacement factors and symmetry-allowed coordinates one phase at a time; this separates structural mismatch from preferred orientation before any new phase is proposed.
+
+The coordinate-refined CIFs pass the geometric contact screen, and the dominant “extra” low-angle peaks index to the accepted phases (for example CuWO₄ 010 near 15.0°), so I am not adding a speculative phase there. The current refinement is correcting phase-specific peak widths that had been biased before the displacement factors were fitted.
+
+I’m testing all five physically plausible March–Dollase directions for each phase from the same frozen four-phase state. This is a controlled branch comparison: only the selected phase’s orientation ratio and scale move, so an apparent gain cannot come from retuning the background or instrument.
+
+A replay check caught an important numerical trap: the apparent 3.36% fit used a profile parameter that hit a bound, and the saved physical model replays at 16.77%. I’ve rejected that branch. The last fully replay-consistent state is 4.03% Rwp; I’m restarting texture/profile tests from that state with the now-fixed atomic parameters and no inactive constraints.
+
+The restarted March–Dollase optimizer is probing nonphysical trial ratios before GSAS applies limits, so it is slower than expected. I’m retaining only branches whose saved project independently replays and whose ratio remains positive and physically plausible; aborted branches remain inconclusive.
+
+The ordinary-reference audit is now running from the 4.03% replay-valid state: alternate Cu/WOₓ stoichiometries, CuWO₄/WO₃ polymorphs, and repaired oxidation-label-only COD imports are each being added with all accepted phases and nuisance terms fixed. A candidate must retain positive scale in that common state to advance.
+
+No ordinary added phase survives above about 0.3 wt%; CuO₂ and W₁₈O₄₉ give only marginal sub-noise-floor gains, while several large-cell trials failed and remain inconclusive rather than rejected. I’m now testing anisotropic strain and low-angle specimen effects, which are better explanations for the paired peak-center/shoulder residuals.
+
+The anisotropic-strain test is decisive for monoclinic WO₃: Rwp falls reproducibly from 4.03% to 3.75% with no bound or replay discrepancy. Surface roughness and polarization do not help. I’m combining that WO₃ model with the smaller CuWO₄/Cu₃WO₆ strain gains, then re-optimizing only the accepted structural/intensity terms.
+
+The four-phase model is now replay-stable at about 3.53% Rwp. I’m completing the required analogue-framework challenge against that exact common state, then I’ll export and independently replay the final project and physically screen every submitted CIF.
+
+The analogue search found six genuinely distinct ABO₄ framework families relevant to CuWO₄: wolframite, scheelite, raspite-like, monoclinic high-pressure, C2/m molybdate, and orthorhombic SnWO₄-type. I’m constructing CuWO₄ versions (including both one- and two-element transfers) and will challenge each as both an added phase and a replacement in the replay-stable four-phase refinement.
+
+The transferred CIFs preserve all six intended symmetries and have been volume-normalized to the refined CuWO₄ cell before testing. The common-state additions/replacements are still refining; none of the incumbent phase, background, instrument, or nuisance parameters are being allowed to move in these challenges.
+
+The analogue challenge is computationally heavier than the ordinary phase tests because each retained candidate is evaluated in two modes and the lower-symmetry cells carry many reflections. I’m letting those refinements finish rather than treating a timeout or aborted run as negative evidence.
+
+The completed challenges so far reject the transferred frameworks as replacements by very large margins (roughly 41–52% cached Rwp versus 3.53%). Their addition scales are already falling below about 0.15 wt%; I’m waiting on the remaining lower-symmetry candidates and will independently replay any apparently favorable marginal case before deciding.
+
+Fresh replay confirms the analogue result. Every replacement is decisively incompatible (43–50% Rwp); additions refine to 0–0.15 wt%. The only non-collapsed trace is P2/c CuWO₄ at 0.145 wt%, improving Rwp by just 0.011 percentage point and sharing nearly the same chemistry/reflections as the dominant triclinic phase, so it is below reliable phase/fraction resolution. I’ll carry that as an unresolved trace possibility, not as a quantified submitted phase, and now resume ordinary refinement from the four-phase physical state.
+
+The post-closure polish confirms the trace P2/c component remains below 0.3 wt% and strongly correlated with the main CuWO₄ phase. One structural caveat surfaced in the four-phase model: unconstrained WO₃ oxygen refinement moved farther than the generator’s stated reference-mismatch range, even though the geometry still passes the hard screen. I’m regularizing that light-atom substructure against the parent and comparing full-grid replay, so the submitted model does not gain profile fit through an underdetermined oxygen distortion.
+
+A GSAS-II scripting quirk caused one diagnostic branch to overwrite its source project despite saving a named copy first. No submitted artifacts exist yet, and an untouched, replayable copy of the 3.528% state is preserved in the earlier branch snapshots. I’m restoring from that snapshot and rerunning the regularization with explicit file copies so this diagnostic cannot propagate.
+
+The regularized model exposed a substantial, physically sensible profile correction: the generating-profile terms and bounded crystallite sizes can lower Rwp toward 2.94%. That coupled trial had a singular Hessian and frozen parameters, so I am not using it as evidence or as the final state. I’m replaying those values only as starting estimates in a fresh staged refinement, with disjoint parameter blocks and no dropped variables.
+
+The repaired profile state now converges cleanly: no frozen or dropped parameters, maximum shift/esd 0.14, fresh full-grid replay Rwp 2.989%, and no replay review flags. It retains the four-phase inventory, bounded sizes/ADPs, and the regularized WO₃ oxygen model. I’m now exporting the exact saved atoms, screening the submitted CIFs, and building the profile/result/report from a final independent replay.
+
+Completed and independently replay-validated.
+
+- CuWO₄ (P -1): 65.19 wt%
+- WO₃ (P 21/c): 18.90 wt%
+- Cu₃WO₆ (P a -3): 13.40 wt%
+- CuO tenorite (C 2/c): 2.51 wt%
+
+Fresh full-grid replay: Rwp 2.989%, Rp 2.207%, with no physical/profile review flags. A possible P2/c CuWO₄ trace below 0.3 wt% was not reliably quantifiable.
+
+Files:
+
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-4d8c362ee66c/workspace/report.md)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-4d8c362ee66c/workspace/result.json)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-4d8c362ee66c/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-4d8c362ee66c/workspace/final.gpx)
+- [CuWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-4d8c362ee66c/workspace/phase_CuWO4_triclinic.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-4d8c362ee66c/workspace/phase_WO3_monoclinic.cif)
+- [Cu₃WO₆ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-4d8c362ee66c/workspace/phase_Cu3WO6_cubic.cif)
+- [CuO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-4d8c362ee66c/workspace/phase_CuO_tenorite.cif)
+

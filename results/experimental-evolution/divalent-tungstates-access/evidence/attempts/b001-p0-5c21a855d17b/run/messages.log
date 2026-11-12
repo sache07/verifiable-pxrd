@@ -1,0 +1,60 @@
+I’ll inspect the measurement metadata, pattern format, and the provided analysis tooling first. Then I’ll identify candidate phases, refine them against the full profile in GSAS-II, and validate that every submitted artifact is internally consistent.
+
+The sample is a CuO–WO₃ reaction fired at 700 °C, so CuWO₄ is the leading product hypothesis, but residual CuO/WO₃ or a Cu-rich oxide cannot be assumed away. I’m now extracting peak positions and querying the frozen Cu–W–O reference library before committing phases to refinement.
+
+Peak positions separate into two coherent families: triclinic CuWO₄ and room-temperature WO₃. The characteristic WO₃ triplet near 22.67/23.07/23.89° is distinct from the CuWO₄ lines, while the dense CuWO₄ set tracks a common specimen-angle displacement. I’m setting up a two-phase refinement first and will test CuO as a third phase against residual-only evidence.
+
+The first two-phase GSAS-II refinement is running through lattice, specimen displacement, instrumental broadening, and phase-profile stages. I’m keeping atomic coordinates fixed during this screening pass so the WO₃ polymorph comparison is driven by reproducible profile evidence rather than overfitting.
+
+The two-phase residual exposes a decisive third phase: every major unexplained line matches cubic Cu₃WO₆ after the same specimen displacement—15.18, 19.79, 32.49, 33.77, 42.87, 49.69, 57.60, and 63.29°. This is much stronger evidence than a generic “better fit,” and it rules out CuO as the source of those peaks.
+
+The three-phase model drops Rwp from 18.1% to 10.9% before texture or atomic-coordinate refinement, with provisional fractions near 0.64 CuWO₄ / 0.20 WO₃ / 0.15 Cu₃WO₆. I’m comparing the closely related WO₃ settings now; tetragonal WO₃ has already failed the peak topology test, while the monoclinic/triclinic variants remain under evaluation.
+
+Among the WO₃ candidates, monoclinic P2₁/c COD 2311041 is best (quick-screen Rwp 10.70% versus 10.90% triclinic, 11.92% another monoclinic model, and ≥20% for orthorhombic/tetragonal alternatives). The refined fractions repeatedly converge near the simple 0.65/0.20/0.15 mixture, which is also chemically consistent with the Cu:W precursor balance.
+
+After the three main phases are modeled, the remaining sharp residuals at 35.10°, 38.32°, and 48.45° form the shifted tenorite CuO fingerprint. This supports a fourth, minor residual-precursor phase; it was obscured initially by CuWO₄ overlap but is now unambiguous in the difference curve.
+
+The CuO check is now included as a fourth phase using the C2/c tenorite reference whose three isolated lines match the residual positions. This refinement will determine whether its scale remains positive and whether it materially improves the full-pattern fit; if not, I’ll remove it rather than report a trace phase from three peaks alone.
+
+A consistency check exposed an important GSAS-II issue: the last displayed 3.82% Rwp used cached arrays from a refinement that froze several boundary parameters. I’m now using the scorer’s atomic forward-replay path to measure the actual saved model, so the final project and exported fit cannot benefit from stale calculated intensities.
+
+The consistent replay-safe refinement now has Rwp 6.97% (down from 10.14%) with no frozen parameters. Profile terms indicate a broad CuWO₄ domain (~0.22 µm), moderate WO₃ broadening, nearly instrument-limited Cu₃WO₆, strong low-angle surface roughness, and polarization near 0.78. I’m testing only the five specimen-texture axes allowed by the measurement model, one phase at a time.
+
+The four-phase model is now stable at about 4.48% replayed Rwp. I’m checking whether restrained structural-coordinate refinement gives a real improvement, then I’ll lock the physical profile parameters, export the CIFs, and verify the final project by replaying it from disk.
+
+The coordinate test found a strong, physically small correction in CuWO₄: Cu/W moved only about 0.02–0.03 Å, but Rwp fell from 4.48% to 3.48%. That is compelling structural evidence rather than a profile workaround. I’m replay-validating it and testing the oxygen sublattices and the smaller phases independently before combining only the supported changes.
+
+The combined structural refinements replay cleanly and have reached 3.33% Rwp. The refined displacements remain in the expected few-hundredths-of-an-ångström range. I’m now doing one correlation pass per phase and correcting two inherited profile placeholders (an effectively infinite Cu₃WO₆ crystallite size and strain values that the data do not support) before the final background/profile cycle.
+
+Revisiting peak positions after the corrected line-broadening model is materially improving the fit; all four unit cells make small, supported adjustments, and the specimen displacement moves back inside its allowed range. I’m combining those refinements now, then will perform one joint convergence cycle and a clean replay check.
+
+The second structural pass remains stable and lowers Rwp to 2.12%; the additional coordinate shifts are still small and chemically plausible. I’m at the final convergence stage now: rebalancing intensities/profile terms, checking interatomic geometry and replay consistency, then exporting the four phase CIFs and deliverables.
+
+The saved-model replay exactly reproduces the refinement at 2.0849% Rwp with no profile warnings. The refined crystalline fractions are 64.63% CuWO₄, 19.33% WO₃, 13.36% Cu₃WO₆, and 2.69% CuO. I’m now freezing that model into `final.gpx`, exporting its CIFs, and running the final geometry/file-integrity checks.
+
+All requested files are now generated. I’m doing a final cross-check that the CIFs match the structures stored in `final.gpx`, the profile grid is identical to the input, fractions sum to one, and the reported statistics recalculate from `fit.csv`.
+
+Completed and independently replay-validated from `final.gpx`:
+
+| Phase | Weight fraction |
+|---|---:|
+| CuWO₄, P−1 | 64.63% |
+| WO₃, P2₁/c | 19.33% |
+| Cu₃WO₆, Pa−3 | 13.36% |
+| CuO, C2/c | 2.69% |
+
+Final fit: Rwp 2.0849%, Rp 1.5454%, goodness-of-fit 1.2917.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-5c21a855d17b/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-5c21a855d17b/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-5c21a855d17b/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-5c21a855d17b/workspace/final.gpx)
+- [CuWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-5c21a855d17b/workspace/phase_CuWO4.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-5c21a855d17b/workspace/phase_WO3.cif)
+- [Cu₃WO₆ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-5c21a855d17b/workspace/phase_Cu3WO6.cif)
+- [CuO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-5c21a855d17b/workspace/phase_CuO.cif)
+
+Fractions are normalized over modeled crystalline material; the minor CuO fraction has the largest relative uncertainty, and amorphous content cannot be determined without an external standard.
+

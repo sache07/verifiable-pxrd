@@ -1,0 +1,54 @@
+I’ll inspect the pattern metadata and the supplied divalent-tungstate workflow, then identify candidate phases, refine them in GSAS-II, and verify that every submitted artifact is reproducible from `final.gpx`.
+
+The chemistry is a CaCO₃ + WO₃ firing at 650 °C, so the first hypotheses are CaWO₄ plus residual/decomposition phases (WO₃, CaCO₃, CaO), but I’ll let the full peak inventory decide rather than assume complete reaction. I’m now checking the available reference index and the exact GSAS-II scripting setup.
+
+The peak inventory now supports two phases: scheelite CaWO₄ accounts for the dominant series, while the nearly equal triplet at about 22.77/23.18/23.99° and its higher-angle companions indicate low-symmetry WO₃. I’m comparing the plausible monoclinic/triclinic WO₃ references by identical Rietveld trial refinements, including the shared zero/displacement and phase-dependent broadening that can otherwise bias phase selection.
+
+The first controlled trials strongly reject the older P2₁/m WO₃ model (about 8.47% Rwp). A doubled-cell monoclinic P2₁/c model already improves to about 4.84% before any coordinate refinement; I’m completing the remaining polymorphs and will use residual peak structure—not just the scalar Rwp—to confirm the choice.
+
+The two-phase model is complete—there are no credible unmodeled Bragg peaks. The remaining gap is profile/structure detail: the unconstrained screening fit let calibration terms wander outside the laboratory’s physical ranges. I’m rebuilding the best models with explicit physical bounds, then refining the symmetry-allowed coordinates and common phase Uiso values before testing texture or anisotropic strain.
+
+The bounded refinement exposed the expected calibration–cell correlation: several parameters sit at their physical limits when broadening is introduced all at once. I’m separating those stages so the shared instrument profile and each phase’s specimen breadth remain identifiable; the phase assignment and approximately 85:15 abundance are stable throughout.
+
+Texture and uniaxial-strain screens both collapse to the random-powder/isotropic limit, so those effects are not supported. The main remaining systematic error is peak-shape decomposition; I’m scanning only physically allowed shared instrument terms while re-optimizing the two crystallite sizes, with the refined structures held fixed.
+
+The phase search and refinements converge on two crystalline components: scheelite CaWO₄ and monoclinic WO₃, at roughly 85.6/14.4 wt% of the modeled crystalline material. I’m now freezing the best refinement into the requested deliverables and replaying that exact project to verify the CIFs, fractions, and profile are mutually consistent.
+
+The replay candidate is internally coherent, but I found a strong correlation between lattice constants and the zero/specimen-displacement terms in the exploratory refinement. Before freezing it, I’m checking a bounded calibration grid; this is the one remaining place where an equally good profile could otherwise produce less defensible unit cells.
+
+The bounded calibration scan is still computing its first trial—cell recalculation is substantially slower than the profile refinements. The accepted model remains the two-phase solution; this scan only decides whether the final lattice metrics can be reported without carrying the zero/height degeneracy.
+
+The bounded endpoint is now refining. The preliminary comparison confirms the calibration pair is nearly 99.9% correlated; importantly, the phase fractions stay essentially unchanged (about 85.5/14.5 wt%) across these alternatives, so this affects lattice precision more than phase identity or quantification.
+
+The physically bounded alternative fits materially worse, while the original model reproduces the full scan near the counting-statistical limit. I’m therefore retaining the best-profile project, freezing all refinement flags, and explicitly treating the absolute cell metrics as calibration-correlated in the report; the phase assignment and crystalline-only fractions are robust to that choice.
+
+The frozen project has now passed an independent forward replay: GSAS-II regenerated the pattern from atomic structure factors without using cached calculated intensities, found both phase scales unchanged, and raised no profile-physics flags. I’m using that regenerated curve for `fit.csv` and doing final CIF chemistry/geometry checks.
+
+The geometry check exposed one important issue: the unconstrained WO₃ oxygen refinement shortened some W–O contacts to ~1.31 Å. Although it passes the scorer’s broad hard-contact screen, that displacement is not chemically credible and exceeds the stated reference-mismatch range. I’m regularizing the WO₃ coordinates toward the published parent and re-optimizing only profile/intensity terms; the final submission will favor a defensible structure over a small, overfit Rwp gain.
+
+A bounded geometric fit resolves the calibration problem: with zero = −0.25°, specimen shift ≈ +206 μm, and all cells within the allowed ±0.5% reference mismatch, the calculated reflection positions reproduce the best-fit positions to ~0.006° RMS. I’m rebuilding from that physically admissible geometry and restoring the WO₃ oxygen framework toward the published parent before the final profile settle.
+
+The bounded coordinate scans behave sensibly: scheelite’s oxygen shift is supported up to the allowed ~0.05 Å, while WO₃ oxygen shifts along the unconstrained solution consistently worsen the fit. I’m therefore keeping WO₃ oxygen positions parent-regularized, allowing only a bounded ~0.04 Å W-framework adjustment, and settling the remaining scale/ADP/polarization terms.
+
+The chemically regularized model is now final: 85.13 wt% scheelite CaWO₄ and 14.87 wt% monoclinic WO₃ on a crystalline-only basis, with Rwp = 4.448%. Its independently regenerated profile has no negative widths/background, both CIFs pass geometry screening, and the shortest WO₃ contact is restored to a credible 1.70 Å.
+
+One last structural check is worthwhile: the data rejected the earlier WO₃ oxygen direction, but a single local least-squares step from the physically bounded model can supply a different, calibration-consistent direction. I’m testing that direction only within the known 0.01–0.05 Å displacement envelope; it will be accepted only if geometry remains credible and the full profile improves.
+
+The local bounded direction improved the fit slightly and kept all displacements within the physical envelope. The selected model now uses 0.05 Å oxygen and 0.04 Å tungsten RMS adjustments from the WO₃ parent; it remains a regularized model, not a claim of uniquely resolved local distortions. I’m refreshing the final project and replay-derived files with this version.
+
+Identified two crystalline phases:
+
+- Scheelite CaWO₄ (I4₁/a): **85.16 wt%**
+- Monoclinic WO₃ (P2₁/c): **14.84 wt%**
+
+Fractions are crystalline-only. Final fit: Rwp 4.441%, Rp 3.143%, GOF 1.416. Independent GSAS-II replay passed with no profile-physics flags. WO₃ local oxygen positions remain less certain and were physically regularized; fraction uncertainty is approximately ±1–2 wt%.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-b0c277cba493/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-b0c277cba493/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-b0c277cba493/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-b0c277cba493/workspace/final.gpx)
+- [CaWO4_scheelite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-b0c277cba493/workspace/CaWO4_scheelite.cif)
+- [WO3_monoclinic.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-b0c277cba493/workspace/WO3_monoclinic.cif)
+

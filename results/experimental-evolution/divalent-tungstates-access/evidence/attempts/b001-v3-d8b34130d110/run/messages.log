@@ -1,0 +1,86 @@
+I’ll inspect the pattern, metadata, and the provided diffraction workflow first, then identify candidate phases and build/refine a GSAS-II multiphase model. I’ll preserve uncertainty explicitly and validate the exported CIFs, profile, fractions, and project against one another.
+
+The chemistry is the CuO–WO₃ system fired at 700 °C, so CuWO₄ is the expected product, but the broad generator permits residual precursors and off-stoichiometric/intermediate phases. I’m now treating that only as a reaction prior and will let the full reflection families decide the phase inventory.
+
+Three coherent reflection families are already evident after a common low-angle shift: triclinic CuWO₄ is dominant; cubic Cu₃WO₆ accounts for the 15.18/19.79/32.49/33.77° family; monoclinic WO₃ accounts for the 22.67/23.07/23.89° triplet and its higher-angle companions. The two secondary phases are also reaction-balanced: equal formula amounts of Cu₃WO₆ and two WO₃ units correspond to nearly equal secondary-phase masses. I’ll now refine all three together and test the closely related WO₃ references on equal footing.
+
+The initial three-phase Rietveld fit reaches about 7.8% Rwp, but it leaves the CuO pair at 35.09/38.31° and gives a W-rich bulk balance. Adding a small tenorite CuO component is both reflection-supported and restores the 1:1 Cu:W precursor balance; I’ll include it before judging the WO₃ polymorph or refining coordinates.
+
+The fourth phase is confirmed: CuO drops Rwp from 7.8% to 6.5% and refines to about 2.7 wt%; the resulting Cu:W ratio is ~1.02, consistent with the stated 1:1 precursor charge. Among WO₃ starts, the ambient monoclinic P2₁/c family is clearly favored; lower-symmetry triclinic and orthorhombic alternatives already fit substantially worse.
+
+The best WO₃ start is COD 2311041 (P2₁/c); before coordinate refinement it reaches 5.72% Rwp versus 6.01% for the triclinic start and 7.21% for the other P2₁/c reference under the same profile treatment. I found the earlier low Rwp relied on nonphysical profile limits, so I’m restarting from the selected model with the generator’s actual bounds, normalized per-phase Uiso, and staged one-phase-at-a-time broadening/coordinate refinement.
+
+The replay check exposed an important refinement pitfall: a trial project with manually normalized displacement parameters had a cached 6.28% curve but regenerated to 34.1%, so I rejected it. The unmodified atomic project replays exactly at 7.00%. I’m continuing only from that replay-consistent checkpoint, changing one bounded parameter at a time so every accepted gain reflects freshly recalculated structure factors.
+
+The replay-consistent fit is now at 5.08% Rwp. The largest structural gain came from refining the CuWO₄ W site (5.89→5.35%), while every CuWO₄/Cu₃WO₆ coordinate step produced a smaller reproducible gain. Broadening remains physical: the cubic minor phase prefers the lower size bound, while WO₃ and CuO remain within the allowed specimen range.
+
+The four-phase model is now replay-consistent at Rwp 3.759%. I’m finishing the key symmetry control—giving the triclinic WO₃ alternative the same staged refinement—then I’ll freeze the clean winner, export its CIFs/profile, and validate every submitted artifact against a fresh GSAS-II replay.
+
+The triclinic WO₃ control is converging from the same four-phase baseline. Its early profile is already weaker than the monoclinic model; I’m letting the coordinate/cell stages finish because that is the fair comparison, especially for WO₃’s split low-angle reflections.
+
+The control has reached atomic-coordinate refinement and is improving substantially, as expected, but remains well above the monoclinic model at the corresponding depth. No new unindexed reflection family has appeared; the remaining misfit stays attached to reflections of the four accepted phases.
+
+The lower-symmetry WO₃ candidate is using many more independent W/O coordinates and is still behind despite that extra freedom. I’ll judge it with both fit and structural plausibility/BIC, so a marginal numerical gain from over-parameterization would not displace the simpler monoclinic framework.
+
+At equal first-pass depth, triclinic WO₃ finishes at Rwp 4.350% versus 4.341% for monoclinic WO₃, despite roughly three times as many independent WO₃ sites. I’m now applying the identical cell and coupled-coordinate pass to both comparison standards; this final control will resolve whether that small gap is real.
+
+The decisive pass is close: triclinic WO₃ is now at Rwp 3.95% before its coupled oxygen refinement, while monoclinic WO₃ finished the same full stage at 3.759%. Because the triclinic model has 12 independent O sites versus the monoclinic model’s much smaller parameter set, I’m also checking interatomic contacts before accepting any late fit gain.
+
+The full comparison changes the conclusion: triclinic WO₃ reaches Rwp 3.644% versus 3.759% for monoclinic WO₃, lowering χ² by about 2,700—far beyond the parameter-count penalty. I’m tentatively selecting triclinic WO₃, subject now to the two hard gates: fresh full-grid replay and chemically sensible W–O/O–O contacts.
+
+The replay passes exactly, but the triclinic fit fails the chemistry gate: its WO₃ refinement drove several W–O distances to 0.87–1.33 Å and created an O–O contact at 1.66 Å. That numerical gain is overfitting, so I am rolling it back. I’m screening the monoclinic solution now and will retain only a structurally physical model, as required.
+
+Both candidate libraries are close to the synthetic reference family, whose allowed structural mismatch is only 0.01–0.05 Å. I’m therefore rerunning the decisive coordinate stages with explicit parent-centered displacement bounds; this keeps refinements in the physically intended neighborhood instead of rewarding arbitrary intensity fitting.
+
+The first bounded trial exposed a GSAS-II behavior worth catching: an unconstrained least-squares step can jump beyond a user limit before GSAS freezes it. I stopped that run; I’m damping coordinate-only steps so the optimizer approaches the permitted structural neighborhood instead of crossing it in one iteration.
+
+The bounded projection is doing what the unrestricted run did not: coordinate moves that only improved the fit by collapsing bonds are now rejected after recalculating the profile at the physical boundary. The workflow will next refine cells/calibration and retry coordinates there, where genuine small structural shifts can separate from peak-position errors.
+
+The physically bounded monoclinic model completes at Rwp 4.157%, with fractions about 65.71% CuWO₄, 13.19% Cu₃WO₆, 18.47% WO₃, and 2.63% CuO. I’m replaying and screening it now; after that, the triclinic control only needs to show whether it can match this without leaving its own physical neighborhood.
+
+The clean monoclinic project passes fresh replay exactly and all four CIF geometry screens; its shortest WO₃ W–O bond is 1.63 Å with no flagged O–O contacts. The triclinic candidate is now undergoing the same bounded refinement, so its earlier lower Rwp cannot benefit from the rejected bond-collapse coordinates.
+
+Within its physical envelope, triclinic WO₃ is finding only small improvements; most coordinate directions are rejected at the boundary. That contrasts with its earlier large but chemically impossible gain and supports treating that lower Rwp as overfit rather than a better phase assignment.
+
+The triclinic physical run is converging slowly because it has 16 independent WO₃ sites, but its accepted coordinate gains remain modest and bounded. I’m allowing the full pass to finish rather than cutting off the lower-symmetry alternative early.
+
+At the same bounded stage, triclinic WO₃ remains about 0.36 Rwp points behind the monoclinic path before the shared cell/profile finishing pass. Its extra independent sites are not buying a comparable physical fit.
+
+The triclinic control is now in its final coupled-coordinate pass and still trails the clean monoclinic fit by roughly 0.69 Rwp points. The residual benefit of its extra sites disappears once chemically implausible motion is excluded.
+
+The symmetry control is decisive: physically bounded triclinic WO₃ finishes at Rwp 4.535%, substantially worse than monoclinic P2₁/c at 4.157%, despite many more coordinates. I’m retaining P2₁/c and moving to final nuisance checks (texture/anisotropic strain) from the clean replay-consistent project.
+
+The selected structure set is fixed. I’m now testing the last physically motivated nuisance terms from that exact project: whole-specimen roughness, March–Dollase texture on allowed axes, and uniaxial microstrain. Each candidate is recalculated with refinement flags cleared before comparison, preventing the stale-profile issue that invalidated the earlier roughness trial.
+
+The roughness parameters are extremely correlated, as expected. The clean recalculation is preventing boundary-frozen candidates from being credited. Some texture axes are also numerically unstable and will be rejected by the physical range gate; only stable, penalized improvements can survive.
+
+The final nuisance pass retained no roughness. It accepted modest texture/strain terms that survive full recalculation and penalized model selection, reducing Rwp from 4.157% to 4.106%. I’m now performing the definitive replay, then exporting directly from that exact binary project.
+
+A hash check caught that a later GSAS-II inspection reserialized the candidate project after its first replay. The numerical values appear unchanged, but I’m treating the binary hash change strictly: replaying the actual copied `final.gpx` now and regenerating CIFs/fit.csv from that replay only.
+
+The actual submitted project now replays at exactly Rwp 4.1061% with no profile-review flags, and all exported structures pass the geometry/occupancy screen. I’m writing the quantitative result and concise evidence/uncertainty report, then I’ll run the submission parser and one final artifact-consistency audit.
+
+Completed. The modeled crystalline fractions are:
+
+| Phase | Space group | Weight fraction |
+|---|---|---:|
+| CuWO₄ | P−1 | 65.720% |
+| Cu₃WO₆ | Pa−3 | 13.102% |
+| WO₃ | P2₁/c | 18.470% |
+| CuO | C2/c | 2.709% |
+
+Fresh full-grid GSAS-II replay gives Rwp = 4.1061% and Rp = 3.1284%. All CIFs pass structural screening and agree with `final.gpx`.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-d8b34130d110/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-d8b34130d110/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-d8b34130d110/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-d8b34130d110/workspace/final.gpx)
+- [CuWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-d8b34130d110/workspace/phase_1_CuWO4.cif)
+- [Cu3WO6 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-d8b34130d110/workspace/phase_2_Cu3WO6.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-d8b34130d110/workspace/phase_3_WO3.cif)
+- [CuO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-d8b34130d110/workspace/phase_4_CuO.cif)
+
+CuO is the least secure fraction because of its low abundance. Amorphous content and detailed WO₃/Cu₃WO₆ oxygen displacement parameters cannot be determined reliably from this pattern alone.
+

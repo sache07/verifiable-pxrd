@@ -1,0 +1,98 @@
+I’ll first inspect the specimen metadata, diffraction grid, and the frozen analysis package, then build and refine the simplest chemically plausible multiphase GSAS-II model. I’ll keep each accepted checkpoint replayable and verify the final exports against the saved project.
+
+The chemistry points first to wolframite-type MnWO₄, but I’m treating that only as the initial hypothesis. I’m now checking the frozen reference-search interface and the exact replay/export requirements, while independently extracting observed peak families so residual WO₃ or manganese-oxide phases are not hidden by the dominant product.
+
+Peak-family extraction already supports at least two chemically ordinary phases: the wolframite family and residual hausmannite Mn₃O₄ (notably the 18°, 36°, 44°, 59.8°, and 64.8° sequence). The crowded 23–24° region may also require residual WO₃, so I’m comparing all exact-system COD references before fixing the inventory.
+
+Three coherent families are now accounted for by MnWO₄, Mn₃WO₆, and monoclinic WO₃; the strongest remaining candidate lines are all explained without Mn₃O₄. I’m moving to full-pattern Rietveld checkpoints with the measured Kα doublet, Poisson weights, the known 200 mm Bragg–Brentano geometry, and physically bounded zero/displacement terms.
+
+The first complete three-phase branch is stable and positive: preliminary refined crystalline fractions are about 67% MnWO₄, 12% Mn₃WO₆, and 20% WO₃. Peak positions improve coherently when all three cells are allowed modest shifts; I’m continuing through profile and coordinate checkpoints, with geometry screening before accepting any coordinate gain.
+
+The unconstrained joint instrument-profile trial drove U and axial-divergence outside physical ranges, so I rejected that checkpoint and returned to the physical cell/calibration model. I’m now following the requested sequence strictly: heavy-site coordinates, oxygen coordinates with rollback screening, then phase size/strain and one instrument term at a time.
+
+The coordinate checkpoints improve Rwp from 13.87% to 12.41% while retaining positive scales and only sub-percent cell changes. The all-coordinate WO₃ branch shows strong coordinate correlations, so I will accept it only if bond geometry remains sound; the current phase-profile refinement is still running.
+
+Geometry screening rejects the oxygen-refined checkpoint: it creates sub-ångström O–O contacts. More importantly, the starting WO₃ reference in this branch already contains an implausibly short 1.58 Å O–O contact, so I will not submit it even if its profile is competitive. I’m screening the exact-composition WO₃ references now and will continue from the closest physically sound monoclinic topology.
+
+The physically sound WO₃ reference gives a comparable cell-stage fit (Rwp 13.80%) and normal W–O/O–O geometry. GSAS-II’s direct crystallite-size derivative is numerically stalling even one phase at a time, so I’m treating that as unknown—not rejection—and switching to bounded one-dimensional profile searches followed by fixed-value refinements.
+
+The fixed-value test confirms the numerical workaround is effective: setting only MnWO₄ size to 0.10 µm reduced Rwp from 13.80% to 11.18% without changing topology or geometry. A bounded coordinate-descent search is now evaluating the remaining phase widths and instrument terms; every candidate keeps positive phase scales and the atomic model fixed.
+
+The three phase-size families all favor the physically allowed lower end of the lab range (about 0.05 µm), bringing Rwp to 7.48%. That broadening is consistent across MnWO₄, WO₃, and Mn₃WO₆ rather than being absorbed into an unphysical instrument width; strain and instrument grids are still in progress.
+
+Strain contributes little compared with size: MnWO₄ stays near 1000 ppm, and WO₃ selects about 1800 ppm for only a 0.003 percentage-point Rwp gain. This is reassuring—the large improvement is from coherent crystallite broadening, not a high-strain artifact.
+
+Mn₃WO₆ is the only phase needing substantial strain broadening, selecting the upper tested 8000 ppm limit and reducing Rwp to 7.28%; its weaker peaks make that value less precise. The instrument W term remains at the ordinary starting value of 10, so the fit is not trading phase strain against an extreme instrumental Gaussian width.
+
+Instrument U settles at 0 and X near 1.2, both within the stated laboratory ranges; the fit is now Rwp 7.27%. I’m finishing axial-divergence/polarization checks and a second phase-width pass, then I’ll map any coherent residual families before deciding whether coordinate refinement is warranted.
+
+Axial divergence stays at 0.02 and polarization selects 0.9, lowering Rwp to 7.10% with no boundary pathology. The second width pass is confirming the ~0.05 µm sizes rather than drifting them after polarization was set.
+
+The second pass leaves MnWO₄ and WO₃ unchanged at 0.05 µm to numerical precision. I’m waiting on the minor Mn₃WO₆ width/strain pass; after that I’ll inspect the difference profile peak-by-peak and test only supported residual complexity.
+
+A second bounded strain pass adjusts MnWO₄ modestly from 1000 to 1800 ppm and improves Rwp to 7.085%; this remains well inside the physical range. WO₃ and Mn₃WO₆ are the final profile terms being rechecked.
+
+The bounded physical profile converged at Rwp 7.085% with crystalline fractions 63.2% MnWO₄, 17.0% Mn₃WO₆, and 19.8% WO₃. Because all three sizes selected the lowest coarse-grid point, I’m checking the exact 0.04 µm lower bound before residual interpretation; then I’ll avoid any further search once coherent families are accounted for.
+
+The residual map shows derivative/intensity pairs at already assigned reflections—not a new peak family. The strongest are around the MnWO₄ 29.8/30.2° pair and the WO₃ 22.9–24.2° triplet, so I’m re-optimizing cells and common angular calibration with the accepted physical widths fixed before touching coordinates.
+
+After cell/calibration re-optimization, Rwp is 6.876% and all residual maxima still sit on accepted-phase reflections. The dominant 29.8/30.2° MnWO₄ intensity ratio is the clearest structural mismatch, so I’m testing MnWO₄ coordinates phase-by-phase with short steps and explicit bond-length rollback—not adding another phase.
+
+MnWO₄ heavy-site refinement is physical and small (~0.02 Å), improving Rwp to 6.735%. A free oxygen step improves further but moves sites by ~0.17–0.27 Å—far beyond the documented reference-mismatch range—so I’m rejecting that free endpoint and testing only interpolated oxygen shifts capped near 0.05 Å RMS.
+
+The bounded MnWO₄ oxygen shift at 0.046 Å RMS is accepted (Rwp 6.559%); larger shifts continue improving the fit but exceed the documented mismatch range. WO₃’s free heavy-site step similarly overshoots (~0.06–0.10 Å), so I’m applying the same bounded interpolation rule before considering oxygen sites.
+
+WO₃ bounded heavy and oxygen shifts are now capped at 0.047 Å and 0.048 Å RMS, respectively; the free oxygen endpoint was rejected. The accepted bounded WO₃ model reaches Rwp 6.410% with normal starting topology preserved. I’m applying the same final check to Mn₃WO₆.
+
+Mn₃WO₆ coordinate checks converge to bounded shifts of 0.046 Å (Mn) and 0.047 Å RMS (O); the accepted three-phase model is now Rwp 6.372%. I’m screening all final bond networks and the remaining residual peaks before the last specimen-effect tests and export.
+
+The phase inventory is now chemically and crystallographically complete: MnWO₄, Mn₃WO₆, and residual WO₃ account for every coherent reflection family. I’m finishing only bounded specimen-effect checks, then I’ll freeze and independently replay the physical GSAS-II model before writing the deliverables.
+
+Surface roughness was decisively unsupported—the uncorrected model remained best, while every nonzero correction worsened the fit. I’m now testing March–Dollase texture phase-by-phase on crystallographically distinct axes, with fixed bounded coefficients and re-equilibrated scales/background; only a reproducible, material improvement will be retained.
+
+The dominant MnWO₄ phase is already strongly favoring a random orientation: coarse texture coefficients on the first tested axis worsen Rwp from 6.37% to 9–16%. I’m letting the remaining independent axes finish so this conclusion is based on full directional coverage.
+
+The complete directional screen found one clear, physically modest texture term: MnWO₄ [111], with March–Dollase \(r\approx1.18\), lowers Rwp substantially from 6.37% to 5.66%. All other MnWO₄ axes were worse. I’ll tighten that coefficient locally, then test whether either minor phase has independent texture support.
+
+Mn₃WO₆ shows, at most, a very shallow texture response so far (about 0.02 percentage points in Rwp), far smaller than the MnWO₄ effect. I’ll retain it only if the full screen gives a distinct minimum and the improvement survives local refinement; otherwise the minor phase remains random.
+
+WO₃ has a second unmistakable texture signature: [010] with \(r=1.18\) drops Rwp from 5.61% to 3.68%, whereas nearby coarse alternatives on other axes are much worse. This is broad intensity redistribution, not a peak-position patch; I’m completing the axis screen and will then locate the bounded minimum.
+
+The WO₃ texture minimum is well bounded at [010], \(r\approx1.30\): Rwp rises on both sides (3.44% at 1.25, 3.47% at 1.35, and >4% beyond 1.6). I’m now allowing only the three already-supported texture coefficients to settle continuously from their bounded minima, with axes and all structural/profile terms fixed.
+
+Re-equilibrating lattice metrics after the accepted texture corrections improved Rwp further to 3.30% with only small, plausible cell shifts (≤0.05% in lengths). I’m giving that same cell-only stage one convergence pass, then will inspect residual families and test no additional structural complexity unless a specific defect remains.
+
+Residual extrema are centered on accepted-phase peaks and have center/shoulder sign reversals, indicating width mismatch rather than another phase. Because the original crystallite-size grid was chosen before texture was modeled, I’m re-screening only isotropic sizes on the completed three-phase state; this is the next supported complexity and keeps all axes, coordinates, cells, and texture fixed.
+
+The completed model confirms all three crystallite sizes at their previous bounded values (0.050, 0.040, and 0.050 μm); moving any one by even 0.02 μm worsens Rwp sharply. I’m now doing the analogous one-at-a-time microstrain check, especially because Mn₃WO₆ sits at the stated 8000 ppm upper bound.
+
+Microstrain is also bounded cleanly: MnWO₄ remains 1800 ppm, WO₃ shifts to a shallow but stable 1000 ppm minimum, and Mn₃WO₆ genuinely prefers the allowed 8000 ppm ceiling. I’m making one final local instrument-width pass; this checks whether the residual center/shoulder pattern belongs to the shared optics rather than any phase.
+
+The shared optics now have bounded interior minima (approximately \(W=4\), \(U=5\), \(X=1.8\), SH/L=0.02), lowering Rwp to 3.20%. I’m allowing only \(U,W,X\) to settle continuously from those screened values, then I’ll lock every model parameter and perform the final replay/geometry checks.
+
+The unconstrained optics trial was rejected: it lowered Rwp numerically but drove both Gaussian \(U\) and \(W\) negative, making the profile width nonphysical across the scan. The accepted checkpoint remains the bounded positive model at Rwp 3.196%; this is exactly the sort of small numerical gain that does not justify bad geometry/profile physics.
+
+Joint zero/displacement refinement improves Rwp to 3.155% but is 99.91% correlated and pushes displacement to 789 μm, almost the 800 μm physical limit. I’m checking zero-only and displacement-only alternatives from the same checkpoint; the least-correlated physical calibration will be used even if the joint fit is numerically a little lower.
+
+The best physical checkpoint is now stable at Rwp 3.152%. All coherent peaks remain assigned, all scales are positive, lattice/coordinate geometry is ordinary, and further unconstrained width fitting was rejected. I’m freezing that checkpoint, exporting the CIF/profile/JSON set, and then running the independent GSAS-II replay validator before submission.
+
+Independent replay succeeded without using cached calculated intensities: the regenerated profile matches `fit.csv` to \(5\times10^{-9}\) counts, all analytic peak widths/backgrounds are positive, all ADPs pass the tensor check, and the project remains unchanged. I’m completing the final bond-distance and file-schema audit, then writing the concise evidence/uncertainty report.
+
+Completed. The modeled crystalline composition is:
+
+- MnWO₄: 63.34 wt%
+- Mn₃WO₆: 17.99 wt%
+- WO₃: 18.67 wt%
+
+Final fit: Rwp 3.1523%, Rp 2.2861%, GOF 2.2125. Independent GSAS-II forward replay passed with no physical-profile flags. Fractions are crystalline-normalized; practical systematic uncertainty is approximately ±2 wt% absolute.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-2c85755c1095/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-2c85755c1095/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-2c85755c1095/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-2c85755c1095/workspace/final.gpx)
+- [MnWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-2c85755c1095/workspace/phase_MnWO4.cif)
+- [Mn3WO6 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-2c85755c1095/workspace/phase_Mn3WO6.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-2c85755c1095/workspace/phase_WO3.cif)
+

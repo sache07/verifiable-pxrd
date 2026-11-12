@@ -1,0 +1,52 @@
+I’ll first inspect the specimen metadata, diffraction range/resolution, and the frozen analysis guidance. Then I’ll build and verify a replayable multiphase GSAS-II model before running the one permitted final polish.
+
+The chemistry points to the Mn–W–O system, but at 800 °C the plausible inventory still includes MnWO₄, residual WO₃/Mn oxides, and off-stoichiometric manganese tungstates. I’m now matching whole reflection families against the frozen COD index rather than assigning phases from a few strongest peaks.
+
+Three coherent families are already accounted for: wolframite MnWO₄ is dominant, monoclinic WO₃ explains the 22.9–24.2° triplet, and rhombohedral Mn₃WO₆ explains the paired 19.7/20.2° peaks and its higher-angle series. The first quantitative fit gives roughly 65/20/15 wt%, but I’m tightening the calibration/profile constraints because unconstrained size–strain terms produced a nonphysical numerical branch.
+
+The three refined phase fractions independently satisfy the starting 1:1 Mn:W balance to within about 1%, which is a strong cross-check: Mn₃WO₆ and WO₃ occur in nearly the 1:2 molar compensation required around MnWO₄. I’m comparing the few exact-composition WO₃ references now; this is the last inventory/topology check before specimen terms and coordinate refinement.
+
+No additional crystalline family remains: the residual maxima and minima occur as paired intensity errors on the accepted reflections. The allowed preferred-orientation tests are strongly diagnostic—WO₃ favors [010] and MnWO₄ favors [111]—so I’m adding those supported specimen terms before the one-time coordinate polish.
+
+The unconstrained width test tried to exceed the laboratory’s permitted anisotropy, so I’m explicitly bounding the axial/equatorial strain ratio to the known physical range (0.25–4). I’ll retain anisotropic broadening only if a constrained branch still gives a stable, meaningful gain.
+
+The constrained anisotropic branch remains stable and physical (MnWO₄ strain 488 ppm perpendicular and 1951 ppm along [010], exactly at the allowed 4:1 ratio), improving Rwp from 3.37% to 3.18%. The complete checkpoint is now ready; I’m invoking the prescribed bounded coordinate polish once and will accept it only if its geometry/fraction audit passes.
+
+The polish is behaving as intended: coordinate branches lower Rwp to about 2.97% while keeping phase fractions within roughly 0.3 percentage points. Bound-hit coordinates are being rolled back automatically; the remaining phasewise branch and geometry audit are still running.
+
+The prescribed audit selected the “all coordinates” branch: Rwp 2.968%, no geometry violations or short contacts, and fractions changed by less than 0.03 percentage points from the checkpoint. I’m accepting that branch and will now export every deliverable from that exact project, then independently replay it from saved parameters.
+
+A stricter oxide geometry screen caught an issue the relative polish audit cannot detect: the chosen 1960 WO₃ reference already contains 1.57 Å O–O contacts. That topology is not defensible for ordinary WO₃, so I am rejecting this polished branch despite its lower Rwp and transferring the same reflection family to the physically sound exact-composition WO₃ reference tested earlier.
+
+The replacement P2₁/c WO₃ model has normal WO₆ geometry (minimum O–O ≈2.54 Å) and reproduces the same reflection family with only a modest profile penalty. Its optimized three-phase checkpoint is now at Rwp ≈3.22% before bounded coordinate refinement.
+
+The physically sound checkpoint is converged at Rwp 3.002% with fractions 63.85/18.20/17.95 wt% and no geometry flags. Because the earlier polish belonged to the rejected WO₃ reference, I’m now applying the prescribed one-time polish to this accepted structural model and will use only this audit for submission.
+
+The prescribed final-stage polish is still evaluating coordinate-order branches on the accepted three-phase model. I’m waiting for its audit-selected branch, then I’ll independently replay that exact project and regenerate every submitted artifact from it.
+
+The polish has completed. I’m now checking which branch the helper accepted and whether its geometry/fraction audits remained physical before replacing the checkpoint.
+
+The helper selected its “heavy/light” coordinate order: Rwp 2.7993%, no geometry violations, converged final settle (max shift/esd 0.016), and phase fractions changed by under 0.25 wt% from the checkpoint. I’m accepting that branch and exporting from its exact project.
+
+The accepted project is now `final.gpx`, and exact-project exports give 63.733 wt% MnWO₄, 18.082 wt% WO₃, and 18.185 wt% Mn₃WO₆. Next I’m applying an independent CIF geometry screen and a no-refinement replay of the saved project.
+
+Independent replay succeeded without refinement, left the project unchanged, reproduced all three fractions exactly, and raised no profile-review flags. Its regenerated profile agrees with `fit.csv` to 0.005 count maximum (Rwp differs by only 0.0000002 percentage point). I’m assembling the concise evidence/uncertainty report and final consistency checks now.
+
+Completed the three-phase Rietveld analysis:
+
+- MnWO₄ (P2/c): 63.733 wt%
+- WO₃ (P2₁/c): 18.082 wt%
+- Mn₃WO₆ (R-3): 18.185 wt%
+
+Fractions are normalized over modeled crystalline phases. Final Rwp = 2.7993%, Rp = 2.0518%, GOF = 1.9656. Independent GSAS-II replay reproduced the fit and fractions with no geometry or profile-review flags. No coherent unassigned reflection family remains; amorphous content and trace phases cannot be quantified reliably.
+
+Files:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-685b98cfe3e2/workspace/final.gpx)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-685b98cfe3e2/workspace/result.json)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-685b98cfe3e2/workspace/fit.csv)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-685b98cfe3e2/workspace/report.md)
+- [MnWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-685b98cfe3e2/workspace/phase_MnWO4.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-685b98cfe3e2/workspace/phase_WO3.cif)
+- [Mn₃WO₆ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-685b98cfe3e2/workspace/phase_Mn3WO6.cif)
+

@@ -1,0 +1,59 @@
+I’ll inspect the measurement metadata, pattern, and the supplied PXRD tooling first. Then I’ll identify candidate phases, build/refine them in GSAS-II, and validate that every submitted fraction and profile is reproducible from `final.gpx`.
+
+The chemistry is the ZnO–WO₃ system fired at 700 °C, so ZnWO₄ is the natural principal candidate, but the problem may include residual ZnO/WO₃ or a hidden related phase. I’m treating that only as a chemical prior; the phase count will come from the diffraction peaks and whole-pattern fit.
+
+Peak positions already support at least wolframite-type ZnWO₄. A second, sharper set at roughly 31.5/34.9/47.9/56.8/63.5° is consistent with residual wurtzite ZnO after a common positive angular shift. I’m now testing whether WO₃ or another component is also required, rather than forcing all shoulders into profile broadening.
+
+I’m setting up an explicit GSAS-II refinement with the measured Poisson weights, Cu Kα₁/Kα₂ doublet, phase-specific scale/cell/broadening, and specimen displacement. The first comparison will be ZnWO₄ alone versus ZnWO₄ + ZnO; any WO₃ model will only be retained if it removes independent residual peaks and improves the full-pattern statistics materially.
+
+The residual map is more diagnostic than the initial chemistry guess: unmodeled peaks at about 23.41, 23.98, 24.66, 33.60, 34.49, and 41.57° form the characteristic WO₃ multiplet. The provisional ZnO contribution refined to only ~4 wt% with an implausibly large broadening, so I’m treating it as a rejected absorber unless it survives after WO₃ is modeled.
+
+The WO₃ trial is progressing without phase-scale collapse, unlike the ZnO trial. Its early fit is already better at the position/cell stage; I’m letting the profile refinement finish before choosing the monoclinic versus higher-symmetry WO₃ model.
+
+A decisive texture signature emerged: a March–Dollase [111] model for ZnWO₄ lowers Rwp from ~18.0% to ~12.9%, while all four alternative axes stay near 18%. The refined ratio is ~0.702, and it specifically resolves the unequal 30.76/30.98° doublet. This strongly supports real preferred orientation rather than a third phase.
+
+The constrained-profile pass confirms why the first GSAS fit wandered: with only isotropic phase strain, the fit drives the common Gaussian width outside the physical range. I’m now testing the generator-compatible uniaxial microstrain alternatives; this is the appropriate way to explain hkl-dependent widths without accepting negative peak-width terms.
+
+The two-phase residual now reveals a coherent third fingerprint that was previously masked by WO₃: 32.05, 36.74, 47.94, 56.80, 63.34, and 68.32° track wurtzite ZnO across the full scan. I’m adding ZnO as a low-level third phase to the physically constrained project; its earlier “4% but extremely broad” result was confounded because WO₃ had not yet been included.
+
+The coordinate multistarts all converged to the same ~10.66% minimum, so the remaining 41.57° misfit is systematic, not an unlucky local minimum. I’m now cross-checking an independently reconstructed wolframite model from the closer NiWO₄ analogue; this tests whether the oxygen-origin/setting inherited from the Mn analogue is biasing the structure factors.
+
+The independent analogue check was decisive: after refining the Ni-derived ZnWO₄ coordinates, Rwp dropped from 12.90% to 7.58%. That confirms the earlier Mn-derived oxygen setting was structurally biased; the phase inventory remains ZnWO₄ + WO₃ + ZnO, but I’ll carry forward the Ni-derived wolframite model for the final refinement.
+
+The corrected structure now fits the difficult 41.5° region and leaves profile shape as the main limitation. I’m using a bounded whole-pattern optimization for the common instrument and per-phase size/strain terms so the final project keeps positive peak widths and valid polarization, instead of accepting GSAS-II’s unconstrained but nonphysical width trade-off.
+
+The bounded optimizer is converging steadily but more slowly because each finite-difference step regenerates the full three-phase GSAS profile. It has moved from ~15.4% to ~11.6% before rescaling/background readjustment; once the bounded widths are saved, I’ll rerun the intensity/cell/coordinate stages around that physically valid profile.
+
+The phase inventory is now well supported: wolframite ZnWO₄ is dominant, with residual WO₃ and minor wurtzite ZnO. I’ve constrained the peak-shape model to physical values; I’m now finishing the coupled intensity/structure refinement and then will replay the saved project against the original data before exporting the deliverables.
+
+The full-range refinement converged at \(R_\mathrm{wp}=9.36\%\), with provisional crystalline fractions of about 85.5% ZnWO₄, 11.5% WO₃, and 3.0% ZnO. The structural coordinates and the [111] preferred-orientation correction are both statistically consequential; I’m doing one final bounded peak-profile pass because the high-angle tails still account for most of the remaining misfit.
+
+The remaining mismatch is concentrated in the shoulders of the strongest ZnWO₄ reflection near 31°, not in unexplained peak positions. That pattern points to anisotropic broadening rather than another phase, so I’m testing the three symmetry-distinct uniaxial microstrain directions and will retain one only if both broadening components stay positive and the improvement is material.
+
+The broadening test is decisive for microstrain: allowing the ZnWO₄ strain to refine lowers \(R_\mathrm{wp}\) from 8.86% to 7.48%, with a positive value near 2100 ppm. A weak [100] anisotropy gives the best result (about 2208 ppm perpendicular and 1931 ppm parallel); its advantage over isotropic strain is small, so I’ll treat the axis assignment as tentative while using the physically valid profile for the final coupled refinement.
+
+After re-optimizing crystallite size and strain, the coupled refinement reached \(R_\mathrm{wp}=5.66\%\). All retained size/strain terms remain within the generator’s stated physical ranges. The refined minor ZnO fraction is more sensitive than the other two fractions because its peaks overlap the dominant phase; I’m now testing texture, displacement-parameter, and surface-effect alternatives one at a time so that only independently supported corrections enter the final model.
+
+The final physical-effect tests support three distinct preferred-orientation corrections: strong [111] texture for ZnWO₄, [111] texture for WO₃, and weaker [001] texture for ZnO. Surface roughness is not supported—the fits drive it outside the allowed physical range—so it will remain off. Re-optimizing axial divergence gives a further genuine improvement, now near \(R_\mathrm{wp}=5.07\%\), without introducing nonphysical terms.
+
+The high-symmetry WO₃ model is now clearly preferable to the lower-symmetry proxy: its refined cell stays within the allowed perturbation of monoclinic \(P2_1/n\) WO₃. Tungsten positions are data-sensitive and were adjusted under the stated 0.04 Å mismatch bound; oxygen-only refinement is ill-conditioned and runs to unrealistically large shifts, so the WO₃ oxygen coordinates will remain at their reference values and be called out as uncertain.
+
+The clean three-phase project is now serialized and reloaded successfully. Its replayed fit is \(R_\mathrm{wp}=4.684\%\), with crystalline-only fractions 81.81% ZnWO₄, 12.99% WO₃, and 5.19% ZnO. I’m at the verification stage now: independent CIF parsing/physical screening, exact profile-grid checks, and the scorer’s GSAS-II replay against `final.gpx`.
+
+Completed and independently replay-verified against all 8,301 measured points.
+
+| Phase | Crystalline wt.% | CIF |
+|---|---:|---|
+| Wolframite ZnWO₄ | 81.81 | [phase_ZnWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-012c09f25439/workspace/phase_ZnWO4.cif) |
+| Monoclinic WO₃ | 12.99 | [phase_WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-012c09f25439/workspace/phase_WO3.cif) |
+| Wurtzite ZnO | 5.19 | [phase_ZnO.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-012c09f25439/workspace/phase_ZnO.cif) |
+
+Fit: \(R_\mathrm{wp}=4.684\%\), \(R_\mathrm{p}=3.439\%\). Fractions are normalized over crystalline phases only. The minor ZnO fraction is relatively uncertain, and WO₃ oxygen geometry is not reliably determined from these X-ray data.
+
+Deliverables:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-012c09f25439/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-012c09f25439/workspace/fit.csv)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-012c09f25439/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-p0-012c09f25439/workspace/report.md)
+

@@ -1,0 +1,37 @@
+I’ll first inspect the pattern, metadata, and the provided diffraction workflow, then build a falsifiable candidate ledger before refining any final phase set. I’ll keep candidate comparisons on a common GSAS-II project/settings and verify the exported CIFs and replayed profile at the end.
+
+The chemistry points to Ca–W–O with possible carbonate/oxide carryover at 650 °C, while the high low-angle background suggests the raw scan may include a substantial decaying background. I’m now extracting peak families and auditing the local COD/DARA and GSAS-II interfaces so the candidate inventory is based on all same-composition entries plus plausible Ca–W–O/oxide prototypes.
+
+The whole-pattern screen now separates two coherent families: scheelite CaWO₄ explains the broad dominant peaks, and monoclinic WO₃ entries 2311041/1528915 explain about 61–62% of the remaining crystalline signal with the correct narrow triplet near 23°. I’m moving those—and symmetry-diverse decoys such as orthorhombic/triclinic WO₃, Ca-rich tungstates, carbonate polymorphs, and CaO—into identical GSAS-II branch trials; the preliminary carbonate score was a single-peak overlap artifact and will be tested by whether its scale remains positive while all its other reflections are enforced.
+
+The common-setting branches select monoclinic WO₃ decisively: COD 2311041 gives Rwp 15.94% and a stable ~18.4 wt% contribution, narrowly ahead of the closely related 1528915 model (16.03%, ~18.1 wt%). Triclinic and orthorhombic WO₃ are materially worse; several other prototypes could not complete a valid GSAS trial and remain “unknown” rather than being counted as rejected. I’m now refining the two-phase model in controlled stages and will only retain profile/texture terms that replay cleanly and remove coherent residual families.
+
+The two-phase inventory is now strongly supported (scheelite CaWO₄ plus monoclinic WO₃). I’m finishing the bounded refinement and replay checks now; any nuisance term that lands on a boundary or fails to reproduce will be rolled back before export.
+
+The broad CaWO₄ contribution is the decisive remaining issue: its isotropic size fit reaches the generator’s 0.04 µm lower limit and drops Rwp from ~15.9% to ~5.0%, while the unconstrained replay is stable. I’m treating that as a resolution-limit estimate, then testing whether anisotropic strain or another supported profile model explains the breadth without relying on a boundary value.
+
+I found and corrected a GSAS-II state-management trap: clearing the background returned early before clearing zero/shift, and a size parameter stayed frozen across branches. That meant some “one-term” trials were not actually one-term. I’ve removed the stale frozen state and am rerunning the common-setting comparisons so the candidate ledger remains falsifiable.
+
+The corrected two-phase model now replays at Rwp = 4.03% (noise floor 3.14%), with about 85.0 wt% CaWO₄ and 15.0 wt% WO₃. Before accepting it, I’m rerunning the symmetry-diverse WO₃ shortlist against this same broadening/background model and then testing texture, uniaxial strain, and roughness one at a time.
+
+Phase closure is now satisfied: no tested precursor/intermediate/polymorph adds a stable supported contribution, and the residual maxima track flanks of the two modeled peak families rather than a new coherent family. The submitted model will therefore remain the simpler two-phase project; I’m exporting directly from its replayed GPX and validating the exported CIFs/profile against that project.
+
+The final deliverables are exported. I’m doing the last independent checks now: reopening `final.gpx`, regenerating its atomic profile without refinement, comparing the CIF cells/atoms to the GPX, and recomputing Rwp directly from `fit.csv`.
+
+Completed the PXRD analysis.
+
+- Scheelite CaWO₄: 84.99 wt%
+- Monoclinic WO₃: 15.01 wt%
+- Rwp: 4.031%; Rp: 3.073%
+
+Independent no-refinement replay passed, and both CIFs match the final GSAS-II project. Practical phase-fraction uncertainty is approximately ±1.5 wt%; trace phases below roughly 0.5–1 wt% cannot be excluded.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-f9c024743439/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-f9c024743439/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-f9c024743439/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-f9c024743439/workspace/fit.csv)
+- [CaWO4_scheelite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-f9c024743439/workspace/CaWO4_scheelite.cif)
+- [WO3_monoclinic.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-f9c024743439/workspace/WO3_monoclinic.cif)
+

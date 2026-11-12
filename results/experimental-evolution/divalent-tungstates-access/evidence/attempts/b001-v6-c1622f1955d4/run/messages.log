@@ -1,0 +1,68 @@
+I’ll first inspect the specimen metadata, diffraction range/resolution, and the frozen analysis tooling. Then I’ll establish a replayable multiphase GSAS-II checkpoint before any optional residual-phase searches or final polish.
+
+The chemistry points first to CuWO₄, with CuO and WO₃ as the ordinary residual candidates. I’m now extracting peak families and querying the frozen COD index for exact-composition structures; the key test will be whether one physically sensible CuWO₄ model explains all strong families before adding precursors.
+
+The peak-position map is already coherent: triclinic CuWO₄ accounts for the 18.81°, 29.09°, 30.08°, and 31.4–31.5° families, while a monoclinic/triclinic WO₃ polymorph accounts for the 22.67°, 23.07°, and 23.89° family. Weak lines near the shifted CuO positions justify carrying CuO into the first complete checkpoint rather than deciding from isolated overlaps.
+
+The first three-phase refinement gives positive scales for all three ordinary phases (about 75% CuWO₄, 23% WO₃, and 3% CuO), so CuO is provisionally supported rather than merely a chemical bookkeeping addition. The current mismatch is dominated by profile/reference choice; I’m screening the closely related WO₃ polymorphs on equal nuisance settings before refining coordinates or texture.
+
+The reference screen strongly favors COD 2311041’s monoclinic WO₃ setting; tetragonal, hexagonal, orthorhombic, and the alternative monoclinic entries leave much larger whole-family misfits. Triclinic CuWO₄ (COD 4000806) is decisive over the monoclinic CuWO₄ decoy. The two CuO references are effectively indistinguishable at its low abundance, so I’ll retain the higher-symmetry C2/c model unless later residuals contradict it.
+
+A coherent residual family is now unambiguous: 15.20°, 19.80°, 32.51°, 33.79°, 49.70°, 57.60°, and 63.29° all map, with the same displacement, to Cu₃WO₆ (COD 1527404). This is broad-family evidence for a fourth phase, not a single-peak addition. I’m adding that exact-composition reference and re-estimating whether any separate CuO scale remains positive.
+
+Adding Cu₃WO₆ cuts the checkpoint Rwp from ~20% to ~10% before profile refinement, and its scale is stable. CuO still gives a reproducible additional improvement (~10.80% to ~10.28% at the same stage), so the working inventory is now four phases. I’ve also constrained calibration and broadening to the laboratory’s stated physical ranges before the next refinement pass.
+
+The four-phase fit is now at ~6% Rwp, with approximate fractions 67% CuWO₄, 19% WO₃, 13% Cu₃WO₆, and 1% CuO. The CuO reflections at 35.10° and 38.32° are visibly present, but its first branch distorted the CuO cell/profile to gain only a small amount; I’m rebuilding from physically bounded calibration and reference-cell neighborhoods to obtain a defensible minor-phase model.
+
+This rebuild is slower because the four phase cells and profile terms are being refined from a common physical starting point rather than inherited from the earlier local minimum. I’m comparing both near-equivalent WO₃ settings and both CuO references under the same constraints; no new phase family is being introduced during this comparison.
+
+All strong residuals now sit on reflections of the accepted four phases; there is no remaining coherent unindexed family, so the phase search is closed. I’m resolving the near-singular zero/displacement correlation with fixed-zero branches, then I’ll refine only supported profile/intensity terms and pass the best complete checkpoint to the prescribed bounded coordinate polish.
+
+The apparent 5–6% branch was not replay-stable after parameters hit bounds; a zero-cycle recalculation exposed that stale last-cycle profile. I’ve discarded it. The physical four-phase model now replays consistently at ~11.4% Rwp, and I’m improving it with small, settled parameter blocks so the final project will reproduce exactly rather than rely on a transient GSAS-II array.
+
+The replay-stable refinement is improving in a controlled way: common per-phase Uiso terms and instrument width terms reduce Rwp to ~10.68%, with all four fractions remaining stable (about 64.3/19.2/14.4/2.2 wt%). I’m now testing phase-specific size/strain and preferred orientation one at a time; terms that only move to a bound without replay improvement will remain fixed.
+
+The stable profile model now gives ~10.60% Rwp with CuWO₄ and WO₃ microstrain terms supported; Cu₃WO₆ and CuO strain refinements do not help and remain fixed. I’m screening only the laboratory’s allowed March–Dollase axes now. This is intensity modeling on accepted reflections, not renewed phase searching.
+
+The complete physical checkpoint is now replay-stable at 10.581% Rwp with converged scale/background refinement and stable fractions. Surface roughness, extra Cu₃WO₆/CuO strain, and material CuWO₄ texture are unsupported; mild WO₃ [111] and CuO [110] orientation terms are retained. I’m now invoking the required bounded coordinate polish exactly once from this checkpoint and will accept it only if its geometry/fraction audit passes.
+
+The coordinate polish is producing a genuine profile gain while keeping all four fractions within about 0.3 wt% of the checkpoint. Some raw branches hit coordinate bounds, as expected; the helper is rolling those atoms back and retaining only converged interior-coordinate branches before its geometry audit.
+
+The polish audit passed: no catastrophic contacts, all branches preserved the phase fractions, and the selected all-coordinate branch lowers replay-stable Rwp from 10.58% to 10.16%. The sandbox cannot launch the scorer’s extra namespace wrapper, so I’m performing the same read-only native replay directly with the supplied replay worker, then I’ll export all deliverables from that exact accepted project.
+
+A final residual check shows the remaining largest errors are not unindexed peaks: they are center/wing errors on Cu₃WO₆ reflections, indicating its crystallite-size term was over-broadened in the pre-polish checkpoint. I’m testing that single supported profile correction against the accepted coordinates; I will not rerun the coordinate polish or alter the phase inventory.
+
+The isolated Cu₃WO₆ size correction is strongly supported: its refined size is 0.256 µm (well inside the allowed 0.04–1.5 µm range), replay-stable Rwp drops from 10.16% to 4.31%, and a subsequent scale/background-only settle converges with max shift/esd 0.007. The phase inventory and polished coordinates are unchanged; only this previously over-broadened accepted phase and correlated scales were corrected.
+
+The corrected profile has now settled through cells and instrument terms: Rwp is 3.53%, all parameters are interior to the laboratory ranges (U=2.07, W=14.67, X=1.76, SH/L=0.0055), and fractions are stable near 65.4/19.4/12.8/2.4 wt%. I’m doing one last one-at-a-time width-term check before freezing this post-polish checkpoint.
+
+The four-phase model is now physically stable and accounts for every coherent reflection family. I’m finishing the last bounded profile-term comparison, then I’ll lock the best checkpoint, replay it natively, and regenerate all deliverables from that exact project.
+
+The final one-term tests support a modest CuWO₄ microstrain adjustment; crystallite-size changes are negligible, while the Cu₃WO₆ strain branch is less stable. I’m carrying the supported CuWO₄ term into a clean scale/background settle, then I’ll freeze the model and replay the exact project for export.
+
+Both supported microstrain terms now reproduce stably, and the final settle converges with negligible shifts at Rwp 3.474%. The modeled crystalline fractions are 65.17% CuWO₄, 19.46% WO₃, 12.98% Cu₃WO₆, and 2.40% CuO; I’m now locking this exact checkpoint and regenerating every deliverable from its native GSAS-II replay.
+
+The exact replay succeeded without profile review flags, and all exports now come from the locked project (8,301 measured points; replay Rwp 3.475%, Rp 2.497%). I’m doing the final structural/format consistency audit now, including CIF geometry, normalized fractions, project hash, and profile reproduction.
+
+Completed the multiphase refinement.
+
+| Phase | Space group | Weight fraction |
+|---|---:|---:|
+| CuWO₄ | P-1 | 65.17 wt% |
+| WO₃ | P2₁/c | 19.46 wt% |
+| Cu₃WO₆ | Pa-3 | 12.98 wt% |
+| CuO | C2/c | 2.40 wt% |
+
+Native replay of the submitted project gives Rwp = 3.475% and Rp = 2.497% over all 8,301 points. Fractions sum to 100% of modeled crystalline material. CuO is the least certain fraction, and its C2/c versus Cc distortion is not reliably distinguishable; amorphous content was not quantified.
+
+Deliverables:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-c1622f1955d4/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-c1622f1955d4/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-c1622f1955d4/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-c1622f1955d4/workspace/final.gpx)
+- [CuWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-c1622f1955d4/workspace/CuWO4.cif)
+- [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-c1622f1955d4/workspace/WO3.cif)
+- [Cu3WO6.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-c1622f1955d4/workspace/Cu3WO6.cif)
+- [CuO.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-c1622f1955d4/workspace/CuO.cif)
+

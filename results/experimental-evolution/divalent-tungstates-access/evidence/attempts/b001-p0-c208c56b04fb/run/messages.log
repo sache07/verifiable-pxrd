@@ -1,0 +1,29 @@
+I’ll inspect the pattern, metadata, and the provided powder-XRD workflow notes first, then identify candidate phases and build/refine the final GSAS-II model. I’ll keep phase assignments and fractions conservative where the diffraction evidence is ambiguous.
+
+The chemistry is SrCO₃ + WO₃ at 650 °C, so the first hypotheses are SrWO₄ plus residual SrCO₃/WO₃ or a Sr–W–O intermediate. The scan also includes substantial background/specimen effects, so I’ll base phase inclusion on indexed peak sets, not isolated unmatched peaks.
+
+The unmatched peak set is coherent, not random: the 22.8/23.27/24.07° triplet and its higher-angle companions match monoclinic WO₃, while weaker lines near 24.98/25.56/31.40/35–36° are consistent with residual orthorhombic SrCO₃. I’m now testing a three-phase model (scheelite SrWO₄ + both precursors) and will remove any phase that does not improve the whole-profile fit defensibly.
+
+The first quantitative refinement confirms all three phases: provisional crystalline fractions are about 85–88 % SrWO₄, 9 % WO₃, and 4–5 % SrCO₃. Peak positions already converge with a physically plausible ~0.57 mm specimen displacement; I’m refining line broadening and checking whether the weakest SrCO₃ contribution remains stable.
+
+The physically constrained fit is now at Rwp ≈ 5.16 %. SrWO₄ oxygen coordinates refine strongly and the best polarization is near 0.85–0.9; I’m separating that from surface roughness and preferred orientation so the final project does not rely on unphysical correlated parameters.
+
+A better monoclinic WO₃ reference model gives a cleaner, physically constrained three-phase fit: roughly 80.3% SrWO₄, 11.7% WO₃, and 8.0% SrCO₃, with \(R_\mathrm{wp}\) near 4.33%. I’m now locking down the weakly determined minor-phase parameters, rebuilding a clean three-phase GSAS-II project, and validating the exported files against that project.
+
+The minor-phase coordinate shifts wanted by an unconstrained least-squares pass exceed the synthetic reference-mismatch bounds documented for this dataset. I’m enforcing those bounds (≤0.04 Å RMS for Sr/W), since the unconstrained improvement is tiny and would otherwise trade a marginal profile gain for a less defensible structure.
+
+The final profile model now includes statistically supported [010] microstrain anisotropy in both residual phases; the constrained fit is \(R_\mathrm{wp}=4.316\%\). Fractions remain stable at about 80.46/11.77/7.78 wt%, so these profile refinements are not materially changing the phase quantitation.
+
+The submission files are now assembled. I’m running the same isolated GSAS-II forward-replay and CIF/project consistency checks used by the local evaluator; this catches stale calculated arrays, phase-inventory mismatches, negative backgrounds/widths, and export-rounding problems before handoff.
+
+Completed and validated by isolated GSAS-II forward replay.
+
+- SrWO₄ (scheelite, I4₁/a): 80.54 wt%
+- WO₃ (monoclinic, P2₁/c): 11.68 wt%
+- SrCO₃ (Pnma): 7.78 wt%
+- Rwp: 4.302%; GOF: 1.083
+
+Outputs: [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-c208c56b04fb/workspace/result.json), [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-c208c56b04fb/workspace/report.md), [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-c208c56b04fb/workspace/fit.csv), and [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-c208c56b04fb/workspace/final.gpx).
+
+CIFs: [SrWO₄](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-c208c56b04fb/workspace/phase_SrWO4.cif), [WO₃](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-c208c56b04fb/workspace/phase_WO3.cif), and [SrCO₃](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-c208c56b04fb/workspace/phase_SrCO3.cif).
+

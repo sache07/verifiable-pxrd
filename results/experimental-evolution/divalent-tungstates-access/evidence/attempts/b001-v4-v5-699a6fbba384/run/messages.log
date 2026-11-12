@@ -1,0 +1,45 @@
+I’ll first inspect the specimen metadata, diffraction grid, frozen reference index, and the supplied GSAS-II workflow. I’ll establish a replayable multiphase checkpoint early, then only pursue residual families that remain coherent after refinement.
+
+The chemistry points first to Ca–W–O product(s), with residual WO₃/CaCO₃ or their decomposition products as plausible companions. I’m now extracting the observed peak families and querying only the frozen COD index for Ca/W/O/C phases; this will let me test full phase inventories rather than identify isolated peaks.
+
+The first whole-pattern checkpoint confirms two coherent reflection families: tetragonal scheelite CaWO₄ and monoclinic WO₃. Every prominent peak is already indexed, but the unconstrained profile fit traded instrumental and specimen broadening into nonphysical negative profile coefficients, so I’m rebuilding the checkpoint with fixed overall scale and physical parameter bounds before assessing residuals or fractions.
+
+The bounded comparison is informative but exposed a calibration trap: refining zero and specimen height before the cells drove both to their prior limits and GSAS-II froze them, degrading later cell fits. The physically better neutron WO₃ parent remains under test, but I’m correcting the sequence by fitting cells with one calibration term at a time and explicitly unfreezing bounded variables after the metric settles.
+
+The corrected checkpoint now fits the full 10–100° grid at Rwp ≈ 3.54% (counting-statistics lower bound ≈ 3.14%) with ~85.1 wt% CaWO₄ and ~14.9 wt% WO₃. No third phase has been introduced; I’m checking the remaining difference peaks against both accepted reflection lists before moving to coordinate and intensity corrections.
+
+The residuals all coincide with accepted CaWO₄/WO₃ lines; there is no coherent third family. A coordinate branch lowered Rwp only by pushing WO₃ oxygen atoms to implausible 1.46 Å W–O contacts, so I rejected it. I’m now verifying that the retained checkpoint recomputes identically after reload—this matters because the deliverable project, CIFs, fractions, and profile must all be replay-consistent.
+
+The pattern is now closed by scheelite CaWO₄ plus monoclinic WO₃; every coherent residual family maps to those phases. I’m doing one last bounded displacement-parameter check, then I’ll freeze the best replayable physical model and generate the requested deliverables.
+
+The common-Uiso trial changes the fit by less than 0.01 Rwp point and is 97.7% correlated with polarization, so it is not independently supported. I’m retaining the published, physically reasonable displacement parameters and rejecting that extra degree of freedom, along with the boundary-hitting surface correction and near-unity texture trials.
+
+One remaining profile ambiguity is the minor WO₃ peak width: its starting size/strain values are plausible but were not independently determined. I’m screening size and microstrain separately from the stable checkpoint so any retained broadening term has direct support and does not trade against another width parameter.
+
+The WO₃ size trial returned 1.003 µm from a 1.000 µm start—effectively unchanged—while its microstrain collapsed to zero. I’m therefore fixing WO₃ microstrain at zero and replaying the full model; this removes an unsupported broadening contribution without retaining a boundary-frozen refinement.
+
+Fixing the unsupported WO₃ strain at zero materially improves the full-pattern fit (Rwp 3.54% versus 3.82%) with no frozen parameters, while leaving the phase fractions near 85/15. The first replay still reports a large maximum shift/esd despite nominal convergence, so I’m continuing it to a genuinely stable checkpoint before accepting it.
+
+The zero-strain checkpoint is now stable and replayable: a zero-cycle recomputation gives Rwp 3.54106% with a maximum calculated-profile change of only 0.008 count and no frozen variables. I’m exporting that exact checkpoint—not a later exploratory branch—as the final GPX, CIFs, and profile.
+
+All requested files have been written. I’m now cross-checking them against one another: CIF chemistry/geometry, fraction normalization, CSV point-for-point profile identity, and a fresh zero-cycle reload of the submitted `final.gpx`.
+
+Completed the two-phase refinement:
+
+- Scheelite CaWO₄: 85.09 wt%
+- Monoclinic WO₃: 14.91 wt%
+- Rwp = 3.5411%, Rp = 2.6959%
+
+Fractions are normalized over modeled crystalline phases; amorphous content cannot be quantified. A realistic systematic uncertainty is approximately ±1 wt%.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-699a6fbba384/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-699a6fbba384/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-699a6fbba384/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-699a6fbba384/workspace/final.gpx)
+- [CaWO4_scheelite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-699a6fbba384/workspace/CaWO4_scheelite.cif)
+- [WO3_monoclinic.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-699a6fbba384/workspace/WO3_monoclinic.cif)
+
+The submitted GPX reloads without frozen parameters and reproduces Rwp within 0.000001 percentage point.
+

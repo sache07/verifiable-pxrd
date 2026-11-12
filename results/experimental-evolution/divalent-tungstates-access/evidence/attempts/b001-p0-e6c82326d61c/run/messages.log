@@ -1,0 +1,38 @@
+I’ll inspect the pattern, metadata, and the supplied tungstate-analysis framework first, then identify candidate phases and carry the best structural model through a GSAS-II refinement. I’ll keep the crystallographic outputs tied to that final project so the CIFs, fractions, profile, and statistics remain internally consistent.
+
+The chemistry narrows the search to Cu–W–O phases plus residual CuO/WO₃, but I won’t assume a single CuWO₄ product: the scan has enough range and counting statistics to distinguish minor crystalline remnants. I’m now extracting peak positions and querying the frozen COD index for structurally plausible Cu/W/O candidates before fitting whole profiles.
+
+The peak inventory supports three crystalline components: triclinic CuWO₄, monoclinic WO₃, and tenorite CuO. Their strongest independent reflections account for the otherwise unexplained features near 34.9°, 38.3°, and 48.0° (CuO) and the 22.7–23.9° triplet (WO₃). A first whole-pattern refinement is converging; I’m using candidate-by-candidate fits to resolve the exact WO₃ setting/model and avoid mistaking overlap for a fourth phase.
+
+A strong fourth component is present: cubic Cu₃WO₆. Its line sequence matches multiple independent peaks (15.18°, 19.80°, 32.51°, 33.76°, 49.67°, 57.60°, 63.28°), and adding it drops the preliminary Rwp from about 20.6% to 12.1%. I’m re-testing the minor CuO and WO₃ assignments in that four-phase model, since overlap had biased the initial ranking.
+
+The four-phase bounded refinement is now at Rwp ≈3.2% with physically allowed instrumental and specimen parameters. The modeled crystalline mass is currently about 65% CuWO₄, 19% WO₃, 13% Cu₃WO₆, and 2–3% CuO. I’m refining the symmetry-preserving coordinate perturbations and testing texture/anisotropic broadening next; those are the main remaining structured residuals.
+
+The final phase model is now essentially at the counting-statistics limit: Rwp 1.73% versus the theoretical 1.62% minimum for these Poisson weights (GOF ≈1.07). The CuO comparison resolves to conventional C2/c tenorite; the alternative Cc entry required implausibly large relative coordinate shifts, while C2/c needs only a ~0.01 Å oxygen displacement and gives the slightly better fit. No preferred orientation or surface-roughness term is supported; WO₃ does require modest [001] uniaxial microstrain.
+
+I’ve narrowed the pattern to four crystalline phases and now have a physically bounded GSAS-II model at near-counting-statistics fit quality. I’m independently replaying the saved project before packaging the CIFs and reported fractions, with particular attention to the weak CuO component.
+
+The saved model replays cleanly over all 8,301 points: \(R_\mathrm{wp}=1.731\%\), GOF \(=1.077\), with no profile-review flags or negative background. The normalized crystalline fractions are currently 64.96% CuWO₄, 19.32% WO₃, 13.18% Cu₃WO₆, and 2.53% CuO; I’m doing the final artifact-to-project consistency checks now.
+
+Completed the four-phase GSAS-II refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| Triclinic CuWO₄ (P -1) | 64.96% |
+| Monoclinic WO₃ (P 21/c) | 19.32% |
+| Cubic Cu₃WO₆ (P a -3) | 13.18% |
+| Tenorite CuO (C 2/c) | 2.53% |
+
+Full-grid fit: Rwp = 1.7308%, Rp = 1.3010%, GOF = 1.0774. Independent GSAS-II replay reproduced the profile and fractions. CuO is the least certain component; fractions exclude any amorphous material.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-e6c82326d61c/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-e6c82326d61c/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-e6c82326d61c/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-e6c82326d61c/workspace/final.gpx)
+- [CuWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-e6c82326d61c/workspace/phase_CuWO4_triclinic.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-e6c82326d61c/workspace/phase_WO3_monoclinic.cif)
+- [Cu₃WO₆ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-e6c82326d61c/workspace/phase_Cu3WO6_cubic.cif)
+- [CuO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-e6c82326d61c/workspace/phase_CuO_tenorite.cif)
+

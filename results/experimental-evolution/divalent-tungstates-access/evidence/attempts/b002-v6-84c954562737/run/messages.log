@@ -1,0 +1,74 @@
+I’ll inspect the specimen metadata, diffraction pattern, frozen reference index, and the provided GSAS-II workflow notes first. Then I’ll build the simplest chemically plausible multiphase model, verify that all coherent peak families are accounted for, and only then run the prescribed one-shot polish and export consistent deliverables.
+
+The chemistry narrows the primary product to the Mn–W–O system, but the raw scan could still contain residual WO₃/Mn₃O₄ or an off-stoichiometric oxide. I’m now checking the exact frozen-index schema and extracting candidate references by composition before matching peak families; this keeps phase identification tied to the allowed reference set rather than formula guesswork.
+
+Initial stick matching already shows one dominant wolframite MnWO₄ family and a separate monoclinic WO₃ family. Several weaker reflections are consistent with residual hausmannite Mn₃O₄, but most overlap the two W-bearing phases, so I’m moving to whole-pattern refinement to test whether Mn₃O₄ has a stable positive scale and independent peak support.
+
+The candidate refinements are computationally heavier than the stick screen because triclinic WO₃ introduces many cell variables. The early scale-only results are already informative: both W-bearing phases are unquestionably positive, while the Mn₃O₄ scale is small but positive; I’m waiting for matched cell/profile refinements before deciding whether that minor phase is real or merely absorbing overlap.
+
+The three-phase model does not close the pattern. Five substantial maxima—near 19.86°, 25.43°, 31.76°, 35.11°, and 46.49° 2θ—remain outside the MnWO₄/WO₃/Mn₃O₄ reflection lists, so the small Mn₃O₄ addition is not the end of the inventory. I’m treating those peaks as one candidate family and screening chemically plausible Mn oxides first, then Mn-rich tungstate analogues if no ordinary precursor/product accounts for them.
+
+The residual family splits cleanly into two ordinary oxide signatures: rocksalt MnO accounts for the 35.1°/40.5°/58–59°/70–74° sequence, while an orthorhombic Mn₃O₄ reference accounts for the 19.86°/25.43°/31.76°/46.49° family. A five-phase unconstrained fit lowers Rwp, but it lets the tetragonal Mn₃O₄ cell distort implausibly. I’m therefore repeating that inventory with both polymorph cells bounded around independently indexed, physical checkpoints; this is the decisive same-composition test.
+
+The phase inventory is now closed: five physical models account for every coherent reflection family. I’m checking the last nuisance-parameter branches, then I’ll refine coordinates under tight bounds and preserve the best replayable checkpoint for the mandated one-time polish.
+
+Both nuisance branches are worse (polarization 19.65% Rwp; axial divergence 20.02% versus 19.28%), so I’m rejecting them. The refinement will retain measured-instrument defaults and now focus on bounded atomic coordinates, where the intensity mismatch actually resides.
+
+The residual is dominated by intensity errors on accepted reflections, not unindexed peaks. I’m refining only the two abundant phases’ coordinates first (MnWO₄ and WO₃), with ±0.10 Å component bounds and scale/background co-refinement; minor-phase coordinates stay fixed until the data demonstrate they are supported.
+
+The first coordinate pass exposed a checkpoint bookkeeping issue: its stored 19.28% statistic does not reproduce when parameters are frozen and recalculated, and the WO₃ coordinates tried to hit many bounds. I’m auditing a zero-cycle replay before accepting any coordinate change; this prevents a stale statistic from steering the model.
+
+The reproducible checkpoint is 20.05% Rwp (not the stale 19.28%). Its scales remain stable—about 75.6% MnWO₄ and 17.9% WO₃, with the three minor phases totaling ~6.5%. Coordinate overfitting is being deferred until crystallite-size/strain and displacement terms are represented, since those omissions were driving oxygen sites to artificial limits.
+
+The global profile branches are too ill-conditioned when all five unit cells are simultaneously active: the weakest orthorhombic phase attempts a nonphysical metric and GSAS-II aborts. The instrument-only branch is stable at 19.275% Rwp; I’m freezing cells for the phase-broadening trials so size/strain cannot masquerade as lattice distortion.
+
+The bounded single-phase trials show real broadening support but strong parameter correlation: MnWO₄ prefers zero strain and a large coherent domain, while WO₃ pushes toward high strain. Because GSAS-II’s stored Rwp changes when bound-hit variables are deactivated, I’m comparing branches with the scorer’s fresh, read-only atomic replay; only that replay will decide which profile model survives.
+
+Fresh replay confirms the best supported broadening checkpoint is 17.45% Rwp. Minor-phase profile gains are only 0.005–0.040 percentage points and require boundary values with large fraction shifts, so I’m not adopting them yet. Next I’m normalizing the displacement model to the generator’s physically defined per-phase isotropic Uiso and refining only the two abundant phases.
+
+Polarization is clearly supported (fresh-replay Rwp 16.919%); axial divergence adds only ~0.013 point but converges to a plausible 0.0155, so I’m retaining the joint instrument branch. Surface roughness is rejected: its apparent in-refinement gain collapses to 0.004 point on fresh replay and requires a boundary value. I’m now testing the five physically allowed texture axes for the two major phases.
+
+Texture is supported only for WO₃: [001] and [110] branches both improve replay by ~0.12 point, with [110] marginally best and a plausible March–Dollase ratio of 1.113. MnWO₄’s best texture is only a 1.4% departure from random and is being rejected. Before the one-time coordinate polish, I’m checking whether WO₃’s boundary isotropic strain is actually an allowed uniaxial strain signature.
+
+The anisotropic-strain branches improve replay by less than 0.007 point, so isotropic WO₃ strain is retained. Re-optimizing the global Gaussian profile is supported and moves it to interior values (U = 9.34, W = 34.14; replay Rwp 16.676%). I’m doing one final check on the previously marginal MnO broadening, then the inventory/profile checkpoint is complete and the mandated coordinate polisher will be run exactly once.
+
+MnO broadening survives fresh replay with a 0.046-point gain and remains inside the laboratory’s physical bounds, so I’m retaining it while flagging its fraction as weakly constrained. The complete pre-polish model now replays at 16.630% Rwp with no profile-validity flags. I’m saving it as `final.gpx` and invoking the prescribed staged coordinate polish once.
+
+The first polish branch rolled every bound-hit site back, then converged the interior coordinates and improved Rwp to 16.343% without phase collapse. The helper is still evaluating the heavy/light and phasewise orders; I’ll accept only the branch that also passes its geometry and fraction audits.
+
+The prescribed helper completed and selected the heavy/light coordinate order at 16.3424% Rwp. It rolled bound-hit atoms back before settling, retained every phase above 1.3 wt%, and converged the final cell/scale/background pass. I’m reviewing its geometry audit and independently replaying `polished.gpx` before replacing the submitted checkpoint.
+
+The helper’s relative-geometry audit passes, but my absolute review found a pre-existing 1.58 Å O–O contact in the chosen WO₃ reference—chemically implausible for stoichiometric WO₃. That is not caused by polishing, but it means I cannot accept the branch blindly. I’m checking exact-composition WO₃ references for a physically credible setting before deciding whether the polished result must be rejected.
+
+The absolute-geometry correction is decisive: a physically credible monoclinic WO₃ reference removes the 1.58 Å O–O contact and improves fresh replay to 16.570%. A triclinic WO₃ model reaches 16.524%, but its refined metric collapses toward monoclinic symmetry; at room temperature the higher-symmetry monoclinic model is the chemically ordinary choice. I’m rejecting `polished.gpx` and finishing the physical monoclinic checkpoint manually without rerunning the one-shot helper.
+
+The physical monoclinic WO₃ model shows a clear [100] texture signal (March–Dollase 0.890; replay Rwp 16.390%) with no validity flags. I’m now applying one conservative phasewise coordinate path to MnWO₄ and this WO₃ only: any site touching ±0.10 Å is restored to the reference, and the final model must retain normal W–O/Mn–O/O–O distances.
+
+The repaired model now passes the full structural screen: MnWO₄ and WO₃ retain normal bond networks (minimum O–O 2.48 and 2.54 Å), all bound-hit WO₃ sites were restored, and fresh replay gives 16.189% Rwp with no profile flags. I’m doing a final global profile settle—no phase search or topology changes—then I’ll freeze and export this physical project.
+
+The final profile re-fit changes replay by less than 0.001 point, so I’m keeping the simpler converged physical checkpoint. Its crystalline fractions are 68.86% MnWO₄, 24.70% WO₃, 2.40% MnO, 2.75% orthorhombic Mn₃O₄, and 1.29% tetragonal Mn₃O₄. I’m now freezing that exact project as `final.gpx` and generating every deliverable from its independent replay.
+
+All required artifacts are now written from the exact submitted project. I’m running the final consistency checks now: result/CIF parsing, fraction normalization, full-grid fit identity, project-to-CIF structural matching, and a checksum-preserving replay.
+
+Completed and independently replay-validated.
+
+- MnWO₄ wolframite: 68.86 wt%
+- Monoclinic WO₃: 24.70 wt%
+- Orthorhombic Mn₃O₄ model: 2.75 wt%
+- Rocksalt MnO: 2.40 wt%
+- Tetragonal Mn₃O₄: 1.29 wt%
+
+Fresh-replay Rwp is 16.189% and Rp is 9.251%. The Mn₃O₄ polymorph split is provisional; their combined fraction is more reliable than either individual value.
+
+Deliverables:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v6-84c954562737/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v6-84c954562737/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v6-84c954562737/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v6-84c954562737/workspace/final.gpx)
+- [MnWO4_wolframite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v6-84c954562737/workspace/MnWO4_wolframite.cif)
+- [WO3_monoclinic.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v6-84c954562737/workspace/WO3_monoclinic.cif)
+- [Mn3O4_tetragonal.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v6-84c954562737/workspace/Mn3O4_tetragonal.cif)
+- [MnO_rocksalt.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v6-84c954562737/workspace/MnO_rocksalt.cif)
+- [Mn3O4_orthorhombic.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v6-84c954562737/workspace/Mn3O4_orthorhombic.cif)
+

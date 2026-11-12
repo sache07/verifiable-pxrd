@@ -1,0 +1,56 @@
+I’ll inspect the measurement metadata, pattern, and the supplied PXRD workflow/tooling first. Then I’ll identify candidate phases, build a common multiphase GSAS-II model, refine it, and validate the final replay before writing the requested files.
+
+The sample is a 700 °C WO₃–ZnO reaction, so the first reference set should cover ZnWO₄ plus residual ZnO/WO₃ and plausible Zn–W–O intermediates. I’m now mapping the frozen COD index and the GSAS-II interface, then I’ll use the observed peak positions to distinguish those candidates before refinement.
+
+Peak matching identifies a wolframite-type ZnWO₄ phase: the analogue’s diagnostic doublet near 30.6° and lines at 18.99°, 23.89°, 24.59°, 36.44°, and 53.6–54.2° all coincide. Separate coherent lines match monoclinic WO₃; ZnO remains a plausible minor precursor and will be tested only in the common model, as required.
+
+The first refinement exposed the expected near-singularity between instrument zero and specimen displacement; I’ve separated those positional terms and restarted from a clean project. This keeps the phase cells physical while the common and phase-specific peak widths are refined.
+
+The residual pattern also has the ZnO fingerprint (31.8°, 34.3°, 47.7°, 56.7°, and 62.7°). I’m testing ZnO as a third phase in the same ZnWO₄+WO₃ model; the expected stoichiometric precursor balance makes this a particularly strong check rather than a peak-by-peak add-on.
+
+The three-phase model is decisive: adding ZnO reduces Rwp from about 32% to 10.2%, and its refined fraction is ~7 wt%; ZnWO₄ and WO₃ settle near 75 and 18 wt%. The remaining residual is mainly intensity/shape mismatch, so I’m now refining physically constrained coordinates and specimen effects rather than adding unsupported phases.
+
+I’m checking the two other physically plausible monoclinic/triclinic WO₃ references in otherwise identical three-phase refinements. This is important because the first WO₃ reference matches peak positions but has coarse oxygen coordinates; I’ll retain it only if the common-state fit and geometry remain superior.
+
+The best ordinary WO₃ reference is now the physically cleaner P2₁/c model (COD 2311041); the triclinic alternative is substantially worse. With constrained coordinate and anisotropic-strain refinement, the fit is at Rwp ≈ 8.25%. The remaining coherent residual is positional—especially the 41–42° cluster—so I’m re-refining phase cells against the stabilized intensity model.
+
+I found an important normalization detail: the curated source pipeline rewrites deposited CIFs to a standard setting with isotropic displacement parameters. I’m replaying the best WO₃ reference in that same convention; this preserves diffraction equivalence but makes texture axes, exported geometry, and the final project consistent with the supplied framework.
+
+The three-phase model is now well established: wolframite ZnWO₄ is dominant, with monoclinic WO₃ and wurtzite ZnO. I’m finishing the common-state prototype/texture tests and then will perform the required fresh full-grid GSAS-II replay before exporting the deliverables.
+
+The normalized WO₃ setting gives a small but reproducible [100] preferred-orientation correction (Rwp 8.42% → 8.30%). I’m now testing anisotropic broadening axes from that exact shared state; these tests vary only the candidate broadening term, so improvements are not borrowed from changing the other phases.
+
+The normalized broadening tests selected [001] for ZnWO₄ and the setting-equivalent [110] direction for WO₃; together they lower Rwp to 8.16% with finite, positive strain values. I’m now re-refining cells, zero, sizes, instrumental profile, and the defensible atomic parameters in controlled blocks before prototype challenge tests.
+
+The controlled refinement has converged at Rwp ≈ 7.99%, with crystalline fractions near 74.8% ZnWO₄, 18.5% WO₃, and 6.8% ZnO. I’m now challenging this saved common state with all retained ZnWO₄ framework transfers—both as residual additions (two starting scales) and as replacements—while freezing the accepted phases and nuisance terms.
+
+A GSAS-II file-handling quirk contaminated an intermediate trial copy, but the accepted three-phase checkpoint itself remains intact and reproducible. I’ve isolated the challenge tests onto per-trial copies of that clean checkpoint; no failed alternative will feed into the final model.
+
+All residual-addition tests converge reproducibly to ≤0.075 wt% (most to exactly zero) with negligible Rwp change, so no fourth crystalline phase is supported. I’m doing the final topology-selection check now: each alternative replaces ZnWO₄ in the same frozen WO₃/ZnO model, with the accepted profile terms transferred and only the trial scale/cell adjusted.
+
+The topology challenge is decisive: replacing wolframite with the closest alternate P2/c model worsens Rwp to 15.7%, while triclinic/tetragonal/other monoclinic frameworks give roughly 54–55%. I’m now returning to the clean three-phase checkpoint for the required fresh full-grid replay; final exports will come only from that replay.
+
+The fresh full-grid replay reached a best physical checkpoint at Rwp 7.977% with 74.83/18.42/6.75 wt% ZnWO₄/WO₃/ZnO. A subsequent simultaneous profile block slightly worsened the fit, so I’m selecting the prior saved checkpoint and screening its exported structures before finalizing.
+
+The selected CIFs pass physical screening: correct ordered formulas/symmetries, realistic densities, and no short contacts. I’m running one final replay-consistency check on a disposable copy of `final.gpx`, then I’ll validate every submitted file and finish.
+
+The independent scorer-style forward replay now reproduces the submitted curve exactly (Rwp 7.977%), with no physical/profile review flags and identical phase fractions. I’m checking the generator’s documented nuisance conventions only to ensure the remaining 41.36° overlap is not a missed standard refinement term; the accepted outputs remain isolated.
+
+Identified crystalline phases:
+
+- ZnWO₄, P2/c: 74.83(13) wt%
+- WO₃, P2₁/c: 18.42(10) wt%
+- ZnO, P6₃mc: 6.75(11) wt%
+
+Fractions are normalized over crystalline phases; amorphous content is not quantified. Final fit: Rwp 7.977%, Rp 4.656%, GOF 3.524. Independent GSAS-II forward replay reproduced the fit with no physical review flags.
+
+Deliverables:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-2d3b9a329c45/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-2d3b9a329c45/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-2d3b9a329c45/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-2d3b9a329c45/workspace/final.gpx)
+- [ZnWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-2d3b9a329c45/workspace/ZnWO4.cif)
+- [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-2d3b9a329c45/workspace/WO3.cif)
+- [ZnO.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-2d3b9a329c45/workspace/ZnO.cif)
+

@@ -1,0 +1,36 @@
+I’ll inspect the measurement metadata, pattern format, and the provided tungstate-analysis framework first. Then I’ll identify candidate phases, build/refine them in GSAS-II, and verify that every submitted artifact comes from the final saved project.
+
+The chemistry points toward barium tungstate formation, but the framework’s generation rules also require every precursor element—including carbon—to remain represented in at least one crystalline phase. I’m therefore treating residual or intermediate carbonate as a real candidate rather than assuming a single BaWO₄ product. Next I’m extracting peak positions and searching the frozen COD library by composition and structure.
+
+The dominant phase is now unambiguous: its 30.78°, 26.20°, 40.75°, 42.96°, 17.72°, and 53.67° peaks match rhombohedral Ba₃W₂O₉ (COD 1533878) with a common specimen/angular shift. A second, much sharper family at 23.35°, 23.82°, 24.62°, 33.49–34.41°, and 50.19° matches monoclinic WO₃. I’m moving to whole-pattern refinement to test whether carbonate is independently required and to separate overlaps quantitatively.
+
+Adding orthorhombic BaCO₃ is statistically meaningful: the three-phase model lowers Rwp from 11.21% to 9.38% and refines to roughly 71.8 wt% Ba₃W₂O₉, 22.9 wt% WO₃, and 5.3 wt% BaCO₃. The remaining residual is dominated by systematic intensity and line-shape errors rather than unexplained peak positions, so I’m now discriminating among close WO₃/BaCO₃ structure records and then will refine texture, anisotropic broadening, specimen effects, and atomic parameters.
+
+The first specimen-height trial exposed a strong parameter correlation: refining zero, displacement, instrument widths, and phase broadening together drives the model to bounds and worsens the fit. I’m separating those parameter blocks now—locking the converged model while testing one physical effect at a time—so the final project remains stable and interpretable.
+
+The refinement is now close to the counting-statistics limit: symmetry-constrained coordinate refinement lowers Rwp to 2.81%, and the phase fractions stabilize at about 0.720/0.231/0.049. The refined heavy-atom displacements are only ~0.03 Å, exactly in the framework’s stated reference-mismatch range, which strongly supports the selected structures rather than an empirical peak-only fit. I’m doing the final line-shape/texture discrimination and physical validation now.
+
+The selected final model uses only physically allowed generator ranges and passes the structure/contact screens. Its observed-data Rwp is 2.51%, versus the 2.30% Poisson lower bound reported by GSAS-II; the remaining excess is concentrated in one overlapping 33–35° multiplet. I’m freezing this model, exporting CIFs from that exact project, and independently replaying it before writing the JSON/report.
+
+The frozen project has now passed independent native GSAS-II replay, CIF/project structural consistency, fraction normalization, physical-contact screening, and full-grid `fit.csv` validation. I’m running one last sandboxed scorer-style replay so the handoff includes exactly the same verification path that will consume the submission.
+
+Completed the three-phase GSAS-II refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| Ba₃W₂O₉, R-3c | 71.37% |
+| WO₃, P2₁/c | 23.66% |
+| BaCO₃, Pnma | 4.98% |
+
+Final replay statistics: Rwp 2.511%, Rp 1.854%. The fractions are normalized over modeled crystalline phases; amorphous content cannot be quantified without an internal standard. Structural and fraction uncertainties are discussed in the report.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-transfer-858bd19fdd83/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-transfer-858bd19fdd83/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-transfer-858bd19fdd83/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-transfer-858bd19fdd83/workspace/final.gpx)
+- [Ba₃W₂O₉ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-transfer-858bd19fdd83/workspace/phase_1_Ba3W2O9.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-transfer-858bd19fdd83/workspace/phase_2_WO3.cif)
+- [BaCO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-transfer-858bd19fdd83/workspace/phase_3_BaCO3.cif)
+

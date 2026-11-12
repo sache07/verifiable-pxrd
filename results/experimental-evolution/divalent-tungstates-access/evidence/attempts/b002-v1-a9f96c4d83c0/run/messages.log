@@ -1,0 +1,55 @@
+I’ll first inspect the pattern, metadata, and the provided PXRD/GSAS-II guidance, then build a falsifiable candidate ledger before refining any final phase set. I’ll keep the refinement staged and verify the exported CIFs and replayable `final.gpx` against the submitted profile and fractions.
+
+The chemical context is a 700 °C ZnO/WO₃ synthesis, so ZnWO₄ is the first chemically economical nomination, but I am treating residual oxides and alternative Zn–W–O stoichiometries/polymorphs as open branches. The supplied pattern is raw Cu Kα₁/Kα₂ data with 8,301 points; I’m now extracting peak families and querying the frozen structure index rather than assuming a single product.
+
+Peak-family closure now supports a three-branch inventory: a wolframite-type ZnWO₄ analogue explains the dominant family, while distinct narrow families align with monoclinic WO₃ and wurtzite ZnO. I am keeping alternative ZnWO₄ topologies, every available WO₃ polymorph, and the other ZnO polymorphs in the ledger until common-setting trial fits show whether their scales remain positive and stable.
+
+The common-setting trial identifies the P2/c wolframite branch as the only stable positive ZnWO₄ contribution; its refined cell moves only to roughly 4.706 × 5.740 × 4.938 Å, β≈90.59°, while the alternative topology trials either collapse toward zero scale or fail to complete and therefore remain “unknown,” not falsely rejected. I’m now refining the falsifiable three-phase inventory and will then re-test each WO₃ and ZnO alternative as a replacement in that same stable multiphase project.
+
+The stable replacement tests resolve the WO₃ branch: the higher-cell monoclinic model (COD 2311041) and its nearly equivalent triclinic setting reduce Rwp to about 18.86%, versus 20.8–23.1% for the other WO₃ polymorphs; one malformed WO₃ record was rejected before fitting for a 0.46 Å contact. Wurtzite remains the only positive ZnO model, while rocksalt failed and zincblende contributes only a trace. The accepted WO₃ size term is stable (~0.15 µm); a ZnO size term hits its lower bound and is being rolled back.
+
+The phase inventory has converged on wolframite ZnWO₄ with monoclinic WO₃ and wurtzite ZnO; the current stable three-phase refinement is at Rwp ≈ 10.22%. I’m now doing the required closure checks—off-stoichiometric zinc tungstate prototypes, the one unresolved WO₃ entry, and only then tightly controlled nuisance refinements—before exporting and replay-validating the final project.
+
+The remaining residuals are mostly shape mismatches around strong indexed peaks, not a new obvious peak family. Still, to make closure falsifiable, I found concrete analogue routes for Zn₃WO₆, Zn₂WO₅, and ZnW₂O₇ and will screen them as explicit fourth phases; I’ll also retry the malformed-setting WO₃ model after standardization rather than treating its earlier import failure as a rejection.
+
+The extra-phase tests either collapsed below about 0.12 wt% with negligible improvement or fit worse; none currently warrants inclusion. The controlled microstrain trials gave only modest gains, with the numerically best axis requiring an anisotropy ratio outside the stated specimen prior, so I’m keeping that branch provisional while testing the physically paired surface-roughness term and minor-phase displacement factors.
+
+The roughness pair ran to both limits and became strongly correlated, so it is rejected. Minor-phase Uiso scans are nearly flat (changes of only a few hundredths in Rwp), which means those displacement factors—and their small effect on the reported fractions—will be treated as weakly determined rather than over-refined.
+
+A useful correction emerged from the texture branch: the earlier ZnO refinement had been trapped in a false cell minimum. Re-centering wurtzite at a chemically normal cell reduced Rwp from 10.22% to 9.80% even with WO₃ texture removed. I’m now rerunning every WO₃ texture axis from that same corrected project so the comparison is fair; the provisional [110] term independently lowers Rwp to about 9.43%.
+
+The coherent 41.56° residual prompted an explicit second-WO₃-polymorph screen. Those additions remain below roughly 0.2 wt% and improve Rwp by only ~0.01–0.02 points; the monoclinic model whose line happens to sit there refines to only ~0.05 wt%. That is too small and unstable to justify a fourth phase, so the residual is more likely a profile/intensity limitation of the retained phases.
+
+The only extra polymorph with a stable scale is triclinic WO₃ at about 1 wt%, but it mainly duplicates the three strongest WO₃ lines and does not explain the large 41.56° residual. Its texture trials yield only another ~0.02-point gain. I’m treating it as a borderline model-choice question and checking whether its scale remains stable under the final common refinements before deciding whether to report it as a tentative fourth phase or leave it in the uncertainty discussion.
+
+The sequential WO₃ oxygen trials confirm why the earlier all-oxygen refinement was rejected: individual sites move by 0.3–0.9 Å (far beyond the reference-mismatch prior), often oscillate or become highly correlated, for only tiny fit changes. Those coordinates will remain at the physically screened source values.
+
+A physically supported nuisance term did emerge: ZnO isotropic microstrain refines reproducibly to about 7,400 ppm (inside the stated 300–8,000 ppm range) and lowers Rwp from 9.43% to 9.30% without new correlations. All three uniaxial variants hit an 8,000-ppm boundary, so I’m retaining only the simpler isotropic term and will check whether crystallite size is independently resolvable.
+
+The selected three-phase model is now exported and passes the physical screen: full occupancies, no hard contacts, O–O separations ≥2.60 Å, and chemically plausible densities/cells. I’m performing the evaluator-style native replay next; this recalculates every structure factor from `final.gpx` and will be the source of the submitted profile and fractions, avoiding stale GSAS arrays.
+
+The replayed submission is complete at 81.75 wt% ZnWO₄, 13.15 wt% WO₃, and 5.10 wt% ZnO, with Rwp 9.299%. I’ve recorded the unresolved ~1 wt% triclinic-WO₃ possibility and the 41.56° residual explicitly rather than overstating certainty. I’m doing final schema, CIF/project-consistency, and file-integrity checks now.
+
+Completed the PXRD analysis and GSAS-II refinement.
+
+Final crystalline model:
+
+- Wolframite ZnWO₄: 81.75 wt%
+- Monoclinic WO₃: 13.15 wt%
+- Wurtzite ZnO: 5.10 wt%
+- Rwp: 9.299%; Rp: 5.158%
+
+A trace triclinic WO₃ contribution near 1 wt% could not be distinguished reliably and was not included. Residual peak-shape mismatch remains near 41.56° 2θ.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v1-a9f96c4d83c0/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v1-a9f96c4d83c0/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v1-a9f96c4d83c0/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v1-a9f96c4d83c0/workspace/final.gpx)
+- [ZnWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v1-a9f96c4d83c0/workspace/phase_1_ZnWO4_wolframite.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v1-a9f96c4d83c0/workspace/phase_2_WO3_monoclinic.cif)
+- [ZnO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v1-a9f96c4d83c0/workspace/phase_3_ZnO_wurtzite.cif)
+
+The final project passed native replay, CIF/project consistency, occupancy, geometry, and fraction-normalization checks.
+

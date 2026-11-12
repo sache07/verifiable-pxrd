@@ -1,0 +1,25 @@
+--- stdout
+GSAS-II binaries co-located with GSAS-II: <HOME>/.local/share/characterizagent/backends/gsas2/venv/lib/python3.11/site-packages/GSASII
+N.B. Configuration file /tmp/.GSASII/config.ini does not exist
+New install: start without a config.py file
+0 values read from /tmp/.GSASII/config.ini
+
+--- stderr
+Traceback (most recent call last):
+  File "/host/procedure_host.py", line 47, in <module>
+    runpy.run_path(script, run_name='__main__')
+  File "<frozen runpy>", line 291, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/procedure/staged_polish.py", line 529, in <module>
+    main()
+  File "/procedure/staged_polish.py", line 464, in main
+    baseline_fractions = mass_fractions(baseline_project)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/procedure/staged_polish.py", line 158, in mass_fractions
+    for name, value in histogram(project).ComputeMassFracs().items()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/.local/share/characterizagent/backends/gsas2/venv/lib/python3.11/site-packages/GSASII/GSASIIscriptable.py", line 4640, in ComputeMassFracs
+    covMatrix = self.proj.data['Covariance']['data']['covMatrix']
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'covMatrix'

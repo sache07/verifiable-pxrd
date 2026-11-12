@@ -1,0 +1,46 @@
+I’ll inspect the specimen metadata and pattern first, then use the frozen phase index and GSAS‑II tooling to build and refine a complete multiphase model. I’ll preserve replayable checkpoints and validate the exported CIFs, fractions, profile, and final project before reporting.
+
+The chemistry points first to CuWO₄ with possible residual CuO and WO₃, but I’ll let the peak families decide the inventory. I’m now extracting peak positions and querying exact Cu–W–O / precursor references from the frozen COD index before constructing the GSAS‑II project.
+
+The three ordinary phases are confirmed by multiple independent peak families: CuWO₄ accounts for the dominant shifted pattern, monoclinic WO₃ for the strong 22.7–23.9° triplet, and CuO for its 35/38°, 48°, 61–68° family. The first GSAS‑II branch is now refining cells and profile terms; I’m also guarding against scale/profile singularities so candidate comparisons remain physical.
+
+The reference comparison is already discriminating the WO₃ model: the more complete monoclinic room‑temperature setting (COD 2311041) lowers Rwp to about 18.20% versus 18.79% for the coarse 1960 model, while preserving the same three-phase inventory and positive scales. I’m checking the remaining physically plausible WO₃ settings and the modern CuO reference before refining coordinates and specimen effects on the best complete model.
+
+A coherent residual family reveals a fourth phase, not a coordinate problem: peaks at 15.18, 19.79, 32.49, 33.77, 49.69, and 57.61° all map to cubic Cu₃WO₆ under the same angular displacement. Its Cu-rich stoichiometry also explains why WO₃ greatly exceeds residual CuO in the three-phase fit. I’m adding this exact-composition phase and will stop inventory searching if the remaining coherent families close.
+
+The four-phase inventory closes the missing family and drops Rwp from 18.2% to 7.3% before phase-profile refinement, then to 3.72% with bounded isotropic size/strain and polarization. All four scales remain positive (about 66.0% CuWO₄, 18.4% WO₃, 13.3% Cu₃WO₆, 2.4% CuO). I’m now refining the accepted inventory only—coordinates, supported profile anisotropy/texture, and specimen terms—with rollback whenever geometry or stability degrades.
+
+The first unrestricted WO₃ oxygen refinement improved Rwp only modestly but drove several O sites by 0.13–0.43 Å, far beyond the generator’s reference-mismatch scale; I’m rejecting that branch. I’m instead testing three capped starts along the supported intensity direction (roughly 0.04, 0.09, and 0.13 Å maximum displacement), keeping whichever remains geometrically sound and improves the full profile.
+
+The capped WO₃ start at 0.046 Å oxygen RMS is the physical choice (Rwp 1.975%); larger displacements buy only ~0.005% and exceed the stated mismatch distribution. Surface roughness is unsupported—it pushes outside the laboratory range and does not materially improve the fit—so it is excluded. I’m screening the finite set of allowed March–Dollase axes and uniaxial-strain axes one phase at a time.
+
+One calibration issue remains: the current decomposition uses an effective zero of −0.463°, outside the known instrument draw, because early fitting absorbed specimen displacement into zero. I’m correcting that now with bounded joint zero/height refinements from several starts (zero within ±0.25°, height within ±800 µm), while retaining the accepted cells and all four phases.
+
+The bounded calibration converged reproducibly near zero = −0.196° and specimen shift = +519 µm, cutting Rwp to 1.744%. The accepted coordinates remain within the modeled mismatch envelope, and WO₃ shows supported [001] uniaxial microstrain; preferred orientation and surface roughness remain unsupported. I’m doing the last weak-phase size check, then I’ll freeze and replay the best physical project.
+
+The four-phase model is identified and refined. I’m now generating the submission files from the best physical checkpoint, then I’ll replay `final.gpx` independently to verify that its profile, fractions, and exported CIFs reproduce the reported result.
+
+The frozen project reproduces the selected checkpoint exactly: Rwp 1.7441% with crystalline fractions 65.60% CuWO₄, 19.26% WO₃, 12.59% Cu₃WO₆, and 2.55% CuO. I’m checking the project through the independent replay path now; this is the safeguard against stale profiles or exports.
+
+Independent replay passed: it regenerated all reflection lists and structure factors from `final.gpx`, left the project unchanged, and reproduced the saved calculated profile to within \(5.1\times10^{-11}\) counts. All phase fractions also match exactly. I’m doing the final crystallographic sanity checks now—composition, symmetry, density, occupancies, and shortest contacts—before writing the report.
+
+One compatibility check caught a formatting issue in `fit.csv`: the angle data were correct, but the header `two_theta_deg` is not accepted by the frozen profile reader’s exact alias list. I’m changing only that header to `two_theta`; the numerical profile remains unchanged.
+
+Completed and independently replay-validated.
+
+| Phase | Crystalline weight fraction | Structure |
+|---|---:|---|
+| CuWO₄ | 65.60% | [CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-b9e3a697c8a5/workspace/phase_1_CuWO4.cif) |
+| WO₃ | 19.26% | [CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-b9e3a697c8a5/workspace/phase_2_WO3.cif) |
+| Cu₃WO₆ | 12.59% | [CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-b9e3a697c8a5/workspace/phase_4_Cu3WO6.cif) |
+| CuO | 2.55% | [CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-b9e3a697c8a5/workspace/phase_3_CuO.cif) |
+
+Full-range fit: Rwp 1.7441%, Rp 1.3062%, goodness-of-fit 1.0791. No coherent residual reflection family remains unassigned. Fractions are crystalline-normalized; amorphous content cannot be quantified, and the minor CuO fraction is the least precise.
+
+Files:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-b9e3a697c8a5/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-b9e3a697c8a5/workspace/fit.csv)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-b9e3a697c8a5/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-b9e3a697c8a5/workspace/report.md)
+

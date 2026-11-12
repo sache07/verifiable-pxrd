@@ -1,0 +1,62 @@
+I’ll first inspect the pattern, metadata, and the provided tungstate workflow/tooling. I’ll build a candidate ledger before refinement, then use one stable GSAS-II project for comparable screening and the final quantitative fit.
+
+The chemistry is CuO + WO₃ at 700 °C, so CuWO₄ is the principal expectation, but the inventory is deliberately unknown and may include residual oxides or Cu–W–O intermediates. I’m now extracting peak families and searching the frozen COD across every same-formula CuWO₄ entry plus broader Cu–W–O/oxide prototypes before nominating phases.
+
+The observed peak map strongly tracks the triclinic \(P\bar1\) CuWO₄ entry (COD 4000806): its strongest calculated lines match the observed families after an approximately constant \(-0.45^\circ\) specimen/calibration displacement. The monoclinic CuWO₄ polymorph and Cu₂WO₄/Cu₃WO₆ alternatives predict materially different families; I’m retaining them as explicit trial branches rather than discarding them from visual matching alone.
+
+Two additions are already falsified by peak families: Cu₃WO₆ accounts for the otherwise unexplained 15.18°, 19.80°, 32.51°, 33.77°, 49.67°, 57.60°, and 63.28° lines, while a monoclinic WO₃ family accounts for the strong 22.67°/23.07°/23.89° triplet and 28.14°/28.48° pair. The two-phase model lowers Rwp from 31.6% to 25.5%; the three-phase comparison is still refining.
+
+The full same-formula WO₃ screen separates three closely related low-symmetry models from the tetragonal/hexagonal/orthorhombic alternatives. COD 2311041 (\(P2_1/c\), nonstandard cell) is best under the common protocol at Rwp 9.06%, ahead of the triclinic analogue (9.30%) and alternate monoclinic setting (10.28%); all other stable trials are ≥18.4%. I’m carrying the top three as the structural-uncertainty shortlist while refining only the chemically economical \(P2_1/c\) model first.
+
+The first bounded-coordinate trial exposed a GSAS-II parameter-convention trap: coordinate limits were interpreted as absolute fractional coordinates, not displacements, and the branch subsequently collapsed. Per the requested discipline, I’m rolling that branch back to the valid pre-coordinate checkpoint and treating it as unknown—not as evidence against the structure. I’ll retry with atom-specific absolute bounds centered on each published coordinate.
+
+The rollback is now physically valid: all CIF geometries pass, ADPs are positive, and the profile uses nonnegative widths (Rwp 6.27%). The unconstrained oxygen refinements and boundary-hitting coordinate/ADP branches have been excluded. I’m now screening the only remaining likely intensity correction—one March–Dollase term at a time for each phase and each allowed axis—against this same rollback.
+
+The three-phase inventory is now stable: triclinic CuWO₄, cubic Cu₃WO₆, and monoclinic WO₃. I’m at the final model-selection stage—checking whether any single profile correction is genuinely supported, then I’ll replay the exact GSAS-II project and export all deliverables from that replayed model.
+
+The roughness correction lowered Rwp slightly, but one parameter ran exactly to its allowed boundary, so I’m rejecting it as unsupported. I’m now comparing six one-parameter, phase-specific broadening trials plus the axial-divergence term against the same clean project; this is the last nuisance-model screen.
+
+One apparently strong size improvement exposed a profile-decomposition issue: the common instrumental Lorentzian term went slightly negative, so that trial is not physically admissible as-is. I’m rebuilding the baseline with nonnegative instrumental broadening and negligible phase-size broadening, then retesting phase sizes; this separates actual phase broadening from the arbitrary screening defaults.
+
+With a nonnegative profile gauge, CuWO₄’s smaller effective domain size is reproducible (about 0.112 µm) and converges cleanly; it drops Rwp from 6.50% to 5.00%. The other single-phase trials are much weaker or boundary-limited. I’m now testing whether any second isotropic term adds stable information on top of that supported CuWO₄ broadening.
+
+The fully isotropic model is physically reasonable and reaches Rwp ≈4.62%, but repeated least-squares blocks reveal a numerical instability in the oblique WO₃ metric (two reciprocal-cell terms are ~89% correlated). I’m freezing that already-refined WO₃ cell and reconverging the remaining parameters; the submitted model will use the stable rollback if this removes the oscillation.
+
+Freezing WO₃ confirms the model’s parameters are usable, but GSAS-II’s cached profile was slightly optimistic: a fresh calculation gives Rwp ≈4.70%. I’ll use the independently regenerated profile—not the stale cache—for the final statistics. In parallel, I’m closing the candidate ledger with the alternate CuWO₄ polymorph, Cu₂WO₄, and both CuO precursor references under the same screening protocol.
+
+The largest remaining positive/negative residual pairs are peak-position asymmetries, not missing reflections. The fitted constant zero (−0.480°) is outside the stated calibration range and is exactly the signature expected when specimen height is being absorbed into a constant offset. I’m now separating zero offset from Bragg–Brentano specimen displacement with their physical bounds; this should be much more consequential than further coordinate freedom.
+
+The displacement refinements are computationally slower because every trial regenerates reflection positions across the full 8,301-point scan. All three bounded initializations are still running; I’m comparing them to ensure the result is not an initialization artifact.
+
+The joint zero/height refinements were ill-conditioned and did not complete, so those branches are “unknown,” not evidence against displacement. I stopped them and am switching to the falsifiable version of the test: hold zero at three plausible calibration values and refine only specimen height, then compare the converged branches.
+
+The fixed-zero branches are progressing but remain expensive; the slowdown is intrinsic to GSAS-II’s specimen-shift derivative, which repeatedly rebuilds peak positions. I’m letting these bounded one-parameter branches finish because the current residual pattern makes this test scientifically decisive.
+
+The direct shift refinements proved numerically unsafe: one branch destroyed a cubic cell and the others stalled, so none will be retained. I’m replacing derivative-based refinement with a read-only fixed grid along the physically equivalent zero/height combinations; each point will be independently replayed, which avoids corrupting structural parameters.
+
+The fixed grid shows that forcing a large specimen displacement onto cells already refined with a constant zero is much worse (best grid Rwp 11.1%), so it cannot be adopted directly. One clean test remains: start exactly at the current profile (shift 0, zero −0.47984°) and refine height alone. That avoids the discontinuous jump that destabilized the earlier branches.
+
+The local height derivative made no accepted step, and roughness again hit a bound with 99.5% parameter correlation, so the simpler zero-only model remains. I’m moving to the final structural check: bounded, symmetry-allowed coordinate tests one phase at a time—CuWO₄ all sites, and heavy atoms only for the two minor phases—while keeping the validated profile model fixed in form.
+
+The bounded coordinate tests do not survive independent replay: CuWO₄ coordinates actually worsen Rwp from 4.623% to 4.651%, while the minor-phase shifts are negligible. I’m retaining the simpler regularized structures. The model is now final: three phases, no texture/roughness/height term, and a replay with no physical-review flags. I’m exporting the exact replayed CIFs and profile now.
+
+Completed the three-phase refinement:
+
+| Phase | Weight fraction |
+|---|---:|
+| CuWO₄, P -1 | 66.35% |
+| Cu₃WO₆, P a -3 | 13.73% |
+| WO₃, P 21/c | 19.92% |
+
+Independent GSAS-II replay gives Rwp = 4.6226%, Rp = 2.7562%, with no physical-review flags. The exact WO₃ polymorph and oxygen positions remain less certain; fractions have approximately 1–2 percentage-point model dependence.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-d9e77b33e9cb/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-d9e77b33e9cb/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-d9e77b33e9cb/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-d9e77b33e9cb/workspace/final.gpx)
+- [CuWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-d9e77b33e9cb/workspace/CuWO4.cif)
+- [Cu3WO6.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-d9e77b33e9cb/workspace/Cu3WO6.cif)
+- [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-d9e77b33e9cb/workspace/WO3.cif)
+

@@ -1,0 +1,37 @@
+I’ll identify the chemically plausible phase set from the specimen metadata and frozen reference index, then build and iteratively refine a physical multiphase GSAS‑II model. I’ll prioritize a replayable full-grid project and verify all exported CIF/profile/JSON files against that final checkpoint.
+
+The specimen is a 650 °C CaCO₃ + WO₃ reaction, so the ordinary first inventory is scheelite CaWO₄ plus possible residual WO₃/CaCO₃ and CaO. I’m now comparing the observed peak families against exact-composition entries in the frozen COD index before introducing any less ordinary intermediate.
+
+A first two-phase refinement confirms scheelite CaWO₄ as the dominant phase and assigns roughly 10–12 wt% to a WO₃-like residual family. The orthorhombic WO₃ model fits the family broadly, but its refined cell distortion and profile terms are already signaling that its symmetry/topology may be only an approximation; I’m screening the monoclinic and triclinic exact-composition references on the same checkpoint before accepting it.
+
+The first coordinate-release test was informative but not acceptable: oxygen parameters ran far beyond chemically reasonable WO₆ geometry before the profile widths were resolved. I stopped that branch and am rolling back to the last physical cell/scale checkpoint. The accepted branches will keep reference coordinates fixed while phase widths and the common instrument profile are established; only small, geometry-checked coordinate releases will be reconsidered afterward.
+
+The physical-profile comparison now separates two monoclinic WO₃ references: COD 2311041 reaches Rwp 3.55% with intact reference geometry, versus 3.88% for COD 1528915, whose source model also contains an under-coordinated W environment. I’m checking the remaining credible triclinic/orthorhombic WO₃ alternatives, then I’ll stop topology search and refine only the accepted inventory.
+
+The phase search is now converged on scheelite CaWO₄ plus monoclinic WO₃; the closest lower-symmetry WO₃ alternative gives essentially the same fit while collapsing toward the monoclinic metric, so I’m ending topology search. I’m checking the residual families and then will make the final full-range, physically constrained GSAS-II replay.
+
+The residual maxima sit on already modeled CaWO₄/WO₃ peaks rather than forming a new reflection family; they indicate profile/intensity mismatch, not a third phase. I’m now testing only supported specimen corrections (full angular range, axial divergence, modest texture/anisotropic size, and surface roughness) from the same checkpoint, with each test isolated so an unstable parameter cannot contaminate the final project.
+
+The first bounded coordinate branch exposed a GSAS-II scripting convention: its `dAx/dAy/dAz` limits are applied to the absolute fractional coordinates, not to increments. That trial therefore drove sites to the artificial bounds and is discarded. I’m rerunning the same heavy-then-light tests with bounds centered on each reference coordinate; the untouched base checkpoint remains intact.
+
+The bounded CaWO₄ oxygen refinement is reproducible from three independent starts and gives a normal scheelite geometry (W–O 1.798 Å; Ca–O 2.420–2.454 Å). WO₃ coordinate releases instead run to bounds or become underdetermined, so I am retaining its literature geometry. Surface roughness collapses to zero after the coordinate correction, and texture/anisotropic-size gains are negligible and axis-dependent; those terms will not be included.
+
+The selected model is now written to all requested deliverables. I’m doing a final consistency audit: CIF chemistry/geometry, exact profile-grid identity, JSON normalization, and an independent replay from a copy of `final.gpx`.
+
+Completed the full-range GSAS-II refinement.
+
+- CaWO₄, scheelite: **85.27 wt%**
+- Monoclinic WO₃: **14.73 wt%**
+- Rwp: **3.447%**, Rp: **2.598%**, GOF: **1.102**
+
+Fractions are normalized over crystalline phases; realistic systematic uncertainty is about ±1 wt%. The final project replayed cleanly without frozen or singular parameters.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-4b569596c197/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-4b569596c197/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-4b569596c197/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-4b569596c197/workspace/final.gpx)
+- [CaWO4_scheelite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-4b569596c197/workspace/CaWO4_scheelite.cif)
+- [WO3_monoclinic.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-4b569596c197/workspace/WO3_monoclinic.cif)
+

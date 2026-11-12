@@ -1,0 +1,64 @@
+I’ll inspect the specimen metadata, pattern, and the frozen analysis package first, then build and refine candidate phases in GSAS-II. I’ll keep the final bounded polish as the single last refinement step and export all deliverables from the accepted polished project.
+
+The scan has a strong decaying background and broad, overlapping peaks, so raw peak heights alone will overstate phase count. The chemistry points first to CuWO₄ with possible CuO/WO₃ carryover; I’m now querying the frozen COD index for all Cu–W–O references and checking whether those ordinary phases account for every coherent reflection family.
+
+The first indexing check is decisive: triclinic CuWO₄ explains one full peak family and cubic Pa‑3 Cu₃WO₆ explains a second, including independent low- and high-angle lines. I’m refining those two ordinary phases first; after the basic profile converges I’ll use residual-family tests to decide whether WO₃ or CuO is genuinely required rather than adding them from chemistry alone.
+
+A third coherent family is real: monoclinic/triclinic WO₃ accounts for the large residual triplet near 22.7–23.9° and its matching lines through 95°. Equal cell/scale/background refinements strongly reject orthorhombic WO₃ (Rwp ≈19.2%) and favor the distorted room-temperature topology; the two serious starts are P‑1 WO₃ (≈9.52%) and P2₁/n WO₃ (≈10.48%) before profile/coordinate development. I’m carrying both forward so the extra triclinic flexibility is not mistaken for structural evidence.
+
+The fourth phase is supported independently, not just chemically inferred: CuO removes the paired 35.1°/38.3° residuals and matching higher-angle lines, improving Rwp from about 9.52% to 8.89% at only ~2.7 wt%. Cu₂O does not produce that gain. The accepted working inventory is therefore CuWO₄ + Cu₃WO₆ + WO₃ + CuO; current profile work is addressing center/wing residuals before any further phase search.
+
+The broadening terms are now separated cleanly: only CuWO₄ and WO₃ require measurable microstrain; forcing strain on Cu₃WO₆ or CuO drove those terms to a bound, so they were removed. The stable Gaussian model converges without frozen variables (U ≈7.8, W ≈13.6; strains ≈2720 and 1800 ppm). I’m applying the same test to Lorentzian size broadening and will retain only identifiable phase terms.
+
+The Lorentzian comparison is running more slowly because each branch must re-settle the common instrument width, phase sizes, cells, scales, and background together. No new phase family has appeared; this is a parameter-identifiability check, and any branch that reaches a size/profile bound or develops singular covariance will be discarded even if its transient Rwp is lower.
+
+Phase-wide Uiso refinement produced a large, physically expected improvement (Rwp ≈5.82% to ≈4.37%) for CuWO₄, Cu₃WO₆, and WO₃. CuO’s Uiso ran to the supplied upper limit, so I rolled that unsupported term back to 0.01 Å². Coordinate adaptation is now proceeding within ±0.10 Å Cartesian-equivalent bounds, phase by phase, with bound-hit atoms restored rather than retained.
+
+The coordinate model now closes the pattern at Rwp ≈2.90% with no unassigned reflection family; the largest remaining residuals are paired center/wing or relative-intensity errors on accepted peaks. The phase fractions have stabilized near 64.2% CuWO₄, 13.3% Cu₃WO₆, 20.3% WO₃, and 2.1% CuO. I’m testing only physically supported texture/roughness/polarization terms now, not searching for additional phases.
+
+Texture tests returned ratios effectively equal to 1.00 for CuWO₄/WO₃ and negligible or unstable changes for the minor phases, so no preferred-orientation term is retained. Surface roughness was likewise bound-limited and rejected. Polarization is supported and stable at about 0.673, improving Rwp to 2.853% without frozen variables.
+
+The accepted broadening terms are now evidence-backed: removing CuWO₄ size broadening raises Rwp to 5.58%, removing its strain raises it to 3.10%, removing Cu₃WO₆ size raises it to 4.31%, and removing WO₃ strain raises it to 7.94%. The retained uniaxial strains are interior and converged; unsupported U, WO₃/CuO size, Cu₃WO₆/CuO strain, texture, and roughness terms remain fixed or omitted.
+
+The retained profile terms are all necessary, but alternating them reveals a slow tradeoff between common Lorentzian width and phase size/strain. I’m resolving that explicitly with a joint stationary refinement now that unsupported U and phase terms are removed; I’ll reject the branch if it becomes singular, hits a bound, or remains inseparable.
+
+The reduced joint profile model is now stationary and physical: no frozen variables, all retained terms interior, and repeated joint/profile–lattice cycles reproduce the same basin (Rwp ≈2.687%). The remaining check is background representation; I’m comparing equally settled smooth models and will keep the simplest positive one that avoids edge distortion.
+
+The smooth interpolated background was positive but not replay-stable when coupled back to the profile model, so I’m rejecting it despite a comparable transient Rwp. The 12-term positive Chebyshev branch is the stable physical checkpoint (repeated joint cycles converged with no frozen parameters); I’m retaining that basin and doing the last supported displacement-factor check before the mandated one-time polish.
+
+The last checks are clean: polarization re-settles at 0.671; asymmetry does not re-refine stably, so its previously supported value is retained fixed. I’m also moving the two unresolved high-size values off the tested upper bound to a fixed interior 1.0 µm and re-settling the supported profile terms, in line with the supplied rollback rule, before creating `final.gpx`.
+
+The interior-size rollback converged to a better stable basin: repeated joint profile/lattice cycles reproduce Rwp ≈2.563%, max shift/esd 0.03, no frozen parameters, and all retained values are inside the laboratory bounds. I’m saving this terminal checkpoint as `final.gpx` and invoking the supplied bounded polish now, exactly once. After it returns I will only audit geometry/replay and export from the accepted project.
+
+The bounded polish is behaving as intended. Its first all-coordinate attempt improved Rwp but pushed many WO₃ oxygen components to bounds; those atoms were automatically restored, and the interior branch then settled physically at about 2.532% with stable fractions. The helper is still comparing the heavy/light and phasewise paths; I will accept only its audited converged branch.
+
+The one-time polish completed and selected its baseline branch at Rwp 2.56335%. All three coordinate branches were correctly excluded because their WO₃ oxygen coordinates either hit bounds or failed the helper’s coordinate-convergence criterion, despite lower transient Rwp. I’m accepting the audited baseline and will now perform only read-only geometry/replay checks, then export every deliverable from that exact project.
+
+The bounded polish selected the unchanged terminal model; every coordinate-refinement branch failed its convergence/geometry gate. I’m restoring that exact audited baseline, then I’ll replay-check it and export all deliverables from the identical project.
+
+Replay succeeded without changing the project: all four phases regenerate natively, with no profile-review flags and the same audited fractions. I’m now exporting CIFs and the profile, then I’ll independently validate the CIF geometry and final file consistency.
+
+All requested files are now exported from the replay-verified project. I’m doing the final independent checks now: CIF parsing/composition/contact screening, fraction normalization, profile-grid identity, and byte-level project consistency.
+
+Identified four crystalline phases:
+
+- CuWO₄ (P -1): 64.2434 wt%
+- Cu₃WO₆ (P a -3): 13.3315 wt%
+- WO₃ (P -1): 20.0302 wt%
+- CuO (C 2/c): 2.3949 wt%
+
+Final fit: Rwp 2.56335%, Rp 1.85913%, GOF 1.58923. The project replayed unchanged and all CIFs passed composition and geometry checks.
+
+Deliverables:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v7-4052ea72aa72/workspace/final.gpx)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v7-4052ea72aa72/workspace/result.json)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v7-4052ea72aa72/workspace/fit.csv)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v7-4052ea72aa72/workspace/report.md)
+- [CuWO4_P-1.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v7-4052ea72aa72/workspace/CuWO4_P-1.cif)
+- [Cu3WO6_Pa-3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v7-4052ea72aa72/workspace/Cu3WO6_Pa-3.cif)
+- [WO3_P-1.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v7-4052ea72aa72/workspace/WO3_P-1.cif)
+- [CuO_C2c.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v7-4052ea72aa72/workspace/CuO_C2c.cif)
+
+Fractions are normalized over modeled crystalline material; amorphous content cannot be determined. The main remaining uncertainties are detailed WO₃ oxygen positions and the relative precision/symmetry assignment of minor CuO.
+

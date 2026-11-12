@@ -1,0 +1,42 @@
+I’ll inspect the pattern, metadata, and the supplied PXRD/GSAS-II guidance first, then identify candidate phases and refine them against the full profile. I’ll keep the final artifacts internally consistent with the saved `final.gpx` and validate the exported CIFs and phase fractions before reporting.
+
+The chemistry is Ba–W–O with a carbonate precursor fired at 800 °C, so BaWO₄ is the obvious first candidate, but the exercise explicitly permits residual precursors, polymorphs, and off-stoichiometric products. I’m now extracting peak positions/intensities and checking them against the frozen COD library rather than assuming a single-phase reaction.
+
+The chemistry narrows the allowed crystalline inventory to Ba–W–O–C phases. The scan has a deliberately broad unknown background/instrument envelope, so I’m separating peak positions from intensity effects before testing BaWO₄, residual WO₃/BaCO₃, and plausible Ba–W–O intermediates against COD structures.
+
+Peak positions now give an unambiguous primary assignment: Ba₃W₂O₉ (COD 1533878) accounts for the strongest lines across 16–96°, while monoclinic WO₃ accounts for the characteristic 23.3/23.8/24.6° triplet and its higher-angle satellites. A weaker orthorhombic BaCO₃ contribution is likely at 24.12° and several isolated lines; I’m testing whether it remains statistically and chemically necessary in the full refinement.
+
+The three-phase model is quantitatively necessary; the current refined weight fractions are already about 61% Ba₃W₂O₉, 33% WO₃, and 5% BaCO₃. The fit is positionally excellent but intensity-limited (Rwp ≈ 9.5%), especially for several Ba₃W₂O₉ reflections, which is the signature expected from the synthetic coordinate perturbation and possible March–Dollase texture. I’m now resolving those effects rather than adding spurious phases.
+
+The first unconstrained oxygen refinement exposed a model-selection issue rather than a valid structural improvement: it drove WO₃ oxygen sites into unphysical contacts. I rejected that branch. Several COD entries share nearly identical monoclinic WO₃ peak positions but differ in setting and atomic coordinates, so I’m now discriminating those parent structures using fixed-coordinate intensities and physical geometry before any further light-atom refinement.
+
+The WO₃ parent test is resolving cleanly: COD 2311041 drops Rwp from 5.34% to 3.42% without moving oxygen atoms or creating bad contacts, strongly outperforming the earlier rounded WO₃ model. Its refined cell is consistent with the observed triplet and its W shifts remain small. I’m completing the competing triclinic/orthorhombic checks to confirm this is structural evidence rather than extra profile flexibility.
+
+The closest competitor, triclinic WO₃ (COD 2106293), reaches Rwp 3.63% but is still worse than monoclinic COD 2311041 at 3.42%, despite having more adjustable W coordinates and lower symmetry. That favors the monoclinic parent on parsimony as well as fit. Two poorer lattice candidates are still finishing; they are diagnostic only and will not delay the physically screened refinement.
+
+The clean three-phase project now replays consistently at Rwp 3.52% with physical crystallite sizes (0.14, 0.60, and 0.24 µm) and fractions 72.18%, 22.61%, and 5.21%. The remaining gap above the 2.30% counting-statistics limit is small and intensity-based. I’m checking minor-phase texture and then the symmetry-allowed coordinate/Uiso perturbations; these are the only generator effects not yet represented.
+
+The phase set is now well supported: Ba₃W₂O₉, residual WO₃, and a small BaCO₃ fraction. I’m finishing consistency checks on the physically constrained refinement, then I’ll export the exact project state into the requested CIF, profile, JSON, and report files.
+
+The current three-phase model refines to about 72.2 wt% Ba₃W₂O₉, 22.7 wt% WO₃, and 5.1 wt% BaCO₃. The remaining misfit is concentrated in relative intensities at strong reflections rather than unexplained peaks, so I’m checking the generator-supported texture/structure parameterization before freezing the model.
+
+The final constrained model passes the geometry/occupancy screen and replays cleanly from atomic structure factors, with no negative-background, peak-width, displacement, or polarization warnings. I’m now freezing that exact state and generating all deliverables from it so the CIFs, fractions, and profile are mutually consistent.
+
+Completed the three-phase refinement:
+
+- Ba₃W₂O₉: 72.17 wt%
+- monoclinic WO₃: 22.69 wt%
+- BaCO₃: 5.14 wt%
+
+Fresh GSAS-II replay gives Rwp = 3.2687%, Rp = 2.4561%, and GOF = 1.421. The fractions sum to 1.0 and all structural models pass the geometry checks. Light-atom coordinates and the minor BaCO₃ fraction carry the greatest uncertainty.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-transfer-e996182d7835/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-transfer-e996182d7835/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-transfer-e996182d7835/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-transfer-e996182d7835/workspace/final.gpx)
+- [Ba₃W₂O₉ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-transfer-e996182d7835/workspace/phase_Ba3W2O9.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-transfer-e996182d7835/workspace/phase_WO3.cif)
+- [BaCO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-transfer-e996182d7835/workspace/phase_BaCO3.cif)
+

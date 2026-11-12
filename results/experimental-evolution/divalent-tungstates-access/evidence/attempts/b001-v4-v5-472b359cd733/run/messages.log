@@ -1,0 +1,34 @@
+I’ll inspect the specimen metadata and diffraction grid first, then use the frozen reference index and GSAS-II tooling to identify phases, compare complete multiphase models, and refine the best physically credible solution. I’ll save an early replayable checkpoint once the main phase inventory closes, before testing any optional alternatives.
+
+The specimen is a 1:1 Ca:W charge fired at 650 °C, so the primary balance candidates are CaWO₄ plus residual/decomposition products (WO₃, CaCO₃/CaO) and possible calcium tungstate intermediates. I’m now extracting peak families and querying only compositionally relevant records from the frozen COD index; the key test will be whether one coherent model accounts for every resolved family, not just the strongest peaks.
+
+The resolved lines close cleanly as two families: scheelite CaWO₄ accounts for the dominant 18.27°, 28.43/28.77°, 33.85°, 46.89°, 57.65°… sequence, while the 22.77/23.18/23.99° triplet and its higher-angle companions are characteristic of distorted WO₃. No independent calcite or CaO family is evident at this stage. I’m building the first two-phase GSAS-II checkpoint with those references, then I’ll compare the monoclinic, triclinic, and orthorhombic WO₃ topology branches under the same refinement schedule.
+
+The first complete physical checkpoint (scheelite CaWO₄ + monoclinic WO₃) refines to Rwp ≈ 4.42% with about 84:16 wt% on a crystalline-only basis; its calculated profile accounts for all major peak families. I’ve preserved that replay before branching. The remaining tests are controlled alternatives: equivalent monoclinic settings, triclinic and orthorhombic WO₃, a higher-temperature monoclinic form, and the Ca–W–O bronze intermediate suggested by a few coincident weak lines.
+
+The topology comparison is decisive at the family level: the Ca–W–O bronze remains near Rwp ≈ 10.84% and leaves the WO₃ triplet unexplained; orthorhombic WO₃ remains ≈ 7.11%. The room-temperature monoclinic and triclinic distorted-WO₃ models are statistically indistinguishable at ≈ 4.17%, so I’m retaining monoclinic γ-WO₃ as the physically stable ambient form rather than choosing the triclinic model for a negligible numerical edge. Next I’m mapping the remaining residuals and refining only supported structural/profile effects from the best monoclinic checkpoint.
+
+All remaining prominent residuals sit on accepted CaWO₄ or WO₃ reflections; there is no coherent third peak family, so reference searching is now stopped. Refining cells/calibration, heavy atoms, the scheelite oxygen site, physically bounded WO₃ oxygen shifts, and one common Uiso per phase lowered Rwp from 4.16% to 3.76% without bad geometry. An unconstrained WO₃ oxygen refinement produced implausible 1.36 Å W–O contacts and was rolled back; a surface-roughness branch was singular and worsened the fit, so it was also rejected.
+
+The only supported line-shape anisotropy is a modest uniaxial WO₃ microstrain along [010] (about 1.45×10³ ppm perpendicular and 1.12×10³ ppm axial); preferred-orientation tests refined essentially to unity, and CaWO₄ anisotropy gains were negligible, so those were not retained. The current physical model is at Rwp ≈ 3.65% versus Rexp ≈ 3.14%. I’m now expanding the final refinement to the exact supplied grid, rechecking bond geometry and scale uncertainty, then exporting the required replay-consistent artifacts.
+
+The export is now replay-consistent on all 8,301 measured points: a zero-cycle GSAS-II replay reproduces `fit.csv` exactly (maximum calculated-intensity difference 0). The submitted structures also pass the final geometry screen. I’m doing the last schema, fraction-sum, CIF/project, and file-integrity checks now.
+
+Identified two crystalline phases:
+
+- Scheelite CaWO₄: 85.45 wt%
+- Monoclinic γ-WO₃: 14.55 wt%
+
+Full-grid refinement: Rwp 3.638%, Rexp 3.138%, GOF 1.159. Monoclinic versus weakly triclinic WO₃ remains the main structural ambiguity; fractions exclude any amorphous material.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-472b359cd733/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-472b359cd733/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-472b359cd733/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-472b359cd733/workspace/fit.csv)
+- [CaWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-472b359cd733/workspace/phase_CaWO4_scheelite.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-472b359cd733/workspace/phase_WO3_monoclinic.cif)
+
+A zero-cycle GSAS-II replay reproduces the submitted calculated profile exactly.
+

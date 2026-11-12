@@ -1,0 +1,129 @@
+I’ll first inventory the pattern, metadata, and the framework’s crystallographic tooling, then build a falsifiable candidate ledger before any fine refinement. I’ll keep the final model tied to a replayable GSAS-II project and verify the exported profiles/CIFs against that project.
+
+The chemistry narrows the first-pass inventory to Ca–W–O products plus residual WO₃/CaCO₃ (or CaO), but I won’t assume a single scheelite product. The raw scan has a high background and unknown displacement/profile, so I’m now extracting peak families and enumerating every CaWO₄ entry plus plausible precursor/intermediate prototypes from the frozen COD index.
+
+Peak families already separate cleanly into a broad scheelite-like CaWO₄ set (18.27°, 28.43°, 31.21°, 33.84°, 46.89°…) and a sharper monoclinic-WO₃-like set (22.77°, 23.18°, 23.99°, 26.19°, 32.88°…). I’m treating that as a nomination, not a conclusion: all three CaWO₄ records, all WO₃ polymorphs, and symmetry-diverse analogues will be screened under one common profile/background model.
+
+The same-formula audit found two usable CaWO₄ topologies: ambient scheelite (I4₁/a) and the dense high-pressure C2/c form; the third COD file is internally duplicated and overoccupied, so it is diagnostic-only unless repaired. Scheelite is the only topology matching the dominant family. For WO₃, P2₁/c, P2₁/m, Pnma, P-1, tetragonal, and hexagonal models remain pending for common-project trials.
+
+The first common-project batch is still refining; GSAS-II launched each polymorph trial independently, and I’m checking completion from the saved trial records rather than treating a timeout or interrupted branch as a rejection. Early single-phase behavior confirms the extra sharp family is quantitatively necessary.
+
+The first profile fit exposed a real instability rather than evidence against the model: GSAS had both the overall histogram scale and phase scales active, and unconstrained profile terms escaped the laboratory ranges. I’ve rolled that branch back, fixed the redundant scale, and imposed the stated bounds on zero, displacement, U/W/X/SH-L, size, and microstrain; the refined candidate itself remains pending.
+
+The bounded refinement is stable but slower because GSAS is repeatedly clipping correlated profile variables at physical limits. I’m letting it finish, then I’ll inspect whether any bound is genuinely supported; a boundary-hitting term will not be retained simply for lowering Rwp.
+
+The corrected two-phase model now reaches Rwp 4.40%, close to the 3.14% counting-statistics floor, with positive scales and plausible cells. That is strong closure evidence, but several nuisance values sit on bounds, so I’m keeping a simpler rollback and now running the full WO₃ polymorph panel under identical fixed-profile settings before deciding which branches merit the expensive profile refinement.
+
+Two monoclinic settings have completed; the remaining symmetry-diverse WO₃ trials are still running. I’m recording any failed or boundary-distorted branch as unknown, while only stable positive-scale comparisons enter the rejection ledger.
+
+Six of nine WO₃ models are complete. The tetragonal/hexagonal tail of the panel is now being tested; these are chemically less likely at room temperature but are important falsifiers because several individual lines overlap the observed minor family.
+
+The common-nuisance panel leaves a clear shortlist: monoclinic P2₁/c (two settings) and triclinic P-1 fit at Rwp 12.50–12.74% before profile refinement. Pnma is poorer (14.42%); tetragonal/hexagonal models are 15.4–21.1%, one scale collapses, and several require >1% cell distortion or boundary angular corrections. I’m now giving the three topology-distinct survivors the same full isotropic-profile treatment.
+
+The alternative P2₁/c setting has completed without interruption; the P-1 and Pnma refinements are still active. Once those finish, I’ll compare not only Rwp but scale stability, cell strain, and whether the residual improvement survives without angular/profile terms pinned to bounds.
+
+The lower-symmetry branch is taking longer because it carries more independent cell terms. I’m not interrupting it mid-cycle—the discipline here matters, since an interrupted P-1 refinement would be “unknown,” not evidence for P2₁/c.
+
+P-1 is still converging rather than failing, so it remains a valid pending branch. Its extra freedom can lower Rwp spuriously; I’ll require a physically modest cell and interior nuisance solution before treating any numerical advantage as structural evidence.
+
+The P-1 branch has completed as a tested model. Pnma is the last shortlist trial; after it finishes I’ll lock the inventory and move to residual-family mapping and limited coordinate refinement.
+
+Pnma is slower than expected but still active. I’ll let the current refinement finish; meanwhile, no additional phase is being added, so the comparison remains clean and common-model.
+
+The full-profile comparison is decisive for stability: both P2₁/c settings converge near Rwp 4.0–4.4% with ~15 wt% WO₃ and sub-0.25% cell changes. P-1 and Pnma run into boundary profiles; that makes those full refinements unknown, not rejected. I’m therefore re-testing them from the converged P2₁/c nuisance solution and checking whether the two P2₁/c records are merely alternate settings of one structure.
+
+Residual mapping reveals a coherent third family, not random noise: positive peaks near 29.06°, 35.66°, 42.83°, 48.18°, and 57.00° track calcite after the same angular correction. I’m reopening the inventory and testing calcite, aragonite, vaterite, and high-pressure CaCO₃ prototypes; this is exactly the kind of low-level precursor phase that a two-phase fit can hide under CaWO₄ tails.
+
+The three calcite-family models have completed. Aragonite and vaterite branches are still running under the same two-phase base and fixed profile; their scales must remain positive and their cell changes modest to stay in contention.
+
+Calcite contributes stably; aragonite’s scale collapses to zero. The ambient R-3c model lowers the common-profile Rwp from 12.56% to 12.13% with only 0.17% cell adjustment, while one vaterite trial diverged and is therefore unknown. I’m finishing the remaining carbonate topologies, then the ambient calcite branch gets a full profile refinement.
+
+Two more carbonate branches completed without numerical failure. The large-cell vaterite models remain; their extra reflections make them useful falsifiers even though the precursor chemistry favors calcite.
+
+The ambient calcite full-profile trial has completed. The high-temperature R-3c and R-3m variants are still running; provenance and required cell/scale behavior will be considered alongside Rwp, since a hotter polymorph should not displace ambient calcite on a marginal numerical gain alone.
+
+Both R-3c variants are now tested. The R-3m branch is last; after it completes I’ll map the three-phase residuals and decide whether carbonate is genuinely required or whether its gain is localized overfitting.
+
+The three-phase ambient-calcite model closes the carbonate family and reaches Rwp 3.80% with 77.7% CaWO₄, 13.5% WO₃, and 8.8% CaCO₃. Hotter carbonate models gain little or fit lower numerically only by 2–3.5% cell distortion and extreme broadening, so they are rejected. I’m now addressing the remaining nuisance-bound issue with reversed staging: phase broadening first from the converged solution, then instrument terms one at a time, across several interior starts.
+
+I found why the interior-start instrument values had not moved: GSAS carries a frozen-parameter list after a bound is touched, and that list survived into the copied project. I’ve corrected the rollback procedure to clear frozen variables and rebuild the refinement mask before every coordinate block; the previous interior-start result is diagnostic-only.
+
+The corrected coordinate-descent run is active. A zero-uncertainty warning appeared in one block, so I’ll inspect convergence and covariance before trusting it; the project will only be retained if the final profile and cells remain finite and physically valid.
+
+The run is still progressing through the alternating profile blocks; it has not crashed or produced an invalid project. I’m allowing the current cycle to finish, then I’ll compare every stage to its rollback point rather than accepting the last cycle automatically.
+
+This refinement is computationally expensive because clearing frozen variables lets GSAS genuinely re-evaluate each block. I’m continuing—the alternative would leave us with a known staging artifact in the submitted nuisance model.
+
+The corrected run itself diverged, so it is rolled back and marked unknown. The cause is now concrete: GSAS’s scripting method returns immediately when clearing the background flag, so instrument/sample flags later in the same call were never cleared. I’ve split those operations; this should finally make each coordinate block contain only its declared variables.
+
+The refinement masks are now clean and the run is proceeding without the earlier parameter explosion. I’ll still screen the output for boundary hits and compare the best intermediate stage, since the final position block is not automatically the best physical model.
+
+The coordinate-descent blocks are still converging normally. This run is slower than the original joint fit because each profile family is being optimized and saved independently, which is exactly what lets us audit correlations and retain a simpler rollback if needed.
+
+The masks are correct now, and the latest divergence has a different cause: I changed zero/profile values while holding cells and displacement fixed, so the first scale fit saw misaligned peaks and collapsed the carbonate before position recovery. That branch is unknown and rolled back. I’m reordering the clean blocks to recover cells/displacement immediately after rebasing, before any scale or profile optimization.
+
+The reordered run is active and has not shown the earlier scale-collapse warning. I’m waiting for the stage ledger; the key check will be whether carbonate remains positive after `position_initial` and whether subsequent profile blocks improve monotonically.
+
+The interior instrument solution is now credible (U 5.46, W 11.02, X 3.44) and yields Rwp 3.88–3.92%, but its calcite cell/profiles are less physical than the original rollback. I’m not choosing between them yet. I’m testing Ca₃WO₆, W-rich calcium bronze, CaO/(OH)₂, and the C2/c CaWO₄ polymorph against the same residual family to ensure calcite is not masking a more plausible oxide intermediate.
+
+The Ca₃WO₆ and W-rich bronze alternatives have completed. CaO, portlandite/peroxide, and the dense CaWO₄ polymorph are still pending; these models must explain the whole residual family, not just one coincident line.
+
+CaO’s branch became numerically invalid and remains unknown; portlandite and C2/c CaWO₄ completed as tested branches. Calcium peroxide is the final oxide check.
+
+The residual intensity pattern is now diagnostic rather than an inventory gap: CaWO₄ 101 is overpredicted while 112/200-family peaks are underpredicted, consistent with preferred orientation. I’m testing the allowed March–Dollase axes one at a time from the same interior-profile rollback, with all cells/profile widths fixed and only scales/background shared.
+
+March–Dollase trials on [001], [100], [110], and [111] all return ratios within 0.6% of unity and do not improve the fit, so texture is rejected. Before further refinement I’m now using the scorer’s native replay path, which regenerates reflections from saved parameters; this avoids being misled by any stale calculated arrays in intermediate GPX backups.
+
+I’ve narrowed the inventory to scheelite CaWO₄, monoclinic WO₃, and calcite. I’m now validating the rollback project by scorer-equivalent replay, then I’ll test only the remaining supported refinements and package the exact replayed model.
+
+The isolated replay wrapper is blocked only because this kernel disables unprivileged namespaces; the scientific replay itself is available. I’m running that same read-only worker directly against an absolute-path request, which preserves its fresh structure-factor and reflection-list checks.
+
+Fresh replay succeeds cleanly: Rwp 4.024%, no physical-profile warnings, and fractions 76.37% CaWO₄ / 12.95% WO₃ / 10.67% CaCO₃. The calcite contribution is real, but its profile parameters sit at limits, so I’m treating that fraction as the least certain while testing coordinate and line-shape terms one at a time.
+
+The common-U model improved the fit, but GSAS hit the calcite U limit and failed to propagate that clipped value to its constrained dependent atoms. I’m rolling that trial back as invalid, synchronizing each phase’s sites explicitly after the constrained step, and refitting only scales/background so the saved atomic model and profile remain consistent.
+
+The coordinate tests are behaving as expected: the scheelite oxygen shift and WO₃ tungsten shifts are small, convergent, and improve replay; refining all six WO₃ oxygen sites produces large implausible movements and is rejected. Before locking the model, I’m checking whether the weak calcite cell can be kept near its reference metric without sacrificing its clearly positive peak contribution.
+
+The fixed-cell rollback is taking longer than the short refinements because it alternates several bounded profile blocks. I’m checking its saved stages now; if any block diverged or was interrupted, I’ll classify the branch unknown rather than treating it as a rejection.
+
+The rerun is still active rather than failed; GSAS is spending most of its time on the bounded profile covariance step and has not emitted an error. I’ll let this branch finish, then compare its fresh replay and cell distortions against the simpler rollback.
+
+The fixed-cell branch stalled for over two minutes in a refinement cycle and was interrupted; per the requested discipline, it is “unknown,” not rejected. I’ll use the last complete stable project and assess cell uncertainty explicitly rather than promote an incomplete branch.
+
+The nuisance tests are discriminating cleanly: roughness drives B to its lower bound, and scheelite anisotropy gives negligible gain, so both are rejected. WO₃ broadening improves substantially, but most of that gain may simply be a better isotropic strain value; I’m running that simpler control before accepting any anisotropy.
+
+The WO₃ [100] uniaxial strain is reproducible from a second start (about 1505/1107 ppm) and lowers χ² by ~10 versus the isotropic control with one extra parameter; I’m retaining that single anisotropy. No texture or roughness term is retained. Next I’m doing the final residual-family closure check and physical screening.
+
+The remaining residuals alternate positive/negative around already modeled strong reflections rather than forming a new independent peak family. One refinement term still violates the rollback rule: calcite’s common Uiso sits exactly at 0.020 Å² and is strongly correlated with its scale. I’m fixing it at several plausible values to quantify the fraction range, then will submit a conservative interior value rather than the boundary solution.
+
+The calcite Uiso sensitivity gives 5.85–6.51 wt% across the full plausible range; at the chosen interior 0.010 Å² the normalized fractions are 80.04% CaWO₄, 13.83% WO₃, and 6.13% CaCO₃. All three replay-exported structures pass contact/occupancy screening. I’m now freezing that exact project and regenerating every deliverable from its final replay.
+
+The final covariance is converged (GOF 1.180), but the weak calcite profile inherited an 8000 ppm strain limit. Its existence was already established under a common fixed profile, yet that boundary makes the final fraction less defensible. I’m testing a fixed, interior calcite size/strain rollback; I’ll accept the modest fit penalty if its scale remains clearly positive.
+
+The rollback confirms calcite stays positive without the strain limit. A nanocrystalline isotropic profile (about 40–80 nm, ~500 ppm strain) fits much better than moderate-size alternatives and gives roughly 7 wt%, so the phase is not an artifact of the 8000 ppm term. I’m selecting a slightly interior 50 nm profile and will report the 4–7 wt% profile sensitivity.
+
+The conservative 60 nm calcite rollback remains clearly positive and keeps all profile terms interior. Its last scale/background cycle is formally converged but the calcite scale still has a relatively large shift/esd, so I’m replaying the same fixed model through one final scale/background polish before writing the JSON and report.
+
+The final fixed-profile polish is fully converged (maximum shift/esd \(1.2\times10^{-5}\)); native replay gives Rwp 3.70768%, GOF 1.18252, and no profile-review flags. I’m writing the normalized result, candidate ledger, and concise uncertainty report now.
+
+The submission now parses as three complete physical models, the fractions sum exactly to one, every CIF matches its project phase, and `fit.csv` reproduces the verified replay on all 8301 points. I’m doing one last endpoint check on calcite’s displacement sensitivity using the final fixed profile so the uncertainty statement is tied to the submitted model.
+
+Identified crystalline phases:
+
+- Scheelite CaWO₄: 79.88 wt%
+- Monoclinic WO₃: 13.82 wt%
+- Calcite CaCO₃: 6.30 wt%
+
+Fresh GSAS-II replay gives Rwp 3.70768% and GOF 1.18252 with no profile warnings. Calcite is clearly detected, but its cell and fraction are less reliable; plausible profiles indicate roughly 4–7 wt%.
+
+Outputs:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-cf2d5e94064a/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-cf2d5e94064a/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-cf2d5e94064a/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-cf2d5e94064a/workspace/final.gpx)
+- [CaWO4_scheelite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-cf2d5e94064a/workspace/CaWO4_scheelite.cif)
+- [WO3_monoclinic.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-cf2d5e94064a/workspace/WO3_monoclinic.cif)
+- [CaCO3_calcite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-cf2d5e94064a/workspace/CaCO3_calcite.cif)
+- [candidate_ledger.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v1-cf2d5e94064a/workspace/candidate_ledger.json)
+

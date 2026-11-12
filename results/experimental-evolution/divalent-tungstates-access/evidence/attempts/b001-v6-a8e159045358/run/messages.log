@@ -1,0 +1,48 @@
+I’ll inspect the specimen metadata, pattern, and the frozen analysis tooling first, then build a replayable GSAS-II refinement from chemically plausible reference phases. I’ll keep the submitted CIFs, fractions, profile, and statistics tied to the exact final project, and use the staged polish only after the phase inventory is closed.
+
+The specimen is a 700 °C WO₃/CuO reaction measured with Cu Kα₁/Kα₂ and no supplied instrument calibration. I’m now reducing the peak list and querying only the frozen COD index for Cu–W–O candidates and likely residual precursors; the key early decision is whether the pattern is ordinary CuWO₄ alone or a multiphase product/precursor mixture.
+
+Peak-family mapping already supports a three-phase ordinary model: triclinic CuWO₄ is the dominant family, monoclinic WO₃ accounts for the strong 22.7–23.9° triplet, and CuO accounts for distinct lines near 35.1°, 38.3°, 48.1°, and 61.2°. All families share a large low-angle specimen/calibration shift of roughly −0.45° 2θ, consistent with the allowed Bragg–Brentano specimen displacement plus zero offset. I’m comparing the exact COD polymorph references before refining scales and profile terms.
+
+A coherent fourth family remains unassigned in the three-phase fit: peaks at 15.18°, 19.79°, 32.49°, 33.77°, 49.69°, 57.61°, and 63.28° all match cubic Cu₃WO₆ after the same displacement correction. This is broad family support, not a single residual peak, so I’m adding Cu₃WO₆ and re-running the checkpoint. I also found and removed a redundant global-scale refinement in the screening script that was causing a harmless but noisy scale singularity.
+
+The WO₃ reference comparison is decisive: COD 2311041 (monoclinic P2₁/c) gives Rwp 9.64% at the same pre-profile checkpoint, versus 10.59% for the initially tried monoclinic entry and ≥11.0% for the triclinic/orthorhombic alternatives. It also refines with small, physical cell changes. I’m carrying that structure forward and doing the last same-composition checks for CuO/CuWO₄ before closing reference search.
+
+The ordinary-term branches identify two supported corrections: polarization refines to ~0.65 (inside the laboratory range), and phase-common isotropic displacement parameters materially improve the fit with plausible values for the three major phases. Surface roughness lowers Rwp too, but both Suortti parameters run to their correlated lower bounds, so I’m not accepting that branch yet. I’m first combining and resettling polarization with phase-common Uiso, then I’ll test texture and anisotropic broadening only where they make a stable, physical gain.
+
+The phase inventory is now closed at CuWO₄ + WO₃ + CuO + Cu₃WO₆; every coherent reflection family is accounted for. I’m finishing the last stability cycle on profile/strain terms, then I’ll freeze the physical checkpoint, run the required one-time staged polish, and export all deliverables from that exact project.
+
+The stabilization cycle settled at Rwp 3.457% with unchanged fractions and physical isotropic broadening. I’m now checking the only remaining plausible specimen/profile branches—directional strain and surface roughness—against that stable state; these are acceptance tests, not an open-ended phase search.
+
+The directional-strain tests support one modest, stable term for monoclinic WO₃ along its unique b axis (Rwp 3.457% → 3.440%); analogous CuWO₄/Cu₃WO₆ branches gave only tiny or axis-unstable gains, so I’m leaving those isotropic. Surface roughness drove to opposing bounds and is rejected as non-identifiable. High-order backgrounds likewise began fitting reflection residuals, so the physical 15-term smooth background is retained.
+
+The pre-polish checkpoint is complete and replayable at Rwp 3.439%, with positive stable scales and no frozen variables. I’ve saved it as `final.gpx`; I’m now running the required bounded staged polish exactly once, after which I’ll accept only a converged branch that passes its geometry and fraction audits.
+
+Two coordinate orders have converged to the same physical basin near Rwp 1.857%, with fractions stable to well under 0.2 percentage point. The helper is finishing its phasewise comparison and final geometry audit now.
+
+The one-time polish completed and correctly retained the starting checkpoint. Although coordinate branches lowered Rwp to ~1.857%, all failed the helper’s convergence eligibility test after repeated bound rollbacks (final coordinate max shift/esd ~1.52 > 1.0), so treating those coordinates as determined would be unjustified. I’m keeping the converged pre-polish model and will report the coordinate-level limitation explicitly.
+
+The exact-project exports are complete: four CIFs, normalized fractions, fit profile, and a report that distinguishes reliable phase/cell/fraction results from the unresolved coordinate polish. I’m doing the final independent replay and file-consistency checks now.
+
+Completed the four-phase GSAS-II refinement:
+
+- CuWO₄: 65.29 wt%
+- WO₃: 19.08 wt%
+- CuO: 2.42 wt%
+- Cu₃WO₆: 13.22 wt%
+
+Final fit: Rwp 3.439%, Rp 2.479%, GOF 2.131. Independent forward replay reproduced the fit and fractions exactly. Fractions are normalized over crystalline phases; no amorphous fraction was determined.
+
+The bounded coordinate polish was rejected for incomplete coordinate convergence, so the submitted model retains physical reference-topology coordinates with refined cells. This limitation and the greater practical uncertainty of minor CuO are documented in the report.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-a8e159045358/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-a8e159045358/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-a8e159045358/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-a8e159045358/workspace/final.gpx)
+- [CuWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-a8e159045358/workspace/CuWO4.cif)
+- [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-a8e159045358/workspace/WO3.cif)
+- [CuO.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-a8e159045358/workspace/CuO.cif)
+- [Cu3WO6.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-a8e159045358/workspace/Cu3WO6.cif)
+

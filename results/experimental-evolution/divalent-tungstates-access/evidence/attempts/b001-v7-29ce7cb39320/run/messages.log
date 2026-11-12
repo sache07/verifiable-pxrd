@@ -1,0 +1,62 @@
+I’ll inspect the specimen metadata, pattern, frozen index, and the learned analysis tooling first. Then I’ll identify coherent phase families, build and refine a GSAS-II model, verify replay stability, run the required bounded polish once, and export all deliverables from the accepted project.
+
+The chemistry is the 1:1 WO₃ + Mn₃O₄ reaction fired at 800 °C, so the ordinary first-pass candidates are manganese tungstate plus residual/decomposition or off-stoichiometric Mn–W–O phases. I’m now checking the frozen-library interface, scorer consistency requirements, and the exact polish constraints before touching a project.
+
+Peak-family matching supports a two-phase hypothesis: wolframite MnWO₄ explains the dominant family, while the coherent residual family (notably the ~20.3/20.9° pair and linked peaks near 27, 32–33, 36, 39–40, 46–47, and 55°) is consistent with Mn₂WO₆. I’m preserving the two serious Mn₂WO₆ topology basins—orthorhombic Pbcn (with Fe₂WO₆-derived starts) and tetragonal trirutile P4₂/mnm (Cr/V-derived starts)—for equal refinement comparisons.
+
+The equally developed comparison selects the ordered orthorhombic Pbcn basin. It remains positive and explains a linked reflection family (~11–18 wt% at these early checkpoints), whereas the viable trirutile start contributes only ~2–4 wt% and leaves a worse fit; its Cr-derived sister start failed numerically, which I treat as unknown rather than evidence. The independent V-derived physical start is sufficient to reject that topology. I’m now finishing the accepted Pbcn model and checking whether any coherent residual family remains.
+
+The accepted model’s scale/cell checkpoint is stable at ~89.6/10.4 wt% before profile terms. Coordinate shifts attempted to run to their bounds, so those changes are not yet trustworthy and will be rolled back or stabilized. Adding peak-width physics immediately reduces Rwp from ~37.5% to ~25.8%; I’m continuing with phase-specific broadening so the global instrument terms are not left pinned as surrogates.
+
+A second ordinary residual family is now clear: peaks at ~23.5, 26.9, 29.1, 33.7–35.6, 46.2, and the dense 53–56° group match residual monoclinic WO₃ much better than Mn₃O₄. This also restores reaction balance with Mn₂WO₆ (Mn₂WO₆ + WO₃ has the starting 1:1 Mn:W ratio). The Mn₃O₄ test remained marginal (~1 wt%) and did not materially improve the fit, so I’m testing symmetry-diverse WO₃ references next.
+
+The three-phase inventory now closes the obvious peak families: MnWO₄ + monoclinic WO₃ + ordered Pbcn Mn₂WO₆. The remaining fit limitation is profile modeling, not a coherent new set of Bragg positions. Isotropic broadening drives Mn₂WO₆ to tested bounds and destabilizes its fraction, so I’m rejecting those pinned branches and testing the supplied uniaxial microstrain axes with the global instrument profile held at interior values.
+
+The unassigned family has indexed cleanly: substituting W for Te in the published R‑3 Mn₃TeO₆ framework predicts the observed doublet and all major linked peaks (20.3/20.9, 29.1, 32.3, 35.6, 46–47, 54.9–57.0, and 67.0°). The reaction-balanced phase is Mn₃WO₆, paired with residual WO₃. I’m now comparing R‑3 starts against the serious Pnma and C2/c alternatives under identical cell/coordinate adaptation; the earlier Mn₂WO₆ model will be discarded if this closes the profile physically.
+
+The dominant wolframite and residual WO₃ are secure; the remaining coherent reflection family matches rhombohedral Mn₃WO₆. I’m now comparing symmetry-diverse Mn₃WO₆ starts on equal refinement stages, then I’ll build and finish a clean three-phase GSAS-II model before the one permitted bounded polish.
+
+The frozen-library screen has completed and independently ranks Mn₃TeO₆-type \(R\bar3\) first; Cd₃TeO₆ gives a second physical start in the same topology. Orthorhombic and monoclinic alternatives rank substantially lower, but I’ll still give each the same cell/coordinate development before discarding them.
+
+The first rhombohedral trial exposed an important refinement safeguard: the cell and scale settle cleanly, but unconstrained minor-phase coordinates are not supported by the data and collapse onto special positions when forced. I’m changing the comparison harness to audit and roll back any frozen, worse-fitting, or short-contact coordinate branch; topology selection will use the best physical checkpoint, not a numerically lower but chemically invalid one.
+
+Equal-checkpoint results are separating cleanly: both \(R\bar3\) starts converge to the same basin, while C2/c and Pnma either fit worse or require unphysical coordinate motion. Their coordinate “improvements” are being explicitly rejected and rolled back. The remaining lower-ranked R3/cubic controls are running now.
+
+The structural checkpoint is now physical and replay-oriented: zero offset was rejected because it was 99.99% correlated with specimen displacement and pushed displacement to a bound. Only the dominant MnWO₄ cation coordinates showed a small, stable supported shift (0.039 Å RMS); all other coordinate branches exceeded the known reference-mismatch scale or produced short contacts and were rolled back. I’m moving on to phase-specific peak-shape development from that checkpoint.
+
+The profile work has revealed that the “remaining family” is actually two coherent subsets, not one broadened phase: the accepted \(R\bar3\) model accounts for the 32.26°, 35.62°, 46.20°, 54.9° and 66.96° lines, while sharp positive residuals at 20.88°, 29.15°, 47.02°, 55.85° and 57.00° remain at incompatible positions. I’m pausing nuisance refinement and remapping that second subset against the previously tested ordered Mn–W oxide candidates; treating these as mere peak-width errors would be physically wrong.
+
+The lower-symmetry C2/c basin has now decisively closed the split residual family. Once the same accepted MnWO₄ coordinates and fully settled cells are used, its Rwp falls from 15.7% to 11.0% with no frozen variables, and the phase fraction rises to a chemically coherent ~16.8 wt% (WO₃ ~14.5 wt%). This is the first checkpoint that explains both peak subsets without boundary-broadened smearing; \(R\bar3\) is therefore being discarded. I’m now line-searching only small, geometry-checked C2/c coordinate adaptations.
+
+The C2/c Mn₃WO₆ model has closed the remaining peak families and is already clearly better than the competing physical starts. I’m completing the equal coordinate-adaptation checkpoints now, then I’ll finish only supported profile/specimen terms and retest whether any fourth phase survives in that closed model.
+
+The equal-start comparison remains stable: after the same two heavy-atom adaptation passes, the Zn-derived C2/c basin is at about 10.04% Rwp while the Co-derived basin is still above 14%. Both remain geometrically physical; I’m letting the second start finish so the rejection is based on matched development, not an early checkpoint.
+
+The coordinate search confirms the Zn-derived topology, but its second pass starts exploiting unmodeled peak-shape/intensity effects: it asks for ~0.11 Å RMS heavy-atom motion, beyond the supplied reference-mismatch scale. I’m therefore developing the conservative checkpoint (~0.034 Å RMS, 0.08 Å maximum) through the full profile model; this keeps the structural comparison decisive without baking profile error into atomic positions.
+
+The conservative model is now in the phase-specific profile pass. The ordinary MnWO₄ and WO₃ broadening terms are already stable; the remaining long step is the C2/c phase, whose center/wing residuals make its crystallite-size/strain refinement the important profile test.
+
+The center/wing mismatch was resolved without moving the structure: Mn₃WO₆ refined to zero microstrain and a 0.131 µm domain size, lowering Rwp from 10.75% to 8.21%. The remaining C2/c residuals alternate by reflection family, so I’m testing directional broadening and March–Dollase intensity effects rather than adding another phase.
+
+The joint replay exposed one unsupported term: MnWO₄ Uiso ran through its lower bound when polarization and broadening were released together. I’m rolling that Uiso branch back and repeating the same terminal settle; the other accepted terms remained interior, with no near-singular correlations.
+
+The three-phase model is now terminal: all retained terms are interior and replay-stable, the background stays positive, and two Pbcn Mn₂WO₆ starts contribute only 0.26–0.43 wt% with no coherent family (Mn₃O₄ and trirutile scales collapse to zero). I’m freezing this checkpoint as `final.gpx` and invoking the required bounded polish once; after that I will only audit and export.
+
+The one-shot polish completed cleanly. It selected the heavy-then-oxygen branch at 7.259% Rwp (baseline 7.506%); the branch converged after rolling bound-hit coordinates back, retained stable fractions, and passed the polish geometry/fraction audit. I’m now doing read-only geometry/replay checks and exporting from that exact selected project.
+
+A read-only GSAS diagnostic reserialized the copied project (the numerical model was unchanged, but its file hash changed). I caught that consistency issue: I’m restoring `final.gpx` byte-for-byte from the accepted `polished.gpx`, then rerunning the zero-optimization replay and all exports so every submitted artifact matches the exact accepted project.
+
+Completed and verified by zero-optimization replay of `final.gpx`.
+
+| Phase | Weight fraction |
+|---|---:|
+| MnWO₄, P2/c | 70.04% |
+| WO₃, P2₁/c | 14.92% |
+| Mn₃WO₆, C2/c | 15.04% |
+
+Rwp = 7.259%, Rp = 4.013%. The Mn₃WO₆ structure is analogue-derived, so its atomic coordinates remain less certain; a possible sub-0.5% Pbcn contribution was not reliable enough to retain.
+
+Files: [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v7-29ce7cb39320/workspace/result.json), [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v7-29ce7cb39320/workspace/report.md), [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v7-29ce7cb39320/workspace/fit.csv), [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v7-29ce7cb39320/workspace/final.gpx).
+
+CIFs: [MnWO4_wolframite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v7-29ce7cb39320/workspace/MnWO4_wolframite.cif), [WO3_P21c.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v7-29ce7cb39320/workspace/WO3_P21c.cif), [Mn3WO6_C2c.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v7-29ce7cb39320/workspace/Mn3WO6_C2c.cif).
+

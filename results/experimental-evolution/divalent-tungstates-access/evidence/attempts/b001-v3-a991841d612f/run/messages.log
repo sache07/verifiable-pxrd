@@ -1,0 +1,46 @@
+I’ll inspect the measurement metadata, pattern, and the provided tungstate workflow/tooling first. Then I’ll identify candidate phases, build and refine a multiphase GSAS-II model, and verify that every coherent residual reflection family is accounted for before writing the deliverables.
+
+The chemistry points first to CuWO₄ with possible residual CuO/WO₃ or a Cu–W–O intermediate, but I’ll let the diffraction pattern decide. I’m now extracting peak families and querying the frozen COD by exact chemical systems; this will distinguish true extra phases from profile or coordinate errors at CuWO₄ reflections.
+
+Peak-family matching now gives a concrete starting inventory: triclinic CuWO₄ is the principal phase; cubic Cu₃WO₆, monoclinic WO₃, and weak tenorite CuO each have distinct, repeated reflections after one common angular displacement. I’m moving these four into GSAS-II and will test phase removal/addition by scale stability and residual-family closure rather than keeping them just because they are chemically plausible.
+
+All four scales remain stable after cell/profile refinement (about 65.4% CuWO₄, 13.0% Cu₃WO₆, 18.8% WO₃, 2.8% CuO), and the weak CuO scale grows rather than collapsing. Heavy-atom relaxation gives physical displacements of only a few hundredths of an ångström and a reproducible fit gain, supporting the assignments. I’m now refining each oxygen substructure separately and will then test the closest WO₃/CuO reference alternatives at comparable depth.
+
+The remaining error has a strong angular signature: calculated high-angle peak intensity is systematically too large while low-angle intensity is too small. That is exactly what the database models’ zero/very small displacement parameters would produce here. I’m refining one symmetry-equivalent isotropic displacement parameter per phase (the physically correct model for these generated specimens), rather than using unconstrained atom-by-atom thermal factors.
+
+The constrained CuWO₄ displacement parameter converged to 0.0149 Å² and reduced Rwp from 4.97% to 3.67%, confirming the angular-intensity diagnosis. The remaining phase-by-phase constrained fits are still running; I’ll retain only positive, physical values and then reassess coherent residuals.
+
+The phase set is now chemically and diffraction-consistent: triclinic CuWO₄, cubic Cu₃WO₆, monoclinic WO₃, and a weak CuO component. I’m finishing the last physical profile/texture checks, then I’ll freeze and cross-validate the exact GSAS-II project against the exported CIFs, fractions, and profile.
+
+A calibration issue surfaced in the audit: the earlier fit had allowed the angular zero to absorb nearly all sample-height displacement, producing a zero outside the stated instrument range. I’m re-solving zero, specimen displacement, and lattice parameters together over bounded physical starts; this should improve both the structures and peak positions, not just the numerical fit.
+
+The specimen/profile model is now bounded and physical (about 696 μm displacement, −0.063° zero, with a reproducible Rwp reduction to ~3.0%). Surface roughness was decisively rejected. The remaining mismatch is concentrated in relative reflection intensities, so I’m moving to restrained, site-by-site coordinate refinement with bond-distance rollback rather than introducing any additional phase.
+
+All coherent peak families remain assigned after the structural refinements. The weak CuO contribution is the only inventory item with appreciable identification uncertainty, so I’m now doing the two required negative controls: remove it entirely, and replace it with the clean lower-symmetry CuO reference. The accepted model will be whichever survives comparable cell/profile relaxation without scale collapse or unphysical geometry.
+
+The accepted four-phase model is now frozen with crystalline fractions 65.46% CuWO₄, 12.88% Cu₃WO₆, 19.20% WO₃, and 2.46% CuO. CuO removal worsened weighted χ² by ~38,840 and the Cc CuO alternative was worse by ~428, so the weak C2/c phase is retained. I’m running the independent native forward-replay and CIF/project consistency checks now.
+
+The structural refinement and native GSAS-II replay are complete. I’m doing one last submission-format check against the local scorer before handing over the phase table and files.
+
+Analysis complete. Four crystalline phases were identified, with fractions normalized over modeled crystalline material:
+
+| Phase | Space group | Weight fraction |
+|---|---:|---:|
+| CuWO₄ | P -1 | 65.46% |
+| Cu₃WO₆ | Pa -3 | 12.88% |
+| WO₃ | P 2₁/c | 19.20% |
+| CuO | C 2/c | 2.46% |
+
+Native replay of the final GSAS-II project gives Rwp = 2.729%, Rp = 1.975%, and GoF = 1.693. The weak CuO fraction and minor-phase oxygen coordinates carry the greatest systematic uncertainty; amorphous content cannot be assessed without an internal standard.
+
+Files:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-a991841d612f/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-a991841d612f/workspace/fit.csv)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-a991841d612f/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-a991841d612f/workspace/report.md)
+- [CuWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-a991841d612f/workspace/CuWO4.cif)
+- [Cu3WO6.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-a991841d612f/workspace/Cu3WO6.cif)
+- [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-a991841d612f/workspace/WO3.cif)
+- [CuO.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v3-a991841d612f/workspace/CuO.cif)
+

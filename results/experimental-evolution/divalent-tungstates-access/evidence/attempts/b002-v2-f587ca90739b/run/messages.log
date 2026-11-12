@@ -1,0 +1,16 @@
+I’ll inspect the measurement metadata, pattern, and the framework’s available diffraction/refinement tools first. Then I’ll identify candidate phases, refine them together in GSAS‑II, test coherent residuals in the common multiphase state, and export the requested project and profiles.
+
+The chemistry is WO₃ + Mn₃O₄ fired at 800 °C, so Mn–W–O products plus residual manganese/tungsten oxides are plausible. The scan is a raw 10–100° Cu Kα pattern with unknown zero, specimen displacement, profile, texture, and background, so phase identification has to be coupled to nuisance-parameter refinement rather than judged from peak positions alone.
+
+The observed peak set is already strongly diagnostic: the major reflections at 15.48, 18.44, 23.67, 24.19, 29.98/30.42, 31.30, and the dense high-angle sequence all map one-for-one onto monoclinic wolframite-type MnWO₄ (P2/c). I’m now fitting that atomic model over the full grid; the key remaining checks are whether the residual requires a second crystalline phase and whether texture/strain or reference-coordinate mismatch explains the intensity residuals.
+
+The first whole-pattern fit confirms that MnWO₄ is necessary but not sufficient. A coherent residual series—especially 23.10, 26.56, 28.60, 33.23, 34.12, 41.90, and 56.07°—matches the characteristic monoclinic WO₃ family, so I’m adding WO₃ and will evaluate it jointly with MnWO₄. The initial one-phase Rwp is about 27%, far above counting noise, and is not being treated as an acceptable phase-only explanation.
+
+The two-phase fit lowers Rwp to about 19% and gives roughly 82% MnWO₄ / 18% WO₃, but it exposes a third coherent reflection family at 19.86/20.39, 28.66, 35.09, 46.48, 54.4, and higher angles. Those peaks are not intensity-mismatch artifacts from either fitted phase. I’m screening ordinary Mn-oxide precursors first, then same-framework Mn–W–O analogues if no ordinary reference accounts for that family.
+
+The main phase is clearly wolframite MnWO₄, with monoclinic WO₃ and a weaker residual family consistent with an Mn-substituted A₂WO₆ framework. I’m now validating that third framework against one-/two-element analogues, then I’ll do the final common-state GSAS-II refinement and fresh full-grid replay.
+
+The framework-neighbour search found exactly the expected hierarchy: Y₂WO₆ (one substitution) plus three P2₁2₁2₁ tellurate relatives requiring two substitutions. I’m testing those coordinate variants as additions to the same frozen MnWO₄ + WO₃ project, so any apparent gain is directly comparable.
+
+The direct Y₂WO₆-derived coordinates remain the best P2₁2₁2₁ variant. The full three-phase refinements are converging more slowly because phase-specific size/strain and specimen displacement are now active; early results already show the weak phase has substantially broader crystallites than MnWO₄, which explains why simple stick matching understated it.
+

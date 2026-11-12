@@ -1,0 +1,138 @@
+I’ll inspect the pattern metadata and the supplied analysis framework first, then identify candidate phases, refine them jointly in GSAS-II, and validate the final state by replaying the full pattern before writing the deliverables. I’ll keep residual-driven prototype tests inside the common multiphase model, as requested.
+
+The metadata points to the ZnO–WO₃ system at 700 °C, so ZnWO₄ is the primary chemical expectation, but I’ll treat unreacted oxides and alternative tungstate frameworks as live candidates until the residuals rule them out jointly. The scan is dense (about 0.01087° steps over 9.9–100.1°) and retains raw counting statistics, which should support a fairly discriminating whole-pattern fit.
+
+The dominant peak set is already consistent with a wolframite-type divalent tungstate, but the available library intentionally contains no Zn–W–O entry. I’m therefore building ZnWO₄ candidates from surviving same-stoichiometry analogues and will compare the monoclinic wolframite and higher-symmetry alternatives. I’ll also test ZnO and the relevant WO₃ polymorphs jointly; their scales must survive in that common model to be reported.
+
+The first whole-pattern refinement confirms monoclinic wolframite ZnWO₄, but it is decisively not single-phase (Rwp ≈19.4%). The strongest positive residuals form the characteristic monoclinic WO₃ sequence—about 23.4/24.0/24.7, 29.23, 33.60/34.49, 42.20, 50.30, and 56.21°—so I’m adding WO₃ next. This is coherent phase evidence, not just isolated unmatched peaks.
+
+The common two-phase refinement is running now with wolframite ZnWO₄ plus room-temperature monoclinic WO₃. I’m refining both cells and scales together before allowing coordinates to move, so the WO₃ fraction is being tested in the same nuisance/background state rather than inferred from a stand-alone match.
+
+WO₃ remains at a stable nonzero scale in the joint fit (roughly a tenth of the crystalline mass at this stage), so it is a real second phase. I’ve frozen both cells temporarily and am now refining only the four independent ZnWO₄ sites; that avoids the unstable all-at-once coordinate/cell step and lets me separate structural-intensity error from preferred orientation.
+
+The coordinate-only step is computationally heavier than the profile stages because GSAS-II is recomputing numerical derivatives over the full 8,301-point grid. It is still active; no additional parameters or phases are being introduced during this pass.
+
+The last aggressive profile pass exposed a GSAS-II issue: one singular crystallite-size parameter left the saved parameter state inconsistent with the in-memory curve. I’m discarding that branch. I’ll rebuild from the clean two-phase model with physical bounds and verify each saved state by a fresh calculation; only replay-consistent statistics will be used in the final result.
+
+A strong nuisance effect is now identified: ZnWO₄ has pronounced [111] March–Dollase texture, with the unconstrained optimum at 0.697—essentially the generator’s physical lower bound of 0.700. Adding that single physically allowed term drops replay Rwp from about 19.1% to 13.7%. The other four allowed ZnWO₄ texture axes remain at unity, which sharply supports [111] rather than a generic intensity correction.
+
+The physical-angle trial hit a parameter bound, and a fresh recalculation showed that its stored curve was not reproducible from the saved parameters. Per the requested closure rule, I’m discarding that branch and returning to the last replay-consistent project. I’m now explicitly replaying the texture/cell candidates from disk before any further choice.
+
+The fresh replay confirms the best valid state so far at Rwp 12.94%; the bounded angular branch replays at 100% and is rejected. To recover a physically valid calibration without that optimizer artifact, I’m grid-testing fixed zero/displacement pairs inside the laboratory bounds, refining only the two phase cells for each, then replaying every saved candidate from disk.
+
+The angular grid is still running; output is buffered, but each candidate is being independently reloaded and recalculated after its cell refinement. This is the final-selection replay step, so no in-memory residual is being trusted.
+
+The coarse grid is taking longer than expected because each point includes a second full 8,301-bin replay. I’m letting it finish—the comparison is bounded to 15 physical zero/displacement combinations and does not alter phase inventory or nuisance settings.
+
+The replay-consistent structural refinement improved only the high-scattering Zn and W coordinates; unrestricted oxygen shifts were much larger than the allowed reference-mismatch scale, so I am not retaining them. A bounded polarization refinement is stable at 0.836 and lowers fresh-replay Rwp to 12.51%. Next I’m screening the phase-wide isotropic displacement values on their physical 0.003–0.020 Å² range.
+
+The strongest remaining residual is a ZnWO₄ reflection-intensity mismatch near 41.6°, not a clean new peak family. I’m nevertheless applying the requested residual-directed closure tests now: scheelite and triclinic ZnWO₄ prototype transfers are being added one at a time to the current ZnWO₄+WO₃ project, with all established phases and nuisance parameters frozen.
+
+The first prototype-addition script revealed an autosave side effect and one stalled zero-scale step, so I’m treating those runs as unknown rather than evidence. I’m rebuilding the clean incumbent and repeating scheelite, triclinic, and precursor ZnO as fixed nonnegative scale grids in the unchanged common project; a monotonic rise away from zero will be the rejection criterion.
+
+I’m checking the clean two-phase checkpoint now, then I’ll rerun the rejected-phase tests as fixed nonnegative scale grids so each conclusion comes from the same unchanged multiphase state.
+
+The first grid is broader than needed and is still evaluating the scheelite metric (81 cell variants, each with explicit positive-scale probes). I’m letting that finish because it is the most demanding alternative and avoids rejecting it on the oversized CdWO₄-derived cell alone.
+
+I stopped that exploratory run before using its partial result and replaced the redundant replays with the exact linear profile calculation for fixed HAP scales. The final zero/positive endpoints are still freshly replayed by GSAS-II; this keeps the test auditable while reducing it from minutes to seconds.
+
+The scheelite search has now covered the transferred cell contraction range; every trial so far projects to the nonnegative scale boundary. The remaining runs are the smaller triclinic and ZnO precursor grids plus direct endpoint replays.
+
+Scheelite is complete at a zero scale, including a direct positive-scale replay. The run has moved into the other candidates; no parameters of the accepted ZnWO₄ + WO₃ model are being reoptimized during these tests.
+
+The common-state test found a real third-phase signal: wurtzite ZnO lowers fresh Rwp from 11.107% to 10.756% at a positive scale, so it cannot be rejected as consumed precursor. Scheelite- and triclinic-ZnWO₄ additions give only marginal positive projections; I’ll now add ZnO, refine that three-phase state, and retest those alternatives against it before deciding whether either is warranted.
+
+ZnO texture is supported, but its apparent crystallite size is coupled to scale and landed at the physical lower bound in the continuous trial. I’m resolving that with an explicit fresh-profile grid over four texture axes, the full allowed March–Dollase range, and 0.04–1.5 µm size; strain is excluded because its bounded common-state trial worsened the replay and froze at the lower limit.
+
+The replay grid is progressing normally; it is evaluating fixed physical states only, so optimizer freezes cannot influence the selection. I’ll use its lowest freshly calculated profile as the sole restart point for the next ordinary refinement.
+
+About two-thirds of the 288-state grid is complete. The search includes ratio 1.0 for every size and axis, so “no ZnO texture” remains an explicit candidate rather than an assumed baseline.
+
+The three-phase model is now at fresh-replay Rwp 10.182% with all sizes, strains, texture ratios, and cells physical. I’m repeating the scheelite/triclinic addition grids against this exact state; their earlier sub-0.5 wt% projections are not sufficient evidence unless they survive after ZnO is modeled.
+
+The three-phase retest is still running cleanly over the broad scheelite metric grid. Earlier interrupted runs are being treated as unknown and are not used; only this completed replay set will support exclusion or retention.
+
+Scheelite and most of the triclinic search are complete. The accepted model remains untouched throughout; each candidate trial is a fourth-phase forward calculation with its scale constrained nonnegative.
+
+Both alternative ZnWO₄ frameworks retain small positive projections after ZnO is included: about a 0.035%-point Rwp gain for scheelite and 0.009 for triclinic. Those are near the multiple-model detection limit, so I’m checking the generator/scoring context and the residual peak coherence before deciding whether they represent real trace phases or merely flexible fourth-phase overfit.
+
+The dominant remaining residual is not an orphan line: it coincides with a wolframite ZnWO₄ reflection at 41.569°, whose calculated structure factor is too small. That points first to the transferred atomic model, not an extra phase. I’m searching one-substitution wolframite references and will compare each as a full common-state replacement before altering the final inventory.
+
+Allowing the wolframite coordinates to refine in the full three-phase state lowers fresh Rwp from 10.182% to 9.834%. The resulting octahedra remain chemically plausible (shortest W–O 1.867 Å; Zn–O 1.953 Å; no hard contacts), so I’m testing convergence and then will refit nuisance terms from this physical structure rather than retaining the earlier overly tight transfer bound.
+
+The 41.568° line remains essentially unchanged after the wolframite structure-factor refinement, so I’m treating it as a genuine residual-phase clue now. I’ll screen every ordinary W–O and Zn–O reference in the available library as an addition to the unchanged three-phase project, rank only completed common-state replays, and then refine cells/profile only for candidates with coherent multi-peak support.
+
+Several COD files encode oxidized atom labels that this GSAS-II build cannot evaluate directly. I will mark those attempts unknown rather than interpreting unchanged profiles, and sanitize only any chemically relevant top candidate by removing oxidation-state labels before a confirmatory replay.
+
+The ordinary-reference screen found no phase that accounts for the 41.57° feature; all apparent additions were ≤0.3 wt% and their strongest expected peaks were absent or contradictory. The feature is a positional mismatch within an overlapping ZnWO₄/WO₃ cluster. I’m now revisiting the physically coupled zero/specimen-displacement calibration on a bounded grid, because the current effective zero (0.392°) can be an absorbed sample-height term and is outside the generator’s ±0.25° zero range.
+
+A physically bounded calibration is viable: fixing zero at +0.25° and refining specimen displacement gives −235 µm and fresh Rwp 9.751%, only 0.020 point above the unconstrained effective-zero model. I’m profiling the correlated physical ridge (fixed zero grid, displacement and cells reoptimized) before choosing the final calibration; this is the proper comparison, unlike a fixed-cell angular replay.
+
+The ridge behaves as expected: lower fixed zeros require progressively larger negative height shifts; the −0.10° endpoint reaches the −800 µm physical boundary and is retained as a boundary result, not an unconstrained optimum. Interior branches are converging normally.
+
+The bounded ridge selects +0.25° zero and −235 µm displacement (Rwp 9.751%); all lower-zero solutions are progressively worse after full cell reoptimization. I’m using that physical endpoint as the restart state and testing the remaining WO₃ coordinate uncertainty under explicit ~0.05 Å displacement bounds, since its unrefined oxygen sites still affect several residual intensity clusters.
+
+The direct GSAS coordinate-limit trial froze displacement variables in an invalid state and is discarded as unknown (its fresh replay worsened to 24.84%). I’m switching to explicit bounded coordinate descent: each WO₃ oxygen move is proposed in the common state, capped at 0.05 Å from the reference, freshly replayed, and accepted only if it improves the full profile.
+
+The bounded descent is finding small, reproducible WO₃ intensity improvements: O5, O3, and O1 each moved by the allowed 0.05 Å cap, lowering fresh Rwp from 9.7514% to 9.7265%. No unconstrained coordinates or stale fit arrays are being carried forward.
+
+The WO₃ source itself contains an implausible 1.575 Å O–O contact (an old 1960 refinement), and the bounded moves do not cure it. I will not submit that model merely because it fits. I’m comparing the newer same-symmetry P2₁/n WO₃ references as full replacements in the common three-phase state, with physical contacts checked before any final selection.
+
+The replacement trials are intentionally slower because each candidate’s unit cell is refined twice while every accepted phase and nuisance parameter stays fixed. The first completed branch converged; I’m waiting for all symmetries before comparing, and any branch that does not complete will remain unknown.
+
+A P2₁/c reference exposed oxidation-state atom labels that GSAS-II silently substituted with hydrogen. I stopped that run and will not use any partial ranking. I’m regenerating all replacement CIFs with oxidation labels removed, then rerunning the complete set so the comparison is chemically valid.
+
+The sanitized replacement run is valid so far. The high-symmetry hexagonal/tetragonal candidates require large cell-gradient steps and are converging to poor local matches; they remain in the comparison, while the physically promising monoclinic/triclinic branches are still ahead.
+
+The two newer monoclinic replacements have now completed without parser substitutions. I’m finishing the triclinic and orthorhombic branches, then I’ll compare fresh Rwp and contact geometry together; profile gain alone will not override a hard structural defect.
+
+The physical replacement comparison is decisive: the best alternative, triclinic WO₃, gives Rwp 10.126% versus 9.751% for the indexed P2₁/n phase; all others are worse. I’ll retain P2₁/n as the diffraction-supported model but explicitly flag its inherited legacy O–O contact and oxygen-sublattice uncertainty. Next I’m refitting only ordinary nuisance terms from the bounded-coordinate physical-calibration checkpoint.
+
+The ordinary refinement now gives fresh Rwp 9.712% with bounded calibration, converged cells/profile, and all modeled phases positive. I’m doing the required final all-axis/all-size ZnO replay grid from this exact checkpoint; afterward I’ll restart ordinary refinement only from the winning replay and then freeze/export the deliverables.
+
+The final replay is covering the same 288 physically allowed states as the earlier screen, but with the corrected zero/height calibration and refined WO₃/ZnWO₄ structures. It is running without optimizer variables, so every comparison is a direct forward profile.
+
+The final grid is in its last axis block. Its purpose is model selection only; the observed pattern and all non-ZnO parameters remain byte-for-byte those of the refined checkpoint during these replays.
+
+The final grid selects ZnO [100] texture, March–Dollase 1.40, and 0.05 µm, with fresh Rwp 9.693% before any restart refinement. I’m now resuming ordinary refinement from that saved grid winner, keeping the texture ratio at its physical upper bound if the optimizer continues to prefer it.
+
+The selected model quantifies to 82.39 wt% wolframite ZnWO₄, 12.29 wt% monoclinic WO₃, and 5.32 wt% wurtzite ZnO, normalized over crystalline phases. I’m now freezing a clean three-phase project, independently replaying it once more, exporting CIFs and the full profile, and validating artifact/project consistency.
+
+The exported physical audit passes ZnWO₄ and ZnO, but the legacy P2₁/n WO₃ model retains four 1.615 Å O–O contacts and therefore needs adjudication. Before accepting that caveat, I’m giving the best contact-safe alternative (triclinic WO₃) a full ordinary nuisance refinement; it will replace the legacy model only if it closes the profile gap in the same three-phase state.
+
+The contact-safe triclinic WO₃ replacement closes the gap after full common-state refinement, reaching Rwp 9.327%—better than the legacy model—but one exploratory parameter became negative (−76 ppm strain). I’m rerunning it with strain fixed at zero and all size/texture/profile bounds enforced; only that physical replay can supersede the prior final.
+
+With strain fixed at zero, triclinic WO₃ improves further to fresh Rwp 9.325% and passes the contact screen, so it supersedes the legacy monoclinic model. I’m now performing fresh physical grids for the triclinic WO₃ and ZnO size/texture choices in that new best project before the final ordinary restart.
+
+The triclinic project’s grid is proceeding cleanly. It evaluates five WO₃ texture axes and four ZnO axes over the full allowed ratio range, then size grids and a WO₃ recheck after ZnO selection; strain remains fixed at the physically supported zero value.
+
+The first WO₃ pass, its size/ratio refinement, and the ZnO axis pass are complete; the run is now on the final size/fine-ratio and WO₃ closure checks. No candidate phase inventory changes are being made during this grid.
+
+The final grids select triclinic WO₃ [111], ratio 1.40, size 0.09 µm and ZnO [100], ratio 1.30, size 0.07 µm. I’m performing the last ordinary restart from that exact replay winner, with microstrain fixed at the physically selected zero value.
+
+The triclinic final refinement converged at fresh Rwp 9.303%, with 82.48 wt% ZnWO₄, 12.72 wt% WO₃, and 4.80 wt% ZnO. I’m now removing the disabled legacy WO₃ trial object from the project tree and replaying the cleaned three-phase project to ensure the cleanup does not change the profile.
+
+The cleaned triclinic project replays unchanged at Rwp 9.303%, and all three exported CIFs now pass the contact/occupancy screen. I’m running the scorer’s independent atomic replay next, then I’ll write the final JSON/report from those verified project fractions and statistics.
+
+Independent replay verification passed: the project was unchanged, all three project phases match exactly one submitted CIF, fractions sum to 1.000000, `fit.csv` matches the original 8,301-point grid, and the replay reproduces Rwp 9.30293% with no profile-review flags.
+
+Completed. The refined crystalline composition is:
+
+| Phase | Weight fraction |
+|---|---:|
+| Wolframite ZnWO₄, P2/c | 82.48 wt% |
+| Triclinic WO₃, P-1 | 12.72 wt% |
+| Wurtzite ZnO, P6₃mc | 4.80 wt% |
+
+Independent final-project replay gives Rwp = 9.3029% and Rp = 5.3010%. All submitted CIFs pass the physical contact/occupancy screen. ZnO is the least certain fraction because of strong preferred orientation; WO₃ oxygen coordinates are not independently well constrained.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v2-d7979af6b214/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v2-d7979af6b214/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v2-d7979af6b214/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v2-d7979af6b214/workspace/final.gpx)
+- [ZnWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v2-d7979af6b214/workspace/phase_ZnWO4_wolframite.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v2-d7979af6b214/workspace/phase_WO3_triclinic.cif)
+- [ZnO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v2-d7979af6b214/workspace/phase_ZnO_wurtzite.cif)
+

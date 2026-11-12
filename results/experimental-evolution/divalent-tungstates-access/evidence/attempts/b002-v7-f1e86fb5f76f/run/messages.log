@@ -1,0 +1,104 @@
+I’ll first inspect the specimen metadata, pattern range/resolution, frozen index, and the supplied analysis/refinement helpers. Then I’ll build and test phase models in GSAS-II, finish the accepted model, run the mandated bounded polish exactly once, and export all deliverables from that same project.
+
+The specimen is a Cu Kα reflection scan (9.90–100.09° 2θ) from WO₃ + Mn₃O₄ heated at 800 °C. That chemistry strongly suggests manganese tungstate plus possible unreacted oxides or secondary Mn–W–O products, but I’ll let the peak families and quantitative fits decide rather than assuming a single reaction product. I’m now isolating the supplied solver guidance, index schema, and GSAS-II interfaces that were truncated in the first pass.
+
+The dominant peak set already aligns with monoclinic wolframite-type MnWO₄: its characteristic low-angle line near 18.4° and dense split families around 23–24°, 30°, 35–37°, and 51–54° are all present. I’m testing that reference together with every plausible residual precursor/oxide phase, using the full peak family rather than isolated line matches.
+
+A whole-profile screen gives a substantial, chemically sensible second component: monoclinic WO₃ lowers Rwp from about 30% to 23% before any cell/profile refinement and carries roughly 18–19 wt%. Mn₃O₄, Mn₂O₃, and MnO each add at most a tiny unstable scale at this undeveloped stage. I’m now moving to full GSAS-II refinements of MnWO₄ + WO₃ so the residual pattern—not reference-cell mismatch or peak-shape error—determines whether another phase is real.
+
+After cell/profile development, the two-phase model leaves a real residual family rather than isolated noise: prominent lines near 19.86, 20.39, 31.78, 35.09, 45.68, and 46.48° recur with higher-angle partners. Several other residuals are simply center/wing errors on accepted MnWO₄ or WO₃ reflections and will not be treated as extra phases. I’m indexing the independent family and screening both residual Mn oxides and reaction-balanced Mn–W–O topologies, including substituted parent structures because the exact reference may be withheld.
+
+The ordinary-oxide controls are not closing the pattern: orthorhombic Mn₃O₄ collapses to zero scale, Mn₂O₃ becomes numerically unsupported, and the tetragonal Mn₃O₄/MnO starts are small and unstable during breadth refinement. I’m retaining them only as rejection controls while the missing-family search focuses on manganese-rich tungstate/oxide frameworks that can account for the low-angle pair and its full higher-angle sequence.
+
+The residual cell is now indexed cleanly: a tetragonal metric near a ≈ 6.15 Å, c ≈ 4.47 Å explains the 001/110 pair at 19.86/20.39° and predicts the observed 111, 200, 112, 221/310, and higher families. A broader parent search reveals a much more chemically coherent topology than an expanded WO₃ framework: P4/nmm LiVPO₅ has essentially the same metric and a 2:1 cation/O₅ site inventory that maps naturally to reaction-balanced Mn₂WO₅. I’m comparing independent parents and all plausible Mn/W site assignments before accepting that phase.
+
+The residual lattice is cleanly tetragonal and the leading chemically balanced interpretation is Mn₂WO₅ in a P4/nmm LiVPO₅-type topology. I’m now testing symmetry-matched parent structures and every plausible Mn/W site assignment from equal refinement checkpoints; then I’ll finish and replay-check the accepted multiphase model before invoking the one-shot polish.
+
+The parent search found two independent P4/nmm starts with essentially the same natisite framework: LiVPO₅ and Li₂VSiO₅. That is useful because their oxygen frameworks agree after an origin transformation, while their interlayer cation models differ; I’ll retain both starts and separately test which crystallographic site can physically host W.
+
+All five assignments import and refine with positive contributions. The first equal checkpoint already disfavors W on the dilute interlayer site; I’m waiting for the common cell/size/strain checkpoint before making the structural choice, since scale-only ranking is not decisive.
+
+The breadth checkpoint is exposing an important modeling issue: all variants try to use the minimum allowed crystallite size for Mn₂WO₅, so the current intensity mismatch is being hidden as artificial broadening. I’ll compare the coordinate-developed models with phase breadth held common/fixed, then introduce only supported profile terms in the final model.
+
+The equal checkpoints select the same chemically sensible assignment—W on the tetrahedral P/Si site and Mn on the V plus interlayer sites. The raw LiVPO₅ split interlayer site has mutually exclusive positions only 0.52 Å apart, so I’m carrying forward the physically ordered half-occupied special-site version; it preserves the diffraction topology without an impossible simultaneous Mn–Mn contact.
+
+With the Mn₂WO₅ cell constrained to its indexed family, the 35.0° peak separates from its 35.39° (201) reflection; that makes a small manganese-oxide residue likely rather than forcing the new phase cell to the wrong peak. I’m now comparing MnO and the precursor Mn₃O₄ polymorphs under common cell/profile constraints, including the expected 1:1 bulk metal balance as a cross-check rather than a refinement restraint.
+
+The constrained comparison now gives the precursor’s tetragonal hausmannite Mn₃O₄ a stable positive contribution of about 3–4 wt%, whereas orthorhombic Mn₃O₄ collapses to zero and MnO remains only ~1.5 wt%. This is also the only oxide branch close to restoring the dosed 1:1 Mn:W balance, so I’m checking whether its full reflection family—not just the 36° peak—survives profile development.
+
+The natisite branch only fits the residual by driving its microstrain to the laboratory maximum (and the anisotropy ratio to its limit), so it is not a terminal physical solution. I’m returning to the symmetry-diverse screen: a separate scheelite-family parent actually ranked ahead of natisite with only a 3.2% metric adaptation, and it now needs the same target-composition/equal-checkpoint test before the missing phase can be accepted.
+
+The residual now points to a scheelite-type MnWO₄ polymorph more strongly than the earlier natisite hypothesis. I’m comparing multiple corrected scheelite parent structures on an equal refinement footing, then I’ll re-test whether any oxide impurity remains independently supported.
+
+Two distinct unmodeled reflection families are present: the scheelite family (31.78°, 35.09°, 45.68°, 54.40°, 64.41°) and a separate low-angle tetragonal family (19.86°, 20.39°, 28.66°, 46.48°). I’m therefore testing scheelite alongside—not in place of—the earlier P4/nmm candidate; this separation should prevent either phase from absorbing the other through artificial broadening.
+
+The corrected scheelite structures are now decisively rejected: their strongest 112 peak would occur at 26.67°, where the observed profile leaves essentially no positive residual, and their refined scale collapses to zero. The earlier apparent match came from an incomplete legacy CIF. I’m switching back to whole-pattern library matching against the frozen index, using only physically complete CIFs and checking every proposed phase against its strongest reflections.
+
+The lattice evidence clarifies the mismatch: a tetragonal P4/nmm cell fits 001/110, but the strong 201 family is split as if the basal plane is orthorhombically distorted (approximately a ≈ 6.23 Å, b ≈ 6.08 Å, c ≈ 4.47 Å). I’m now searching eight-atom ABO₅/A₂BO₅ analogues for that lower-symmetry version of the same framework, rather than forcing the tetragonal parent with extreme strain.
+
+A physically complete ordinary phase now closes the 35° family: hexagonal wurtzite MnO (P6₃mc) has its diagnostic peaks at 34.93°, 45.80°, 54.38°, 63.69°, and 66.28°, matching that entire residual sequence with only ~0.1% metric adaptation. This also restores a sensible Mn/W reaction balance. I’m adding it as an ordinary phase and will reassess the remaining 19–20°/28.66° family independently.
+
+The remaining-family screen now has a clear winner: an olivenite-type Mn₂WO₅ model derived from Cu₂AsO₅ (monoclinic P2₁/n) outperforms the tetragonal natisite model by a large margin. Closely related orthorhombic Pnnm olivenite parents rank next, providing the required symmetry-diverse controls. I’m building both topology branches from multiple physical parents and will compare them under the same cell/coordinate refinement sequence.
+
+The topology search has narrowed the unexplained family to an olivenite/sarkinite-type Mn₂WO₅ phase. At equal development it beats the orthorhombic controls, but its monoclinic shear and the tentative MnO contribution are still entangled with calibration bounds. I’m resolving that with cell-only checkpoints before any final profile work.
+
+The completed comparison confirms that the apparent MnO gain requires the zero correction to sit exactly at its +0.25° limit, so that branch is not physical. Coordinate refinement of Mn₂WO₅ also drives many atoms to bounds; I’m rolling those coordinates back and widening only the monoclinic metric test, which is the remaining legitimate degree of freedom.
+
+The widened test settles at α = 89.474° with no bound hits and converges reproducibly; the orthorhombic control remains worse (Rwp 16.98% versus 16.84% before profile refinement). The MnO branch still pins both zero and its c metric, so I’m excluding it and carrying the three-phase monoclinic model into profile/specimen refinement.
+
+The first profile trial exposed two terms that cannot be retained: X and SH/L both pin at their laboratory minima, with SH/L also strongly correlated to displacement. A grouped-Uiso trial is likewise ill-conditioned. I’ve stopped that branch; the clean checkpoint will keep fixed isotropic U values and will test size/profile terms in separate, reversible branches.
+
+The clean replay is stable at Rwp 16.44% with one identifiable displacement term (about +102 μm) and fixed nominal zero. Gaussian U/W refinement is physical and improves the fit; I’m now comparing joint crystallite-size branches to see whether X and axial broadening become interior once the guaranteed phase-size terms are represented.
+
+The phase-size decomposition is becoming identifiable: MnWO₄ refines to 0.519 μm, remains well inside the 0.04–1.5 μm range, and improves Rwp from 16.44% to 16.09% without high correlations. I’m adding the weaker phases one at a time because simultaneous size refinement is substantially slower and less numerically stable.
+
+WO₃ breadth is much more expensive to differentiate because its monoclinic cell generates many overlapping reflections. The branch is still being evaluated from the accepted MnWO₄-size checkpoint; no model choice is being made from the incomplete run.
+
+A fixed-grid check resolves the WO₃ numerical stall: the fit has a clear interior minimum near 0.08 μm (Rwp 14.73% at the initial checkpoint), whereas both 0.04 and 0.15 μm are worse. I’m replaying that fixed 0.08 μm model to convergence before refining any other term.
+
+With the correct WO₃ breadth represented, the olivenite metric leaves the earlier local basin and converges cleanly at a physically adapted cell (a 8.9423, b 8.6670, c 6.2113 Å, α 88.018°), lowering Rwp to 11.28% with no bound hits. This confirms that the earlier cell limit—not an extra phase—was suppressing the missing-family fit.
+
+Mn₂WO₅ breadth now refines reproducibly to 0.0443 μm—just above, but not pinned to, the 0.04 μm limit—and Rwp falls to 9.32%. Its fraction rises to about 16.8 wt%, while all metric and scale terms remain positive and interior. The remaining dominant residuals are intensity/profile-shaped rather than a new coherent reflection family.
+
+The profile terms are now separating cleanly: U, W, polarization, and WO₃ isotropic microstrain (about 1305 ppm) are supported. X and MnWO₄/Mn₂WO₅ strain pin to lower bounds, while SH/L is almost inseparable from displacement; those terms are being excluded. I’m checking whether the supported WO₃ strain is genuinely uniaxial or remains isotropic.
+
+The three-phase model is now physically closed: wolframite MnWO₄, monoclinic WO₃, and monoclinic Mn₂WO₅. I’m finishing the last supported intensity correction, then I’ll lock the terminal model, run the mandated one-time polish, and export everything from that exact project.
+
+The texture comparison is decisive only for WO₃ (001) and Mn₂WO₅ (010); both remain interior and stable when combined. MnWO₄ texture is indistinguishable from unity, so I’m leaving it uncorrected rather than spending a parameter on a negligible gain.
+
+The full simultaneous replay exposed an important identifiability issue: WO₃ size and strain correlate at 0.94 and drive each other to bounds. Per the laboratory rules, I’m rolling back the optional strain term and retaining the independently supported crystallite-size broadening; the interrupted bound-hitting branch will not be used.
+
+The terminal checkpoint now replays cleanly (Rwp 8.181%, max shift/esd 0.042), with all retained terms interior and no ≥0.90 correlations. The strongest residual peaks map to reflections of the three accepted phases; the one unmatched weak feature is isolated, not a coherent extra-phase family. I’m now invoking the required bounded polish exactly once.
+
+The one-time polish is still working through its coordinate branches. The input project is already frozen as the baseline candidate, so any nonphysical or nonconverged branch will be rejected automatically rather than contaminating the submission.
+
+The first polish branch stabilized at Rwp 7.597% after rolling back bound-hit atoms. The second branch is currently being audited; its raw low Rwp is not being treated as valid until coordinate convergence and geometry checks pass.
+
+The second branch has also stabilized physically, at Rwp 7.594%. The final phase-wise branch is still running; selection will require both the convergence audit and the minimum-improvement threshold, not just the smallest displayed number.
+
+The phase-wise route is now in its rollback/stabilization stage after many oxygen coordinates hit their bounds. This is expected in the audit design: those atoms are restored to the terminal structure, and only interior coordinates are allowed to survive.
+
+The audit selected the heavy/light branch: Rwp 7.594%, converged coordinate settle (max shift/esd 0.085), converged cell/scale/background settle (0.558), stable phase fractions, and no geometry or fraction-collapse violations. I’m accepting that polished project and will now perform only read-only replay/geometry checks and exports.
+
+The exports are complete. One important caveat is explicit in the report: the monoclinic WO₃ identification is strong, but its old low-precision reference leaves an unphysical 1.576 Å O–O contact, so the detailed oxygen geometry is not claimed as reliable. I’m running final consistency checks on the file set now.
+
+Completed the three-phase crystalline model:
+
+- MnWO₄ (wolframite, P2/c): 62.5566 wt%
+- WO₃ (monoclinic, P2₁/n): 20.3766 wt%
+- Mn₂WO₅ (monoclinic olivenite-type): 17.0668 wt%
+
+Fractions are normalized over modeled crystalline material. Fit: Rwp 7.5941%, Rp 4.9913%, GOF 3.8152. No coherent fourth-phase family remained.
+
+Outputs:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-f1e86fb5f76f/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-f1e86fb5f76f/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-f1e86fb5f76f/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-f1e86fb5f76f/workspace/final.gpx)
+- [MnWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-f1e86fb5f76f/workspace/phase_1_MnWO4.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-f1e86fb5f76f/workspace/phase_2_WO3.cif)
+- [Mn2WO5 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-f1e86fb5f76f/workspace/phase_3_Mn2WO5.cif)
+
+The report flags the analogue-derived Mn₂WO₅ topology as provisional and the detailed WO₃ oxygen geometry as unreliable due to an anomalously short O–O contact inherited from the low-precision reference.
+

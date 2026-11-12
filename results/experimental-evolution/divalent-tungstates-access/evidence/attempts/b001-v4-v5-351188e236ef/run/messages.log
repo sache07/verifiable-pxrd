@@ -1,0 +1,40 @@
+I’ll first inspect the specimen metadata, diffraction grid, and the frozen reference/indexing utilities. Then I’ll build the simplest chemically plausible multiphase model, refine it in GSAS-II, and verify that the saved project reproduces every submitted profile and fraction.
+
+The chemistry points first to scheelite CaWO₄, with residual WO₃ and/or CaCO₃ plausible after a one-hour 650 °C firing. I’m now extracting the observed peak families and querying only the frozen COD index for exact Ca–W–O, W–O, Ca–C–O, and Ca–O candidates; those comparisons will determine whether a multiphase refinement is actually warranted.
+
+Peak positions and intensity groupings now support two ordinary phases: tetragonal scheelite CaWO₄ and monoclinic room-temperature WO₃. The three-line WO₃ family near 22.76/23.18/23.98° and its higher-angle companions rule out the tetragonal/hexagonal WO₃ references; calcite’s diagnostic 29.4° line is absent. I’m moving these two physical structures into a full-pattern GSAS-II refinement and will only add another phase if coherent residual families remain.
+
+The first unconstrained pass reached Rwp ≈4.27%, but it did so by exploiting nonphysical correlations (sample displacement about −1900 µm, negative Gaussian width, and negative axial-divergence terms). I’m rejecting that checkpoint. The next pass enforces the laboratory’s physical ranges, separates the highly correlated zero/displacement refinements, and alternates instrument and specimen broadening so the accepted fit remains physically replayable.
+
+The bounded calibration refinement has converged at a physically allowed edge (zero ≈−0.25° and displacement ≈+210 µm), reducing Rwp to 4.17%. Reflection-list checks show the remaining large residuals are centered on already indexed CaWO₄ and WO₃ peaks—not new peak families—so I’m now testing bounded anisotropic broadening, texture, and coordinate adjustments rather than searching for extra phases.
+
+Coordinate tests improved the fit only when kept physical: CaWO₄ oxygen moved modestly and WO₃ tungsten sites remained six-coordinate. Unrestrained WO₃ oxygen refinement collapsed to 1.29–1.52 Å W–O distances, so I rolled it back; those light-atom coordinates are not reliably determined by this pattern. I’m making one final same-composition comparison against the physical triclinic WO₃ reference, then I’ll lock the inventory and refine only the winning topology.
+
+I found an important replay issue in the coordinate branches: the stored Rwp was lower than the profile recomputed after reopening the project. I’m auditing every candidate with a zero-cycle GSAS-II replay now; any checkpoint that does not reproduce its own curve will be discarded regardless of its apparent fit statistic.
+
+The two-phase model is now physically consistent and replay-stable. I’m doing the last bounded checks—background and polarization only—then I’ll freeze the best checkpoint and export the requested CIFs, profile, JSON, report, and GSAS-II project.
+
+The final polarization pass is stable and shifts the CaWO₄/WO₃ split by only 0.03 wt%. Increasing the smooth background from 15 to 20 terms gives a statistically real but small improvement; I’m checking one final background order so the submitted model is neither underfit nor needlessly flexible.
+
+One physically important check remains: the WO₃ reference lacks displacement parameters, so it currently carries zero Uiso. Independent atom refinements were unstable; I’m replacing that ill-conditioned test with a bounded common-WO₃ Uiso scan over the laboratory’s stated physical range. This tests high-angle intensity falloff without adding free atomic coordinates.
+
+The bounded common-Uiso treatment is clearly better and remains physical: CaWO₄ selects 0.0104 Å², while WO₃ selects the allowed lower edge, 0.003 Å². The converged two-phase result is 85.33/14.67 wt% with Rwp 3.874%, and a zero-cycle replay reproduces every calculated point exactly. I’m exporting directly from that audited checkpoint now.
+
+Identified two crystalline phases:
+
+- Scheelite CaWO₄: **85.33 wt%**
+- Monoclinic WO₃: **14.67 wt%**
+
+Fit statistics: Rwp 3.8738%, Rp 2.9214%, GOF 1.2361. Fractions are normalized over crystalline phases; practical uncertainty is about ±1 wt%. Amorphous content is undetermined, and WO₃ oxygen coordinates remain weakly constrained.
+
+Files:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-351188e236ef/workspace/final.gpx)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-351188e236ef/workspace/result.json)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-351188e236ef/workspace/fit.csv)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-351188e236ef/workspace/report.md)
+- [CaWO4_scheelite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-351188e236ef/workspace/CaWO4_scheelite.cif)
+- [WO3_monoclinic.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-351188e236ef/workspace/WO3_monoclinic.cif)
+
+The final project passed an independent zero-cycle replay: calculated intensities and `fit.csv` agree exactly.
+

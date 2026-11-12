@@ -1,0 +1,46 @@
+I’ll inspect the pattern metadata and the supplied PXRD workflow, then identify candidate phases, refine them together in GSAS‑II, and validate the final project by replaying the full grid before exporting all requested files. I’ll keep residual-phase trials in the common multiphase state, as requested.
+
+The scan is a high-background Cu Kα reflection pattern from WO₃ + CuO fired at 700 °C. I’m now separating peak positions from specimen/instrument effects and querying the frozen COD by chemistry; the first high-probability set is CuWO₄ with possible residual CuO/WO₃, but I’ll let the full-profile evidence decide and then inspect coherent residuals for off-stoichiometric Cu–W–O frameworks.
+
+Peak-position matching now resolves the ordinary phase set cleanly: triclinic CuWO₄ is the dominant product; the intense low-angle triplet is monoclinic WO₃; weaker lines at the CuO-specific positions show residual tenorite. All three share an approximately −0.46° apparent displacement/zero shift, which is why uncorrected reference sticks look offset. I’m building the common three-phase GSAS‑II refinement next, then I’ll use its residual—not isolated fits—to test Cu–W–O alternatives and analogue-derived prototypes.
+
+The residual is not diffuse misfit: four strong, chemically coherent peaks at 15.18°, 19.79°, 32.49°, and 33.77° map one-for-one to cubic Cu₃WO₆ after the same displacement correction, with matching higher-angle lines as well. I’m therefore adding Cu₃WO₆ to the saved three-phase state with every existing phase and nuisance parameter frozen first; only after its scale proves stable will I resume joint refinement.
+
+The four-phase model is now well established (CuWO₄, WO₃, CuO, and Cu₃WO₆; current Rwp ≈ 7.6%). I’m finishing the mandated common-state polymorph/prototype tests, then I’ll refine the intensity-level effects and replay the chosen state over the full grid before exporting.
+
+The frozen-state alternatives confirm the triclinic CuWO₄ reference decisively; its monoclinic COD polymorph gives Rwp ≈ 44.5% when substituted. I’m now testing Cu₂WO₄ and copper suboxides as additions in the unchanged four-phase state, while separately retaining only symmetry-distinct transferred prototypes for replacement trials.
+
+The ordinary precursor checks are behaving cleanly: Cu₂WO₄ and Cu₂O scales collapse to zero in the common state. Transferred Cu₂WO₄ frameworks either collapse or appear only at a boundary-limited trace level (<0.4 wt%), so I’m treating that trace as unresolved rather than inventing a fifth quantified phase. The symmetry-distinct Cu₃WO₆ replacements are all much worse (Rwp ≈ 20% versus 7.8%), supporting the cubic Pa-3 assignment.
+
+Refining symmetry-preserving atomic coordinates is materially improving the common model (Rwp has fallen from 7.8% to about 5.0%). I’m bounding coordinate motion to the generator’s stated reference-mismatch scale and clamping displacement parameters at physical limits; unrestricted coordinate fits were discarded as chemically implausible.
+
+The tightly bounded, symmetry-preserving model has converged near 3.78% full-grid Rwp. I’m now checking contacts, background positivity, replay consistency, and residuals before freezing the four-phase project and exporting its CIFs and profile.
+
+One issue surfaced in the physical audit: the current WO₃ coordinates contain a 1.59 Å O–O contact, so I’m not accepting that otherwise excellent fit as final. I’m tracing the exact reference setting and will correct or constrain WO₃ in the same four-phase refinement, then replay the entire grid again.
+
+A minimal geometry repair of the historical WO₃ model removes the sole short-contact flag while changing full-grid Rwp only from 3.779% to 3.825%; all four submitted structures now pass the contact/occupancy screen. I’m selecting that physical state and performing the final native replay and export consistency check.
+
+The final consistency audit found only a formatting issue: `fit.csv` used a unit-suffixed angle header that the verifier does not recognize. The numerical profile is correct; I’m renaming that column and rerunning the export check.
+
+Completed the four-phase GSAS-II refinement.
+
+| Phase | Space group | Weight fraction |
+|---|---|---:|
+| CuWO₄ | P-1 | 65.62% |
+| WO₃ | P2₁/n | 18.83% |
+| CuO | C2/c | 2.49% |
+| Cu₃WO₆ | Pa-3 | 13.06% |
+
+Fresh full-grid replay: Rwp = 3.82490%, GOF = 2.37525. All submitted CIFs pass the physical contact/occupancy screen. Sub-0.4 wt% fifth-phase indications were not reliable enough to report.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-250a7cc85703/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-250a7cc85703/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-250a7cc85703/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-250a7cc85703/workspace/final.gpx)
+- [CuWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-250a7cc85703/workspace/CuWO4.cif)
+- [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-250a7cc85703/workspace/WO3.cif)
+- [CuO.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-250a7cc85703/workspace/CuO.cif)
+- [Cu3WO6.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v2-250a7cc85703/workspace/Cu3WO6.cif)
+

@@ -1,0 +1,108 @@
+I’ll start from the specimen metadata and diffraction pattern, then locate the frozen reference/indexing and GSAS-II workflows in the provided baseline. I’ll prioritize phase closure and distinct structural topologies, and I’ll checkpoint the first complete physical multiphase model before testing optional alternatives.
+
+The chemistry points first to Mn–W–O products plus possible Mn₃O₄/WO₃ carryover, but I won’t assume a single product. I’m now extracting the peak families and querying the frozen COD index for exact Mn–W–O and precursor references; this will also reveal whether multiple polymorph/topology branches need explicit testing.
+
+The first complete model is now established and checkpointed: wolframite MnWO₄, trigonal Mn₃WO₆, and monoclinic WO₃ account for every coherent peak family. The minor phases also satisfy the 1:1 Mn:W feed balance: two moles of residual WO₃ per mole of Mn₃WO₆ compensate that phase’s Mn-rich stoichiometry. The initial three-phase refinement gives Rwp ≈ 7.12%; remaining misfit is mainly peak shape and relative intensity, not an unindexed family. I’m preserving this physical replay before comparing WO₃ topology alternatives and testing whether Mn₃O₄ has any stable residual scale.
+
+The topology screen is running in parallel for monoclinic, triclinic, orthorhombic, tetragonal, hexagonal, and the alternate monoclinic WO₃ cells, all against the same MnWO₄ + Mn₃WO₆ state and the same staged calibration/profile relaxation. The current physical branch has already separated a plausible ~800 µm specimen displacement from a bounded zero offset and indicates strongly phase-dependent broadening, especially a very small Mn₃WO₆ domain size and strained WO₃.
+
+The branch jobs are still refining rather than stalled; each includes full-grid cell/calibration and phase-specific size/microstrain stages, so the six-way comparison is compute-heavy. Once they finish, I’ll only carry coordinate refinements forward for topologies that reproduce the observed WO₃ splitting and pass geometry checks.
+
+Three concurrent branches are likely contending for the available CPU, so this comparison is taking longer than the single-model refinements. I’m letting the already-launched jobs finish to keep their stages comparable; no additional searches are being opened while the indexed three-phase model remains complete.
+
+The six jobs are still active with no error output because each branch writes its own log. Their runtime is consistent with several 18–24-cycle full-pattern refinements under CPU contention. I’ll inspect convergence and discard any numerically failed branch only after the processes return; failure alone would be recorded as unknown, not used to reject a topology.
+
+The screen remains within a reasonable runtime for 18 refinements over 8,301 points. The main model is safely checkpointed, so even if a branch later proves numerically unusable, the accepted physical replay is preserved and no result is at risk.
+
+This is now clearly the dominant cost of the analysis, but it is bounded: six branches, three stages each. I’m continuing rather than interrupting mid-refinement, since comparable completed checkpoints are more informative than partial Rwp values and the user requested topology coverage.
+
+The branch runner still has no terminal output by design because logs are isolated per topology. If it exceeds the expected cycle budget materially, I’ll stop the batch and retain completed branch checkpoints rather than let a pathological candidate consume the rest of the analysis.
+
+The completed screen rejects the high-symmetry WO₃ branches on peak topology, not just Rwp: orthorhombic, tetragonal, hexagonal, and the alternate monoclinic cell require boundary broadening/calibration or scale collapse and cannot reproduce the observed triplet/splitting. Two low-symmetry branches remain genuinely close—P2₁/c monoclinic (Rwp 6.91%) and P−1 triclinic (6.87%)—so I’m carrying both through identical coordinate and intensity refinement and will choose on geometry/stability rather than the 0.04% early Rwp difference.
+
+Both surviving WO₃ branches are now in the coordinate sequence: all metal positions first, then oxygen coordinates phase-by-phase with a saved CIF/GPX after every step. This makes any intensity gain auditable and lets me roll back an individual light-atom stage if bond geometry becomes implausible.
+
+The coordinate jobs remain active. The triclinic branch has roughly twice as many independent WO₃ atom coordinates as the monoclinic branch, so I’ll judge its eventual Rwp gain against displacement magnitudes and W–O geometry rather than rewarding extra degrees of freedom automatically.
+
+The unconstrained coordinate trial did exactly what the safeguards were meant to catch: it lowered Rwp to 4.64–4.74% but created nonphysical short contacts (down to 0.28–0.34 Å in WO₃, and ~1.65 Å Mn–O). Those light-atom stages are rejected. The monoclinic heavy-atom model remained geometrically sensible; the triclinic heavy refinement did not. I’m now rerunning both from their physical profile checkpoints with explicit displacement bounds and will accept only stages that preserve coordination geometry.
+
+The bounded rerun limits metal-site movement to 0.06 Å and oxygen-site movement to 0.08 Å from each published parent while retaining scale, cell, calibration, and profile relaxation. These bounds are tight enough to prevent the earlier coordination collapse but broad enough to accommodate modest reference/sample mismatch.
+
+The bounded jobs are still completing the phase-by-phase oxygen stages. A parameter hitting one of these coordinate limits will be treated as weakly determined; it will not be interpreted as a reliable site displacement even if the profile improves.
+
+Both branches continue normally under the tighter bounds. Because every stage is copied as a standalone GPX before the next one, I can select the last geometrically valid improvement rather than being forced to keep the final stage.
+
+The bounded coordinate comparison is the final expensive branch test. After it returns, I’ll geometry-screen the checkpoints, test the plausible Mn₃O₄ precursor by scale stability, then refine only the accepted three-phase replay and generate the required deliverables.
+
+The jobs are taking longer than the unconstrained trials because active bound handling causes additional refinement passes. They remain within the pre-set finite cycle count, so I’m allowing them to finish rather than comparing partially converged models.
+
+No new branch or search has been opened during this wait. The workload is still exactly the two bounded low-symmetry WO₃ candidates, and the earlier complete physical checkpoint remains the fallback.
+
+The bounded batch is nearing the duration of the earlier six-topology screen but has not exceeded it materially. I’ll continue through this cycle; if it persists beyond that, I’ll terminate and use the completed standalone checkpoints.
+
+The elapsed time now matches the prior full screen. I’m giving the two jobs one final minute to return; otherwise I’ll stop them cleanly and analyze whichever bounded phase checkpoints have already been written.
+
+The first bounded attempt exposed a GSAS-II convention issue: coordinate variables named `dA*` are bounded as absolute fractional coordinates, not zero-centered shifts. That run therefore collapsed sites toward the origin and is rejected as a numerical setup failure, not evidence against either phase. I’ve corrected the bounds to be centered on each published coordinate and am rerunning the same two branches.
+
+The corrected run is active with bounds centered on the actual parent coordinates. I’ll explicitly verify the saved Cartesian displacement, minimum interatomic distance, and cation coordination for every checkpoint before accepting any Rwp change.
+
+The corrected jobs continue through their finite oxygen stages. Since the coordinate bounds are now local to each site, a boundary hit will leave the atom near its parent rather than generating the origin-collapse seen in the discarded setup.
+
+Geometry screening identified a source-quality issue in the initially tested 1960 monoclinic WO₃ coordinates: they contain a 1.57 Å O–O contact and incomplete octahedral coordination. I’m replacing that diagnostic parent with the neutron-derived P2₁/c record 2311041, which has physical geometry and the same low-symmetry reflection topology. This is a targeted parent repair within the accepted topology, not a new phase search.
+
+The physical neutron P2₁/c parent starts at Rwp 6.97%, comparable to the triclinic and older monoclinic fits but without the latter’s short O–O contact. Its bounded coordinate replay is now running; this is the last same-topology comparison needed before phase-model selection.
+
+The physical low-symmetry comparison is now resolved. The neutron P2₁/c WO₃ parent preserves six-coordinate W with W–O = 1.65–2.23 Å and reaches Rwp 5.97% after bounded metal coordinates plus bounded MnWO₄ oxygen refinement. Later oxygen stages are rejected because many sites hit bounds and profile terms become nonphysical. The triclinic branch is close but offers no robust physical advantage, while P2₁/c is the room-temperature WO₃ form; I’m selecting the physical neutron P2₁/c checkpoint for final refinement.
+
+The selected physical replay is checkpointed at Rwp 6.19% after resolving the zero/displacement singularity with an 800 µm fixed specimen displacement and a refined 0.214° zero term. Before texture/profile finishing, I’m testing tetragonal Mn₃O₄ explicitly from several starting abundances; it will only be rejected if its scale converges stably to zero or negative values.
+
+The weak Mn₃O₄ trial converged to ~0.8–0.9 wt% from all starts, but its strongest contribution is entirely overlapped and the three-phase fractions alone close the 1:1 Mn:W balance essentially exactly. I’m treating Mn₃O₄ as a model-dependent sub‑1% possibility, not a reliably identified phase. The texture screen is now testing one phase/axis term at a time from the selected three-phase checkpoint.
+
+The texture screen found two clear, physically bounded effects: WO₃ March–Dollase [010], r = 1.309 (Rwp 4.31%), and MnWO₄ [111], r = 1.136 when tested alone (Rwp 5.55%). Other axes were much weaker. I’m combining those two supported terms, then I’ll test Mn₃WO₆ texture only in that combined state.
+
+The two supported textures combine cleanly and reduce Rwp to 3.18% with bounded ratios (MnWO₄ [111] = 1.144; WO₃ [010] = 1.313). I’m checking whether Mn₃WO₆ needs a third texture term; it will be retained only if the combined-state improvement is clear and axis-specific.
+
+No Mn₃WO₆ texture axis is uniquely supported: all tested directions improve Rwp by only ~0.04% and are nearly degenerate, so I’m omitting that term. The remaining residuals show systematic low-angle peak asymmetry rather than missing reflections; I’m testing the axial-divergence term next, followed by polarization/surface roughness only if each produces a stable physical improvement.
+
+Axial divergence did not improve the fit and is rejected. Surface roughness collapsed to its zero-effect boundary with A/B 99.98% correlated, so that family is also unsupported. Polarization is physical and modestly beneficial; I’m converging that term without roughness before testing any phase-specific anisotropic broadening.
+
+The anisotropy screen is testing only the three uniaxial microstrain axes allowed by the specimen model, one phase at a time. Isotropic crystallite sizes are retained; no generalized strain tensor or extra profile family is being introduced.
+
+I’m finishing the last optional anisotropic-broadening screen now. I’ll retain it only if one axis gives a distinct, physical improvement; otherwise the converged texture/polarization checkpoint remains the final model.
+
+The screen found one clean, axis-specific broadening term: MnWO₄ microstrain along [010] lowers Rwp from 3.172% to 2.943% with both components positive and no frozen/out-of-bound parameters. The other eight trials either worsened the fit, collapsed to zero/bounds, or were axis-degenerate, so only this MnWO₄ term is defensible. I’m validating that checkpoint and its residuals before export.
+
+The anisotropic checkpoint is now numerically converged (maximum inter-run shift <0.001σ). One remaining physically necessary check is phase-level displacement: the accepted WO₃ neutron parent carries zero thermal displacement, while the stated laboratory model permits 0.003–0.020 Å². I’m screening only a single shared Uiso per all-isotropic phase, with that physical bound; MnWO₄’s published anisotropic displacement tensors will remain untouched.
+
+The constrained refinements support Uiso = 0.00487(50) Å² for WO₃ and 0.01221(73) Å² for Mn₃WO₆, both interior to the stated physical range; together they reduce Rwp to 2.9243%. I’m making the corresponding like-for-like check for MnWO₄ by replacing its mixed published ADP convention with one bounded phase-common isotropic value—this is a reversible branch, and it will be rejected unless the fit and parameter are both well behaved.
+
+The MnWO₄ common-Uiso branch is not identifiable: its Uiso and polarization correlate at 95.7%, for only a 0.006%-point Rwp change. I’m rejecting that branch and retaining the published positive-definite Mn/W displacement tensors. The accepted model is correlation-clean (only one 0.904 cell-metric correlation) at Rwp 2.9243%, and I’m now exporting all deliverables from that exact checkpoint.
+
+The final project has also passed an independent atomic forward replay: all three saved structures and fractions reproduce the full 8,301-point grid at Rwp 2.92430%, with no negative ADPs, widths, background, or polarization flags. I’m doing one last final-state trace-Mn₃O₄ sensitivity test so the report can distinguish “absent” from “not independently resolvable.”
+
+The trace branch is still refining three independent starting fractions; there is no failure output so far. The submitted three-phase checkpoint remains untouched while this branch runs.
+
+The final-state Mn₃O₄ branches retain a model-dependent 0.74–1.02 wt% scale, but they improve Rwp by only 0.004–0.012 percentage points, share all useful reflections with accepted phases, and one hits the size bound. That supports “possible trace, not reliably resolved,” not a fourth asserted phase. I’m recording that distinction and the low-symmetry WO₃ uncertainty in the report.
+
+Completed the phase analysis and full-grid GSAS-II refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| MnWO₄, wolframite P 2/c | 62.989 wt% |
+| Mn₃WO₆, R -3 | 18.831 wt% |
+| WO₃, monoclinic P 2₁/c | 18.180 wt% |
+
+Rwp = 2.9243%, Rp = 2.1307%, GOF = 2.0544. Independent forward replay passed without physical-profile flags.
+
+Deliverables:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-6b4dba3c6916/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-6b4dba3c6916/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-6b4dba3c6916/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-6b4dba3c6916/workspace/final.gpx)
+- [MnWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-6b4dba3c6916/workspace/phase_1_MnWO4.cif)
+- [Mn3WO6 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-6b4dba3c6916/workspace/phase_2_Mn3WO6.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v4-v5-6b4dba3c6916/workspace/phase_3_WO3.cif)
+
+Possible trace Mn₃O₄ near 0.7–1.0 wt% could not be resolved uniquely and is excluded from the normalized fractions. The precise low-symmetry WO₃ distortion also remains somewhat model-dependent.
+

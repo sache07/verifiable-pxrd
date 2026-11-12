@@ -1,0 +1,42 @@
+I’ll inspect the diffraction data, metadata, and the provided analysis framework first, then identify candidate phases and carry the best model through GSAS-II refinement. I’ll keep the deliverables tied to the final `.gpx` so the CIFs, fractions, and profile all come from one reproducible project.
+
+The chemistry is a Ca–W–O reaction at 650 °C, so CaWO₄ is a strong hypothesis, but the pattern must decide whether unreacted WO₃/CaCO₃ or a Ca-rich intermediate remains. I’m now extracting peak positions and checking the frozen COD index/tooling rather than assuming the nominal product is the only phase.
+
+Peak positions and splitting exclude calcite, CaO, and Ca₃WO₆ at detectable levels. The current two-phase model is tetragonal scheelite CaWO₄ plus monoclinic WO₃; the WO₃ triplet at about 22.76/23.18/23.98° and its split peaks near 33° and 41° favor the P2₁/c polymorph over orthorhombic WO₃. I’m moving from stick-pattern matching to full-profile candidate refinements now, including the unknown specimen displacement and broadening.
+
+The first full refinement reaches \(R_\mathrm{wp}=3.62\%\) (statistical minimum 3.14%) with about 84 wt% CaWO₄ and 16 wt% WO₃. I’m screening the alternative WO₃ polymorphs in identical refinements now; this is important because several share the low-angle triplet, while their higher-angle splitting differs. The first fit is already good enough that any additional crystalline phase would need clear residual peaks, not just a chemical-balance argument.
+
+The polymorph screen is decisive: P2₁/c WO₃ fits at 4.46% before coordinate adjustment; triclinic WO₃ is next at 3.82% but refines its nominal 88.8/90.9/90.9° angles to essentially monoclinic 90/91.1/90°, far outside the allowed reference perturbation. Orthorhombic and other monoclinic candidates remain at 7–22%. I’m retaining P2₁/c and now tightening the refinement so coordinates and calibration stay physically defensible; an unconstrained trial lowered Rwp but moved some oxygen atoms implausibly far, so that trial will not be submitted.
+
+The bounded profile has settled at physically allowed values (instrument \(U=2.54\), \(W=2.07\), \(X=6.0\); CaWO₄ size ≈0.096 µm; WO₃ effectively instrument-limited) with \(R_\mathrm{wp}=4.29\%\) and 83.9/16.1 wt%. I’m testing only intensity terms now—common per-phase \(U_\mathrm{iso}\), surface roughness, and the permitted March–Dollase axes—while holding peak positions and widths fixed to avoid parameter trading.
+
+The intensity tests do not support preferred orientation or measurable surface roughness: all March–Dollase ratios stay within about 6% of unity, and the roughness fit collapses below the active range. The supported refinements are a common \(U_\mathrm{iso}\) per phase, the single scheelite oxygen site, and modest uniaxial microstrain; these lower Rwp to 4.08% without moving the weak WO₃ oxygen sublattice. I’m now checking explicit upper bounds for plausible omitted phases and then will freeze/export the final project.
+
+A third phase is now quantitatively supported: calcite contributes the previously unmatched 29.07° peak and lowers Rwp from 4.08% to 3.87%. CaO and Ca₃WO₆ refine to zero. The current crystalline fractions are approximately 78.6% CaWO₄, 15.6% monoclinic WO₃, and 5.8% calcite; the calcite amount has the largest systematic uncertainty because its strongest line overlaps the dominant CaWO₄ region.
+
+The structural model and three-phase refinement are complete. I’m now replaying the saved GSAS-II project directly to regenerate the submitted profile and verify that the CIFs, fractions, and reported residuals all agree with `final.gpx`.
+
+The clean replay is exact: `Rwp = 3.8659%`, the project is unchanged, and it reproduces 78.64 wt% CaWO₄, 15.57 wt% WO₃, and 5.80 wt% CaCO₃ with no profile-review flags. I’m checking the exported CIFs against that replay, then I’ll write the machine-readable result and the short uncertainty report.
+
+All required deliverables are now written. I’m running the same parsing and project/CIF consistency checks used by the evaluation workflow, including normalized fractions, physical-contact screening, and an independent check that `fit.csv` covers the original 8,301-point grid.
+
+Completed the GSAS-II refinement and artifact validation.
+
+| Phase | Weight fraction |
+|---|---:|
+| Scheelite CaWO₄ | 78.64 wt% |
+| Monoclinic WO₃ | 15.57 wt% |
+| Calcite CaCO₃ | 5.80 wt% |
+
+Clean project replay: Rwp = 3.8659%, Rp = 2.9099%, reduced χ² = 1.5175. Fractions are crystalline-phase normalized. Calcite has elevated systematic uncertainty, while the WO₃ oxygen coordinates are not independently well constrained.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-e4afd75e103f/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-e4afd75e103f/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-e4afd75e103f/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-e4afd75e103f/workspace/final.gpx)
+- [CaWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-e4afd75e103f/workspace/phase_CaWO4.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-e4afd75e103f/workspace/phase_WO3.cif)
+- [CaCO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-p0-e4afd75e103f/workspace/phase_CaCO3.cif)
+

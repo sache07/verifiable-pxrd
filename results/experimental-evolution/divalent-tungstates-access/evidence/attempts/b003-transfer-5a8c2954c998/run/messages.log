@@ -1,0 +1,63 @@
+I’ll inspect the measurement metadata, diffraction profile, and the supplied tungstate workflow/tooling first. Then I’ll identify candidate phases, build a multiphase GSAS-II refinement, and verify that every submitted artifact is generated from the saved `final.gpx`.
+
+The sample chemistry is Mn–W–O from WO₃ + Mn₃O₄ fired at 800 °C. I’m now mapping the observed peak set against the frozen COD library and checking the local phase-search/GSAS-II interfaces; likely candidates include MnWO₄, residual oxides, and Mn-rich tungstates, but I’ll let the full profile distinguish them rather than assume the nominal product.
+
+Peak-position matching now gives three distinct fingerprints: wolframite MnWO₄ is dominant; monoclinic WO₃ explains the 22.89°/24.17°/33–34° group; and rhombohedral Mn₃WO₆ explains the otherwise unmatched 19.67°/20.20°/28.48°/35.03° group. I’m moving from line matching to full-profile refinements and phase-omission tests so weak overlaps do not turn into false positives.
+
+The first omission test is decisive: MnWO₄ alone bottoms out near 16.75% Rwp, far above the three-phase model (~6.95%). I’m finishing the two-phase omissions and alternate-WO₃/fourth-phase tests now; these are also checking whether the apparent Mn₃WO₆ contribution is merely compensating an incorrect WO₃ polymorph.
+
+The phase inventory is now strongly supported: omitting WO₃ gives ~14.49% Rwp, omitting Mn₃WO₆ gives ~10.87%, while alternate WO₃ settings do not improve the three-phase fit. Adding Mn₃O₄ refines to only ~1.4 wt% and changes Rwp by ~0.015 percentage point, so it is not yet defensible as a real fourth phase. The dominant remaining residuals are intensity ratios within already assigned peaks, which points to atomic-coordinate/texture/profile refinement rather than missing peak positions.
+
+Texture refinement resolves the largest intensity mismatch: MnWO₄ strongly selects March–Dollase [111] (ratio ≈1.16), and WO₃ strongly selects [010] (ratio ≈1.36), lowering Rwp from ~6.95% to ~4.39%. Mn₃WO₆ shows no axis-specific gain, so I’m keeping it random rather than fitting a weak, ambiguous texture term. I’m now re-optimizing calibration, cells, bounded size/strain, isotropic ADPs, and coordinates around that physically supported model.
+
+The bounded refinement is now at ~3.33% Rwp with physically plausible three-phase fractions near 64% MnWO₄, 18% WO₃, and 18% Mn₃WO₆. Heavy-atom shifts remain small; oxygen-coordinate refinement helps modestly. I’m checking the generator-supported anisotropic-strain axes and a fourth-phase scale against this improved residual before freezing the final model.
+
+The three-phase assignment is now stable: MnWO₄, monoclinic WO₃, and Mn₃WO₆. I’m finishing the last profile-model comparison and then will export and independently replay-check the exact final GSAS-II project so the CIFs, fractions, and `fit.csv` all come from the same model.
+
+The independently regenerated profile confirms the polished model at \(R_\mathrm{wp}=3.280\%\), with no profile-validity flags. The current crystalline fractions are about 64.1% MnWO₄, 18.2% WO₃, and 17.7% Mn₃WO₆; I’m now checking whether the last small residuals justify one additional physical correction or a fourth phase, rather than absorbing them into an overfit.
+
+The precursor Mn₃O₄ was tested explicitly as a fourth crystalline phase. It refined to only 0.7–0.9 wt% and changed \(R_\mathrm{wp}\) by about 0.015 percentage point, with its broadening term running into a bound; that is not enough distinct evidence to report it as a resolved phase. The surface-roughness correction was likewise indeterminate and converged to the weakest allowed effect, so I’m keeping the simpler physically supported three-phase model and doing one final convergence pass.
+
+The same three-phase model continues to improve under repeated, bounded profile refinement without changing phase identity or fractions. The independently verified \(R_\mathrm{wp}\) has reached 3.24%, and the next pass is converging the correlated size/strain terms; all refined values remain inside the laboratory’s stated physical ranges.
+
+The profile terms are still moving monotonically toward a stable solution rather than oscillating or reaching bounds. I’m letting that convergence finish before freezing `final.gpx`; phase fractions remain effectively unchanged (within a few tenths of a percent).
+
+The run is now in the final outer refinement cycle. This is a deliberately conservative block refinement—instrument, each phase’s broadening, texture, then cells—so the structural coordinates and phase inventory are not being re-selected during convergence.
+
+Convergence has reached \(R_\mathrm{wp}\approx3.12\%\) while retaining positive analytic peak widths and all physical bounds. The remaining change per outer cycle is now only ~0.01 percentage point; I’m taking the last few cycles to remove dependence on the starting profile parameters.
+
+The model remains stable in phase identity, lattice metrics, and quantitative fractions during these final profile cycles. I’ll stop once the improvement is below the practical significance of the count noise, then regenerate—not reuse—the calculated profile from the frozen project.
+
+The profile is approaching a sensible physical limit: the common instrument width has stabilized, while WO₃’s uniaxial strain is converging toward the laboratory’s allowed anisotropy envelope. This behavior supports the anisotropic WO₃ profile term rather than an extra crystalline phase.
+
+No phase scale is collapsing or growing during convergence, and no negative-width/background warning has appeared. The model is therefore being polished within the same three-phase interpretation, not trading one phase against another.
+
+The physical constrained optimum is now selected at \(R_\mathrm{wp}=3.089\%\). I stopped one cycle before WO₃’s refined axial/equatorial strain ratio would exceed the stated laboratory envelope; the selected ratio is 3.88 (allowed maximum 4), with all size, strain, texture, instrument, and displacement values in range. I’m freezing that exact model now.
+
+The exact frozen project has now been independently replayed over all 8,301 points: \(R_\mathrm{wp}=3.08875\%\), \(R_p=2.27258\%\), with no profile-review flags. Its normalized crystalline fractions are 64.185% MnWO₄, 17.940% WO₃, and 17.874% Mn₃WO₆. I’m completing the CIF geometry/equivalence and file-consistency checks.
+
+One validation check caught a genuine structural caveat in the refined WO₃ oxygen sublattice: a symmetry-related O–O contact is 1.684 Å, below the conservative oxide review threshold. The phase identity and W framework are unaffected, but I’m correcting that oxygen-only over-refinement and will regenerate all final artifacts from the physically screened model rather than submit the shorter-contact version.
+
+The contact audit traces to the matched 1960 monoclinic WO₃ reference itself (its corresponding O–O distance is even shorter, ~1.575 Å), not to a new overlap created by the refinement. A modern alternative WO₃ model has cleaner oxygen geometry but fits the measured intensities worse. I’m therefore retaining the diffraction-supported W/cell model and explicitly marking the WO₃ oxygen substructure as unreliable instead of imposing an arbitrary geometry correction unsupported by this powder pattern.
+
+The final consistency audit found only a CSV-header compatibility issue: the profile values are exact, but the checker does not recognize `two_theta_deg` as an angle alias. I’m renaming that column to `two_theta` (values remain degrees and unchanged) and rerunning the audit.
+
+Completed the three-phase refinement:
+
+- MnWO₄: 64.19 wt%
+- monoclinic WO₃: 17.94 wt%
+- Mn₃WO₆: 17.87 wt%
+- \(R_\mathrm{wp}=3.08875\%\), \(R_p=2.27258\%\)
+
+A trace Mn₃O₄ contribution below ~1 wt% cannot be established reliably. The WO₃ phase and W framework are supported, but its oxygen substructure remains uncertain and contains a short inherited O–O contact documented in the report.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-transfer-5a8c2954c998/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-transfer-5a8c2954c998/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-transfer-5a8c2954c998/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-transfer-5a8c2954c998/workspace/final.gpx)
+- [MnWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-transfer-5a8c2954c998/workspace/phase_MnWO4.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-transfer-5a8c2954c998/workspace/phase_WO3.cif)
+- [Mn₃WO₆ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-transfer-5a8c2954c998/workspace/phase_Mn3WO6.cif)
+

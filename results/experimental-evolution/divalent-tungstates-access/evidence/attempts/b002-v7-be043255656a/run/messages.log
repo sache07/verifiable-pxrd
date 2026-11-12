@@ -1,0 +1,145 @@
+I’ll inspect the specimen metadata, pattern, frozen index, and the supplied refinement workflow first. Then I’ll build and compare phase models, refine the accepted mixture in GSAS-II, run the required bounded polish once, and export every deliverable from that exact final project.
+
+The specimen is the 800 °C WO₃–Mn₃O₄ system, with a broad but bounded synthetic-lab instrument/specimen model. I’m now interrogating the frozen reference index and extracting coherent peak families; that will distinguish ordinary Mn–W–O products/precursors before any analogue adaptation is considered.
+
+The dominant reflection family matches monoclinic wolframite MnWO₄ line-for-line (including the diagnostic 30.0/30.4° doublet). A second family is consistent with monoclinic WO₃, and weak residuals near the tetragonal Mn₃O₄ lines suggest unreacted precursor. I’m putting those ordinary phases through an equal-stage Rietveld checkpoint now; any coherent residual left after that will drive the missing-topology search.
+
+The ordinary three-phase checkpoint confirms MnWO₄ and WO₃ at substantial positive scale, but the Mn₃O₄ start is not physically stable: its tetragonal axis drifts about 2%, far beyond the supplied reference-mismatch range. I’m treating that as a rejected basin, not as phase evidence. I also caught and am correcting two exploratory setup defects (an unconstrained histogram scale and misaddressed profile bounds) before interpreting residuals quantitatively.
+
+The large apparent Rwp gains in the first exploratory runs did not replay: they came from variables frozen at tested bounds, so I have discarded those numerical checkpoints. The reliable conclusion so far is structural—MnWO₄ and monoclinic WO₃ are secure, while exact Mn₃O₄ is only a weak, unstable explanation. I’m now comparing the chemically balanced Mn₂WO₆ intermediate in two distinct parent topologies (orthorhombic and trirutile), as required for a genuinely unassigned residual family.
+
+A second coherent family is now clear in the replay-stable residual: approximately 35.1, 40.5, 59.3, 70.3, 73.7, 88.5, and 98°—the diagnostic cubic MnO sequence. I’m testing both cubic references and the symmetry-distinct hexagonal MnO reference at identical fixed-profile checkpoints before revisiting the remaining 19.9/20.4° family.
+
+The symmetry comparison has resolved the MnO-like family: hexagonal MnO gives the best replay-stable fit with a physically small cell shift, while both cubic starts fit worse. I’m now indexing the remaining low-angle residual family and testing whether it is a genuine fourth phase or unresolved line-shape/intensity structure from the accepted phases.
+
+The residual screening is narrowing the possibilities. The apparent high-angle “extra” peaks mostly coincide with weak reflections or Kα₂ components of MnWO₄/WO₃, so they are not independent evidence for another phase. The genuinely independent set is much smaller—chiefly near 19.85°, 25.42°, 31.76°, 32.48°, 35.11°, and 46.49°—and I’m indexing that set rather than allowing profile broadening to absorb it.
+
+The indexed residual is consistent with an ordered Pbcn Mn₂WO₆-type superstructure adapted from Fe₂WO₆: the ordered start remains at about 4–5 wt% and fits substantially better than the compositionally identical disordered Pbcn start. I’m now checking whether the MnO evidence requires one polymorph or both; this is the last inventory decision before full profile/coordinate refinement.
+
+The phase inventory is now physically closed at five phases: MnWO₄, monoclinic WO₃, cubic MnO, hexagonal MnO, and an ordered Pbcn Mn₂WO₆-type phase. I’m finishing the supported coordinate and line-profile terms now; the remaining work is refinement stability, the single mandated polish pass, and exact-project export.
+
+The coordinate tests are separating cleanly: MnWO₄ oxygen positions and the ordered Mn₂WO₆ tungsten site improve the fit without hitting bounds. The hexagonal MnO oxygen coordinate is weak and is being treated cautiously because its origin-related correlation makes it less reliable.
+
+The phasewise broadening test is finding that several “global” width refinements fail by pinning at limits, exactly as the earlier all-phase trial suggested. I’m retaining only phase-specific size/strain values that converge in the interior; limit-pinned terms will be rolled back instead of being mistaken for evidence.
+
+The broadening model has reached a defensible branch: MnWO₄ is best represented with no microstrain and a refined ~0.255 µm size; WO₃ needs stable uniaxial strain; Mn₂WO₆ supports an interior isotropic strain term. Cubic and hexagonal MnO width refinements run to limits and are being discarded, so their small fractions will carry larger uncertainty. Next I’m checking texture axes phase-by-phase.
+
+The revised dominant-phase model has made Uiso physically identifiable for WO₃ (~0.016 Å²) and weakly for MnWO₄ (~0.0044 Å²). A simultaneous U/W/X instrument branch is numerically unstable and has not completed; the bounded one-at-a-time branches have completed, so I’m stopping that correlated branch and will judge the supported terms from the stable tests.
+
+The residual audit shows the remaining large errors are not generic peak wings: they concentrate in the ordered Mn₂WO₆ reflection family (underfit at ~19.8, 20.4, 35.1, 46.5° and overfit near 30.2–30.7°). I’m revisiting that accepted topology’s internal coordinates/intensity basin before closure; this is profile evidence that the phase model is not yet terminal, not evidence to add another phase automatically.
+
+The alternative ordered-parent starts are consistently better, but their direct Pnc2 refinements expose an origin/component instability: x/z coordinates run to bounds, so that apparent gain is not acceptable. I’m projecting the same three analogue coordinate sets onto the common Pbcn symmetry and identical cell before comparing them again; this isolates genuine internal-coordinate differences from polar-origin freedom.
+
+I’m continuing from the equal-start comparison: first I’ll verify the Pbcn projection code and generate the symmetry-controlled analogue starts, then compare them against the current Fe-parent and fixed Pnc2 basins under the same refinement checkpoint.
+
+The projection is valid: all three analogue displacement fields recover Pbcn. I’m now running the three projected starts in parallel with identical background/scale/cell development, preserving the common-phase refinements unchanged.
+
+All three GSAS-II jobs are still refining; none has failed. I’m waiting for their zero-cycle replay outputs so the comparison uses recalculated, not stale, profiles.
+
+The controlled result is decisive: projecting the starts back to Pbcn gives Rwp 15.74–15.83%, while two independent Pnc2 starts both give 15.280% and nearly identical fractions. The polar distortion—not merely parent choice—is carrying the missing reflection intensities. I’ll retain the fixed-coordinate Pnc2 basin, check its geometry, and only test symmetry-safe coordinate subsets; the bound-running all-coordinate branches remain discarded.
+
+The symmetry-safe W-only test still drove one coordinate to its 0.10 Å bound and gave only a replay-level 0.007-point change, so I’m rejecting it and keeping the analogue coordinates fixed. Next I’m testing only the Pnc2 peak-broadening terms, independently, to avoid confusing profile mismatch with another phase.
+
+The three profile branches are still running; I’m requiring a cleared-flag replay for each before deciding whether strain, size, or no phase broadening is actually supported.
+
+The strain test itself is conclusive—it ran straight to the supplied 8000 microstrain ceiling, so that refinement is rejected. The branch then exposed a GSAS-II wrapper bug while reporting frozen variables; I’m patching only the diagnostic helper so the remaining size/no-strain replays can finish cleanly.
+
+The reruns are progressing normally after the diagnostic fix. Once both replay, I’ll select the simplest supported broadening model and then settle all active phase cells and zero together.
+
+Both jobs are converging slowly because each pass reoptimizes the 14-term background and five active scales. They remain isolated branches; no accepted project has been changed.
+
+Neither isotropic refinement is admissible: strain hits 8000 and size hits 0.04 μm, while removing strain worsens Rwp by 0.23. Broadening is real but its scalar magnitude is not reliably determined. I’ll test the three uniaxial directions; an interior, replay-stable solution can replace the inherited isotropic value, otherwise I’ll retain the simpler fixed interior model and state the uncertainty.
+
+The directional branches are still in their iterative passes. I’m checking both components against the 300–8000 microstrain limits; a lower Rwp will not be accepted if either component freezes at a bound.
+
+No branch has failed, but all are taking the full development sequence—an early sign that broadening is highly correlated with scale/background. I’ll use only the cleared-flag replay and parameter-bound audit.
+
+The simultaneous GSAS-II runs are unusually slow but remain active. I’m letting this one bounded comparison finish rather than interrupting it, because a partial checkpoint would not distinguish a physical anisotropy from numerical drift.
+
+All uniaxial variants also freeze at the upper strain limit and replay poorly, so they are rejected. The accepted structural/profile basin is now fixed: Pnc2 Mn₂WO₆ with conservative interior broadening and no refined coordinates. I’m cleaning the inactive comparison phase from the project before the final joint cell/zero refinement.
+
+The joint fit is stable for four phases, but cubic MnO’s cell is drifting beyond the 0.5% supplied mismatch envelope while its fraction is only ~1%. I’ll let the replay complete, then compare a fixed-cell cubic branch and a cubic-removed branch; the drifting cell will not be accepted.
+
+The fixed-cell and cubic-removed comparisons are running from the same clean checkpoint. This will decide cubic MnO by its whole reflection-family contribution, not by the unstable free-cell fit.
+
+Cubic MnO is weak but not spurious: fixing its physical parent cell gives a stable +0.76 wt% scale and lowers Rwp from 15.282% to 15.265%; the 35.10°, 59.04°, 70.61°, and 74.26° reflections improve, though the 40.76° member does not. I’ll retain it with a fixed cell and flag its fraction/identity as low confidence. Now I’m rechecking the shared U/W profile on the accepted five-phase model.
+
+The shared profile and joint cell/zero fits now converge cleanly (maximum shift/esd 0.028) and replay at Rwp 15.257%. I’m doing the terminal audit now—five active phases, full data range, cleared flags/bounds, nonnegative profile/background, and CIF geometry—before invoking the mandated one-time polish.
+
+The terminal geometry audit caught a real structural error before polish: the imported Pnc2 phase expands its special-position metals with multiplicity 4 in GSAS-II, yielding Mn₂WO₃ and 0.81 Å cation contacts instead of Mn₂WO₆. I have not run the mandated polish. I’m correcting the Pnc2 setting/special-position representation, then I’ll repeat the equal-start and terminal checks.
+
+The issue is a setting label, not the analogue coordinates: the standardized operations are Pcn2 (same space-group type #30), while the generated CIF was labeled Pnc2. Relabeling to Pcn2 makes GSAS-II recover the correct Mn₈W₄O₂₄ cell and special-position multiplicities. I’m repeating all three analogue-start comparisons from the same common checkpoint with this corrected setting.
+
+The corrected-setting trials are refining normally. Their phase masses and multiplicities are now chemically correct; I’ll compare only the final replay values and then re-audit the winning CIF geometry.
+
+With the setting corrected, the polar starts no longer win: their physical replays are Rwp 15.97–16.11%, versus 15.74% for the best Pbcn-projected start and 15.80% for the Fe-parent Pbcn model. The earlier 15.28% basin was entirely due to the multiplicity error and is discarded. I’m returning to the best physical Pbcn basin and checking its geometry and supported W coordinate.
+
+The Pbcn starts all pass geometry, with the winning 2002311 projection giving sensible Mn–O (1.95–2.26 Å) and W–O (1.93–2.08 Å) octahedra. I’m testing W, Mn, and O coordinates independently; any bound-hit subset will be rolled back.
+
+The coordinate branches are taking all passes, so I’m treating them as high-correlation tests. Acceptance still requires an interior solution and an unchanged replay, not merely a lower in-cycle Rwp.
+
+All three remain active without a process failure. I’ll use the generated JSON records to inspect exact coordinate displacements and frozen-variable lists once they finish.
+
+Coordinate evidence is clean: W moves only 0.006 Å for a 0.0001-point Rwp change, while Mn and O hit bounds and replay worse. I’m keeping the physically derived fixed Pbcn coordinates. The last phase-specific check is its broadening: isotropic strain, size, and no-strain branches from the same checkpoint.
+
+The Pbcn broadening test is physical and stable: isotropic microstrain converges at 6000 με; removing it worsens Rwp by 0.10, while crystallite size runs to the 1.5 μm bound and is rejected. I’m now cleaning the selected Pbcn project and repeating the weak cubic-MnO retain/remove comparison in this corrected model.
+
+The corrected five-phase and four-phase branches are settling all other cells, zero, scales, and background identically. This is the final phase-inventory decision before terminal nuisance refinement.
+
+Cubic MnO is now clearly retained: with its physical fixed cell it lowers Rwp by 0.091 and remains +1.38 wt%; removing it leaves the same family underfit. I’m settling the shared U/W profile next, then will iterate the remaining non-cubic cells until the shift/esd criterion is met.
+
+The accepted model now replays stably at Rwp 15.7355%; the remaining cell shift/esd is 0.20 but decreases monotonically and all actual cell changes are below 0.01% per pass, with no bounds or frozen variables. I’m stopping that correlated tail and repeating the full terminal geometry/project audit on the corrected Pbcn model.
+
+The corrected terminal audit passes: five active phases, full 8301-point range, no live flags/bounds/frozen variables, nonnegative background/profile, and correct Mn₂WO₆ stoichiometry with normal octahedral distances. WO₃ retains the source reference’s 1.576 Å O–O review flag, so I’ll report that structural uncertainty. I’m saving this checkpoint as `final.gpx` and invoking the required polish exactly once now.
+
+The one-time polish is still running its bounded coordinate branches; no branch result has been selected yet. I’m monitoring the audit output and will accept only a converged branch that preserves geometry, fractions, and the laboratory limits.
+
+The first all-coordinate trial dropped Rwp but is invalid: 30 WO₃/Mn₂WO₆ coordinate variables hit bounds and the fit did not converge. The supplied procedure is now rolling those atoms back and testing only interior modes; I will not accept the apparent 14.00% value.
+
+The first stabilized pass is still ineligible: both hexagonal-MnO z coordinates froze and shift/esd is 5.05. Those sites are being restored to the terminal checkpoint before the next interior-only pass.
+
+The all-coordinate branch has now reached an interior coordinate checkpoint (shift/esd 0.058, no frozen variables), but it is only a candidate at Rwp 15.651%. Its cell/scale/background settle and geometry/fraction audit still must pass.
+
+The all-coordinate branch completed its nuisance settle at Rwp 15.634%, with no bounds and acceptable convergence; it remains provisional pending geometry and lab-range review. The heavy/light branch has started invalidly, with three heavy-coordinate bounds hit.
+
+The heavy/light branch’s 13.99% intermediate fit is also invalid: many WO₃, hex-MnO, and Mn₂WO₆ coordinates are frozen at bounds and shift/esd is 6.94. The procedure is restoring those atoms and will judge only the stabilized remainder.
+
+The bounded polish is still running through its predeclared branches. I’m monitoring the existing invocation; once it finishes I’ll accept only a physically valid branch, then perform read-only replay/geometry checks and export everything from that exact project.
+
+The phase-wise coordinate branch is now underway. Earlier branches converged numerically after stabilization, but I’ll judge the selected result against the supplied cell envelopes and interatomic geometry—not Rwp alone.
+
+The weak MnO phases show the expected coordinate-instability warnings in isolated tests; those provisional stages are not eligible as final states. The script will stabilize the complete model and reject branches that retain frozen/bound parameters or fail geometry.
+
+The phase-by-phase branch has reached its joint settling stage, where its large temporary coordinate shifts are being removed. The physically conservative starting model remains preserved as `final.gpx` throughout this audit.
+
+The single polish invocation finished cleanly and selected its phase-wise branch at Rwp 15.584%. I’m now auditing that candidate against the conservative pre-polish model—especially the weak cubic MnO cell, pair distances, coordinate movement, and the script’s eligibility record—before deciding which exact project to submit.
+
+The selected polished branch is physically acceptable: it converged without frozen variables, retained all five positive phases, kept every cell well inside the supplied envelopes (cubic MnO changed only 0.052%), and introduced no new short contacts. I’m accepting `polished.gpx` as the exact final model and will now only copy it into `final.gpx`, audit, and export—no further refinement.
+
+The exact-project exports are complete: 8,301 profile points and five CIFs. The final replay reproduces Rwp 15.58385%, Rp 9.60474%, GOF 7.8321, with all phase fractions positive; I’m completing the independent CIF geometry screen and consistency checks before writing the manifest and report.
+
+The independent CIF screen passes MnWO4, both MnO polymorphs, and Mn2WO6. WO3 retains a 1.576 Å O–O flag, but the unrefined source reference has the same 1.575 Å feature, so this is documented as a source-model/oxygen-position uncertainty rather than hidden by further fitting.
+
+The submission parser now recognizes all five phases, a normalized fraction sum of 1.000000, no invalid records, and the full-grid profile. A fresh zero-optimization GSAS-II replay regenerated the reflections at Rwp 15.58384%, reproduced every fraction exactly, reported no profile review flags, and verified that `final.gpx` was unchanged.
+
+Completed the five-phase refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| [MnWO4](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-be043255656a/workspace/phase_01_MnWO4.cif) | 64.29% |
+| [WO3](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-be043255656a/workspace/phase_02_WO3.cif) | 24.68% |
+| [Cubic MnO](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-be043255656a/workspace/phase_03_MnO_cubic.cif) | 1.63% |
+| [Hexagonal MnO](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-be043255656a/workspace/phase_04_MnO_hex.cif) | 3.50% |
+| [Mn2WO6](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-be043255656a/workspace/phase_05_Mn2WO6.cif) | 5.90% |
+
+Full-grid fit: Rwp 15.58385%, Rp 9.60474%, GOF 7.8321. A fresh zero-optimization replay reproduced the result and all CIFs matched the submitted project.
+
+Files:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-be043255656a/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-be043255656a/workspace/fit.csv)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-be043255656a/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b002-v7-be043255656a/workspace/report.md)
+
+The report flags the minor cubic MnO fraction and analogue-derived Mn2WO6 structure as lower confidence, and documents the inherited short O–O contact in the WO3 reference model.
+

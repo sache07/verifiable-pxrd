@@ -1,0 +1,76 @@
+I’ll inspect the specimen metadata, pattern, and the frozen analysis package first, then build and refine the smallest physically supported phase model. I’ll keep the final exports tied to one replay-stable GSAS-II project and reserve the mandated bounded polish for the terminal model.
+
+The chemistry points first to Ba–W–O products, but the task deliberately permits incomplete reaction and multiple crystalline products. I’m now extracting the exact laboratory parameter ranges and the polish acceptance rules so that phase search and refinement do not absorb missing peaks into unphysical profile or calibration terms.
+
+Three coherent reflection families are already apparent:
+
+- broad Ba₃W₂O₉-like peaks (for example 30.78, 42.96, 53.67, 63.81°),
+- monoclinic WO₃ triplets near 23–25° and 33–35°,
+- sharp orthorhombic BaCO₃ peaks including 19.69 and 24.13°.
+
+Their common angular displacement is about +0.2°, consistent with the allowed zero/specimen-height terms. I’m building the first three-phase Rietveld checkpoint now; any residual family will be assessed only after cells and line shapes are physically developed.
+
+The three-phase model drops Rwp from ~52% to ~10.6%, strongly confirming the inventory, but the first profile pass is not physically acceptable: the common profile hit laboratory bounds and zero/height were ~99% correlated. I’m rolling back to the cell-refined checkpoint, fixing the redundant overall sample scale, and separating phase broadening from instrumental broadening before interpreting residual peaks.
+
+The restarted profile branch is behaving more sensibly: Ba₃W₂O₉ settles near a submicron coherent size, BaCO₃ remains finite, and only WO₃ reaches the “effectively large crystallite” end of the supplied range. The current strain pass is computationally slower; I’m letting it complete before deciding whether the WO₃ size term is identifiable or should be fixed.
+
+The Ba₃W₂O₉ strain term refined normally, but GSAS-II repeatedly stalls specifically on the monoclinic WO₃ isotropic-strain derivative. I’m treating that as numerical non-identifiability, not phase rejection: I’ll test WO₃ broadening by fixed-value profile scans and keep only a stable term if the data support it.
+
+The profile checkpoint now has interior U, X, and axial-divergence values; only W tried to cross its lower laboratory limit, so I’m fixing W at the last interior value. A key structural correction also emerged: the raw COD files carry inconsistent/zero ADPs, while the frozen generator normalizes every reference to Uiso = 0.005 Å² before applying a per-phase value. I’m restoring that common reference convention before calibration and bounded coordinate refinement.
+
+The coordinate tests were decisive about support: Ba/W coordinates improve the fit without hitting limits, while nearly every oxygen coordinate ran to the ±0.10 Å window. The carbonate C coordinate also hit a limit. I’ve stopped the joint pass and will retain only the stable heavy-atom shifts, rebuilding them from the clean pre-coordinate checkpoint so invalid light-atom excursions cannot contaminate the model.
+
+The texture comparison found a clear, physically allowed winner: Ba₃W₂O₉ with March–Dollase axis [110], reducing Rwp from 9.59% to 6.26%. The [001], [100]/[010], and [111] starts were all worse, with [111] reaching its bound. WO₃ and BaCO₃ showed only marginal isolated gains, so I’ll first converge the dominant [110] branch, then retest those minor terms on the same developed checkpoint.
+
+On the fully developed checkpoint, the minor-phase texture tests remain reproducible: WO₃ [010] improves Rwp by 0.136% and BaCO₃ [001] by 0.038%, with interior ratios. The joint three-texture/Uiso model reaches 5.71% without bound hits. I’m now testing the remaining shared intensity terms—polarization first, then a separate surface-roughness branch—so a nuisance term is retained only if it is both physical and independently beneficial.
+
+The remaining large residuals are intensity redistribution within the WO₃ family, not unindexed peaks. The current WO₃ reference overpredicts the ~33.49° member and underpredicts ~34.40°, which is exactly where other monoclinic WO₃ references differ. Before polishing profiles, I’m doing an equal-development comparison of the exact-composition WO₃ structures: each gets the same cell window, W-coordinate window, common Uiso treatment, and all five allowed texture-axis starts.
+
+The first alternative is decisively better: COD 2311041 lowers the equally developed WO₃ branch from 5.67% to 4.26% Rwp, with an interior Uiso and [110] texture ratio. This confirms the original WO₃ topology was a convincing positional match but the wrong intensity basin. I’m still completing the lower-symmetry members of the same exact-composition family before selecting the physical winner.
+
+The exact-composition comparison closes the structural question. COD 2311041 is the only physical basin that both converges and removes the WO₃ intensity residuals (Rwp 4.26%); 1528915 remains at 5.67%, while 2106293/2107312 require bound-hit coordinates or ADPs and fit very poorly. The P2₁/m start failed numerically, so I treat it as unknown rather than a rejection. With every coherent family now assigned, I’m stopping phase search and finishing the 2311041 model.
+
+The phase assemblage is closed chemically and crystallographically. I’m now resolving the remaining center/wing residuals with bounded anisotropic broadening tests, then I’ll settle the model, verify geometry and replay stability, and invoke the required one-time polish.
+
+A consistency check found that unconstrained site-by-site displacement factors had drifted outside the laboratory model for the weak phases. The specimen generator uses one isotropic U value per phase, so I’m restoring that physical constraint before judging the profile branches.
+
+The broadening test is decisive: Ba₃W₂O₉ needs strong isotropic size/strain broadening, while all three allowed uniaxial axes collapse to axial/equatorial ratios within about 3% and improve Rwp by only ~0.003 points. BaCO₃ strain independently refines below zero, so I’m retaining zero strain there and settling the simpler physical profile.
+
+The common U term is the only materially supported instrumental update (29.85 → 23.40, Rwp 3.922 → 3.834, well inside bounds). W tries to cross its laboratory lower limit and is rejected; X and axial divergence are only marginal. I’m now re-equilibrating the accepted U term against phase sizes before deciding those smaller profile contributions.
+
+The width decomposition is now physical and stable: all crystallite sizes are interior (about 0.214, 0.985, and 0.280 µm), Ba₃W₂O₉ strain is ~2274 ppm, and the other phases prefer zero strain. I’m moving to the final position calibration/cell replay, keeping zero and specimen displacement separate because they are strongly correlated.
+
+Cell/calibration replay stayed well inside bounds and converged; the changes are small but coherent. I’m now rechecking only previously supported cation coordinates, followed by the constrained per-phase U and texture terms. Oxygen and carbonate coordinates remain fixed for the mandated polish comparison because earlier unconstrained tests drove them to bounds.
+
+The supported coordinate replay reduced Rwp from 3.77% to 3.59%, and re-equilibrating widths/asymmetry reduced it further to 3.31%; all terms remain interior and converged. The remaining large residuals sit on accepted Ba₃W₂O₉ reflections rather than forming a new peak family. I’m doing one full replay of the supported structural/intensity/profile terms before freezing the polish input.
+
+The replay is stable at Rwp 3.2941% (maximum shift/esd \(3\times10^{-6}\)); phase fractions and every accepted physical term are stable and interior. I’m performing the pre-polish geometry/flag audit now, then I’ll freeze `final.gpx` and run the required bounded polish exactly once.
+
+The pre-polish audit passes: no active flags or frozen parameters, no short contacts, physical bond minima, nonnegative background, and normalized fractions 0.7203/0.2290/0.0507. `final.gpx` is now frozen from that checkpoint; I’m invoking the supplied polish once, exactly as requested.
+
+The polish branches are converging without bound hits. All three coordinate paths are landing in essentially the same basin (Rwp ≈3.119% after cell/scale/background replay), with phase fractions stable to well under 1% relative.
+
+The polish audit selects the heavy→light branch. It is eligible, converged (max shift/esd 0.0050), has no frozen variables or geometry violations, and preserves fractions; the read-only replay confirms Rwp 3.1187%, normalized fractions, finite profile arrays, nonnegative background, and no active refinement flags. I’m accepting it as the exact submitted project and exporting all deliverables read-only from that file.
+
+Exports are complete. I’m running the final consistency checks now: CIF parsing/composition, project-to-CIF agreement, fraction normalization, exact observed grid/profile arithmetic, and immutable project hash.
+
+All final checks pass: three CIFs parse with the intended compositions/space groups, each matches its corresponding phase in `final.gpx`, fractions sum exactly to 1, `fit.csv` reproduces all 8,301 observed points and grid values, and fresh-project replay reports no physical profile warnings.
+
+Completed and validated the three-phase refinement:
+
+- Ba₃W₂O₉ (R-3c): 71.888 wt%
+- WO₃ (P2₁/c): 22.996 wt%
+- BaCO₃ (Pnma): 5.116 wt%
+
+Fractions are normalized over modeled crystalline phases. Final fit: Rwp 3.1187%, Rp 2.2645%, GOF 1.3579. Amorphous content cannot be determined without an internal standard.
+
+Files:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-af49a9f47b75/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-af49a9f47b75/workspace/fit.csv)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-af49a9f47b75/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-af49a9f47b75/workspace/report.md)
+- [Ba3W2O9 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-af49a9f47b75/workspace/phase_Ba3W2O9.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-af49a9f47b75/workspace/phase_WO3.cif)
+- [BaCO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b004-v7-af49a9f47b75/workspace/phase_BaCO3.cif)
+

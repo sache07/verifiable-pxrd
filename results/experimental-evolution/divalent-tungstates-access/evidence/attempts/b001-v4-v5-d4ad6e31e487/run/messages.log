@@ -1,0 +1,49 @@
+I’ll first inspect the specimen metadata, diffraction grid, and the frozen reference/tooling layout. I’ll identify and checkpoint a complete multiphase model early, then refine only physically supported branches and export the requested GSAS-II project and artifacts.
+
+The specimen is a CuO–WO₃ reaction fired at 700 °C, on a 10–100° Cu Kα₁/Kα₂ grid with unknown zero, profile, displacement, texture, and background. I’m querying only the frozen COD index for Cu–W–O products and exact precursor/intermediate compositions, while independently extracting the observed peak families.
+
+Peak-family mapping already supports a chemically closed three-phase inventory: triclinic CuWO₄, cubic Cu₃WO₆, and monoclinic WO₃. A common ≈−0.45° displacement maps their strongest independent reflections (for example 29.55→29.09°, 15.65→15.18°, and the WO₃ triplet 23.15/23.61/24.37→22.67/23.08/23.89°). I’m now comparing the same-composition symmetry alternatives before committing the replayable GSAS-II checkpoint.
+
+The first full checkpoint refines to Rwp ≈9.48% with preliminary crystalline fractions 65.9% CuWO₄, 14.9% Cu₃WO₆, and 19.2% WO₃. I’m now applying the identical staged refinement to monoclinic-setting, triclinic, orthorhombic, tetragonal, and high-pressure CuWO₄ alternatives; this keeps topology comparisons fair rather than selecting on stick-pattern appearance alone.
+
+Topology coverage is decisive: the room-temperature monoclinic WO₃ parent gives Rwp 8.16%, triclinic WO₃ 8.39%, orthorhombic 18.04%, while tetragonal and hexagonal WO₃ scales collapse to effectively zero under bounded cells. The high-pressure P2/c CuWO₄ branch remains at ≈43.9%, so the ambient P−1 CuWO₄ model is strongly preferred. I’m mapping the remaining residual maxima against reflections from the accepted three phases before refining coordinates or specimen terms.
+
+All remaining residual families are accounted for by accepted reflections; the largest residuals sit directly on WO₃ 22.66/23.05/23.91°, Cu₃WO₆ 15.19/19.79/32.50/33.78°, or CuWO₄ peaks. Heavy-atom refinement improves Rwp from 8.16% to 7.42% while retaining normal Cu–O and W–O coordination. I’m now testing oxygen-coordinate release phase by phase, with geometry screening and rollback if any network becomes nonphysical.
+
+Unconstrained oxygen releases for Cu₃WO₆ and WO₃ lowered Rwp but produced impossible 1.17–1.52 Å W–O and 1.50 Å O–O contacts, so I rolled them back. Small fixed perturbations preserve octahedral geometry and give a modest gain. A common per-phase Uiso model then gives a large, physical improvement; with WO₃ capped at the stated 0.020 Å² range, Rwp is 5.82%. I’m proceeding to isotropic instrument, size, and strain terms in separate stages.
+
+The three-phase model is now closed and physically screened. I’m evaluating the last strain/profile branches against the current 5.07% Rwp checkpoint, then I’ll freeze the best full-grid replay and export the project, CIFs, profile, and report together.
+
+One important profile issue emerged: GSAS-II’s nominal “default” microstrain values were still contributing broadening. The Cu₃WO₆ peaks strongly require that term to collapse to zero, improving Rwp from 5.07% to 4.29%; I’m now fixing that boundary solution and re-testing the other two phases without the hidden default bias.
+
+Residual mapping exposed a coherent family at about 35.09°, 38.32°, 48.45°, 58.11°, and 67.68°. That is the displaced tenorite CuO fingerprint, so the three-phase checkpoint was not yet phase-complete. I’m adding the exact CuO precursor now and will re-quantify all fractions before any optional line-shape terms.
+
+With CuO included, every remaining residual maximum maps to an accepted reflection; the fit is already near counting statistics (Rwp 1.86%, expected 1.62%). The only structured mismatch is the WO₃ intensity balance—especially the 22.66/23.05/23.90° triplet—so I’m testing a single bounded March–Dollase orientation term on the plausible low-index axes, without reopening phase search.
+
+The complete four-phase model stabilizes the light-atom refinements that previously failed: free Cu₃WO₆ and WO₃ oxygen positions now remain chemically sound (Cu–O 1.91–2.24 Å; W–O 1.71–2.16 Å) and improve Rwp more than the tiny texture correction. I’m combining those physical coordinate refinements, then I’ll re-test whether any orientation term remains warranted.
+
+The accepted replay is now at Rwp 1.716% versus a 1.616% counting-statistics floor, with chemically valid geometries and a Cu/W inventory ratio of 1.021 (essentially the expected equimolar precursor balance). I’m freezing this model on the complete 8301-point grid and generating all deliverables directly from that same project.
+
+The full-grid replay converged cleanly: Rwp 1.7178%, Rp 1.2808%, goodness-of-fit 1.069, with all 8301 points calculated. Final crystalline fractions are 64.918% CuWO₄, 13.150% Cu₃WO₆, 19.247% WO₃, and 2.685% CuO; I’m doing the final geometry and cross-file consistency audit now.
+
+Completed the four-phase GSAS-II refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| CuWO₄ (P -1) | 64.918% |
+| Cu₃WO₆ (Pa-3) | 13.150% |
+| WO₃ (P 2₁/c) | 19.247% |
+| CuO (C 2/c) | 2.685% |
+
+Full-grid fit: Rwp 1.7178%, Rp 1.2808%, goodness-of-fit 1.069.
+
+Artifacts:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-d4ad6e31e487/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-d4ad6e31e487/workspace/fit.csv)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-d4ad6e31e487/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-d4ad6e31e487/workspace/report.md)
+- CIFs: [CuWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-d4ad6e31e487/workspace/CuWO4.cif), [Cu3WO6.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-d4ad6e31e487/workspace/Cu3WO6.cif), [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-d4ad6e31e487/workspace/WO3.cif), [CuO.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v4-v5-d4ad6e31e487/workspace/CuO.cif)
+
+Fractions are normalized over modeled crystalline material; amorphous content cannot be quantified without an external standard.
+

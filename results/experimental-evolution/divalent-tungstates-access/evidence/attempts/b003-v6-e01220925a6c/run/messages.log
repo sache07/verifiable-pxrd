@@ -1,0 +1,60 @@
+I’ll inspect the specimen metadata, diffraction range/resolution, and the frozen analysis tooling first. Then I’ll build the ordinary chemically supported phase inventory, refine it in GSAS-II, audit residual reflection families, and only afterward run the prescribed bounded polish.
+
+The chemistry points first to MnWO₄ from the 1:1 Mn:W charge, with Mn₃O₄/WO₃ or a manganese-rich oxide as plausible residuals. I’m now separating peak families from the very high, slowly varying background and checking exact-composition COD references before fitting anything.
+
+Two coherent families are already clear: wolframite MnWO₄ (for example 18.25°, 29.77/30.23°, and the 36° doublet) and monoclinic WO₃ (22.89/23.46/24.16° and the 33–34° cluster), all sharing the same negative angular displacement. A third family near 19.68/20.18/28.47/35.00/46.43° is consistent with Mn₃WO₆, so I’m testing that as a mass-balance-compatible manganese-rich product rather than assigning those peaks to a generic oxide.
+
+The three-phase model already drops Rwp from 34.1% to 6.88%, and all three scales remain strongly positive (about 63% MnWO₄, 18% Mn₃WO₆, 19% WO₃ in that exploratory fit). That confirms the inventory, but the unconstrained trial drove instrumental broadening outside the laboratory’s allowed range, so I’m rebuilding the checkpoint with the known physical bounds and the redundant overall scale fixed.
+
+The residuals are centered on reflections of the accepted phases rather than forming any unindexed family. Texture testing is physically informative: MnWO₄ has a clear [111] March–Dollase branch (ratio ≈1.155) that improves Rwp by about 0.74 percentage point, while the other tested MnWO₄ axes stay essentially random. I’m finishing the phasewise texture/profile audit from that evidence-backed branch.
+
+Surface roughness is not supported: three independent starts collapse to parameter bounds with 100% A/B correlation and indistinguishable Rwp, so I’m retaining the physically simpler zero-roughness model. The two strong texture directions remain stable; next I’m checking only the laboratory-supported uniaxial strain axes before the coordinate polish.
+
+The profile audit supports one additional physical term: MnWO₄ uniaxial strain along [100], with an axial/equatorial ratio ≈0.34 and no clipping. Mn₃WO₆ and WO₃ anisotropic-strain branches collapse to zero/bounds and are rejected. I’m now correcting the source-CIF thermal factors to the registration convention and refining one tied isotropic U value per phase, which is how these synthetic specimens were generated.
+
+The phase inventory is settled at MnWO₄ + Mn₃WO₆ + monoclinic WO₃. I’m now tightening the tied displacement parameters and full-range profile, then I’ll run the required one-shot structural polish and export every deliverable from the accepted project.
+
+The tied-Uiso model converged to physical, positive values and stable phase fractions, though its last shift is still marginally above one standard uncertainty. I’m giving that same model one settling pass and checking the export/replay schema before freezing the pre-polish checkpoint.
+
+The second Uiso pass is fully settled (max shift/σ ≈ 0.002). Its Rwp differs from the best physical checkpoint by only 0.008 percentage points, so I’m comparing the saved covariance, limits, and active refinement state before choosing the cleanest replayable starting point for the mandated polish.
+
+The best checkpoint is clear: Rwp 3.0611%, converged with max shift/σ 0.093, no frozen variables, tied positive Uiso values, and stable 62.91/19.05/18.04 wt% fractions. I’m freezing that exact state as `final.gpx` and reviewing the helper’s acceptance logic immediately before its single prescribed run.
+
+The helper’s acceptance gate matches the requested policy: bounded ±0.10 Å coordinates, convergence and geometry checks, stable fractions, and at least 0.02 percentage-point Rwp improvement. I’m running it once now from the converged checkpoint; afterward I’ll independently review the selected branch rather than accepting it on Rwp alone.
+
+The first coordinate branch improved Rwp substantially but failed the helper’s coordinate-convergence gate (final max shift/σ 1.10), so it cannot be selected. The remaining staged branches are still running; I’m preserving that rejection as “unknown/nonconverged,” not treating it as structural evidence.
+
+The helper selected the heavy-then-oxygen branch: Rwp 2.8578%, with coordinate and settle passes both converged and fractions changing by less than 0.2 percentage point. I’m now checking its full audit, atom shifts, bond/contact distances, and replayability before promoting it to `final.gpx`.
+
+The selected branch passes independent review: no short contacts, all Uiso values remain positive and tied, maximum atom shifts are 0.116 Å or less, and the key minimum bonds remain chemically normal (Mn–O 2.066–2.083 Å; W–O 1.73–1.90 Å). I’m accepting it as `final.gpx` and regenerating the entire profile independently from that saved atomic model before export.
+
+The independent read-only replay succeeded on all 8,301 measured points with no profile warnings, no negative intensities/background, and unchanged project hash. It gives full-grid Rwp 2.8563% and Rp 2.1083%; I’m now exporting CIFs and the checked profile, then validating that every reported fraction and structure round-trips to `final.gpx`.
+
+The CIFs round-trip as the intended formulas and space groups, match their COD reference topologies, and pass independent contact/validity checks. I’m doing the final submission-level parser check now, including exact fraction normalization and `fit.csv` grid identity.
+
+One formatting issue surfaced: the scientific data are valid, but the checker does not recognize the angle header `two_theta_deg`. I’m changing only that header to its accepted alias `two_theta`; the 8,301 data rows and all model values remain unchanged.
+
+All submission checks now pass: three quantified atomic models, normalized fractions, physical CIFs, project/CIF numerical agreement, and a recognized full-grid profile with Rwp 2.8563%. I’m doing one last hash/file-integrity check, then I’ll hand over the phase result and links.
+
+Completed the three-phase refinement:
+
+| Phase | Weight fraction |
+|---|---:|
+| MnWO₄, P2/c | 62.770% |
+| Mn₃WO₆, R-3 | 19.221% |
+| monoclinic WO₃, P2₁/c | 18.009% |
+
+Full-grid fit: Rwp = 2.8563%, Rp = 2.1083%. Fractions are normalized over modeled crystalline material; amorphous content remains undetermined.
+
+Deliverables:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-e01220925a6c/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-e01220925a6c/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-e01220925a6c/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-e01220925a6c/workspace/final.gpx)
+- [MnWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-e01220925a6c/workspace/phase_MnWO4.cif)
+- [Mn3WO6 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-e01220925a6c/workspace/phase_Mn3WO6.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b003-v6-e01220925a6c/workspace/phase_WO3.cif)
+
+The accepted polished project passed independent full-grid replay, project/CIF consistency, fraction normalization, and structural contact checks.
+

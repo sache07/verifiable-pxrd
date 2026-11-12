@@ -1,0 +1,32 @@
+I’ll inspect the specimen metadata, pattern, and frozen analysis guidance first, then build and verify a replayable multiphase GSAS-II model. I’ll preserve a physical checkpoint before the requested one-pass staged polish and keep every exported deliverable synchronized to the final project.
+
+The chemistry points first to scheelite CaWO₄, with WO₃/CaCO₃/CaO as ordinary residual candidates, but I won’t assume the inventory from chemistry alone. I’m now matching observed reflection families against the frozen COD index and inspecting the supplied GSAS-II refinement helper so the phase search and final polish use the intended workflow.
+
+Peak-family matching now supports a two-phase inventory: tetragonal scheelite CaWO₄ accounts for the broad dominant family, while monoclinic WO₃ accounts for the narrow 22.8–24.0° triplet and its higher-angle companions. I’m screening the available exact-composition WO₃ references in GSAS-II because several monoclinic settings are close in peak position but differ in splitting and intensity; that distinction affects both the refined structure and fraction.
+
+The restrained two-phase fit reaches Rwp ≈ 3.73% with scheelite plus one monoclinic WO₃ model, confirming that no third coherent reflection family is needed at this stage. I’m comparing the other monoclinic/triclinic WO₃ references under the identical bounded refinement sequence; the deciding evidence will be whole-pattern splitting/intensity agreement, not one diagnostic triplet.
+
+All coherent residuals are centered on the two accepted phase reflections, so the inventory search is closed. The best checkpoint gives about 85.7 wt% CaWO₄ and 14.3 wt% WO₃; I’ve also removed an exact histogram/phase-scale correlation and am now testing only generator-supported physical terms (polarization, common phase Uiso, texture, uniaxial microstrain, and surface roughness) before freezing the complete checkpoint.
+
+The supported nuisance model is now stable at Rwp ≈ 3.466%—essentially the Poisson noise floor for this count level—with physically bounded surface roughness, phase-wide isotropic Uiso values, and a statistically supported [001] uniaxial WO₃ microstrain. The phase fractions remain stable near 85.2/14.8 wt%. I’m doing the last one-term checks for marginal anisotropy/texture before locking the checkpoint; terms that return to a bound or lack a significant gain will be omitted.
+
+The final marginal checks do not justify extra CaWO₄ texture or CaWO₄ strain anisotropy: their best ratios stay essentially at random-powder/isotropic values and yield only ~0.001 Rwp points. I’m retaining the simpler physical checkpoint and now running the requested bounded staged coordinate polish exactly once; its geometry/fraction audit will decide whether any coordinate branch replaces the checkpoint.
+
+The staged polish selected its “all coordinates” branch: Rwp improved from 3.466% to 3.405%, phase fractions changed by only 0.03 wt% absolute, and the audit found no short contacts or geometry/fraction violations. The refined coordination remains chemically ordinary (CaWO₄ tetrahedral W–O ≈ 1.760 Å; monoclinic WO₃ octahedral W–O ≈ 1.69–2.18 Å), so I accepted the branch and re-exported all deliverables from that exact project. I’m now running a fresh native replay/consistency check and writing the uncertainty report.
+
+Identified two crystalline phases:
+
+- CaWO₄, scheelite (*I*4₁/*a*): **85.16 wt%**
+- Monoclinic WO₃ (*P*2₁/*c*): **14.84 wt%**
+
+Final fit: **Rwp 3.405%**, Rp 2.557%, GOF 1.086. Native GSAS-II replay reproduced the fit without validity flags. Fractions are crystalline-normalized; practical uncertainty is about 1–2 wt%.
+
+Deliverables:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-9b0d742b07c1/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-9b0d742b07c1/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-9b0d742b07c1/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-9b0d742b07c1/workspace/fit.csv)
+- [CaWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-9b0d742b07c1/workspace/phase_1_CaWO4.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-access/attempts/b001-v6-9b0d742b07c1/workspace/phase_2_WO3.cif)
+
