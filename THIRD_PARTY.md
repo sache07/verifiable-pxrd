@@ -34,12 +34,28 @@ The diffraction patterns and manifests are derived research artifacts included t
 reproduce the reported benchmark. Hidden reference CIFs must not be exposed to an
 evaluated solver.
 
+## Experimental Precursor Genome measurements
+
+The 15 measured scans and deposited-refinement exports in
+[`pxrd-bench/divalent-tungstates-PG15/`](pxrd-bench/divalent-tungstates-PG15/README.md)
+are a selected subset of Lauren Walters et al., **Precursor Genome**, version 1.0,
+[Zenodo, DOI 10.5281/zenodo.21285546](https://doi.org/10.5281/zenodo.21285546),
+released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+The source [ledger and schema](https://github.com/lauren-walters/precursor-genome)
+and selection checksums are recorded in the benchmark provenance directory.
+The release converts selected measurements to CSV, exports deposited calculated
+curves and phase annotations, and recomputes residuals on the documented grid.
+The measured intensities are not smoothed or background-subtracted. These data
+retain CC BY 4.0, not the repository's Apache software license.
+
 ## Crystallography Open Database
 
 The coding-agent conditions used a read-only local subset of the
 [Crystallography Open Database (COD)](https://www.crystallography.net/cod/). COD
 data are dedicated to the public domain under CC0; users should acknowledge the
-original structure authors and the COD. COD data are not bundled in this repository.
+original structure authors and the COD. The full database is not bundled; selected
+reference structures and structures consulted or submitted during the experiments
+are retained with their provenance.
 
 The frozen experiment resource was the DARA 1.3.0 filtered COD-2024 inventory:
 

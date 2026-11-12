@@ -1,0 +1,42 @@
+# Pb₃WO₆ adjudication in experimental case 013
+
+**Judgment: include Pb₃WO₆ in the working phase inventory.** Controlled addition of the deposited atomic model explains substantial intensity that the stronger five-phase solver solutions miss. The effect reproduces with two different parent measurement models, is supported outside the largest residual, and does not depend on refining atomic coordinates. This is considerably stronger evidence than the earlier test against an incomplete four-phase inventory.
+
+This is a post hoc, reference-assisted scientific adjudication of the PbO + WO₃, 500 °C experimental scan. It is not a blind solver success, a new baseline result, or evidence that a package can discover this structure independently. The Pb₃WO₆ candidate comes from the deposited Ceder refinement; its coordinates and starting cell therefore are not independent of the prior analysis of this specimen.
+
+The principal comparisons are below. Both arms underwent the same staged refinement. Rwp was independently recalculated from fresh GSAS structure factors, over 10.1–99.9° 2θ with weights 1/max(observed counts,1). These are comparisons within each parent model, not a new model-policy benchmark.
+
+| Starting model | Re-refined without Pb₃WO₆ | With Pb₃WO₆ | Pb₃WO₆ wt% |
+|---|---:|---:|---:|
+| Opus five phases | 10.599% | 6.678% | 11.48% |
+| Sol Max five phases | 10.745% | 7.411% | 11.27% |
+| Sol Max six phases including Pb₂O₃† | 10.247% | 8.279% | 9.80% |
+| Opus with alternative, geometry-screened WO₃ reference | 10.536% | 6.553% | 11.51% |
+
+The first two parent inventories are scheelite PbWO₄, Pb₂WO₅, monoclinic WO₃, massicot PbO and litharge PbO. The third also contains Pb₂O₃. †The third parent uses analytic peak widths that become negative and are numerically clamped by GSAS, and contains a geometrically questionable Pb₂O₃ reference. It is a sensitivity check, not the preferred physical model. See the complete flags in comparison.csv and summary.json.
+
+**Why the improvement supports a phase assignment.** In the Opus parent, adding Pb₃WO₆ and refining only phase scales, with all cells, atomic positions, background and measurement parameters fixed, already gives Rwp 7.620% versus 10.611% for the corresponding scale-only control. Thus most of the benefit is present before extra cell/profile flexibility is introduced. Subsequent matched refinement gives 6.678% versus 10.599%. The new phase has one scale, four monoclinic cell parameters, and one isotropic size parameter in this parent; its atomic coordinates, occupancies and displacement parameters remain fixed, with no added preferred orientation or empirical background peaks.
+
+Independent curve decomposition shows support near 30.19°, 31.00°, 31.36°, 46.36° and 48.41°, with additional weaker support elsewhere. 50.3% of the net reduction in weighted squared residual occurs outside 29.95–30.48°. These are improvements of the whole fitted model; overlapping reflections prevent assigning every local change uniquely to one phase. The strong crowded region near 27.8° actually becomes slightly worse locally, and residual shape/intensity errors remain. We are not claiming a perfect fit to every reflection.
+
+[Full profile comparison](profile_comparison.png) · [Reflection neighborhoods and Pb₃WO₆ component](reflection_details.png) · [Numerical reflection support](reflection_support.json)
+
+**Excluding the strongest residual from refinement.** I excluded 29.95–30.48° during both fits, then regenerated the predicted curves over the full original grid without optimizing anything further. The Pb₃WO₆ model still refines to 10.71 wt%; its Rwp in the excluded region is 9.18%, compared with 51.18% for the five-phase model. The full-scan values are 6.718% and 10.725%. This demonstrates that the remaining scan constrains a useful prediction of that region. It is not independent prospective validation: the candidate was selected using prior knowledge of this sample, and nearby/overlapping reflections and their tails remain in the fitting data.
+
+[Excluded-region prediction plot](heldout_region.png)
+
+**Removing it again.** Starting from the optimized six-phase model, setting Pb₃WO₆ to zero and refitting the other phases and measurement terms returns Rwp to 10.599%, essentially the original five-phase optimum. The improvement is therefore not explained simply by giving the original phases a better numerical starting point.
+
+**Competing Pb₂O₃ explanation.** Adding Pb₂O₃ instead of Pb₃WO₆ gives Rwp 9.355% with the Opus parent and 9.582% with the Sol Max five-phase parent. That is a measurable improvement but substantially weaker than Pb₃WO₆. The supplied Pb₂O₃ reference has fully occupied O–O contacts around 1.75 Å, requiring physical review. This test does not establish that Pb₂O₃ is wholly absent; it does show that it is an inadequate replacement for Pb₃WO₆ in these comparisons.
+
+**Physical and model sensitivity checks.** The added Pb₃WO₆ passes the existing necessary contact/occupancy screen before and after fitting. In the principal Opus fit its cell is a≈7.86693, b≈9.20353, c≈11.98391 Å, β≈130.79098°, close to the deposited starting cell (7.86731, 9.20315, 11.99580 Å, 130.834°). There are no negative-width, negative-background or displacement-parameter replay flags for the principal Opus and Sol Max five-phase comparisons. A screen pass is not a complete thermodynamic or chemical validation.
+
+The geometric audit exposed a separate inherited issue: the common WO₃ model, COD 1528915, contains fully occupied O–O contacts near 1.58 Å, in both the control and phase-added fits. To test whether this could explain the apparent Pb₃WO₆ benefit, I repeated the paired comparison with COD 2311041 (Loopstra and Boldrini, 1966, neutron diffraction), a different monoclinic WO₃ reference that passes the contact screen. These supplementary results are listed above. No atomic coordinates were relaxed to hide the short contacts. All six included phases in the alternative-WO₃, phase-added fit pass the necessary geometry screen. Its surface-roughness A parameter reaches its allowed lower bound of zero; this is a limiting attenuation model, not an independently measured surface property. The conclusion does not rely on this parameter: the fixed-measurement scales-only and cells/background stages already favor Pb₃WO₆ substantially.
+
+**Abundance and remaining uncertainty.** The preferred phase-added models put Pb₃WO₆ around 11 wt% of the modeled crystalline material. This supports a substantial missing component; it does not justify adopting Ceder’s 15.35 wt% automatically or quoting a precise absolute fraction. Differences in measurement modeling, absorption, overlap, reference coordinates and displacement factors still affect quantitative phase analysis. The region-exclusion test gives a similar but lower 10.71 wt%. Report phase presence more confidently than its last few weight percent.
+
+**Reproduction and integrity.** Source inputs and SHA-256 hashes are in ../inputs/manifest.json; verification is in source_integrity.json. Original projects and submissions were not edited. ../control/refine_trial.py records staged scales → cells/background → joint fits with original parent measurement choices. All phase coordinates and occupancies were fixed. The original polarization/zero-or-displacement choice and background order were retained within each comparison. The added phase inherited the parent Pb₂WO₅ size/strain initialization; Pb₃WO₆ Uiso was fixed at 0.005 Å². The independent replay uses the existing frozen replay_worker.py, optimizes no parameters, and never substitutes hidden calibration.
+
+Early Max-five trial directories marked invalid_trial are excluded: incompatible GSAS bound-dictionary key representations caused no refinement. Two subsequent startup attempts stopped after a successful first pass because the GSAS success return value is None; they also have no completed result and are excluded. Corrected, checked runs are the ones reported. None of these operational failures is a solver result.
+
+Artifacts: [all comparison rows](comparison.csv), [structured results and flags](summary.json), [geometry checks](geometry_checks.json), and per-trial final.gpx, stage history, parameter tables and replayed curves under ../runs/. The strongest answer to the original question is therefore affirmative: the better baseline solutions were still missing scientifically supported Pb₃WO₆, even though they already recovered Pb₂WO₅.
