@@ -1,0 +1,48 @@
+I’ll inspect the pattern, metadata, and the frozen PXRD workflow documentation first, then identify candidate phases and carry the best model through a GSAS-II refinement. I’ll keep the deliverables tied to that final project so the CIFs, fractions, profile, and statistics are internally consistent.
+
+The chemistry is Mn–W–O at only 300 °C, so unreacted MnO₂/WO₃, manganese tungstate, and Mn–W–O intermediates all remain plausible. I’m now separating background and peak positions, then I’ll search the frozen reference library by full-pattern agreement rather than assuming the nominal product.
+
+Peak positions now give a clean two-phase explanation: monoclinic WO₃ accounts for the 23–25° triplet and its higher-angle families, while rutile-type (pyrolusite) MnO₂ uniquely accounts for 29.01°, 37.68°, 56.96°, and 72.53°. I’m distinguishing among near-duplicate COD models and setting up the refinement with the specimen shift and instrumental broadening treated explicitly.
+
+The first GSAS-II passes support the phase assignment and already refine to roughly 73/27 wt% (WO₃/MnO₂), close to the precursor mass balance. The remaining mismatch is dominated by line-shape/intensity effects; the angular zero and specimen displacement are nearly collinear, so I’m keeping an eye on that correlation while the profile and atomic parameters refine.
+
+The bounded screen favors a [110] March–Dollase term for pyrolusite, but only modestly; it does not explain the whole intensity mismatch. The fit remains at Rwp ≈ 5.85%, so I’m moving next to the symmetry-constrained atomic coordinates and checking whether WO₃ also carries texture or whether a near-duplicate WO₃ reference fits better.
+
+The coordinate refinement is computationally heavier than the profile passes and is still running. The heavy-atom-only step improved Rwp only slightly (5.85 → 5.78%), which suggests the larger residual is not simply a small coordinate perturbation; the next discriminants are the WO₃ reference setting and anisotropic broadening.
+
+WO₃ texture refines back to unity for every allowed axis, so I’m rejecting that extra correction. I’m now isolating the structural intensity problem by freezing the line-shape/cell nuisance terms and refining only symmetry-allowed coordinates, which should avoid the correlations that destabilized the earlier all-at-once pass.
+
+The reference-model screen is separating clearly: COD 2311041 (the Loopstra/Boldrini monoclinic WO₃ model) fits substantially better than the older monoclinic alternative 1528915 (Rwp 5.79% vs 7.45% under identical treatment). I’m letting the lower-symmetry and orthorhombic controls finish before locking that choice.
+
+The anisotropic-width screen is not producing a decisive gain for WO₃; the best changes are only hundredths of Rwp. The triclinic reference still has a small raw-profile advantage, but its unconstrained oxygen refinement requires implausibly large shifts, so I’m weighing profile improvement against structural credibility rather than selecting it on Rwp alone.
+
+I found an important refinement-state issue: GSAS-II had permanently frozen several parameters after they touched exploratory bounds, so later screens were not fully comparable. I’m clearing only those frozen-state markers and re-optimizing with positive line widths; this should give a cleaner final comparison without changing the phase inventory.
+
+A coarse physically bounded Uiso grid is more stable than refining the highly correlated displacement factors directly. The best region so far is WO₃ Uiso ≈ 0.008 Å² and MnO₂ ≈ 0.014 Å², improving Rwp to about 5.42% while remaining inside the expected physical range.
+
+The physically constrained monoclinic and triclinic WO₃ refinements are statistically indistinguishable (Rwp ≈ 5.41%); the triclinic model uses many more independent cell/coordinate parameters. I’m selecting the monoclinic P2₁/c model on parsimony and room-temperature plausibility, and will record the unresolved monoclinic/triclinic distortion ambiguity in the report. Next I’m replay-validating the exact project and exports.
+
+The two-phase refinement is complete: monoclinic WO₃ and pyrolusite MnO₂, at about 73.2/26.8 wt%. I’m now validating the submission schema and exporting every artifact directly from the replay-verified GSAS-II project so the CIFs, fractions, and profile remain internally consistent.
+
+The replay check passes with no physical/profile warnings, and the exported profile is positive over all 8,301 points. I’m freezing that exact project now; the reported fit statistics will be recomputed from the independently regenerated GSAS-II curve, not from cached refinement arrays.
+
+The final files are now written. I’m doing one last end-to-end audit against the actual evaluator logic: JSON/CIF parsing, normalized fractions, exported-profile grid and Rwp, and a fresh replay of the root-level `final.gpx`.
+
+Completed the phase analysis and GSAS-II refinement.
+
+- Monoclinic WO₃, P 2₁/c: **73.24 wt%**
+- Pyrolusite MnO₂, P 4₂/mnm: **26.76 wt%**
+- Replay-verified Rwp: **5.4166%**
+- GOF: **2.016**
+
+Fractions are normalized over modeled crystalline material, with an estimated absolute uncertainty of about ±2 wt%. The WO₃ chemistry is secure, although monoclinic and triclinic distortions are difficult to distinguish uniquely.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r3/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r3/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r3/workspace/fit.csv)
+- [WO3_monoclinic.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r3/workspace/WO3_monoclinic.cif)
+- [MnO2_pyrolusite.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r3/workspace/MnO2_pyrolusite.cif)
+

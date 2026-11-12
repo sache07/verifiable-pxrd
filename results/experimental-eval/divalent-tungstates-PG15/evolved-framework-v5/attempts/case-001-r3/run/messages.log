@@ -1,0 +1,38 @@
+I’ll first inspect the specimen metadata, pattern format, and the frozen analysis tooling. Then I’ll build the simplest chemically plausible multiphase model, refine it in GSAS-II, and verify that every coherent reflection family is accounted for before writing the deliverables.
+
+The chemical setting strongly suggests a low-temperature partial reaction—likely some combination of BaWO₄ and residual/decomposed precursors—but I’m treating that only as a starting hypothesis. I’m now querying the frozen COD index and extracting observed peak families so the phase inventory is driven by the scan.
+
+The peak mapping is now internally consistent for two ordinary phases: orthorhombic witherite BaCO₃ accounts for the 24.21/24.65°, 34–35°, 42–47°, and 55–56° families, while monoclinic WO₃ accounts for the interleaved 23.43/23.91° family and its higher-angle counterparts. I’m moving this into quantitative whole-pattern refinements and will use any coherent residuals—not a marginal Rwp change—to decide whether BaWO₄ or another phase is actually present.
+
+The first coordinate branch exposed an important issue: an unconstrained intensity improvement can push oxygen positions to their bounds. I’ve kept the pre-coordinate checkpoint and am screening the trial geometry now; it will be rejected unless carbonate groups and WO₆ octahedra remain chemically credible.
+
+The geometry screen rejects the old 1960 WO₃ coordinates as a final model: one crystallographic W site is effectively five-coordinate (the sixth W–O contact is ~2.87 Å). I’m therefore testing the better-resolved room-temperature monoclinic references of the same composition; this follows the physical-model criterion even if the older model can be forced to a slightly lower residual.
+
+The residual intensity trend is diagnostic rather than a new reflection family: the strongest low-angle peaks are overcalculated while the same phases’ 42–56° reflections are undercalculated. That is the signature expected from Bragg–Brentano surface roughness, so I’m testing that specimen term next before considering texture or another phase.
+
+The two-phase structural model is complete and physical: witherite BaCO₃ plus monoclinic WO₃, with no independently supported BaWO₄ family. I’m now testing the last justified profile refinement—directional broadening of the WO₃ peaks—before freezing and exporting the exact replayable project.
+
+The width residuals support a modest [010]-type anisotropy in WO₃ and a stronger but still physical [010] anisotropy in BaCO₃; the other trial axes fit worse. I’m converging that selected branch now, then I’ll clean stale refinement controls so the submitted project replays without hidden boundary artifacts.
+
+The selected model has converged on the complete 8,301-point grid at Rwp 5.94%, with stable fractions near 53.24 wt% BaCO₃ and 46.76 wt% WO₃. I’m exporting directly from that cleaned checkpoint and will then independently reload the deliverables to verify project/CIF/fraction/profile consistency.
+
+All requested artifacts are now written. The exact submitted project has passed an independent no-refinement GSAS-II replay: the original grid and observations matched, both phase fractions matched exactly, both CIFs matched the project exports, and the replay reported no physical-profile warnings. I’m doing the final schema and file-integrity check now.
+
+Completed. The refined crystalline composition is:
+
+- BaCO₃, witherite: **53.24 wt%**
+- Monoclinic WO₃: **46.76 wt%**
+
+Full-grid fit: **Rwp 5.9389%**, **GOF 1.7096**. BaWO₄ was not reliably detected; a trace amount around 1 wt% or less cannot be excluded.
+
+Outputs:
+
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r3/workspace/final.gpx)
+- [BaCO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r3/workspace/BaCO3.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r3/workspace/WO3.cif)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r3/workspace/fit.csv)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r3/workspace/report.md)
+
+The final project passed an independent GSAS-II forward replay with matching CIFs, fractions, and no physical-profile warnings.
+

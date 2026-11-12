@@ -1,0 +1,30 @@
+I’ll inspect the measurement metadata, pattern, and the supplied tungstate-analysis framework first, then identify candidate phases and refine them in GSAS-II. I’ll keep the structural files, profile, statistics, and project mutually consistent and validate the deliverables before handing them off.
+
+The chemistry points first to Mn–W–O products plus possible Mn₃O₄/WO₃ remnants, but I won’t assume a single MnWO₄ phase: the pattern can include off-stoichiometric manganese tungstates or precursor-derived oxides. I’m now extracting peak positions and querying the frozen COD index for all composition-compatible structures, which gives a defensible candidate set before refinement.
+
+Peak matching now strongly supports wolframite-type MnWO₄: the diagnostic reflections at about 18.63, 23.85/24.31, 30.07/30.53, 31.31, 36.22, and 37.45° all align with the monoclinic P2/c model, including the characteristic split doublets. I see no comparably strong unmatched reflections yet; the next step is a full-profile refinement and an omission/residual check for trace phases.
+
+The first full-profile passes reduce Rwp from 26% to about 9%, confirming that one wolframite phase accounts for essentially all major peaks. The unconstrained width fit tried to drive one instrumental parameter negative, so I’m tightening the profile model to physically allowed ranges and separating instrumental from specimen broadening before accepting any result.
+
+The single-phase residual is already near 7%, but the width terms are nearly perfectly correlated (instrumental Lorentzian broadening versus crystallite size). I’m preserving only combinations that remain physical and identifiable; this matters because a numerically lower Rwp with negative strain or negative peak-width terms would not be a defensible structural model.
+
+A physically admissible profile model now reaches Rwp ≈ 6.43% (noise-limited Rexp ≈ 3.46%) with all atomic displacement parameters positive and all analytic peak widths positive. I’m now using the residual—not just Rwp—to test whether weak peaks require a second crystalline phase, and to check texture/calibration alternatives without corrupting the MnWO₄ structure.
+
+The refined difference curve shows alternating positive/negative lobes at MnWO₄ reflections rather than independent unmatched peaks; visually, the entire 10–100° pattern is accounted for. I’m doing one final quantitative guardrail: add the chemically plausible Mn₃O₄, WO₃, and Mn₃WO₆ candidates one at a time and see whether their scale factors remain positive and materially improve the fit.
+
+The trace-phase guardrail found only noise-level scale factors: about 0.30 wt% Mn₃O₄ and 0.17 wt% WO₃ individually, each changing Rwp by less than 0.002 percentage points; Mn₃WO₆ refined to zero. Those signals are not robust enough to claim additional phases, so the defensible model is single-phase MnWO₄, with possible sub‑0.5 wt% precursor traces explicitly treated as unresolved uncertainty rather than reported quantitatively.
+
+The final project is now converged and physically replayable: Rwp 4.291%, GOF 1.242, positive background, positive displacement parameters, and no negative-width warnings. I’m running the same style of independent project/CIF/profile consistency checks the evaluator uses before final handoff.
+
+Identified one reliable crystalline phase: wolframite-type MnWO₄, P2/c, at 100 wt% normalized crystalline fraction.
+
+Fit quality: Rwp 4.291%, Rp 3.366%, GOF 1.242. Possible Mn₃O₄/WO₃ traces below roughly 0.5 wt% were not reliable enough to report. Independent replay found no physical or consistency warnings.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-009-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-009-r3/workspace/report.md)
+- [phase_1_MnWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-009-r3/workspace/phase_1_MnWO4.cif)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-009-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-009-r3/workspace/final.gpx)
+

@@ -1,0 +1,44 @@
+I’ll inspect the specimen metadata, diffraction grid, frozen reference index, and the baseline’s GSAS-II workflow. I’ll first establish the simplest chemically plausible full-pattern model, then refine and validate it before writing the CIFs, profile, JSON, report, and replayable `final.gpx`.
+
+The specimen is a low-temperature BaO₂–WO₃ reaction, so the first candidates are residual BaO₂ and WO₃, BaWO₄ product, and plausible BaO/decomposition phases. I’m now matching the observed peak families against the frozen COD index rather than assuming the 200 °C chemistry fixes the answer.
+
+The strong families are now accounted for by two ordinary phases: monoclinic WO₃ gives the 23.4/23.9/24.65°, 29.19°, and split 33–34.4° groups; tetragonal BaO₂ gives the 26.32/27.05°, 42.97°, and 46.64° groups. I’m fitting alternative exact-composition WO₃ references and will retain the physically sound topology if their profile fits are close. No BaWO₄-specific 17.3° family is evident at this stage.
+
+The bounded two-phase refinement reaches Rwp ≈ 8.57% with positive scales (about 64% WO₃ / 36% BaO₂ at this checkpoint). Several profile terms sit at their allowed limits, so I’m treating that as a model-selection warning—not as evidence for exotic chemistry—and comparing the nearby WO₃ polymorphs under the identical bounded refinement before adding texture or coordinates.
+
+The orthorhombic and older monoclinic checkpoints have finished; the lower-symmetry triclinic comparison is still refining. I’m keeping all candidates on the same full 10–100° grid and parameter bounds so the Rwp differences reflect the structural model rather than extra nuisance freedom.
+
+A replay check exposed an important GSAS-II detail: the very low screening Rwp values were tied to parameters clipped at bounds while the stored curve still reflected the out-of-bound trial. Recomputing from the saved physical parameters gives Rwp ≈ 11.33%, so I’m discarding the optimistic 8.57% diagnostic and rebuilding from a self-consistent checkpoint with nonlinear blocks frozen between stages. This protects the final project’s replayability.
+
+The physical coordinate branch is stable: bounded W/O shifts lower the replayed Rwp from 10.21% to about 9.96%, with WO₃ W–O distances 1.77–2.18 Å and the BaO₂ peroxide O–O distance 1.41 Å. The unconstrained oxygen branch moved atoms far beyond the known reference-mismatch scale for only a small gain, so I rolled it back. I’m now testing specimen/profile terms one at a time from the bounded structure.
+
+The supported profile complexity is now clear: WO₃ requires uniaxial microstrain along [100] (≈ 8000/15 766 ppm), while BaO₂ is best with [001] anisotropy (≈ 8000/4681 ppm). Small March–Dollase terms also improve the fit. A common-Uiso trial tried to push WO₃ below the laboratory’s physical range, so I fixed it at the 0.003 Å² lower bound and retained the refined BaO₂ value (0.00782 Å²). The current replay-consistent Rwp is ≈ 9.33%.
+
+All remaining positive residual maxima coincide with the accepted WO₃ or BaO₂ reflection families; there is no coherent 17.3°/31.9°/53.6° BaWO₄ family or other third-phase family, so I’ve stopped phase-library searching. I’m doing one final calibration grid because zero, specimen displacement, and phase cells are correlated; each grid point is refit with identical cells/scales/background while staying inside the stated laboratory bounds.
+
+The calibration grid found a clear internal optimum at zero = −0.1788° with the displacement at the allowed −800 µm boundary. After reoptimizing the bounded phase profiles, the replay-consistent full-grid Rwp is 7.58%; the crystalline weight fractions have stabilized near 64.8% WO₃ and 35.2% BaO₂. I’m now freezing that best checkpoint, exporting matching CIFs/profile statistics, and running an independent project replay/geometry check.
+
+The two-phase model is now selected and physically bounded: monoclinic WO₃ plus tetragonal BaO₂, with no remaining coherent reflection family requiring a third crystalline phase. I’m finalizing the replayable GSAS-II project and exports, then I’ll independently replay the project against the raw pattern before reporting the fractions.
+
+The frozen export gives 64.76 wt% WO₃ and 35.24 wt% BaO₂, with Rwp 7.58% on all 8,301 points. I’m now checking that a fresh GSAS-II replay—not the stored calculated curve—reproduces the same profile, phases, and fractions.
+
+Fresh replay is exact to numerical precision: Rwp remains 7.581258%, both phase fractions are unchanged, and the regenerated calculated profile differs from `fit.csv` by less than \(5\times10^{-9}\) counts. The exported CIFs also match the structures replayed from `final.gpx`; I’m recording the evidence and the realistic uncertainty limits now.
+
+Completed the PXRD analysis. The crystalline model is:
+
+- Monoclinic WO₃ (P 2₁/c): 64.76 wt%
+- Tetragonal BaO₂ (I 4/mmm): 35.24 wt%
+
+Rwp = 7.5813%, goodness of fit = 2.0847. No coherent evidence supports BaWO₄ or another crystalline phase. Realistic fraction uncertainty is approximately ±2–3 percentage points.
+
+Files:
+
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r3/workspace/final.gpx)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r3/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r3/workspace/fit.csv)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r3/workspace/phase_WO3.cif)
+- [phase_BaO2.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r3/workspace/phase_BaO2.cif)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r3/workspace/report.md)
+
+A fresh GSAS-II replay regenerated the same fractions and Rwp, with the calculated profile agreeing with `fit.csv` to numerical precision.
+

@@ -1,0 +1,60 @@
+I’ll inspect the measurement metadata and diffraction profile first, then identify candidate phases and carry the best structural model through a GSAS-II refinement. I’ll validate the exported CIFs, phase fractions, and profile against the saved project before reporting uncertainty.
+
+The chemistry strongly suggests calcium tungstate formation, but the low synthesis temperature makes residual precursor or an intermediate plausible. I’m now checking the peak inventory and the installed phase-search/indexing interfaces rather than assuming a single-product model.
+
+Peak positions now give unambiguous signatures of monoclinic WO₃ and scheelite CaWO₄; several additional reflections are consistent with residual calcite. I’m separating genuine calcite peaks from overlaps by comparing full profiles and will retain a third phase only if it materially improves the refinement and stays physically stable.
+
+The three-phase trial is already a strong fit after only cell and common profile refinement (weighted profile R ≈ 11.7%), with provisional fractions near 54% WO₃, 38% calcite, and 8% CaWO₄. The refinement is still converging phase-dependent widths; I’m checking those values for physical stability and comparing against reduced models.
+
+The reduced models are decisively worse (Rwp ≈ 16.8–17.2% versus 11.7% for three phases), so calcite and CaWO₄ are both required in addition to WO₃. I also found and removed an exact scale-factor degeneracy in the initial trial; the next comparison uses a constrained, physically interpretable profile and alternative WO₃ structure settings.
+
+The better monoclinic WO₃ model (same γ-WO₃ phase in a nonstandard cell setting) lowers Rwp to 9.5% with a stable, non-singular width model. Fractions are now insensitive to reasonable profile choices—about 54% WO₃, 38.5% calcite, and 7.8% CaWO₄—so I’m checking the remaining residual for texture or missed phase evidence before freezing the final model.
+
+A narrower fixed instrumental contribution plus phase-specific size/strain removes the major width bias and improves Rwp to 8.4%, but that trial stopped before convergence. Its phase fractions moved to roughly 55% WO₃, 33% calcite, and 12% CaWO₄, so I’m continuing it to stability before deciding whether that extra broadening model is justified.
+
+The three-phase model is now stable: monoclinic γ-WO₃, calcite CaCO₃, and scheelite CaWO₄. A modest calcite (104) preferred orientation is supported by the profile and lowers Rwp to about 8.03%; I’m packaging that converged refinement and checking every exported artifact against the saved project.
+
+The refinement reloads correctly with all three phases. I hit a script-interface mismatch while extracting the limits (the project itself is intact), so I’m reading the project tree directly and will use that same saved-state data for the deliverables.
+
+The final quantitative state is 57.33 wt% γ-WO₃, 29.86 wt% calcite, and 12.81 wt% scheelite CaWO₄, normalized across crystalline phases. Before writing the report, I’m checking the rejected two-phase fits so the phase-identification evidence is reported quantitatively and not overstated.
+
+A control comparison exposed an important issue: a triclinic WO₃ reference fits dramatically better than the monoclinic model (Rwp 1.80% versus 8.03%). I’m reopening that refinement now; unless it is being driven by a singular or nonphysical parameter, it supersedes the provisional monoclinic assignment and fractions.
+
+That apparent breakthrough was an artifact: the triclinic trial had imported only 214 observations (10–12.3°) because its temporary XYE file was caught mid-write, so its low Rwp did not describe the full pattern. I found the truncation in the saved project and am rerunning that candidate sequentially over all 8,284 fitted points before locking the WO₃ polymorph.
+
+The corrected full-range triclinic test is decisively poor (Rwp 42.5%) and numerically unstable, so the γ-WO₃ assignment remains the valid one. I’m doing one final residual audit now—looking for systematic unmodeled peaks or line-shape bias—before freezing the project and exporting it.
+
+The numerical audit is still valid; only the plotting library is absent from the GSAS-II environment. I’ll generate the diagnostic with the analysis environment instead and keep the refinement data unchanged.
+
+The residual audit finds no convincing extra reflections, but the largest errors are intensity mismatches within the WO₃ peak groups rather than missing peaks. That points to the choice of WO₃ reference coordinates/intensity model, so I’m screening the local COD WO₃ structures before accepting an 8% fit.
+
+The local COD screen confirms the chosen γ-WO₃ model is uniquely compatible with the full pattern. Its 1960-era coordinates had zero displacement factors; refining physically constrained common W and O displacement terms improves Rwp to 7.88% and keeps both terms positive. I’m testing whether the low-precision tungsten coordinates themselves account for the remaining intensity bias.
+
+A fully generalized anisotropic-strain model lowers Rwp to 6.96%, confirming direction-dependent WO₃ broadening, but it develops nonphysical negative terms and an SVD failure, so I will not submit it. I’m replacing it with a constrained uniaxial broadening test that adds only one independent width parameter and can remain physically stable.
+
+The six constrained width tests are still running in parallel; they are CPU-bound rather than stalled. I’ll collect them from their project files once the refinements finish, then keep only a converged, positive model.
+
+The constrained WO₃ model is now stable at Rwp 7.47%: positive common displacement factors, a single uniaxial microstrain axis, no singularities, and converged shifts below 0.01σ. An added anisotropic-size term improved Rwp by only 0.07% and was 96% correlated with strain, so I rejected it. I’m checking the symmetry-natural c-axis broadening of the two calcium phases as the last model-selection step.
+
+The calcium-phase anisotropy checks do not justify extra parameters: CaWO₄ worsens the fit, and calcite changes Rwp by only 0.007%. I’m therefore freezing the simpler converged model at Rwp 7.47%, with three phases, calcite (104) texture, and only the supported WO₃ uniaxial strain term.
+
+All requested files have been exported from `final.gpx`. I’m now doing the handoff checks: reopening the final project, independently parsing each CIF, verifying composition/cell agreement, and checking that `fit.csv` reproduces the stored Rwp and that the JSON fractions sum exactly to one.
+
+Completed the three-phase GSAS-II refinement:
+
+- γ-WO₃, *P*2₁/*c*: **58.34 wt%**
+- Calcite CaCO₃, *R*-3*c*: **29.07 wt%**
+- Scheelite CaWO₄, *I*4₁/*a*: **12.59 wt%**
+
+Fit: Rwp 7.467%, Rp 5.539%, GOF 3.127. Fractions are normalized over crystalline phases; systematic uncertainty is several wt.%-points.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3_gamma_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_gamma_monoclinic.cif)
+- [CaCO3_calcite.cif](<ATTEMPT_WORKSPACE>/CaCO3_calcite.cif)
+- [CaWO4_scheelite.cif](<ATTEMPT_WORKSPACE>/CaWO4_scheelite.cif)
+

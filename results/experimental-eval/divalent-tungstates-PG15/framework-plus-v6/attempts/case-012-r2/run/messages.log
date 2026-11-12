@@ -1,0 +1,40 @@
+I’ll first inspect the measurement metadata, pattern, and the frozen P0 workflow, then build a chemically screened phase inventory before refining. I’ll keep the analysis reversible and verify that the exported CIFs, fractions, profile, and `final.gpx` all agree.
+
+The context points to a 900 °C NiO + WO₃ reaction, so NiWO₄ is the principal expectation, with NiO/WO₃, alternate tungstate polymorphs, and off-stoichiometric Ni–W–O records kept as explicit challenges. I’m now extracting peaks and querying the frozen COD index by occupied composition and physical plausibility, not just formula labels.
+
+The peak families separate cleanly into wolframite-type NiWO₄ and monoclinic WO₃. In particular, the WO₃ triplet near 23–24.3° and its 33–34.1° multiplet rule out the tetragonal/hexagonal and reduced tungsten oxides; no coherent NiO (200) peak is present near 43.4°, so NiO remains only a rejected/watch-list candidate. I’m testing the physical NiWO₄ analogue and the two nearly equivalent monoclinic WO₃ records in GSAS-II next.
+
+Record challenges now favor the repaired COD 5910277 NiWO₄ model plus COD 2311041 monoclinic WO₃: under the same background, scale, angular, cell, and profile model it gives the lowest Rwp, while alternate WO₃ records leave coherent multiplet residuals. The two-phase scales are stable near 77–78 wt% NiWO₄ and 22–23 wt% WO₃. I’m now resolving the remaining peak-width model; the first unconstrained trial drove a Lorentzian coefficient negative, so I rejected it and returned to nonnegative common-profile bounds before testing phase widths.
+
+The physically constrained refinements now support equal per-phase isotropic displacement parameters (about 0.013 Å² for NiWO₄ and 0.019 Å² for WO₃), weak NiWO₄ [111] texture, and a moderate low-angle roughness correction; WO₃ texture and microstrain are unsupported. A 10-term smooth Chebyshev background captures the inferred power-law continuum without the instability seen in Q-power or higher-order trials, reducing Rwp to about 4.32%.
+
+The clean-profile re-challenge supports a trace third phase: rocksalt NiO at about 0.4 wt%, with coherent contributions across several families but substantial systematic uncertainty. The provisional crystalline inventory is therefore NiWO₄ (~74.4%), WO₃ (~25.2%), and NiO (~0.4%); I’m now replaying the cleaned project and making the exports agree exactly.
+
+The frozen project passed an independent no-refinement forward replay: it regenerated the full 8,282-point scan from saved atomic models, found no negative-background/profile/ADP flags, and reproduced the phase fractions exactly. I’m using that regenerated curve—not GSAS-II’s cached calculated array—for `fit.csv`.
+
+The exported CIFs also pass composition, density, occupancy, symmetry, and nearest-neighbour screens. The major-phase oxygen coordinates remain prototype-constrained, and the NiO amount is too small for precision beyond roughly ±0.2 wt%; I’ve made both limitations explicit in the report.
+
+A final residual audit exposed one issue worth revisiting: the 10-term background leaves a statistically significant broad trend, while a still-smooth 12-term trial had much lower deviance. I’m comparing nearby background orders under the same fixed inventory and nuisance model before freezing the answer; this may slightly shift the trace NiO estimate.
+
+The background-order challenge selected 12 terms: lower orders retained a broad trend, while higher orders began treating the terminal scan-edge rise as background. After reconvergence, the trace NiO estimate shifted from 0.41 to 0.32 wt%—exactly the background sensitivity noted in the uncertainty statement—while the two major fractions changed by under 0.15 wt%.
+
+Completed and independently replay-validated.
+
+| Phase | Weight fraction |
+|---|---:|
+| NiWO₄, P2/c | 74.338 wt% |
+| WO₃, P2₁/c | 25.347 wt% |
+| NiO, Fm-3m | 0.316 wt% |
+
+Rwp = 4.2529%, Rp = 3.2813%, goodness-of-fit = 1.2250. Trace NiO is tentative and its fraction is not reliable beyond approximately ±0.2 wt%.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r2/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r2/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r2/workspace/final.gpx)
+- [NiWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r2/workspace/NiWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r2/workspace/WO3.cif)
+- [NiO.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r2/workspace/NiO.cif)
+

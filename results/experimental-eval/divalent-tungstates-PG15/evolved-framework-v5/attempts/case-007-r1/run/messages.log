@@ -1,0 +1,45 @@
+I’ll begin with the specimen metadata and raw pattern, then inspect the frozen analysis tooling for the intended GSAS-II workflow. I’ll establish the chemically ordinary phase inventory first, refine a replayable multiphase project, and only investigate residual families if the complete baseline leaves coherent unassigned peaks.
+
+The chemistry points first to MgWO₄, with MgO and WO₃ as the most defensible residual candidates at 900 °C. I’m now matching the observed peak families against the frozen COD index and checking the local GSAS-II/DICVOL interfaces, while independently extracting peak positions so the phase inventory is driven by the specimen rather than chemistry alone.
+
+Three coherent phase families are already evident: wolframite MgWO₄, monoclinic WO₃, and rocksalt MgO. For example, the observed WO₃ triplet at 23.443/23.932/24.682° matches the monoclinic reference triplet after the common specimen shift, while MgO independently accounts for 43.209/62.540/75.048/94.249°. I’m moving to full-pattern refinement now; no additional phase search is warranted unless the refined residual exposes another coherent family.
+
+The first complete three-phase refinement is already quantitatively strong (Rwp ≈ 7.45%) and gives roughly 79% MgWO₄, 14% WO₃, and 7% MgO. I found one refinement bookkeeping issue—GSAS-II had both the global and phase scales active—and the unconstrained profile tried to trade instrumental broadening against phase strain. I’m correcting that degeneracy and applying the documented physical instrument/specimen bounds before comparing the close monoclinic WO₃ references.
+
+The constrained refinement is stable but initially fit worse because width changes shifted the leverage on peak centroids. I’m closing that loop by alternating cells, specimen displacement, and angular zero—never refining the two nearly collinear calibration terms together. This keeps the model physical while recovering the profile agreement of the unconstrained checkpoint.
+
+The first close-reference comparison favors COD 2311041 over 1528915 by a modest but repeatable margin (Rwp 10.28% versus 10.62%) before coordinate refinement. Both are physical monoclinic WO₃ descriptions of essentially the same room-temperature framework; I’m letting the lower-symmetry triclinic checkpoint finish, then I’ll choose based on fit plus geometry rather than the small numerical difference alone.
+
+The first coordinate branch exposed a GSAS-II scripting convention: its limit dictionary treats the nominally named `dAx/dAy/dAz` parameters as absolute fractional coordinates during the update. My initial ±0.03 limits therefore clipped coordinates to ±0.03 instead of limiting their displacement. That branch is invalid and discarded; I’m restarting from the untouched physical checkpoint with atom-specific bounds centered on each published coordinate.
+
+The bounded coordinate refinement remains physically sensible and improves Rwp from 10.28% to 9.58%. W–O distances remain 1.78–2.19 Å, and the common per-phase Uiso values refine to plausible positive values. I’m now moving to specimen/profile effects—polarization, surface roughness, and phase broadening—before testing any supported texture or anisotropy.
+
+The profile branches support weak but statistically resolved MgWO₄ texture (March–Dollase [110], 1.039) and uniaxial MgWO₄ strain along [100]; a smaller WO₃ [010] strain anisotropy is also physically plausible. Surface roughness was rejected because the tiny Rwp gain drove a nearly perfectly correlated parameter to its physical bound. I’m now closing the accepted model by alternating cells/calibration and re-optimizing each retained parameter family from the best checkpoint.
+
+The closed model reaches Rwp 8.32% with no unassigned reflection family; remaining residuals are concentrated at already indexed strong peaks, so I’m stopping phase search as requested. I’m freezing the best full-grid checkpoint now, exporting CIFs from its full-precision phase records, and then independently replaying the saved GPX to ensure the submitted fractions and fit profile are exactly consistent.
+
+The full three-phase model is now refined. I’m doing the final independent replay and file-consistency checks before writing the submission summary, with particular attention to whether `final.gpx` reproduces the exported profile and fractions.
+
+The independent GSAS-II replay passed: the project is unchanged by replay, regenerates the same three positive phase fractions from atomic structure factors, and has no negative-width, negative-background, or displacement-tensor review flags. I’m now quantifying exact profile statistics and checking CIF geometry/model agreement.
+
+The final CIFs match the structures exported directly by replay byte-for-byte, all three pass the structure/occupancy checks, and the reported fractions sum exactly to one. The profile has also been replaced with the freshly regenerated calculation, preserving every input angle and observed count exactly.
+
+Completed and independently replay-validated.
+
+- MgWO₄ (wolframite): 77.38 wt%
+- WO₃ (monoclinic): 14.17 wt%
+- MgO (rocksalt): 8.45 wt%
+- Full-grid fit: Rwp 8.325%, Rp 6.214%
+
+Fractions are normalized over crystalline material; practical systematic uncertainty is approximately 1–2 percentage points.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r1/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r1/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r1/workspace/fit.csv)
+- [MgWO4 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r1/workspace/phase_MgWO4.cif)
+- [WO3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r1/workspace/phase_WO3.cif)
+- [MgO CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r1/workspace/phase_MgO.cif)
+

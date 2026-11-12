@@ -1,0 +1,42 @@
+I’ll inspect the specimen metadata, diffraction grid, and the frozen analysis utilities first. Then I’ll build the simplest chemically plausible multiphase model, refine it in GSAS-II, and verify that every coherent residual family is accounted for before writing the deliverables.
+
+The metadata points to a low-temperature CaCO₃ + WO₃ reaction, so the first complete inventory to test is CaWO₄ plus plausible residual CaCO₃/WO₃ (and CaO only if demanded). I’m now querying the frozen COD index for exact compositions and comparing full reflection families, not just the strongest peaks.
+
+The observed reflection families support three ordinary phases already: monoclinic WO₃ (the 23–25° triplet and its 33–35° family), scheelite CaWO₄ (18.9°, 29.0°, and higher-angle families), and calcite CaCO₃ (29.7°, 39.7°, 43.46°, 48.78°, etc.). I’m moving these into a replayable three-phase GSAS-II fit and will compare the physically valid same-composition WO₃ references at that checkpoint.
+
+The first complete model is stable and gives preliminary crystalline fractions of roughly 56% WO₃, 37% CaCO₃, and 6–7% CaWO₄. Peak positions improve strongly when all three cells are refined. The angular zero and specimen displacement are nearly collinear, so I’ll retain only a physically anchored calibration combination in the final model rather than over-interpreting both separately.
+
+A bounded-coordinate trial exposed a GSAS-II convention issue: coordinate limits apply to the absolute fractional coordinate even though the refined variable is named as a displacement. That branch drove atoms to artificial near-zero coordinates, so I stopped it and am restarting from the intact pre-coordinate checkpoint with bounds centered on each published site. No bad-geometry branch will enter the final project.
+
+The constant offset/height decomposition can be anchored from the data grid itself: its lower bound is displaced by exactly +0.087° from the frozen laboratory grid. I’m fixing that independently observed constant and refining only specimen height; this removes the >99.9% zero/height correlation while preserving the physically relevant angular correction.
+
+All coherent reflections remain assigned to the three accepted phases; the remaining residuals are derivative-shaped at those same peak positions, so I’m stopping phase/library search. The anchored physical model is at Rwp ≈ 7.64%. I’ll now test only bounded specimen/profile terms and texture axes supported by those residuals, then keep the simplest improving branch.
+
+I found an important reproducibility check: a fresh GSAS calculation after one branch did not exactly reproduce that branch’s cached curve. Since the required project is scored by regeneration, I’m validating candidate checkpoints with a fresh atomic replay and will submit only a checkpoint whose replay—not its cached array—has the reported fit.
+
+I’ve isolated the reliable checkpoint: a physical three-phase refinement whose full-grid replay reproduces Rwp 7.3253% with no structural review flags. I’m now packaging that exact checkpoint as `final.gpx`, regenerating all submitted profiles/CIFs from it, and running a final consistency check so none of the exploratory branches leak into the deliverables.
+
+The exact replay confirms all 8,293 points, all three positive phase scales, and no negative displacement parameters or other structural flags. The accepted model is scheelite CaWO₄, calcite CaCO₃, and monoclinic P2₁/c WO₃; the exploratory surface-correction branch is being discarded because it did not reproduce its cached fit on replay.
+
+Packaging is complete. I’ve kept the reported fractions on the crystalline-only basis and explicitly separated the very small covariance errors from the larger systematic uncertainty caused by overlap, preferred orientation, and missing pointwise uncertainties. One final validation remains: parse every CIF/result field and replay `final.gpx` against the submitted `fit.csv`.
+
+Final validation passed: `result.json` parses as a complete three-phase normalized inventory, each submitted CIF maps uniquely to its corresponding `final.gpx` phase (including ADPs/coordinates), the project replay has no physical review flags, and `fit.csv` covers all 8,293 original points with independently recomputed Rwp 7.325327%.
+
+Analysis complete. The crystalline phase fractions are:
+
+- Monoclinic WO₃ (P2₁/c): 56.06 wt%
+- Calcite CaCO₃ (R-3c): 31.38 wt%
+- Scheelite CaWO₄ (I4₁/a): 12.56 wt%
+
+Full-grid GSAS-II replay: Rwp = 7.3253%, Rp = 5.3795%. No coherent fourth-phase reflection family remained; trace crystalline or amorphous material cannot be excluded.
+
+Deliverables:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-003-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-003-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-003-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-003-r3/workspace/final.gpx)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-003-r3/workspace/phase_WO3.cif)
+- [phase_CaCO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-003-r3/workspace/phase_CaCO3.cif)
+- [phase_CaWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-003-r3/workspace/phase_CaWO4.cif)
+

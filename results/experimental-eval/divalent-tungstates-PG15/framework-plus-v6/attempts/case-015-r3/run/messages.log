@@ -1,0 +1,68 @@
+I’ll inspect the metadata, pattern, and the provided P0/GSAS-II workflow first, then build a chemically screened phase inventory before refining. I’ll keep the final artifacts tied to one replayed `final.gpx` and verify the exported profiles, CIFs, fractions, and statistics against it.
+
+The chemistry narrows the primary candidate to the Zn–W–O system, but I won’t assume ZnWO₄ is the only phase. I’m now extracting peak families and checking the frozen COD index/tooling so residual ZnO, WO₃ polymorphs, Zn–W–O intermediates, and physically plausible alternate records are all challenged under the same measurement model.
+
+The peak inventory now supports three crystalline phases: wolframite-type ZnWO₄, monoclinic WO₃, and wurtzite ZnO. The key evidence is not just overlap at the strongest lines: WO₃ contributes its 23.3°/33.4° families, while ZnO contributes the otherwise unexplained 31.9°, 56.7°, 62.9°, and 69.2° families. I’m retaining alternate monoclinic WO₃ records for an equal-profile comparison before committing the structural source.
+
+The first physically screened WO₃ model is converging cleanly: all three scales remain positive, and adding the common displacement correction plus cells has already reduced Rwp from 35.6% to 21.3% before phase-specific broadening. I’m continuing through bounded U/W/X and one-phase-at-a-time size/strain trials; the alternate WO₃ records will then be judged with the same nuisance model.
+
+The equal-nuisance record comparison is underway. The physically clean 2311041 WO₃ record gives a stable three-phase baseline at Rwp 12.94% with provisional fractions about 77.4% ZnWO₄, 15.7% WO₃, and 6.9% ZnO. Those are screening values only; profile/texture/coordinate terms are still neutral.
+
+The first alternate, COD 1528915, fits slightly worse than 2311041 and also carries an implausibly short 1.575 Å O–O contact, so it is being rejected as a source record rather than as a WO₃ phase. A triclinic WO₃ record is numerically competitive after its more flexible cell is released; I’m keeping it on the watch list until intensity and geometry tests distinguish true symmetry from extra-parameter gain.
+
+The inventory is now chemically coherent: ZnWO₄, monoclinic WO₃, and wurtzite ZnO all have distinct supporting reflections. I’m refining the intensity geometry and phase-specific broadening from the clean three-phase baseline next, then I’ll lock the structural model and validate the saved project by replaying it.
+
+The baseline’s high-angle intensity deficit is consistent with either polarization or surface roughness, so I’m comparing those under identical structural and background constraints. The trials are deliberately independent; this keeps a nonlinear roughness correction from being accepted just because it inherited a favorable prior fit.
+
+Surface roughness is strongly supported, while a free polarization term only gives a marginal, highly correlated improvement. I’m keeping the interior roughness solution and testing crystallite size, microstrain, and axial asymmetry one phase at a time; none will be retained unless it improves isolated families across the scan and survives reopening.
+
+All three phases need real finite-domain broadening, but a one-shot common-profile release exposed size/profile correlation. I’ve restarted that joint fit from several physically different U/W/X and size values. Agreement between those starts will distinguish a stable profile from a boundary-driven numerical solution.
+
+The joint fits agree that the original common Lorentzian width was too large, but X and the three crystallite sizes are nearly collinear. I’m profiling X on a fixed grid and re-refining all three sizes at each point. This turns the correlation into a directly inspectable likelihood curve instead of trusting one unstable least-squares step.
+
+The fixed-profile scan is monotonic toward U≈0 and W≈40, with no hidden interior minimum; those boundary values are therefore being treated as a constrained common baseline, not as separately precise instrument estimates. The finite sizes remain stable. I’m now testing whether the remaining high-angle width residuals are phase-specific microstrain and whether asymmetry or polarization adds independent information.
+
+Neither microstrain, SH/L, nor polarization survives the stability checks: the apparent microstrain gain disappears when a bound parameter is replayed, and SH/L/polarization remain effectively unchanged or scale-correlated. The current model is now being challenged for March–Dollase texture along symmetry-distinct low-index directions for each phase.
+
+Per-phase isotropic displacement parameters are part of the forward model, but direct constrained refinement is numerically unsafe here—the dominant ZnWO₄ term drives into the physical lower bound and GSAS-II leaves inconsistent linked atoms after freezing it. I’m replacing that with a fixed-Uiso profile scan, which preserves valid structures while still testing the high-angle intensity dependence.
+
+The Uiso scan is evaluating the allowed 0.003–0.018 Å² range independently for each phase while all scales, cells, roughness, background, displacement, and sizes reconverge. The selected values will come from a smooth profile minimum; flat profiles will remain at the neutral 0.005 Å² rather than being reported as determined.
+
+The displacement profiles now give an interior minimum for WO₃ near 0.016 Å², a clear lower-bound preference for ZnWO₄, and only a weak lower-bound preference for ZnO. I’m retaining those physically allowed fixed values while flagging the two lower-bound estimates as uncertain, then re-testing only the coordinate groups that showed measurable signal.
+
+The unconstrained WO₃ oxygen refinement lowers Rwp but moves several O sites by roughly 0.3–0.6 Å—an unphysical excursion far beyond the source-mismatch envelope—so I’m rejecting it. The retained structural changes are limited to ZnWO₄ oxygen shifts and WO₃ tungsten shifts of order 0.01–0.05 Å, which are both data-supported and chemically plausible.
+
+The pruned model is physically valid: all three CIFs pass the contact/occupancy screen, no parameter is frozen, and the only retained WO₃ coordinate mode is a single anti-correlated W displacement. I’m now inspecting the replayed residuals over low, middle, and high angle and re-challenging the phase inventory before freezing the project.
+
+The residual does contain family-dependent ZnWO₄ broadening, but the first uniaxial trials force one strain component negative and freeze it at zero. That is not acceptable as a final model. I’m re-profiling the common Gaussian width together with each symmetry-distinct uniaxial axis so both directional strain components can remain nonnegative and independently supported.
+
+This joint scan is also a check against “profile-by-surrogate”: W is fixed at several plausible values while ZnWO₄ size and the two uniaxial strain components refine. I’ll retain an axis only if it gives a reproducible minimum with both strain components interior and improves the same low-, mid-, and high-angle families.
+
+The scan is computationally heavier because each point replays all 8,301 bins with the full three-phase model. Partial results are still running; I’m holding off on selecting the lowest raw Rwp until the bound/frozen-parameter audit is available for every axis and W value.
+
+The family-width scan rejects anisotropic strain: every apparent improvement requires one directional component to cross below zero and be frozen. The replay-stable model therefore keeps isotropic finite sizes and no strain/texture terms. Residual extrema coincide with already modeled ZnWO₄ multiplets rather than forming a coherent fourth-phase family, so the three-phase inventory remains final.
+
+The final refinement now reopens and converges with zero shift/esd, no frozen variables, and all exported structures pass the physical screen. I’m running the evaluator’s independent atomic forward replay next; fit.csv and the reported statistics will be generated from that replay rather than from cached GSAS arrays.
+
+All requested artifacts are written. I’m doing the final consistency audit now: JSON/schema parsing, fraction normalization, CIF-versus-project coordinate/ADP agreement, full-grid fit.csv verification, and a checksum check that the replay did not alter final.gpx.
+
+Identified three crystalline phases, normalized over modeled crystalline material:
+
+- ZnWO₄ (wolframite, P2/c): 72.69 wt%
+- WO₃ (monoclinic, P2₁/c): 20.93 wt%
+- ZnO (wurtzite, P6₃mc): 6.37 wt%
+
+Independent full-grid replay gives Rwp = 6.262%, Rp = 4.794%, and GOF = 1.655. Phase identities are reliable; systematic fraction uncertainty is approximately 1–2 percentage points for the major phases.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-015-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-015-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-015-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-015-r3/workspace/final.gpx)
+- [ZnWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-015-r3/workspace/phase_ZnWO4.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-015-r3/workspace/phase_WO3.cif)
+- [ZnO CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-015-r3/workspace/phase_ZnO.cif)
+
+The CIFs pass the physical screen and agree with the structures and fractions replayed from `final.gpx`.
+

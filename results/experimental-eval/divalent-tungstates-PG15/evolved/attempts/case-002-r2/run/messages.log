@@ -1,0 +1,48 @@
+I’ll first inventory the measurement, chemical context, and the reusable PXRD tooling, then identify candidate phases and build a restrained GSAS-II refinement. I’ll keep alternate polymorphs and weak-phase candidates in play until the common profile is established and replayed.
+
+The chemistry is a low-temperature Ba–W–O reaction (BaO₂ + WO₃, 200 °C), so the initial inventory must include product tungstates as well as unreacted/converted precursor phases. I’m now extracting the peak families and checking the local COD/GSAS-II resources before committing to any phase count.
+
+The peak inventory strongly supports room-temperature distorted WO₃: the three dominant low-angle families and the 33–34°, 42°, 50°, and 56° groups recur coherently. BaO₂, scheelite BaWO₄, and Ba-rich tungstates remain on the watch list; I’m testing them under the same background/profile model so a weak or broadened phase is not discarded just because its first scale estimate is poor.
+
+Adding tetragonal BaO₂ collapses the dominant residual families across the full range and improves Rwp from about 21.3% to 9.0%, with a stable positive scale and chemically sensible expanded precursor cell. I’m now comparing the physically plausible WO₃ polymorph records under that identical two-phase model; this guards against mistaking “the right composition” for “the right structure.”
+
+The watch-list test gives only sub‑1 wt% formal scales for several mutually incompatible candidates; none has a coherent set of unique peaks, and BaWO₄’s diagnostic ~32.2° line is absent. BaO gives the largest numerical gain (~0.09 Rwp points), but its support is confined mainly to overlaps, so I’m retaining it as a watch-list uncertainty rather than promoting it yet. Next I’m separating common instrumental broadening from phase-specific size/strain, one phase at a time, to see whether that weak scale survives a physically better baseline.
+
+The physical baseline is now coherent: BaO₂ alone benefits from replay-stable [001] uniaxial size broadening; strain collapses to zero and is pruned. A fitted global polarization of ~0.634 materially improves the full range. Of the texture trials, only a very mild WO₃ [101] March–Dollase term (≈0.971) improves several separated angular regions; BaO₂ texture is unsupported. I’m doing the final inventory re-challenge under this rebuilt profile before locking the phase list.
+
+I’m checking the last watch-list replay with the accepted profile and texture preserved. The key decision is whether trace cubic BaO has enough repeatable multi-family support to model, or should remain only an uncertainty/upper-bound note.
+
+The replay supports trace cubic BaO: 0.76(7) wt% with Rwp improving from 7.820% to 7.759%, while BaWO₄ is statistically indistinguishable from zero. I’ll retain BaO as a near-detection-limit phase, keep BaWO₄ excluded, and now test whether BaO’s lattice constant and BaO₂’s peroxide geometry are actually constrained before freezing the final model.
+
+Both targeted tests are stable on reopen. BaO’s refined cubic cell is 5.459 Å and strengthens its evidence to about 1.0 wt%; the BaO₂ oxygen coordinate is too weakly/model-dependently determined to trust an unconstrained short O–O bond. I’m therefore fixing the peroxide O–O distance at 1.49 Å, keeping all heavy-atom coordinates from vetted records, and using only refined cells/scales plus the accepted profile terms.
+
+After rebuilding the profile around the constrained peroxide geometry, only BaO₂ equatorial size broadening remains supported; axial size became indeterminate and strain collapsed to zero, so both are pruned. I’m doing the required final watch-list challenge (BaWO₄ and Ba-rich tungstates) against this cleaned model before export.
+
+The final inventory is now coherent: triclinic WO₃, tetragonal BaO₂, trace cubic BaO, and tentative trace Ba₃W₂O₉. Ba₃W₂O₉ has a statistically positive scale and a clear unique 30.86° family plus several weaker supporting families; its cell is not stable enough to refine, so the vetted source cell stays fixed. BaWO₄ and Ba₃WO₆ fail the multi-family test and remain excluded. I’m now replaying the exact full measured range and exporting directly from that project.
+
+The full-range replay converged cleanly with no frozen parameters. Final fractions are 64.08% WO₃, 34.39% BaO₂, 1.04% BaO, and tentative 0.48% Ba₃W₂O₉; Rwp is 7.700%. I’m doing a final cross-check that the JSON, CSV, CIFs, and `final.gpx` agree numerically and parse correctly.
+
+Completed the full-range GSAS-II refinement.
+
+Modeled crystalline composition:
+
+- WO₃: 64.08 ± 0.15 wt%
+- BaO₂: 34.39 ± 0.15 wt%
+- BaO: 1.04 ± 0.08 wt%
+- Ba₃W₂O₉: 0.48 ± 0.09 wt% — tentative trace assignment
+
+Fit: Rwp 7.700%, Rp 6.051%, GOF 2.118. Fractions are normalized over modeled crystalline phases.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_1_WO3.cif)
+- [BaO2 CIF](<ATTEMPT_WORKSPACE>/phase_2_BaO2.cif)
+- [BaO CIF](<ATTEMPT_WORKSPACE>/phase_3_BaO.cif)
+- [Ba3W2O9 CIF](<ATTEMPT_WORKSPACE>/phase_4_Ba3W2O9.cif)
+
+The project, exported profiles, fractions, and CIF cells were cross-checked for numerical agreement.
+

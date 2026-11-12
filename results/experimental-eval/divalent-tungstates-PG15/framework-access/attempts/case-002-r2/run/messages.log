@@ -1,0 +1,51 @@
+I’ll inspect the measurement metadata and pattern first, then use the supplied phase-identification/indexing tools and GSAS-II for a quantitative refinement. I’ll preserve enough provenance to verify that the submitted CIFs, fractions, profile, and `final.gpx` all come from the same final model.
+
+The chemistry points to a low-temperature Ba–W–O sample, where unreacted BaO₂/WO₃ and early Ba tungstate formation are all plausible. I’m now separating those possibilities from the diffraction data itself—first by peak inventory/search-match, then by whole-pattern refinement—rather than assuming the nominal 1:1 product.
+
+Peak positions now distinguish the likely pair: monoclinic WO₃ explains the 23–25° triplet and its higher-angle multiplets, while tetragonal BaO₂ explains the strong 26.3/27.1° doublet and the 43/46.6/55.8° sequence. The scheelite BaWO₄ candidate is contradicted by its missing 31.9° line. I’m taking BaO₂ + WO₃ into GSAS-II and will test whether any statistically significant peaks remain unmodeled.
+
+I’m setting up a staged refinement rather than freeing every parameter at once. The first passes will establish background, phase scales, cells, angular calibration, and peak widths; only then will I test specimen effects and symmetry-allowed atomic-coordinate adjustments. This ordering is important because zero/displacement, cell strain, and broadening are strongly correlated here.
+
+The first numerical pass confirmed both phases and gave an initial mass split near 35:65, but the unrestricted profile fit exposed exact correlations (instrumental Lorentzian width versus crystallite size, and zero versus specimen shift) and drove nonphysical negative widths. I’m constraining only physically meaningful ranges and refitting those correlated terms in separate blocks before trusting the fraction or atomic parameters.
+
+The bounded run is still confirming a ~35:65 split, but it revealed that continuing to refine cells while adding width terms lets the optimizer trade lattice metrics against profile tails and leave the physical basin. I’ve stopped that branch at the last valid snapshot; the next pass will freeze the established cells before introducing widths, so no invalid model propagates into the final project.
+
+The difference curve exposed a more important issue than the profile correlations: the WO₃ parent was the wrong polymorph. Its calculated 35.7° reflection is too strong, while the observed 29.2° reflection—diagnostic of the common monoclinic \(P2_1/c\) WO₃ form—was left largely unmodeled. I’m replacing that phase candidate and comparing the closely related COD variants by whole-pattern agreement before continuing refinement.
+
+The controlled comparison is decisive: the \(P2_1/c\) WO₃ model from COD 2311041 reaches \(R_\mathrm{wp}=8.06\%\), versus 8.62% for the closest monoclinic alternative, 16.78% for triclinic WO₃, 18.41% for orthorhombic WO₃, and ~14–15% for the original \(P2_1/m\) model. I’m carrying the 2311041 model forward and using its residual structure to determine whether anisotropic broadening, preferred orientation, and small coordinate shifts are warranted.
+
+The residual tests indicate real specimen/instrument effects: surface roughness and polarization each reduce \(R_\mathrm{wp}\) by about 0.17 percentage point; BaO₂ benefits from uniaxial [001] microstrain, while WO₃ does not show convincing strain anisotropy. Preferred orientation is weak (ratios close to 1), so I’ll treat it as optional and retain it only if it survives a combined-model test.
+
+The phase identity is now well constrained: tetragonal BaO₂ plus monoclinic WO₃ (COD 2311041) explains the peak positions, while BaWO₄ and several alternate WO₃ polymorphs do not. I’m inspecting the best joint refinement’s residuals and parameter bounds now, then I’ll tighten the physical model and validate the final GSAS-II replay.
+
+The residual is dominated by intensity/shape differences at overlapping peaks rather than unexplained peak positions, so the two-phase inventory still holds. Several oxygen coordinates and broadening terms reached imposed bounds, though; I’m treating that as a warning against accepting the lowest numerical residual blindly and am checking alternative reference entries plus physically bounded displacement parameters.
+
+The tighter restart exposed a convergence issue rather than a phase-assignment issue: refining both angular corrections and both unit cells simultaneously from the parent models is too correlated and initially moved uphill. I’m letting the remaining profile stages establish stable peak widths, then I’ll reintroduce position parameters in smaller blocks with the known ≤0.5% reference-mismatch constraint.
+
+A more consequential reference check found the likely source of the apparent “unphysical” BaO₂ cell: the COD library contains closely related tetragonal oxygen-deficient barium peroxide entries. One (COD 1521428, Ba₂O₃.7664) has a parent cell within the allowed mismatch of the observed lattice, whereas stoichiometric COD 1010113 does not. I’m screening these occupancy variants directly; this can change both the structural assignment and the mass fraction slightly.
+
+The three oxygen-deficient Ba–O candidates are being refined in parallel against the same monoclinic WO₃ model. The discriminant is not just raw Rwp: I’m also checking whether each refined cell remains within the framework’s small reference-mismatch range and whether its oxygen occupancy is actually distinguishable from the powder intensities.
+
+The bounded coordinate refinement is behaving more credibly: Ba–O and W-site shifts remain in the expected 0.01–0.05 Å scale, and Rwp improved to about 7.38% without the 0.14 Å oxygen overfit. The previously assumed texture axes actually worsen this bounded model, so I’m comparing the joint result with a no-texture branch rather than retaining them automatically.
+
+The phase-count tests are now decisive: added BaO and BaWO₄ refine to essentially zero, while a second nearly duplicate P2₁/c WO₃ entry can absorb ~2 wt% but has no independent reflections and behaves as a line-shape surrogate, not a defensible third phase. I’m finalizing the two-phase model and will replay it from a clean zero-cycle GSAS-II calculation before exporting the CIFs and profile.
+
+Final validation passed: the saved project replays natively with zero optimized parameters, its exported CIFs match the submitted CIFs (including occupancy and ADPs), the project fractions exactly match `result.json`, and the replayed profile differs from `fit.csv` only at numerical-printing precision. The peroxide O–O contact is flagged by the generic oxide screen but is chemically expected and documented.
+
+Completed and validated by native GSAS-II replay.
+
+- BaO₂−x, modeled as Ba₂O₃.7664 (I4/mmm): 32.47 wt%
+- WO₃ (P2₁/c): 67.53 wt%
+- Rwp: 7.215%; Rp: 5.344%
+
+The exact peroxide oxygen occupancy remains uncertain; details are in the report.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r2/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r2/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r2/workspace/final.gpx)
+- [Barium peroxide CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r2/workspace/phase_barium_peroxide.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r2/workspace/phase_tungsten_trioxide.cif)
+

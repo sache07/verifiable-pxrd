@@ -1,0 +1,38 @@
+I’ll inspect the diffraction data and metadata first, then use the available indexing/search and GSAS-II tooling to identify phases, refine them, and verify that every reported artifact is reproducible from the final project. I’ll keep uncertain assignments or fractions explicitly qualified.
+
+The chemistry points naturally to MgWO₄, but I’m treating that only as a hypothesis. I’m now comparing the measured peak positions and intensities against Mg–W–O candidates and the unreacted precursors, including checks for weak extra reflections that would support a minor phase.
+
+The first Rietveld model confirms two dominant phases: monoclinic MgWO₄ and monoclinic WO₃, with their full reflection sets aligned after refining the cells and a ~0.30° zero offset. A repeatable unmatched peak near 43.2° is consistent with MgO’s strongest reflection, so I’m testing whether MgO is a statistically and chemically defensible third phase rather than absorbing it into profile parameters.
+
+The third-phase test is decisive: all six observable MgO lines (including 43.20°, 62.57°, 78.86°, and 94.24°) refine with observed/calculated integrated intensities agreeing to about 6% or better. I’m retaining MgO. I’m now stabilizing the profile/atomic refinements and checking that the quoted fractions do not depend strongly on optional broadening or coordinate choices.
+
+I found that one database WO₃ entry had overly rounded oxygen coordinates, so I’m cross-checking the same monoclinic phase against an independently reported, physically better-conditioned structure in an equivalent cell. This affects refined atomic details and potentially the WO₃ scale, but not the phase identification; I’ll use the model that fits without chemically implausible contacts.
+
+The physically cleaner monoclinic WO₃ model is still refining. I’m checking whether it preserves the fit quality and stable phase fractions before choosing the final project.
+
+The cleaner WO₃ model improved the fit to Rwp ≈ 8.41% and left the crystalline fractions essentially unchanged (about 77.6% MgWO₄, 15.0% WO₃, 7.5% MgO). I’m now validating its refined geometry and convergence before exporting the deliverables.
+
+The refined bond geometry is chemically sensible: both tungstates retain six-coordinate W, MgWO₄ has normal Mg–O distances, and no short O–O contacts appear. I’m also standardizing the unusual historical WO₃ cell setting and testing a more physically constrained peak-width model; neither should materially alter the quantitative result.
+
+The constrained profile check changes each fraction by less than about 0.4 wt%, confirming the phase quantification is robust to reasonable peak-shape choices. I’m fixing the reported Kα₂/Kα₁ ratio at 0.500, extending the calculation across every supplied point, and exporting the final project and tables now.
+
+The final refinement converged across all 8,301 points at Rwp 8.43%. The normalized crystalline composition is 77.59 wt% MgWO₄, 14.96 wt% WO₃, and 7.46 wt% MgO. I’m doing a final consistency check of the GPX, CIF parsing, JSON totals, and profile residuals.
+
+Completed the three-phase GSAS-II refinement:
+
+- MgWO₄: 77.59 wt%
+- monoclinic WO₃: 14.96 wt%
+- MgO: 7.46 wt%
+
+Fractions are normalized over modeled crystalline material. Rwp = 8.43%, Rp = 6.15%, GOF = 2.95. A realistic systematic uncertainty is approximately ±1 wt% absolute; amorphous content cannot be determined.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MgWO4.cif](<ATTEMPT_WORKSPACE>/MgWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [MgO.cif](<ATTEMPT_WORKSPACE>/MgO.cif)
+

@@ -1,0 +1,45 @@
+I’ll inspect the measurement metadata, pattern format, and the supplied PXRD tooling first, then identify candidate phases and refine them jointly in GSAS-II. I’ll validate that the exported CIFs, phase fractions, profile, statistics, and `final.gpx` all come from the same final refinement.
+
+The chemistry points first to cobalt tungstate, but this lab can retain precursors or form cobalt oxides/off-stoichiometric intermediates. I’m treating phase count as an inference problem from unmatched peaks, not assuming a single CoWO₄ product. Next I’m extracting peak positions and checking the frozen COD search/index tools before refinement.
+
+The strongest line families separate cleanly into monoclinic WO₃ (the 23.18/23.67/24.42° triplet and its higher-angle repeats) plus wolframite-type CoWO₄ (notably ~19.09, 30.71, 36.44, and 54.18°). CoO and Co₃O₄ are being tested as possible minor phases, but their diagnostic lines are not yet consistently present. I’m now building a quantitative joint refinement so residual peaks—not chemistry alone—decide whether either oxide is retained.
+
+A first two-phase refinement gives about 30 wt% CoWO₄ and 70 wt% WO₃, but the unconstrained profile fit wandered into negative broadening parameters, so that number is provisional. I’ve imposed the laboratory’s physical profile bounds and am comparing several wolframite framework analogues; this should distinguish genuine residual structure error from a spurious minor phase.
+
+The physically bounded trials are still refining. One distant starting analogue (FeWO₄ geometry) diverged at the initial scale step, while the closer Mg/Zn/Mn frameworks continue; I’ll use the converged trials only and restart any promising failed model from the refined cell rather than interpreting a numerical failure as phase evidence.
+
+The candidate search now favors a two-phase model: monoclinic WO₃ (COD 1528915 framework) and wolframite CoWO₄. Alternative monoclinic/triclinic WO₃ models fit worse, and CoO/Co₃O₄ scales collapse to zero rather than explaining the residuals. The remaining misfit is dominated by peak-position/intensity details within the two accepted phases, so I’m refining specimen displacement and the heavy-atom coordinates next.
+
+The calibration variables are nearly degenerate (zero, specimen height, and unit-cell scale correlate above 99%), so I’m not assigning physical meaning to them individually. I’m keeping only the combined peak-position correction that improves the profile, while the current bounded profile pass settles the broadening parameters.
+
+I’m screening the phase-wise isotropic displacement factors because the residual changes systematically with angle. The first batch briefly saturated the local process limit; no scientific files were affected, and I’m letting those short zero-cycle calculations finish before collecting the grid.
+
+The two-phase model is now at the final consistency stage. I’m selecting the last bounded profile setting, checking the remaining instrument-polarization sensitivity, then I’ll freeze and replay the exact GSAS-II project before exporting the deliverables.
+
+The last profile grid settles at a physically allowed low Lorentzian broadening (`X ≈ 0.4`) and improves the fit without introducing strain or negative widths. I’m now checking whether high-angle intensity falloff is better explained by the instrument polarization factor; this directly tests whether the phase fractions are being biased by an arbitrary fixed intensity correction.
+
+The surface-roughness test does not support a roughness correction: allowing the Suortti parameters makes them nearly singular with scale and drives them outside their physical ranges. I’m retaining the simpler no-roughness model, with polarization at the allowed upper edge, and doing one final lattice/zero refinement to ensure peak positions remain consistent after the bounded profile updates.
+
+A geometry audit caught an important issue before export: unconstrained coordinate refinement had moved several oxygen sites by ~0.3–0.7 Å and created implausibly short O–O contacts. That is not defensible for this data or for the stated reference-mismatch scale. I’m rolling those sites back to the parent frameworks and re-refining only within tight, physically motivated coordinate windows; the final fit will be slightly less aggressive but the submitted CIFs will remain chemically meaningful.
+
+The constrained refinement now reproduces the pattern at `Rwp ≈ 6.17%` while keeping every refined coordinate within about 0.008 fractional units of its reference framework. The phase inventory remains unchanged (CoWO₄ + residual WO₃); I’m freezing this model, exporting directly from it, and then replaying the saved project independently against the original 8,301-point pattern.
+
+The independent replay succeeded: it regenerated exactly the submitted curve (`max |Δcalc| ≈ 5×10⁻¹¹ counts`), reproduced 29.141956% CoWO₄ / 70.858044% WO₃, and reported no profile-review flags. I’m doing the final artifact/schema and frozen-flag checks now.
+
+Completed the PXRD analysis.
+
+- CoWO₄ (`P 2/c`): **29.14 wt%**
+- Monoclinic WO₃ (`P 21/n`): **70.86 wt%**
+- Fit: **Rwp 6.168%**, **Rp 4.544%**, **GOF 1.882**
+
+Fractions are normalized over crystalline phases. Fine oxygen coordinates remain provisional; fraction uncertainty is conservatively ±2–3 wt% absolute. Independent GSAS-II replay reproduced the profile and fractions exactly with no validation flags.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-004-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-004-r2/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-004-r2/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-004-r2/workspace/fit.csv)
+- [phase_CoWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-004-r2/workspace/phase_CoWO4.cif)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-004-r2/workspace/phase_WO3.cif)
+

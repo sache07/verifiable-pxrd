@@ -1,0 +1,42 @@
+I’ll inspect the pattern metadata and the frozen analysis guidance first, then build a phase inventory and refine it in GSAS-II. I’ll keep the final exports tied to a replayed `final.gpx` and check that the reported fractions and profile agree with that project.
+
+The chemistry points first to CuWO₄, with CuO and WO₃ as realistic residuals, but I’m treating that only as an inventory hypothesis. I’m now extracting peak positions/widths and querying the frozen COD index for Cu–W–O candidates and precursor polymorphs before committing any phase to refinement.
+
+The initial screen supports CuWO₄ as the dominant framework and rejects the high-pressure monoclinic CuWO₄ record as the primary model. The triclinic COD record is chemically/structurally plausible but its published 7 GPa cell is too compressed in several directions, so I’ll use it only as a coordinate parent and refine the ambient cell. WO₃, CuO, and Cu₂O remain on the residual watch list until a common-profile fit tests their unique families.
+
+The first GSAS pass exposed a bad baseline rather than a credible refinement: the profile tried to absorb model mismatch with an implausibly large `U` and drove `W` to its lower bound. I’m rejecting that branch. I also found a redundant histogram/phase scale flag that made the covariance singular; I’ll fix it, inspect the residual peak families, and re-establish the cell/profile before testing nuisance broadening.
+
+The corrected triclinic model now indexes the entire 10–100° pattern coherently. A specimen-displacement correction fits slightly better than a constant zero, while polarization and roughness are unsupported; an 8-term smooth background and Cu-site adjustment are supported. Before accepting any of those refinements as final, I’m re-challenging the residual with WO₃, CuO/Cu₂O, Cu₄O₃, and alternate Cu–W–O structures under the same profile.
+
+The phase inventory has converged to triclinic CuWO₄ with a small monoclinic WO₃ component; CuO/Cu₂O and alternate CuWO₄ records have refined to zero or performed worse. I’m now stress-testing the profile, microstructure, and weak-phase watch list before freezing the project and exact exports.
+
+The two-phase fit is positionally coherent across the full range, but the residuals still show repeatable peak-shape and intensity mismatches. I’m comparing axial asymmetry, isotropic size/strain, ADPs, and several symmetry-distinct texture axes one at a time; only replay-stable, physically interpretable improvements will survive.
+
+The stress tests are discriminating cleanly: isotropic strain collapses to zero, size adds no improvement, polarization runs to its physical bound, and all-O ADPs produce a bound parameter, so those branches are being rejected. A weak [110]-type texture signal remains plausible; the low-angle roughness branch improves the fit but is highly correlated, so I’m enforcing physical roughness bounds before deciding.
+
+The physically bounded roughness model now converges reproducibly at A≈0.32 and B≈0.15 and removes a coherent low-angle trend, so it remains in the provisional model. I’m now re-challenging all chemically plausible weak phases against that cleaned profile; this is the final inventory gate before export.
+
+The refined baseline is now physically clean: the unsupported Gaussian U term was pruned to zero, SH/L asymmetry is retained, and only WO₃ shows a resolvable phase-specific size (about 0.44 µm). CuO/Cu₂O/Cu₂WO₄ scales collapse to zero; the remaining Cu₄O₃/Cu₃WO₆ signals are being checked once more under this final peak shape because they were below 0.3 wt%.
+
+The frozen replay has reproduced the submitted project and phase fractions exactly, with no profile-review flags. I’m doing the last cross-check between the replayed curve, exported CIFs, and `fit.csv`, then I’ll write the uncertainty-focused report.
+
+The final profile and replay differ by less than \(7.4\times10^{-4}\) count at any point, so the CSV, CIFs, fractions, and project are numerically consistent. The phase re-challenge also confirms that Cu–W–O/Cu-oxide candidates beyond the two-phase model remain below defensible quantification.
+
+Completed. The best-supported crystalline model is:
+
+- Triclinic CuWO₄, P -1: **97.58 wt%**
+- Monoclinic WO₃, P 21/c: **2.42 wt%**
+
+Final fit: **Rwp 6.879%, Rp 5.030%, GoF 2.827**. Independent frozen replay reproduced the fractions and profile without review flags.
+
+Outputs:
+
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-006-r2/workspace/report.md)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-006-r2/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-006-r2/workspace/fit.csv)
+- [CuWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-006-r2/workspace/CuWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-006-r2/workspace/WO3.cif)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-006-r2/workspace/final.gpx)
+
+The practical WO₃ fraction range is approximately 2.2–2.6 wt%; its atomic coordinates cannot be independently refined reliably at this abundance. Fractions exclude amorphous material.
+

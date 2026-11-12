@@ -1,0 +1,36 @@
+I’ll first inspect the specimen metadata, pattern format, and the frozen analysis tooling. Then I’ll identify coherent peak families, build the simplest chemically plausible multiphase model, and refine it into a replayable GSAS-II project before exporting the requested files.
+
+The specimen is a 900 °C Mn₃O₄/WO₃ reaction measured in Bragg–Brentano reflection geometry with a Cu Kα doublet. That strongly prioritizes manganese tungstates plus any coherent residual oxide family, but I’ll let the full peak set—not precursor labels alone—decide the inventory. I’m now locating the frozen COD index and the existing GSAS-II helper conventions.
+
+The frozen index contains exactly two Mn–W–O references: monoclinic MnWO₄ (wolframite, COD 1520200) and rhombohedral Mn₃WO₆ (COD 2002703). The observed low-angle reflections at about 15.67°, 18.63°, and 21.38° are not ordinary MnWO₄ peaks, so Mn₃WO₆ is a serious second-phase candidate; I’m testing both references together and will only add precursor oxides if residual families remain.
+
+A first position check rules out Mn₃WO₆: its strongest expected lines near 19.95°, 20.49°, 28.75°, and 35.24° are absent. In contrast, the apparent “extra” low-angle lines at 15.67° and 18.63° are the 010 and 100 reflections of MnWO₄, shifted by specimen/cell effects. I’m fitting that complete wolframite family first, then examining only the post-fit residuals for a defensible minor phase.
+
+All statistically prominent reflections from 15.67° through 98.29° map onto the MnWO₄ wolframite lattice; the supposed anomalies at ~21.38°, 25.71°, and 33.07° are isolated count excursions rather than broad reflection families. I’m beginning a single-phase full-grid Rietveld refinement with the Cu Kα₁/Kα₂ doublet, retaining checkpoints before coordinate and specimen-profile branches so any unphysical improvement can be rolled back.
+
+The single-phase model has converged to the expected ambient-pressure wolframite cell (about a = 4.8295, b = 5.7556, c = 4.9950 Å, β = 91.215°), with full-grid Rwp falling from 26.8% to 6.72% after profile refinement. A nominal 4.97% branch drove one surface-roughness coefficient negative, so I am rejecting that branch as nonphysical and returning to the last physical checkpoint. Next I’m testing bounded specimen/profile terms and checking coordination geometry before accepting any further gain.
+
+A bounded physical branch now gives Rwp = 4.978% with positive Suortti roughness parameters (A ≈ 0.052, B ≈ 0.229) and no frozen-at-bound parameters; this is effectively tied with the rejected 4.970% negative-roughness branch. I’m adopting the physical branch. I’ll now inspect its smoothed residual family, test whether any remaining peaks support a second crystalline phase, and only then consider limited texture/profile refinements.
+
+The residual maxima track MnWO₄ reflections themselves (especially the strong low-angle lines), not an independent indexed family; no precursor or Mn₃WO₆ pattern is supported. Uniaxial-microstrain trials produced only marginal gains and generally collapsed one strain component to its lower bound, so I’m treating that complexity as unsupported. I’m now testing the five physically plausible March–Dollase axes and then atomic displacement terms; these address relative-intensity mismatch without inventing another phase.
+
+The single-phase wolframite model is now structurally secure: all observed reflection families index to MnWO₄, while Mn₃WO₆ and precursor fingerprints are absent. I’m combining only the two small, physically stable intensity corrections—positive isotropic displacement factors and very weak [100] preferred orientation—then I’ll replay the exact final project and export all requested files from that checkpoint.
+
+The combined refinement converged from both sides to the same weak texture ratio, 1.0071(14), with all displacement factors positive; Rwp is 4.954%. One calibration issue remains: zero offset and specimen displacement are 99.97% correlated. I’m resolving that covariance without changing the forward profile, and will explicitly carry the resulting absolute-cell uncertainty into the report.
+
+The stable checkpoint preserves the 4.954% fit without the singular zero/displacement refinement, and its geometry is ordinary octahedral wolframite (Mn–O 2.120–2.315 Å; W–O 1.762–2.127 Å). All requested deliverables are exported; I’m now validating the submitted copies—not the working candidates—for CIF/project agreement, full-grid profile identity, and scorer-style forward replay.
+
+Completed. The pattern is modeled as single-phase wolframite MnWO₄ (`P 2/c`) at crystalline weight fraction 1.000.
+
+Full-grid fit: Rwp 4.9536%, Rp 3.7257%, GOF 1.4346. Independent GSAS-II replay passed with no physical-profile flags.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-009-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-009-r3/workspace/report.md)
+- [phase_MnWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-009-r3/workspace/phase_MnWO4.cif)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-009-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-009-r3/workspace/final.gpx)
+
+The fraction is normalized over modeled crystalline phases; amorphous content and trace impurities below detection cannot be quantified reliably.
+

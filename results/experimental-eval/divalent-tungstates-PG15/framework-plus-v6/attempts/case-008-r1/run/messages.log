@@ -1,0 +1,56 @@
+I’ll first inspect the pattern metadata and the frozen PXRD workflow, then build a chemically plausible phase inventory before fitting. I’ll keep the refinement residual-led and will verify the exported CIFs, fractions, profile, and final GSAS-II project against one another.
+
+The chemistry points first to Mn–W–O phases after a 900 °C MnO + WO₃ firing, but residual MnO/WO₃ and manganese tungstate polymorphs remain legitimate candidates. I’m now locating the supplied solver helpers and screening the observed peak families before committing any structure to refinement.
+
+Peak positions and relative intensities strongly support wolframite-type MnWO₄ (P2/c): every major family from 15.7° through ~98° has a counterpart, while Mn₃WO₆, MnO, Mn oxides, and WO₃ polymorphs predict strong unobserved lines. I’m treating those as a watch list rather than discarding them, and moving to a GSAS-II baseline so that weak residual families can be judged under a common profile.
+
+The initial Rietveld model is chemically coherent and already accounts for the full peak inventory, but its residuals are intensity- and line-shape-dominated (Rwp ≈ 7.8%), not random noise. Before accepting coordinate shifts, I’m testing polarization, symmetry-distinct March–Dollase axes, roughness, and size/strain allocations; the first unconstrained oxygen-coordinate trial moved farther than the generator’s plausible reference mismatch and is therefore being treated as diagnostic rather than accepted.
+
+A coherent minor phase has emerged: monoclinic WO₃ gives ~2.0 wt% and lowers Rwp from 7.425% to 7.097%, with support from its partly unique 26–35° families. The triclinic and orthorhombic WO₃ alternatives fit less well; MnO/Mn oxides are at trace or unstable scales. I’m rebuilding the common two-phase profile and will re-challenge those watch-list phases against it before finalizing the inventory.
+
+The inventory now strongly favors wolframite MnWO₄ with about 2 wt% monoclinic WO₃. I’m rebuilding the shared two-phase profile and then re-testing the remaining oxide watch list so that the minor phase and fraction are judged under the final nuisance model, not the earlier single-phase fit.
+
+The rebuilt two-phase baseline is stable at Rwp 7.097%, with 97.994 wt% MnWO₄ and 2.006 wt% monoclinic WO₃. Its profile, displacement, cells, scales, background, polarization, and the supported MnWO₄ [110] texture all reconverged without parameter-bound failures; I’m now challenging MnO and manganese-oxide alternatives against this exact baseline.
+
+The watch-list signal is not behaving like a real third phase. The apparent 0.56 wt% MnO gain comes almost entirely from one peak overlapping a strong MnWO₄ reflection near 41.2°; adding MnO actually worsens its expected isolated families near 35.5° and 59.5°. Mn₂O₃ is only 0.23 wt% and similarly lacks a coherent multi-family improvement, while Mn₃O₄ and Mn₃WO₆ collapse to zero scale. I’m therefore retaining these as rejected/upper-limit candidates and checking model-record sensitivity before finalizing the two-phase structure.
+
+The unrestrained oxygen-coordinate fit is statistically strong and chemically plausible, but it moves O by about 0.10 Å from the only exact MnWO₄ library record—larger than the normal reference-mismatch range. That record was measured at 2.4 GPa, so I’m checking ambient wolframite analogues before deciding whether those shifts are genuine ambient structure information or an intensity surrogate.
+
+The alternative-record audit is consistent: a second rock-salt MnO record drops to only 0.21 wt%, wurtzite MnO and both Mn₃O₄ records collapse to zero, and both Mn₂O₃ symmetry records remain around 0.2 wt% with negligible, non-coherent gains. The two-phase inventory is robust; the remaining comparison is between two ambient monoclinic WO₃ structural records.
+
+A second nuisance-model check changed the structural interpretation materially: once the two-phase coordinates are in place, a physical low-angle surface-roughness term improves Rwp from 6.763% to 6.432%, with \(A=0.217\) and \(B=0.138\), both inside the stated synthesis/measurement range. Because those two coefficients are 99.5% correlated, I’m reducing this to a one-parameter roughness model before re-refining coordinates; this should prevent oxygen positions from compensating for low-angle attenuation.
+
+The physically constrained model is now coherent: a one-parameter roughness representation, fixed \(B=0.14\), gives refined \(A=0.070\); polarization is held at its stated lower physical bound (0.50), MnWO₄ \(U_\mathrm{iso}=0.00600\) Å², and all coordinate shifts return to the expected small-reference range. It converges at Rwp 6.193% with 97.77/2.23 wt%. I’m doing the required final watch-list replay under this exact restrained model before exporting.
+
+The final-profile replay reveals a real residual-led inventory change: triclinic WO₃ refines to about 0.94 wt% in addition to monoclinic WO₃ and improves several separated families (≈23.6, 29.1, 33.6, 41.7, 55.7°), not just one overlap. I’m releasing its cell only now—after scale acceptance—and rebuilding the three-phase profile. A ~0.3 wt% Mn₂O₃ signal remains on the watch list until this rebuild shows whether it survives.
+
+The phase inventory has converged to wolframite MnWO₄ plus two weak WO₃ polymorphs. I’m now packaging the exact selected refinement, exporting the CIFs/profile, and replay-checking that every submitted number agrees with the final GSAS-II project.
+
+The selected nuisance model is physically restrained: one specimen shift, an 8-term smooth background, common nonnegative U/W/X widths, one reduced roughness degree of freedom, and only a weak [001] texture term on MnWO₄. Unsupported size/strain/asymmetry terms and trace oxide candidates have been pruned; the triclinic WO₃ cell remains fixed because its weak scale does not support stable cell refinement.
+
+The independent read-only replay has passed: the project is unchanged, all three phases regenerate atomically, the submitted CIFs byte-match the replay exports, and GSAS-II reports no negative-width, negative-background, or polarization validity flags. The replayed profile gives Rwp = 6.15973% and GOF = 2.23719.
+
+One important caveat surfaced in the physical audit: the best-matching 1960 monoclinic WO₃ record has low-precision oxygen coordinates that generate 1.58 Å O···O contacts. I’m doing the required same-profile challenge against the later neutron-diffraction WO₃ model before deciding whether the profile evidence justifies retaining that structurally uncertain record.
+
+The physical-source challenge resolves the caveat cleanly: replacing only the low-precision 1960 oxygen sites with 1966 neutron oxygen coordinates removes all short-contact flags while retaining the X-ray-sensitive W sublattice. It also gives a slightly lower Rwp than the unmodified record, so this physically screened hybrid is now the selected monoclinic WO₃ model.
+
+Completed. The modeled crystalline inventory is:
+
+| Phase | Weight fraction |
+|---|---:|
+| Wolframite MnWO₄ | 97.433 ± 0.071 wt% |
+| Monoclinic WO₃ | 1.660 ± 0.096 wt% |
+| Triclinic WO₃ | 0.907 ± 0.106 wt% |
+
+Atomic replay gives Rwp 6.15942% and GOF 2.23708. All CIFs pass the geometry/occupancy screen. The WO₃ polymorph split and minor-phase atomic coordinates remain less reliable than their combined 2.567 wt% abundance.
+
+Outputs:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r1/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r1/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r1/workspace/final.gpx)
+- [MnWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r1/workspace/phase_1_MnWO4.cif)
+- [Monoclinic WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r1/workspace/phase_2_WO3_monoclinic.cif)
+- [Triclinic WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r1/workspace/phase_3_WO3_triclinic.cif)
+

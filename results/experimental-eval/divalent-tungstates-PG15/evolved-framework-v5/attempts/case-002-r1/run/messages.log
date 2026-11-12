@@ -1,0 +1,29 @@
+I’ll inspect the specimen metadata and pattern first, then identify chemically plausible reference structures and build a complete GSAS-II multiphase refinement. I’ll keep phase additions tied to coherent residual peak families and preserve the best physical checkpoint as the final project.
+
+The chemistry points first to BaWO₄ plus possible residual BaO₂/WO₃ or a barium-rich intermediate, but I’m treating that only as a candidate inventory. I’m now extracting the measured peak families and querying the frozen COD index for exact Ba–W–O, Ba–O, and W–O references before refinement.
+
+The first trial exposed two useful issues: the input’s CRLF line endings initially broke the temporary three-column conversion, and COD 1010618 contains an unphysical 0.46 Å O–O contact despite its attractive peak match. I’ve corrected the import and excluded that reference from any final model; the physically valid monoclinic WO₃ references are now being compared on the full grid.
+
+The full-grid comparison favors physical triclinic WO₃ (COD 2106293) with BaO₂: Rwp is 7.18% versus 7.89% for the physical monoclinic alternative, while orthorhombic and other WO₃ models are substantially worse. Both accepted candidates are geometrically sound; I’m now checking whether the remaining residuals form a third-phase family or are intensity/profile mismatches within the two-phase model.
+
+A bounded-coordinate trial was rolled back immediately: stale GSAS-II atom indexing caused the bounds to target the wrong internal variables, collapsing W sites. The saved physical checkpoint was unaffected. I’ve corrected the indexing and am rerunning the heavy-atom step from that checkpoint; only a geometrically screened improvement will be retained.
+
+The two-phase inventory is now complete: every coherent reflection family is assigned, while BaWO₄ and barium-rich candidates lack their diagnostic peaks. Final nuisance/profile refinement gives a physical full-pattern model near Rwp 7.1%; I’m expanding it to the exact input grid, exporting CIFs and the profile, and running consistency/geometry checks on the submitted artifacts.
+
+The exported CIFs and profile passed geometry and numerical checks. One final consistency assertion failed on a bookkeeping detail, so I’m isolating that mismatch before handoff; the scientific values and files remain intact.
+
+Completed and validated.
+
+Result: 65.97 wt% triclinic-like WO₃ (P-1) and 34.03 wt% BaO₂ (I4/mmm), normalized over crystalline phases. Rwp = 7.098%, Rp = 5.333%, GOF = 1.952.
+
+Artifacts:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r1/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r1/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r1/workspace/fit.csv)
+- [WO3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r1/workspace/phase_1_WO3.cif)
+- [BaO2 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r1/workspace/phase_2_BaO2.cif)
+
+The exact WO₃ polymorph/oxygen positions and absolute fractions remain model-limited, as detailed in the report.
+

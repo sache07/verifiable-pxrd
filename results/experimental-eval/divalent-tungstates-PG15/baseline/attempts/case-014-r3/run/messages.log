@@ -1,0 +1,42 @@
+I’ll inspect the measurement metadata and diffraction profile first, then identify candidate phases, build/refine the multiphase model in GSAS‑II, and validate that all exported artifacts reproduce the reported fit.
+
+The chemistry points first to scheelite-type SrWO₄, but I’ll treat that only as a hypothesis: residual precursor or secondary strontium tungstates can overlap strongly, so I’m extracting the peak set and checking database candidates before refinement.
+
+The peak positions confirm a dominant tetragonal SrWO₄ phase. Several reproducible peaks do not belong to that structure (especially near 15.03°, 16.62°, 22.10°, 23.46–24.73°, and 33.39°), so this is not a defensible one-phase result; I’m now testing the chemically plausible Sr–W–O and residual-precursor structures against those unmatched reflections.
+
+The unmatched reflection triplet at 23.46°, 23.97°, and 24.73° is diagnostic of monoclinic WO₃, and its weaker lines also account for the 34°, 42°, 49–54°, and 61–71° features. I’m starting quantitative refinements with SrWO₄ + WO₃ and will test whether the remaining low-angle peaks justify a third crystalline phase rather than background/profile effects.
+
+A whole-profile comparison favors orthorhombic WO₃ (Pnma) over the monoclinic database entries by a large margin (about 19% versus 27–31% weighted profile residual in the exploratory refinements). The two-phase model still leaves structured residual intensity, so I’m mapping those residual peaks and testing additional Sr–W–O/precursor phases before accepting the phase count.
+
+The third-phase trials rule out residual SrCO₃ and the monoclinic SrWO₄ polymorph at meaningful levels. Sr₃W₂O₉ gives only a modest improvement and leaves its strongest expected feature unexplained, so I’m broadening the residual search to every locally available C–O–Sr–W structure (including SrO and tungsten suboxides) rather than over-interpreting that small numerical gain.
+
+The residual search reveals a coherent additional line family rather than isolated noise; its strongest unmodeled peaks are at 29.765°, 32.612°, 44.673°, 61.277°, and 67.037°. Before assigning it, I’m correcting the dominant phase’s missing thermal factors—its current imported CIF default over-damps high-angle intensity—because that bias can make coincident weak-phase matches look artificially favorable.
+
+I’ve established SrWO₄ (scheelite) as the dominant phase and WO₃ as a secondary phase, but several residual peaks still need a defensible assignment. I’m now testing whether those peaks form a consistent additional lattice and checking whether the apparent WO₃ polymorph split is genuinely supported before producing the final constrained refinement and deliverables.
+
+The two WO₃ polymorph model barely changes the unexplained lines; it mainly redistributes intensity between near-degenerate WO₃ cells, so I’m treating that split as over-parameterization for now. The strongest independent residuals are at about 29.75°, 32.56°, and 44.67°, which I’m indexing and comparing against plausible Sr–W–O intermediates.
+
+A key clue is that many “extra” lines recur at lower angles relative to the strongest SrWO₄/WO₃ lines, so I’m checking spectral contamination (especially residual Cu Kβ) before assigning another crystalline phase. This matters because treating wavelength leakage as a phase would produce a chemically plausible-looking but false structure and fraction.
+
+The residual-line indexing does not support a coherent third phase, while two diagnostic features do support monoclinic γ-WO₃: its low-angle line near 20.7° and the resolved 41.77°/42.20° doublet, which orthorhombic WO₃ collapses. I’m therefore moving to a physically constrained two-phase refinement and testing displacement/profile terms that currently bias the scale fractions.
+
+The profile refinement exposed a scale singularity and an unphysical negative high-angle Lorentzian term. Fixing the redundant histogram scale and constraining the Caglioti/Voigt terms to stay positive gives a cleaner model (Rwp about 16.8%) without changing the phase fractions materially; I’m checking one final convergence cycle and crystallographic sanity before export.
+
+The final full-range refinement is complete: SrWO₄ 87.08 wt% and WO₃ 12.92 wt%, with Rwp 16.70%. I’m validating that the CIF cells/compositions, JSON fractions, profile rows, and saved GSAS-II project all reproduce those exact submitted values.
+
+Identified two crystalline phases:
+
+- Scheelite SrWO₄: 87.08 wt%
+- Low-symmetry WO₃: 12.92 wt%
+
+Fractions are normalized over modeled crystalline material. Rwp = 16.696%, Rp = 11.459%, GOF = 4.732. The exact WO₃ polymorph remains uncertain; triclinic P-1 fits best, while monoclinic P2₁/n gives essentially the same fraction. Practical fraction uncertainty is approximately ±2 wt%.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [SrWO4.cif](<ATTEMPT_WORKSPACE>/SrWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+

@@ -1,0 +1,46 @@
+I’ll first inspect the pattern, metadata, and reusable refinement utilities, then build a chemically screened phase inventory before fitting. I’ll keep candidate rejection residual-led and ensure the exported CIFs, fractions, profile, and `final.gpx` all come from the same final GSAS-II project.
+
+The chemistry points first to manganese tungstate formation, but the precursor mix can also leave manganese oxide or tungsten oxide polymorphs. I’m now extracting peak families and querying exact COD compositions so the initial inventory is based on both chemistry and the measured line positions—not merely the nominal reaction.
+
+The dominant phase is unambiguous: every strong family from 15.7° through 98° tracks monoclinic wolframite-type MnWO₄ (P2/c), including the diagnostic 23.85/24.31° and 30.07/30.53° split pairs. The alternative Mn₃WO₆ record predicts intense 19.95/20.49° and 28.75/35.24° lines that are absent, so it is not a viable major phase. I’m moving to a GSAS-II baseline fit and will use its residual to test weak Mn-oxide/WO₃ candidates under the same profile model.
+
+The first GSAS-II pass confirms a one-phase model explains the peak positions and leaves no obvious coherent unmatched family. It also exposed two baseline defects that I’m correcting before any impurity or texture decision: GSAS-II initially refined redundant global/phase scales, and unconstrained U crossed negative. I’m fixing the global scale, enforcing a nonnegative profile (U fixed at its neutral boundary while W/X refine), and comparing specimen displacement against zero shift before re-reading the residual.
+
+The corrected baseline is now stable on reopen/replay: U remains at the physically required zero boundary, W and X are positive, and a small but reproducible SH/L term is supported by the repeated low-angle tails. A 12-term Chebyshev background remains smooth and positive across 10–100° and removes the low-angle baseline bias without tracking Bragg peaks. I’m now testing monoclinic texture axes one at a time; this is the main remaining explanation for the large hkl-specific intensity errors.
+
+The large angle-dependent intensity trend was not texture: a single Suortti roughness-B correction drops Rwp from 10.22% to 5.22%, whereas polarization alone stops at its boundary and texture alone only reaches 9.74%. Re-testing texture after roughness gives only a very small effect, so I’m holding it on the watch list. Next I’m challenging isotropic size/strain and the imported coordinates/ADPs separately; any term that is redundant, bound-seeking, or geometrically unsound will be pruned.
+
+I found one important baseline issue while auditing the profile terms: GSAS-II’s nominal HAP defaults (`size = 1 µm`, `microstrain = 1000`) are not neutral even when their refinement flags are off—they still broaden peaks. I’m rebuilding from true neutral values (effectively infinite size, zero strain) before accepting any profile, roughness, texture, or structural conclusion. This changes nuisance partitioning, so all watch-list tests will be replayed against the corrected common profile.
+
+The anisotropy challenge is computationally heavier because twelve replayed GSAS-II branches are running concurrently. I’m letting those finish, then I’ll retain anisotropy only if a direction-dependent term improves multiple families without collapsing to a bound or merely trading against the common X/W profile.
+
+The corrected profile trials are decisive: isotropic strain returns to zero, isotropic size only reparameterizes X, and the best uniaxial size model is >0.95 correlated with X; generalized strain fails outright. I’m therefore keeping phase broadening neutral. A mild order-2 texture is replay-stable, while the refined Mn/W–O geometry remains chemically sound. With that clean common model established, I’m now re-challenging the plausible oxide/tungstate watch list by nonnegative scale fits.
+
+The inventory has converged to dominant wolframite MnWO₄ with three trace oxides: Mn₂O₃, residual WO₃, and residual Mn₃O₄. I’m now replaying the full-range refinement from the saved project, exporting every deliverable from that exact state, and checking project/profile/fraction agreement.
+
+The trace-phase scales are mutually weakly correlated and survive phase-order replay, while MnO and Mn₃WO₆ return zero/insignificant scale. The remaining structural caveat is at trace level: bixbyite Mn₂O₃ is supported, but lower-symmetry Mn₂O₃ records are powder-indistinguishable at this abundance; the WO₃ and Mn₃O₄ cells likewise cannot be refined independently.
+
+The full-range replay converged over all 8,301 measured points with a final maximum shift/ESD of 0.003. The refined crystalline fractions are 98.280% MnWO₄, 0.713% Mn₂O₃, 0.302% WO₃, and 0.705% Mn₃O₄; I’m checking the exported CIF cells/compositions and exact numerical agreement between `final.gpx`, `fit.csv`, and `result.json` now.
+
+Completed and validated against the final GSAS-II project.
+
+| Phase | Weight fraction |
+|---|---:|
+| MnWO₄, wolframite | 98.280 ± 0.238 wt% |
+| Mn₂O₃, bixbyite model | 0.713 ± 0.115 wt% |
+| WO₃, monoclinic | 0.302 ± 0.075 wt% |
+| Mn₃O₄, hausmannite | 0.705 ± 0.187 wt% |
+
+Final fit: Rwp 5.003%, Rp 3.756%, GOF 1.449. Fractions are normalized over modeled crystalline phases. Trace-phase structural and systematic uncertainties are discussed in the report.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MnWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_1_MnWO4.cif)
+- [Mn₂O₃ CIF](<ATTEMPT_WORKSPACE>/phase_2_Mn2O3.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_3_WO3.cif)
+- [Mn₃O₄ CIF](<ATTEMPT_WORKSPACE>/phase_4_Mn3O4.cif)
+

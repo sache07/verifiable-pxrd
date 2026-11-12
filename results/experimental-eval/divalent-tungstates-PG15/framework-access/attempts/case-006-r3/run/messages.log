@@ -1,0 +1,53 @@
+I’ll inspect the pattern, metadata, and the framework’s analysis guidance first, then identify candidate phases and refine them in GSAS-II. I’ll keep phase identification and quantitative fractions tied to the final saved project and profile outputs.
+
+The chemical scope is Cu–W–O from CuO + WO₃ at 800 °C. The scan has the framework’s full 10–100° grid and a relatively high, sloping background, so I’m separating peak identification from background first and will search the frozen Cu–W–O/CuO/WO₃ reference inventory before deciding the phase count.
+
+The frozen reference index has only four Cu–W–O entries: two CuWO₄ polymorph/settings, Cu₃WO₆, and Cu₂WO₄, plus the likely precursor/decomposition phases. I’m now comparing their full peak inventories, including weak unmatched peaks—not just the strongest-line coincidences—to determine whether this is one phase or an overlapping mixture.
+
+The line inventory supports triclinic CuWO₄ as the principal framework, but the 23–29° group contains reflections that it cannot generate; monoclinic WO₃ and possibly CuO remain plausible secondary phases. I’m moving to staged GSAS-II fits now, starting with deliberately broad profiles so the cell/offset refinement can lock onto the correct reflections before comparing candidate mixtures.
+
+The first single-phase trial is intentionally diagnostic and has already failed physically: it lowers Rwp only by driving the cell and instrumental widths far outside the allowed generator ranges. That confirms unmodeled phases rather than a merely shifted CuWO₄ pattern. I’m stopping that over-broadened branch and will fit the chemically plausible multiphase candidates with bounded profile parameters.
+
+The two- and three-phase fits still require 1–3% cell distortions, which is too large for the framework’s stated reference perturbations. That points to a different structural parent, not just missing CuO/WO₃. The observed 19.3/29.0/31.9/34.6° sequence is scheelite/wolframite-like, so I’m expanding the search to divalent-tungstate framework analogues and will substitute Cu only after a framework-level match is demonstrated.
+
+The analogue search resolved the phase identity cleanly: a Cu-substituted model derived from COD 2101690 (the published Cu₀.₉Zn₀.₁WO₄ triclinic framework) gives a template correlation of 0.934 and drops the GSAS-II Rwp from ~42% to 13.5% as a single phase, with only sub-0.3% cell adjustments. I’m treating this as one CuWO₄ crystalline phase unless the refined residual reveals independent peaks.
+
+The constrained physical refinement now reaches Rwp 6.32% with plausible calibration/profile values and no unindexed reflections. The remaining residual is intensity-shaped rather than peak-inventory-shaped, so I’m testing the framework’s permitted preferred-orientation axes and surface roughness before accepting the atomic coordinate shifts.
+
+Profile broadening is also resolved: uniaxial microstrain along [001] improves Rwp to 5.34%, with 2329/1823 ppm components—both inside the generator’s allowed range—and is measurably better than isotropic or the other permitted axes. Surface roughness refines to allowed values; preferred orientation consistently returns to unity, so I am not including texture.
+
+A profile-parameter degeneracy surfaced: the fitted Lorentzian width was represented as a negative instrument X plus a 0.30 µm size. Reparameterizing the identical width as X≈0.10 and size≈1.0 µm places both inside the allowed ranges. I’m also fixing polarization at its allowed lower bound (the unconstrained optimum was 0.41) before final validation, so the submitted project remains physically admissible.
+
+The residual audit found structured positive intensity at 23.43°, 24.69°, and 34.48°—well above counting noise—so the “single phase” conclusion is not yet defensible. I’m reopening phase identification against the residual specifically; this is the right place to distinguish a minor WO₃/CuO remnant from a second CuWO₄ polymorph.
+
+The residual search has isolated monoclinic WO₃ as the likely minor phase. I’m comparing the completed two-phase refinements now, then I’ll validate the best model by GSAS-II replay and export the final project, CIFs, profile, and report.
+
+The best candidate is the P2₁/c WO₃ model (COD 2311041): it lowers Rwp from 4.965% to 3.876% and refines to about 2.98 wt% WO₃. Its alternative cell setting fits slightly worse. I’m now checking whether the small improvement from minor-phase coordinate/profile terms is supported rather than overfit, and whether any coherent third-phase residual remains.
+
+The first physically constrained branch is still refining; GSAS-II is slow here because both cells, scales, profiles, the major-phase coordinates, and the 32-term background are coupled. I’ve reduced the comparison to a few decisive branches so the final project remains physically defensible.
+
+A constrained roughness solution retains essentially the same fit (Rwp 3.881%) with valid Suortti parameters; the unconstrained negative value was just a correlated alternative parameterization. I’m keeping the physical branch and testing the last scientifically meaningful choice: whether the weak WO₃ oxygen coordinates or anisotropic broadening are actually supported.
+
+The supported model is now stable: triclinic CuWO₄ plus monoclinic P2₁/c WO₃, with the latter at about 2.98 wt%. WO₃ oxygen-coordinate refinement is not supported (large coordinate uncertainties and a worse fit), while a [100] uniaxial width term is weakly but significantly supported. I’m freezing that restrained model and moving to replay/export validation.
+
+The frozen project replayed successfully with zero physical-profile review flags. I’m doing the final cross-check now: CIF-to-project identity, normalized fractions, complete fit-grid agreement, and project metadata integrity.
+
+Completed the two-phase refinement:
+
+- Triclinic CuWO₄ (P -1): 97.02 wt%
+- Monoclinic WO₃ (P 2₁/c): 2.98 wt%
+- Rwp = 3.8743%, Rp = 2.9979%, GoF = 1.600
+
+The WO₃ fraction has an estimated model-dependent uncertainty of about ±0.5 percentage points; its oxygen coordinates were not independently refinable.
+
+Files:
+
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r3/workspace/final.gpx)
+- [CuWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r3/workspace/CuWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r3/workspace/WO3.cif)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r3/workspace/fit.csv)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r3/workspace/report.md)
+
+The final GSAS-II project replayed successfully over all 8,301 observations with no physical-profile validity flags, and both exported CIFs match the saved project models.
+

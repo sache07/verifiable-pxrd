@@ -1,0 +1,88 @@
+I’ll inspect the measurement metadata, pattern, and the provided divalent-tungstate workflow/tooling first. Then I’ll identify candidate phases, refine them in GSAS-II, and verify that every submitted artifact is generated from the final project.
+
+The chemistry is PbO + WO₃ fired at 500 °C, so the plausible inventory includes PbWO₄, residual oxides, and lead-rich intermediate tungstates. I’m now extracting peak positions and checking the frozen COD/DARA resources before committing to a phase set.
+
+Peak positions now support a three-phase working model: scheelite PbWO₄ is dominant, while the 23.1–24.6° triplet is diagnostic of monoclinic WO₃ and several smaller peaks match tetragonal litharge PbO. I’m testing that inventory in a quantitative GSAS-II refinement and will reject or add phases based on the residual—not just chemistry.
+
+The first quantitative fit rejects litharge: its strongest line lands near 28.9°, while the unexplained 29.34°, 30.62°, 38.12°, 45.44°, 53.38°, and 56.30° series matches orthorhombic massicot PbO. That is also chemically coherent at the reported 500 °C firing temperature. I’m replacing the PbO polymorph and checking whether any fourth phase remains.
+
+Massicot improves the phase assignment substantially, but the current unconstrained profile refinement is showing parameter correlation (instrument broadening versus crystallite size). I’m tightening that model and using the remaining line positions to decide whether the residual reflects a missing phase or merely anisotropic broadening.
+
+The residual now separates into two patterns: both PbO polymorphs are supported, but a distinct strong line at 25.918° (with companions near 30.15° and 31.04°) remains unexplained. I’m running controlled phase-addition tests for the plausible oxidation-state alternatives; acceptance will require a positive scale, modest cell correction, and a coherent reduction across multiple peaks.
+
+The main phase is scheelite PbWO₄, with residual WO₃ and both PbO polymorphs already supported by distinct peak series. I’m now resolving a remaining sharp residual series near 25.92°, 30.15°, and 31.04° before committing the phase list; the current four-phase model is not yet adequate for a defensible final project.
+
+A chemically strong match has emerged: the unassigned peaks track the C2/m Pb₂MoO₅ structure after the isostructural Mo→W substitution. Its calculated strongest line is 25.70° (observed 25.92°), with the same clustered lines near 29–31°, 43°, and 47°; I’m testing Pb₂WO₅ explicitly rather than fitting an unrelated oxide to those residuals.
+
+The Pb₂WO₅ phase is quantitatively substantial (~14 wt%) and cuts Rwp from 14.94% to 12.23%. A sixth Pb₂O₃-like model gives another real but smaller improvement (~5 wt%, Rwp ≈11.1%); I’m separating genuine inventory gains from broadening/intensity artifacts by refining physically bounded phase-specific size and strain before accepting that sixth phase.
+
+Phase-specific broadening behaves sensibly for PbWO₄, WO₃, both PbO polymorphs, and Pb₂WO₅. The Pb₂O₃ candidate instead runs toward extreme size/strain parameters, which is a warning that it may be compensating for model error rather than representing a secure phase; I’m comparing the bounded five- and six-phase fits directly.
+
+The bounded six-phase profile is stable at Rwp 10.70%; coordinate refinement is now lowering it further (10.42% after PbWO₄/WO₃/massicot). I’m retaining only symmetry-allowed coordinate shifts and will reject any stage that creates implausible geometry or merely worsens the profile.
+
+The residual is now pointing to the PbO reference choice rather than a new chemistry: an incommensurate α-PbO approximant (Pbma, a 32-formula-unit supercell) ranks far above additional W oxides and reproduces the remaining litharge-like line family. I’m testing it as a replacement structural model for α-PbO, while keeping β-PbO (massicot) separate.
+
+Replacing simple litharge with the α-PbO superstructure is strongly supported: the unprofiled Rwp drops from about 11.1% to 9.89%, and the phase remains positive at ~4.6 wt%. This is evidence for the modulated α-PbO model, not an extra duplicate PbO phase.
+
+The α-PbO supercell makes each refinement cycle slower because it generates hundreds of reflections, but the run is progressing normally. I’m waiting for the bounded size/strain stages to finish before judging whether its extra degrees of freedom remain physically stable.
+
+The refinement is still CPU-bound in the large-cell reflection calculation; no failure has been reported. I’m leaving it undisturbed because this model already produced the clearest inventory improvement, and interrupting now would discard the profile comparison.
+
+Pb₂O₃ shows a reproducible March–Dollase texture signal (best tested ratio ~0.84), improving the fit without distorting its coordinates. That makes the phase assignment more credible than the earlier isotropic-width warning alone suggested; I’m finishing the axis comparison.
+
+A small Pb₃O₄ component is statistically detectable at ~1.7 wt% and improves Rwp from 9.89% to 9.72%; its diagnostic lines and the 500 °C PbO/Pb₃O₄ transition region make it plausible. I’m carrying it into the bounded profile model, but will label its fraction as less certain than the six larger phases.
+
+The seven-phase bounded refinement is in its slow large-cell cycles. At this point the phase inventory is chemically coherent—PbWO₄, Pb₂WO₅, WO₃, β-PbO, modulated α-PbO, Pb₂O₃, and minor Pb₃O₄—and the remaining work is profile stabilization and consistency validation.
+
+No numerical warning or failure has appeared; the runtime is consistent with the previous α-PbO supercell refinement. I’m keeping the process running and will use a fresh recalculation after any boundary clamp so the saved project and exported fit cannot inherit stale GSAS-II profile arrays.
+
+The long run remains CPU-bound rather than blocked. While it finishes, the key uncertainty is confined to the two minor oxidation products: Pb₂O₃ is profile-supported at roughly 5%, whereas Pb₃O₄ is near the practical quantitation limit at roughly 1–2%.
+
+The Pb₂WO₅ intermediate has a modest but credible texture term: [100] gives MD ≈1.14 and improves Rwp by ~0.13 percentage point. This lies comfortably inside the physical range and will be retained if it remains stable jointly.
+
+The modulated α-PbO phase has only weak preferred orientation (best [001], MD ≈0.89), while β-PbO is effectively near random. I’ll avoid adding marginal texture parameters unless the joint refinement preserves their benefit.
+
+Texture screening supports a compact joint model: WO₃ [110] weakly oriented, Pb₂WO₅ [100] at MD ≈1.14, modulated α-PbO near the [111] lower bound, and minor Pb₃O₄ near the [001] lower bound. I’m now fitting these jointly with fixed physical profile values and comparing the two plausible Pb₂O₃ texture axes.
+
+The joint model is stable and substantially better: Pb₂O₃ [111] at MD 0.70 gives a fully recalculated Rwp of 8.526%, versus 8.664% for the [110] alternative. The fitted instrument terms remain physical (U 7.20, W 23.88, X 5.62), so this gain is not coming from a pathological width.
+
+The remaining residual is not pointing to another generic oxide; it is dominated by a second scheelite-like lead tungstate entry, Pb₇W₈O₂₈.₈ (P4/ncc). That would explain the persistent shoulders beside PbWO₄ peaks and fits the lab’s stated possibility of off-stoichiometric intermediates, so I’m checking it explicitly rather than inflating the PbWO₄ scale.
+
+Surface roughness collapses to zero, so the scan does not support that specimen correction. I’m leaving it out and testing only a slightly more flexible smooth background; the phase model itself remains unchanged.
+
+The 24-term smooth background lowers Rwp to 8.439% while remaining slowly varying. Pb₂O₃ benefits only slightly from uniaxial strain; [001] is best so far (14,500/7,400 ppm, Rwp 8.427%), so the phase is broad but not driving the overall solution.
+
+Uniaxial broadening is modest but physically stable for Pb₂WO₅ (best tested [100], about 2870/950 ppm) and negligible for β-PbO. I’ll retain only the Pb₂WO₅ term; extra broadening parameters that move Rwp by ~0.001% are not justified.
+
+A small symmetry-preserving scheelite oxygen adjustment improves Rwp to 8.389% with a displacement of about 0.06 Å; larger shifts hit the imposed physical bound. I’m now testing only heavy-atom shifts in the minor phases, where Cu X-ray data actually carry useful positional information.
+
+Bounded heavy-atom refinement gives coherent, modest gains: α-PbO improves to 8.313% and the analogue-derived Pb₂WO₅ to 8.245%, with all retained shifts capped at 0.04 Å. The latter is expected because Mo→W substitution changes the adapted parent locally.
+
+Shared Uiso refinement is well behaved for the five main phases (about 0.005–0.017 Å²) but becomes scale-correlated for Pb₂O₃/Pb₃O₄. I’m discarding those runaway values and fixing all phases to a conservative shared-per-phase set within 0.003–0.020 Å² before recalculation.
+
+With conservative shared Uiso values, the consistent Rwp is 8.127%. I’m refreshing each unit cell against this stabilized intensity/profile model now; zero and specimen shift are held fixed to avoid their 99% correlation, and each phase is isolated in turn.
+
+Cell refreshes are stable and monotonic: Rwp is 8.064% through Pb₂WO₅, with only small lattice adjustments. The refined cells remain close to their parent models except the already-noted Pb₂O₃ mismatch, which will remain explicitly qualified.
+
+The refinement has converged to a seven-component model dominated by scheelite PbWO₄, with WO₃, two PbO polymorphs, a Pb₂WO₅-like intermediate, and minor Pb₂O₃/Pb₃O₄. I’m now doing the final consistency pass: export precision, reconstructed-profile replay, normalized fractions, and the uncertainty notes for the tentative minor phases.
+
+The reconstructed fit is numerically stable, but its remaining residuals are still structured around several peak clusters. Before freezing the deliverables, I’m checking whether those clusters indicate a missing phase or simply imperfect profile/texture modeling; that distinction matters more than shaving a small amount off the reported Rwp.
+
+The phase inventory survives omission tests cleanly: removing any of the first six raises Rwp to 10–36%, and removing the minor Pb₃O₄ component still raises it from about 8.00% to 8.46%. I also tested PbO₂, Pb₇W₈O₂₈.₈, and several Pb₃WO₆ analogues; their refined scales collapsed or did not improve the fit. The remaining uncertainty is therefore mainly structural/model dependence for Pb₂WO₅ and the two minor mixed-valence lead oxides, not whether the major components are needed.
+
+Completed and validated by fresh GSAS-II forward replay.
+
+Modeled crystalline fractions:
+
+- PbWO₄ (scheelite): 53.67%
+- Pb₂WO₅ intermediate: 11.88%
+- WO₃ (monoclinic): 9.02%
+- Pb₂O₃-like phase: 8.15%
+- β-PbO (massicot): 7.40%
+- long-period α-PbO: 6.68%
+- Pb₃O₄ (minium): 3.21%
+
+Fit: Rwp 8.004%, Rp 5.731%, GOF 2.290. Pb₂WO₅ is analogue-derived; Pb₂O₃ and Pb₃O₄ remain tentative and model-dependent.
+
+Artifacts: [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-013-r2/workspace/result.json), [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-013-r2/workspace/report.md), [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-013-r2/workspace/fit.csv), and [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-013-r2/workspace/final.gpx). All seven CIF paths are listed in `result.json`.
+

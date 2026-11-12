@@ -1,0 +1,53 @@
+I’ll first inventory the measurement, reusable refinement utilities, and candidate databases. Then I’ll identify plausible phases from peak positions and chemistry, refine them under a shared physical profile, re-challenge alternates/weak phases, and export the exact final GSAS-II project and matching deliverables.
+
+The sample is a low-temperature MnO₂–WO₃ reaction measured in reflection with a Cu Kα doublet and no supplied instrumental profile or uncertainties. That makes unreacted precursors, mixed Mn–W oxides, and polymorph/source-record ambiguity all realistic; I’m treating them as an inventory problem before refining scales.
+
+The peak-family test is already decisive for the two starting structures: the three-line WO₃ cluster near 23–25° and the pyrolusite MnO₂ families near 29.0, 37.7, 57.0, 59.7, and 72.5° share the same roughly +0.3° angular displacement. MnWO₄ would require very strong lines near 18.5 and 30.0–30.5° that are absent, so it remains a watch-list phase rather than an accepted one. I’m now comparing physically valid source records/polymorphs under that same displacement and profile.
+
+The initial two-phase trial exposed a refinement-path issue rather than a chemical rejection: releasing the weak-phase scale before the shared displacement was settled drove the MnO₂ scale through zero. I’ve reset to a reversible sequence—fixed plausible relative scales first, then displacement/background, then the MnO₂ scale, cells, and finally the common profile—so zero-scale behavior is judged fairly.
+
+The first polymorph result is a useful rejection: orthorhombic WO₃ can be forced to the correct volume, but it needs an extreme common U term and still gives Rwp ≈14.5%, versus the monoclinic trial already below 8%. A different monoclinic record also became metrically unstable and chemically malformed on import, so it is not a viable structural source. The conventional monoclinic and triclinic comparisons are still completing under the identical model.
+
+The shared baseline is now physically constrained and interpretable. Six background coefficients were adequate but eight are statistically supported over the 90° range and remain smooth; four clearly underfit. Refining the unknown polarization gives 0.587(5) and a small reproducible improvement. SH/L is only 1.1σ from zero, 98.6% correlated with specimen shift, and gives negligible improvement, so I’m pruning it. The W term likewise tried to cross zero and is fixed at zero; U and X remain positive.
+
+The first size/strain comparison shows the dominant WO₃ is genuinely broader than MnO₂: an isotropic WO₃ size term refines to about 0.20 μm, while an isotropic strain term gives the larger improvement at about 0.46% microstrain. MnO₂ size runs to the neutral upper bound and its strain wants an unphysical negative value, so both MnO₂ terms are rejected. Because the starting common-profile fit had not fully settled, I’m now replaying the baseline and both WO₃ alternatives after save/reopen before deciding between size, strain, or a complementary combination.
+
+The width and texture challenges are discriminating cleanly. WO₃ texture is unsupported for every tested axial/diagonal direction (March ratios stay within ~0.2% of 1). A uniaxial WO₃ strain model along [001] gives a small but significant family-width improvement over isotropic strain. For MnO₂, four symmetry-distinct texture axes all improve the unique-family ratios, with [110] best (March ≈0.834); this is phase-specific, not a scale/background trend. I’m replaying the [001] strain model, then combining only that term with the [110] MnO₂ texture.
+
+The baseline tests now support one phase-specific broadening term for WO₃ and a modest MnO₂ preferred-orientation correction. I’m combining those effects, replaying the refinement from disk to stability, then I’ll re-challenge the plausible mixed-oxide watch list against that same profile before exporting the exact final project and profiles.
+
+The combined fit reaches Rwp ≈ 5.83% and 73.6/26.4 wt%, but the replay exposes a small two-state oscillation rather than true numerical convergence. I’m tracing the correlated parameter responsible and will stage or damp that refinement before treating the fractions as final.
+
+The watch-list scales are small but not uniformly zero: MnWO₄ refines to ~0.18 wt%, Mn₃WO₆ ~0.09 wt%, Mn₃O₄ ~0.52 wt%, and Mn₂O₃ ~0.85 wt%. Those formal scales can arise from overlapped residuals, so I’m now checking whether each is supported by multiple coherent, composition-specific peak families rather than accepting significance from scale/esd alone.
+
+The watch-list check does not justify a third modeled phase. The apparent ~0.8 wt% Mn₂O₃ is driven mainly by one broad residual near its strongest 222 line; its next diagnostic families are absent or worsen the fit, and freeing its orthorhombic cell produces an implausible distortion. Ambient hausmannite refines to zero, while MnWO₄ and Mn₃WO₆ lack coherent unique families. I’m therefore retaining the two-phase inventory and rebuilding it with the chemically explicit pyrolusite source record before final export.
+
+The rebuilt project confirms the same phase fractions within a few tenths of a percent, but it also makes the remaining numerical issue explicit: one tiny triclinic off-diagonal cell term alternates between equivalent near-orthogonal solutions. I’m pruning that unsupported cell degree of freedom (after cell refinement) and replaying the rest; this is preferable to reporting a falsely precise triclinic angle.
+
+The final-model challenges are now stable: removing texture worsens Rwp from 5.884% to 6.105%, and replacing WO₃ [001] uniaxial strain with isotropic strain worsens it to 5.911%. Among symmetry-distinct MnO₂ axes, [110] remains best. I’m freezing the exact converged state into `final.gpx`, then exporting all derived files directly from that project and validating their structural and numerical agreement.
+
+One physical-screen item needs a final check: the selected WO₃ record contains no displacement parameters, so its exported Uiso values default to zero. I’m testing a minimal, element-grouped Uiso model (not coordinate refinement) to see whether the data support physically positive thermal motion without turning scale or high-angle intensity into a surrogate.
+
+The minimal WO₃ Uiso test is replay-stable and physically sensible (W ≈ 0.0058 Å², O ≈ 0.0112 Å²), with no bounds; I’m accepting it despite a strong correlation with polarization and will reflect that as a systematic fraction uncertainty. The analogous MnO₂ test was rejected because both Uiso values ran to the imposed ceiling and forced polarization outside its physical range.
+
+All requested artifacts are now exported from the accepted ADP-refined project. I’m doing the final agreement checks now: project reopen, fraction/statistic equality, point-by-point profile equality, CIF cell/occupancy/geometry validation, and file-manifest sanity.
+
+Completed the phase analysis and refinement.
+
+- Triclinic WO₃ (P -1): **73.59 wt.%**
+- Pyrolusite MnO₂ (P 42/m n m): **26.41 wt.%**
+- Rwp: **5.8746%**; goodness of fit: **2.1847**
+
+Fractions are normalized over modeled crystalline phases. Practical uncertainty is approximately ±1–2 wt.%; trace oxide below ~1 wt.% cannot be excluded reliably.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [WO3_triclinic.cif](<ATTEMPT_WORKSPACE>/phases/WO3_triclinic.cif)
+- [MnO2_pyrolusite.cif](<ATTEMPT_WORKSPACE>/phases/MnO2_pyrolusite.cif)
+
+The reopened final project converges with maximum shift/esd 0.0019, and its fractions and calculated profile match the exported files.
+

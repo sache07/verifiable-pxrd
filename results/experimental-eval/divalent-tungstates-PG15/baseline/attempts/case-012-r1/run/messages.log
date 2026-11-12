@@ -1,0 +1,30 @@
+I’ll inspect the diffraction data, metadata, and the installed crystallography tooling first, then identify candidate phases and carry the best model through a GSAS-II refinement. I’ll keep phase-count assumptions conservative and verify that every submitted fraction and profile comes from the saved `final.gpx`.
+
+The chemistry points first to nickel tungstate formation, with residual NiO or WO₃ as plausible secondary phases. I’m now testing that hypothesis against the full peak list rather than assuming complete reaction; the key discriminant will be whether all resolved reflections can be indexed by NiWO₄ alone.
+
+The peak test resolves two phases: wolframite-type NiWO₄ accounts for the dominant pattern, while the three extra reflections at about 23.06°, 23.53°, and 24.28° (plus weaker lines near 33–34°) require residual WO₃. Their splitting is characteristic of room-temperature monoclinic γ-WO₃; NiO’s diagnostic 43.4° line is absent, so I’m not including NiO unless refinement residuals later demand it.
+
+The first quantitative refinement is already converging to roughly 77 wt% NiWO₄ and 23 wt% WO₃, with a profile residual near 5.5% before phase-specific broadening. I’m continuing the profile refinement and then will compare the monoclinic WO₃ model against plausible orthorhombic/triclinic alternatives so the polymorph assignment is evidence-based.
+
+The triclinic WO₃ model is decisively better than monoclinic or orthorhombic alternatives (profile \(R_\mathrm{wp}\) about 4.56% versus 4.88% and 7.72%, respectively), and its refined non-90° angles are many standard uncertainties from monoclinic symmetry. I’m retaining triclinic WO₃. The phase fractions remain very stable near 76/24 wt% across these model tests; I’m now checking the last plausible intensity corrections (polarization and preferred orientation) without adding correlated broadening terms.
+
+The final refinement is settled with no SVD singularity and a maximum shift/error of 0.015. It gives 75.32 wt% NiWO₄ and 24.68 wt% triclinic WO₃, with \(R_\mathrm{wp}=4.350\%\) and GOF 1.253. A trial NiO term refined to only ~0.2 wt% and was driven by an overlapping line while failing its independent 43.4° diagnostic reflection, so it is not reliable enough to submit as a third phase.
+
+The deliverables are generated and the CIFs parse correctly as NiWO₄ (P2/c) and WO₃ (P-1). One numerical validation caught only a CSV rounding-tolerance mismatch in the stored difference column; I’m checking and tightening that export so the profile is internally exact to its written precision.
+
+Identified two crystalline phases:
+
+- NiWO₄, wolframite (P2/c): **75.32 wt%**
+- Triclinic WO₃ (P-1): **24.68 wt%**
+
+Fractions are normalized over modeled crystalline material. Final fit: \(R_\mathrm{wp}=4.350\%\), GOF = 1.253. Trace NiO could not be identified reliably.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [NiWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_NiWO4.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_triclinic.cif)
+

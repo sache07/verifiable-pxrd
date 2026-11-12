@@ -1,0 +1,36 @@
+I’ll inspect the specimen metadata, pattern, and the frozen analysis/tooling guidance first, then build and refine a complete multiphase GSAS-II model. I’ll keep the phase search anchored to coherent residual peak families and preserve the best physical checkpoint for the final deliverables.
+
+The chemistry points first to Co–W–O phases: CoWO₄ is the ordinary 1:1 product, while 500 °C can leave WO₃ and/or Co₃O₄. I’m now extracting peak families and querying the frozen COD index for exact Co/W/O references before testing any less ordinary phase.
+
+The observed peak positions already support only two coherent families: monoclinic γ-WO₃ (including its 23–25° triplet) and spinel Co₃O₄ (19.4°, 31.6°, 37.2°, 45.1°, 59.7°, 65.6° on the measured grid). There is no evident wolframite CoWO₄ 30–31° family. I’m setting up controlled GSAS-II candidate refinements now, including the close WO₃ reference variants, so phase choice is based on full-profile agreement and physical structure rather than peak matching alone.
+
+The physically bounded refinement is stable at about 74.4 wt% WO₃ and 25.6 wt% Co₃O₄, essentially the stoichiometric unreacted-precursor ratio. Cells, crystallite sizes, and microstrain remain physical. I’m now mapping the residuals and refining the accepted structures’ symmetry-allowed coordinates; this is the appropriate next step because the remaining mismatch is mainly relative intensity, not unindexed peak position.
+
+No additional coherent reflection family remains after the two-phase model. The residual instead supports ordinary specimen corrections: a [010] uniaxial microstrain term for WO₃ and a low-angle surface-roughness deficit; preferred-orientation tests returned ratios essentially 1.0 and were rejected. I’m tightening the correlated intensity corrections with bounded multistarts before the final profile polish.
+
+The phase inventory is now stable: monoclinic γ-WO₃ and spinel Co₃O₄ account for every coherent reflection family; no CoWO₄ family is supported. I’m doing the final full-grid replay now so the CIFs, fractions, profile, statistics, and `final.gpx` all come from the same frozen state.
+
+The residual maxima occur on already indexed WO₃/Co₃O₄ peaks and alternate in sign across them, which is characteristic of line-shape/intensity mismatch rather than a missing reflection family. I’m preserving the physically bounded model and will generate `fit.csv` with the same fresh full-grid forward replay the verifier uses, rather than relying on cached GSAS-II arrays.
+
+The independent replay passed with no physical/profile review flags. It gives 76.273 wt% WO₃ and 23.727 wt% Co₃O₄, with full-grid \(R_\mathrm{wp}=3.053\%\). I’m checking the exported CIF geometry and submission parser next, then I’ll write the short evidence/uncertainty report.
+
+The exported structures pass the submission parser and geometry checks, and `fit.csv` passes the complete-grid/profile validator. I’ve written the report with the phase evidence and conservative uncertainty; one final consistency audit remains across the project hash, CIF rounding, fractions, and profile columns.
+
+Completed and validated.
+
+The crystalline model is:
+
+- Monoclinic γ-WO₃ (*P*2₁/*c*): **76.273 wt%**
+- Spinel Co₃O₄ (*Fd*3̅*m*): **23.727 wt%**
+
+Full-grid replay: **Rwp 3.053%**, **GoF 1.776**. No coherent CoWO₄ or third-phase reflection family was supported. Estimated systematic fraction uncertainty is approximately ±2 absolute wt%.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r1/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r1/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r1/workspace/fit.csv)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r1/workspace/phase_WO3.cif)
+- [phase_Co3O4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r1/workspace/phase_Co3O4.cif)
+

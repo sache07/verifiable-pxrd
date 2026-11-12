@@ -1,0 +1,41 @@
+I’ll first inspect the specimen metadata, diffraction grid, and the frozen analysis utilities/reference index. Then I’ll build the chemically ordinary multiphase model, refine it in GSAS-II, and verify that every coherent residual family is accounted for before exporting the requested files.
+
+The chemistry points first to MnWO₄ (the ordinary 1:1 product), with residual MnO and/or WO₃ as the most plausible secondary phases. I’m now extracting the observed peak families and querying only the frozen COD index for exact Mn–W–O and precursor references; phase acceptance will depend on whole-family profile agreement, not just a few peak matches.
+
+The strongest 50+ reflections—including the low-angle doublet family near 23.89/24.36°, the 30.12/30.58° pair, and the dense high-angle families—already map consistently to monoclinic wolframite MnWO₄ (P2/c). I’m fitting that complete model first, including specimen displacement and the Cu Kα doublet; only residual peaks left after this refinement will be tested as additional phases.
+
+The first physically constrained whole-pattern fit gives Rwp ≈ 7.66% with a plausible cell, −571 µm specimen displacement, and instrument terms in their expected ranges. Its large residuals are paired positive/negative lobes around MnWO₄ peaks rather than independent peak families, so they indicate imperfect peak shape/intensity—not a second crystalline phase. I’m now refining the MnWO₄ coordinates in heavy-to-light order with rollback checkpoints, then I’ll map any residual family that survives.
+
+A free texture/profile branch lowered Rwp to ~5.25%, but only by driving instrumental Gaussian terms outside the physically allowed region. I rejected that numerical minimum. Replaying with physical limits gives Rwp ≈ 5.53%; the remaining high-angle broadening is consistent with specimen microstrain, so I’m separating that from the instrument profile now. The [100] and [110] texture axes are nearly degenerate and will be compared on the fully physical replay.
+
+The refined residual now shows a coherent second family: 23.45°, 24.68°, 33.58°, 34.47°, 42.18°, 50.21°, and 56.23°. Their spacing is characteristic of residual monoclinic WO₃, while MnO/Mn₃WO₆ marker peaks are absent. I’m fitting every physical exact-composition WO₃ reference from the frozen index against that full family, then I’ll retain only a model with positive stable scale and correct whole-family geometry.
+
+Monoclinic WO₃ (COD 2311041, P2₁/c) is the accepted minor phase: it has the best physical exact-composition fit (Rwp 4.31%, about 1.8 wt%), reproduces the entire residual family, and retains sensible W–O distances. A near-fit alternative has an O–O clash/missing W coordination, so I rejected it despite similar peak positions. With every coherent family now indexed, I’ve stopped phase/library searching and am refining only the accepted two-phase inventory.
+
+The coherent peak families are now accounted for by wolframite MnWO₄ plus a minor monoclinic WO₃ phase. I’m finishing the physical replay from the best checkpoint, then I’ll export the CIFs, full-grid fit, normalized fractions, statistics, report, and replayable GSAS-II project.
+
+The clean replay converged without frozen or out-of-range parameters: Rwp = 4.250%, GOF = 1.543, with 97.57 wt% MnWO₄ and 2.43 wt% WO₃. The minor-phase broadening is supported but model-dependent, so I’m carrying that into the uncertainty statement while keeping the submitted fractions tied exactly to the final replay.
+
+A final physical audit found that the published 1966 neutron WO₃ reference carries placeholder zero displacement factors. Because the ~2.4 wt% phase cannot support independent ADP refinement, I’m replacing those placeholders with fixed, ordinary room-temperature values and replaying the entire full-grid refinement; this keeps the topology and coordinates unchanged while avoiding a nonphysical zero-ADP submission.
+
+The physical ADP replay improved the fit slightly and converged cleanly. The final model is now 97.51 wt% MnWO₄ and 2.49 wt% WO₃, with Rwp = 4.242%; both exported structures pass independent composition, symmetry, and bond-distance checks. I’m doing the final cross-file consistency check now.
+
+All submission artifacts agree exactly with `final.gpx`: 8,301 observed points, identical calculated/difference arrays, fractions summing to 1.0, and no frozen parameters. I’m taking one last residual-pattern look to ensure no coherent family or correctable physical mismatch was hidden by the scalar fit statistic.
+
+Completed the PXRD analysis.
+
+- Wolframite MnWO₄ (P 2/c): 97.51 wt%
+- Monoclinic WO₃ (P 2₁/c): 2.49 wt%
+- Rwp: 4.242%; Rp: 3.274%; GOF: 1.540
+- No supported third crystalline phase.
+- Minor WO₃ has a practical abundance uncertainty of approximately ±0.7 wt% due to profile-model sensitivity.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r3/workspace/final.gpx)
+- [MnWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r3/workspace/MnWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r3/workspace/WO3.cif)
+

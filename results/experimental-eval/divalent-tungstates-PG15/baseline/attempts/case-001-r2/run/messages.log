@@ -1,0 +1,28 @@
+I’ll inspect the pattern, metadata, and available diffraction/refinement tooling first, then identify candidate phases and build a reproducible GSAS-II refinement. I’ll keep the reported fractions limited to modeled crystalline phases and flag any ambiguity explicitly.
+
+The pattern has several distinct peak families concentrated near 23–25° and 33–35°, which is consistent with incomplete low-temperature reaction rather than a single clean product. I’m now separating those families against Ba–W–O and precursor reference structures before committing phases to the refinement.
+
+Reference matching now supports two dominant crystalline phases: orthorhombic witherite BaCO₃ and monoclinic γ-WO₃. Their independent reflections account for the full peak sequence once the roughly +0.3° instrumental/specimen offset is included; I’m testing BaWO₄ as a possible minor phase rather than assuming reaction product formation.
+
+The major phases are now well constrained, and the fit also supports a very small scheelite BaWO₄ reaction product. Because that trace fraction is sensitive to the reference oxygen model, I found a second independent BaWO₄ structure in the local crystallographic database and am comparing it before finalizing the sub‑1 wt% result.
+
+I’m finalizing a conservative two-phase submission: witherite BaCO₃ plus triclinic WO₃. A conventional scheelite BaWO₄ model refines to an insignificant, model-dependent trace, so I will document it as unresolved rather than report a misleading sub‑1 wt% phase. The final project will contain only the two reliably quantified crystalline phases.
+
+The final refinement is complete and converged. The modeled crystalline fractions are 54.34 wt% BaCO₃ and 45.66 wt% triclinic WO₃; the conventional BaWO₄ test went to zero within uncertainty, so it is documented but excluded from the normalized phase list. I’m doing a final consistency check across the GPX, CIFs, profile CSV, JSON, and report.
+
+Identified two crystalline phases:
+
+- Witherite BaCO₃: 54.34 wt%
+- Triclinic WO₃: 45.66 wt%
+
+Final fit: Rwp 7.197%, Rp 5.464%, GOF 2.071. Scheelite BaWO₄ was tested but could not be reliably detected or quantified below ~1 wt%.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [BaCO3.cif](<ATTEMPT_WORKSPACE>/BaCO3.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+

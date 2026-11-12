@@ -1,0 +1,42 @@
+I’ll first inspect the pattern metadata, the learned PXRD workflow, and the available refinement backends. Then I’ll build a candidate-phase inventory, fit it in GSAS-II, challenge alternatives against residuals, and export the exact final project and profiles.
+
+The chemistry is a 900 °C CoO + WO₃ reaction, so CoWO₄ is the principal expectation, but the generator explicitly permits residual oxides, off-stoichiometric cobalt tungstates, and polymorphs. I’m treating that only as a prior; the phase count will come from peak families and full-pattern tests.
+
+The frozen library has no exact CoWO₄ entry—the only Co–W–O record is Co₂WO₄—so an exact-formula lookup would be misleading. I’m now screening wolframite/scheelite analogues and the Co₂WO₄, CoO/Co₃O₄, and WO₃ records against the actual peak positions before any scale or cell refinement.
+
+Peak-family screening now shows two strong, coherent lattices: monoclinic WO₃ explains the 23.17/23.67/24.41° triplet and its 33–34°, 41–42°, 50°, and 56° repeats; wolframite-type CoWO₄ explains the intense 30.71° line and matching families across the range. I’m keeping Co₃O₄ and CoO on the watch list because some of their strongest lines overlap these two phases; their unique residual support will decide whether either remains.
+
+The first GSAS-II branches are running more slowly than the quick peak screening because each stage recalculates both dense reflection lists over 8,301 points. The trial projects are being written successfully; I’m waiting for the staged refinements to finish before comparing polymorphs so I don’t select a source from an unconverged intermediate state.
+
+The two-phase model is already decisive: depending on the WO₃ record, provisional Rwp is 6.2–7.3%, with about 68 wt% WO₃ and 32 wt% CoWO₄. The triclinic/low-symmetry WO₃ record currently fits best, but the common peak-width terms have run beyond the physically plausible instrumental range. I’m rebuilding the baseline with bounded instrument terms and phase-specific broadening before accepting that symmetry choice or the fractions.
+
+The bounded branches are still refining; this is expected because they add phase-size or phase-strain terms one phase at a time and replay the full 10–100° range after each addition. The comparison is specifically testing whether the earlier “best” WO₃ model survives once instrumental width is prevented from acting as a surrogate for specimen broadening.
+
+With the profile rebuilt, triclinic WO₃ still wins over both monoclinic alternatives. A physically bounded replay gives Rwp ≈ 6.12% and 68.8/31.2 wt% WO₃/CoWO₄. I’m now challenging the two-phase inventory against the positive residual—not simply lowering Rwp—especially at unique Co₃O₄, CoO, and reduced-tungsten-oxide reflections.
+
+A common isotropic displacement parameter for WO₃ is strongly supported and refines to about 0.016 Å², which is physically plausible and materially improves the angular intensity trend. An unconstrained CoWO₄ ADP branch tried to drive some atoms negative, so I rejected it; I’m scanning a common fixed CoWO₄ Uiso over the physically allowed range and will retain only a replay-stable, nonnegative model.
+
+The phase inventory has converged on triclinic WO₃ plus wolframite CoWO₄. I’m now stress-testing that model against plausible cobalt-oxide traces, checking whether oxygen-coordinate refinement is physically supported, and then I’ll export and replay the exact final GSAS-II project.
+
+The current fit is already internally consistent (Rwp 4.98%, no frozen variables), but the CoWO₄ fraction is ADP-sensitive. I’m keeping that systematic uncertainty explicit and using nonnegative scale tests to decide whether cobalt oxide deserves a third phase rather than interpreting isolated residual spikes.
+
+The trace-phase tests reject Co₃O₄ (scale collapsed to zero) and find CoO at only 0.07 wt% with an uncertainty larger than the value, so neither is supportable. A size-plus-strain trial improved the fit but produced a >92% width correlation; I’m checking replay stability before accepting any extra broadening term.
+
+The replay-stable width model is physically plausible: WO₃ requires about 4.5×10³ ppm microstrain plus ~0.19 µm size broadening, while CoWO₄ needs size broadening only. A modest [100] anisotropy is reproducible and removes angle-dependent residuals without bound hits; I’m doing the final texture and trace-phase re-challenge on that common profile.
+
+The clean-profile re-challenge drove both Co₃O₄ and CoO scales exactly to the nonnegative boundary, so the submitted inventory remains two phases. The weak WO₃ [111] texture term is replay-stable (March–Dollase ≈0.956) and improves many-phase intensities without changing fractions materially, so I’m retaining it for the final replay.
+
+All required deliverables are now written from the exact replayed project. I’m doing a final independent consistency pass: JSON/CIF parsing, project-to-export phase matching, original-grid Rwp, and file inventory.
+
+Completed the PXRD analysis.
+
+- Triclinic WO₃, P-1: 72.27 wt%
+- Wolframite CoWO₄, P2/c: 27.73 wt%
+- Rwp: 4.787%; Rp: 3.780%; GOF: 1.459
+- Conservative fraction uncertainty: approximately ±1.5 wt% absolute
+- CoO and Co₃O₄ challenges refined to zero scale
+
+Independent GSAS-II replay reproduced Rwp = 4.78717% with no profile-review flags and confirmed exact CIF/project agreement.
+
+Files: [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-004-r2/workspace/result.json), [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-004-r2/workspace/report.md), [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-004-r2/workspace/fit.csv), [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-004-r2/workspace/final.gpx), [WO3_triclinic.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-004-r2/workspace/WO3_triclinic.cif), [CoWO4_wolframite.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-004-r2/workspace/CoWO4_wolframite.cif).
+

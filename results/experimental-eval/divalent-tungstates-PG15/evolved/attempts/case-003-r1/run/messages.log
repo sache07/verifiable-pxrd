@@ -1,0 +1,71 @@
+I’ll first inspect the measurement metadata, pattern range, and the reusable analysis tooling, then build a chemically plausible phase inventory before refining anything. I’ll keep weak-but-physical candidates on a watch list and verify that every exported result matches the saved GSAS-II project.
+
+The chemistry strongly suggests calcium tungstate formation with possible residual carbonate and tungsten oxide, but I’m treating that only as a starting hypothesis. I’m now extracting the observed peak families and querying all visible Ca–W–O, Ca–C–O, and W–O records so that polymorph/source-record choices are tested rather than assumed.
+
+Initial phase matching is now unambiguous: the three strongest peak families track monoclinic WO₃, scheelite CaWO₄, and calcite CaCO₃, all with the same ≈+0.30° angular offset. I’m refining a deliberately neutral baseline first—fixed roughness/texture, effectively infinite size, zero microstrain—so phase fractions are not being “helped” by hidden broadening terms.
+
+The unconstrained common profile tried to use a negative W term, which is exactly the kind of nonphysical surrogate the requested protocol warns about. I’ve rejected that baseline. I’m now replaying a positive U/W/X instrument profile and adding size, then strain, one phase at a time; each stage is saved and reopened so improvements can be reversed if a term collapses or merely trades against the background.
+
+The replay is still running through the saved profile stages; no failure has occurred, but GSAS-II is buffering its stage summaries. The key acceptance checks will be whether each refined size/strain stays interior and whether the final released U/W/X values remain nonnegative.
+
+This is computationally heavier than the initial fit because every phase-profile change is being reconverged twice over all 8,293 points. I’m letting the sequence finish because stopping mid-run would lose the direct, same-baseline comparison needed to decide which nuisance terms are genuinely supported.
+
+The phase-width comparison is decisive: size broadening is required for CaWO₄ and WO₃; WO₃ additionally needs strain. CaWO₄ strain changed Rwp by only 0.01 percentage point and is being pruned. Calcite size/strain were 96% correlated and the size hit its 10 μm ceiling, so I’m pruning calcite size and retaining only its angle-dependent strain. I’m now comparing the remaining physically bounded common-profile branches from that identical saved state.
+
+The constrained profile branch converged cleanly with U = X = 0 and W = 11.73 (Rwp 8.74%); attempts to release U or X drove them negative or made them >95% correlated with phase size, so those terms are rejected at the physical boundary. I’m now replaying the source-record inventory: alternate monoclinic/triclinic WO₃, high-pressure fergusonite CaWO₄, and aragonite/monoclinic CaCO₃, each with the same background, scale, zero, cell, and width protocol.
+
+All six inventory challenges are still refining; they are independent projects running in parallel. I’m waiting for full convergence rather than comparing intermediate Rwp values, since cell/profile compensation can temporarily make an incorrect polymorph look competitive.
+
+The first completed challenges already separate record from phase identity: the alternate P2₁/n WO₃ record is chemically correct but fits substantially worse (Rwp 11.03% versus 8.74%), while aragonite leaves major residuals (Rwp 14.92%) and only scavenges ~3 wt% through a distorted cell. A monoclinic-carbonate trial became metrically unstable, which is itself a rejection under this restrained model; the remaining polymorph trials are finishing.
+
+The source challenge retains ambient scheelite, monoclinic WO₃ record 2311041, and calcite. The fergusonite model only approaches the fit by expanding its high-pressure cell into a pseudo-scheelite metric and still fits worse; triclinic WO₃ and other carbonate polymorphs are clearly inferior. I found no strong positive residual peak lacking a nearby modeled reflection, but I’m re-testing the chemically plausible weak-phase watch list—CaO, Ca(OH)₂, Ca₃WO₆, W₁₈O₄₉, and a Ca–W bronze—against the clean profile.
+
+The weak-phase scales are all below 0.5 wt% and improve Rwp by only 0.003–0.018 points. Their strongest lines mostly overlap known WO₃/CaWO₄ residuals, so I’m checking replay stability against fixed crystallite widths. A genuine weak phase should retain a coherent positive scale across reasonable widths; a residual surrogate will vary sharply or collapse.
+
+The sensitivity result is already diagnostic: apparent CaO ranges from 0.18 to 0.73 wt% and the Ca–W bronze from 0.16 to 0.58 wt% solely by changing a fixed width, with no independent cell evidence. That instability shows they are absorbing broad residual intensity rather than defining quantifiable phases. I’m waiting for the analogous W₁₈O₄₉ runs before closing the watch list.
+
+The watch-list phases fail replay stability: their apparent fractions vary by factors of 4–5 as only a fixed peak width changes, and none supplies a clean unique family. I’ll exclude them from the quantitative model and document an approximate sub-1 wt% ambiguity for such heavily overlapped traces. Next I’m testing the one global intensity correction—polarization—before any phase-specific texture, as required.
+
+Polarization refines to a physical 0.590 and lowers Rwp from 8.744% to 8.530%, so it is retained; low-angle roughness remains neutral because there is no coherent low-angle attenuation after this correction. I’m now testing March–Dollase texture one phase at a time over symmetry-distinct axial and diagonal low-index directions, requiring an improvement across multiple families rather than one peak.
+
+The texture sweep is still refining in parallel. I’ll retain texture only if the preferred axis is clearly better than the symmetry alternatives, the March parameter stays interior, and the correction survives a full replay without destabilizing fractions or profile terms.
+
+The initial texture screen finds distinct candidates rather than a generic fit improvement: CaWO₄ [110] is best (March 1.199), WO₃ [010] is best but weak (0.988), and calcite favors a diagonal direction. I’m adding the strongest low-index reflection normals—CaWO₄ [112] and calcite [104]/[012]/[113]—before combining terms, to avoid accepting an axis simply because the first test grid was incomplete.
+
+The expanded screen confirms physically plausible axes: CaWO₄ [110] and calcite [104] are the best candidates; calcite [104] is the common cleavage/strong-reflection normal and gives the largest reproducible improvement. I’m combining those two first, replaying to convergence, then adding the much weaker WO₃ [010] correction separately so it can be pruned if it only duplicates the other terms.
+
+The phase inventory is stable at CaWO₄ + monoclinic WO₃ + calcite. I’m finishing the last model-selection check now: whether any symmetry-appropriate anisotropic broadening is genuinely supported, and whether it changes the weak WO₃ texture term or the phase fractions.
+
+The common profile already passes the low/mid/high-angle width and position checks. I’m branching only low-dimensional uniaxial size/strain models, one phase at a time, from the same converged project; equal initial axial/equatorial values make each comparison reversible and directly comparable.
+
+The anisotropy branches are computationally slower than the isotropic replay, but the first completed comparisons show only modest width anisotropy. I’m checking replay convergence and parameter independence before accepting any of it; this is important because a lower Rwp alone can come from an underdetermined axial/equatorial split.
+
+The phase-width challenge is resolving cleanly: WO₃ has real directional broadening, while most alternate axes give little benefit. The strongest single-term models remain well away from bounds and leave the phase fractions essentially unchanged, so I’m now distinguishing size anisotropy from microstrain anisotropy and checking calcite separately.
+
+The accepted working model now has uniaxial CaWO₄ domain size and uniaxial WO₃ microstrain; adding a second anisotropic WO₃ size term was highly correlated and is being pruned. I’m replaying the model with each texture/polarization term removed and with the rejected common-profile terms re-released, so the final project contains only effects that survive that challenge.
+
+The replay rejects the extra common U term (it becomes negative) and X (it is >0.94 correlated with phase broadening). All three texture terms and polarization remain supported when removed one at a time. Calcite anisotropic strain gives only a 0.006 percentage-point Rwp change with no axis-specific advantage, so I’m keeping calcite isotropic and moving to the final weak-phase re-challenge.
+
+The final weak-phase check does not justify a fourth phase. Ca₃WO₆ and W₁₈O₄₉ refine to zero; CaO and a calcium–tungsten bronze stay below 0.3 wt% and are width-sensitive. Ca(OH)₂ ranges from 0.45 to 1.79 wt% as its fixed size changes, and its strongest unique 001 line at 18.36° worsens the residual—the apparent gain comes mainly from overlaps. I’m therefore reporting these as unresolved trace ambiguity, not quantified phases.
+
+The full-range final project has replayed and converged from disk. The submitted fractions are 13.04 wt% CaWO₄, 56.78 wt% monoclinic WO₃, and 30.17 wt% calcite, with Rwp 8.122%. I’m doing the final artifact audit now: CIF composition/geometry, row counts, and exact agreement between `final.gpx`, `fit.csv`, and `result.json`.
+
+Three crystalline phases were identified and refined:
+
+| Phase | Weight fraction | CIF |
+|---|---:|---|
+| Scheelite CaWO₄ | 13.04 ± 0.13 wt% | [CaWO4.cif](<ATTEMPT_WORKSPACE>/CaWO4.cif) |
+| Monoclinic WO₃ | 56.78 ± 0.23 wt% | [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif) |
+| Calcite CaCO₃ | 30.17 ± 0.29 wt% | [CaCO3.cif](<ATTEMPT_WORKSPACE>/CaCO3.cif) |
+
+Final fit: Rwp 8.122%, Rp 6.273%, Rexp 2.394%, GOF 3.398. Formal uncertainties exclude larger model-dependent uncertainty from overlap and preferred orientation. No fourth phase was reliable; trace ambiguity remains around sub-1 wt%, approaching 2 wt% for non-specific broad models.
+
+Deliverables:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+
+The final project, fractions, CIF cells, and all 8,293 profile rows were cross-checked for exact agreement.
+

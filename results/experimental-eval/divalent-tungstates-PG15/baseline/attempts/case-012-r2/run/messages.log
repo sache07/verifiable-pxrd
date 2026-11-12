@@ -1,0 +1,28 @@
+I’ll inspect the diffraction pattern and metadata first, then identify candidate phases and carry the best-supported structural model through a GSAS-II refinement. I’ll keep phase count conservative and report ambiguity explicitly.
+
+The metadata points to the Ni–W–O system after a 900 °C reaction, but I won’t assume the nominal product. I’m now extracting peak positions and checking them against both likely reaction products and residual precursor phases before deciding how many phases the refinement supports.
+
+Peak matching already supports two phases: wolframite-type NiWO₄ accounts for the dominant series, while monoclinic WO₃ uniquely explains the resolved 23.05/23.54/24.29° triplet and its companion peaks near 26.53, 28.83, and 33–34°. I’m setting up the two-phase refinement now; afterward I’ll inspect the residual for any defensible third phase rather than adding one merely to lower the fit statistic.
+
+The two-phase model has converged to a strong whole-pattern match (current weighted profile residual about 6.7%). The dominant phase is NiWO₄ and the minority WO₃ cell refines consistently; I’m tightening the profile model now because the uncalibrated instrumental broadening is highly correlated, which affects realistic fraction uncertainties even though the phase identities are clear.
+
+The initial Hessian warning came from an exactly redundant overall histogram scale; I’ve fixed that parameter and confirmed a nonsingular refinement. A simpler, physically admissible size-broadening model gives 76.05 wt% NiWO₄ and 23.95 wt% WO₃, with no support for NiO so far. I’m making one last structural check—testing whether the remaining intensity mismatch is explained by refinable atomic coordinates or modest preferred orientation—before freezing the final model.
+
+The final two-phase model is now stable and nonsingular. A deliberate NiO trial refined to zero (unconstrained scale −0.054 ± 0.061 in GSAS-II scale units), while every significant residual feature coincides with NiWO₄ or WO₃ reflections. I’m freezing the project and exporting the exact CIFs, profile, statistics, and uncertainty notes from that same refinement.
+
+Completed the two-phase GSAS-II refinement:
+
+- NiWO₄, P2/c: 76.37 wt%
+- Monoclinic WO₃, P2₁/n: 23.63 wt%
+
+Rwp = 4.629%, Rp = 3.483%, GOF = 1.334. NiO was tested but refined to zero. Fractions are normalized over crystalline phases; practical uncertainty is about ±1 wt% absolute, and amorphous content cannot be determined.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [NiWO4.cif](<ATTEMPT_WORKSPACE>/NiWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+

@@ -1,0 +1,31 @@
+I’ll inspect the measurement metadata, pattern, and the provided tungstate-analysis framework first, then identify candidate phases and carry the best model through GSAS-II refinement. I’ll preserve intermediate evidence and verify that the exported CIFs, profile, JSON, report, and `final.gpx` are mutually consistent.
+
+The chemical inventory is Mn–W–O, fired at only 300 °C, so I’m treating residual MnO₂/WO₃ and low-temperature manganese tungstate products as genuine competing hypotheses rather than assuming complete MnWO₄ formation. The scan is a synthetic-style raw-count measurement with unknown zero/displacement, profile, background, and specimen effects; phase identification therefore has to rest on the full-profile match, not a few peak positions.
+
+Peak indexing already gives a strong preliminary answer: the three intense lines at 23.44/23.93/24.69° are the characteristic monoclinic WO₃ triplet, while 29.01, 37.68, 42.19, 56.96, and 72.54° form the rutile-type β‑MnO₂ sequence. Their shared positive angular displacement indicates a specimen/instrument offset rather than mismatched lattices. I’m now discriminating among the available crystallographic records and checking whether any weaker peaks require a reacted ternary phase.
+
+The first full refinement is computationally heavier than the peak search, but it has begun cleanly. I’m using staged refinements so that background/scale, angular calibration, lattice metrics, and phase-specific broadening do not destabilize one another; this is also the path that will leave a replayable final GSAS-II project.
+
+Candidate discrimination is now decisive: the triclinic WO₃ record fits far better than the monoclinic/orthorhombic alternatives after the same refinement protocol (current Rwp ≈ 5.9% versus ≈ 7.8–23% for the closest alternatives). β‑MnO₂ remains independently required. I’m checking residual structure next—especially for a weak Mn–W–O product—and then will refine the physically allowed nuisance parameters without letting them mask a missing phase.
+
+The first independent replay exposed an important issue: the lowest nominal Rwp project relied on a negative Gaussian width term that GSAS-II clamps internally, so its saved curve was not a trustworthy forward model. I’m correcting that by fixing nonnegative instrumental broadening and re-optimizing the physically meaningful size/strain terms; only replay-generated Rwp values will be used for the final selection.
+
+I’ve stabilized the fit against an independent GSAS-II replay and am now choosing the final structure within the known displacement limits, then I’ll export and cross-check every deliverable against that same replay calculation.
+
+The two-phase interpretation is now stable: triclinic WO₃ plus rutile-type β‑MnO₂. I’m constraining the low-symmetry WO₃ coordinate shifts to the laboratory generator’s stated displacement envelope; unconstrained oxygen refinement improves the residual slightly but drifts beyond what this experiment can support reliably.
+
+The unconstrained cell/zero solution showed the same correlation as the atom coordinates: it reproduces peak positions but exceeds the stated reference-variation range. I’m therefore profiling the admissible cell-strain range while refining only the physically bounded zero and specimen displacement; this keeps the submitted CIF defensible rather than encoding calibration error into the lattice.
+
+A higher-symmetry monoclinic WO₃ reference has a lattice closer to the unconstrained metric, so I’m testing it as a serious alternative rather than selecting solely on cell similarity. The decisive check is whether it can reproduce the full intensity pattern under the same physical profile and displacement limits.
+
+The alternative monoclinic model remains substantially worse after matched-profile and coordinate refinement (replay Rwp ≈7.84% versus ≈5.55% for P‑1), while the P‑1 framework is also much closer atom-for-atom to the best reference. I’ve selected P‑1 WO₃ + β‑MnO₂ and am packaging the replay-consistent project, CIFs, profile, and uncertainty report.
+
+Completed the GSAS-II refinement.
+
+- Triclinic WO₃, P -1: 70.82 wt%
+- β-MnO₂, P 42/mnm: 29.18 wt%
+- Rwp: 5.546%; Rp: 4.065%; goodness of fit: 2.061
+- No additional crystalline phase was supported. Fractions exclude any amorphous content; practical fraction uncertainty is about ±2 wt%.
+
+Files: [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r2/workspace/result.json), [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r2/workspace/report.md), [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r2/workspace/fit.csv), [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r2/workspace/final.gpx), [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r2/workspace/phase_WO3.cif), and [β-MnO₂ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r2/workspace/phase_beta_MnO2.cif).
+

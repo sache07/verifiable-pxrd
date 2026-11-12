@@ -1,0 +1,24 @@
+I’ll inspect the specimen metadata, diffraction grid, and the frozen analysis utilities/reference index first. Then I’ll build and verify a complete multiphase GSAS-II refinement, keeping the final project replayable and checking every coherent residual family before stopping phase search.
+
+The peak families are already strongly diagnostic: all major reflections track monoclinic wolframite MnWO₄, while the indexed Mn₃WO₆ and precursor structures predict strong low-angle families that are not present. I’m now fitting the full raw grid in GSAS-II and will use the refined residual—not peak-list coincidence—to decide whether any minor phase is supported.
+
+The one-phase model accounts for every visible reflection family; the remaining mismatch is concentrated at MnWO₄ peak shapes and relative intensities, not at new peak positions. I also found that the library CIF carries high-pressure anisotropic displacement tensors, whereas the frozen reference workflow standardizes source models to a common isotropic displacement parameter. I’m correcting that model mismatch and refining symmetry-allowed coordinates before considering any extra phase.
+
+The structural refinement remains physically wolframite: the fitted octahedra have Mn–O = 2.02–2.26 Å and W–O = 1.85–2.19 Å, with no short contacts. A common isotropic \(U_\mathrm{iso}\) grid favors the physically allowed lower edge, 0.003 Å². I’m now resolving the profile-width degeneracies explicitly; instrument \(X\) versus crystallite size and instrument \(U\) versus isotropic microstrain are mathematically correlated for a single phase, so I’m fitting their observable combinations with one member of each pair fixed.
+
+The physically decomposed profile now reaches \(R_\mathrm{wp}\approx4.1\%\) (statistical minimum 3.46%) with all widths in the stated laboratory ranges: \(U=40\), \(W\approx12\), \(X=3\), crystallite size ≈0.38 µm, and positive microstrain. Surface roughness is strongly supported; extra texture or strain anisotropy gives only small, axis-ambiguous gains. I’m checking those weak terms only on top of the accepted roughness/background checkpoint, then I’ll freeze the parsimonious physical model and verify it by independent GSAS-II replay.
+
+The final accepted checkpoint is now converged and independently replayable: \(R_\mathrm{wp}=3.9400\%\), \(R_p=3.0586\%\), GOF \(=1.141\), with no replay review flags. A trace Mn₃O₄ trial refined to about 0.5 wt%, but improved \(R_\mathrm{wp}\) by only 0.003 percentage point and lacked broad non-overlapping family support, so I’m excluding it from the modeled inventory and documenting it as a sub‑1 wt% uncertainty rather than asserting a second phase.
+
+Completed. The accepted model is single-phase monoclinic wolframite MnWO₄ (P 2/c), 100 wt% normalized crystalline fraction. Full-grid \(R_\mathrm{wp}=3.9400\%\), GOF = 1.141. Trace Mn₃O₄ below roughly 1 wt% cannot be reliably confirmed.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-009-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-009-r2/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-009-r2/workspace/final.gpx)
+- [MnWO4_wolframite.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-009-r2/workspace/MnWO4_wolframite.cif)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-009-r2/workspace/fit.csv)
+
+The final project passed independent zero-parameter GSAS-II replay and physical-contact screening.
+

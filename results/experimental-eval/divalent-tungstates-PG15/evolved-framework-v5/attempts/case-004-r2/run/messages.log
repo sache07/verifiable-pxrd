@@ -1,0 +1,46 @@
+I’ll inspect the specimen metadata and diffraction grid first, then identify chemically plausible phases against the frozen reference index. I’ll build and refine the full multiphase GSAS-II model, preserving physical checkpoints, and only investigate residual families that remain coherent after the ordinary phases are fitted.
+
+The chemistry points first to monoclinic CoWO₄, with CoO and WO₃ as the residual-phase candidates, but I’ll let the peak families decide the inventory. The scan is a full raw Cu Kα₁/Kα₂ pattern on a fine 0.0108664° grid, so I’m retaining the doublet and fitting specimen displacement/background rather than preprocessing the data.
+
+The frozen index has no CoWO₄ entry, which is informative but not itself evidence for absence: exact-composition references can be withheld. The observed family already resembles a wolframite tungstate, so I’m comparing the allowed Mg/Mn/Fe/Zn/Cd wolframite parents and will substitute Co only after checking topology, cell metrics, and coordination. I’ll keep CoO, Co₃O₄, and the high-temperature WO₃ polymorphs available for residual testing.
+
+A first two-phase refinement confirms the phase assignment is on the right track: CoWO₄ plus monoclinic WO₃ lowers the weighted residual by roughly an order of magnitude before any atomic-coordinate work. The common instrumental profile is strongly correlated with zero/axial-divergence terms, so I’m tightening the staged refinement and comparing structural parents at the stable cell/profile checkpoint rather than accepting an over-parameterized branch.
+
+The WO₃ comparison is already decisive at fixed profile: the monoclinic P2₁/c model in the COD 2311041 setting fits materially better than the alternative P2₁/n coordinate set (Rwp 6.90% versus 7.33%). A failed higher-symmetry branch is being treated as unknown numerically, though its missing 41.5/41.95° splitting also argues against it. I’m rerunning the remaining analogue parents in isolated GSAS-II processes because shared-process state contaminated the initial batch after one malformed anisotropic record.
+
+The physical-profile branch reached Rwp 6.73% with all common broadening terms inside the known instrument domain. Releasing axial divergence from that point moved to a worse basin (Rwp 7.61%), so I stopped that branch and am rolling back to the saved 6.73% checkpoint before adding phase-specific broadening one term at a time.
+
+The phase-specific width model is supported: it improves Rwp from 6.73% to 6.64%, with coherent sizes of about 0.050 μm (CoWO₄) and 0.079 μm (WO₃). Isotropic microstrain collapses to zero, so I have removed that unsupported term. Displacement, extra axial divergence, and a 12-term background each worsened the physical checkpoint and were rolled back. I’m now refining heavy-atom coordinates from the two closest wolframite starts (ZnWO₄ and MgWO₄ analogues), then testing oxygen coordinates with geometry checks.
+
+A replay audit caught an important GSAS-II boundary artifact: the nominal 6.29% checkpoint recalculates to 7.64% because parameters frozen at hard limits left a stale calculated curve. I’m discarding those non-replayable improvements. The last internally consistent checkpoint is Rwp 6.91%; I’m rebuilding the width decomposition with fixed, physically allowed instrument profiles and unconstrained positive crystallite-size refinements, then explicitly recalculating every candidate before accepting it.
+
+Residual-phase tests close the inventory: CoO refines to only 0.23 wt% with a scale of 1.3σ and an imperceptible ΔRwp of 0.0007%, while Co₃O₄ drives negative/zero scale. Neither has broad-family support, including the missing CoO 42.4° line, so both are rejected and the accepted crystalline inventory remains CoWO₄ + WO₃. I’m now doing the final full-grid calibration/cell/profile passes on those two phases only.
+
+The intensity residuals support two modest March–Dollase terms: CoWO₄ [001] at 0.932 and WO₃ [110] at 1.103, lowering replayed Rwp to 6.37%. A three-start surface-roughness test then converges to a physical common solution (A≈0.459, B≈0.410) and lowers full-grid Rwp to 5.61%; the alternate low-roughness basin is slightly worse. These specimen terms are retained because they are stable across starts and affect the expected low-angle intensity envelope.
+
+The final supported model has converged on the full 8,301-point grid. The replayed fit is Rwp 5.257% (Rexp 3.280%, χ²/GOF 2.569); the refined crystalline fractions are 30.758% CoWO₄ and 69.242% WO₃. I’m exporting the exact frozen project state now, then I’ll independently replay it and run CIF geometry/consistency checks before writing the report.
+
+The two-phase model is complete and physically screened. I’m finishing the deliverables now, then I’ll independently replay `final.gpx` against the original grid and validate the exported CIF geometry and fractions.
+
+The submitted project and files have been generated. I’m now checking the strongest reproducibility condition: regenerating every reflection and the full profile from the saved atomic models, without using GSAS-II’s cached calculated curve.
+
+The independent replay passed: it reproduced the full 8,301-point profile at Rwp 5.2573%, gave identical phase fractions, and raised no negative-width, background, or displacement flags. The exported CIFs also match the project atoms exactly and have physically sensible coordination distances.
+
+Completed. The refined crystalline composition is:
+
+- CoWO₄ (wolframite, P2/c): 30.76 wt%
+- WO₃ (monoclinic, P2₁/c): 69.24 wt%
+
+Fractions are normalized over crystalline phases. Rwp = 5.2573%, Rp = 4.1345%, χ² = 2.5687. Trace CoO was not reliably supported.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-004-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-004-r2/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-004-r2/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-004-r2/workspace/final.gpx)
+- [CoWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-004-r2/workspace/CoWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-004-r2/workspace/WO3.cif)
+
+The saved project passed an independent full-grid GSAS-II replay with identical fractions and profile and no physical-review flags.
+

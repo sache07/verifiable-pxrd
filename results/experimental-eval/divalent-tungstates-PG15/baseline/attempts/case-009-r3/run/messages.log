@@ -1,0 +1,26 @@
+I’ll inspect the pattern, metadata, and available crystallographic tooling first, then identify candidate phases and build/refine a joint GSAS‑II model. I’ll keep the reported fractions normalized only across phases that the diffraction data actually supports.
+
+The chemistry strongly suggests manganese tungstate as a main product, but I’m treating that only as a starting hypothesis. I’m now extracting the peak positions and checking the local structure database for Mn–W–O phases and plausible residual oxides before any refinement.
+
+Peak-by-peak comparison supports a single wolframite-type MnWO₄ phase: the full low- and high-angle peak set is accounted for, while Mn₃WO₆, Mn₃O₄, WO₃, MnO, and Mn₂O₃ each predict strong reflections that are absent. I’m moving to a one-phase Rietveld refinement now; afterward I’ll inspect the residual specifically for any minor phase that the initial comparison could have missed.
+
+The first trial exposed two modeling issues I’m correcting before trusting the statistics: GSAS‑II initially refined redundant scale factors, and unconstrained profile terms became nonphysical. I’ve removed the redundant scale and am comparing bounded, physically admissible peak-shape models plus simple preferred-orientation tests.
+
+The high-angle mismatch is not evidence for another phase; it is an angle-dependent intensity bias. Because the metadata explicitly says the effective polarization is unknown, I’m testing that correction now. This is preferable to the diagnostic alternative, which drove displacement parameters negative and was therefore chemically unacceptable.
+
+The refined one-phase model now fits the entire profile closely (Rwp ≈ 5.26%, Rp ≈ 3.89%) with no unexplained sharp reflections. I’m doing explicit “challenge fits” with residual Mn₃O₄, WO₃, and Mn₃WO₆ before finalizing the single-phase conclusion.
+
+The challenge fits do not justify a second crystalline phase: residual precursors either refine to zero or to non-unique sub-percent values whose unique peaks are absent. I’ve finalized the one-phase MnWO₄ project and am now cross-checking that the CIF, JSON statistics, CSV profile, and `final.gpx` all reproduce one another exactly.
+
+Completed. The pattern supports one crystalline phase: wolframite MnWO₄ (P 2/c), with normalized modeled-crystalline weight fraction 1.000.
+
+Final fit: Rp = 3.885%, Rwp = 5.251%, GoF = 1.520. Possible secondary phases were not reliably supported above the sub-percent level.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [phase_1_MnWO4.cif](<ATTEMPT_WORKSPACE>/phase_1_MnWO4.cif)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+

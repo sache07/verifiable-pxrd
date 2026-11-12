@@ -1,0 +1,30 @@
+I’ll inspect the diffraction pattern and metadata first, then identify candidate phases and build a quantitative GSAS-II refinement. I’ll keep the submitted CIFs, profile, statistics, report, and `final.gpx` internally consistent and flag any ambiguity that the data cannot resolve.
+
+The chemistry points toward manganese tungstates, but I’m treating precursor carryover and competing Mn–W–O polymorphs as live possibilities. The scan is high-resolution enough to use peak positions and systematic absences first, then let whole-pattern refinement decide whether minor crystalline phases are warranted.
+
+Peak positions and all strong/medium reflections are consistent with monoclinic wolframite-type MnWO₄; the supposed alternatives Mn₃WO₆, Mn₃O₄, and WO₃ predict strong lines that are absent. I’m now refining the MnWO₄ cell, specimen displacement, line profile, and intensities, then I’ll inspect the residual for any defensible minor phase rather than adding one merely to lower the fit statistic.
+
+The whole-pattern residual is now low and, importantly, does not contain a second set of Bragg positions. Remaining structure in the difference curve is concentrated around MnWO₄ peaks, which points to line-shape/instrument effects rather than another phase. I’m tightening that profile model and checking that any extra correction stays physically meaningful; refinements that drive displacement parameters or thermal factors to nonphysical values will be rejected.
+
+Phase screening confirms the submitted crystalline model should remain single-phase: Mn₃O₄ refined to only 0.16(18) wt%, and several WO₃ polymorph tests produced small, model-dependent apparent amounts driven mainly by overlap with MnWO₄ peak-shape residuals rather than independent diagnostic lines. I’ll report that as a trace-level uncertainty, not as a reliably quantified second phase.
+
+The final one-phase refinement is converged. I’m writing the machine-readable result and concise uncertainty report now, then I’ll reload every submitted artifact to verify that the CIF, profile, statistics, and project are mutually consistent.
+
+The deliverables themselves are in place. One validation process lacked the crystal-structure parser available in the other scientific environment, so I’m splitting the checks between the GSAS-II and crystallography environments; this does not affect the refinement or files.
+
+All cross-checks now pass: the 8,301 profile rows are numerically identical to the arrays stored in `final.gpx`, the reported residuals match the project, and the CIF parses as P2/c MnWO4 with chemically sensible Mn–O and W–O coordination. I’m removing only the refinement trials I generated, leaving a clean submission set.
+
+Completed the PXRD phase analysis.
+
+The only reliably supported crystalline phase is monoclinic wolframite MnWO4, space group P2/c, at 100.0 wt% normalized over modeled crystalline phases. Final fit: Rwp 5.068%, Rp 3.813%, GOF 1.467.
+
+Trace WO3 below roughly 1 wt% cannot be excluded reliably; Mn3O4 and Mn3WO6 were not supported. Amorphous content cannot be determined without an internal standard.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [MnWO4.cif](<ATTEMPT_WORKSPACE>/MnWO4.cif)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+

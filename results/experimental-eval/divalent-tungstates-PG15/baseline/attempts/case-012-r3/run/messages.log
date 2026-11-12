@@ -1,0 +1,52 @@
+I’ll inspect the diffraction data and metadata first, then identify candidate phases, build a multiphase GSAS-II refinement, and validate that the exported CIFs, profile, fractions, and project all agree. I’ll keep the uncertainty explicit where the pattern does not uniquely support a structural assignment.
+
+The peak set already points strongly to monoclinic wolframite-type NiWO₄ as the main product: its characteristic lines near 19.2°, 24.9°, 30.9°, 36.5°, 41.6°, and 54.6° are all present. A second cluster around 23.1–24.3°, 26.5°, 28.8°, and 34.1° is consistent with residual monoclinic WO₃; I’m now testing those assignments against database structures and checking whether any NiO is independently required.
+
+Database matching confirms the second phase is the room-temperature monoclinic γ-WO₃ form (P2₁/n), not tetragonal or orthorhombic WO₃. The expected strongest WO₃ triplet matches all three observed lines, while NiO’s diagnostic strongest line at 43.4° is absent, so NiO is not justified as a modeled phase. I’ll use NiWO₄ + γ-WO₃ and test residuals for any systematic unmodeled peaks after refinement.
+
+I’m comparing the position-correction choices and the monoclinic versus triclinic WO₃ alternatives under the same refinement protocol. This matters because an uncalibrated instrument makes zero offset, specimen displacement, and lattice constants correlated; the final project should avoid a numerically good but non-identifiable combination.
+
+The comparison is still running; the baseline monoclinic fits are converging cleanly with the redundant overall scale held fixed. I’m waiting on the triclinic alternative so the phase-symmetry choice can be based on the same weighted residual and parameter count.
+
+The run is CPU-bound rather than stalled; each candidate is being refined through the same staged scale, cell, profile, and phase-broadening sequence. I’m letting it finish because the high-angle peak splitting is the strongest available discriminator between monoclinic and triclinic WO₃.
+
+The triclinic model is substantially more expensive because it introduces many more independent reflections and cell parameters. The refinement is continuing; if it does not finish promptly I’ll stop that branch and use a lower-cost profile comparison, but the completed monoclinic model is already available.
+
+The first comparison exposed an important nuisance-parameter problem: crystallite-size terms hit hard bounds, so I will not use those values in the submitted model. I’m re-refining with size fixed at a negligible-broadening value and testing microstrain-only versus a shared instrumental profile; this should keep the quantitative phase fractions identifiable.
+
+The stable, size-free refinements give 76.6/23.4 wt% (NiWO₄/WO₃) for the simple monoclinic model and 76.9/23.1 wt% for triclinic WO₃; thus the fraction is robust to about ±0.5 wt%. I’m now testing a better neutron-derived monoclinic WO₃ coordinate model, because the earlier monoclinic reference rounded one strong-line intensity and could unfairly favor lower symmetry.
+
+The alternative coordinate models are still refining. The key check is whether monoclinic WO₃ recovers the triclinic model’s residual improvement without adding two lattice-angle degrees of freedom; that will decide which symmetry is defensible rather than merely flexible.
+
+The improved monoclinic P2₁/c WO₃ model matches the triclinic alternative (Rwp ≈ 4.57%) without lowering symmetry, while the older P2₁/m model fails badly. That supports monoclinic γ-WO₃. I’m doing the final nuisance-parameter cleanup on this model and will use the simpler profile unless phase-specific strain is both stable and materially beneficial.
+
+The cleaned monoclinic model is stable at Rwp 4.59% and about 77.7/22.3 wt%. I’m checking whether the coarse 1951 NiWO₄ coordinates contain refinable intensity information; only coordinate sets that remain chemically plausible and free of Hessian singularities will be retained.
+
+Refining only the Ni/W cation positions in NiWO₄ is well-conditioned and improves Rwp from 4.59% to 4.48%; the fitted coordinates agree with modern wolframite values. Oxygen-coordinate refinement lowers Rwp further but shifts W–O distances enough that it is not trustworthy without restraints, so I’m keeping oxygen fixed. One last check addresses the source CIFs’ inconsistent/unreported displacement parameters, which can otherwise bias scale factors.
+
+Using a common starting Uiso and refining only heavy-atom displacement parameters is stable and materially improves the fit (Rwp 4.36%, GOF ≈ 1.25), with plausible Uiso values. I’m testing the two WO₃ tungsten coordinates now; oxygen coordinates and Uiso will remain fixed because Cu X-ray contrast does not determine them robustly here.
+
+The final two-phase candidate is now well-conditioned: Rwp 4.36%, GOF 1.25, with 75.96 wt% NiWO₄ and 24.04 wt% WO₃ (formal covariance s.u. 0.11 wt%, before model-systematic uncertainty). I’m performing a trace-NiO challenge fit; its 43.4° line is visually absent, and this test will confirm whether adding NiO produces a meaningful positive scale.
+
+The NiO challenge refines to only 0.05(10) wt% and does not improve Rwp, so NiO is statistically indistinguishable from zero and will not be included. I’m now producing the final two-phase project and exports from the same last refinement; the reported fractions will be 76.0/24.0 wt% with a conservative ~±1 wt% model uncertainty.
+
+The final refinement and exports are complete. The profile spans all 8,282 measured points; both phase fractions sum exactly to one over the modeled crystalline phases. I’m writing the machine-readable result and concise evidence/uncertainty report, then I’ll run a clean reload/parse consistency check on every deliverable.
+
+Completed the two-phase GSAS-II refinement:
+
+- NiWO₄, P2/c: 75.98 wt%
+- γ-WO₃, P2₁/c (equivalent P2₁/n setting): 24.02 wt%
+- Rwp = 4.40%, GOF = 1.27
+- NiO was not significant: 0.05(10) wt% in a challenge fit.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [phase_NiWO4.cif](<ATTEMPT_WORKSPACE>/phase_NiWO4.cif)
+- [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+
+All files were cross-checked against the final project; the CIFs parse successfully and the phase fractions normalize to 1.
+

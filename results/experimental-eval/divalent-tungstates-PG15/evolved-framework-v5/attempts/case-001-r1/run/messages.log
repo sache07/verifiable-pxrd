@@ -1,0 +1,55 @@
+I’ll inspect the specimen metadata, diffraction grid, and the frozen analysis tooling first. Then I’ll identify coherent peak families, build the smallest chemically plausible multiphase GSAS-II model, refine it, and validate that the submitted CIFs, profile, fractions, and project all replay consistently.
+
+The chemistry is a low-temperature BaCO₃ + WO₃ reaction (400 °C), so the ordinary starting inventory is BaCO₃, WO₃, and BaWO₄; incomplete conversion is more likely than a single pure product. I’m now extracting peak families and locating the frozen COD/index and GSAS-II interfaces so that phase decisions come from the specimen pattern rather than chemistry alone.
+
+Peak matching already supports two dominant coherent families: orthorhombic BaCO₃ (its 42.0° and 44.86° reference lines map to the observed 42.29° and 45.18° peaks) and low-temperature monoclinic WO₃ (the split 23–25° and 33–35° groups). I’m screening the close WO₃ polymorph references through identical GSAS-II refinements; this is important because several references share composition but differ subtly in splitting and geometry.
+
+The polymorph screen is decisive: the physically valid P2₁/c WO₃ reference 2311041 fits substantially better than the standard-cell monoclinic alternatives (Rwp 7.57% versus 8.11% for the nearest competitor and ≥13% for the rest). A trace scheelite BaWO₄ branch remains positive and improves multiple expected lines near 26.8°, 43.4°, 49.1°, 54.0–54.9°, and 68–69°; its provisional crystalline fraction is about 0.6 wt%. I’m retaining it while I refine a bounded physical profile and test whether that trace remains stable.
+
+The trace BaWO₄ scale is stable at roughly 0.6 wt% with a formal uncertainty near 0.05 wt%, and its refined cell contracts only ~0.3% from the reference—both support a real minor product rather than a free-fit artifact. The remaining mismatch is dominated by peak shape and relative intensities of BaCO₃/WO₃, so I’ve stopped phase searching and am comparing two bounded profile allocations (common instrument versus phase-specific size/strain) before moving atomic coordinates.
+
+The bounded profile decomposition is intrinsically non-unique because instrumental X/U broadening and common phase size/strain have nearly the same angular dependence without a calibrated standard. Both starts converge to essentially the same fit (Rwp ≈7.43%) and stable major-phase fractions, with the common terms at their broad physical limits. I’m therefore fixing that ambiguity and refining only structurally supported coordinates in heavy-to-light order, with geometry checkpoints so that an Rwp gain cannot carry a distorted carbonate or WO₃ network into the result.
+
+The light-atom geometry screen rejected the unconstrained Rwp minimum: it drove one WO₃ octahedron to 1.62–2.53 Å W–O distances and carbonate to a 1.17 Å C–O bond. The accepted checkpoint keeps the refined heavy-atom positions and uses restrained light-atom branches only when bond geometry stays ordinary. I also found that the sole exact BaWO₄ COD entry is a split-site 1970 model (half-occupied oxygen sites) with nonphysical individual 1.46 Å W–O contacts; I’m repairing that trace phase from an isostructural scheelite analogue before submission rather than exporting the defective source literally.
+
+The full-occupancy analogue-derived BaWO₄ model remains positive at 0.57(5) wt% and refines to a = 5.6134 Å, c = 12.6827 Å with four 1.72 Å W–O bonds; replacing the defective split-site source changes Rwp by only ~0.01%, so the phase evidence comes from the reflection family, not the bad oxygen model. A free WO₃ Uiso refinement tried to go negative, so I rejected it and am using a small fixed physical-Uiso grid; this will let the data adjust scales without accepting nonphysical displacement factors.
+
+The fixed-Uiso grid confirms that the published BaCO₃ site values and the WO₃ reference limit are better supported than forcing a shared phase-average ADP; all positive WO₃ Uiso choices worsen the fit, while the unconstrained optimum was negative. I’m keeping those reference ADPs and documenting that they are not independently determined. The current specimen-term check is testing bounded surface roughness from several starts; only a convergent, start-independent correction will be retained.
+
+The supported specimen model is now clear: a modest BaCO₃ March–Dollase correction along [110] (ratio ≈0.912) lowers Rwp from 6.97% to 6.77%, and uniaxial BaCO₃ microstrain along [100] lowers it further to 6.72% with finite, interior values. WO₃ texture is effectively unity and is being omitted. I’m checking whether WO₃ itself has independently supported strain anisotropy, then I’ll consolidate and revalidate fractions and geometry.
+
+The full three-phase model is now consolidated. I’m checking the final checkpoints for both fit quality and bond geometry, then I’ll export the selected project and all required deliverables from that exact checkpoint.
+
+The lowest-Rwp checkpoint remains chemically physical: WO₃ has six-coordinate W–O distances of 1.72–2.20 Å, scheelite BaWO₄ has four equal 1.72 Å W–O bonds, and BaCO₃ retains a normal Ba–O shell. I’m now confirming that its residuals contain no unmodeled coherent reflection family.
+
+One implementation detail surfaced in the project: the initial rounded 10–100° limits omitted 17 endpoint observations from the supplied 9.903–100.095° grid. I’m extending the refinement to the exact measured bounds so the submitted project and profile cover every input point.
+
+Before freezing outputs, I’m checking one last structure-level issue: the best BaCO₃ reference has an inherited long C–O bond (1.407 Å). I found a same-space-group witherite reference with a regular 1.23 Å carbonate group, so I’m testing it in the already-complete three-phase model. I’ll retain it only if the full reflection-family fit and scale remain stable.
+
+The alternative carbonate branch is converging much more slowly than the accepted model, which itself is useful diagnostic evidence. I’m letting the bounded test finish rather than interpreting the delay as rejection.
+
+The setting conversion is now valid, but this alternative still requires a long least-squares path. The accepted checkpoint remains untouched; I’m treating this as a controlled comparison, not replacing it mid-refinement.
+
+The slow comparison clarified the issue: that older reference differs mainly in its heavy-Ba origin/coordinates and fits substantially worse (Rwp ≈8.92%, with a profile term hitting its bound), so it is not an acceptable whole-phase replacement. I’m making the narrower, chemically justified test now—retain the well-supported Ba sublattice and transplant only the regular carbonate-group geometry in the same Pmcn setting.
+
+The bounded coordinate test succeeded: the regular carbonate geometry gives C–O = 1.239–1.241 Å and keeps all phase scales positive and stable. Its Rwp penalty is only 0.029 percentage point (Rp actually improves), so I’m selecting this chemically physical checkpoint as instructed rather than the marginally lower-Rwp distorted carbonate model.
+
+All required artifacts are now exported from the submitted `final.gpx` itself. I’m doing a final replay check: reload the project, compare every CSV profile value to its embedded arrays, parse all CIFs, and verify fraction normalization and bond geometry.
+
+Completed and validated the full-grid GSAS-II refinement.
+
+- BaCO₃ (witherite): 52.84 wt%
+- WO₃ (monoclinic): 46.65 wt%
+- BaWO₄ (scheelite): 0.51 wt%
+- Rwp: 6.6507%; Rp: 5.0148%
+
+Files:
+
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r1/workspace/report.md)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r1/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r1/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r1/workspace/final.gpx)
+- [BaCO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r1/workspace/phase_BaCO3.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r1/workspace/phase_WO3.cif)
+- [BaWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r1/workspace/phase_BaWO4.cif)
+

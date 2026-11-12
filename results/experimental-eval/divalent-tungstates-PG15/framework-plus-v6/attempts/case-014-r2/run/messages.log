@@ -1,0 +1,52 @@
+I’ll first inventory the measurement, chemistry, and the supplied refinement workflow, then identify candidate phases and build the GSAS-II model. I’ll keep phase inclusion residual-led and will verify that the exported CIFs, fractions, profile, and final project all agree.
+
+The chemistry points first to Sr–W–O phases, but the 900 °C firing does not justify assuming a single SrWO₄ phase. I’m now comparing the peak inventory against exact Sr/W/O records and likely residual SrCO₃/WO₃ phases before any refinement, while also checking the required output and replay conventions.
+
+The observed peak list is not consistent with a clean single scheelite pattern: several strong families (for example near 29.75°, 45.45°, and 51.98°) need an additional or alternate Sr–W–O framework. I’m screening every exact Sr/W/O database record plus physically plausible precursor/decomposition records, including alternate polymorphs rather than rejecting a composition after one poor match.
+
+The scheelite record explains a coherent family from 18.32° through 95.04°, with the angle-dependent offset expected from a slightly changed tetragonal cell plus one common angular correction. I’m fitting that phase first to expose a clean residual; the remaining peaks will then be indexed and challenged against Sr–W–O, carbonate, and oxide alternatives under the same background/profile model.
+
+The residual fingerprint now separates cleanly: the 22–25° triplet and repeated higher-angle families strongly select monoclinic WO₃ (P2₁/c), while SrCO₃ and Sr₃W₂O₉ fail their unique strong lines. A second set—especially the intense 29.75° line—remains unassigned, so I’m adding the physically sound WO₃ alternate first and will re-screen the new residual rather than forcing that line into the WO₃ scale.
+
+The third fingerprint is fergusonite-like SrWO₄ and is supported across many families, but the only exact record is an 11 GPa structure—an important physical caveat for a nominal-pressure furnace product. Its adapted model materially improves Rwp (17.10% → 14.43%), whereas Sr₃W₂O₉ and SrO alternatives reach only 15.78% and 17.00%. I’m retaining the fergusonite framework provisionally, then testing profile, broadening, texture, and coordinates before deciding whether its evidence survives a physically adequate common baseline.
+
+The common intensity corrections are behaving diagnostically: polarization wants an unphysical value above 1, and roughness drives a coefficient negative, so neither is being accepted as a scale surrogate. Positive microstrain in the two minor phases is modestly supported; I’m now testing symmetry-distinct texture axes to see whether the repeated family-wise intensity errors have a physical orientation explanation.
+
+The phase inventory is now coherent: dominant scheelite SrWO₄, a minor monoclinic WO₃ phase, and a distinct monoclinic SrWO₄-like phase. I’m now pruning unstable nuisance terms, checking the alternate WO₃ structural record and bond geometry, and replaying the final GSAS-II model before exporting the required files.
+
+One important baseline issue emerged from the framework settings: the imported CIFs carried inconsistent displacement factors (0.00 versus 0.01 Å²), while this experiment permits phase-specific Uiso and substantial crystallite broadening. I’m correcting those before trusting texture or coordinate shifts; the earlier large coordinate movements were therefore rejected as intensity surrogates.
+
+The width tests now support real phase-dependent broadening: all three phases refine to sub-micrometre coherent sizes under a fixed common Lorentzian reference, and this survives reopen/replay. Isotropic strain is unstable or turns negative for the major and monoclinic tungstate phases, so I’m pruning it. A [111]-type March–Dollase term for the monoclinic SrWO₄-like phase is reproducibly supported, though its magnitude warns that this minor phase’s exact framework is still less certain.
+
+The clean-profile watch-list challenge found one additional coherent weak phase: a Sr₃W₂O₉-type fingerprint at roughly a few weight percent. Other candidates either worsened the replay, required implausible 8–10% cell expansion, or drove crystallite size to its lower limit, so they are being rejected. I’m retaining Sr₃W₂O₉ provisionally while I test whether bounded atomic-coordinate corrections remove the same residual families.
+
+The bounded coordinate tests are being rejected: they repeatedly hit displacement bounds or become singular, and do not survive replay. That means the data do not support atom-position refinement independently of texture/profile. I’m now comparing several fergusonite analogue parents with Sr/W substitutions, because the published SrWO₄ record requires both an unusually contracted cell and an excessive texture term; the CaWO₄ parent already gives a similarly good fit with physically milder texture.
+
+The inventory decision is now three phases. The apparent Sr₃W₂O₉ watch-list hit only works after a ~5% linear cell contraction; at the published cell its scale/size collapse and replay worsens, so it is not a defensible fourth phase. I’m locking the three-phase model, replaying it repeatedly from disk, then exporting directly from that final project so the CIFs, fractions, and profile are numerically consistent.
+
+The three-phase refinement is complete. I’m doing a final cross-check that the project, exported CIFs, profile, and JSON all agree exactly before handing over the files.
+
+The consistency checks passed: all required files are present, fractions sum to 1.000000, the project retains its covariance/refinement state, and the scorer parses all three CIFs. I’m checking the submitted profile numerically against the fresh replay now.
+
+A three-phase crystalline model was refined:
+
+| Phase | Weight fraction |
+|---|---:|
+| Scheelite SrWO₄, I4₁/a | 72.846% |
+| Monoclinic WO₃, P2₁/n | 13.520% |
+| Fergusonite-like SrWO₄, I2/a | 13.634% |
+
+Fractions are normalized over modeled crystalline phases. Rwp = 13.031%, Rp = 9.246%, GOF = 3.693.
+
+The WO₃ oxygen geometry remains provisional due to short O–O contacts, and the fergusonite-like assignment/fraction is less certain because its source framework is high-pressure and required strong preferred orientation.
+
+Files:
+
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-014-r2/workspace/final.gpx)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-014-r2/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-014-r2/workspace/fit.csv)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-014-r2/workspace/report.md)
+- [Scheelite SrWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-014-r2/workspace/phase_1_srwo4_scheelite.cif)
+- [Monoclinic WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-014-r2/workspace/phase_2_wo3_monoclinic.cif)
+- [Fergusonite-like SrWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-014-r2/workspace/phase_3_srwo4_fergusonite_like.cif)
+

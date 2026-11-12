@@ -1,0 +1,44 @@
+I’ll first inspect the pattern, metadata, and the frozen analysis package, then build a phase inventory before committing to refinements. I’ll keep the final exports tied to one replayed GSAS-II project so the CIFs, fractions, profile, and statistics remain internally consistent.
+
+The chemistry is a low-temperature BaO₂/WO₃ reaction, so the initial inventory must include both precursors as well as Ba–W–O products/intermediates; a “target-only” BaWO₄ model would be especially unsafe here. The raw scan spans 10–100° with a high, strongly decaying low-angle background and peaks only a few thousand counts above it, so I’m separating peak-position identification from later intensity/profile refinement.
+
+Peak-family matching is now decisive for the provisional inventory: monoclinic/triclinic WO₃ explains the characteristic 23–25° triplet and its higher-angle families, while tetragonal BaO₂ explains independent lines at about 26.3, 27.1, 43.0, 46.6, and the 55–56° doublet. BaWO₄ is on the watch list, but its strong, otherwise-unexplained 31.9° line is absent, so I’m testing it only after establishing a common two-phase baseline. Several database records are physically unsuitable (including one WO₃ record with a 0.46 Å contact), so those are excluded rather than interpreted as missing chemistry.
+
+The lower-symmetry triclinic WO₃ record is strongly preferred over monoclinic and orthorhombic alternatives under the same nuisance model (Rwp about 7.37% versus 8.39–10.96%; a tetragonal polymorph gives 21.8%). This is driven by resolved splitting across multiple families, not just the low-angle triplet. I’m now rebuilding the width model because an unconstrained common-profile fit tried to use negative W and implausibly large U—clear evidence that phase-dependent broadening must be represented explicitly.
+
+The two-phase baseline leaves no coherent unique families for the watch-list compounds: BaWO₄’s 31.9° line, BaCO₃’s low-angle/34–35° set, BaO’s 32.6° line, and Ba(OH)₂’s 10.8–22° set are all absent by inspection. Their scales are being re-tested quantitatively under the rebuilt profile; this is a residual-led check for weak amounts, not a chemistry-based dismissal.
+
+The current fit confirms that common polarization and asymmetry matter, and constrained heavy-atom/internal-coordinate refinement improves the profile. Full oxygen-coordinate refinement is not defensible: the X-ray data give large uncertainties and some coordinates drift farther than the source-mismatch scale. I’m pruning that branch and retaining only the well-supported peroxide coordinate and W-site adjustments; the WO₃ oxygen framework will remain source-based with explicit uncertainty.
+
+A 12-term smooth Chebyshev background is the lowest tested order that follows the measured exponential-like baseline across the full 90° range without going negative; six terms visibly underfit it, while 10–12 terms give diminishing improvements. Surface roughness is rejected (it worsens Rwp and becomes >99% correlated with scale). The retained profile has no roughness, a weak BaO₂ [111] texture supported mainly by the 26°, 43–47°, and 55–56° families, and modest [100] anisotropic strain for WO₃.
+
+I’ve narrowed the defensible inventory to triclinic WO₃ plus tetragonal BaO₂. I’m finishing the fixed-cell trace-phase challenge now, then I’ll freeze a replay-stable nuisance model and export every deliverable from that exact GSAS-II project.
+
+The fixed-cell watch-list tests do not support an additional crystalline phase: BaWO₄ refines to only ~0.16 wt% and does not improve the fit; BaO is similarly ~0.16 wt%, while BaCO₃’s tiny gain is achieved by borrowing overlapped intensity rather than matching a unique peak family. I’m excluding all three and treating trace content below roughly 1–2 wt% as unresolved.
+
+The cleanup pass fixes the non-identifiable common-width terms at their bounded physical solution, then re-refines only scales, cells, one specimen displacement, phase broadening, displacement factors, and a smooth 12-term background. I’m replaying symmetry-distinct texture alternatives from that same baseline so any retained correction has family-level support and is not a scale/background surrogate.
+
+The isotropic-width trials pushed both phase strains to their admissible ceiling, which is diagnostic rather than a usable endpoint. I’ve returned to the family widths and am testing the allowed uniaxial alternatives for both lattices; the phase fractions remain tightly clustered near 33 wt% BaO₂ / 67 wt% WO₃ across these nuisance-model changes.
+
+The anisotropic trials confirm the family-width effect, but the exact axis/size/strain decomposition is not uniquely recoverable without an instrumental standard. I’m therefore carrying the empirically supported [100] WO₃ broadening and modest BaO₂ [111] texture as fixed nuisance terms, then refining the atomic/cell/intensity model against that frozen profile. This preserves the phase quantification without presenting unstable microstructure values as measured quantities.
+
+The cleaned refinement is now numerically stable: no parameters are frozen at bounds, the smooth background remains positive, and reopening/reconverging changes the fractions by less than 0.03 wt%. The heavy-atom/peroxide coordinate pass gives 33.26 wt% BaO₂ and 66.74 wt% WO₃; I’m completing the independent forward replay and export-consistency checks next.
+
+All requested artifacts are now generated from the same frozen project. I’m running the final submission-level checks now: JSON normalization, CIF-to-project numerical agreement (including ADPs), full-grid fit-file identity, and a fresh no-refinement GSAS-II replay.
+
+Identified two crystalline phases, normalized over modeled crystalline material:
+
+- Triclinic WO₃ (*P*−1): **66.74 wt%**
+- Tetragonal BaO₂ (*I4/mmm*): **33.26 wt%**
+
+Independent GSAS-II replay gives Rwp 7.038%, Rp 5.267%, and GOF 1.935. Estimated fraction uncertainty is about ±2 percentage points; trace phases below roughly 1–2 wt% cannot be excluded.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r1/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r1/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r1/workspace/fit.csv)
+- [BaO2.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r1/workspace/BaO2.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r1/workspace/WO3.cif)
+

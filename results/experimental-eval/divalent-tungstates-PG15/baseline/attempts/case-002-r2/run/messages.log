@@ -1,0 +1,43 @@
+I’ll inspect the measurement metadata and diffraction profile first, then use the available phase-search and GSAS-II tooling to identify candidate structures, refine them jointly, and validate that the exported CIFs, fractions, profile, and project all agree. I’ll keep you posted as the phase model converges.
+
+The strongest cluster at 23–25° already points to crystalline tungsten oxide rather than a single barium tungstate product, while additional peaks may represent a barium-bearing phase. I’m now separating overlapping peak families and searching chemically plausible database structures before refinement.
+
+The database search confirms two crystalline families: tungsten(VI) oxide and tetragonal barium peroxide. No independent BaWO₄ peak set is present (its diagnostic 31.9° line is absent). The first trial also exposed an exact scale degeneracy in GSAS-II’s reflection defaults; I have fixed the redundant overall scale and am now comparing the plausible WO₃ polymorphs with constrained, phase-by-phase cell refinement.
+
+The constrained monoclinic WO₃ trial is still refining across the full 10–100° range. I’m retaining the measured Cu Kα₁/Kα₂ wavelengths and ratio, fixing only the scale redundancy, and testing peak-width terms sequentially so the phase fractions are not absorbed into an unstable profile model.
+
+The peak-family assignment is holding up: tetragonal BaO₂ explains the 26.3°, 27.1°, 43.0°, and 46.6° reflections, while monoclinic WO₃ accounts for the diagnostic 23–25° triplet and most higher-angle structure. The remaining comparison is between two crystallographically related WO₃ models; their peak positions are similar, but their relative intensities and refined stability differ enough to affect the quantitative fraction.
+
+The anisotropic broadening test was numerically unstable and tried to suppress the clearly visible BaO₂ phase, so I’m rejecting that branch. I’m returning to the stable two-phase Rietveld model and separating lattice/zero refinement from peak-shape refinement; this keeps the quantitative scale factors tied to integrated intensities rather than compensating through pathological widths.
+
+I’ve narrowed the pattern to monoclinic WO₃ plus tetragonal BaO₂, with no convincing BaWO₄ reflections. I’m making one final like-for-like comparison between two published room-temperature WO₃ coordinate sets, then I’ll export and validate the GSAS-II project and all requested deliverables.
+
+The transformed neutron-derived WO₃ model gives a marginally better whole-pattern fit (Rwp 14.969% versus 15.004%) and converges cleanly; its refined phase split is 64.97 wt% WO₃ / 35.03 wt% BaO₂. I’m now checking whether the remaining intensity residuals justify any physically constrained texture/coordinate refinement, or should instead be reported as model uncertainty.
+
+A constrained coordinate-descent refinement of crystallite size and microstrain improved Rwp from 14.97% to 13.67% without hitting bounds or destabilizing the fractions. The physically interpretable endpoints are about 49 nm/0.64% strain for WO₃ and 99 nm/1.05% for BaO₂; I’m doing a final convergence pass and then will freeze these nuisance terms for the reported quantitative fit.
+
+The remaining misfit is dominated by anisotropic line widths in monoclinic WO₃—especially the sharp 23–25° triplet versus broader higher-angle groups—not by unexplained peak positions. I’m testing a bounded Stephens strain model against the simpler isotropic profile; I’ll keep it only if it converges cleanly and materially improves the fit without changing the phase assignment.
+
+The anisotropic-width correction is stable, and only very mild preferred orientation is indicated (March–Dollase factors ≈1.03 for both phases). I’m consolidating those terms in one bounded refinement, then re-polishing lattice metrics and zero offset so the final project is internally consistent rather than a sequence of frozen trial endpoints.
+
+The consolidated refinement converged with no frozen variables at Rwp 12.64%, Rp 9.25%, and GOF 3.47. The modeled crystalline fractions are 64.58 wt% WO₃ and 35.42 wt% BaO₂; I’m now exporting the exact project state and validating that the CIFs, profile CSV, and JSON all reproduce those values.
+
+All requested files are now written. I caught and corrected a one-grid-point boundary mismatch so `fit.csv` contains exactly the same 8,284 observations used by GSAS-II; the remaining check is independent CIF parsing plus numerical round-trip verification against `final.gpx`.
+
+Completed and validated a two-phase GSAS-II refinement:
+
+- Monoclinic WO₃, P2₁/n: **64.58 wt%**
+- Tetragonal BaO₂, I4/mmm: **35.42 wt%**
+- Rwp = **12.644%**, Rp = **9.251%**, GOF = **3.474**
+
+No convincing BaWO₄ was detected. Fractions are normalized over crystalline phases only; conservative uncertainty is about ±2 wt percentage points.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_1_WO3.cif](<ATTEMPT_WORKSPACE>/phase_1_WO3.cif)
+- [phase_2_BaO2.cif](<ATTEMPT_WORKSPACE>/phase_2_BaO2.cif)
+

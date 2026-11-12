@@ -1,0 +1,46 @@
+I’ll inspect the specimen metadata and pattern first, then use the frozen reference index and GSAS‑II tooling to identify coherent peak families, build the simplest chemically plausible multiphase model, and refine it into a replayable project. I’ll keep the phase inventory conservative and report any ambiguity rather than forcing a fraction.
+
+The chemistry is a low-temperature BaCO₃ + WO₃ reaction, so the ordinary starting inventory is BaCO₃, monoclinic WO₃, and scheelite BaWO₄; at 400 °C a partial reaction is more plausible than assuming a single product. I’m now checking whether the observed peaks support all three and whether any coherent family remains outside them.
+
+The two ordinary precursor phases account for the major peak families, and the first physical refinement has already reached about 11% weighted profile residual before profile/coordinate work. The refined displacement remains within the laboratory’s stated range, which supports the indexing rather than a fortuitous peak match. I’m finishing profile refinement and then will test BaWO₄ explicitly against the residual, especially its unique low-angle and ~32° reflections.
+
+The BaWO₄ branch is not defensible as a third phase: with physical broadening it refines to only ~0.4 wt% for a negligible Rwp change, while freeing its profile drives the size to ~0.003 µm, microstrain negative, and the cell far from the reference. I’m rejecting that overfit and retaining BaCO₃ + WO₃. Among close WO₃ references, the lower-symmetry fit gains only ~0.13 Rwp but distorts a triclinic cell almost back to monoclinic metrics; the monoclinic model preserves its published geometry, so it is the physical checkpoint for coordinate refinement.
+
+The unconstrained light-atom branches behaved exactly as the caution suggests: carbonate C–O bonds stretched to 1.32–1.37 Å for only a 0.06 Rwp gain, and WO₃ oxygen refinement created an under-coordinated W site. I’ve rolled both back. I’m now repeating the WO₃ oxygen refinement with explicit coordinate limits corresponding to only a few hundredths of an ångström from the published topology; any variable reaching a limit will be frozen, keeping the model replayable and physical.
+
+Surface roughness is strongly supported and reduces Rwp from 7.18% to 6.57% with physical coefficients. A modest BaCO₃ [110] March–Dollase term is also supported (ratio ≈ 0.91; Rwp 6.37%), matching the reflection-by-reflection intensity pattern. I’m screening only the five laboratory-allowed WO₃ orientation axes now; then I’ll keep at most the single supported term and move on to line-shape anisotropy.
+
+The profile decomposition is now physical and stable: BaCO₃ shows supported [001] strain anisotropy, while WO₃’s weaker [010] term remains within the laboratory ranges. Instrument Gaussian broadening refines to the allowed lower U boundary; I fixed the exact Lorentzian size/instrument gauge to remove the singularity. Polarization is strongly supported at the allowed lower boundary and brings the replayed Rwp to 5.94%. I’m checking heavy-atom displacement factors next because the WO₃ reference has zero Uiso, which is not a satisfactory final physical model.
+
+I’m finishing the physical refinement now, checking the last displacement-factor branch before freezing and exporting the replayable model. The accepted phase inventory remains BaCO₃ + monoclinic WO₃; the BaWO₄ branch was not supported physically.
+
+The free heavy-atom displacement factors lowered Rwp, but one W site hit its bound and the refinement did not converge; I’m treating that as an unstable branch, not as a valid improvement. I’ll replace it with a simpler phase-level displacement model and retain it only if it converges cleanly with physical values.
+
+The common-U model is physically reasonable (BaCO₃ Uiso ≈ 0.016 Å²; WO₃ ≈ 0.0031 Å²) and improves Rwp to 5.82%, but its final cycle still carries a large parameter shift caused by weakly determined coordinate/profile coupling. I’m now freezing the accepted coordinates and U values and replaying only the robust scale, cell, background, calibration, and profile terms; that will be the submit-or-rollback test.
+
+The robust replay converged cleanly at Rwp 5.825% with no singular values or frozen variables, and normalized fractions 0.5472 BaCO₃ / 0.4528 WO₃. I have one final, predeclared structural check left: a tightly bounded BaCO₃ carbonate-coordinate refinement. I’ll accept it only if it improves the profile while making the carbonate geometry more credible; otherwise the clean checkpoint stays final.
+
+The carbonate-coordinate branch failed the physical acceptance test: all seven light-atom shifts struck their bounds and the resulting coordinates were invalid despite a small Rwp decrease. I rejected it. The clean 32-parameter checkpoint remains the final model; I’m exporting that exact state and validating the CIF/profile/project consistency now.
+
+One export check found that the nominal 10–100° refinement limits omitted 17 edge points from the actual 9.903–100.095° input grid. I’m extending the same accepted model to those exact data limits and replaying once, so `final.gpx` and `fit.csv` truly cover every measured point.
+
+The exported CIFs parse correctly (BaCO₃: Pnma-equivalent, WO₃: P2₁/c) with no atomic overlaps; WO₃ has two credible distorted WO₆ octahedra. One caution remains: the accepted BaCO₃ reference itself contains a notably elongated carbonate C–O bond (1.407 Å). I’m checking whether that is an import/setting artifact before finalizing the uncertainty statement; I will not trade physical geometry for a small fit gain.
+
+All requested artifacts are now generated from the same accepted full-grid project. I’m doing the final cross-file audit: exact profile equality with the project, normalized fractions, empty frozen/singular parameter lists, and CIF parse/chemistry checks.
+
+Identified crystalline phases:
+
+- BaCO₃ (Pnma-equivalent): **54.72 wt%**
+- Monoclinic WO₃ (P2₁/c): **45.28 wt%**
+
+Fractions are normalized over modeled crystalline phases. Final fit: Rwp 5.8159%, Rp 4.4184%, GOF 1.6741. Trace BaWO₄ cannot be excluded, but no physically supported third phase was established. Detailed light-atom positions remain less reliable than phase identities and fractions.
+
+Outputs:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r2/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r2/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r2/workspace/fit.csv)
+- [BaCO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r2/workspace/BaCO3.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-001-r2/workspace/WO3.cif)
+

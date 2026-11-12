@@ -1,0 +1,64 @@
+I’ll first inventory the measurement and the supplied diffraction workflow, then identify candidate phases from composition and peak positions before building a restrained GSAS-II refinement. I’ll keep alternate records or polymorphs in play until the profile evidence separates them, and I’ll verify the final exports against the saved project.
+
+The chemistry narrows the first inventory to Pb–W–O products plus PbO and WO₃-derived residuals, but I’m not assuming a single PbWO₄ phase. I’m now matching the observed peak families against every relevant frozen COD record, including polymorphs and Pb-rich intermediates, before any scale/cell refinement.
+
+The first three-phase baseline confirms all three inventories have positive, coherent scales: roughly 83% Pb₇W₈O₂₈.₈, 3% litharge PbO, and 14% WO₃ before phase-specific broadening. Its common width term is being forced beyond a physical instrumental role, so I’m comparing the WO₃ polymorphs under the identical baseline next; this is exactly where a superficially plausible record can otherwise bias both the fit and fractions.
+
+The PbO polymorph check changed the inventory materially: orthorhombic PbO (massicot, COD 2310433) explains a coherent set of peaks near 29.35, 30.62, 38.09, 53.39, and 56.29°, dropping the common-baseline Rwp from 19.4% to 16.9%. Tetragonal litharge is therefore rejected for this sample, while the phase itself is strongly supported at a nonzero scale. I’m rebuilding the main-phase/WO₃ comparisons around massicot before tuning any phase widths.
+
+The residual profile shows the three-phase model is incomplete, not merely under-refined: a strong coherent family led by 25.91° remains essentially unmodeled, with related features near 26.77°, 46–49°, and 53–57°. I’m treating that as a missing phase signal and returning to inventory/indexing before accepting any broadening term; the extreme massicot width trials were acting as surrogates for this residual family.
+
+The analogue-derived Pb₂WO₅ model is decisively supported: its substituted C2/m parent predicts the previously missing 25.91°, 26.77°, 31.05°, 43.45°, 47.3°, and 53.95° families, and adding it lowers Rwp to 13.8% with a stable ~16% scale. The Mo⁶⁺→W⁶⁺ model passes composition, symmetry, density, and bond-length screens. With the inventory now coherent, I’m refining only symmetry-allowed coordinates phase-by-phase and will reject any improvement that produces implausible geometry.
+
+The four-phase inventory is now well supported: scheelite PbWO₄, massicot PbO, a WO₃ polymorph, and a Pb₂WO₅ intermediate identified through an isovalent Pb₂MoO₅ prototype. I’m finishing the geometry-constrained refinements now; unconstrained coordinate improvements that produced implausibly short bonds have already been rejected.
+
+The bounded-coordinate trials are not defensible: GSAS-II froze variables at the imposed limits (3–48 coordinates depending on phase), and the largest nominal gain did not converge. I’m reverting those trials and will keep only refinements supported without boundary behavior, then test preferred orientation one phase at a time under the common profile.
+
+The first orientation screen is still running across the symmetry-distinct axial directions. I’m checking each trial for convergence and bound behavior before deciding whether any texture term survives.
+
+Massicot shows one potentially meaningful orientation axis, [0 1 1] (March–Dollase ≈1.68), but its first pass still had a large shift-to-uncertainty ratio, so it is not yet accepted. I’m replaying that candidate and screening Pb₂WO₅ axes; near-unity or non-reproducible terms will be pruned.
+
+The supported orientation terms are reproducible and within the known physical range: massicot [100] at about 0.87 and Pb₂WO₅ [100] at about 1.24. The much larger apparent massicot [011] correction is outside the experiment’s allowed orientation-axis set and behaves as an intensity surrogate, so I’m rejecting it. Next I’m rebuilding the profile with the physically preferred room-temperature monoclinic WO₃ record and rechecking these terms.
+
+Monoclinic WO₃ gives essentially the same fit as the lower-temperature triclinic model (ΔRwp ≈0.02 percentage point) while matching the 500 °C synthesis/room-temperature measurement context, so I’m retaining monoclinic WO₃ and will report the polymorph ambiguity. Refining Pb₂WO₅ heavy-atom coordinates no longer improves the texture-corrected model, so the prototype geometry remains fixed.
+
+The one-at-a-time size/strain replay is taking longer than the orientation screen, but it is still progressing. I’m specifically watching for the earlier failure mode where a minor phase drives size or strain to a bound and steals scale from overlapping phases.
+
+The replay confirms the earlier rejection pattern: PbO size and strain again collapse to hard limits and inflate its fraction to ~19–20%, and PbWO₄ strain collapses to zero. Those are scale/profile surrogates and are discarded. Pb₂WO₅ alone gives a finite, in-range crystallite size (~0.071 μm) with only a modest improvement; I’m replaying it before deciding whether that term is justified.
+
+One additional structural correction is warranted by the generator and by the imported records: the registered models use scalar \(U_\mathrm{iso}=0.005\ \text{Å}^2\), while the raw COD files range from 0 to ~0.027. I’m first normalizing all phases to that common registration value, then testing one constrained, single-\(U_\mathrm{iso}\) parameter per phase. This changes angle-dependent scattering physically without giving individual atoms enough freedom to absorb profile errors.
+
+The constrained displacement trials are also being pruned. PbO and Pb₂WO₅ both refine above the experiment’s allowed \(U_\mathrm{iso}\) range (~0.027 Å²), while WO₃ drives the constraint through its lower bound; those are angle-dependent intensity surrogates. A fixed 0.005 Å² registration model is stable on replay, and its fractions are therefore more defensible.
+
+The profile plot shows coherent broad residual families at the Pb₂WO₅ positions, especially through 25–33° and 43–57°. Because the Pb₂WO₅ size trial remained inside the laboratory’s allowed 0.04–1.5 μm range and improved further on its first replay, I’m continuing that size-only path to see whether it reaches a stable physical value or collapses toward the bound. Strain remains rejected.
+
+The Pb₂WO₅ broadening stabilizes near 0.043 μm—inside, but close to, the laboratory’s 0.04 μm lower range—and raises its modeled fraction to ~22%. This broad-phase model explains the coherent residual families much better. Once included, the massicot texture term becomes negligible (ΔRwp ≈0.005 percentage point), so I have pruned it and am re-challenging the Pb₂WO₅ texture axes with size fixed.
+
+The accepted common profile now replays cleanly: fixed SH/L = 0.01897, nonnegative U/W/X, one specimen shift, no roughness, fixed Pb₂WO₅ size, and only the strongly supported Pb₂WO₅ [100] texture term. Before export I’m doing the required watch-list challenge by adding the near-scheelite Pb₇W₈O₂₈.₈ record and the alternate triclinic WO₃ polymorph separately under this same profile.
+
+Both watch-list challenges return zero scale: Pb₇W₈O₂₈.₈ is rejected outright, and a coexisting triclinic WO₃ phase is likewise unsupported. I’m now freezing the accepted model, exporting directly from that project, and checking CIF geometry, background positivity, profile replay, and project/export agreement.
+
+The verified replay is clean—no negative background, profile-width, polarization, or project/export flags—and all four CIFs pass geometry/occupancy screening. One final residual-led check remains: Pb₂WO₅ is the broad phase, so I’m testing its three allowed uniaxial microstrain directions with its accepted size held fixed. Any boundary or fraction-stealing solution will be rejected.
+
+The final strain challenge did not survive: [100] hit a bound and worsened the fit; [010]/[001] shifted scales by ~1 wt% for negligible or worse Rwp and had not converged. The isotropic-size-only Pb₂WO₅ model is retained. All requested outputs are now generated; I’m performing the final cross-file consistency audit.
+
+Identified four crystalline phases, normalized over modeled crystalline material:
+
+- Scheelite PbWO₄: 60.63 wt%
+- Pb₂WO₅ intermediate: 22.16 wt%
+- Monoclinic WO₃: 10.68 wt%
+- Massicot PbO: 6.53 wt%
+
+Verified replay: Rwp 13.118%, Rp 8.984%, GOF 3.753. The Pb₂WO₅ analogue structure and fraction remain semi-quantitative; the exact WO₃ polymorph is also weakly constrained.
+
+Outputs:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-013-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-013-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-013-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-013-r3/workspace/final.gpx)
+- [PbWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-013-r3/workspace/phase_PbWO4_scheelite.cif)
+- [PbO CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-013-r3/workspace/phase_PbO_massicot.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-013-r3/workspace/phase_WO3_monoclinic.cif)
+- [Pb₂WO₅ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-013-r3/workspace/phase_Pb2WO5.cif)
+

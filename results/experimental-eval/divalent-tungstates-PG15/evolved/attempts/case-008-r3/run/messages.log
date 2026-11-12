@@ -1,0 +1,43 @@
+I’ll first inspect the pattern, metadata, and the reusable refinement tools, then build a chemically screened phase inventory before refining candidates in GSAS-II. I’ll keep the phase search residual-led and verify the final exports against a reopened project.
+
+The chemistry strongly suggests MnWO₄ as the principal reaction product, but I’m treating residual MnO/WO₃ and alternate manganese tungstates as live candidates. Next I’m checking peak positions and the installed search/refinement interfaces so candidate records are judged by the pattern, not by chemistry alone.
+
+Peak positions and relative intensities match monoclinic wolframite-type MnWO₄ across the full angular range; the alternative Mn₃WO₆ pattern is incompatible with the strongest families. The only exact MnWO₄ database entry is a high-pressure record, so I’m using it as a topology/coordinate model while allowing the cell to refine, and I’ll also challenge an ambient wolframite analogue plus unreacted/oxidized precursor phases against the residual.
+
+A Bragg–Brentano specimen-displacement correction is replay-stable and physically interpretable (about −525 µm); it fits slightly better than a constant zero offset. The one-phase baseline now gives Rwp ≈10.0% with a sensible ambient MnWO₄ cell, so I’m inspecting the residual by angle and reflection family before admitting any minor phase or extra broadening/texture term.
+
+The common profile is adequate without phase size/strain: size is statistically unsupported, strain tries to cross its physical lower bound, and SH/L is insignificant. A small [110] March–Dollase term is the only replay-stable texture improvement. I’m now re-challenging residual MnO, several WO₃ records, Mn₃WO₆, and oxidized/reduced precursor products under that same profile.
+
+A second phase is now well supported: two independent monoclinic WO₃ records converge to the same cell and about 2.0 wt%, lowering Rwp from 7.08% to 6.72%. Triclinic, orthorhombic, and P2₁/m alternatives fit worse. I’m rebuilding the two-phase common model and will re-test the manganese-oxide watch list so WO₃ intensity is not misassigned to another minor phase.
+
+The two-phase inventory is now coherent: MnWO₄ is dominant and monoclinic WO₃ is reproducibly required. I’m finishing the weak-phase re-challenge—especially distinguishing residual MnO from manganese oxides that could merely absorb the same residuals—then I’ll lock the common profile and export everything from a replayed final project.
+
+The oxide re-challenge narrows to two plausible explanations of a very small residual: MnO fits slightly better than Mn₂O₃, while Mn₃O₄ and Mn₃WO₆ refine to zero. I’m testing whether the MnO lattice remains physical when released and whether its several reflection families improve coherently; that is the deciding evidence for retaining a sub-percent phase.
+
+The weak-phase signals are not internally consistent: for both MnO reference cells, the strongest expected high-angle line is absent or worsened, while most of the apparent gain comes from one line near 41°. Mn₂O₃ has one clean low-angle family but several comparably strong predicted families have the wrong residual sign. Before excluding both, I’m checking whether those residuals are instead the fingerprint of direction-dependent broadening in the dominant monoclinic phase.
+
+The anisotropic-strain challenge is behaving as a useful stress test: unconstrained trials only improved by driving one component negative, which is nonphysical. I’ve rerun the symmetry-distinct axes with explicit nonnegative bounds; any model that still collapses at zero will be pruned, and any surviving term must replay stably before it can replace the simpler profile.
+
+The physically constrained anisotropic-width model does not survive replay: once the bound component is replaced by a finite neutral value, the remaining strain falls to \(59 \pm 52\) µstrain and the fit returns to the common profile. I’m therefore pruning it. One last inventory-dependent check remains: re-testing the small MnWO₄ texture correction now that WO₃ is present, so the final nuisance model is based on the final phase set rather than the earlier one-phase fit.
+
+The final nuisance model is now settled. With WO₃ included, the MnWO₄ [110] March–Dollase term remains uniquely favored (Rwp 6.732% versus 6.880% without texture); all size/strain trials either hit neutral bounds or drift on replay, including the weak WO₃ strain term. I’m exporting from the clean two-phase replay, where the last maximum shift/σ is 0.026 and the phase fractions are stable to better than \(2\times10^{-6}\) between reopens.
+
+The exported structures pass the geometry screen: MnWO₄ has sixfold Mn and W coordination with sensible bond-length ranges, and both independent WO₃ octahedra remain physical. I’m doing the final cross-file audit now—reopening `final.gpx` and checking that its profile arrays, fractions, statistics, and cells agree with `fit.csv`, `result.json`, and both CIFs.
+
+Completed and validated against the reopened GSAS-II project.
+
+- MnWO₄, wolframite P2/c: **98.032 ± 0.066 wt%**
+- Monoclinic WO₃, P2₁/c: **1.968 ± 0.066 wt%**
+- Fit: **Rwp 6.731%, Rp 4.718%, GOF 2.445**
+
+Fractions are normalized over modeled crystalline phases. Trace MnO/Mn₂O₃ indications were not sufficiently coherent or model-stable to report.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MnWO4.cif](<ATTEMPT_WORKSPACE>/MnWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+

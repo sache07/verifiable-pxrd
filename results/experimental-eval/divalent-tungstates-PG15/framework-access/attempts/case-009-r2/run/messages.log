@@ -1,0 +1,43 @@
+I’ll inspect the measurement metadata, pattern, and the framework’s available PXRD/GSAS-II tooling first. Then I’ll identify candidate phases, refine the multiphase model in GSAS-II, and validate that every submitted artifact is reproducible from `final.gpx`.
+
+The framework requires an environment check before scientific analysis. I’m running that now; if it passes, I’ll use the local COD index for phase search and GSAS-II for the actual quantitative refinement.
+
+The workshop controller check reports “not deployed,” which applies to the excluded automated research workflow, not this direct analysis. The local crystallography stack and frozen reference library are available, so I’m proceeding with those and will note any genuine tool limitation separately.
+
+The peak positions and full reflection sequence already point strongly to monoclinic wolframite MnWO₄ (P2/c): the characteristic 18.6°, 23.8/24.3°, 30.1/30.5°, 36.2°, and 41.1° lines all match. I see no comparably strong diagnostic lines for residual Mn₃O₄, WO₃, or Mn₃WO₆; the next task is a full-profile test for weak secondary phases and refinement of the shifted/broadened MnWO₄ model.
+
+The profile is consistent with a single crystalline phase at this stage. I’m now building the observed-data GSAS-II project with the exact Cu Kα doublet and Bragg–Brentano geometry, then refining in guarded stages (background/scale → cell and angular corrections → profile → atomic coordinates/ADPs). This staged fit will also make weak-phase omission tests meaningful.
+
+The first atomic fit reaches Rwp ≈ 4.99%, confirming one-phase MnWO₄ and leaving little room for a major crystalline impurity. I’m tightening it now: the unconstrained fit exposed strong parameter correlations (zero/height, size/X, strain/U) and wandered outside the known physical ranges, so I’m using bounded model comparisons to recover a physically admissible profile rather than accepting that numerically lower but nonphysical minimum.
+
+The roughness correction is clearly supported (it removes the large low-angle intensity bias and restores coordinate shifts to the expected small range). Preferred-orientation tests all refine back to ratios within about 2% of random and improve Rwp by only ~0.02 points, so texture is not justified. I’m now testing the more consequential possibility: hkl-dependent microstrain, which is visible as systematic peak-width residuals and is one of the generator’s allowed specimen effects.
+
+A decisive profile effect emerged: the low-angle tails require substantially stronger axial-divergence asymmetry. Holding SH/L near 0.07 drops Rwp from ~4.94% to ~4.21% without unphysical roughness or texture, while 0.10 worsens again. I’m re-starting the nonlinear refinement from that basin so SH/L, zero/height, widths, and structure can converge together.
+
+The refined physical model now reaches Rwp ≈ 3.79% (noise-only lower bound ≈ 3.46%) with SH/L ≈ 0.085, uniaxial [001] microstrain, and no preferred orientation. The remaining mismatch is small enough to test trace phases meaningfully. I’m checking residual Mn₃O₄, WO₃, and Mn₃WO₆ explicitly and will retain only phases with positive, diagnostic scale support.
+
+The final restart slightly worsened the fit (3.804% versus 3.792%) because of the strongly correlated zero/height/cell basin. I’m retaining the better converged, fully physical project and exporting directly from it; no post-hoc parameter change will be allowed between the GPX, CIF, and profile.
+
+The phase assignment is stable: wolframite-type MnWO₄ is the only justified crystalline phase. I’m now exporting the better converged refinement (Rwp ≈ 3.79%) unchanged and validating that the saved GPX reproduces the submitted profile and CIF.
+
+The exported CIF contains the full refined P2/c atomic model, and the one-phase scale normalizes exactly to 1.000. A sensitive scan for Mn₃O₄, WO₃, and Mn₃WO₆ found only sub-percent noise-level correlations, so those are being treated as detection-limit uncertainty rather than reported phases.
+
+The independent GSAS-II replay passed with no physical/profile review flags and reproduced the phase inventory and 1.000 fraction. I found one export-format compatibility detail—the angle-column name included a unit suffix not recognized by the framework’s checker—so I’m normalizing that header while retaining degree units and identical numerical data.
+
+All requested artifacts now pass the framework checks: the profile format is recognized, the CIF passes geometry/occupancy screening, the fraction vector is complete, and the replayed project phase matches the submitted CIF numerically. I’m doing a final inventory and checksum/readability check before handing it over.
+
+Analysis complete.
+
+- Phase: wolframite MnWO₄, P2/c (No. 13)
+- Crystalline weight fraction: 1.000
+- Rwp: 3.7925% (independent replay: 3.7982%)
+- No secondary phase was reliably supported; sub-percent to ~1 wt% impurities remain possible.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-009-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-009-r2/workspace/report.md)
+- [phase_1_MnWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-009-r2/workspace/phase_1_MnWO4.cif)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-009-r2/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-009-r2/workspace/final.gpx)
+

@@ -1,0 +1,34 @@
+I’ll inspect the measurement metadata and diffraction profile first, then identify candidate phases and refine them jointly. I’ll keep the structural files and quantitative results tied to the final GSAS-II project so the submitted artifacts are internally consistent.
+
+The chemistry points toward cobalt tungstate formation, but the precursor pair can leave residual Co₃O₄ or WO₃ at 500 °C, so I won’t assume a single phase. I’m now extracting peak positions and checking the locally available crystallographic search/refinement tooling before building the joint model.
+
+The peak positions now give a clear two-phase hypothesis: monoclinic WO₃ accounts for the dominant 23–25° triplet and its higher-angle splitting, while spinel Co₃O₄ accounts for the independent series at about 19.37, 31.64, 37.20, 45.14, 59.68, and 65.56°. Both series share the same systematic specimen-position shift, which is strong evidence they are real phases rather than unmatched peaks. I’m moving to joint Rietveld refinement and will test whether lower-symmetry WO₃ or any cobalt tungstate is actually warranted by the residuals.
+
+The first stable joint refinement gives roughly 72 wt% WO₃ and 28 wt% Co₃O₄. The shared specimen displacement refines to about −0.70 mm (the large number stored by GSAS-II is in micrometres), and both refined cells remain close to literature values. I’m still testing profile and symmetry choices because those are the main sources of uncertainty in the quantitative fraction.
+
+The phase search is now effectively closed: adding a CoWO₄ model drives its scale to zero (a model-dependent 95% upper bound of about 0.2 wt%), and no independent residual peak series remains. I’m using the monoclinic WO₃ model because it gives the better Bragg-intensity residual and is the physically expected ambient polymorph; a pseudo-triclinic alternative changes the fractions by only about 0.3 wt%, which I’ll record as part of the model uncertainty.
+
+The refinement is complete. I’m packaging the two-phase result now, then I’ll reopen the GSAS-II project and cross-check the CIFs, fractions, and exported profile before handing it over.
+
+The deliverables are written. The selected model is 73.89 wt% monoclinic WO₃ and 26.11 wt% Co₃O₄; a tested CoWO₄ phase refined to zero. I’m now checking that the saved project reproduces those values and that every exported profile row and CIF is internally consistent.
+
+Validation passed: the project reopens with exactly the two submitted phases, both CIFs re-import cleanly, all 8,301 profile points match the original observations, and the exported residual column is numerically exact. The saved refinement is converged at Rwp 3.439%.
+
+Completed. The best-supported crystalline model is:
+
+- Monoclinic WO₃, P2₁/c: **73.89 wt%**
+- Cubic Co₃O₄, Fd-3m: **26.11 wt%**
+
+Fractions are normalized over crystalline phases. Estimated model-dependent uncertainty is approximately ±2 percentage points. CoWO₄ was tested but refined to zero. Final fit: Rwp 3.439%, Rp 2.461%, GOF 2.000.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [phase_1_WO3.cif](<ATTEMPT_WORKSPACE>/phase_1_WO3.cif)
+- [phase_2_Co3O4.cif](<ATTEMPT_WORKSPACE>/phase_2_Co3O4.cif)
+
+The saved project was reopened successfully, both CIFs were re-imported, and all 8,301 exported profile points were verified against the input.
+

@@ -1,0 +1,38 @@
+I’ll first inspect the specimen metadata, diffraction grid, frozen reference index, and the available GSAS‑II workflow. I’ll then build the chemically plausible full multiphase model, refine it, and validate that every coherent residual family is accounted for before exporting the requested replayable files.
+
+The chemistry is MnO + WO₃ fired at 900 °C, so MnWO₄ is the ordinary principal product, but I’ll treat residual Mn/WOₓ phases and polymorphs as open possibilities. The raw scan has a high background and unknown displacement/profile, so phase acceptance will be based on whole reflection families after calibration—not isolated peak matches.
+
+The frozen index contains exactly two Mn–W–O entries: wolframite MnWO₄ (P2/c) and Mn₃WO₆ (R‑3). The observed families—including the characteristic 15.7, 18.7, 23.9/24.36, 30.10/30.59, 36–37.5°, and dense 48–65° sequence—match wolframite throughout; Mn₃WO₆’s strong 20.0/20.5°, 28.75°, and 35.24° family is absent. I’m now refining the single-phase physical checkpoint before testing whether its residual contains any separate phase family.
+
+The first refinement confirms the topology but exposed two nonphysical optimizer directions: GSAS‑II had inherited active size/strain flags (yielding negative strain), and an unconstrained roughness fit drove its A parameter negative. I’m rolling back to the last physical atomic checkpoint, explicitly disabling those inherited terms, bounding calibration/specimen parameters, and retesting roughness and size one at a time.
+
+The constrained refit is now fully physical. A stable representative model (fixed roughness B = 0.20, refined A ≈ 0.241) gives Rwp = 4.724% and GOF = 1.716 on all 8,301 points; lower-B branches gain only ~0.008% Rwp by pinning A to its boundary, so I’m retaining the interior physical solution. I’ll now map the positive residuals against MnO, WO₃ polymorphs, Mn oxides, and Mn₃WO₆; only a coherent multi-line family will be admitted.
+
+The residual family test accepts a second phase: room-temperature monoclinic γ‑WO₃. Its 23.46/24.66°, 33–35°, 41–42°, 47–51°, and 53–63° lines are jointly supported, and adding it reduces Rwp from 4.724% to 4.102% with a stable positive fraction near 2.15 wt%. The neutron-derived P2₁/c model is both better geometrically and better fitting than the coarse-coordinate or triclinic alternatives. No third coherent family remains; the largest residuals now sit on MnWO₄ peak shoulders, so I’m stopping phase search and refining profile anisotropy/texture only.
+
+The accepted inventory is now complete and stable: ~97.9 wt% MnWO₄ plus ~2.1 wt% γ‑WO₃. Profile tests found only a very weak [100] March–Dollase correction (ratio ≈ 1.012); uniaxial strain, minor-phase size, and extra Caglioti terms did not earn meaningful improvement. Multiple coordinate starts reconverged to the same MnWO₄ model. I’m doing the final convergence/geometry/replay checks and then exporting directly from that project.
+
+The full two-phase model is now settled. I’m exporting directly from that converged checkpoint, then I’ll replay the saved project against the original grid and run final geometry/profile checks so every submitted artifact comes from the same model.
+
+Export is internally consistent: 8,301 original points, Rwp 4.0264%, and crystalline fractions 97.873% MnWO₄ / 2.127% WO₃. The statistical scale-only uncertainty on each normalized fraction is 0.041 wt%; I’m now checking the more important model/systematic limits through independent forward replay and bond-geometry validation.
+
+The independent GSAS-II replay regenerated the profile from atomic structures and fresh reflection lists without using cached calculated intensities. It reproduced Rwp = 4.0264%, the same fractions, a strictly positive background/profile, and raised no physical-profile flags. Both phases also retain plausible octahedral bond geometry.
+
+Analysis complete.
+
+- MnWO₄ (wolframite, P2/c): **97.873 wt%**
+- Monoclinic γ-WO₃ (P2₁/c): **2.127 wt%**
+- Rwp: **4.0264%**
+- Goodness of fit: **1.4638**
+
+Fractions are normalized over crystalline phases only. A practical uncertainty of approximately ±0.3 wt% applies to the minor WO₃ fraction. Independent GSAS-II forward replay passed without physical-profile flags.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r1/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r1/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r1/workspace/final.gpx)
+- [MnWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r1/workspace/MnWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r1/workspace/WO3.cif)
+

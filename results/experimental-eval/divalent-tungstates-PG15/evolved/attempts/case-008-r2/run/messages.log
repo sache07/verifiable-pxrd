@@ -1,0 +1,52 @@
+I’ll first inspect the pattern, metadata, and reusable refinement utilities, then build a chemically plausible phase inventory before fitting. I’ll keep phase additions residual-led and verify the final exports against a reopened GSAS-II project.
+
+The chemistry strongly suggests MnWO₄ as the principal reaction product, but I’m treating residual MnO/WO₃ and manganese-oxide alternatives as live candidates until the peak families and scales decide them. The scan spans 9.9–100.1° 2θ with Cu Kα1/Kα2 explicitly reported and no calibrated profile, so source splitting and instrumental width must be established in the baseline.
+
+The dominant reflections are a coherent wolframite MnWO₄ family (P2/c), including the distinctive 18.68, 23.89/24.36, 30.12/30.58, 31.36, 36.27, 37.52, and 41.19° peaks. The only exact COD model is a 2.4 GPa single-crystal record, so I’m using it as an atomic-coordinate seed—not accepting its cell blindly—and I’ve screened ambient wolframite analogues as physical checks. The low-angle position offset decreases with angle, consistent with reflection-geometry specimen displacement and/or cell mismatch.
+
+The first physically neutral single-phase baseline converged to an ambient-like wolframite cell (a≈4.8304, b≈5.7562, c≈4.9955 Å, β≈91.219°) with one specimen shift and a nonnegative U/W/X profile. Its Rwp is about 10.29%, so the dominant phase is secure; I’m now separating structural/intensity mismatch from coherent residual peaks before admitting any impurity.
+
+The isolated low-angle families repeatedly show a broad low-angle tail that the current symmetric profile misses (notably 010, 100, 011, and 110), while their peak positions remain coherent. That is direct support for releasing the axial-divergence SH/L term; it is a baseline correction, not evidence for another phase.
+
+After the common-profile fit, the strongest non-wolframite residual family is at roughly 23.45, 24.68, 33.58, and 34.45° (with weaker related features near 41–56°). That family is coherent with room-temperature monoclinic WO₃ and includes peaks partly hidden under MnWO₄. I’m testing the physical WO₃ polymorph records against the same background/profile before refining any WO₃ cell. MnO, Mn₂O₃/Mn₃O₄, and Mn₃WO₆ remain on the watch list because their diagnostic families are mostly absent.
+
+The monoclinic room-temperature WO₃ model is supported at about 1.86 wt% (internal s.u. ≈0.10 wt%) and outperforms the alternative room-temperature setting, triclinic, orthorhombic, and old pseudo-triclinic records under the same nuisance model. Its strongest unique/partly overlapped families are now accounted for. The remaining mismatch follows MnWO₄ intensities across angle rather than introducing a new peak family, so I’m testing the metadata-unknown effective polarization before considering texture or modifying atomic coordinates.
+
+The low-angle intensity trend is explained best by a single positive Suortti roughness/footprint term (B≈0.144): it lowers Rwp from 10.07% to 6.45%. Adding polarization gives no improvement, adding roughness A drives A negative and 99% correlated, and SH/L remains insignificant and >96% correlated with specimen shift; those terms are therefore pruned. I’m now doing the required one-phase-at-a-time size/strain challenges from neutral values against this common profile.
+
+The size/strain challenge is rejecting most extra terms: MnWO₄ size is 99.6% correlated with common X and remains at the practical-neutral limit; MnWO₄ strain goes negative; WO₃ size collapses to its lower bound. WO₃ isotropic strain alone drifts to an exceptionally large value and changes its fraction materially, so I’m replaying it from several starting values to determine whether that apparent improvement is stable or a weak-phase/profile artifact.
+
+The WO₃ strain result is replay-stable from 100–10,000 µstrain starts, converging near 9,600 µstrain; unlike the failed size terms, it does not collapse and improves χ² materially. I’m retaining it provisionally as effective broadening of a weak, likely defective residual WO₃ phase, while treating its resulting fraction as model-sensitive. Next I’m comparing no texture with symmetry-distinct MnWO₄ March–Dollase axes across the full range; acceptance will require more than one matching isolated family.
+
+The texture tests are not unique: [100] and [011] give essentially the same small Rwp gain with opposite, very weak March–Dollase corrections, while other axes also improve slightly. Because no single direction is supported by distinct isolated families, texture is pruned. I’m now re-challenging the oxide/tungstate watch list against the rebuilt roughness-corrected common profile, as required after the inventory/profile change.
+
+The phase inventory is now stable: wolframite MnWO₄ dominates, with a weak room-temperature monoclinic WO₃ contribution. I’m doing the final physical-geometry check and then will replay the accepted model from the saved project before exporting every deliverable from that exact state.
+
+The refined Mn/W positions remain close to the source coordinates and preserve sensible octahedra (Mn–O 2.10–2.27 Å; W–O 1.80–2.13 Å), so I’m retaining those two well-supported coordinate shifts. Oxygen coordinates will stay fixed: freeing them improved the numerical fit but produced implausible bond geometry.
+
+The accepted nuisance model is also fixed now: a six-term smooth background, one specimen-shift correction, nonnegative U/W/X, and one low-angle surface/footprint term. Polarization, extra asymmetry, texture, crystallite size, and MnWO₄ strain trials were unsupported; only the weak WO₃ phase required replay-stable isotropic microstrain.
+
+The clean reopen/replay is complete and stable: Rwp is 6.378%, GOF 2.315, and the last parameter shifts are below 0.03σ. I’ve exported the CIFs and profile from that exact reopened project; the remaining step is a cross-file audit of formulas, cells, fractions, and row-by-row profile agreement.
+
+The audit passed: both CIFs parse as ordered, fully occupied structures with the intended space-group numbers; their cells match the GSAS-II project within CIF rounding. `fit.csv` has all 8,301 points and reproduces the project’s observed, calculated, background, and observed-minus-calculated arrays exactly to export precision.
+
+Completed the phase analysis and GSAS-II refinement.
+
+Modeled crystalline composition:
+
+- MnWO₄, wolframite P2/c: **96.67 wt%**
+- Monoclinic WO₃, P2₁/n: **3.33 wt%**
+
+Fit: Rwp 6.378%, Rp 4.660%, GOF 2.315. The WO₃ fraction is realistically about 3.3 ± 1.0 wt% because broadening-model uncertainty exceeds its formal 0.11 wt% standard uncertainty. Fractions exclude amorphous material.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MnWO4.cif](<ATTEMPT_WORKSPACE>/MnWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+
+The CIFs, phase fractions, and all 8,301 profile points were verified against a clean reopen of `final.gpx`.
+

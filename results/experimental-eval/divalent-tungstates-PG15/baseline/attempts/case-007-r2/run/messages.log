@@ -1,0 +1,32 @@
+I’ll inspect the pattern, metadata, and installed diffraction/refinement utilities first, then identify candidate phases and build a verified multiphase GSAS-II refinement. I’ll keep the reported fractions limited to modeled crystalline material and explicitly flag any ambiguity.
+
+The chemistry points first toward magnesium tungstate formation, with MgO and/or WO₃ plausible residuals, but I’ll let the full peak set decide. The scan is high-resolution Cu Kα doublet data from 9.9–100.1°, so profile fitting should distinguish minor crystalline leftovers if their unique reflections are present.
+
+Peak positions show a consistent specimen-displacement shift, not a wrong wavelength: MgWO₄ lines are displaced by ~0.35° near 20° and less at high angle, exactly the expected cosine dependence. Separate triplets near 23–25° support residual monoclinic/triclinic WO₃, while unique MgO lines near 43° and 62.5° indicate a smaller MgO fraction. I’m now testing those three phases quantitatively and will check whether the WO₃ peak splitting requires a specific low-symmetry polymorph.
+
+The first quantitative refinement confirms all three tentative phases have positive, meaningful scale factors. A preliminary three-phase fit is still imperfect because the source WO₃ cell and peak widths need optimization; I’m comparing low-symmetry WO₃ models under the same refinement protocol rather than choosing from the three strongest lines alone.
+
+The model comparison is now decisive at the symmetry level: monoclinic WO₃ fits substantially better than triclinic WO₃ under the same parameterization (Rwp ≈10.86% versus ≈12.4%). The triclinic fit also drives its crystallite-size parameter to the lower bound, a strong sign it is compensating for incorrect peak splitting. I’m retaining monoclinic WO₃ and examining residual peaks for any fourth phase or texture/profile effect.
+
+The three-phase model leaves no isolated residual reflections that justify adding a fourth crystalline phase; the largest residuals sit on already indexed MgWO₄/WO₃ peaks and respond to profile/coordinate refinement. The current converged model gives about 77.7% MgWO₄, 15.2% monoclinic WO₃, and 7.0% MgO by crystalline weight. I’m doing one final polymorph cross-check and then will export the exact converged project, CIFs, profile, and machine-readable summary.
+
+The final model is exported. I’m validating that the submitted CIFs re-import correctly, the CSV reproduces the arrays stored in `final.gpx`, and the reported fractions sum exactly to the modeled crystalline total.
+
+Completed and validated the three-phase GSAS-II refinement:
+
+- MgWO₄ (P2/c): 77.72 wt%
+- Monoclinic WO₃ (P2₁/n): 15.24 wt%
+- MgO (Fm-3m): 7.04 wt%
+
+Fractions are normalized over modeled crystalline material. Final fit: Rwp = 8.888%, Rp = 6.353%, GOF = 3.113. Amorphous content cannot be quantified without an internal standard.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [MgWO4.cif](<ATTEMPT_WORKSPACE>/MgWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [MgO.cif](<ATTEMPT_WORKSPACE>/MgO.cif)
+

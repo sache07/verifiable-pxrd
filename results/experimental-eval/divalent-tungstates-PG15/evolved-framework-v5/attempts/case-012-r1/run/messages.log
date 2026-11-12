@@ -1,0 +1,48 @@
+I’ll inspect the specimen metadata and diffraction grid first, then identify candidate phases against the frozen reference index. I’ll build and preserve a replayable GSAS‑II refinement, validate that every coherent peak family is assigned, and only then finalize the CIFs, profile, fractions, and report.
+
+The chemistry points first to monoclinic wolframite-type NiWO₄, with NiO and WO₃ as the most plausible residual phases after a 900 °C firing. I’m now testing that ordinary inventory against the full peak list before considering any off-stoichiometric phase; the key question is whether the residuals form a separate coherent family.
+
+The peak-family check supports three ordinary phases: dominant wolframite NiWO₄, monoclinic WO₃ (its diagnostic 23–24.5° triplet and 33–34.5° family), and minor rocksalt NiO (37.2°, 43.2°, 62.8°, 75.5°, 79.4°, 95.3°). The frozen index’s only nominal NiWO₄ entry is a malformed 1951 CIF, so I’m using intact P2/c divalent-tungstate parents to reconstruct the same NiWO₄ topology and will select/refine coordinates by fit and geometry.
+
+The scale-only test rejects crystalline NiO: its refined scale collapses to the numerical floor, consistent with the complete absence of its strongest 43.38° line. I’m dropping NiO from the physical inventory and continuing with NiWO₄ + WO₃; the apparent higher-angle “NiO-like” maxima are accounted for by the tungstate family.
+
+The first profile branch lowered Rwp to about 6%, but allowing all width terms at once drove the instrument \(U\) negative and one microstrain negative. I’m rolling back that branch and repeating the profile refinement with the laboratory’s physical parameter ranges enforced, introducing size and strain one phase at a time.
+
+The NiWO₄ heavy-site refinement is strongly supported: Rwp drops from 5.95% to 4.90%, and Ni moves to \(y\approx0.341\), giving six balanced Ni–O distances of 2.063–2.081 Å; W remains octahedral. The initially selected WO₃ CIF, however, contains 1.575 Å O–O contacts even before refinement, so I’m discarding it despite its acceptable profile and replacing it with a physical room-temperature WO₃ reference before continuing.
+
+A replay check caught an important numerical trap: one low-Rwp checkpoint had profile parameters clipped to their bounds only after the calculated curve was stored, so its apparent 4.48% Rwp was not reproducible from the saved model. I’m rejecting that checkpoint and re-refining from the clipped physical parameters; only replay-consistent projects will be considered final.
+
+The physical monoclinic WO₃ model fits substantially better than the triclinic alternative at the cell-refined checkpoint (Rwp 11.73% versus 12.77%, despite fewer cell/atomic degrees of freedom), and it is the ordinary room-temperature phase. All coherent residual families are now indexed by NiWO₄ or WO₃, so I’m stopping phase/library search and refining only the accepted two-phase inventory.
+
+The phase inventory is now constrained to NiWO₄ plus residual monoclinic WO₃; crystalline NiO is unsupported. I’m testing only physically motivated intensity corrections and coordinate refinements now, then I’ll lock a replay-consistent GSAS-II checkpoint and generate the requested deliverables.
+
+Polarization gives a modest, physical improvement. A two-parameter surface-roughness trial improved more, but one term landed exactly on its bound and the pair was 99.97% correlated, so I’m converting that result into a stable one-parameter replay before deciding whether it is real.
+
+Preferred-orientation screens on five axes for each phase all refined to 0.995–1.007, so texture is not supported and will not be retained. The stable roughness replay reaches Rwp 4.159% without stale clipping; I’m now checking two common, bounded displacement parameters before revisiting oxygen positions.
+
+The NiWO₄ oxygen adjustment is now much smaller than the earlier unconstrained branch (largest displacement about 0.08 Å), preserves normal octahedra, and gives a replay-stable Rwp of 4.126% once coordinates are fixed. I’m screening the weaker WO₃ oxygen substructure once; it will be rolled back unless the gain is stable and the W–O network remains physical.
+
+WO₃ oxygen refinement failed to improve the fit and moved several oxygen sites excessively, so I rolled it back to the physical neutron-derived topology. The accepted model now has normal octahedral distances and no unsupported texture or extra phase; I’m cleaning bounded profile flags and expanding the refinement to the complete measured grid for the final replay.
+
+The final full-grid checkpoint is replay-stable: 8,282/8,282 points, Rwp 4.1246%, and 75.77 wt% NiWO₄ / 24.23 wt% WO₃. I’ve exported the project, CIFs, profile, and JSON; I’m running independent consistency and geometry checks before writing the uncertainty report.
+
+The independent GSAS-II replay passed with no physical-review flags and reproduced the fractions exactly. One packaging check found the angle-column label was too unit-specific for the standard profile parser, so I’m correcting that header and rerunning the final artifact checks.
+
+Completed the PXRD analysis.
+
+The crystalline model is:
+
+- NiWO₄, P 2/c: 75.77 wt%
+- WO₃, P 2₁/c: 24.23 wt%
+
+Full-grid fit: Rwp 4.1246%, Rp 3.1834%, GOF 1.1879. Independent GSAS-II replay passed with no physical-review flags. No crystalline NiO was detected.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-012-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-012-r1/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-012-r1/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-012-r1/workspace/fit.csv)
+- [NiWO4 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-012-r1/workspace/phase_NiWO4.cif)
+- [WO3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-012-r1/workspace/phase_WO3.cif)
+

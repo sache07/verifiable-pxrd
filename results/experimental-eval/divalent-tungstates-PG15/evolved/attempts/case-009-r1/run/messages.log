@@ -1,0 +1,46 @@
+I’ll inspect the measurement metadata, pattern, and reusable refinement tooling first, then build a phase inventory and test candidate structures under a common physically constrained profile. I’ll keep the final CIFs, fractions, fit profile, report, and `final.gpx` mutually consistent.
+
+The chemistry is a high-temperature Mn–W–O reaction measured with Cu Kα over 9.9–100.1° 2θ, with the full Kα doublet likely present despite the “intended Kα1” note. I’m now extracting peak families and checking the installed indexing, database, and GSAS-II interfaces before committing to candidate phases.
+
+The observed peak families match wolframite MnWO₄ across the full range, including the diagnostic split pair near 30.1/30.5° and families at 18.6, 23.8/24.3, 36.2, 41.1, and 51–53.5°. The exact database record is chemically ordered and fully occupied, but it was measured under pressure, so I’m treating it as a starting geometry and will test its refined ambient cell plus plausible precursor/alternate phases rather than accepting the record uncritically.
+
+The first common-profile trial exposed an important rejection: allowing U to vary drove it strongly negative, so that apparent numerical improvement is physically invalid. I’m reverting to a nonnegative U=0 baseline, replaying W/X with the neutral size/strain model, and then I’ll inspect isolated low-, mid-, and high-angle residuals before testing specimen broadening or texture.
+
+The size trial is exactly degenerate with the common Lorentzian X term, and isotropic strain refined negative; both are rejected. The reported Kα₂ ratio is also supported (freeing it only moved 0.500→0.474 with negligible benefit). Repeated low-angle tails do support axial asymmetry, but it is highly correlated with the current zero correction, so I’m comparing zero versus specimen displacement before deciding whether SH/L is stable enough to retain.
+
+The six-term background was underfitting the steep low-angle decay. A 10-coefficient Chebyshev background remains smooth and positive across 10–100° while reducing systematic valley residuals substantially, so I’ve accepted that as the clean common background. I’m now re-challenging every precursor/intermediate watch-list phase against this rebuilt profile; apparent sub-1 wt% fits will only be retained if unique peak families, not just the MnWO₄ shoulder residuals, support them.
+
+The pressure-derived MnWO₄ record survives the structural challenge: an ambient ZnWO₄ prototype with isovalent Zn²⁺→Mn²⁺ substitution fits substantially worse, while refining the exact MnWO₄ coordinates gives a stable, chemically reasonable octahedral model (Mn–O 2.149–2.329 Å; W–O 1.747–2.099 Å). Texture trials along six distinct low-index axes all stayed within ~1% of random orientation and gave only marginal gains, so texture is being pruned.
+
+The single-phase wolframite model is now replay-stable with a physically constrained common profile. I’m re-challenging every plausible precursor, oxide, and product-side impurity against that final profile; this is the decisive check for whether any weak phase survives without borrowing MnWO₄ shoulders or background.
+
+The re-challenge rejects Mn₃WO₆ and MnO outright and leaves only sub-percent responses for Mn₃O₄ and WO₃. Mn₂O₃ is the one borderline case: its fixed physical structure refines to about 0.64 wt% with a formally nonzero scale, so I’m checking whether that signal is carried by several correctly positioned families rather than a few noise excursions before deciding whether it belongs in the submitted inventory.
+
+Mn₂O₃ passes the residual-led test: its three strongest separated families near 33.2°, 55.4°, and 66.0° all reduce the residual, with additional support near 23.4° and 38.5°. The scale is about 5.3σ from zero. I’m retaining it as a weak bixbyite phase, fixing its cell and coordinates to the physical reference because the pattern does not support an independent structural refinement at only ~0.6 wt%, and now rebuilding/replaying the common two-phase model.
+
+The retained Mn₂O₃ signal is real enough to model but too weak to validate a 1928 coordinate set on its own. I’m screening other exact-composition bixbyite records now, so the submitted minor-phase CIF uses a physically credible ambient reference rather than depending on one historical record.
+
+The orthorhombic Pbca α‑Mn₂O₃ reference gives the same ~0.64 wt% response as the cubic approximation and is the physically better room-temperature model. Its free-cell trial drifted implausibly and did not improve the fit, so those cell parameters will remain fixed. I’m now producing the full-range, save/reopen/replay-verified project and deriving every submitted artifact directly from that exact saved state.
+
+The final full-range replay converged cleanly: the last maximum shift/esd is 0.00072, with Rwp 5.2826% and GOF 1.529. The normalized crystalline fractions are 99.3608(12)% MnWO₄ and 0.6392(12)% α‑Mn₂O₃. I’m doing the final cross-check now—CIF parsing/geometry, parameter flags, and byte-level profile agreement with the saved GPX—before writing the uncertainty report.
+
+The export/project checks are exact, and both structures pass the geometry screen (octahedral Mn–O and W–O environments with full occupancy). The overview still shows small, repeatable line-shape residuals at the strongest low-angle MnWO₄ peaks, so I’m zooming isolated families before signing off; this determines whether the accepted SH/L term is sufficient or whether one more physically justified profile challenge is needed.
+
+The zoom confirms the remaining low-angle mismatch is mainly an intensity discrepancy for the isolated MnWO₄ (100)/(011) families, not an unresolved width term; middle- and high-angle widths and positions track well. Texture trials did not reproduce that trend across multiple families, so I’m keeping random orientation. One last source audit is checking whether an ambient-pressure exact MnWO₄ record is available; if so, it must agree with the refined model before the report is finalized.
+
+Completed the phase analysis and refinement.
+
+- MnWO₄ wolframite, P2/c: 99.36(12) wt%
+- α-Mn₂O₃, Pbca: 0.64(12) wt%
+
+Fractions are normalized over modeled crystalline phases. The Mn₂O₃ structure/fraction remains model-dependent at roughly 0.5–0.7 wt%. Final fit: Rwp 5.2826%, GOF 1.5292.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_1_MnWO4.cif](<ATTEMPT_WORKSPACE>/phase_1_MnWO4.cif)
+- [phase_2_Mn2O3.cif](<ATTEMPT_WORKSPACE>/phase_2_Mn2O3.cif)
+

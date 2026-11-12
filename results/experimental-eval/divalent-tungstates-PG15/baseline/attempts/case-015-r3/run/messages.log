@@ -1,0 +1,60 @@
+I’ll inspect the diffraction data and metadata first, then identify candidate phases, build and refine a multiphase GSAS-II model, and validate that every submitted artifact comes from the saved final project. I’ll keep uncertain assignments or fractions explicitly qualified.
+
+The chemistry points strongly toward zinc tungstate formation, but I won’t assume a single-phase product: residual ZnO/WO₃ or a secondary zinc tungstate phase can materially affect the quantitative result. I’m now extracting the peak set and checking the available reference/search and GSAS-II interfaces.
+
+The full peak sequence is consistent with monoclinic wolframite-type ZnWO₄, including the dense high-angle multiplets. Several low-intensity features overlap where residual ZnO or monoclinic WO₃ would appear, so I’ll test one-, two-, and three-phase refinements rather than assigning them from peak positions alone. The observed peaks are moderately broad, which also makes trace-phase claims less secure.
+
+The single-phase trial has already refined the ZnWO₄ cell to a substantially better positional match, but its profile residual remains high enough that phase-model testing is justified. One nuisance is a redundant overall/phase scale in the initial script; I’m correcting that for stable quantitative comparisons before accepting any fraction.
+
+The stabilized refinements are still running across four nested models. They now use Poisson counting weights, a fixed common histogram scale, phase-specific broadening, refined cells, and the reported Cu Kα doublet; this removes the exact scale singularity and makes the phase-fraction comparison meaningful.
+
+The model grid is computationally slower than the initial test because each candidate now carries independent crystallite-size/microstrain terms. I’m letting it complete rather than truncating a comparison mid-refinement; after this pass I’ll retain only statistically supported phases and simplify any over-parameterized broadening.
+
+No user action is needed; the job is active rather than hung, but output is being logged to avoid flooding this thread. The decisive checks will be whether added-phase scales remain positive with sensible cells and whether their characteristic non-overlapping peaks reduce the difference curve, not merely whether Rwp drops.
+
+The model comparison is decisive for monoclinic WO₃: adding it drops Rwp from about 19.5% to 14.7% and accounts for independent peaks near 23.2, 26.7, 29.0, and 33–34°. ZnO is not supported; its unconstrained scale becomes unstable or collapses when WO₃ is present. I’m now rebuilding the accepted two-phase model without the trial’s nonphysical microstrain excursion, then I’ll test whether any ZnO signal remains against that stable baseline.
+
+A controlled ZnO addition against the fixed two-phase baseline is positive and significant: its refined scale corresponds to roughly 8 wt% and lowers Rwp from 14.77% to 14.34%, with contributions at the wurtzite peak sequence rather than only under one overlap. I’m treating that as provisional until its cell and broadening refine to sensible values in a full three-phase pass.
+
+The unrestricted oxygen-coordinate trial lowers Rwp, but it also produces implausibly short Zn–O contacts, so I’m rejecting that apparent improvement as overfitting. I’m limiting any structural-coordinate refinement to heavy-atom positions that the X-ray data can actually constrain; oxygen frameworks will remain tied to credible reference structures unless a restrained result stays chemically sensible.
+
+The alternative neutron-derived WO₃ model gives essentially the same phase fraction and fit but has a complete, chemically sensible WO₆ network. I’m keeping that model and converting it to an equivalent reduced monoclinic setting (β near 91°) before the final refinement, so the submitted CIF is both chemically robust and straightforward to interpret.
+
+The accepted structural strategy is now fixed: reduced-setting monoclinic WO₃ from the neutron model, literature oxygen frameworks, refined unit cells and crystallite broadening for all phases, refined heavy-atom positions where supported, and a mild [100] March–Dollase correction for the dominant ZnWO₄. I’m running the final joint refinement over the full measured range, then exporting every deliverable from a reload of that saved project.
+
+The final joint refinement converged without singularities. The modeled crystalline fractions are now about 77.3 wt% ZnWO₄, 16.2 wt% monoclinic WO₃, and 6.6 wt% wurtzite ZnO; Rwp is 14.04% over all 8,301 points. I’m doing final cross-checks now: CIF parse/stoichiometry and bond geometry, fraction normalization, profile reproducibility from `final.gpx`, and file/schema integrity.
+
+The final physically constrained three-phase refinement is ready. I tested a lower-residual ADP refinement, but it drove every refined displacement parameter strongly negative, so I rejected that overfit and retained the chemically plausible model for the submitted project and CIFs.
+
+Validation confirms that `final.gpx`, all three CIFs, and the 8,301-point profile export are synchronized. The final refinement converged with 41 variables and a maximum shift/esd of 0.011; I’m now recording the quantitative result and the limitations that keep the formal uncertainties from being overinterpreted.
+
+One systematic feature remains in the residual: calculated high-angle intensities decay faster than observed. Because the metadata explicitly leaves effective polarization and the instrumental profile uncalibrated, I’m checking whether a physically bounded polarization/profile correction explains that trend before freezing the quantitative fractions.
+
+The polarization trial is computationally slower than the earlier refinements but is still progressing. I’m keeping it isolated from `final.gpx`; no submitted artifact is being changed during these checks.
+
+The free-polarization fit lowered the residual but overshot the physical range (1.49) and destabilized two profile-mixing terms, so it is not an acceptable model. I’m checking the conservative boundary case—non-negative displacement parameters—because that directly tests whether the high-angle trend can be resolved without an unphysical parameter.
+
+The boundary tests confirm the phase fractions are fairly stable, but the residual can be lowered only by forcing zero displacement or super-physical polarization/profile values. I’m retaining the converged, chemically plausible refinement and will explicitly label the formal errors as optimistic; the realistic compositional precision is about 1–2 absolute wt%.
+
+All requested artifacts have now been written. I’m performing the final cross-check against the saved GSAS-II project—fractions, residuals, profile rows, CIF paths, convergence, and JSON validity—so the handoff values cannot drift from `final.gpx`.
+
+Completed and validated against the saved GSAS-II project.
+
+| Phase | Weight fraction |
+|---|---:|
+| Wolframite ZnWO4 | 77.39 wt% |
+| Monoclinic γ-WO3 | 15.66 wt% |
+| Wurtzite ZnO | 6.95 wt% |
+
+Fractions are normalized over modeled crystalline phases. Practical uncertainty is approximately ±1–2 absolute wt%; amorphous content cannot be determined. Final fit: Rwp 13.59%, Rp 10.16%, GoF 3.59.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [ZnWO4.cif](<ATTEMPT_WORKSPACE>/ZnWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [ZnO.cif](<ATTEMPT_WORKSPACE>/ZnO.cif)
+

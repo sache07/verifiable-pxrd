@@ -1,0 +1,41 @@
+I’ll inspect the measurement metadata, pattern, and the provided tungstate-analysis tooling first. Then I’ll identify candidate phases, refine them in GSAS-II, and verify that the exported CIFs, profile, fractions, statistics, and `final.gpx` all agree.
+
+The chemistry narrows the plausible inventory to Cu–W–O phases plus residual CuO/WO₃. The scan is a raw Cu Kα₁/Kα₂ Bragg–Brentano pattern over 9.9–100.1°, so I’ll retain the doublet and explicitly fit zero/displacement, background, profile broadening, texture, and phase scales rather than pre-processing the counts.
+
+The peak set is not explained by residual CuO or any single WO₃ polymorph. It is consistent with a low-symmetry CuWO₄ framework, but the available same-composition COD entries are pressure-modified relatives, so I’m treating them as starting models rather than accepting their cells or coordinates. I’m also testing whether the apparent extra peaks require a second crystalline phase or are simply the dense triclinic reflection set plus Kα splitting.
+
+A one-phase Rietveld model already reproduces every observed reflection, which rules out a detectable crystalline CuO or WO₃ residue at this stage. The first refinement reaches 5.3% Rwp on the fitted interval, but it exposed two model issues I’m correcting before phase quantification: crystallite-size and Lorentzian instrument broadening are exactly correlated, and independent atomic Uiso terms let one oxygen ADP go negative. I’ll fix that degeneracy and use a shared positive isotropic ADP, consistent with how this specimen class was generated.
+
+The diagnostic intensity extraction reveals a second phase: residual maxima at 23.43°, 23.96°, 24.68°, 26.92°, 33.56°, 34.47°, and ~50.17° form the characteristic monoclinic WO₃ sequence after the same angular correction. Those peaks sit on CuWO₄ reflections, explaining why the raw pattern initially looked single-phase. I’m now screening the available WO₃ structural variants and will refine the best two-phase model rather than treating those shoulders as profile broadening.
+
+The WO₃ screen is still refining several low-symmetry candidates. The monoclinic P2₁/c model is the leading hypothesis from the residual peak positions; I’m letting the competing triclinic, orthorhombic, and alternative monoclinic cells complete so the assignment is based on whole-pattern agreement rather than the three strongest shoulders alone.
+
+The full two-phase refinement confirms monoclinic WO₃ and rejects CuO: both tenorite models refine to essentially zero scale. The better WO₃ coordinate set lowers Rwp from 5.0% to about 4.0%, but some nuisance parameters are compensating unrealistically (the major-phase Uiso hits its lower bound), so I’m not accepting that raw minimum. I’m checking the remaining residual for another phase and then will regularize the final refinement to physically defensible ADPs/profile terms.
+
+The remaining misfit is microstructural rather than another crystalline phase: allowing general anisotropic strain drops Rwp from ~4.0% to 3.54% without adding Bragg peaks. I’m mapping that anisotropy onto a simpler uniaxial direction now; if a two-parameter direction explains it, I’ll use that in the final project instead of retaining a 15-parameter generalized broadening model.
+
+The two crystalline phases are now well constrained as triclinic CuWO₄ plus minor monoclinic WO₃. I’m finishing the profile-model choice, then I’ll export the project-derived CIFs and run an independent GSAS-II replay to verify every submitted file is internally consistent.
+
+The independent replay found no physical or numerical flags: all regenerated peak widths and backgrounds remain nonnegative, and the project reproduces 97.186 wt% CuWO₄ / 2.814 wt% WO₃. I’m doing one final controlled coordinate-refinement branch for the dominant phase; I’ll keep it only if the geometry remains sensible and the improvement is stable.
+
+The dominant-phase coordinate branch converged cleanly (maximum shift/e.s.d. 0.013) and preserved sensible Cu–O and W–O distances. The final model is 97.230 wt% CuWO₄ and 2.770 wt% WO₃ with replayed \(R_\mathrm{wp}=3.510\%\); the WO₃ coordinates remain literature-constrained because its intensity is too low for an independent positional refinement.
+
+All deliverables are written. Final validation now shows two valid, nonduplicate atomic CIFs; normalized fractions sum exactly to one; the 8,301-row profile matches the original grid; and both submitted CIFs agree with the phase models regenerated from `final.gpx`.
+
+Analysis complete.
+
+- CuWO₄, triclinic P-1: **97.230 wt%**
+- WO₃, monoclinic P2₁/c: **2.770 wt%**
+- Verified GSAS-II replay: **Rwp 3.5097%, Rp 2.7587%, GOF 1.4495**
+- No significant crystalline CuO was detected.
+- Minor WO₃ coordinates remain literature-constrained due to its low abundance.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r1/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r1/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r1/workspace/fit.csv)
+- [CuWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r1/workspace/CuWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r1/workspace/WO3.cif)
+

@@ -1,0 +1,42 @@
+I’ll inspect the diffraction data and metadata first, then identify candidate phases, build a multiphase GSAS-II refinement, and verify that the exported CIFs, fractions, profile, and project are mutually consistent. I’ll keep uncertain identifications explicit rather than overstate them.
+
+The chemistry points toward barium tungstate formation, but 200 °C is low enough that residual precursor or polymorphic/secondary phases are plausible. I’m extracting the peak positions and checking the available indexing/database workflows before committing to a phase model.
+
+The dominant 23–25° triplet is characteristic of low-symmetry WO₃, while the broad 27°, 43°, 47°, 55–56° family suggests a second crystalline contribution. I’m now testing all chemically plausible Ba–W–O / precursor structures against the full profile, including two-phase combinations, rather than relying on one or two diagnostic peaks.
+
+The phase assignment is now well supported: room-temperature monoclinic WO₃ (P2₁/c, matching the 23.4/23.9/24.6° and 33.5/33.9/34.4° multiplets) plus tetragonal BaO₂ (I4/mmm, matching the 26.3/27.1°, 43.0°, 46.6°, 48.0°, and 55–56° series). BaWO₄ would require strong reflections near 31.9° and 53.5° in incompatible relative intensities, so I’m proceeding with the two unreacted-precursor phases and refining their cells, scales, and line broadening.
+
+The first refinement confirms both phases, but the unconstrained profile fit has not converged yet and GSAS-II flags the redundant overall histogram scale as singular. I’m removing that unused scale degree of freedom and tightening the staged refinement so the reported phase-fraction uncertainties come from a stable covariance matrix.
+
+The revised model is stable: no Hessian singularities, convergence at maximum shift/esd 0.03, and \(R_{wp}=9.16\%\) with an expected \(R_{wp}\) of 3.64%. The current normalized crystalline fractions are about 65.8 wt% WO₃ and 34.2 wt% BaO₂. I’m checking the residual profile now for missed crystalline peaks or systematic line-shape errors before final export.
+
+The residual contains no unexplained peak family—only intensity/shape mismatch at peaks already assigned to WO₃ or BaO₂. A better neutron-derived monoclinic WO₃ model lowered \(R_{wp}\) to 8.57% and shifted the fractions to 64.5/35.5 wt%. I’m doing one last model-discrimination check against the closely related triclinic WO₃ polymorph; the data’s peak splitting, not chemistry alone, will decide whether that added symmetry lowering is justified.
+
+The triclinic trial is slower because it introduces two extra independent lattice metrics, but it is still refining normally. I’ll compare its residual improvement against that added complexity and reject it if the gain is only nominal.
+
+The triclinic WO₃ model is decisively favored (\(R_{wp}=7.82\%\) versus 8.57% for monoclinic, for only two additional lattice terms), so the symmetry lowering is supported by the resolved splitting. I’m now checking whether the peroxide data justify calling it oxygen-deficient BaO₂₋ₓ; because oxygen contributes weakly beside Ba in Cu X-ray data, that label will only be used if it materially improves the pattern.
+
+The oxygen-deficient peroxide template improved the fit, but restoring its O site to full occupancy improved it further; the data therefore do not support a numerical vacancy concentration. I’ll submit it conservatively as nominal BaO₂, refine only its symmetry-allowed O \(z\) coordinate, and state that BaO₂₋ₓ cannot be distinguished reliably from this Cu X-ray pattern.
+
+The final run now uses the full measured angular range, nominal full-occupancy BaO₂, and the refined BaO₂ oxygen coordinate. Once it finishes I’ll validate the project’s covariance, exported CIF chemistry/symmetry, profile arithmetic, JSON normalization, and file readability as a single consistency check.
+
+The consistency checks passed: both CIFs parse to the intended compositions and space groups, the GPX reproduces the JSON fractions and residuals exactly, all 8,301 profile rows match the project arrays, and the observed-minus-calculated column is arithmetically exact. The final covariance matrix is full-rank and the last cycle converged without GSAS-II warnings.
+
+Identified two crystalline phases:
+
+- Triclinic WO₃ (P-1): 67.20 wt%
+- BaO₂ (I4/mmm): 32.80 wt%
+
+These are crystalline-normalized fractions; practical uncertainty is about ±2 percentage points. No BaWO₄ was detected. Final fit: \(R_{wp}=7.570\%\), GOF = 2.079.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_1_WO3.cif)
+- [BaO2 CIF](<ATTEMPT_WORKSPACE>/phase_2_BaO2.cif)
+
+The triclinic WO₃ model is preferred over monoclinic alternatives, though the polymorph distinction is not absolute. BaO₂ oxygen deficiency could not be determined reliably, so the submitted peroxide model uses full occupancy.
+

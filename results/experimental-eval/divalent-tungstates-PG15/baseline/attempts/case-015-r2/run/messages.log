@@ -1,0 +1,76 @@
+I’ll first inspect the pattern, metadata, and available diffraction/refinement utilities. Then I’ll identify candidate phases, build a multi-phase GSAS-II refinement, and verify that every submitted artifact is generated from the saved final project.
+
+The chemistry strongly suggests zinc tungstate as the main reaction product, with possible residual ZnO or WO₃ polymorphs. I’m checking the actual peak positions and the local phase-search/refinement interfaces before committing to that hypothesis.
+
+The peak fingerprint is internally consistent with a single wolframite-type ZnWO₄ phase: even the weaker lines and the dense 61–69° cluster track the P2/c reflection sequence. The offsets grow smoothly with angle, indicating a slightly contracted unit cell/profile calibration effect rather than a second oxide; I’m now testing that with a full-pattern refinement and residual-peak audit.
+
+I’m setting up the first GSAS-II project with the reported Cu Kα₁/Kα₂ wavelengths and reflection geometry. The initial refinement will deliberately keep atomic coordinates fixed while establishing background, scale, cell, specimen shift, and peak broadening; that ordering avoids letting structural parameters absorb calibration/profile errors.
+
+The first pass confirms the phase but exposes two model-control issues, not phase mismatch: GSAS-II had both global and phase scales active, and unconstrained instrumental/sample broadening terms became exactly redundant. I’m removing those singularities, inspecting the residual by angle, and then refining only identifiable structural/profile terms.
+
+The residual audit reveals a genuine second phase: strong unmatched lines at about 23.24°, 33.40°, 34.29°, 42.01°, 50.05°, and 56.06° form the characteristic WO₃ sequence. I’m comparing the available monoclinic, tetragonal, orthorhombic, triclinic, and hexagonal WO₃ models by full-pattern Rietveld fits rather than selecting only from the first few peaks.
+
+The candidate sweep is still running; output is buffered, but each trial is isolated in its own project so no candidate can inherit another polymorph’s refined parameters. After ranking by Rwp, I’ll inspect whether the winning cell and individual residual peaks are chemically and crystallographically sensible.
+
+One poor candidate is driving its lattice outside a valid diffraction range (the warning is from that trial’s calculated Bragg angles). I’m allowing the sweep to finish for a fair ranking, but any model requiring such a cell excursion will be rejected regardless of its nominal residual.
+
+The comparison is computationally heavier than the one-phase fit because low-symmetry WO₃ generates many overlapping reflections. The phase-identification evidence is already strong; this sweep is specifically resolving which WO₃ polymorph best accounts for the split 23–24° and 33–34° multiplets.
+
+The initial sweep identified P2₁/m WO₃ as a clear improvement (Rwp about 14.6% versus 17.6% for one phase), but several zero-ADP database entries triggered numerical underflow before they could be compared. I’ve normalized only those trial thermal factors to a neutral value and am rerunning the closest room-temperature monoclinic competitor; this does not alter its peak positions or symmetry.
+
+The low-symmetry P2₁/c trial is calculating normally after the ADP normalization; its much larger reflection set makes each cycle slower. I’m retaining the reported dual-wavelength model and identical background/profile treatment so the residual comparison remains like-for-like.
+
+The P2₁/c trial is slower but not stalled. Once it finishes, the decisive check will be whether it resolves the observed 23.24/23.87/24.62° triplet without introducing unmatched splitting elsewhere; that is the main crystallographic distinction from the smaller P2₁/m cell.
+
+The calculation time is dominated by numerical derivatives for the low-symmetry cell, not by file I/O. I’m letting this controlled comparison complete because choosing the wrong WO₃ subgroup would bias its scale—and therefore the reported weight fraction—even if the qualitative phase label were right.
+
+This single trial has exceeded the expected runtime, so if it does not return shortly I’ll terminate it and compare the models with fixed published cells first. Fixed-cell scale fits are sufficient for polymorph discrimination and avoid an ill-conditioned six-parameter low-symmetry lattice optimization.
+
+With all non-scale parameters frozen, P2₁/m WO₃ improves Rwp to 15.32% and refines to about 11.1 wt%, while tetragonal WO₃ variants barely improve the fit and refine below ~2.2 wt%. The low-symmetry candidates are now being evaluated under the same stable fixed-cell protocol.
+
+The fixed-cell comparison decisively favors monoclinic P2₁/c WO₃: Rwp falls to about 13.6%, versus 15.3% for P2₁/m and ~17.5% for tetragonal models. Two P2₁/c database entries in alternative cell settings give effectively identical fits, which is a useful internal check that the symmetry assignment—not a particular cell convention—is driving the result.
+
+I’m proceeding with the conventional P2₁/c γ-WO₃ cell (the alternative P2₁/c setting is equivalent within the fit precision). The quantitative model will now be refined in identifiable stages: WO₃ cell, ZnWO₄ cell, background/specimen shift, shared profile, then only the well-supported ZnWO₄ coordinates; WO₃ coordinates will remain literature-fixed because it is the minor phase.
+
+The staged script stopped before any refinement because GSAS-II’s fraction calculator expects the new project file to exist on disk. I’m adding that initial save checkpoint and rerunning; no model parameters were changed by the failed launch.
+
+The staged refinement is behaving well: both cells moved only slightly and remain crystallographically plausible. Allowing the smooth 16-term background reduced Rwp from 13.46% to 11.90%; the WO₃ fraction increased to ~18.3 wt%, showing why background/scale covariance must be included in the uncertainty assessment.
+
+The Gaussian width terms materially improve the fit (Rwp ≈11.28%). Additional Lorentzian and asymmetry freedom does not help and slightly worsens the converged objective, so I’ll test the structural step and then prune those non-beneficial parameters rather than retaining complexity solely because it was available.
+
+The current two-phase fit is chemically sensible, but one unconstrained Lorentzian coefficient makes the calculated Lorentzian width negative above ~40°, where GSAS-II silently clips it. I’m replacing that with a single nonnegative Lorentzian term and fixing the measured Kα₂ ratio/asymmetry to their reported values; this is a necessary model-quality correction even if the nominal Rwp changes only slightly.
+
+The physically constrained profile initially raises Rwp to 11.83%, but its Caglioti terms become conventional (U>0, V<0, W>0) and the cycle has not converged yet. I’m continuing from that state before comparing models; stopping at the first constrained iteration would unfairly favor the clipped profile.
+
+The remaining mismatch is mainly relative intensity—not unexplained peaks—with the ZnWO₄ 30.7° doublet overpredicted while several higher-angle ZnWO₄ groups are underpredicted. Because this is reflection geometry, I’m testing a restrained one-parameter March–Dollase correction along low-index axes; I’ll retain it only if the fitted ratio departs meaningfully from 1 and gives a substantial improvement.
+
+The orientation scan rejects preferred orientation as the main explanation: all fitted March–Dollase ratios stay within about 0.95–1.04. More importantly, the remaining positive residuals at 31.88°, 34.43°, 47.60°, 56.74°, and 62.95° align as a complete wurtzite ZnO series. I’m now testing residual ZnO as a third crystalline phase before any further profile tuning.
+
+Adding wurtzite ZnO lowers Rwp from 11.83% to 11.28% with only its scale varied, and it refines to ~6.2 wt%; its phase-specific Rf is 9.6%. That coherent multi-line improvement establishes a three-phase model. I’m now refining the three lattices and shared experimental terms while keeping minor-phase coordinates fixed.
+
+The three-phase refinement is stable and all lattice shifts remain small. Current fractions are roughly 75.4% ZnWO₄, 17.3% WO₃, and 7.3% ZnO; profile/coordinate refinements have only marginal effect, so the final uncertainty will be dominated by background/profile choices rather than counting-statistical errors.
+
+The three refined structures remain chemically plausible: ZnWO₄ has six-coordinate W–O (1.89–2.19 Å) and Zn–O (1.89–2.16 Å), γ-WO₃ retains distorted WO₆ octahedra, and ZnO retains tetrahedral Zn–O (~1.97–1.99 Å). I’m doing one final convergence pass, then I’ll export all artifacts directly from that saved project and validate their internal consistency.
+
+The final refinement is converged by GSAS-II (`converged: true`) with Rwp 11.245%, Rp 8.633%, and GOF 2.970. The crystalline fractions are stable at 75.44% ZnWO₄, 17.29% γ-WO₃, and 7.27% ZnO. I’m now exporting the CIFs, fitted profile, JSON, and the exact final project, then I’ll reload all outputs for a cross-check.
+
+All requested files are now present. I’m performing the final consistency audit: reloading `final.gpx`, recomputing fractions/statistics, checking that `fit.csv` is numerically identical to the project arrays, and parsing each exported CIF independently for formula and symmetry.
+
+Completed the three-phase GSAS-II refinement:
+
+- ZnWO₄ (wolframite, P2/c): 75.44 wt%
+- γ-WO₃ (P2₁/c): 17.29 wt%
+- ZnO (wurtzite, P6₃mc): 7.27 wt%
+
+Fit: Rwp 11.245%, Rp 8.633%, GOF 2.970. Fractions are normalized over modeled crystalline phases; realistic systematic uncertainty is approximately 1–2 wt%.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [ZnWO4_wolframite.cif](<ATTEMPT_WORKSPACE>/ZnWO4_wolframite.cif)
+- [WO3_gamma_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_gamma_monoclinic.cif)
+- [ZnO_wurtzite.cif](<ATTEMPT_WORKSPACE>/ZnO_wurtzite.cif)
+

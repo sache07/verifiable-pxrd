@@ -1,0 +1,62 @@
+I’ll first inspect the pattern, metadata, and the reusable analysis utilities, then build a chemically constrained candidate inventory before starting the residual-led GSAS-II refinements. I’ll keep candidate rejection separate from phase rejection and verify the final exports against the saved project.
+
+The chemistry is a Mn–W–O solid-state reaction at only 300 °C, so I’m treating MnWO₄ formation, unreacted MnO₂/WO₃ polymorphs, and low-temperature tungsten/manganese oxide variants as the initial inventory. The next pass is peak extraction and database matching; no phase will be discarded solely because its first trial scale collapses.
+
+The peak families already give a strong provisional match: monoclinic WO₃ accounts for the 23.44/23.92/24.69° triplet and its higher-angle repeats, while rutile β‑MnO₂ accounts for 29.01, 37.68, 56.96, 59.66, and 72.53°. Both sets share an approximately +0.30° observed-position offset, consistent with one reflection-geometry correction rather than separate phase shifts. I’m now testing physically valid alternate database records under that common baseline.
+
+The first common-profile trial exposed an important baseline issue: GSAS‑II’s phase defaults include nonzero microstrain (1000 µstrain) and finite size even when their refinement flags are off. That violates the requested neutral baseline and drove the shared profile to artificial bounds. I’m rebuilding the comparisons with those contributions explicitly neutralized, then I’ll re-test monoclinic/triclinic WO₃ and MnO₂ polymorph records under identical nuisance settings.
+
+With size/strain neutralized, the same two-phase inventory still fits well (provisional Rwp ≈ 7.45%), but the three-term shared profile is over-parameterized: W collapses to zero while U seeks above the deliberately conservative trial ceiling. I’ll treat that as a baseline diagnostic—fix unsupported W at zero, widen the physically nonnegative U test, and avoid interpreting those bound values as sample broadening. The alternate-record comparisons are still running under the identical model.
+
+The isolated-family check changes the profile interpretation: the current large U term fits broad high-angle envelopes but visibly over-broadens the distinct β‑MnO₂ Kα components (for example near 56.96 and 59.66°). I’m now comparing restrained shared profiles with U removed or reduced and axial-divergence asymmetry released; only after that common profile is stable will I test phase-specific size/strain.
+
+The phase-width tests are now coherent: β‑MnO₂ size/strain trials either collapse or require an unphysical negative strain and are rejected. WO₃ supports both finite size and positive microstrain, and their combined replay improves the fit while allowing a much narrower shared profile that matches the resolved MnO₂ doublets. Before any texture term, I’m testing the global intensity/geometry alternatives the metadata leaves open: polarization, low-angle roughness, and zero versus specimen displacement.
+
+The rebuilt baseline supports specimen displacement over a constant zero (Rwp 7.03% versus 7.07%) and a physically plausible polarization of about 0.73; the roughness trial was rejected because its parameters were 99.99% correlated and crossed bounds. After rebuilding, WO₃ isotropic strain remains supported, size no longer does. The clean shared profile is W+X only; U refines negative and is pruned, while SH/L is strongly confounded with displacement and is also pruned. I’m now challenging texture axes phase-by-phase.
+
+The texture challenge rejects WO₃ texture (all tested axes stay essentially at 1.00). β‑MnO₂ does show a reproducible family-dependent intensity trend; [110] gives the best low-index model and improves several independent families, though competing axes are close enough that texture remains a systematic uncertainty in the fraction. I’m now testing the minimum structural refinements—MnO₂’s oxygen coordinate, WO₃ heavy-atom coordinates, and physically constrained isotropic displacement factors—before deciding what belongs in the submitted CIFs.
+
+The structural tests support modest refinement of the two independent W positions; the resulting W–O octahedra remain physical (about 1.74–2.15 Å). Refining all oxygen positions adds many weakly determined parameters, while grouped ADPs are 95% correlated with polarization and shift the fraction materially, so both are rejected. A low-dimensional [011] WO₃ strain model is supported over isotropic strain. I’m now re-challenging product and impurity watch-list phases against this cleaned model, including an ambient wolframite analogue because the sole exact MnWO₄ record is a 2.4 GPa structure.
+
+The provisional two-phase model is strong, but residual-led screening found a credible ~1 wt% Mn₂O₃ candidate. I’m now testing whether its signal is carried by several coherent peak families, then I’ll rebuild the common profile with any accepted minor phase and replay the watch list before exporting the final GSAS-II project.
+
+The residual families separate into two different confidence levels: Mn₂O₃ has a clear isolated 222 peak near 33.25° plus supporting overlapped families, while MnWO₄ is suggested mainly by two tiny features near 30.3–30.8°. I’m rebuilding the inventory with Mn₂O₃ first; MnWO₄ and alternate MnO₂ polymorphs will then be retested against that cleaner baseline.
+
+The three-phase replay is stable: bixbyite Mn₂O₃ remains about 1.11 wt%, while refining its cell is unsupported (the shift is smaller than one standard uncertainty), so its reference cell stays fixed. The MnWO₄ watch-list signal also survives at only ~0.3–0.36 wt%; I’m testing whether its cell can be determined from those weak features and whether a physically correct ramsdellite model competes with it.
+
+The MnWO₄ cell trial failed the replay-stability criterion: its four metric parameters keep drifting while the fixed-cell scale is stable. I’m pruning that unsupported cell refinement and tightening the GSAS-II convergence threshold for the fixed-cell four-phase model and all final deletion/addition challenges.
+
+A remaining scale-only signal matches an old “manganite” record at ~0.6 wt%, but that CIF incorrectly encodes MnOOH as MnO₂ and omits hydrogen. I’m treating it as a phase-family clue rather than accepting the record, and I’m now testing chemically complete MnOOH structures under the same converged profile.
+
+The chemically complete comparison identifies monoclinic manganite (γ-MnOOH), not groutite or ramsdellite: it is supported by an isolated 26.45° family and several partly overlapped families, at about 0.9 wt%. I’m rebuilding a five-phase profile, checking whether its cell is actually refinable, and then replaying the remaining trace-phase challenges once more.
+
+The stricter replay is still converging the five-phase alternatives; this is intentionally slow because weak-cell and trace-scale parameters are being tested across the full 9.9–100.1° range. No final parameter will be retained unless it survives reopening and replay.
+
+The five-phase baseline itself is replay-stable (maximum shift/σ effectively zero). The MnOOH cell refinement was decisively unstable and has been rejected; the reference manganite cell remains fixed while the remaining phase-family challenges finish.
+
+The selected five-phase model is now fixed: WO₃, β-MnO₂, bixbyite Mn₂O₃, manganite MnOOH, and a tentative trace wolframite-type MnWO₄. I’m performing the final reopen/replay, then exporting all CIFs and the exact profile arrays from that saved project.
+
+All requested artifacts are written. I’m doing a final consistency audit now: project fractions versus `result.json`, profile arrays versus `fit.csv`, CIF composition/symmetry/geometry, and confirmation that no rejected nuisance term or frozen variable remains in `final.gpx`.
+
+Completed and replay-verified. Modeled crystalline composition:
+
+- WO₃: 71.00 wt%
+- β-MnO₂: 26.62 wt%
+- Mn₂O₃: 1.13 wt%
+- γ-MnOOH: 0.91 wt%
+- MnWO₄: 0.34 wt% — tentative trace assignment
+
+Fit: Rwp 5.872%, Rp 4.429%, GOF 2.184. Fractions are normalized over modeled crystalline phases; amorphous content is not quantified.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_monoclinic.cif)
+- [β-MnO₂ CIF](<ATTEMPT_WORKSPACE>/phase_beta_MnO2.cif)
+- [Mn₂O₃ CIF](<ATTEMPT_WORKSPACE>/phase_Mn2O3_bixbyite.cif)
+- [γ-MnOOH CIF](<ATTEMPT_WORKSPACE>/phase_gamma_MnOOH_manganite.cif)
+- [MnWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_MnWO4_wolframite_trace.cif)
+

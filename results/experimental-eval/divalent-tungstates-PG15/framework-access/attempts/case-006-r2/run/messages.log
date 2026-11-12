@@ -1,0 +1,43 @@
+I’ll inspect the measurement metadata, pattern, and the provided PXRD framework/tooling first. Then I’ll identify candidate phases, refine them in GSAS-II, and validate that every submitted artifact is internally consistent.
+
+The chemistry points first to Cu–W–O products (especially CuWO₄), but the raw scan has a high background and the generator permits residual CuO/WO₃ and off-stoichiometric products. I’m now extracting the experimental peak set and querying the frozen structure library rather than assuming a single-phase product.
+
+The peak positions now give a decisive match: an ambient triclinic wolframite-type CuWO₄ model derived from the Cu₀.₉Zn₀.₁WO₄ analogue reproduces every major line after a common ≈+0.32° angular shift. The high-pressure CuWO₄ entry and CuO/WO₃ alternatives do not. I’m moving to staged GSAS-II refinement and will test residuals for any genuine secondary phase before finalizing the phase count.
+
+The first whole-pattern refinement has already fallen from 17.5% to 8.35% Rwp with the single CuWO₄ phase. No second-phase evidence is apparent yet. I’m tightening the physically correlated peak-width and specimen terms now; the first pass exposed expected scale/profile correlations, so I’ll constrain those before accepting the final model.
+
+The constrained single-phase model is stable at 5.25% Rwp with positive widths, background, and displacement parameters. Residuals remain paired around known CuWO₄ peaks rather than forming unmatched peaks, which argues against a second phase. I’m now testing the lab’s plausible anisotropic strain and preferred-orientation branches to explain that line-shape/intensity structure without inventing extra phases.
+
+A second-phase signature has emerged: the unmatched positive lines at about 23.43°, 23.91°, 24.68°, 29.27°, and 34.47° form the shifted room-temperature WO₃ fingerprint, including its diagnostic low-angle triplet. I’m adding and comparing the plausible monoclinic/triclinic WO₃ structures now; this should distinguish a real residual precursor from line-shape artifacts.
+
+The initial WO₃ tests confirm that phase assignment matters: malformed/obsolete models fail or contribute essentially zero, while the room-temperature models are still refining. The candidate comparison is computationally heavier because each low-symmetry WO₃ model has many coordinates; I’m waiting on those physically valid branches rather than accepting the first nominal WO₃ match.
+
+The four surviving WO₃ branches are still active and CPU-bound, not stalled on missing data. I’m letting that comparison finish; meanwhile, the rejected candidates already rule out the high-pressure and coarse early WO₃ descriptions.
+
+The valid WO₃ models all improve the fit strongly, to about 4.0% Rwp and ~3 wt% WO₃. The monoclinic descriptions outperform orthorhombic WO₃; one triclinic branch remains active. Importantly, the strongest monoclinic result still needs a geometry check because unconstrained minor-phase oxygen coordinates can overfit at only ~3 wt%.
+
+The two-phase model is now being refit with phase-specific crystallite size and microstrain, while the ~3 wt% WO₃ atomic coordinates are held to the published monoclinic structure. That is the key physical safeguard: it lets the narrow WO₃ lines improve the profile without allowing a weak phase to acquire impossible O–O contacts.
+
+The second phase is clearly residual monoclinic WO₃. I’m now rebuilding the best two-phase fit with the published WO₃ geometry held physically valid, then I’ll replay the saved GSAS-II project to generate and cross-check every submitted artifact.
+
+The main phase is a deliberately withheld ambient CuWO₄ reference, so I’m also checking close crystallographic analogues—not just fitting peak positions—to keep the submitted coordinates chemically defensible.
+
+The physical two-phase model converges at about 97.3 wt% CuWO₄ and 2.7 wt% WO₃. I’m checking the structured residual now for any defensible third phase or unresolved profile effect before freezing the final project.
+
+The residual-phase check drives CuO to zero, while the allowed [001] uniaxial microstrain model materially improves the dominant phase. The final physical model is therefore two phases; I’m now freezing it and generating the CIF/profile/JSON directly from a fresh replay of that frozen project.
+
+Completed the PXRD analysis.
+
+Model: 97.46 wt% triclinic CuWO₄ and 2.54 wt% monoclinic WO₃. Native GSAS-II replay gives Rwp = 3.890%, Rp = 3.035%, GOF = 1.608. CuO was tested but refined to zero abundance.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r2/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r2/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r2/workspace/final.gpx)
+- [CuWO4 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r2/workspace/phase_1_CuWO4.cif)
+- [WO3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-006-r2/workspace/phase_2_WO3.cif)
+
+The project replayed cleanly over all 8301 bins, with normalized fractions, project/CIF agreement, passing structural geometry checks, and no profile-review flags.
+

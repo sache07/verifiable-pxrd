@@ -1,0 +1,44 @@
+I’ll inspect the pattern, metadata, and the frozen PXRD workflow/tooling first, then build a phase inventory and refine only models that remain physically supported. I’ll keep the final exports tied to the saved GSAS-II project and verify their consistency.
+
+The chemistry points first to ZnWO₄, but the raw scan must decide whether residual ZnO/WO₃ or an off-stoichiometric zinc tungstate is present. I’m now extracting peak families and querying the frozen COD index for all Zn–W–O candidates plus the two precursors, before any refinement.
+
+The peak positions coherently match monoclinic wolframite ZnWO₄ after a small cell contraction/angle correction. Several weaker families near 26.7°, 28.9°, and 33–34° could either be ZnWO₄ reflections or residual WO₃, so I’m keeping WO₃ and ZnO on the watch list and will test their scales under the same profile/background model. The triclinic COD “ZnWO₄” records are Cu–Zn solid-solution sources and are not physically appropriate primary models here.
+
+Both physically plausible WO₃ records converge to about 17.3–17.5 wt% WO₃ and reduce Rwp from 17.6% to about 11.1%; the coherent WO₃ triplet and higher-angle families make that phase unambiguous. I’m now comparing the monoclinic/triclinic WO₃ records under identical nuisance terms and re-testing ZnO only after the WO₃ contribution is present, so overlap cannot inflate a false ZnO scale.
+
+The three-phase inventory is now stable at roughly 74–75% ZnWO₄, 18% WO₃, and 7–8% ZnO. Profile trials show a common broad baseline plus a reproducible WO₃ strain term and a ZnO size term; ZnWO₄-specific size/strain collapses to limits and is being pruned. I’m now challenging preferred orientation and atomic parameters against that pruned baseline, with physical bounds and replay checks.
+
+The source-screen exposed an important normalization issue: the raw COD records carry incompatible displacement conventions (ZnO anisotropic ADPs, WO₃ zero ADPs, ZnWO₄ mixed Uiso), while the supplied generator registers all models as neutral, isotropic Uiso = 0.005 Å² before applying specimen-specific Uiso. I’m rebuilding the same published structures with that documented normalization and will reconverge the inventory; this should separate genuine intensity effects from source-ADP artifacts.
+
+The standardized source pool is the key checkpoint now: it removes source-file ADP/occupancy inconsistencies before any further structural refinement. I’m verifying that pool, then I’ll rebuild both plausible monoclinic WO₃ variants under the same nuisance model and carry only the physically stronger one into the final project.
+
+Both normalized WO₃ parents converge to the same monoclinic metric, and ZnO remains at about 7.2 wt% in either fit. The neutron-derived WO₃ parent is slightly better so far, but the difference is small; I’m now equalizing background, roughness, and profile treatment before judging that source choice.
+
+The common displacement parameter is genuinely supported for the major ZnWO₄ phase (refining to ~0.0031 Å²); the minor-phase displacement parameters are effectively unchanged and do not improve the fit, so I’m pruning those. I’m now testing coordinates in chemically controlled blocks—heavy sites first, oxygen sites second—so a nominal residual gain cannot quietly create implausible polyhedra.
+
+The nuisance-model challenges are now separating cleanly: ZnWO₄ shows a small but coherent [001] March–Dollase correction, while WO₃ and ZnO texture terms are source-dependent or effectively neutral and will be excluded. The retained coordinate shifts are also within the generator’s physical perturbation scale; oxygen coordinates in minor phases were rejected because they moved too far without a stable fit gain.
+
+The physically constrained baseline is now stable on replay. The major phase needs no additional size/strain term (the strain trial runs negative, so it is rejected); WO₃ supports a replay-stable [110] uniaxial microstrain, and ZnO supports isotropic size broadening. I’m at the final audit stage now: clearing dormant constraints, checking residuals for a missed crystalline phase, validating bond geometry/background/profile positivity, then exporting directly from the audited project.
+
+The project now replays independently with zero profile-review flags, and its regenerated phase fractions match the submitted values exactly. The geometry audit also passes (octahedral W/Zn environments and tetrahedral ZnO are all chemically sensible). I’m doing one last submission-level consistency check—CIF rounding/ADPs, normalized fractions, and full-grid `fit.csv`—before handing it over.
+
+Completed and independently replay-validated.
+
+Crystalline fractions:
+
+- ZnWO₄ wolframite: 74.01 wt%
+- Monoclinic WO₃: 19.18 wt%
+- Wurtzite ZnO: 6.82 wt%
+
+Fit: Rwp 5.258%, Rp 4.044%. Fractions are normalized over modeled crystalline material; amorphous content was not quantified.
+
+Artifacts:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-015-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-015-r2/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-015-r2/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-015-r2/workspace/fit.csv)
+- [ZnWO4 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-015-r2/workspace/phase_ZnWO4_wolframite.cif)
+- [WO3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-015-r2/workspace/phase_WO3_monoclinic.cif)
+- [ZnO CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-015-r2/workspace/phase_ZnO_wurtzite.cif)
+

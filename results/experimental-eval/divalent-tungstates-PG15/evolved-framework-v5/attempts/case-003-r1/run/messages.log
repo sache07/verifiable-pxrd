@@ -1,0 +1,46 @@
+I’ll first inspect the specimen metadata, diffraction grid, and the frozen analysis tooling. Then I’ll identify chemically plausible phases, build a complete multiphase GSAS-II model, refine it conservatively, and verify that every submitted artifact is replayable from `final.gpx`.
+
+The chemistry points first to scheelite CaWO₄ plus residual CaCO₃ and/or WO₃ at 500 °C, but I’m treating that only as a hypothesis. I’m now extracting the observed peak families and querying the frozen COD index for exact-composition candidates before any refinement.
+
+Peak-family mapping supports three phases: monoclinic WO₃ accounts for the 23.4/23.9/24.7° triplet and its higher-angle family; calcite accounts for 29.71, 39.71, 43.46, 47.77, 48.77, and 57.68°; scheelite CaWO₄ accounts for 18.91, 29.03, 31.72, and its 45–58° family. I’m moving to whole-pattern fits and will compare the close WO₃ references in otherwise identical three-phase refinements.
+
+The first full-profile comparison is still refining; the bottleneck is GSAS-II’s nonlinear cell/profile stage, not phase identification. The current model remains the three chemically ordinary phases, with the published room-temperature structures as starting points and no extra phase introduced.
+
+The starting monoclinic WO₃ model is converging without numerical failure. I’m letting the staged fit finish because the phase-specific broadening terms materially affect both the close-reference comparison and the quantitative fractions.
+
+GSAS-II is taking longer than expected once all three phase profiles are released, but it is still active. I’m preserving each intermediate checkpoint, so if the final broadening stage becomes unstable I can submit the last complete physical model rather than a partially refined branch.
+
+The reference test is decisive: with identical scale/background/calibration treatment, COD 2311041 gives Rwp 21.52%, versus 23.04% for the alternative monoclinic model and 34.38% for triclinic WO₃. I’ve stopped phase/library searching and am now rebuilding from that checkpoint with bounds matching the stated instrument/specimen ranges; the unconstrained trial exposed the expected zero/height correlation and is not being used as the final model.
+
+The bounded refinement is now alternating calibration, common instrument width, and phase-specific size/strain one term at a time. All limits come directly from the supplied lab envelope; any term that reaches a bound is frozen and reviewed rather than allowed to wander into a numerically better but nonphysical solution.
+
+The bounded model is physically consistent at Rwp 7.63%, with approximate fractions 55.4% WO₃, 31.9% calcite, and 12.7% CaWO₄. The last oxygen-coordinate releases improved Rwp only marginally while moving some O sites farther than the stated reference-mismatch envelope; I’m rolling those light-atom changes back and testing intensity effects (texture/roughness) before any bounded oxygen refinement.
+
+The remaining misfit is dominated by relative intensities within already indexed families, especially WO₃—not by unexplained reflections. I’m testing a single bounded March–Dollase term for each symmetry-distinct axis; only a reproducible, in-range improvement will be retained before light-atom coordinates are revisited.
+
+The texture tests give only small gains and no unique WO₃ axis, so texture alone does not explain the dominant residual. I’m now checking the lab’s only supported directional broadening model—uniaxial microstrain—against the symmetry-distinct axes, again from the same physical checkpoint.
+
+Uniaxial WO₃ microstrain along [110] is supported (about 5818/1933 ppm, Rwp 7.57%), while directional strain in the other phases is not. Small, in-range texture terms for CaWO₄ [111] and calcite [001] improve the cumulative fit to 7.46%; the roughness branch drove both parameters to their minimum bounds, so I’m rejecting roughness and retaining the no-roughness checkpoint.
+
+A phase-common displacement test favors the existing WO₃ model (raising its Uiso worsens the fit) and a modest CaWO₄ Uiso near 0.012 Å². I’m now refining oxygen positions only within approximately 0.05–0.08 Å of their published sites, so intensity corrections cannot be purchased by implausibly large coordinate shifts.
+
+The bounded WO₃ oxygen adjustment is physical and improves Rwp to 7.38%; CaWO₄ and calcite oxygen releases do not improve that checkpoint, so they are rejected. A smooth 20-term Chebyshev background remains positive across the full grid and improves the fit slightly further; I’m converging that checkpoint before the last profile alternation.
+
+The final supported-parameter alternation reaches a best Rwp of 7.33%. A later common-instrument pass worsens the fit, so I’m selecting the preceding full-grid checkpoint. I’ll now freeze all flags, export CIFs and the profile directly from that project, then independently replay the saved GPX to verify project/CIF/fraction consistency.
+
+Resolved three crystalline phases, normalized over modeled crystalline material:
+
+- Monoclinic WO₃: 55.57 wt%
+- Calcite CaCO₃: 32.24 wt%
+- Scheelite CaWO₄: 12.20 wt%
+
+Final fit: Rwp 7.327%, Rp 5.378%, GOF 3.066. Independent GSAS-II replay succeeded with no physical/profile flags. Fractions have several-wt% systematic uncertainty; detailed WO₃ oxygen coordinates are not uniquely determined.
+
+Artifacts:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-003-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-003-r1/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-003-r1/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-003-r1/workspace/final.gpx)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-003-r1/workspace/phase_WO3.cif), [CaWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-003-r1/workspace/phase_CaWO4.cif), [CaCO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-003-r1/workspace/phase_CaCO3.cif)
+

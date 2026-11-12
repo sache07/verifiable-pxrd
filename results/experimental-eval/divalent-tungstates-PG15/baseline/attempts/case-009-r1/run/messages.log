@@ -1,0 +1,40 @@
+I’ll inspect the measurement metadata and diffraction pattern first, then use the available phase-search and GSAS-II tooling to identify candidates, refine the multiphase model, and verify that all exported results agree numerically.
+
+The sample is a 900 °C Mn–W–O reaction product measured with Cu Kα radiation, so both ternary manganese tungstates and residual/binary oxides are plausible. I’m now checking the search databases and refinement interfaces available in this environment, while extracting the experimental peak positions independently.
+
+The dominant peak set already matches wolframite-type MnWO₄ (including its characteristic low-angle and split 30° region), but several reflections may require a second phase. I’m testing all Mn–W–O, Mn–O, and W–O database structures against the full pattern before deciding whether those peaks are impurities or merely MnWO₄ reflections.
+
+Every statistically significant peak is accounted for by the MnWO₄ reflection list; the alternative Mn₃WO₆ and binary oxide candidates predict strong peaks that are absent. I’m proceeding with a one-phase GSAS-II refinement and will use the refined residual to set an upper limit on any undetected crystalline impurity rather than forcing extra phases into the model.
+
+The initial refinement confirms the single-phase indexing, but the uncalibrated instrument profile parameters are strongly correlated. I’m separating sample broadening from the instrumental terms and checking the residual peak-by-peak so the final model does not claim artificial precision.
+
+A physically sensible sample-displacement correction aligns the peaks and reduces Rwp from about 24% to 12.6%. A weak [110]-type preferred orientation is supported, but it changes Rwp by only ~0.5 percentage point; the remaining mismatch is mainly structure-factor intensity, so I’m now refining the MnWO₄ atomic coordinates while keeping occupancies fixed at stoichiometric values.
+
+The fit now reaches Rwp ≈ 5.26% with physically admissible reflection-geometry corrections and a stable pseudo-Voigt profile. I’m testing the most plausible residual phases (unreacted Mn₃O₄/WO₃, Mn₃WO₆, Mn₂O₃, and MnO) as explicit extra phases; only phases with a positive, statistically supported scale will be retained.
+
+The trace-phase tests are internally consistent across reasonable background choices: the best supported model is ~98.3 wt% MnWO₄ with sub‑1 wt% Mn₂O₃, Mn₃O₄, and WO₃. Their scales improve χ² significantly, but their fractions vary with profile choice, so I’ll retain them as tentative trace phases, keep their literature cells/coordinates fixed, and report the formal Rietveld uncertainties separately from that larger systematic uncertainty.
+
+The final refinement converged at Rwp = 5.225% and the crystalline-normalized fractions sum to 1.000000. I’m doing a final consistency audit now: reloading the submitted GPX, reparsing every exported CIF, and numerically comparing fit.csv and result.json against the arrays and covariance stored in final.gpx.
+
+Completed the multiphase refinement. Fractions are normalized over modeled crystalline phases:
+
+| Phase | Weight fraction | Assessment |
+|---|---:|---|
+| MnWO₄ | 98.308 ± 0.247 wt% | Secure |
+| Mn₂O₃ | 0.671 ± 0.119 wt% | Tentative trace |
+| Mn₃O₄ | 0.682 ± 0.191 wt% | Tentative trace |
+| WO₃ | 0.339 ± 0.078 wt% | Tentative; least secure |
+
+Final fit: Rwp 5.225%, Rp 3.863%, GOF 1.512. Trace-phase uncertainties are dominated by model sensitivity rather than the formal errors; no amorphous fraction was quantified.
+
+Outputs:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [MnWO4.cif](<ATTEMPT_WORKSPACE>/MnWO4.cif)
+- [Mn2O3.cif](<ATTEMPT_WORKSPACE>/Mn2O3.cif)
+- [Mn3O4.cif](<ATTEMPT_WORKSPACE>/Mn3O4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+

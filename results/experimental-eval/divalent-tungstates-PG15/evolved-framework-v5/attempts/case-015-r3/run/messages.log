@@ -1,0 +1,42 @@
+I’ll first inspect the specimen metadata, diffraction grid, and the frozen analysis tools/reference index. Then I’ll establish a chemically plausible multiphase model, refine it in GSAS-II, and validate that the saved project reproduces the submitted profiles and fractions.
+
+The chemistry strongly favors ZnWO₄ at 900 °C, but I’m treating that only as a starting hypothesis. I’m now extracting observed peak families and querying the frozen COD index for Zn–W–O, Zn–O, and W–O candidates so residual precursor/product phases are tested against the actual pattern.
+
+The observed reflection families are all consistent with monoclinic wolframite-type ZnWO₄; the strongest expected ZnO and WO₃ families do not appear as independent residual sets. I’m moving into a full-grid GSAS-II refinement now, starting with one physical ZnWO₄ phase and preserving checkpoints before testing whether any coherent residual family warrants an added phase.
+
+The first unconstrained profile branch exposed the expected single-phase parameter correlations (cell/zero/displacement and size/instrument broadening), including nonphysical negative width coefficients. I’ve rolled back to the last physical checkpoint and am refining coordinates and width terms in a staged, bounded way so the final project remains chemically and geometrically defensible.
+
+The residual map has now resolved a second coherent family: the 23–24.6°, 26.7°, 28–29°, 33–34°, and ~41.4° features are the characteristic room-temperature WO₃ family, not profile tails from ZnWO₄. I’m adding WO₃ at the last clean checkpoint and comparing its exact-composition polymorphs; ZnO will be admitted only if its independent reflections remain after that two-phase fit.
+
+The two-phase refinement is materially improving the model, and I’m screening the monoclinic, triclinic, and orthorhombic WO₃ references under the same fixed starting profile. I’m comparing positive scale stability, whole-family peak positions, and geometry—not selecting on a tiny Rwp difference alone.
+
+The monoclinic neutron WO₃ model (COD 2311041) currently gives the best physical two-phase checkpoint, with about 84/16 wt% ZnWO₄/WO₃ before profile refinement; the older monoclinic model is statistically tied but has less reliable coordinates. The bounded profile refinement is still running because both phase-specific breadths and common instrument terms are being separated in stages.
+
+The profile branch is taking unusually long in one refinement stage, so I’m stopping that branch at its last saved checkpoint and inspecting which bounded parameter caused the stall. This does not affect the accepted phase inventory or earlier checkpoints.
+
+All coherent reflection families are now assigned to ZnWO₄, monoclinic WO₃, and wurtzite ZnO; the ZnO addition is supported independently by its 31.8/34.4/36.3°, 47.6°, 56.6°, and higher-angle family and by the precursor stoichiometry. Per the stop rule, I’m ending phase search and refining only this accepted three-phase inventory from the best physical checkpoint.
+
+Texture screening found all March–Dollase ratios essentially 1.00, so preferred orientation is unsupported and will remain off. The microstrain screen is numerically delicate at the physical zero-strain boundary; I’m treating those failures as unknown and will retain only branches that converge with positive widths and a reproducible improvement.
+
+The accepted three-phase model is complete. I’m now freezing the best physical checkpoint, regenerating its profile independently, and exporting the CIFs and final deliverables from that exact project so every submitted file is mutually consistent.
+
+The independent replay passed cleanly: it regenerated the full 10–100° pattern from atomic structures with no cached intensities, no negative background or peak-width flags, and reproduced the three crystalline fractions exactly. I’m using those replay-exported structures for the submitted CIFs.
+
+Completed the three-phase refinement:
+
+- ZnWO₄ (wolframite): 74.57 wt%
+- Monoclinic WO₃: 18.03 wt%
+- ZnO (wurtzite): 7.40 wt%
+
+Fractions are normalized over crystalline phases. Full-grid atomic replay gives Rwp 6.228%, Rp 4.757%, and GOF 1.645. Practical fraction uncertainty is approximately 1–2 percentage points; amorphous content cannot be quantified without an internal standard.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r3/workspace/final.gpx)
+- [phase_ZnWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r3/workspace/phase_ZnWO4.cif)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r3/workspace/phase_WO3.cif)
+- [phase_ZnO.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r3/workspace/phase_ZnO.cif)
+

@@ -1,0 +1,30 @@
+I’ll first inspect the specimen metadata, diffraction grid, and the frozen phase-index/refinement utilities. Then I’ll identify all coherent peak families, build a multiphase GSAS-II model, and verify that the exported CIFs, profile, fractions, and project are mutually consistent.
+
+The chemistry points first to wolframite-type NiWO₄, with NiO and WO₃ as the most plausible residual phases. I’m now testing that ordinary inventory against the full measured peak family and will only expand the search if coherent reflections remain unassigned.
+
+The peak-family check supports a two-phase model: wolframite NiWO₄ accounts for the dominant 19.2°, 24.9°, 30.9°, 36.5°, 41.6°, and 54.6° families, while monoclinic WO₃ accounts for the resolved 23.05/23.54/24.29° triplet and the 33.20/33.52/34.09° family. I see no broad-family support for NiO at this stage; its strongest 43.4° line is absent. I’m moving this two-phase inventory into GSAS-II and refining before judging weaker residuals.
+
+The two-phase refinement is already at Rwp ≈ 5.4%, with positive scales corresponding roughly to three-quarters NiWO₄ and one-quarter WO₃. The remaining residuals sit on accepted reflections as paired positive/negative lobes, so I’m treating them as structure/profile mismatch—not adding a speculative third phase. I’m also constraining broadening and calibration to the stated physical ranges before refining coordinates.
+
+A structural screen caught an important issue: the best-positioned 1960 WO₃ reference has an implausible 1.57 Å O–O contact. I’m therefore holding the NiWO₄ refinement, which remains physically sound, and comparing the other exact-composition WO₃ references. This is precisely the case where a modest profile advantage should not override bad geometry.
+
+The replacement WO₃ model (COD 2311041, P2₁/c) is both physically sound and fits better than the rejected reference. The current physical model has Rwp ≈ 4.15–4.27% depending on background flexibility, GOF near the counting-statistics limit, Ni–O ≈ 1.98–2.05 Å, NiWO₄ W–O ≈ 1.85–2.20 Å, and WO₃ W–O ≈ 1.69–2.19 Å. Preferred orientation and surface roughness tests were unsupported; I’m now consolidating only the supported thermal/profile terms on the full measured grid.
+
+The required deliverables are complete and independently replay cleanly. I’m doing one final consistency audit now—checking the submitted CIF rounding against the project, the complete fit-grid format, and whether the smooth background choice is stable rather than noise-driven.
+
+Identified two crystalline phases:
+
+- NiWO₄ (wolframite, P2/c): 77.02 wt%
+- WO₃ (monoclinic, P2₁/c): 22.98 wt%
+
+Full-grid fit: Rwp 4.1438%, Rp 3.1994%, GOF 1.195. Independent zero-cycle replay reproduced the profile and fractions with no physical-review flags. Fractions carry roughly 1–2 wt% systematic uncertainty; amorphous content is not quantified.
+
+Files:
+
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-012-r2/workspace/final.gpx)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-012-r2/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-012-r2/workspace/fit.csv)
+- [NiWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-012-r2/workspace/NiWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-012-r2/workspace/WO3.cif)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-012-r2/workspace/report.md)
+

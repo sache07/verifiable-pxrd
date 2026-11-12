@@ -1,0 +1,40 @@
+I’ll inspect the specimen metadata and diffraction grid first, then identify chemically plausible phases against the frozen references and build a replayable GSAS-II refinement. I’ll prioritize a complete physical multiphase model before exploring any residual-only alternatives.
+
+The strongest family is already diagnostic of monoclinic WO₃ (the 23–25° triplet), while reflections near 29.0°, 37.7°, and 57.0° are consistent with rutile-type MnO₂ after a common angular displacement. I’m now testing all exact-composition Mn–O–W, Mn–O, and W–O entries so that minor product peaks are not mistaken for profile tails.
+
+The first full two-phase trial reaches Rwp ≈ 6.05% with about 71 wt% WO₃ and 29 wt% MnO₂; all coherent peaks are accounted for, so there is no current evidence for MnWO₄ or Mn₃WO₆. I’m comparing the close WO₃ structural references now, because their low-angle peaks are nearly indistinguishable but their oxygen geometries and higher-angle intensities are not.
+
+The residual-phase tests drive MnWO₄, Mn₃WO₆, and Mn₃O₄ to zero scale; a nominal ~1 wt% Mn₂O₃ term gives only a negligible Rwp change and lacks unique-family support, so I’m treating it as residual overfitting rather than a third phase. I’m now refining the accepted WO₃ + MnO₂ inventory with physical bounds and shared per-phase displacement parameters, then I’ll test only supported texture/anisotropy branches.
+
+The accepted profile now has physically bounded coordinates and profile terms. A MnO₂ [100] March–Dollase term (ratio ≈ 0.81), weak WO₃ [001] strain anisotropy, and a low-angle surface-roughness correction are supported; WO₃ texture and MnO₂ strain anisotropy are not. I’m doing the final sequential calibration/cell pass now, keeping correlated zero and specimen displacement from varying together.
+
+The two-phase model is now chemically and crystallographically complete: monoclinic WO₃ plus rutile MnO₂, with no supported tungstate product phase. I’m finishing the physically constrained profile refinement, extending it to the exact full measurement grid, then I’ll export and independently validate the required project, CIFs, profile, JSON, and report.
+
+The boundary test for the instrumental \(U\) term improves \(R_\mathrm{wp}\) by only 0.008 percentage point and lands exactly at zero, so I’m retaining the more robust interior value \(U=5\). I’ll now give only the already-supported crystallite-size and microstrain terms one final controlled refresh; no new phases or unsupported profile complexity are being added.
+
+The final profile refresh stays well behaved and leaves the abundance at about 70:30. Before export, I’m auditing the refined atomic displacements against the stated synthesis-pattern perturbation scale; this is the last structural safeguard, since a numerically better intensity fit would not justify coordinates outside the physically allowed reference mismatch.
+
+The coordinate audit confirmed the unconstrained intensity fit had doubled the allowed aggregate coordinate mismatch, so that branch is being rolled back. I’m comparing capped variants over the stated 0–0.04 Å (W) and 0–0.05 Å (O) RMS ranges; the source model itself fits worse, while the physically capped direction is being tested for the best defensible checkpoint.
+
+The capped coordinate model preserves the expected mismatch exactly (WO₃: 0.040 Å W RMS and 0.050 Å O RMS) while matching the profile as well as the over-refined branch. Rutile MnO₂ favors only the smallest allowed positive O displacement (0.010 Å RMS). I’m using that physical checkpoint and now refreshing only previously supported intensity corrections on the exact 9.9034–100.0949° grid.
+
+The final full-grid refinement converged at \(R_\mathrm{wp}=5.556\%\) and \(R_p=4.105\%\), with 69.98 wt% WO₃ and 30.02 wt% MnO₂. I’m now running the evaluator-style forward replay and CIF geometry checks, which regenerate the pattern from saved atoms and parameters rather than trusting GSAS-II’s cached calculated curve.
+
+The independent replay exactly reproduces the submitted curve on all 8,301 bins, with positive background and peak widths and no review flags. Both CIFs pass composition, occupancy, density, symmetry, and short-contact checks; I’m doing the final schema and cross-file consistency pass now.
+
+Completed. The refined crystalline composition is:
+
+- Monoclinic WO₃: **69.98 wt%**
+- Rutile β-MnO₂: **30.02 wt%**
+
+No crystalline manganese tungstate was reliably detected. Full-grid fit: \(R_\mathrm{wp}=5.5565\%\), \(R_p=4.1054\%\). Independent GSAS-II replay reproduced the fit exactly with no physical-profile flags.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-011-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-011-r1/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-011-r1/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-011-r1/workspace/final.gpx)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-011-r1/workspace/phase_WO3.cif)
+- [phase_MnO2.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-011-r1/workspace/phase_MnO2.cif)
+

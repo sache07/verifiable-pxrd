@@ -1,0 +1,41 @@
+I’ll inspect the pattern, metadata, and the frozen PXRD tooling first, then identify candidate phases and carry the best model through a GSAS-II refinement. I’ll keep the deliverables tied to that final project so the CIFs, fractions, profile, and statistics are internally consistent.
+
+The chemistry narrows the main candidates to Mn–W–O phases, but the scan may contain residual precursor or secondary oxides. I’m now extracting the experimental peak set and querying the frozen COD index by composition/framework; this will separate genuine multiphase evidence from profile/background effects before refinement.
+
+The phase search is decisive for monoclinic wolframite MnWO₄: its full peak sequence—not just the strongest lines—matches across 10–100° 2θ, while Mn₃WO₆, MnO, WO₃, and manganese oxides do not. I’m fitting that atomic model now and will inspect the post-fit residual for any statistically coherent secondary phase before accepting a one-phase solution.
+
+The residual is not random: its strongest unmatched shoulders at 23.45° and 24.68°, together with the weak 33–35° cluster, form the diagnostic triplet/multiplet of monoclinic WO₃. That is also chemically plausible as residual precursor. I’m testing the closely related WO₃ reference settings in two-phase refinements; their profile discrimination is subtle because several COD entries describe the same γ-WO₃ framework.
+
+The two-phase refinements are still running. The key check is whether WO₃ removes its whole reflection family with a positive, stable scale—not merely one shoulder; I’m also comparing the monoclinic and triclinic descriptions without letting the minor phase overfit arbitrary peaks.
+
+The physical two-phase model has lowered Rwp from 5.13% to about 4.02% and gives a small but stable WO₃ fraction. The remaining residual is dominated by reflection-dependent width/intensity differences, so I’m testing the allowed March–Dollase and uniaxial-strain directions phase by phase; this is the last major model-selection step before final stabilization and export.
+
+The pattern is best explained by two crystalline phases: dominant monoclinic MnWO₄ (wolframite) plus a small monoclinic γ-WO₃ remainder. I’m now freezing the stable refinement choices, checking project/CIF consistency, and regenerating the submitted profile directly from the final GSAS-II project.
+
+The two-phase model now gives a replay-oriented Rietveld fit near \(R_\mathrm{wp}=3.85\%\), with about 97.8 wt% MnWO₄ and 2.2 wt% WO₃. The small phase is supported by several independent peak clusters, but its atomic coordinates are too weakly constrained to justify free refinement; I’m retaining the literature γ-WO₃ framework and refining only its cell, scale, and texture contribution.
+
+Sensitivity checks show the phase fractions are robust to ordinary profile choices, but the WO₃ fraction moves by roughly 0.5–0.7 wt% when its weakly determined displacement parameters or W positions are changed. I’m explicitly separating that model uncertainty from counting-statistical precision; the final report will not overstate the minor-phase fraction.
+
+The final quantitative model will use 97.57 wt% MnWO₄ and 2.43 wt% γ-WO₃, normalized over the modeled crystalline phases. The WO₃ value is the constrained-fit estimate; its realistic systematic range is about 2.2–2.5 wt%, much wider than the formal least-squares error.
+
+All requested deliverables are now written. I’m running the final consistency audit: CIFs against the project-exported atomic models, fractions against project phase scales, and `fit.csv` against a fresh GSAS-II replay on the original 8,301-point grid.
+
+Completed the two-phase Rietveld analysis:
+
+- MnWO₄ wolframite: 97.574 wt%
+- Monoclinic γ-WO₃: 2.426 wt%
+- \(R_\mathrm{wp}=3.8422\%\), GOF = 1.3963
+
+The WO₃ fraction is realistically about 2.4 ± 0.3 wt%; its precise atomic coordinates are not independently reliable at this abundance.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-008-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-008-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-008-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-008-r3/workspace/final.gpx)
+- [MnWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-008-r3/workspace/phase_1_MnWO4.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-008-r3/workspace/phase_2_WO3.cif)
+
+The final project replayed successfully over all 8,301 observations, and both CIFs passed the project-consistency and physical-structure checks.
+

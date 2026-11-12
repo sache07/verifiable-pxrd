@@ -1,0 +1,40 @@
+I’ll inspect the measurement metadata, pattern, and the provided tungstate framework first, then identify candidate phases and carry the best model through a GSAS-II refinement. I’ll validate that the exported CIFs, profile, fractions, statistics, and `final.gpx` all agree before reporting the result.
+
+The chemistry is tightly constrained to Mn–W–O, with Mn₂O₃ and WO₃ fired at only 500 °C, so I’m treating residual precursors and manganese tungstate/oxide intermediates as live possibilities rather than assuming a single MnWO₄ product. The scan has a substantial low-angle background and uncalibrated displacement/profile, which I’ll separate from genuine minor peaks during phase identification.
+
+The three strongest lines form the characteristic room-temperature WO₃ cluster near 23–25° (shifted by specimen geometry), making residual WO₃ very likely. I’m now testing all chemically allowed COD structures—not just the nominal product—against the complete peak set, then I’ll refine mixtures so broad/overlapped peaks do not masquerade as extra phases.
+
+The library-wide screen is still running because it is allowing both phase-specific lattice mismatch and broadening. Early peak geometry already disfavors a simple MnWO₄-only interpretation; the key discrimination is whether the non-WO₃ intensity belongs to Mn₂O₃, Mn₃O₄, or Mn₃WO₆.
+
+Peak-by-peak comparison confirms two unreacted precursor phases: monoclinic WO₃ plus α-Mn₂O₃. The Mn₂O₃-only reflections at about 33.26°, 38.53°, 49.60°, 55.49°, and 66.03° track one common cell and cannot be explained by WO₃. I’m comparing the subtle Mn₂O₃ symmetry variants now; this matters for both the refined structure and the fraction.
+
+The symmetry test favors orthorhombic α-Mn₂O₃ (Pbca) over the cubic alternatives. Its refined fraction is currently about 28 wt%, but I’m not freezing that number yet: the first unconstrained fits let instrument broadening and specimen displacement absorb phase effects, so I’ve imposed the physically allowed calibration/profile ranges and am testing anisotropic broadening and texture explicitly.
+
+The strongest remaining discrepancy is localized to WO₃ peak clusters rather than to Mn₂O₃ lines. Preferred-orientation refinements stay essentially at random-powder values, while a [010] uniaxial WO₃ strain term helps modestly. I’m now checking whether this is actually a WO₃ polymorph/structure-model issue (especially the 34° cluster) rather than forcing extra specimen corrections into the monoclinic model.
+
+The phase identity is now well constrained to monoclinic WO₃ plus orthorhombic Mn₂O₃. I’m finishing the last model-discrimination checks—common thermal factors, possible minor phases, and profile anisotropy—before exporting a self-consistent GSAS-II project and replaying it to verify every submitted profile value.
+
+The framework’s registration step converts published CIFs to a standardized cell and assigns a common isotropic displacement parameter. That matters here: the two leading WO₃ records become closely related P2₁/c models after registration. I’m now comparing those standardized models directly, which is a cleaner discrimination than fitting the raw database settings.
+
+The two-phase model remains the only one supported by distinct reflections. Refinement now gives a physically plausible low-angle surface-roughness correction and common thermal factors, reducing Rwp from about 6.50% to 5.90%; I’m checking that this improvement is stable and not compensating for an omitted minor phase or an implausible structural distortion.
+
+The constrained refinement is stable and chemically sensible: coordinate shifts were capped at the framework’s allowed mismatch scale, all CIF geometry checks pass, and the refined fractions converge to 74.94 wt% WO₃ and 25.06 wt% Mn₂O₃. A trial MnWO₄ component only reached ~0.5–0.8 wt%, required the minimum 40 nm size and >1% cell distortion, and did not provide phase-specific evidence, so I am treating it as an overfit rather than a reported phase.
+
+The final atomic replay now reproduces the submitted project exactly over all 8,301 points: Rwp 6.073%, Rp 4.404%, with no negative-background, peak-width, polarization, or displacement-parameter flags. I’m doing the last cross-file consistency checks so the CIFs, fractions, fit.csv, and final.gpx all encode the same model.
+
+Identified two crystalline phases:
+
+- Monoclinic WO₃, P2₁/c: **75.40 wt%**
+- Orthorhombic α-Mn₂O₃, Pbca: **24.60 wt%**
+
+Fractions are normalized over crystalline material. GSAS-II replay gives Rwp = 6.073% and Rp = 4.404%. No crystalline MnWO₄ was reliably supported; strongly broadened material below roughly 1 wt% cannot be excluded.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-010-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-010-r2/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-010-r2/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-010-r2/workspace/fit.csv)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-010-r2/workspace/phase_1_WO3.cif)
+- [Mn₂O₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-010-r2/workspace/phase_2_Mn2O3.cif)
+

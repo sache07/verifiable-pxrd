@@ -1,0 +1,31 @@
+I’ll inspect the pattern, metadata, and available diffraction/refinement tooling first. Then I’ll identify candidate phases, build and refine the smallest defensible multiphase model, and verify that the exported CIFs, profile, fractions, and `final.gpx` all come from the same final refinement.
+
+The chemistry strongly suggests a manganese tungstate product, but I’m treating that only as a hypothesis. I’m now extracting the peak set and checking it against plausible Mn–W–O structures and any residual precursor/secondary phases before committing to a refinement model.
+
+The peak positions resolve a useful instrumental detail: the low-angle “contraction” disappears when a roughly +0.33° specimen/displacement zero offset is included. With that correction, both the 010/020 and 100/200 pairs give the ambient MnWO₄ cell, and the characteristic monoclinic peak splitting is reproduced. I’m moving into whole-pattern refinement now and will use residual peaks—not precursor expectations—to decide whether any second phase is warranted.
+
+The one-phase model already explains the full reflection sequence (`Rwp ≈ 7.1%`, profile `R ≈ 5.0%`). I’ve also found two refinement-identifiability issues that I will remove from the final model: the default histogram scale duplicated the phase scale, and uncalibrated instrumental Lorentzian broadening is mathematically inseparable from crystallite-size/microstrain broadening in a single-phase pattern. Neither affects phase identification, but leaving them active would make uncertainties misleading.
+
+A weak but reproducible second phase is present: monoclinic WO₃ lowers `Rwp` from 7.065% to 6.817% with a refined fraction near 1.84 wt%; this is far larger than the changes from MnO or manganese-oxide trial phases. I’m now validating the WO₃ polymorph and refining its cell with shared, non-overparameterized peak-width terms. The apparent ~0.37 wt% Mn₂O₃ signal is marginal and I’m checking whether it survives once WO₃ is modeled properly.
+
+The WO₃ assignment survives the stricter tests. Ambient monoclinic WO₃ is decisively preferred over hexagonal/tetragonal/orthorhombic alternatives, and its refined cell remains physically plausible. Once WO₃ is included, MnO and Mn₂O₃ each fit only about 0.2 wt% with roughly 0.1 wt% formal uncertainty and almost no `Rwp` improvement; because two chemically different trial phases can absorb the same small systematic residual, I will not report either as a determined phase.
+
+The final two-phase refinement is now converged and internally consistent: MnWO₄ 98.03(7) wt% and monoclinic WO₃ 1.97(7) wt%, with `Rwp = 6.735%`. I’m doing the last integrity checks now—reloading `final.gpx`, reparsing both exported CIFs, and confirming every row of `fit.csv` matches the supplied observations and the project’s calculated profile.
+
+Completed the two-phase refinement:
+
+- MnWO₄, P 2/c: 98.03(7) wt%
+- Monoclinic WO₃, P 2₁/n: 1.97(7) wt%
+- Final fit: Rp 4.738%, Rwp 6.735%, GOF 2.447
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [phase_MnWO4.cif](<ATTEMPT_WORKSPACE>/phase_MnWO4.cif)
+- [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+
+Possible sub-percent manganese oxides were tested but could not be identified or quantified reliably.
+

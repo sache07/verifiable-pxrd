@@ -1,0 +1,49 @@
+I’ll first inspect the measurement metadata, pattern format, and the framework’s available refinement utilities. Then I’ll identify candidate phases, build/refine the GSAS-II model, and validate every requested artifact against the final project.
+
+The chemistry points to a low-temperature Ba–W–O reaction, so residual BaCO₃ and WO₃ are plausible alongside BaWO₄, but I’ll let the peak positions and full-profile residuals determine the actual phase inventory. I’m now mapping the available COD index and the exact GSAS-II/project-output requirements before testing candidates.
+
+The dominant peak cluster is consistent with overlapping orthorhombic BaCO₃ and monoclinic WO₃ signatures; the characteristic scheelite BaWO₄ line near 28° is weak enough that it may be absent or only minor. I’m comparing all chemically allowed COD polymorphs—not just the nominal product—and estimating a common angular displacement before committing to an inventory.
+
+A two-phase BaCO₃ + monoclinic WO₃ model already drops the weighted profile residual from ~27% to ~16% using only scales, background, lattice parameters, and a common zero. The peak inventory is therefore well explained; I’m finishing profile refinement and then will compare the competing monoclinic WO₃ references on equal settings.
+
+The orthorhombic/high-symmetry WO₃ alternatives fail or fit substantially worse. Two closely related monoclinic settings remain competitive (COD 1528915 and 2311041); I’m resolving that near-duplicate choice from the higher-angle line splitting and final Rietveld residual, where coordinate differences matter.
+
+The current fit is limited mostly by specimen/profile nuisance effects, not missing Bragg peaks. I’ve removed a scale degeneracy, added specimen displacement, constrained physically meaningful peak widths, and am refining heavy-atom coordinates before oxygen; this should both improve the fit and avoid letting an unphysical negative width mimic the data.
+
+Both surviving WO₃ models improve when coordinates are refined, but the monoclinic model is now slightly ahead and needs far fewer structural degrees of freedom than the triclinic alternative. I’m testing preferred orientation and anisotropic broadening next; the large residual at ~42.3° is an intensity-selective mismatch, which is the clearest diagnostic for those effects.
+
+The width residual is indeed anisotropic: a uniaxial microstrain term improves the fit without distorting atomic coordinates. Preferred orientation is modest (BaCO₃ [110], ratio ≈0.915), while WO₃ texture stays near random. I’m combining only the supported terms and checking whether the apparent triclinic advantage survives a physically constrained structural refinement.
+
+The residual has a strong angular trend: the low-angle cluster fixes the scales, while many BaCO₃ reflections above 30° are uniformly underpredicted. That is the fingerprint of low-angle surface-roughness attenuation. I’m fitting the GSAS-II Suortti specimen term now; it should correct the scale/fraction bias if this interpretation is right.
+
+A physical surface-roughness term improves Rwp from ~6.75% to ~5.99% and raises the mid/high-angle intensity correctly. The fit prefers the strongest allowed attenuation edge (A≈0.05, B≈0.14 with polarization fixed at 0.5), so roughness is well supported, though A/B remain correlated and their individual values are less certain than the phase fractions.
+
+The physically constrained triclinic model currently gives Rwp ≈5.94% with ~52.1 wt% BaCO₃ and ~47.9 wt% WO₃. I’m checking specimen displacement against lattice/zero compensation; this is the last major peak-position ambiguity before selecting the final project and validating its replay/export consistency.
+
+The displacement grid favors zero specimen shift once lattice and zero are re-optimized, so I’m keeping the simpler shift-free model. The remaining model choice is triclinic WO₃ over the closely related monoclinic alternative (Rwp ~5.94% vs ~6.04–6.10% under comparable physical constraints); I’ll explicitly flag that polymorph/oxygen-coordinate uncertainty in the report.
+
+The requested artifacts are now generated from a native replay of the saved project: 52.11 wt% BaCO₃ and 47.89 wt% WO₃, with Rwp 5.939%. I’m doing a final evaluator-equivalent consistency check now—CIF↔GPX atomic agreement, fraction agreement, full-grid fit.csv validation, and physical contact screening.
+
+A structural sanity check changed the polymorph decision: the triclinic fit only wins by shearing its parent cell by about 1°—well beyond the allowed/credible reference perturbation—toward the monoclinic metric. The P2₁/c WO₃ parent reaches nearly the same profile fit with only ~0.1–0.4% cell changes. I’m therefore switching the final model to monoclinic WO₃; this is the more defensible structural assignment despite a ~0.1% absolute Rwp penalty.
+
+Final validation passes: both CIFs pass the contact/occupancy screen, their exported atoms are byte-identical to the project replay exports, the GPX fractions exactly match `result.json`, and `fit.csv` reproduces all 8,301 original grid/intensity points exactly with no negative calculated counts.
+
+Completed.
+
+- BaCO₃ (witherite, Pmcn): **52.88 wt%**
+- WO₃ (monoclinic, P2₁/c): **47.12 wt%**
+- Native GSAS-II replay: **Rwp 6.057%**, Rp 4.560%, GoF 1.743
+
+The WO₃ distortion and oxygen coordinates retain some ambiguity; estimated fraction uncertainty is about ±2.5 wt%.
+
+Artifacts:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-001-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-001-r2/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-001-r2/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-001-r2/workspace/fit.csv)
+- [phase_BaCO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-001-r2/workspace/phase_BaCO3.cif)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-001-r2/workspace/phase_WO3.cif)
+
+The GPX replay, CIF consistency, normalized fractions, physical screening, and all 8,301 profile rows were validated.
+

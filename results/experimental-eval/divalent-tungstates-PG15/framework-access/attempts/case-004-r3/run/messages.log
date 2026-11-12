@@ -1,0 +1,54 @@
+I’ll inspect the measurement metadata, pattern format, and the frozen analysis tooling first. Then I’ll identify candidate phases, refine them in GSAS-II, and validate that every submitted artifact is generated from the final project.
+
+The chemistry points first to Co–W–O phases, but the raw scan has a substantial decaying background and unknown specimen/instrument shifts. I’m now extracting peak positions and checking the frozen COD index for CoWO₄, residual precursors, and plausible cobalt–tungsten oxide intermediates before committing to a phase count.
+
+Peak accounting now supports two dominant phases: monoclinic WO₃ explains the 23–24° triplet and its higher-angle satellites, while wolframite CoWO₄ explains the otherwise unassigned 15.6°, 19.1°, 30.7°, and related peaks. I’m testing whether any residual CoO/Co₃O₄ is actually required, then I’ll refine the two-phase model and only retain extra phases if they improve unmatched reflections consistently.
+
+The initial two-phase refinement is still converging; the long runtime comes from repeatedly rebuilding reflection derivatives on the full 8,301-point grid. The key decision after this pass is whether the residual contains coherent CoO/Co₃O₄ peaks or only profile/intensity mismatches from the two confirmed phases.
+
+The refinement has not failed, but the script’s buffered output makes progress invisible. I’ll let this pass finish, then switch subsequent model comparisons to shorter staged runs so candidate screening is faster and easier to audit.
+
+The first residual map is informative: it does not show the characteristic CoO or Co₃O₄ line series. Instead, it exposes WO₃ peak splittings at ~33.0° and ~40.95° that the monoclinic P2₁/c model cannot generate. I’m switching the WO₃ model to the triclinic P-1 polymorph, which predicts both features, and applying physical bounds to the instrument/specimen broadening parameters.
+
+The triclinic WO₃ trial reproduces the extra split reflections, but its current global fit is worse and several profile parameters are being driven to allowed bounds. I’m completing this controlled comparison before deciding whether those weak splittings indicate true triclinic symmetry or merely anisotropic broadening/strain in monoclinic WO₃.
+
+The controlled comparison favors monoclinic P2₁/c WO₃ by about 1.3 Rwp points; the apparent extra splittings are better explained by broadening than by a triclinic phase. The phase inventory remains CoWO₄ + WO₃, with a provisional modeled fraction near 0.32/0.68. I’m now selecting the best WO₃ coordinate model and refining intensity effects (roughness, texture, and atomic coordinates), which are the main residual source.
+
+The cached GSAS-II Rwp values were optimistic after parameters hit imposed bounds; a fresh forward recalculation gives ~9.25%, so I’m not using those cached numbers. I’m switching to bounded direct optimization of GSAS-II’s regenerated profile, which avoids the boundary-freezing artifact and lets every candidate be judged by the same replayed curve that will be submitted.
+
+The bounded replay optimizer is now stable and self-consistent: the two-phase isotropic model recalculates to Rwp 5.783% with 32.43 wt% CoWO₄ and 67.57 wt% WO₃. All profile parameters are physical. I’m next refining the two monoclinic cells directly against regenerated profiles; after that I’ll test texture/anisotropic strain only if they earn a reproducible improvement.
+
+Surface roughness is genuinely supported: the replayed Rwp falls from 5.779% to about 5.107%, with fitted Suortti parameters A≈0.241 and B≈0.168—well inside the laboratory’s allowed range. The CoWO₄ profile is essentially size-broadened with negligible microstrain, while WO₃ requires strong microstrain; I’m checking whether that WO₃ strain is anisotropic before refining coordinates.
+
+The two-phase model is now stable at roughly 32 wt% CoWO₄ and 68 wt% monoclinic WO₃. I’m finishing the bounded profile refinement, then I’ll test the remaining intensity-sensitive terms (orientation and displacement parameters) before exporting and independently replaying the final GSAS-II project.
+
+The anisotropic broadening check selected a [001] uniaxial strain term for WO₃ and improved the self-consistent fit to Rwp = 5.063%. I’m now testing thermal displacement and preferred-orientation terms; these chiefly control relative intensities and therefore are important for avoiding a biased phase fraction.
+
+Allowing one isotropic displacement parameter per phase lowers Rwp from 5.063% to about 4.98%, with both values converging near 0.009 Å²—well inside the physically permitted range. That improvement is large enough to retain; it also indicates that the high-angle intensity mismatch was not evidence for an extra crystalline phase.
+
+Preferred orientation in CoWO₄ is at most weak: the best screened direction changes Rwp by only 0.008 percentage point and shifts its fraction by less than 0.03 wt%. I’m completing the equivalent WO₃ screen; I’ll retain an orientation correction only if the improvement is reproducible and materially larger than this.
+
+The preferred-orientation correction is small but reproducible when both phases are considered: March–Dollase ratios are close to unity (CoWO₄ [001] ≈ 0.978; WO₃ [110] ≈ 1.046), and the combined model reaches Rwp ≈ 4.933%. I’m now testing whether modest coordinate refinement explains those residual intensity differences before deciding which terms belong in the final model.
+
+Full oxygen-coordinate refinement reduces Rwp further, but it drives WO₃ oxygen sites about 0.22 Å RMS from the reference—well beyond the stated reference-mismatch range (≤0.05 Å RMS)—so that unconstrained solution is not structurally defensible. I’m constraining the coordinate correction to the physically allowed displacement envelope and will report oxygen positions as less certain than the phase identities and fractions.
+
+The physically constrained coordinate model settles at Rwp = 4.813% and 28.9 wt% CoWO₄ / 71.1 wt% WO₃. Unconstrained oxygen refinement fits slightly better (4.775%) but violates the known displacement envelope, so I’m rejecting it. Next I’m independently replaying the candidate project and checking that the exported CIFs reproduce the exact submitted phases and fractions.
+
+The independent replay succeeded with no review flags: it regenerated all reflections from `final.gpx`, reproduced the submitted CIF exports byte-for-byte, and returned the declared 0.28919/0.71081 fractions. I’m doing the final schema, file-integrity, and profile-consistency checks now.
+
+Completed. The crystalline model is:
+
+- CoWO₄ (P 2/c): 28.92 wt%
+- Monoclinic WO₃ (P 2₁/c): 71.08 wt%
+
+Independent GSAS-II replay gave Rwp = 4.8129% and Rp = 3.7038%. Fractions have an estimated systematic uncertainty of about ±2 wt%-points; exact oxygen coordinates are less reliable.
+
+Outputs:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-004-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-004-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-004-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-004-r3/workspace/final.gpx)
+- [CoWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-004-r3/workspace/CoWO4.cif)
+- [WO3_monoclinic.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-004-r3/workspace/WO3_monoclinic.cif)
+

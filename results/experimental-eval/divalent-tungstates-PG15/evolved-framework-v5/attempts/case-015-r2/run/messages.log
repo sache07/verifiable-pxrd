@@ -1,0 +1,46 @@
+I’ll inspect the specimen metadata and pattern first, then inventory the available crystallographic/refinement tooling. I’ll build a chemically plausible multiphase model, verify that all coherent peak families are accounted for, and preserve the final replayable GSAS-II project alongside the requested outputs.
+
+The chemistry points first to zinc tungstate with possible residual ZnO/WO₃, but I’m treating that only as a hypothesis. I’m now querying the frozen COD index for exact Zn–W–O entries and extracting the experimental peak families so candidate selection is driven by both chemistry and the full pattern.
+
+The main reflection positions are already consistent across the full 10–100° range with monoclinic wolframite ZnWO₄ (P2/c); several apparent “extra” peaks are in fact its weaker high-index reflections. I’m starting a full-grid GSAS-II refinement from that physical model before deciding whether any residual family warrants a second phase.
+
+The single-phase model is chemically and positionally sound, but its current Rwp (~16.6%) is far above counting statistics. The calibration branch that let both zero and displacement float became nonphysical and was rejected; the physical branch retains a plausible specimen shift. I’m now mapping the positive residual families to distinguish missing phase intensity from texture/coordinate effects in ZnWO₄.
+
+A coherent second family is now established as residual WO₃: its independent peaks at ~23.25, 26.70, 28.89, 33.41/34.30, 47.40, 50.09, 54–56°, and higher angles all refine with one cell and positive scale. Several exact-composition WO₃ references converge within ~0.03 Rwp points; I’m selecting among them by room-temperature phase plausibility and geometry, not that negligible numerical spread.
+
+The unconstrained light-atom trial lowered Rwp but drove WO₃ to a 1.32 Å O–O contact, so I rejected it. The heavy-atom checkpoint remains geometrically sound. I’m repeating coordinate refinement with small displacement bounds and a fixed ZnO origin; only models that retain sensible WO₆/ZnO₄ geometry will survive.
+
+The physical three-phase model now explains every coherent family; no further phase search is warranted. A valid stabilized profile gives Rwp ≈6.57% with positive background and plausible crystallite sizes. The remaining residual is predominantly derivative-shaped at known peaks, so I’m separating angular zero from specimen displacement sequentially before testing any anisotropic broadening or texture.
+
+After transferring each coordinate checkpoint into the same stabilized nuisance model, the unperturbed published coordinates fit best (Rwp 5.38% versus 5.48% for heavy-only and 5.70% for the bounded all-atom trial). I’m therefore rolling back those earlier coordinate shifts and will make only one final small, phase-by-phase coordinate test from the now-stable profile.
+
+The coordinate rollback materially improved the fit, so the submitted topology will retain the published atomic positions unless a later common-U refinement changes that conclusion. One model convention does still need correction: the synthesized references use one isotropic displacement parameter per phase, while the raw ZnO entry carries anisotropic values. I’m normalizing and refining one bounded Uiso per phase, which is both physical and directly supported by the measurement model.
+
+The phase inventory is now chemically and diffraction-wise complete: wolframite ZnWO₄, monoclinic WO₃, and wurtzite ZnO. I’m finishing the physical refinement checkpoint, replay-validating it on the full measured grid, and then exporting the CIFs, profile, project, and uncertainty report.
+
+All three preferred-orientation tests refined to essentially unity; the largest Rwp change was only 0.003 percentage point, so I’m rejecting texture as unsupported. I’m now checking only the remaining low-risk terms—specimen displacement and smooth background order—before freezing the final model.
+
+The displacement converged at about −313 µm and materially improved the fit. A 16-term smooth, everywhere-positive background gave a small reproducible improvement; a 20-term branch was numerically unstable, so I’m retaining the simpler 16-term checkpoint and freezing it for replay.
+
+The frozen project now replays from atomic structures on all 8,301 original points with exactly the submitted fractions and Rwp = 5.3221%; it raises no negative-background, displacement-tensor, or peak-width flags. The exported structures also pass contact checks (shortest bonds: W–O 1.79/1.71 Å and Zn–O 1.98 Å).
+
+Completed and replay-validated on all 8,301 measured points.
+
+| Phase | Weight fraction |
+|---|---:|
+| Wolframite ZnWO₄ | 73.61% |
+| Monoclinic WO₃ | 19.38% |
+| Wurtzite ZnO | 7.02% |
+
+Full-profile fit: Rwp 5.3221%, Rp 4.1260%. Fractions sum to 1.0 over modeled crystalline phases.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r2/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r2/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r2/workspace/fit.csv)
+- [ZnWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r2/workspace/phase_ZnWO4.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r2/workspace/phase_WO3.cif)
+- [ZnO CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r2/workspace/phase_ZnO.cif)
+

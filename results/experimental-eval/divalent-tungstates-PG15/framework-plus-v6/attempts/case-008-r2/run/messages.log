@@ -1,0 +1,56 @@
+I’ll first inspect the measurement metadata, pattern, and the provided P0 workflow/tooling. Then I’ll build a chemically screened phase inventory and refine candidates in GSAS-II, revisiting weak or alternate phases from residual evidence before exporting the exact final artifacts.
+
+The chemistry is Mn–W–O from MnO + WO₃ fired at 900 °C, so MnWO₄ is the primary expectation, but the workflow explicitly allows residual oxides, off-stoichiometric Mn–W–O phases, and polymorphs. I’m now extracting peak families and querying the frozen COD index by occupied composition, source conditions, and symmetry before any refinement.
+
+The peak inventory is coherent with a single wolframite MnWO₄ phase: the distinctive 15.7°, 18.7°, 23.9/24.4°, 30.1/30.6°, 31.4°, 36.3°, and 37.5° families all track the P2/c MnWO₄ record, including its monoclinic peak splittings. No strong unmatched family yet supports Mn₃WO₆, MnO, or WO₃. I’m moving into a full-profile fit now, with the phase count still open until residuals are tested under a common profile.
+
+The first unconstrained width fit tried to drive the instrumental U term negative, which is physically inadmissible. Constrained replay shows a viable alternative: nonnegative U/W/X plus about 0.14 µm isotropic size broadening, with a modestly better Rwp. I’m retaining that as the provisional baseline and will re-challenge strain/anisotropy after refining structure-factor parameters; the bound-hitting strain-only trial is rejected for now.
+
+A low-angle surface-roughness term is strongly supported: it lowers Rwp from 7.41% to 6.88% and, importantly, removes the implausible oxygen-coordinate drift that had been compensating for missing low-angle attenuation. Polarization settled at the physical lower bound (0.5), so I’m fixing it there and rebuilding the texture comparison under this corrected baseline, as required after a nuisance-model change.
+
+A save/reopen replay exposed a GSAS-II boundary artifact: the superficially lowest roughness fit had clamped polarization after calculating its stored profile, so its saved parameters replayed at 8.12% rather than 6.88%. I’ve rejected that state. Clean fixed-parameter replays are around 7.17–7.21%; I’m now resolving the highly correlated roughness pair by fixing one parameter across a physical grid and refining the other, so the final project has no hidden frozen or post-clamp mismatch.
+
+The current residual is derivative-shaped at the MnWO₄ peaks rather than a set of unexplained extra peaks: the model is systematically too broad at low/mid angle and slightly too narrow at high angle. That points to a width decomposition problem, not a missing crystalline phase. I’m restarting the size/strain/W fit from several physically allowed points to escape the local minimum before judging secondary phases.
+
+The asymmetry scan materially improved the clean replay: SH/L ≈ 0.07 captures the repeated low-angle tail and lowers replayed Rwp to about 5.08%. At that optimum U and W sit at the laboratory limits (40 and 2), so I’m treating them as fixed effective profile terms and now re-testing polarization, roughness, and texture under this rebuilt profile; their earlier estimates are no longer assumed transferable.
+
+The single-phase wolframite model is now fitting at about 5.08% Rwp with a replay-stable asymmetric profile. I’m continuing with the key reversibility checks: revisit roughness and texture under that final profile, then challenge plausible MnO/WO₃/Mn₃WO₆ secondary phases before exporting the exact GSAS-II project and deliverables.
+
+The roughness scan shows the two coefficients are strongly coupled: fixing \(A=0.05\)–0.10 changes Rwp by only 0.0006 percentage point, while larger values worsen the fit. I’m treating \(A\) as non-identifiable rather than claiming a precise surface parameter, and I’m checking the neutral no-roughness model before retaining the simpler fixed-\(A\) correction.
+
+Texture is supported, but weakly: [001] lowers Rwp from 5.147% to 5.077%, with [110] nearly tied at 5.079%. I’ll retain [001] provisionally because it gives the best replay and the improvement spans multiple reflections; the near-tie will be reported as nuisance-model uncertainty rather than structural evidence. Next I’m testing chemically plausible secondary phases under this common profile.
+
+The watch-list challenge changed the inventory: ambient monoclinic WO₃ is decisively supported at about 2.1 wt%, improving Rwp from 5.077% to 4.536%. Both MnO records and Mn₃WO₆ collapse to zero scale; Mn₃O₄ is only 0.17 wt% at roughly 1σ and gives no meaningful improvement. I’m now rebuilding the profile as a two-phase refinement and comparing physical WO₃ polymorph/record alternatives before accepting that minor phase.
+
+One older WO₃ entry (COD 1010618) fails the pre-fit physical screen because its published coordinates generate an interatomic separation below 0.8 Å, so I’m excluding that record on geometry—not on fit quality—and continuing with the physically valid monoclinic, triclinic, orthorhombic, tetragonal, and hexagonal alternatives.
+
+The two-phase cell refinement is physically modest (WO₃ lattice shifts below 0.2%) and improves Rwp to 4.472%. Rebuilding the common peak profile confirms the prior low-angle asymmetry choice remains important; the grid is still being completed because the width terms again approach their physically allowed limits.
+
+The clean profile minimum is broad around SH/L ≈0.069–0.070; 0.069 gives 4.4722% Rwp, while neighboring values worsen the replay. I’m fixing that common profile for now and testing whether the weak WO₃ peaks require their own crystallite size or strain. This is the last profile-complexity decision before structural/ADP refinement.
+
+The separate WO₃ width terms are unsupported (its fitted size matches the common value; strain is only \(527\pm355\) ppm and changes Rwp by 0.0023 point), so I’ve pruned them. I also found that broad all-parameter ADP grid steps can drift along correlated nuisance directions; I’m switching to a stable conditional ADP scan with only the two phase scales released, then I’ll reconverge once at the selected values.
+
+The ADP scan has a clear MnWO₄ minimum near \(U_\mathrm{iso}=0.0052\ \text{Å}^2\). WO₃ is much flatter, with a shallow minimum near 0.011 Å²; that value changes its fraction by a few tenths of a percent and will be flagged as weakly determined. A nuisance-only reconvergence reaches 4.4684% Rwp; re-releasing already established size/texture and main coordinates does not improve the replay, so those extra releases are being rejected. I’m now checking whether the 2.4 wt% WO₃ signal can support any internal-coordinate refinement at all.
+
+The WO₃ coordinate challenge is not trustworthy: freeing only W moves sites by roughly 0.3–0.45 Å and creates very short 1.59 Å W–O bonds; freeing O produces 1.52–1.57 Å O–O contacts and fails the oxide geometry review. I’m therefore retaining the neutron-derived internal coordinates and only the diffraction-supported cell. The remaining task is a final third-phase re-challenge under the rebuilt two-phase profile, followed by exact project/export consistency checks.
+
+The final two-phase nuisance refinement now converges with maximum shift/esd 0.069 and no frozen parameters. The third-phase replay leaves MnO below 0.11 wt% at under 2σ, Mn₃O₄ at 0.13 wt% near 1σ, and Mn₃WO₆ at zero, so none has coherent support for inclusion. I’m locking the converged MnWO₄ + WO₃ project and generating all submitted files from a fresh no-fit replay of that exact GPX.
+
+All requested artifacts are now written. I’m doing the final consistency pass: parse the JSON/CIFs, verify the reported fractions against the GPX replay, check `fit.csv` against the original grid and replay prediction, and confirm the project has exactly the two submitted atomic phases with no physical-review flags.
+
+Completed. The refined crystalline composition is:
+
+- Wolframite MnWO₄ (P2/c): 97.63 wt%
+- Monoclinic WO₃ (P2₁/c): 2.37 wt%
+
+Exact GPX replay gives Rwp 4.468%, Rp 3.408%, and GOF 1.621. MnO, Mn₃WO₆, and Mn₃O₄ were not supported. WO₃ internal coordinates remain reference-derived because the minor-phase data cannot refine them reliably.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r2/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r2/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r2/workspace/final.gpx)
+- [MnWO4 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r2/workspace/phase_1_MnWO4.cif)
+- [WO3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r2/workspace/phase_2_WO3.cif)
+

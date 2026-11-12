@@ -1,0 +1,42 @@
+I’ll inspect the measurement metadata, pattern, and the provided tungstate/GSAS-II guidance first. Then I’ll index the pattern, identify candidate phases, refine them in GSAS-II, and verify every submitted artifact against the final project.
+
+The chemistry is a low-temperature BaCO₃ + WO₃ reaction, so the first hypothesis set is unreacted BaCO₃/WO₃ plus possible BaWO₄ and low-temperature intermediates. I’m now extracting peak positions and matching them against the frozen COD library before committing any phases.
+
+The peak inventory strongly supports an unreacted-precursor mixture: the characteristic split WO₃ cluster near 23–25° and the full witherite BaCO₃ series recur together through high angle. I do not yet see an independent BaWO₄ signature; I’ll test it quantitatively as an optional phase rather than infer product formation from chemistry alone.
+
+The two-phase refinement is converging and already explains the pattern substantially better than the raw references. The refined masses remain near a 1:1 molar precursor blend; the main current issue is separating the angular zero from specimen displacement, which are intrinsically highly correlated in this geometry.
+
+The candidate-phase tests return only trace signed scales (BaWO₄ ≈0.4 wt% and other Ba–W–O candidates ≤0.2 wt%) with negligible fit improvement and no independent peaks. I’m treating those as residual-model leakage, not evidence for additional crystalline phases, and will refine the two-phase model’s texture and atomic coordinates next.
+
+The profile-effect screens show no convincing WO₃ texture, anisotropic strain, polarization, or roughness term; each changes Rwp by only ~0.01–0.03 percentage points, and roughness refines to an unphysical value. I’m keeping the simpler isotropic model and checking the remaining monoclinic/triclinic WO₃ ambiguity, which is the dominant structural uncertainty.
+
+The triclinic WO₃ alternative does not resolve the ambiguity: it gives slightly better individual reflection intensities but a worse whole-profile fit and requires many more independent coordinates. I’m completing the coordinate test, then I’ll retain the simpler monoclinic model unless the improvement is decisive and physically plausible.
+
+The phase assignment is now stable: BaCO₃ (witherite) plus monoclinic WO₃, with no defensible third crystalline phase. I’m selecting the least-perturbed structural refinement that retains the profile improvement, then I’ll replay the saved GSAS-II project and generate every submitted file from that same replay.
+
+The first combined refinement lowers \(R_\mathrm{wp}\) to about 7.01%, but it inherited an over-correlated peak-shape solution outside the experiment’s calibrated parameter ranges. I’m re-refining from the same two structures with explicit physical limits on zero/height, instrumental width, size, strain, polarization, and texture; this is important because otherwise phase fractions and atomic shifts can absorb profile errors.
+
+The bounded runs confirm that the angular zero and specimen-height correction are almost perfectly correlated, as expected for one Bragg–Brentano scan. One physically bounded start has already recovered a 7.77% fit before width refinement; I’m letting the width stages finish and will retain the solution with valid parameters rather than the numerically lowest but nonphysical decomposition.
+
+Allowing a physically bounded low-angle surface correction produces a substantial improvement (about 5.93% after the first joint cycle), unlike the earlier unconstrained roughness test that ran to an impossible negative value. I’m checking whether that improvement survives a second cycle and whether the refined roughness lies inside its admissible range.
+
+After forcing a true recalculation, the apparent 5.8% fit was partly a boundary-clamping artifact; the replay-consistent value is about 6.67%. I’ve corrected for that. The coordinate perturbations are now capped at the laboratory model’s allowed RMS displacements, and I’m doing the final nuisance-parameter cleanup with boundary terms fixed so the saved project will reproduce its reported profile.
+
+The saved model now replays exactly: \(R_\mathrm{wp}=5.898\%\), \(R_p=4.492\%\), with no negative background, peak-width, polarization, or ADP flags. Replay gives 55.00 wt% BaCO₃ and 45.00 wt% WO₃; I’m exporting the two CIFs and then checking their symmetry, chemistry, interatomic distances, and project/CIF consistency.
+
+Analysis complete. The crystalline assemblage is:
+
+- Witherite BaCO₃: 55.00 wt%
+- Monoclinic WO₃ (P2₁/c): 45.00 wt%
+
+Fresh GSAS-II replay gives \(R_\mathrm{wp}=5.898\%\) and \(R_p=4.492\%\), with no physical-review flags. Estimated systematic fraction uncertainty is about ±2 percentage points; trace phases below roughly 0.5–1 wt% and amorphous material cannot be quantified reliably.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-001-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-001-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-001-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-001-r3/workspace/final.gpx)
+- [BaCO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-001-r3/workspace/phase_baco3.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-001-r3/workspace/phase_wo3.cif)
+

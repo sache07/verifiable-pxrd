@@ -1,0 +1,60 @@
+I’ll inspect the diffraction data and metadata first, then identify candidate phases, refine them jointly in GSAS-II, and verify that every submitted artifact is generated from the final project.
+
+The chemistry points to calcium tungstates plus possible unreacted carbonate/oxide at 500 °C. I’m now extracting the peak pattern and checking the installed indexing/database/refinement utilities before choosing phase models.
+
+The three dominant fingerprints are already consistent with monoclinic WO₃ (the 23–25° triplet), calcite CaCO₃ (29.4° family), and scheelite CaWO₄. I’m testing all chemically plausible database structures—including alternative WO₃ polymorphs and calcium-rich tungstates—against the full profile so the phase count is evidence-driven.
+
+The initial three-phase Rietveld model already drops \(R_\mathrm{wp}\) from about 61% to 17.9% using only background and phase scales. I’m now refining specimen displacement, lattice metrics, and line shape in controlled stages, then I’ll test whether any fourth phase is justified by residual peaks.
+
+The first full candidate refinement gives about 53.5 wt% WO₃, 38.5 wt% CaCO₃, and 7.9 wt% CaWO₄ (crystalline basis), with \(R_\mathrm{wp}\approx9.51\%\). The remaining mismatch is concentrated in subtle WO₃ peak splitting and calcite texture, so those are the current discrimination targets.
+
+The alternative monoclinic WO₃ entry fits materially worse (\(R_\mathrm{wp}\approx11.62\%\)), despite similar lattice metrics. This supports the Loopstra–Boldrini ambient monoclinic model (COD 2311041); I’m continuing the polymorph/suboxide challenge before locking it in.
+
+No substantial residual peak is independent of the three assigned patterns; the largest residuals sit on already modeled reflections. I’m nevertheless testing calcium-rich tungstate, CaO, and reduced tungsten oxides as explicit fourth phases to set a defensible detection limit rather than assuming a three-phase answer.
+
+A key microstructural feature is now clear: CaWO₄ reflections are much broader than the unreacted WO₃ and calcite peaks, consistent with a nanocrystalline reaction product. I’m incorporating only that physically supported phase-specific broadening; unconstrained all-phase strain fits produced nonphysical negative strain and are being rejected.
+
+The physically constrained model is converging cleanly and improves the profile without negative strain terms. The broad CaWO₄ component refines near 0.05 µm coherent-domain size; this materially raises its integrated fraction versus a sharp-peak-only model, so I’ll report that model dependence as the main quantitative uncertainty.
+
+The phase set is now stable: monoclinic WO₃, calcite, and scheelite CaWO₄. I’m checking the last converged refinement state, then I’ll export all deliverables from that exact GSAS-II project and validate their internal consistency.
+
+The selected checkpoint is converged and retains all three phase scales and lattice parameters as refined variables. I’m extracting the saved covariance/statistics directly; GSAS-II’s scripting wrapper does not expose the mass-fraction helper as a project method in this installed version, so I’m using its stored refinement equations and phase values explicitly.
+
+A subtle issue surfaced in the checkpoint history: the lowest numerical residual sits between two nonlinear preferred-orientation iterations, and its calcite fraction shifts appreciably on the next step. I’m resolving that correlation by refining the texture and phase scales in controlled blocks; this is important because otherwise a superficially lower Rwp would overstate the precision of the phase fractions.
+
+The controlled texture scan is behaving as expected: overly strong calcite texture drives an implausibly large scale/fraction change, while the residual minimum is emerging near a March–Dollase parameter around 0.8–0.9. I’m letting the remaining fixed-texture points finish so the final fraction is tied to the profile minimum rather than one unstable Hessian step.
+
+GSAS-II’s “initial chi-square” confirms the instability is numerical, not a second physical solution. I found a cleaner route in the refinement engine: zero-cycle evaluations recalculate the exact profile without taking an uphill parameter step. I’m using those evaluations to locate the preferred-orientation minimum, then I’ll preserve that profile in the final project and report the texture-driven fraction uncertainty explicitly.
+
+The block-coordinate refinement is now running through scale/background, lattice/shift, profile, texture, and CaWO₄-size blocks. This is slower than a single Hessian pass, but each block is accepted only when it lowers the actual profile residual, which prevents the earlier texture/scale overshoot.
+
+The controlled test exposed a GSAS-II optimizer quirk in this installation: even one-parameter blocks step uphill, while direct recalculation shows the lower residual is real. I’m therefore retaining the refined structural/profile values and locating the two nonlinear corrections—calcite texture and CaWO₄ coherent size—by direct profile minimization. The final report will flag their model dependence rather than treating the formal Hessian errors as reliable.
+
+The nonlinear corrections are sharply localized at about 0.842 (calcite texture) and 0.0492 μm (CaWO₄ coherent size). I’m now profiling out the three phase scales and 12 background coefficients with an exact weighted linear least-squares solve at each nonlinear trial. That removes the remaining texture/scale bias and gives the most defensible crystalline weight fractions.
+
+The profiled solve is still evaluating the design columns. It treats phase scales as nonnegative, allows the background coefficients to float linearly, and uses the supplied Poisson counting weights. Once complete, I’ll compare the reconstructed profile against GSAS-II’s own recalculation before exporting anything.
+
+The profiled fit converged to 54.62 wt% monoclinic WO₃, 33.78 wt% calcite, and 11.60 wt% scheelite CaWO₄ (normalized over crystalline phases), with Rwp = 8.381%. The refined nonlinear corrections are physically sensible: calcite (104) preferred orientation and ~50 nm coherent CaWO₄ broadening. I’m exporting from that exact profile now and will then run a clean consistency check across the GPX, CIFs, CSV, and JSON.
+
+All requested files are written. I’m in the final validation pass now: checking that the three CIFs parse, that fractions sum to one, and that every row of `fit.csv` reproduces the profile stored in `final.gpx`. I’m also testing whether GSAS-II can retain a conditional covariance block without perturbing the profiled optimum; if it cannot, I’ll preserve the lower-residual project and keep the uncertainty assessment model-based.
+
+Validation passed: all three CIFs parse with the intended formulas and space groups, the JSON fractions sum to 1.000000000, `fit.csv` matches all 8,293 stored GPX profile points exactly, and the final GSAS-II covariance cycle is converged with a maximum shift/esd below 1×10⁻⁵.
+
+Identified three crystalline phases:
+
+- Monoclinic WO₃: 54.62 wt%
+- Calcite CaCO₃: 33.78 wt%
+- Scheelite CaWO₄: 11.60 wt%
+
+Final fit: Rwp 8.381%, Rp 6.135%. Fractions are normalized over crystalline phases and remain model-dependent, especially for broadened CaWO₄.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_1_WO3_monoclinic.cif)
+- [CaCO₃ CIF](<ATTEMPT_WORKSPACE>/phase_2_CaCO3_calcite.cif)
+- [CaWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_3_CaWO4_scheelite.cif)
+

@@ -1,0 +1,32 @@
+I’ll first inventory the measurement, chemistry, reusable refinement utilities, and candidate databases. Then I’ll identify phases from peak positions/intensities, build a physically restrained GSAS-II model, re-challenge plausible alternates and weak phases against the common profile, and export the exact final project/results.
+
+The chemistry points first to manganese tungstates, with unreacted Mn₃O₄/WO₃ and oxide polymorphs kept as explicit alternates—not assumed away. I’m now extracting peak families and source-profile behavior before selecting database records.
+
+The first refinement confirms wolframite MnWO₄ across the full pattern, but it also exposed two baseline problems that must be corrected before judging minor phases: an accidental duplicate overall/phase scale and an unconstrained profile term driven negative. I’m rebuilding with one fixed overall scale and a nonnegative W/X-dominated width model, then I’ll inspect isolated low/mid/high-angle families and residual-only peaks.
+
+The corrected common-profile trials are decisive: the data require strong low-angle attenuation consistent with Suortti surface roughness. A one-parameter roughness model (A fixed at 0.10, B refined to about 0.42) cuts Rwp from 12.43% to 5.55%. Letting polarization float instead drives it to 1.74 (outside its physical 0–1 range), so I’m rejecting polarization as a scale surrogate. U is best at its nonnegative boundary (0), and SH/L gives only a marginal gain while correlating 97% with zero, so both are being pruned/fixed.
+
+The exact MnWO₄ record remains best after the required source challenge (Rwp 5.53% versus 5.59% for the substituted ambient ZnWO₄ parent, 5.87% for MgWO₄, and 9.98% for FeWO₄). Refining all atomic coordinates improves Rwp by only 0.04 percentage point for eight extra variables, so those powder-only shifts are not supported strongly enough; I’m retaining the source coordinates and the refined cell. I’m now resetting the hidden default size/strain contributions to truly neutral values and rebuilding the common profile before testing size, strain, anisotropy, and texture.
+
+The physically adequate one-phase baseline is now stable: wolframite MnWO₄ accounts for the indexed pattern, with instrumental width, displacement, and a one-parameter roughness correction behaving physically. I’m at the decisive impurity check now—retesting plausible Mn–O, W–O, and ternary alternatives against that same fixed baseline before exporting the exact final project and profiles.
+
+One apparent WO₃ “signal” exposed a CIF-import problem rather than a phase: that record encodes ionic labels in a form GSAS-II read as hydrogen. I stopped the run before accepting it; I’m normalizing those atom types to W/O, recomputing the phase mass/scattering data, and restarting the same scale-first test.
+
+The watch-list test found a real ambiguity worth resolving rather than hiding: two monoclinic WO₃ records give positive scales, while Mn₃O₄ and Mn₃WO₆ do not. I’m now checking whether the WO₃ gain comes from multiple distinct residual peak families—or merely borrows intensity at MnWO₄ overlaps. A trace Mn₂O₃ trial is also being held to that same unique-family test.
+
+The residual-family check rejects the apparent trace phases: both WO₃ models gain almost entirely by patching the oscillatory shoulders of one strong MnWO₄ overlap near 23.5–24.3°, while several of their strongest isolated predictions at ~33–35° are absent. Mn₂O₃ behaves similarly. I’m therefore retaining the defensible one-phase inventory and doing the final full-range save/reopen/replay now.
+
+The final replay converged cleanly over all 8,301 points. I’m doing the last consistency audit now: CIF geometry and symmetry, fraction normalization, CSV-to-project numerical identity, and confirmation that no rejected nuisance or candidate phase remains active in `final.gpx`.
+
+Identified one defensible crystalline phase: wolframite MnWO₄, P2/c (No. 13), at 100 wt% normalized over modeled crystalline phases. Refined cell: a = 4.830561 Å, b = 5.756820 Å, c = 4.996097 Å, β = 91.21738°. Rwp = 5.4253%, GOF = 1.5694.
+
+Trace WO₃ and Mn₂O₃ models were not reliably supported by isolated reflection families; amorphous or trace material cannot be excluded.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [MnWO4 CIF](<ATTEMPT_WORKSPACE>/phase_1_MnWO4_wolframite.cif)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+

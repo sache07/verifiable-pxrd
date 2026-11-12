@@ -1,0 +1,38 @@
+I’ll start by reading the metadata, pattern layout, and the provided PXRD workflow guidance, then build a chemically constrained phase inventory before testing/refining candidates. I’ll keep the final artifacts tied to a replayed GSAS-II project.
+
+The chemistry points first to Mn–W–O products (especially wolframite-type MnWO₄), but the task explicitly allows residual oxides and off-stoichiometric intermediates. I’m now extracting peak families and querying the frozen structure index so that phase inclusion is driven by unique reflections, not just the nominal reaction.
+
+The dominant peak set matches monoclinic wolframite MnWO₄ (P2/c) across low, mid, and high angles. The only exact frozen entry is a 2.4 GPa single-crystal record, so I’m treating it as a starting topology—not as proof of the sample state—and will compare it with ambient-pressure wolframite analogues after the nuisance/profile baseline is established.
+
+The first whole-pattern refinement confirms the MnWO₄ cell and a plausible specimen displacement (about −0.44 mm), but it also exposes an unacceptable profile surrogate: unconstrained U went strongly negative. I’m rejecting that profile, resetting to a nonnegative common baseline, and testing crystallite-size/strain broadening separately before judging minor phases or texture.
+
+The width trials are replay-stable: isotropic size broadening (~0.10–0.14 μm) is supported, while strain-only broadening is substantially worse. Instrumental W and crystallite size remain partly correlated for this effectively single-phase pattern; I’m retaining a bounded common profile (U=0, W=40, X=1) plus the refined size and now testing the obvious coherent low-angle intensity deficit as surface roughness, with polarization as a separate control.
+
+The source challenge is decisive: the exact MnWO₄ record gives the best fit; ambient Fe/Zn/Mg wolframite substitutions are worse under the same background, geometry, cell, size, and roughness model (Rwp ≈5.58–5.96% versus 5.45–5.48%; one DFT-like Fe model is much worse). I’m retaining the exact topology, while documenting its high-pressure provenance and the refined ambient-like cell. Next I’m re-challenging residual Mn/O and W/O phases against this cleaned profile.
+
+A repeated low-angle asymmetry is real: the initial SH/L=0.02 baseline was inadequate. A bounded grid reveals a much better basin near SH/L≈0.08 (Rwp falls from 5.42% to 4.70%) without adding a phase. I’m resolving that basin carefully because SH/L, displacement, and size are correlated; the earlier weak WO₃ scales must be retested after this profile correction.
+
+The common profile now behaves physically: positive U/W and the high-SH/L basin fit isolated peaks much better. Size and X are exactly tradeable for this one phase, while adding isotropic strain helps only when U is lower; that is the expected identifiability limit rather than evidence for a second phase. I’m testing the three symmetry-distinct uniaxial strain directions before freezing the simplest replay-stable width model.
+
+Texture is unsupported: all five March–Dollase axes refine to 0.997–1.008, so I’ve pruned it. A small polarization correction is plausible (≈0.755) but has only marginal profile leverage. With the common peak shape now clean, I’m re-running the WO₃/Mn-oxide watch list; any phase that was merely absorbing the old asymmetry should collapse.
+
+The cleaned-profile re-challenge leaves MnWO₄ as the only defensible crystalline phase. Alternate WO₃ and manganese-oxide candidates either collapse to zero or give unstable sub-percent scales without coherent unique reflections. I’m now freezing the supported profile model, replaying the project from disk, and generating the CIF/profile/JSON/report from that exact saved state.
+
+The retained broadening terms are physically supported: removing crystallite size or microstrain worsens the fit, and the [001] uniaxial strain model outperforms the other symmetry-distinct axes. Preferred-orientation trials all refined back to essentially unity, so texture is being removed. I’m freezing the correlated but physically plausible source/profile estimates before the final replay so they cannot act as scale surrogates.
+
+The saved-project forward replay now passes cleanly: it finds the original 8,301-point scan, one atomic MnWO₄ phase at normalized fraction 1.000, regenerates the profile without optimization, and raises no negative-width, background, displacement, or polarization flags. Replay Rwp is 4.1197%, matching the exported curve. I’m doing the final CIF geometry and file-consistency checks, then writing the concise evidence/uncertainty report.
+
+Completed. The crystalline phase is wolframite MnWO₄, P2/c, at 100 wt% normalized over modeled crystalline phases. Final Rwp = 4.1197% and GOF = 1.1923.
+
+Sub-percent oxide impurities below roughly 0.5 wt% and amorphous material cannot be reliably quantified or excluded.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-009-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-009-r2/workspace/report.md)
+- [phase_mnwo4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-009-r2/workspace/phase_mnwo4.cif)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-009-r2/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-009-r2/workspace/final.gpx)
+
+The saved-project forward replay reproduced the full profile and passed the structural, fraction, and physical-consistency checks without review flags.
+

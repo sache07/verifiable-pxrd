@@ -1,0 +1,64 @@
+I’ll first inspect the measurement metadata, pattern range, and reusable refinement utilities, then build a chemically plausible phase inventory before refining any scales or cells. I’ll keep candidate phases that fail an initial scale test on a watch list until the common background/profile model is stable.
+
+The chemistry points first to zinc tungstate, but 900 °C can leave ZnO/WO₃ or produce composition-dependent secondary zinc tungstates, so I’m not assuming a single phase. I’m extracting peak families and querying the filtered structure inventory for Zn–W–O records, including polymorphs and precursor phases.
+
+Peak-family matching identifies wolframite-type ZnWO₄ (P2/c) as the dominant phase. There is also a coherent WO₃ signature—most clearly near 23.17°, 33.35°, and 34.30°—while the strongest supposedly “ZnO-like” lines are already explained by ZnWO₄/WO₃ overlaps. I’m now testing monoclinic and triclinic WO₃ records, plus ZnO as a watch-list phase, under an identical baseline model.
+
+The first controlled comparison is decisive: adding room-temperature monoclinic WO₃ lowers Rwp from about 19.75% to 14.57% with a stable positive scale and physically small cell shifts. I’m finishing the matched comparisons against triclinic WO₃, the alternate historical model, and ZnO before accepting the inventory.
+
+The re-challenge confirms a third crystalline phase: wurtzite ZnO has a positive, replay-stable scale supported by its 31.9°, 34.4°, 56.7°, and 62.9° families. Under the provisional common profile it accounts for about 8 wt%, and lowers Rwp from 14.57% to 13.83%. I’m rebuilding the three-phase model now with phase strain explicitly reset to zero, since GSAS-II’s frozen default microstrain is nonzero and would otherwise bias the profile and fractions.
+
+The common profile is now physically clean: W and X are positive, U is fixed positive, V/Y/Z and all phase size/strain terms are neutral. Releasing U drove it negative, so that extension is rejected; W+X is retained. Axial asymmetry is supported (SH/L ≈ 0.10), while a free polarization correction improves the fit only by exceeding its physical limit (1.31–1.40), so I’m testing bounded polarization and low-angle surface roughness instead.
+
+A two-parameter Suortti surface-roughness correction explains the cross-phase angular intensity trend with both parameters inside their physical domains, while preserving the reported unpolarized Cu source setting. Combined with the independently supported axial asymmetry term, it gives Rwp ≈ 6.41%. I’m now challenging phase-specific size and strain one phase at a time against that accepted common profile; terms that collapse to bounds or merely trade against W/X will be pruned.
+
+The phase-width trials are behaving as the residual-led rules intend: every size term stays at or runs toward the “no broadening” limit; ZnWO₄ strain goes negative and ZnO strain gives negligible gain, so those are rejected. WO₃ alone supports positive isotropic microstrain (~0.29%) with a modest reproducible improvement. I’m checking low-index texture axes for the dominant ZnWO₄ before deciding whether any orientation term is justified.
+
+Texture challenges across axial and diagonal directions converge essentially to random orientation for ZnO and WO₃; ZnWO₄ ratios differ from 1 by at most ~3% and several inequivalent axes give the same tiny gain, so no texture term is retained. I’m doing the final inventory audit now: matched-nuisance refinements of the room-temperature monoclinic, alternate neutron monoclinic, and low-temperature triclinic WO₃ records.
+
+The alternate-record audit is slower because the neutron WO₃ cell uses a highly oblique setting, but it is still refining rather than stalled. The accepted room-temperature model is already replay-converged; this comparison is specifically to distinguish a genuinely better physical record from an equivalent but less stable setting.
+
+The record comparison rejects the alternate oblique-cell neutron model (Rwp ≈ 12.27%, singular roughness, negative strain). The triclinic P-1 record fits better than P2₁/n (5.94% versus 6.24% Rwp); its α and γ depart from 90° by about four standard uncertainties, so I’ll use it provisionally while reporting the monoclinic/triclinic ambiguity. Fractions change by less than 0.3 wt% between those two models.
+
+The selected geometry is also stable: a specimen-height model gives the same fit and fractions, but the zero-offset model is marginally better and avoids a −0.31 mm height correction, so the final project will retain zero only. One last anisotropic-width screen is running; it is deliberately constrained to simple uniaxial models rather than a many-parameter triclinic tensor.
+
+The uniaxial strain challenge diverged and destroyed the fit, so anisotropic broadening is rejected; the replay-stable isotropic WO₃ strain model is retained. I’m now freezing the accepted inventory and nuisance model, extending the final replay to the exact measured range, then exporting CIFs, the profile, and machine-readable results directly from the reopened final project.
+
+I’ve finished the model challenges and am now freezing the selected three-phase refinement into a clean, replayed GSAS-II project. I’ll verify that the exported CIFs, profile, phase fractions, and project all agree exactly before reporting the result.
+
+The full-range replay is still running; that is expected because the project is being saved and reopened through several convergence passes. The selected model remains the triclinic WO₃ variant, with monoclinic WO₃ retained as the main structural ambiguity to document.
+
+The repeated replay is slower than the exploratory runs but has not emitted an error. I’m letting it complete because this is the check that catches save/reopen drift between the submitted project and exported quantities.
+
+No failure output has appeared, but the run is taking unusually long. If it does not finish after the current pass, I’ll inspect the live process and reduce only redundant replay cycles—not the scientific refinement or final consistency checks.
+
+The first save completed, but the next redundant replay has stalled without changing the project for several minutes. I’m stopping that stalled process, then I’ll validate the saved project and perform a single instrumented replay so any actual convergence issue is visible.
+
+The consistency check caught a real problem: the nominal source project had later been overwritten by a failed trial (Rwp 12.23%, one singular direction), so I will not submit it. I’m auditing the saved trial projects now to recover the last clean converged state, then I’ll rebuild `final.gpx` only from that verified branch.
+
+The clean branch is now refining with polarization fixed at the physical Cu laboratory value and the full measured range included. Its starting state was healthy (Rwp 5.933%, no singularities); this pass should settle near the previously challenged 5.94% baseline.
+
+The clean replay converged with no singularities and negligible final motion (maximum shift/s.u. 0.042). On all 8,301 measured points the final fit is Rwp 6.011%, with crystalline fractions approximately 74.14% ZnWO₄, 18.38% WO₃, and 7.48% ZnO; I’m now checking geometry and exact export/project agreement.
+
+The exported structures pass the physical screen: full occupancies, expected formulas and symmetries, and sensible nearest-neighbor ranges (including Zn–O 1.98–2.22 Å and W–O 1.72–2.22 Å across the three phases). The profile CSV also matches every input point and the GSAS-II arrays exactly.
+
+Completed the three-phase Rietveld analysis.
+
+| Phase | Space group | Crystalline wt.% |
+|---|---|---:|
+| ZnWO₄ | P2/c | 74.14(12) |
+| WO₃ | P-1 | 18.38(10) |
+| ZnO | P6₃mc | 7.48(10) |
+
+Final fit: Rwp 6.011%, Rp 4.736%, GOF 1.588. Fractions are normalized over crystalline phases. The exact WO₃ symmetry remains somewhat uncertain; amorphous content cannot be quantified without an internal standard.
+
+Files:
+
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [ZnWO4.cif](<ATTEMPT_WORKSPACE>/ZnWO4.cif)
+- [WO3_triclinic.cif](<ATTEMPT_WORKSPACE>/WO3_triclinic.cif)
+- [ZnO.cif](<ATTEMPT_WORKSPACE>/ZnO.cif)
+

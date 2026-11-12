@@ -1,0 +1,54 @@
+I’ll inspect the pattern, metadata, and the reusable crystallography/refinement utilities first. I’ll then build a chemically screened phase inventory, refine it in GSAS-II with residual-led checks and alternates where needed, and export the project and exact submitted profiles/models.
+
+The chemistry points first to MgWO₄, with MgO and WO₃ as credible residual phases, but I’m treating that only as the initial inventory. I’m now extracting the peak families and checking the local COD/GSAS-II tooling so candidates are judged by positions, systematic absences, profile shape, and scale—not precursor plausibility alone.
+
+The dominant peak set is already coherent with wolframite-type MgWO₄ (P2/c): the strong families at 19.23, 24.21, 24.92, 30.81/31.11, 36.79, 41.86, 52.38, and 54.60° all track the reference after one common angular offset. The source record is synthetic, fully occupied, ambient-pressure MgWO₄ with octahedral Mg/O and W/O coordination and no disorder. I’m setting up the quantitative GSAS-II baseline now; MgO and several physically plausible WO₃ polymorphs remain on the watch list for residual testing.
+
+The single-phase residual is diagnostic, not just “high Rwp”: three coherent low-angle peaks at 23.43, 23.91, and 24.67° are absent from MgWO₄ and recur with matching families near 26.91, 33.57–34.47, 42.18, and 50.21°. That is the characteristic split WO₃ family. I’m now comparing the ambient monoclinic, triclinic, and orthorhombic WO₃ records under the same background, zero, cell, and common profile before accepting a second phase.
+
+The WO₃ alternates are taking longer because the low-symmetry cells add several coupled metric parameters. I’m letting each reach the same convergence sequence, then I’ll compare not only Rwp but cell plausibility, residual peak families, and whether the refined phase scale remains stable and positive.
+
+The physically stronger 1966 neutron P2₁/c WO₃ model (fully occupied W/O octahedra) fits essentially as well as the lower-symmetry triclinic record: Rwp 12.72% versus 12.70%, while the orthorhombic and hexagonal alternates are materially worse (15.14% and 21.00%). I’m retaining monoclinic WO₃ as the parsimonious inventory and now testing phase-specific size/strain and symmetry-appropriate texture against that clean common profile.
+
+The stable common-profile replay rejects crystallite size and microstrain terms: MgWO₄ size runs to the 10 µm neutral bound, MgWO₄ strain becomes negative, and WO₃ size/strain do not improve the fit on replay. I’m pruning those terms. The large, physically plausible polarization correction is retained; I’m now testing only one March–Dollase axis at a time across the symmetry-distinct MgWO₄ directions.
+
+The residual watch list now has a coherent MgO signature: positive residuals occur together at 37.32, 43.21, 62.52, and 78.84°, close to the MgO 111/200/220/311 families under the same angular correction. I’m adding the ambient Fm-3m periclase record at low scale and rebuilding the shared background/profile before deciding whether it survives quantitatively.
+
+The three-phase inventory is now coherent: MgWO₄, residual WO₃, and unreacted MgO. I’m doing the final reversible checks now—phase-specific broadening and alternate WO₃ records under the rebuilt common profile—before freezing and exporting the exact GSAS-II project.
+
+The accepted common profile is stable across low, middle, and high angle. I’m specifically challenging the remaining low-angle MgWO₄ residuals with symmetry-distinct uniaxial-size axes; these are reversible trials, and any bound-seeking or replay-unstable term will be discarded.
+
+The broadening challenge did not justify an anisotropic term: four axes ran to the 10 µm neutral bound, and the only interior solution changed Rwp by just 0.002 percentage point and drifted on replay. I’m pruning it and now re-testing the strongest WO₃ polymorph/record alternatives after the MgO inventory change.
+
+The post-inventory polymorph check is decisive: the retained neutron-derived monoclinic WO₃ record gives Rwp 9.34%, versus 9.61% for triclinic, 9.82% for the alternate monoclinic record, 12.59% for orthorhombic, and 19.18% for hexagonal WO₃. I’m retaining the physically complete P2₁/c model and doing the final chemical-inventory audit before export.
+
+The Mg–W–O inventory contains no other physically usable anhydrous ternary entry: the apparent alternate MgWO₄ record has a dummy oxygen site, and the other entry is a dihydrate incompatible with 900 °C treatment. I’m also testing oxygen-deficient W₁₈O₄₉ as a weak watch-list phase; its large cell makes this replay slower, but it will only be retained if unique families and a stable positive scale are present.
+
+W₁₈O₄₉ is not supported as a fourth phase: with its source cell fixed it nominally reaches only 0.49 wt% and improves Rwp by 0.015 point, but several of its strongest unique/partly unique families sit on negative residuals; freeing its cell worsens Rwp to 9.48%. I’m pruning it. One final texture replay under the completed three-phase inventory will confirm that the MgWO₄ correction remains justified and that MgO needs none.
+
+The completed-inventory texture check confirms the selected model: MgWO₄ [110] gives Rwp 9.344% versus 9.731% with no texture and 9.51–9.55% for competing axes. WO₃ axis trials give only 0.000–0.014-point changes with contradictory family trends, so WO₃ and MgO remain untextured. I’m now freezing, reopening, replaying, and exporting the exact final project.
+
+The final save/reopen replay converged cleanly (maximum shift/s.u. 0.006). The exported profile now contains exactly the same 8,284 sampled observations used by GSAS-II. I’m validating CIF chemistry/geometry, normalized fractions, and byte-level numeric agreement between `fit.csv` and `final.gpx`.
+
+Completed the three-phase refinement:
+
+| Phase | Weight fraction |
+|---|---:|
+| MgWO₄, wolframite P2/c | 78.58 wt% |
+| WO₃, monoclinic P2₁/c | 14.00 wt% |
+| MgO, periclase Fm-3m | 7.42 wt% |
+
+Final fit: Rwp 9.344%, Rp 6.968%, GOF 3.267. Fractions are normalized over crystalline phases only; realistic systematic uncertainty is approximately 1–2 wt-percentage points.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [MgWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_mgwo4.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_wo3.cif)
+- [MgO CIF](<ATTEMPT_WORKSPACE>/phase_mgo.cif)
+
+The 8,284 exported profile points and reported fractions match `final.gpx` exactly.
+

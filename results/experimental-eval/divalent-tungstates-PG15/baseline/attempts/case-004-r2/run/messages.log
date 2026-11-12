@@ -1,0 +1,38 @@
+I’ll inspect the measurement metadata, diffraction profile, and available crystallography tooling first. Then I’ll identify candidate phases, refine them jointly in GSAS-II, and validate that the exported CIFs, phase fractions, profile, and project all agree.
+
+The chemistry strongly suggests cobalt tungstate as the main product, but I won’t assume it is single-phase: unreacted oxides and cobalt oxidation products are plausible at 900 °C. I’m now checking the peak set and the installed search/refinement interfaces so minor phases are tested rather than absorbed into the main-phase fit.
+
+The peak pattern already separates into two clear fingerprints: the 23.17/23.67/24.41° triplet is characteristic of room-temperature monoclinic WO₃, while strong lines near 19.09, 30.71, 36.44, 41.46, and 54.15° are consistent with wolframite CoWO₄. I’m quantitatively matching all remaining peaks against CoO and Co₃O₄ before deciding whether either is a defensible minor phase.
+
+The two-phase model is stable and already explains the full peak-position pattern: after lattice/zero refinement it gives \(R_{wp}\approx 7.9\%\), with about 33 wt% CoWO₄ and 67 wt% WO₃. The refinement is still improving the line-shape and structure terms; afterward I’ll compare nested models containing CoO or Co₃O₄ and require a positive, statistically meaningful fraction plus improvement at phase-specific reflections.
+
+The global unconstrained five-term profile fit lowered \(R_{wp}\) to about 7.30%, but it produced strongly correlated, nonphysical Caglioti coefficients. I’ll treat that as a diagnostic only and use a simpler positive profile/broadening parameterization for the deliverable; the phase fractions stayed near 33/67 wt% through that test.
+
+The added-phase tests reject Co₃O₄ outright (its scale collapses to effectively zero). CoO refines to only ~0.8 wt% and improves \(R_{wp}\) by just 0.008 percentage point; moreover, its cell expands unrealistically so that its few reflections slide onto peaks already assigned to the two main phases. I’m checking the difference curve and phase-specific reflection locations before deciding whether to report that as a phase or only as an upper-limit ambiguity.
+
+The largest remaining misfit is systematic peak splitting near 33–34°, not an isolated cobalt-oxide line. I’m therefore testing the lower-symmetry triclinic WO₃ model against monoclinic \(P2_1/n\); this is the more consequential structural ambiguity and can materially affect the profile fit without changing the chemistry or nominal WO₃ fraction.
+
+The triclinic WO₃ model gives a substantial positional-fit gain (\(R_{wp}\) about 7.49% before full profile optimization versus 7.90% for monoclinic) using only two additional lattice-angle freedoms. Its refined angles move close to, but measurably away from, monoclinic metric symmetry, so this may represent a weakly distorted/pseudosymmetric WO₃ rather than mere overfitting. I’m letting the matched refinement finish before selecting the reported space group.
+
+A physically parameterized line-shape test confirms the phase assignment and fraction, but allowing both size and strain is over-parameterized: the strain terms run negative and correlate strongly with size. I’m simplifying to positive crystallite-size broadening plus a bounded common Gaussian width; this preserves interpretability and avoids using a slightly lower residual from unphysical coefficients.
+
+The selected refinement is now stable with only positive, low-correlation profile terms: triclinic WO₃ plus wolframite CoWO₄, \(R_{wp}\approx 6.95\%\), and roughly 69/31 wt%. I’m doing the final full-range refinement and generating every deliverable directly from that saved project so the CIFs, fractions, profile columns, and reported statistics remain internally consistent.
+
+All requested files have been generated from `final.gpx`. I’m now performing consistency checks: reloading the project, parsing both CIFs independently, checking every profile row and difference value, and confirming the JSON fractions and fit statistics reproduce the project values.
+
+Identified crystalline phases:
+
+- Triclinic WO₃ (P-1): 69.04 wt%
+- Wolframite CoWO₄ (P2/c): 30.96 wt%
+
+Final fit: Rwp 6.937%, Rp 5.329%, goodness-of-fit 2.119. Practical fraction uncertainty is approximately ±2 wt%; ≤1 wt% CoO cannot be excluded.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [CoWO4.cif](<ATTEMPT_WORKSPACE>/CoWO4.cif)
+- [WO3_triclinic.cif](<ATTEMPT_WORKSPACE>/WO3_triclinic.cif)
+

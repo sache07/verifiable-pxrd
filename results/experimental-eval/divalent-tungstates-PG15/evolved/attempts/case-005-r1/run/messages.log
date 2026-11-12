@@ -1,0 +1,44 @@
+I’ll first inspect the pattern, metadata, and reusable analysis scripts, then build a chemically plausible phase inventory before refining a common GSAS-II profile. I’ll keep alternate structures on a watch list and validate the final project by reopening it and checking exported profiles, CIFs, and normalized fractions.
+
+The chemistry points to the Co–W–O system after a 500 °C solid-state treatment, with both precursor remnants and cobalt tungstates plausible. I’m now extracting peak families and checking the available GSAS-II/COD tooling so candidate selection is driven by both chemistry and the full pattern—not just the strongest peaks.
+
+The peak positions resolve the provisional inventory cleanly: monoclinic WO₃ accounts for the 23.46/23.95/24.71° triplet and its repeated families, while spinel Co₃O₄ accounts for independent peaks at 19.37, 31.64, 37.20, 38.91, 45.14, 59.67, 65.55, and 94.35°. The common positive shift decreases with angle, which is the signature of specimen displacement rather than altered cells. I’ve rejected one Co₃O₄ database record with an unphysical 0.17 Å contact and am comparing physically valid WO₃ polymorph records under the same profile model.
+
+The physically valid ambient WO₃ record (P2₁/c, conventional P2₁/n setting) matches every major split family; tetragonal, orthorhombic, and triclinic alternatives either miss the 23–25° triplet or over-split the 33–35° region. I’m moving into staged refinement now: Poisson weights from the raw counts, dual Cu Kα wavelengths at the reported 0.5 ratio, a smooth low-order background, one specimen-height correction, then scales and cells before any phase-specific broadening is considered.
+
+The first staged run confirms both phases at positive scale and gives a stable crystalline ratio near 74:26 before profile refinements. It also exposed two baseline issues I’m correcting before accepting any numbers: GSAS-II had left a redundant global sample scale active (causing an SVD singularity), and the three-term U/W/X trial drove W negative. Per the residual-led rules, I’m pruning that over-parameterized profile and rebuilding with a single fixed global scale and a nonnegative U/W common width model.
+
+The first phase-specific trials are decisive: Co₃O₄ size runs to the neutral upper bound and its strain refines negative, so neither is supported. WO₃ size forces the common W term to its zero bound, so that model is also rejected. Isotropic WO₃ microstrain is positive and replay-stable, while the common U and W remain positive; it sharpens the Co₃O₄ families and broadens only WO₃ as the data require. The remaining strong residual is mainly the relative intensity within WO₃ families, so I’m now re-challenging physically valid monoclinic/triclinic/orthorhombic WO₃ records under exactly that same nuisance model before considering texture.
+
+The alternate-record challenge selects COD 2311041: monoclinic WO₃ lowers Rwp from 4.57% to 3.77% under the same positive U/W plus WO₃-strain model, and it fits the near-equal 23.46/23.95/24.71° intensities directly. The triclinic record is slightly worse with more cell parameters; orthorhombic and tetragonal records fail physically or statistically. I’m retaining a refined polarization term, but pruning SH/L, Kα ratio, and combined roughness trials because their gains are tiny or they become highly correlated with shift/scale. Next I’m testing CoWO₄, CoO, and reduced tungsten oxide watch-list phases at nonnegative scale with their cells initially fixed.
+
+The inventory re-challenge rejects CoWO₄ and both W₁₈O₄₉ records at the nonnegative scale boundary; CoO refines to only 0.15(11) wt% with a negligible ΔRwp and no coherent unique family, so it is not retained. Texture tests along six symmetry-distinct WO₃ axes and the cubic [100]/[110]/[111] axes either remain essentially random (MD≈1), worsen the fit, or are not replay-stable; I’m pruning all texture terms. I’m checking family-by-family widths once more to decide whether the accepted isotropic WO₃ microstrain is sufficient or whether monoclinic anisotropy is genuinely supported.
+
+The width audit favors a common W/X profile with U fixed at zero: it reproduces isolated Co₃O₄ FWHM at low, middle, and high angle, while releasing U over-broadens the 65.55° and 94.35° families despite a small Rwp gain. A replay-stable uniaxial WO₃ strain term along [0 1 1] accounts for the phase-specific hkl broadening. I’m now checking whether the remaining intensity residuals reflect refinable heavy-atom coordinates/ADPs; any trial that distorts WO₆/CoO₆ geometry or destabilizes fractions will be discarded.
+
+The final profile challenge supports W/X (both positive) with U fixed at zero and rejects re-released U because it visibly over-broadens isolated high-angle Co₃O₄ peaks. A [0 1 1] uniaxial WO₃ strain model is replay-stable and improves multiple hkl families. Refining the two W sites moves them away from the coarse three-decimal source coordinates while preserving sixfold WO₆ geometry (1.74–2.17 Å, bond-valence sums ≈6.3); a constrained common W Uiso refines to 0.00986 Å². The Co₃O₄ oxygen-coordinate trial produced implausibly short tetrahedral Co–O distances and is rejected. I’m performing the required final watch-list replay under this exact accepted profile and structural model.
+
+I’m at the final consistency pass now: checking the re-challenged trace-phase scales, then I’ll replay the accepted two-phase model over the complete measured range and export every deliverable from that exact saved project.
+
+The final watch-list challenge is decisive: CoWO₄, CoO, and both W₁₈O₄₉ records all return to the nonnegative scale floor on replay. I’m therefore retaining only monoclinic WO₃ and spinel Co₃O₄, with no defensible trace phase.
+
+The full-range save/reopen/replay converged cleanly (maximum shift/esd 0.010, no singular values). The crystalline normalization is 76.78 wt% WO₃ and 23.22 wt% Co₃O₄; I’m doing the last visual and file-level audit now.
+
+Identified two crystalline phases:
+
+- Monoclinic WO₃ (P 21/c): **76.78 wt%**
+- Co₃O₄ spinel (F d -3 m): **23.22 wt%**
+
+Fractions are normalized over modeled crystalline material. CoWO₄, CoO, and W₁₈O₄₉ candidates refined to the scale floor and could not be quantified reliably. Final fit: Rwp 3.379%, Rp 2.476%, GOF 1.965.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_1_WO3.cif)
+- [Co3O4 CIF](<ATTEMPT_WORKSPACE>/phase_2_Co3O4.cif)
+
+The saved project was reopened and replayed over all 8,301 points; it converged without singular values and agrees exactly with the exported profile, fractions, and statistics.
+

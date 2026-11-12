@@ -1,0 +1,40 @@
+I’ll first inventory the measurement, metadata, and the supplied P0/GSAS-II workflow. Then I’ll identify candidate phases, refine them under a shared physically constrained profile, revisit weak-phase alternatives, and verify the exported CIFs, fractions, profile, and `final.gpx` against one another.
+
+The scan is a raw 10–100° Cu Kα Bragg–Brentano pattern from Mn₃O₄ + WO₃ fired at 900 °C. MnWO₄ is the leading chemical expectation, but I’m treating residual oxides and Mn–W–O intermediates/polymorphs as open candidates and will test them against unique peak families rather than assume a single product.
+
+Peak positions and relative families match monoclinic wolframite MnWO₄ across the full range, including the split 30.1/30.5° doublet and many high-angle lines. The available Mn₃WO₆, Mn₃O₄, and WO₃ records predict strong unique peaks that are not apparent at first pass; I’ll retain them as watch-list candidates and quantify their scales only after the MnWO₄ baseline is physically adequate.
+
+The exact MnWO₄ record is structurally appropriate (P2/c wolframite, sensible MnO₆/WO₆ geometry), though its published coordinates were measured at 2.4 GPa. I also screened ambient-pressure wolframite analogues (notably FeWO₄ and ZnWO₄); they offer the same framework but no peak-position advantage before cell refinement. I’ll keep the exact Mn chemistry as the primary starting model and use the analogues only as a coordinate-model challenge if residual intensities demand it.
+
+The first full-range baseline is replay-stable after removing a redundant histogram scale. It places all peaks with a refined specimen displacement of roughly −0.44 mm and an expanded monoclinic cell, but intensity residuals are still structured (for example, the 18.6° family is overpredicted while 36.2° and 51.4° are underpredicted). That pattern points to structure/texture or low-angle attenuation, not an unmodeled second phase. I’m now challenging those effects one at a time and will keep only replay-stable improvements.
+
+The low-angle deficit is real and coherent across many MnWO₄ families: a Suortti surface-roughness term drops replayed Rwp from 9.91% to 5.36%. Constraining it to the laboratory’s physical range drives \(A\) to 0.05 and \(B\) to about 0.22; once included, atomic-coordinate shifts shrink from an unphysical surrogate to ~0.01–0.03 Å. Texture trials then collapse close to random powder, with only a weak [110]/[001] distinction, so I’m testing that last ambiguity jointly with the coordinate model before deciding whether texture is supported.
+
+The current model is already strongly consistent with single-phase wolframite MnWO₄. I’m finishing the discriminating checks now: background/profile alternatives, weak impurity challenges, and a saved-project replay so the reported fraction and exported profile come from the exact submitted GSAS-II state.
+
+The broadening tests collapse to zero or to sub-physical values, so crystallite-size/strain terms are not supported. That is useful: the remaining structured residual is predominantly intensity/background behavior, not evidence for a second crystalline phase. I’m now testing only smooth native GSAS-II background forms before locking the common profile.
+
+The background converges to a smooth, strictly positive curve; higher-order smooth expansions only trim broad continuum residuals and do not create new Bragg families. I’m using the conservative 12-term common background for the phase challenges, then testing Mn₃WO₆, both Mn₃O₄ records, Mn oxides, and several WO₃ polymorphs one at a time.
+
+A few candidates acquire tiny positive scales, but that alone is not phase evidence: their nominal fractions are only about 0.3–0.6 wt% and most strong lines overlap MnWO₄ residuals. I’m re-testing the three apparent positives under the smoother, more flexible common background and checking whether improvement repeats at multiple candidate-specific peak families.
+
+The weak Mn₂O₃ signal is replay-stable across background choices and is carried by three separated families near 33.2°, 55.4°, and 66.0°; its refined fraction stays 0.56–0.64 wt%. In contrast, the apparent WO₃ scale mainly adds shoulders to the intense MnWO₄ 23.8° line and worsens several unique WO₃ families, so I’m treating it as a profile surrogate rather than a detected phase. I’m doing the final coordinate replay and geometry check on the two accepted phases now.
+
+The accepted model is now serialized and exported: 99.4067 wt% wolframite MnWO₄ and 0.5933 wt% bixbyite Mn₂O₃ (formal fraction s.u. 0.1135 wt%). The final replay converged with no frozen parameters; I’m now running the independent read-only GSAS reconstruction and checking that its regenerated CIFs, fractions, and profile match the submitted artifacts.
+
+Analysis complete.
+
+- MnWO₄ wolframite: 99.4067 wt%
+- Mn₂O₃ bixbyite: 0.5933 wt%
+- Rwp: 5.0116%
+- Independent read-only GSAS-II replay reproduced both fractions and reported no profile-review flags.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-009-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-009-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-009-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-009-r3/workspace/final.gpx)
+- [phase_mnwo4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-009-r3/workspace/phase_mnwo4.cif)
+- [phase_mn2o3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-009-r3/workspace/phase_mn2o3.cif)
+

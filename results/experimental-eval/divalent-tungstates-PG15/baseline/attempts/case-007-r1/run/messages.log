@@ -1,0 +1,62 @@
+I’ll inspect the diffraction data, metadata, and available crystallography tooling first, then identify candidate phases and refine them jointly in GSAS-II. I’ll keep the submitted CIFs, profile, JSON, report, and the exact final `.gpx` internally consistent.
+
+The chemistry points first to magnesium tungstate, with unreacted MgO/WO₃ or a secondary magnesium tungstate as plausible minor phases. I’m now extracting peak positions and checking the installed indexing/database and GSAS-II interfaces so the identification is driven by the measured pattern rather than chemistry alone.
+
+The peak sequence matches monoclinic wolframite-type MgWO₄ very strongly: the diagnostic reflections near 15.93, 19.24, 24.21/24.92, 30.81/31.11, 36.79, and 41.86° all align as one coherent lattice after a common instrument/sample-position correction. I see no clear MgO signature at its strongest expected lines; I’ll test minor-phase additions quantitatively after stabilizing the one-phase refinement.
+
+I’m setting up two controlled GSAS-II trials—Cu Kα₁-only and the reported Kα₁/Kα₂ doublet—because the metadata preserves both possibilities. The comparison will use the same MgWO₄ model and refinement sequence; this avoids folding an incorrect wavelength model into the cell and phase-fraction result.
+
+The GSAS-II environment is intentionally lean and lacks pandas; the first trial stopped before creating a project or changing any results. I’m switching the input conversion to NumPy’s CSV reader and rerunning the same comparison.
+
+The doublet model is already outperforming the Kα₁-only model before the final profile stages (weighted profile residual about 22.7% versus 25.3%). Both jobs are still completing the more expensive line-shape refinements; I’m checking that they are progressing normally before selecting the model.
+
+The one-phase residual reveals the missing phases clearly. A full unmodeled monoclinic WO₃ triplet remains at 23.43/23.91/24.67°, followed by its lines at 26.91, 28.94/29.23, 33.57/33.87/34.47, and 47.54/48.53/50.21°. A weaker MgO sequence is also plausible at 43.21 and 62.54°. I’m adding both precursor phases and will retain each only if its scale is positive, its full reflection sequence is reproduced, and the fit improvement is statistically meaningful.
+
+All three WO₃ candidates refine to similar metrics because the triclinic form is only a subtle distortion, but the room-temperature monoclinic P2₁/n model is best and chemically expected; the two monoclinic CIFs are alternate settings of essentially the same lattice. The current three-phase estimate is roughly 76.5 wt% MgWO₄, 14.2 wt% WO₃, and 9.2 wt% MgO before line-shape and structure refinement. No singular scale correlation remains.
+
+The three-phase model has now reduced the weighted profile residual from ~22% to ~12% with a stable, positive scale for every phase. The effective common profile is converging toward a nearly angle-independent Gaussian term plus a small Lorentzian component; I’m letting the last angular-width term finish, then I’ll refine only structure parameters actually supported by the data.
+
+Refining MgWO₄ coordinates without texture restraints lowered the residual, but oxygen coordinates moved by ~0.2 Å and the refinement did not converge; I’m rejecting that as structurally unsupported for now. The mismatch is chiefly between reflection intensities, so I’m testing one-parameter preferred-orientation models on the unmodified literature structure before allowing atomic shifts.
+
+A restrained model is now stable: MgWO₄ has a modest [110] March–Dollase correction (1.126), only the two cation y coordinates are refined, and all oxygen coordinates remain at the validated wolframite literature values. The refined phase fractions are about 77.8/13.8/8.4 wt%; fully free oxygen refinement was rejected because it produced chemically implausible bond lengths. I’m doing the final wavelength-model and minor-phase robustness checks next.
+
+The Cu Kα doublet is decisively supported in the complete model (Rwp 11.32% versus 12.99% for Kα₁-only). Omitting MgO raises Rwp to 12.09%, so it is a real third crystalline phase rather than an overlap artifact. I’m now running the final all-points refinement and exporting every deliverable directly from that saved project.
+
+The complete export succeeded: 77.82 wt% MgWO₄, 13.83 wt% WO₃, and 8.35 wt% MgO, with Rwp 11.35%. I’m doing one additional unchanged refinement cycle because the all-points extension left the largest parameter shift at 1.76 s.u.; the phase result is stable, but I want the submitted covariance and convergence state cleaner.
+
+The second unchanged cycle converged cleanly (maximum shift 0.004 s.u.). I’m validating the CIFs, profile row-by-row, JSON normalization, and reloaded `.gpx` statistics now; no model changes are planned unless a consistency check fails.
+
+All deliverables pass consistency checks: 8,301 profile rows match the observations exactly, fractions sum to 1, every CIF parses with the intended composition/space-group number, and `final.gpx` reloads with the same statistics. I’m making one last systematic check of the unknown polarization factor from the metadata; if it does not materially improve the fit, the current validated export remains final.
+
+The polarization check is material: the standard laboratory Cu Kα value near 0.7 lowers Rwp from 11.35% to 9.80%, so the earlier 0.5 assumption was not adequate. I’m locating the one-dimensional optimum within the physical range, then I’ll regenerate and revalidate the final files; phase identities are unchanged, while MgO shifts by roughly 1 wt%.
+
+I’ve narrowed the detector polarization correction to a physically plausible region around 0.77. I’m resolving that small remaining minimum, then I’ll regenerate and independently validate the final project, CIFs, profile, fractions, and statistics.
+
+The minimum is at an effective polarization factor of about 0.773; nearby values change the phase fractions by less than 0.01 wt%, so the solution is numerically stable at that scale. I’m fixing it at 0.7725, carrying the model to tighter convergence, and recording that this factor was inferred because the metadata did not supply one.
+
+The tightened refinement converged cleanly at \(R_\mathrm{wp}=9.693\%\), with a maximum shift/s.u. of 0.025. I’m now rerunning two diagnostic controls from that exact project—removing MgO and suppressing Cu Kα₂—to quantify how strongly the minor phase and wavelength model are supported.
+
+Both controls support the final model: excluding MgO raises \(R_\mathrm{wp}\) to 10.49%, and using only Kα₁ raises it to 12.91%. I’m at the final audit now—cross-checking every exported number against `final.gpx`, confirming all 8,301 profile rows, and independently parsing each CIF.
+
+Completed the three-phase GSAS-II Rietveld analysis.
+
+| Crystalline phase | Space group | Weight fraction |
+|---|---:|---:|
+| MgWO₄, wolframite | P2/c | 78.29 wt% |
+| WO₃, monoclinic | P2₁/n | 14.13 wt% |
+| MgO, rocksalt | Fm-3m | 7.58 wt% |
+
+Fractions are normalized over modeled crystalline phases. Fit statistics: \(R_p=7.037\%\), \(R_{wp}=9.693\%\), \(R_{exp}=2.863\%\), GOF = 3.393. Practical fraction uncertainties are approximately ±1–2 wt%; the precise WO₃ monoclinic/triclinic distortion remains less certain than its phase identity.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MgWO4.cif](<ATTEMPT_WORKSPACE>/MgWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [MgO.cif](<ATTEMPT_WORKSPACE>/MgO.cif)
+
+All CIFs parse successfully, the 8,301 profile rows match the source data, and the exported fractions and statistics were cross-checked against `final.gpx`.
+

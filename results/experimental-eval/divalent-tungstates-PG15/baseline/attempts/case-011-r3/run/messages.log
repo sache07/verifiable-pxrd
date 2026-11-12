@@ -1,0 +1,47 @@
+I’ll inspect the measurement metadata, pattern format, and installed diffraction/refinement tooling first, then identify candidate phases and refine them together in GSAS-II. I’ll keep the phase count evidence-driven and report any ambiguity rather than forcing every peak into a model.
+
+The experiment uses unstripped Cu Kα₁/Kα₂ data in reflection geometry, with no supplied uncertainties or calibrated profile. The chemistry restricts likely phases to Mn–W–O compounds and unreacted/partially transformed manganese or tungsten oxides, but I’ll let the peak positions and intensities decide among them.
+
+The major peak sets separate cleanly at first pass: the 23.44/23.93/24.69° triplet and related 33–35° lines are characteristic of monoclinic WO₃, while 29.01, 37.67, ~42.2, 56.2, 59.7, and 72.5° match rutile-type β-MnO₂. Both sets share an approximately +0.3° displacement from reference positions, so I’m treating that as an instrumental/specimen zero-shift hypothesis to refine, not as evidence for unusual lattice constants.
+
+I’m now setting up controlled GSAS-II trial refinements for the plausible WO₃ models against the same β-MnO₂ model. The comparison will use identical background, displacement, cell, and profile stages, so the chosen WO₃ symmetry is based on whole-pattern fit quality and physically sensible parameters rather than only the three strongest peaks.
+
+The first monoclinic trial already reaches Rwp ≈ 7.92% with physically reasonable cells and a provisional crystalline split near 71 wt% WO₃ / 29 wt% β-MnO₂. The alternative WO₃ refinements are still running; I’m using them to check whether lower symmetry genuinely explains high-angle splitting or only adds parameters.
+
+The model comparison favors a very slightly triclinic WO₃ metric (Rwp 6.01%) over the best monoclinic setting (6.19%), while the standard room-temperature monoclinic coordinate set is distinctly worse (7.92%). Because the improvement is small and profile/systematic effects can mimic weak symmetry lowering, I’m tightening the refinement now: removing a scale degeneracy and constraining profile/size terms to physical ranges before deciding whether P-1 is defensible.
+
+The constrained runs are eliminating the earlier soft singularities: the histogram scale is fixed, phase scales carry the quantitative information, and profile/size terms are bounded and phase-specific. They are slower because each candidate is being re-refined from raw data rather than inherited from the over-parameterized trials.
+
+One constrained monoclinic run has converged cleanly at Rwp 6.12%, with 70.72/29.28 wt% and no Hessian singularity; the extra Gaussian angle term refined to its physical lower bound, indicating the simpler width law is sufficient. I’m waiting for the directly comparable triclinic and two-parameter profile fits to finish.
+
+Refining crystallite broadening for both phases improves the triclinic model to Rwp ≈ 5.98% with physically finite domain sizes and a 70.9/29.1 wt% split. I’m separately testing polarization, axial divergence, and low-order texture corrections; only effects that improve the fit without boundary hits or implausible corrections will enter the final project.
+
+The phase-count screen finds no meaningful MnWO₄ or Mn₃WO₆ contribution (both <0.1 wt% and below their uncertainties). Most oxide alternatives likewise produce only sub-percent, marginal corrections. Cubic Mn₂O₃ is the one nontrivial case at about 0.94 wt% with a small Rwp improvement, so I’m checking whether it explains independent peaks or merely borrows intensity from overlapping WO₃/MnO₂ residuals.
+
+The two-phase model remains the defensible phase count: MnWO₄/Mn₃WO₆ refine below 0.1 wt%, and the apparent ~1 wt% Mn₂O₃ correction is driven mainly by overlap under WO₃ peaks rather than independent lines. I’m therefore finalizing two phases, while documenting both the possible trace-oxide limit and the near-monoclinic ambiguity of the selected low-symmetry WO₃ model.
+
+The final clean project is refining over the entire measured 9.903–100.095° range (the trials trimmed only the edge points). Its staged model is fixed to two phases, dual Cu Kα wavelengths, specimen displacement, a smooth 15-term background, bounded physical peak widths/domain sizes, and one stable β-MnO₂ texture coefficient.
+
+The full-range refinement is still progressing normally; GSAS-II is quiet because diagnostic output is suppressed, and no error has surfaced. Once it finishes I’ll validate the saved project by reopening it, confirm every fit.csv row against the project arrays, and inspect the final difference curve for unmodeled peaks.
+
+The final full-range refinement converged cleanly at Rwp 5.861% (Rp 4.301%), with no frozen or singular variables and a maximum final shift/s.u. of 0.086. The normalized crystalline fractions are 70.874 wt% WO₃ and 29.126 wt% β-MnO₂; I’m now doing file-level consistency and visual residual checks before writing the report.
+
+Validation passed: `fit.csv` has all 8,301 measured points and exactly matches the arrays stored in `final.gpx`; both CIFs parse with the intended formulas and space groups; fractions sum to 1.000000; and the reopened project remains converged with no frozen parameters. I’m cleaning only GSAS-II’s redundant backup/listing files, leaving the requested deliverables intact.
+
+Completed the two-phase GSAS-II refinement.
+
+- WO₃, pseudo-monoclinic triclinic P-1: 70.87 wt%
+- β-MnO₂ (pyrolusite), P4₂/mnm: 29.13 wt%
+- Rwp = 5.861%, Rp = 4.301%, GOF = 2.180
+
+The precise P-1 versus monoclinic WO₃ symmetry remains uncertain; possible trace Mn₂O₃ near 1 wt% was not sufficiently supported.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_triclinic.cif)
+- [β-MnO₂ CIF](<ATTEMPT_WORKSPACE>/phase_beta_MnO2.cif)
+

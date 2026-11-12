@@ -1,0 +1,39 @@
+I’ll inspect the pattern, metadata, and the supplied diffraction workflow first, then identify candidate phases and carry the best model through a GSAS-II refinement. I’ll keep the submitted fractions tied to the final project and flag any ambiguity that the diffraction data cannot resolve.
+
+The chemistry narrows the plausible inventory to Ni–W–O phases and residual NiO/WO₃, but phase count still has to come from the peak set. I’m now checking the provided local COD/GSAS-II interfaces and extracting peak positions before committing to any structural candidates.
+
+The peak inventory is now coherent as two crystalline phases: wolframite-type NiWO₄ plus monoclinic WO₃. The diagnostic NiO line at about 43.4° is absent, so the weak feature near 37.2° is not sufficient evidence for residual NiO; I’m excluding NiO unless the full-profile refinement leaves its other required peaks unexplained.
+
+The first two-phase Rietveld model already reaches 5.53% Rwp (3.48% counting-statistical minimum) and gives roughly 76/24 wt% NiWO₄/WO₃. I’m tightening nuisance parameters and testing coordinate refinement branches now; this is where the remaining systematic intensity residuals—and the defensible final fraction—will be decided.
+
+The nuisance tests show no meaningful preferred orientation and no physically valid surface-roughness improvement. Polarization refinement helps slightly; the phase fractions remain very stable (about 76.1/23.9 wt%). I’m now checking alternate published WO₃ and wolframite parents so the final atomic coordinates are not an artifact of one reference entry.
+
+The alternate-phase tests favor monoclinic P2₁/c WO₃; the triclinic and higher-symmetry models leave larger systematic residuals. The selected two-phase model is physically sensible (shortest Ni/W–O contacts 1.76–1.91 Å; shortest O–O contacts 2.39–2.60 Å) and gives a full-grid Rwp of 4.18%. I’m packaging that exact model and checking project/CIF/fraction consistency now.
+
+The structural assignment is settled as wolframite NiWO₄ plus monoclinic WO₃. I’m finishing the submission metadata and running consistency checks across the CIFs, profile, and saved GSAS-II project.
+
+The deliverables are now written. I’m checking the submission through the same parser used for evaluation and independently recomputing phase normalization and fit residuals from the saved files.
+
+The evaluator’s sandboxed replay wrapper cannot start here because this kernel disables unprivileged namespaces. That is an environment limitation, so I’m running the identical replay worker directly against the local project and then applying its model/CIF consistency checks.
+
+One compatibility check found the angle-column label included a unit suffix that the evaluation parser does not recognize. I’m changing only that header to `two_theta`; the 8,282 numerical rows remain untouched.
+
+Completed the two-phase refinement:
+
+- NiWO₄, wolframite P 2/c: **76.12 wt%**
+- WO₃, monoclinic P 2₁/c: **23.88 wt%**
+- Rwp = 4.184%, Rp = 3.222%, goodness of fit = 1.207
+
+No crystalline NiO was supported. Practical phase-fraction uncertainty is approximately ±1 wt%; fractions exclude any unquantified amorphous or trace material.
+
+Outputs:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-012-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-012-r1/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-012-r1/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-012-r1/workspace/fit.csv)
+- [NiWO4 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-012-r1/workspace/phase_NiWO4.cif)
+- [WO3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-012-r1/workspace/phase_WO3.cif)
+
+The saved project passed independent forward replay, CIF consistency, physical-contact, and profile-export checks.
+

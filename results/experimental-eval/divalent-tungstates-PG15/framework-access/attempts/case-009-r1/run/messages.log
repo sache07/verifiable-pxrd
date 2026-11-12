@@ -1,0 +1,34 @@
+I’ll inspect the pattern, metadata, and the frozen divalent-tungstate workflow first, then identify candidate phases and carry the best structural model through GSAS-II refinement. I’ll keep phase count conservative and verify that the exported CIFs, profile, fractions, statistics, and `final.gpx` all come from the same final model.
+
+The chemistry is Mn₃O₄ + WO₃ fired at 900 °C, so MnWO₄ is the obvious principal candidate, but the generator explicitly allows residual oxides and off-stoichiometric Mn–W–O phases. I’m now extracting the observed peak inventory and checking the framework’s actual GSAS-II conventions and frozen COD access before committing to a phase set.
+
+The peak positions and intensities are already highly diagnostic: essentially every strong and medium reflection maps to monoclinic wolframite MnWO₄ (P2/c), while the distinctive lines expected for Mn₃WO₆, Mn₃O₄, or WO₃ are absent. I’ll proceed with a one-phase MnWO₄ model, but I’ll test residuals after refinement for any statistically credible second phase rather than assuming complete reaction.
+
+The first refinement confirms a single MnWO₄ phase is sufficient at the indexing level. The fit is improving as expected, but the first trial exposed a near-perfect zero/height correlation; I’m separating those calibration terms and will choose the physically stable parameterization before final export.
+
+The profile refinement is the slowest step because it is disentangling instrumental broadening from crystallite size and microstrain over all 8,301 points. The current stable model is at Rwp ≈ 7.24%; I’m letting that decomposition converge before testing texture and surface roughness, which are the remaining likely sources of intensity mismatch.
+
+Adding the exact Bragg–Brentano surface-roughness model drops Rwp from 4.27% to 3.90% and returns physically plausible roughness and polarization values; that is strong evidence the low-angle deficit is a specimen effect, not a missing phase. I’m now testing the five allowed March–Dollase texture axes and the allowed anisotropic-strain axes as discrete alternatives.
+
+The allowed texture models all refined to ratios within 0.7% of a random powder, so texture is not supported. A [001] uniaxial microstrain model gives a reproducible improvement and a plausible axial/equatorial ratio (~0.53–0.59), so I’m retaining that broadening anisotropy. I’m also tightening the background representation because the scan has a steep low-angle continuum.
+
+The explicit impurity tests are negative at meaningful levels: Mn₃WO₆ refines to zero, WO₃ to ~0.01 wt%, and Mn₃O₄ to only 0.15(12) wt% (about 1.3σ). I’ll therefore report one crystalline phase and note an approximate 3σ upper bound of ~0.5 wt% for residual Mn₃O₄ rather than presenting noise-level scales as phases.
+
+The final model is a single wolframite MnWO₄ phase; candidate Mn₃WO₆, WO₃, and Mn₃O₄ additions were not statistically supported. I’m now doing an independent GSAS-II replay of `final.gpx` and a structural sanity check, then I’ll write the uncertainty-focused report.
+
+The independent replay regenerated all 8,301 calculated points from atomic structure factors, ignored the project’s cached profile, and reproduced the submitted curve to numerical precision (`Rwp = 3.72755%`). The CIF also matches the project export exactly and passes the contact/occupancy screen; the shortest W–O, Mn–O, and O–O distances are chemically reasonable.
+
+The deliverables now contain the refined P2/c MnWO₄ model, its 100% normalized crystalline fraction, and a report that explicitly treats the ~0.15 wt% Mn₃O₄ trial as non-significant. I’m running the last schema/profile-integrity checks across the five requested files.
+
+Identified one crystalline phase: wolframite MnWO₄, space group P2/c, at 100 wt% normalized crystalline fraction. No secondary phase was statistically significant.
+
+Fit: Rwp 3.72755%, Rp 2.87663%, GOF 1.08397. Independent GSAS-II replay reproduced the submitted profile.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-009-r1/workspace/result.json)
+- [phase_MnWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-009-r1/workspace/phase_MnWO4.cif)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-009-r1/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-009-r1/workspace/final.gpx)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-009-r1/workspace/report.md)
+

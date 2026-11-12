@@ -1,0 +1,42 @@
+I’ll inspect the pattern, metadata, and the reusable crystallography tooling first, then build a phase inventory and refine it residual-first. I’ll keep the final exports tied directly to the replayed `final.gpx`.
+
+The dominant peak family already points to scheelite-type PbWO₄, but several strong 29–31° and ~51.5° peaks are not explained by that phase. I’m screening Pb–W–O intermediates and both precursor polymorphs before committing the inventory.
+
+The unmatched peaks are consistent with residual monoclinic WO₃ and orthorhombic massicot PbO, but lead tungstate intermediates could mimic parts of that set. Because the local database has no Pb₂WO₅/Pb₃WO₆ entries, I’m applying the requested stoichiometric-analogue search before refining those assignments.
+
+The analogue screen was decisive: a Pb₂MoO₅-derived C2/m Pb₂WO₅ model accounts coherently for the 25.9°, 29.35°, 30.62°, and 31.05° families that PbO does not. The first three-phase refinement is now converging with positive scales for scheelite PbWO₄, Pb₂WO₅, and monoclinic WO₃; I’m checking polymorph and weak-phase alternatives under the same nuisance model.
+
+Massicot is independently supported: adding it lowers Rwp from 16.81% to 14.70%, while litharge and Pb₃O₄ only reach 16.13% and 16.68%. Its refined cell is physically reasonable and the scale remains positive. I’m now separating genuine phase-dependent broadening/asymmetry from any remaining inventory problem before fixing fractions.
+
+Re-challenging the weak-phase watch list exposed a real fifth phase: tetragonal litharge PbO adds coherent peaks at 28.85°, 32.11°, 36.01°, 48.86°, and 54.91° and refines to about 3.3 wt%, while orthorhombic massicot remains independently required. This is chemically plausible for PbO heated through its ~489 °C polymorphic transition and then cooled.
+
+The clean five-phase baseline has a replay-stable Rwp near 12.9%. Common W/X plus SH/L reproduces isolated FWHM from ~27° to 94°; U is statistically weak, preferred-orientation trials stay essentially unity, and anisotropic width trials either hit size bounds or require negative strain, so I’m pruning them. I’m retaining only a modest isotropic microstrain for the Pb₂WO₅ prototype, where it is positive, stable, and physically plausible.
+
+A geometry/occupancy audit caught an origin-choice import problem in the litharge source: GSAS-II had expanded Pb onto a general fourfold site, exporting Pb₂O instead of PbO. I’m correcting litharge to the standard P4/nmm setting (Pb and O both on multiplicity-2 sites) and will rerun its scale and all final fractions; the current litharge number is therefore provisional.
+
+The structural refinement and export are complete. I’m finishing the evidence/uncertainty report, then I’ll do one last project-reload and file-consistency check so the CIFs, fractions, and profile all trace to `final.gpx`.
+
+The final model is internally coherent: all five scales remain positive after reopening, and the only retained phase-specific broadening is the supported Pb₂WO₅ microstrain. I’m now checking numerical equality between the reopened project, `result.json`, and every row of `fit.csv`.
+
+Completed the five-phase refinement:
+
+| Phase | Weight fraction |
+|---|---:|
+| PbWO₄, I4₁/a | 61.57% |
+| Pb₂WO₅, C2/m prototype | 15.75% |
+| WO₃, P2₁/n | 10.34% |
+| PbO massicot, Pbcm | 7.13% |
+| PbO litharge, P4/nmm | 5.21% |
+
+Final fit: Rwp 11.688%, Rp 7.893%, GOF 3.345. Project reload and all 8,282 profile rows passed consistency checks.
+
+Outputs:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [PbWO4 CIF](<ATTEMPT_WORKSPACE>/phase_1_PbWO4.cif), [Pb2WO5 CIF](<ATTEMPT_WORKSPACE>/phase_2_Pb2WO5.cif), [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_3_WO3.cif), [massicot CIF](<ATTEMPT_WORKSPACE>/phase_4_PbO_massicot.cif), [litharge CIF](<ATTEMPT_WORKSPACE>/phase_5_PbO_litharge.cif)
+
+Main uncertainty is the Pb₂WO₅ analogue-based structure and monoclinic-versus-triclinic WO₃ distinction. Pb₃O₄ was tested but excluded because its unique reflections lacked coherent support. Fractions are normalized over crystalline phases only; amorphous content is undetermined.
+

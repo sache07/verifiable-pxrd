@@ -1,0 +1,40 @@
+I’ll first inspect the specimen metadata, diffraction grid, and the frozen analysis helpers/reference index. Then I’ll identify the main phases, build a complete GSAS-II project, and only investigate residual families that remain coherent after the ordinary chemistry is modeled.
+
+The specimen is a 500 °C Mn₂O₃ + WO₃ reaction measured over 10–100° with Cu Kα₁/Kα₂. I’m querying only the frozen COD index for Mn–W–O and precursor/decomposition candidates, then I’ll compare their full peak families against the observed pattern before refining any fractions.
+
+The peak-family check strongly favors a low-symmetry WO₃ polymorph as the dominant phase: the diagnostic 23–25°, 33–35°, 47–56°, and 60–63° groups all recur. MnWO₄ and Mn₃WO₆ are provisionally disfavored because their strongest independent families near 18–20° and 30–31° are absent. I’m now fitting every plausible WO₃ reference on the same GSAS-II grid before deciding which low-symmetry topology is physical.
+
+The leading WO₃ models are now separated: the physically sensible monoclinic P2₁/c model (COD 2311041) reaches Rwp ≈10.6% before coordinate refinement, slightly better than the alternative P2₁/n model (≈11.1%). An old idealized WO₃ entry has sub-ångström atom contacts and is being rejected despite its nominal composition. I’m checking the closely related triclinic model once, because it is the only same-composition alternative that could explain additional splitting without inventing another phase.
+
+The triclinic checkpoint is substantially worse (Rwp still ≈20.5% after cell/calibration refinement versus ≈14.2% for monoclinic before profile terms), so it is not supported as the dominant topology. I’m retaining the monoclinic P2₁/c phase and will now quantify whether any Mn-bearing phase has a stable positive scale in its residual pattern.
+
+The residual family at 33.26°, 38.53°, 45.49°, 49.62°, 55.46°, 66.03°, and 81.83° is fully indexed by cubic bixbyite Mn₂O₃. Adding it lowers Rwp from 10.60% to 7.39% with a stable positive fraction near 27 wt%; MnWO₄/Mn₃WO₆ remain unsupported. Cubic Ia‑3 is also marginally better than the exact-composition orthorhombic and noncentrosymmetric alternatives, and is the physically ordinary ambient Mn₂O₃ model. I’m now refining coordinates in the requested heavy-then-light order with geometry checks at each checkpoint.
+
+The first unconstrained coordinate branch improved Rwp to about 7.00%, but several oxygen shifts were too large for the known reference-mismatch scale, so I am not accepting that numerical gain yet. A hard-limit trial exposed GSAS-II’s boundary-freezing behavior and was discarded. I’m testing the five physically allowed texture axes on the source-like coordinates first; this should prevent coordinate shifts from compensating for specimen orientation.
+
+The specimen terms are now clearly supported: WO₃ has uniaxial broadening along [010], polarization refines to 0.933, and a small low-angle roughness correction improves the fit. With those terms in place, heavy-atom shifts stay modest and physical. The unconstrained WO₃ oxygen branch produced 1.53 Å W–O contacts, so I rolled it back; refining only the bixbyite oxygen site retains sensible Mn–O geometry and gives Rwp ≈6.59%.
+
+After enforcing valid Uiso values and re-alternating phase/instrument broadening, Rwp falls to 6.34%. Re-estimating polarization with the low-angle correction gives the best physical checkpoint so far at Rwp 6.15%, with roughly 74 wt% WO₃ and 26 wt% Mn₂O₃. I’m doing one final profile/specimen cycle, then I’ll freeze the best full-grid state and export all required artifacts.
+
+The last branches confirmed that GSAS-II’s bound-hit checkpoints can report stale residuals; I discarded those and replay-checked the accepted state. The best consistent model is now Rwp ≈6.24% before adding the narrow edge intervals, with physical WO₃/Mn₂O₃ geometry and no unassigned reflection family. I’m extending the refinement limits to the exact 9.903–100.095° input grid, freezing and replaying that model, then exporting the CIFs/profile/statistics from the same project.
+
+All requested artifacts are now generated from the same frozen full-grid project. I’m running one independent no-refinement replay of `final.gpx`—regenerating reflection lists rather than trusting its cached calculated array—to verify the submitted CIF inventory, fractions, and profile are mutually consistent.
+
+Independent replay passed: `final.gpx` regenerated the complete 8301-point profile with no refinement, no physical-review flags, Rwp 6.23577%, and exactly the submitted 0.73219/0.26781 phase fractions. Both exported CIFs also pass the occupancy, density, and contact-geometry screens, and `fit.csv` is recognized on the exact observed grid.
+
+Identified crystalline phases:
+
+- Monoclinic WO₃, P 21/c: 73.22 wt%
+- Cubic Mn₂O₃, I a -3: 26.78 wt%
+
+No MnWO₄ or Mn₃WO₆ is supported. Estimated realistic fraction uncertainty is about ±2 wt%. Full-grid Rwp is 6.236%.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r2/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r2/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r2/workspace/fit.csv)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r2/workspace/phase_WO3.cif)
+- [phase_Mn2O3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r2/workspace/phase_Mn2O3.cif)
+

@@ -1,0 +1,48 @@
+I’ll inspect the pattern, metadata, and the reusable refinement package first, then build a chemically screened phase inventory and test candidates under a common GSAS-II baseline. I’ll keep phase inclusion residual-led and verify the exported CIFs, fractions, profile, and final project agree exactly.
+
+The chemistry strongly suggests zinc tungstate as the main reaction product, with ZnO/WO₃ and possible tungsten-oxide polymorphs as the first residual-phase challenges. I’m now extracting the observed peak families and screening database records for composition, symmetry, cell, occupancy, and temperature plausibility before any refinement.
+
+Peak positions support wolframite ZnWO₄, while coherent unmatched families at about 23.27°, 26.69°, 28.89°, 33.35°, and 34.31° support residual WO₃ rather than noise. Before comparing WO₃ polymorphs, I’m stabilizing a physical common profile: one specimen-height correction, nonnegative U/W/X broadening, and axial-divergence asymmetry, with size/strain/texture/roughness neutralized.
+
+The first polymorph trials are still refining across the full 10–100° range. I’m comparing the room-temperature monoclinic neutron model, the older monoclinic model, triclinic WO₃, and the historical subcell record with identical background, geometry, and profile freedoms; this should separate a physical structural choice from a database-record artifact.
+
+Both monoclinic records converge to essentially the same result: about 83–84 wt% ZnWO₄ and 16–17 wt% WO₃, with Rwp ≈13.11%. The neutron WO₃ record is marginally better and has complete, physically sensible WO₆ geometry; I’m continuing the triclinic and historical-subcell challenges before accepting it.
+
+With the common profile fixed, the monoclinic model reproduces the independently refined result (Rwp 13.109%, 83.565/16.435 wt%). That replay stability is good evidence the fractions are not being created by profile freedom. The remaining tests now ask whether triclinic flexibility, residual ZnO, or reduced tungsten oxide gives a reproducible improvement.
+
+Residual ZnO is clearly supported, not just a watch-list possibility: adding it under the fixed common profile lowers Rwp from 13.109% to 12.279%, gives a positive ~8 wt% fraction, and explains several coherent families (31.9°, 47.8°, 56.7°, 63.0°). Because the inventory changed, I’ll rebuild the shared profile with ZnO included before judging WO₃ symmetry or any weaker phase.
+
+The rebuilt three-phase baseline is stable at 76.60 wt% ZnWO₄, 15.43 wt% monoclinic WO₃, and 7.97 wt% ZnO (formal covariance-only s.u.’s about 0.24, 0.15, and 0.22 wt%). The shared profile remains well behaved—U/V fixed at zero, positive W/X, and one axial term—with no frozen or bound parameters.
+
+A free polarization coefficient drives beyond its physical 0–1 range, so I’m rejecting that unconstrained surrogate despite its low Rwp. A bounded/physical model is necessary. A one-parameter Suortti roughness correction gives a large, coherent improvement (Rwp 9.23%) while retaining similar phase fractions; I’m checking whether its second parameter is actually supported and whether a bounded polarization term is still needed.
+
+The ten-term Chebyshev background is still smooth and positive (only one turning point over 90°) and captures the steep low-angle continuum without peak-like oscillations, reducing Rwp to 5.02%. The remaining dominant residual is peak-shape—not background or integrated intensity—so I’m returning to the common instrumental profile and testing the observed low-to-high-angle FWHM trend before adding any phase-specific broadening.
+
+The unconstrained U/V/W/X trial improves Rwp only slightly (5.02→4.91%) by making U negative, which violates the required physical baseline, so that term is rejected. I’m letting the reduced U/V/W and Kα-ratio checks finish; if they also collapse or become nonphysical, the accepted common profile remains U=V=0 with positive W/X and SH/L.
+
+The phase-width checks are behaving diagnostically: ZnWO₄ size runs to the maximum (no supported size broadening), while its strain becomes negative to improve the fit, which is nonphysical. The WO₃ size trial hits its opposite bound and fails. These are being pruned rather than retained as nuisance surrogates; the remaining phase/term combinations are still running.
+
+Under the rebuilt common nuisance model, monoclinic WO₃ now outperforms triclinic WO₃ both without strain (Rwp 5.017 vs 5.041%) and with the same positive isotropic strain freedom (4.850 vs 4.886%). This reverses the tiny earlier triclinic advantage and shows it was absorbing baseline/profile deficiencies; the room-temperature monoclinic neutron structure is the defensible choice.
+
+The final inventory and nuisance model are now coherent: three phases, smooth positive background, one specimen-height term, positive W/X plus SH/L, physical roughness, and only a replay-stable [100] uniaxial microstrain term for WO₃. Texture trials gave tiny, competing axis preferences and were pruned. I’m now freezing that model, reopening and replaying it over the full range, then exporting the exact project-derived CIFs and profile.
+
+The replayed final project converged with no frozen variables. Its exported profile is byte-for-value consistent with the arrays stored in `final.gpx`, all three CIFs parse with the intended symmetries and full occupancies, and the phase fractions sum to 1.000000 over the modeled crystalline phases. I’m doing one last cross-file audit of paths, cells, statistics, and rounding.
+
+Completed. Crystalline composition, normalized to modeled phases:
+
+- ZnWO₄: 75.06 wt%
+- Monoclinic WO₃: 17.74 wt%
+- Wurtzite ZnO: 7.20 wt%
+
+Practical uncertainties are approximately ±1.5, ±1.5, and ±0.5 wt%, respectively. Final fit: Rwp 4.8177%, Rp 3.7281%, GOF 1.2730. Amorphous content cannot be quantified without an internal standard.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [ZnWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_1_ZnWO4.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_2_WO3.cif)
+- [ZnO CIF](<ATTEMPT_WORKSPACE>/phase_3_ZnO.cif)
+

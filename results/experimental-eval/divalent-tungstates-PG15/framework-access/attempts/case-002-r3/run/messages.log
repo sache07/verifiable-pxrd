@@ -1,0 +1,50 @@
+I’ll inspect the pattern, metadata, and the framework’s analysis/tooling notes first, then identify candidate phases, build a GSAS-II refinement, and verify every exported artifact against the final project.
+
+The chemistry is Ba–W–O from BaO₂ + WO₃ at 200 °C, but I’m keeping precursor/product mixtures and polymorphs open. The scan is raw Cu Kα reflection data (10–100° range, 8,301 points), so phase identification will be driven by the full profile rather than the nominal reaction alone.
+
+Peak clustering already points strongly to an unreacted/partly unreacted precursor assemblage: the 23–25° triplet is characteristic of monoclinic WO₃, while an independent series near 27.1, 34.5, 42.2, and 55.9° is consistent with tetragonal BaO₂. I’m now testing every relevant Ba–O, W–O, and Ba–W–O COD structure quantitatively, including a shared angular shift and realistic broadening, before committing to the phase count.
+
+I’ve ruled out BaO and BaWO₄ as major phases from their required peaks: BaWO₄ would demand a conspicuous reflection near 31.9°, and BaO a dominant line near 28.1°, neither of which is present. I’m proceeding with a two-phase WO₃ + BaO₂ Rietveld model and will use residual peaks to test whether any minor third phase is warranted.
+
+The initial model is refining now with the exact Cu Kα doublet and Poisson weights. I’m staging background/scale, lattice and zero, instrumental breadth, phase-specific size/strain, then coordinates; this separation is important because the unknown calibration and specimen broadening are otherwise strongly correlated.
+
+The physically bounded run exposed a local-minimum problem: several width parameters hit bounds while the fit was still moving, so those values are not trustworthy. I’m using the profile only as a screening diagnostic now and comparing all plausible WO₃ reference structures; the correct framework should fit without forcing the instrument or crystallite parameters to extremes.
+
+The candidate comparison is still running, but one low-symmetry historical WO₃ entry has already failed numerically and is a poor model. The remaining candidates are the chemically plausible monoclinic/triclinic/orthorhombic variants; I’ll select on physically achievable profile agreement, not just the lowest unconstrained residual.
+
+The best physical model is now stable at about 65 wt% WO₃ / 35 wt% BaO₂, but its residual has a clear sharp-core/broad-tail mismatch rather than unexplained reflections. I’m now separating Gaussian instrumental width from Lorentzian crystallite broadening and testing anisotropic strain; this is the main remaining route to a defensible fit and more stable fractions.
+
+No third crystalline phase is indicated: the remaining residual follows the two identified phases’ peak shapes, not an independent peak set. The current model gives 65.1/34.9 wt% with only very weak texture and essentially no roughness/polarization correction. I’m doing one final apples-to-apples comparison between the triclinic and symmetry-related monoclinic WO₃ descriptions before export.
+
+The unconstrained coordinate refinement was over-flexible (it shortened one W–O contact to 1.56 Å), so I’m not using it as the submitted structure. Restoring the published WO₃ coordinates costs only ~0.19 Rwp points and gives chemically normal contacts; I’m allowing only a small, bounded coordinate adjustment consistent with the stated reference uncertainty.
+
+The phase assignment is stable: triclinic WO₃ plus tetragonal BaO₂, with no independent peak set supporting a third crystalline phase. I’m finalizing the constrained structural refinement, regenerating the profile directly from the saved GSAS-II project, and then checking that the CIFs, fractions, and reported curve all replay consistently.
+
+The selected model uses only small, bounded coordinate shifts from database structures; this avoids the lower-Rwp but chemically over-flexible coordinate solution. The phase-scale result is essentially insensitive to that choice (about 65.4 wt% WO₃ and 34.6 wt% BaO₂ among the modeled crystalline phases).
+
+One calibration issue remains important: an unconstrained cell/zero refinement let the BaO₂ cell absorb part of the specimen displacement, pushing it beyond the synthesis framework’s stated ±0.5% reference-cell perturbation. I’m testing the physically identifiable alternative now—joint zero and specimen-shift refinement with both cells bounded to that range—before locking the final structure.
+
+The bounded calibration refinement is slower than the earlier unconstrained fit because GSAS-II is rebuilding the triclinic reflection list through several coupled cycles. The saved candidate remains intact; this is a verification branch to see whether specimen displacement can recover more defensible unit cells without materially degrading the profile.
+
+That check exposed a more likely explanation than calibration alone: forcing the 1930s BaO₂ reference cell (3.78/6.77 Å) drives both zero and displacement to their limits and worsens Rwp to 23%. I’m checking whether the synthetic library contains a different BaO₂ entry near the refined 3.815/6.852 Å cell; choosing the correct reference is more defensible than forcing the wrong cell.
+
+The calibration branch converged at Rwp 7.19% with the instrument zero fixed at +0.25° and a small specimen displacement of −79 µm. This reproduces the profile slightly better than the zero-only model, while keeping both angular corrections inside the documented ranges; their strong correlation will be reported as a lattice-parameter uncertainty rather than hidden.
+
+The deliverables are now generated from a successful read-only replay of `final.gpx`; the replay recovered the same two phase scales and raised no negative-width, background, displacement-tensor, or polarization flags. I’m doing the final parser/CIF consistency checks now.
+
+Completed. The refined crystalline composition is:
+
+- Triclinic WO₃ (*P* -1): 65.46 wt%
+- Tetragonal BaO₂ (*I*4/mmm): 34.54 wt%
+
+Rwp = 7.190%, goodness of fit = 1.977. No crystalline BaWO₄ or third phase was required. Fractions are normalized over crystalline material; oxygen coordinates and lattice calibration retain systematic uncertainty.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r3/workspace/final.gpx)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r3/workspace/phase_WO3.cif)
+- [phase_BaO2.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r3/workspace/phase_BaO2.cif)
+

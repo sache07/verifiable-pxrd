@@ -1,0 +1,78 @@
+I’ll inspect the specimen metadata, pattern, and the frozen analysis tooling first, then build and refine a complete multiphase GSAS-II model. I’ll keep the phase search tied to coherent residual peak families and preserve the best physical checkpoint as I go.
+
+The chemistry points first to Sr–W–O products with possible SrCO₃/WO₃ remnants, but I’m not assuming a single-phase SrWO₄ outcome. I’m extracting the observed peak families and screening exact-composition entries from the frozen COD index before choosing structures.
+
+Peak-position mapping confirms scheelite SrWO₄ across the full 10–100° range; the fitted displacement term corresponds to roughly −0.68 mm specimen height, within the stated geometry. A second coherent triplet at about 23.46/23.97/24.73° and its higher-angle partners is consistent with monoclinic WO₃. I’m now refining those together so the remaining unassigned family can be isolated cleanly.
+
+The two-phase refinement leaves a separate, high-intensity family (notably 29.765, 32.612, 44.673, 53.443, and 67.026°), so WO₃ alone is incomplete. I’m checkpoint-screening the chemically plausible exact Sr/W/O/C references against the same physical displacement/cell model; candidates that need large cell distortions, negative scales, or nonphysical widths will be rejected even if their residual drops slightly.
+
+The reference screen is still running in parallel. Early model-building already shows the major SrWO₄ cell expanding by about 0.5–0.6% from its COD parent, which is consistent with the allowed reference mismatch; I’m using that as a sanity check on every candidate rather than letting wrong phases absorb peaks through arbitrary cell changes.
+
+The screen is slower than a simple peak lookup because each candidate is being refined on the full 8,282-point grid in three staged checkpoints. That is deliberate here: several oxide patterns share the 23–24° triplet, and the discriminating evidence is the full higher-angle family plus whether scale and geometry remain physical.
+
+The exact-reference screen selects monoclinic P2₁/c WO₃ unambiguously among ordinary precursors: its cell changes stay below 0.2%, scale is positive, and it gives the lowest full-family residual. The alternative WO₃ settings are close but slightly worse; carbonate, Sr₃W₂O₉, SrO/SrO₂, and the high-pressure SrWO₄ polymorph either collapse to negligible scale or require implausible distortion. I’m retaining the physical WO₃ model and testing only the still-unassigned family as a third phase.
+
+The third-phase tests are now evaluating whether the 29.765/32.612/44.673° family is an ordinary residual precursor/product or needs analogue transfer. I’ll only move to cross-chemistry prototypes if none of these exact Sr/W/O/C structures gives a stable positive scale and indexes the whole family.
+
+Several candidate branches are numerically ill-conditioned, which I’m treating as unknown/rejected only after checking their preceding physical checkpoint. That distinction matters here: an optimizer crash is not evidence against a phase, while a near-zero scale or multi-percent cell deformation across a broad family is.
+
+The full-grid branches are still finishing. The physically meaningful comparison will be the cell/displacement checkpoint, not the unconstrained profile checkpoint—some wrong models can lower Rwp by driving the instrumental U term negative, and those fits will not be accepted.
+
+No chemically ordinary exact third-phase reference indexes that family with a physical cell and positive stable scale. The best numerical “improvements” are either implausible hydrated/oxygen-rich Sr entries or reduced tungsten oxides needing ~1% anisotropic cell changes and still missing the strongest reflections. This meets the threshold for a targeted analogue search, so I’m now checking Sr-supported off-stoichiometric products such as Sr₃WO₆/Sr₂WO₅ against isostructural divalent-metal tungstates.
+
+The analogue search has narrowed to three chemically supported families: Sr₃WO₆, Sr₂WO₅, and an alternative Sr₃W₂O₉ polymorph. Their best parent topologies index different parts of the same residual family, so I’m generating Sr-substituted models with physically scaled starting cells and comparing full-grid refinements. This is the point where geometry—especially W–O and Sr–O coordination—will decide between close profile fits.
+
+The candidate cells are now physically sensible at their starting checkpoints: the P2₁/c Sr₃WO₆ models have W–O ≈2.05–2.10 Å, while the Pnma Sr₂WO₅ model spans roughly 1.74–1.99 Å around octahedral W. The Pa-3 Sr₃WO₆ model has a much more distorted 2.00/2.33 Å W environment, so it will need a clearly superior family-wide fit to survive.
+
+The analogue branches are still refining. I’m also tracking stoichiometric coherence: either Sr₃WO₆ + 2 WO₃ or Sr₂WO₅ + WO₃ balances exactly back to the 1:1 Sr:W feed, so both are chemically viable secondary assemblages; the profile and local geometry must distinguish them.
+
+The full-grid comparison favors Pa-3 Sr₃WO₆ at the physical cell/displacement checkpoint (Rwp ≈18.54% versus ≈19.27–19.30% for the best P2₁/c Sr₃WO₆ and Pnma Sr₂WO₅ starts), with a stable positive scale and essentially no cell drift. I’m not accepting it yet: its inherited coordinates give an overlong W–O subset, so I’m mapping the remaining residuals and testing bounded coordinate starts against the more conventional P2₁/c geometry.
+
+I’ve now constrained the instrumental profile to the laboratory’s stated physical ranges (U 0–40, W 2–40, X 0.1–6, SH/L 0.005–0.10) and am refining phase size, then microstrain. This should remove the artificial negative-U shortcut and reveal whether the remaining peaks are structural or merely profile wings.
+
+The bounded refinements are still running. Parameters that reach a physical limit are being frozen there before the next complexity is added, so later improvements cannot silently turn into negative widths or sub-resolution crystallite sizes.
+
+The expensive part is the final microstrain stage on the full grid. Once it finishes, I’ll compare only replayable physical checkpoints and then either refine bounded coordinates for the winning topology or add a fourth phase only if a coherent residual family remains.
+
+The bounded profile test reverses the earlier near-tie decisively: Pnma Sr₂WO₅ reaches Rwp ≈9.48% with all widths nonnegative, while Pa-3 Sr₃WO₆ stalls near 14.49%. The Sr₂WO₅ model also explains the 29.765/32.612/44.673° family broadly. I’m treating Sr₂WO₅ as the accepted third phase and will now refine its inherited coordinates and check whether any coherent fourth family remains.
+
+The accepted inventory is now SrWO₄ + WO₃ + a Pnma Sr₂WO₅ intermediate; all coherent reflection families are indexed, so I’m stopping phase search. I’m refining atomic coordinates and then will test only physically bounded specimen/profile terms, retaining checkpoints when geometry and fit both improve.
+
+The current fit is numerically good but has profile terms pinned at physical limits. I’m freezing those terms while refining coordinates so peak-shape broadening cannot compensate for bad atomic geometry; coordinate moves will be bounded in ångströms and screened against W–O/Sr–O distances before acceptance.
+
+A replay check exposed an important GSAS-II detail: after a parameter first hits a bound, the stored calculated curve can still reflect the pre-clamp trial. I’m rebuilding the checkpoint with bounded terms fixed and rerunning least squares until the saved parameters and saved profile agree; all coordinate trials will be judged against that replay-clean baseline.
+
+The older WO₃ checkpoint uses rounded 1960 coordinates that leave one tungsten site effectively five-coordinate. A modern exact-composition P2₁/c WO₃ reference fits nearly identically at the cell/scale stage but gives six ordinary W–O bonds, so I’m replacing the older checkpoint in accordance with the physical-model criterion and rebuilding the full three-phase refinement.
+
+The physical WO₃ replacement has matched the same peak family with only 0.01–0.17% cell changes. The bounded full-profile refinement is still running; once complete I’ll replay-clean it before any atomic-coordinate decision.
+
+The refinement is compute-bound rather than blocked (the transformed P2₁/c WO₃ cell has more independent coordinates but the same composition). I’m letting the bounded scale/cell/profile sequence finish and will retain the earlier physical checkpoint if this branch does not improve reproducibly.
+
+This branch has exceeded the normal runtime without producing a checkpoint, so I’m treating it as numerical failure—not evidence against the physical WO₃ model—and stopping that particular profile run. I’ll rebuild it in smaller replayable stages to identify the failing term.
+
+The modern WO₃ branch is now replay-clean at Rwp ≈10.12% after bounded cation refinements, with the Sr₂WO₅ heavy-atom step providing the main improvement. I’m moving to oxygen coordinates phase-by-phase, beginning with dominant scheelite SrWO₄ and rolling back any step that distorts coordination.
+
+The oxygen trials for minor WO₃ and Sr₂WO₅ moved most variables straight to their bounds for only ~0.02% Rwp gains, so I’m rejecting them as unsupported. The retained coordinate checkpoint has physical coordination and Rwp ≈9.97%; next I’m testing global intensity effects and preferred orientation individually, not adding more phases or free atomic parameters.
+
+Surface roughness is strongly supported and physical (24% attenuation at 20°); alternate starts give the same fit but show A/B are highly correlated, so only the combined low-angle correction is well determined. I’m now attributing the remaining intensity residuals by phase before testing a limited set of March–Dollase axes.
+
+Preferred-orientation screening so far returns ratios very close to 1 and only hundredths of a percent improvement; that is weak evidence. I’m completing the axis comparison, but the default will remain no texture unless one axis is clearly distinguished and stable.
+
+No texture axis or zero-offset term is distinguishable; their gains are at the convergence noise level and the fitted ratios stay near 1. I’m rejecting those terms. The remaining profile test is now limited to the already accepted instrument widths and one isotropic phase-broadening term at a time.
+
+Isotropic crystallite size is clearly supported, unlike strain: replay-clean fits move Sr₂WO₅ and WO₃ from the artificial 0.04 µm boundary to ordinary ~0.17 µm values, reducing Rwp to 7.38% for Sr₂WO₅ alone. I’m combining those size terms sequentially and will report fraction sensitivity because the Sr₂WO₅ scale changes appreciably when its breadth is corrected.
+
+The accepted profile now has ordinary crystallite sizes (SrWO₄ 0.354 µm, WO₃ 0.185 µm, Sr₂WO₅ 0.187 µm), zero retained microstrain, and Rwp ≈6.63%. Re-opening roughness or instrument widths either hit bounds or worsened the replayed fit, so I’m preserving this full physical checkpoint and doing a final no-new-parameters polish and replay validation.
+
+The saved project replays from atomic structures with no refinement and reproduces Rwp 6.6329% on all 8,282 points; the verifier reports no negative background, negative width, or other profile-review flags. I’m exporting that exact replayed checkpoint now and computing the phase-scale covariance for the reported fractions.
+
+Completed with a replay-validated three-phase model:
+
+- SrWO₄, scheelite: 64.10 wt%
+- monoclinic WO₃: 8.75 wt%
+- Pnma Sr₂WO₅: 27.15 wt%
+
+Full-grid fit: Rwp 6.6329%, Rp 4.8872%, GOF 1.8792. Fractions are normalized over crystalline phases only. The Sr₂WO₅ topology is analogue-derived and its detailed atomic structure remains tentative.
+
+Files: [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r1/workspace/result.json), [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r1/workspace/report.md), [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r1/workspace/fit.csv), [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r1/workspace/final.gpx), [SrWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r1/workspace/SrWO4.cif), [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r1/workspace/WO3.cif), [Sr2WO5.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r1/workspace/Sr2WO5.cif).
+

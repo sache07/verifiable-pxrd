@@ -1,0 +1,42 @@
+I’ll first inspect the specimen metadata, pattern range/resolution, and the frozen analysis utilities. Then I’ll identify chemically plausible phases, build a complete multiphase GSAS-II refinement, and only pursue residual families that remain coherently unassigned.
+
+The chemistry narrows the ordinary inventory to Mn–W–O phases plus residual Mn₂O₃/WO₃. The scan has a high, decaying background and broad enough instrument/specimen uncertainty that phase identification must be driven by full reflection families, not a few peak matches. I’m now extracting the observed peak set and querying the frozen COD index for exact Mn–W–O and precursor structures.
+
+The screening is decisive for the principal phase: the observed 23.43/23.91/24.68° triplet and its families through 100° match room-temperature monoclinic WO₃ after a common specimen/calibration displacement. A second coherent family at about 33.27, 38.53, 45.13, 49.60, 55.06, and 66.03° is consistent with residual α-Mn₂O₃. I’m building that physical two-precursor model first; product MnWO₄ will be tested only against the residual after this checkpoint.
+
+The two-phase scale refinement converged to essentially the precursor mass balance (about 75% WO₃ / 25% Mn₂O₃), which strongly supports the inventory. The first calibration branch exposed two expected degeneracies: overall specimen scale versus phase scales, and zero offset versus sample height. I’m removing the redundant scale parameter and constraining sample height within the laboratory geometry before continuing; I also rolled back a profile step that drove the Gaussian width negative.
+
+The bounded two-phase model now fits to Rwp ≈ 8.26% with fractions 75.8/24.2%, and both refined domain sizes and microstrains remain inside the stated specimen ranges. The unconstrained shared-profile branch again requests a negative instrumental W, so I’m retaining the physical checkpoint and moving W to its allowed lower boundary while refining the remaining profile terms.
+
+The residual does not show a convincing third-phase family; its strongest peaks coincide with WO₃ reflections and reflect relative-intensity/shape error. Unrestrained oxygen refinement lowers Rwp but moves O sites by several tenths of an ångström, so that branch is rejected. I’m now comparing the two nearly equivalent monoclinic WO₃ references on geometry and full-pattern behavior, as required before attempting bounded light-atom adjustments.
+
+The physical monoclinic WO₃ reference improves Rwp to 6.93%, and bounded heavy-atom refinement gives 6.72% with plausible W displacements. Texture tests refine back to essentially random orientation. A uniaxial WO₃ microstrain model is supported (Rwp ≈ 6.47%, axial ratio within the laboratory range); Mn₂O₃ anisotropy is not supported. I’m carrying forward that checkpoint and testing only the remaining shared instrument/specimen terms.
+
+The complete two-phase model is now chemically and geometrically coherent: monoclinic WO₃ plus α-Mn₂O₃. I’m finishing bounded profile/coordinate checks and testing whether MnWO₄ has any stable positive contribution before freezing and replay-validating the GSAS-II project.
+
+The exact-product check exposed a GSAS-II concurrency limitation when several processes opened the same project simultaneously. One MnWO₄ branch completed; I’m verifying the accepted checkpoint is intact and will run the remaining phase tests serially.
+
+The MnWO₄ scale remains positive at about 0.5–0.7 wt% across cell/profile checkpoints and its 30.1/30.6°, 36.3°, 51.5°, and 60.9° families improve coherently. I’m retaining it as a trace third phase; Mn₃WO₆ gives only mixed, overlap-driven improvements and will not be included.
+
+The accepted three-phase checkpoint is frozen at Rwp 6.113% with fractions 72.21% WO₃, 27.07% Mn₂O₃, and 0.72% MnWO₄. I’m now checking CIF/project consistency and independently replaying `final.gpx` against the original 8,301-point scan.
+
+Validation passed: `final.gpx` replays the full original grid with identical fractions and Rwp, no negative-profile or geometry flags, and all three submitted CIFs match the project-exported structures.
+
+Identified crystalline phases, normalized by modeled crystalline mass:
+
+- Monoclinic WO₃: 72.21 wt%
+- α-Mn₂O₃: 27.07 wt%
+- Trace wolframite MnWO₄: 0.72 wt%
+
+Final fit: Rwp 6.113%, Rp 4.475%, GOF 2.298. The full-grid GSAS-II replay passed with no profile or structural validity flags. MnWO₄ is supported as a trace phase, but its exact cell, coordinates, and fraction remain comparatively uncertain.
+
+Outputs:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r3/workspace/final.gpx)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r3/workspace/phase_WO3_monoclinic.cif)
+- [Mn₂O₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r3/workspace/phase_Mn2O3_alpha.cif)
+- [MnWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r3/workspace/phase_MnWO4_wolframite.cif)
+

@@ -1,0 +1,47 @@
+I’ll first inspect the measurement metadata, pattern format, and the frozen baseline workflow. Then I’ll build a chemically plausible phase inventory, test alternatives against the diffraction data, and carry the accepted model through a replayed GSAS-II refinement and exports.
+
+The chemistry points first to NiWO₄, with NiO and WO₃ as realistic residuals, but I’m treating those only as an initial inventory. I’m now extracting the experimental peak families and querying the permitted COD snapshot for exact and prototype structures before fitting any scales.
+
+The peak positions form a coherent wolframite P2/c lattice: the isolated families at 15.59, 19.19, 23.91, 24.85, 30.87, 36.52, 54.58, and 62.28° all map to a NiWO₄ cell near \(a=4.60\), \(b=5.66\), \(c=4.91\) Å. I’m using the well-refined ambient ZnWO₄ P2/c record (COD 1520641) as the coordinate prototype, substituting Zn→Ni; its topology and geometry are appropriate, while high-pressure or internally inconsistent alternatives are being kept only as rejected comparisons.
+
+The first physically neutral baseline (size effectively infinite, zero microstrain, no texture or roughness) converged to a plausible +135 µm specimen shift and a cell near 4.6010 × 5.6636 × 4.9108 Å. Its common profile already tracks the angle-dependent widths, but the Lorentzian X term is slightly above the instrument prior, so I’m testing the mathematically equivalent finite-size model and inspecting intensity residuals before accepting any texture or roughness term.
+
+The residual-led inventory check found a genuine second phase: the unmodeled 23.06/23.53/24.28° triplet and its independent families at 26.53, 28.82, 33.20–34.09, 49.87, and 55.88° are the diagnostic fingerprint of monoclinic WO₃, not a NiWO₄ profile or texture effect. I’m now comparing all physically relevant WO₃ records under the same baseline; NiO remains on the watch list because its nominal 37.2° line overlaps NiWO₄, but its required strong 43.3° family is absent.
+
+The two-phase baseline is now at Rwp ≈ 5.99% (Poisson minimum ≈ 3.48%). Controlled width trials reject NiWO₄-specific size and strain—the size runs to the neutral upper bound and strain turns unphysical—while WO₃ independently supports both finite size (~0.32 µm) and positive microstrain (~2,050 ppm). I’m combining only those complementary WO₃ terms, then I’ll revisit asymmetry, low-angle intensity effects, and the NiO watch list.
+
+Heavy-atom coordinate refinement is decisive and physical: Rwp drops from 5.81% to 4.77%, with Ni moving about 0.14 Å from the Zn analogue site (expected for the Zn→Ni adaptation), W in NiWO₄ moving only ~0.01 Å, and the two WO₃ W sites shifting by roughly 0.05–0.08 Å from the coarse 1966 record. I’m now releasing oxygen coordinates one phase at a time and will retain them only if the octahedral geometry remains credible.
+
+With the adapted coordinates and phase-wise Uiso terms, the polarization remains interior and a weak common low-angle attenuation is statistically supported, though its Suortti A/B pair is strongly non-unique; I’m fixing an equivalent physical pair (A=0.10, B≈0.054) rather than letting it trade against scale. The next check is texture: each symmetry-distinct axis is being challenged separately for each phase, and only a replay-stable trend across several isolated families will be retained.
+
+The clean-profile watch-list test gives NiO only ~0.07 wt% with scale smaller than its uncertainty and no meaningful Rwp gain, so it is being excluded. The current two-phase model is at Rwp ≈ 4.47%; I’m finishing the background-family comparison now because the remaining residual is dominated by a broad continuum rather than missing Bragg families.
+
+The phase inventory has stabilized at wolframite NiWO₄ plus monoclinic γ-WO₃. Across reasonable smooth backgrounds the crystalline fractions stay near 75.7/24.3 wt%; NiO fails the unique-peak/scale test and is being excluded. I’m now locking the defensible nuisance model, replaying it from disk, and checking the exact submission schema before exporting the project, CIFs, profile, and report.
+
+The accepted model now meets the physical baseline checks: nonnegative U/W/X widths, neutral texture/extinction, positive isotropic ADPs, and no auxiliary background peaks. The remaining strong correlations are confined to equivalent nuisance descriptions (scale–roughness and shift–asymmetry); I’m fixing their converged values for the final replay rather than letting them drift, while preserving the fitted profile.
+
+The background-family challenge is informative: an exponential tail remains substantially worse after reconvergence, while the power-law family is favored by about 0.21 percentage point in Rwp. I’m now testing the only remaining coupled physical ambiguity—surface roughness versus the low-angle power-law tail—on a restrained A-grid; this determines whether the 75.7/24.3 fraction is stable without letting a free polynomial act as a scale surrogate.
+
+The roughness watch has now converged: roughness is supported versus the neutral model, but A and B are not separately identifiable; every physical A-grid point gives essentially the same phase fractions. I’m fixing the representative interior pair (A = 0.4, B ≈ 0.053) and carrying a ±0.3 wt% model-spread warning. Rechallenged NiO refines to only 0.057 wt% at 0.95σ with no fit improvement, so it remains excluded.
+
+The project is now numerically stable after freezing the two mutually correlated WO₃ W-site coordinate directions: the final full refinement converges with maximum shift/σ = 0.08 and no reported high-correlation pair. I’m performing the scorer-equivalent forward replay now; its freshly regenerated profile—not GSAS-II’s cached curve—will become `fit.csv`.
+
+Verification is clean: both CIFs pass the scorer’s geometry/occupancy screen, each maps uniquely back to its phase in `final.gpx`, the crystalline fractions sum to one, and `fit.csv` reproduces the fresh 8,282-bin replay at Rwp 4.34055%. The replay reports no negative-background, width, ADP, or polarization review flags.
+
+Analysis complete.
+
+- NiWO₄ (wolframite, P 2/c): **75.62 wt%**
+- γ-WO₃ (monoclinic, P 2₁/c): **24.38 wt%**
+- Estimated model uncertainty: approximately ±0.3 wt%
+- NiO was tested but not reliably detected.
+- Fresh GSAS-II replay: **Rwp 4.34055%, Rp 3.37697%, GOF 1.24976**
+
+Outputs:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r3/workspace/final.gpx)
+- [NiWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r3/workspace/phases/NiWO4.cif)
+- [WO3_gamma.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r3/workspace/phases/WO3_gamma.cif)
+

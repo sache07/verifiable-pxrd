@@ -1,0 +1,59 @@
+I’ll first inspect the pattern, metadata, and reusable refinement utilities, then build a chemically screened phase inventory before fitting. I’ll keep the final exports tied to the exact saved GSAS-II project and validate them by reopening/replaying the fit.
+
+The chemistry points first to BaWO₄ plus possible unreacted BaCO₃/WO₃, but at 400 °C precursor persistence and polymorph choice matter. I’m treating those as candidates—not conclusions—and will compare their actual reference patterns against the observed peak families before refinement.
+
+Peak-family matching now strongly supports a two-phase precursor mixture: a common ≈+0.3° angular offset maps monoclinic WO₃ triplets and orthorhombic BaCO₃ doublets across low, middle, and high angles. BaWO₄ is on the watch list, but its dominant 112 and 200 families are not yet coherently supported; I’ll test it again after establishing the common profile.
+
+I’m setting up a deliberately sparse GSAS-II baseline: raw Poisson weights, dual Cu Kα wavelengths at the reported 0.5 ratio, one zero correction, a smooth Chebyshev background, common U/W/X broadening, and all phase size/strain/texture/roughness terms neutral. Cells will remain fixed until scales and the angular correction converge.
+
+The common-width refinement has already reduced Rwp from 24.5% to about 10.9% without phase-specific broadening or texture, confirming that the initial mismatch was mostly the uncalibrated instrumental profile—not evidence against either phase. I’m letting the U/W/X sequence finish, then I’ll inspect residual peak families and test alternate WO₃ records under the same baseline.
+
+The alternative-record challenge is running under identical background, zero, cell, and U/W/X conditions. I’m comparing the room-temperature monoclinic records against a physically plausible triclinic alternate and the high-temperature orthorhombic polymorph; this separates “bad database record” from “wrong phase” as requested.
+
+The room-temperature monoclinic WO₃ neutron record is physically the safer assignment, but a P‑1 WO₃ record gives a reproducible Rwp improvement (8.72% → 8.43%) and refines to a near-monoclinic metric. Because the measurement temperature is unreported, I’m carrying that symmetry ambiguity explicitly while using the lower-symmetry model for the next residual-led tests. The orthorhombic 400 °C polymorph is rejected: it fits much worse (13.39%) and forces W negative.
+
+The BaWO₄ watch phase refines to only ~0.7 wt%, but almost all improvement comes from peaks already occupied by BaCO₃/WO₃; its strongest more-unique 200/004 families do not improve. The sole exact COD record is also a split-half-occupied 1970 oxygen model with implausibly short alternative O···O/W–O contacts, so I’m challenging it with physically cleaner scheelite-type ABO₄ analogues before deciding whether that trace phase is defensible.
+
+I’m now testing common intensity/shape effects before any texture: effective polarization, axial asymmetry, surface roughness, and phase-specific isotropic size/strain one phase at a time. This will show whether the trace BaWO₄ scale was compensating for a missing common or phase-width term.
+
+A physically plausible polarization factor (0.7303(57)) is strongly supported and cuts Rwp to 7.57%. Axial asymmetry is unsupported/highly correlated, and roughness is rejected because it drives an unphysical negative roughness parameter and negative W. The refined common W is statistically zero, so I’m pruning W and rebuilding the U/X baseline before repeating phase-width and texture tests.
+
+WO₃ shows replay-stable, phase-specific Gaussian strain broadening (~5960 µstrain), while BaCO₃ size/strain terms either hit bounds or fail to improve. Adding WO₃ size on top is unsupported and collapses toward the neutral limit, so I’m retaining strain only. Next I’m comparing no texture against symmetry-distinct axial and diagonal March–Dollase directions for each phase.
+
+Texture is supported only for BaCO₃: [110] is the best of seven distinct directions (Rwp 7.431% → 7.253%, March–Dollase 0.9106), while all WO₃ directions stay near 1.0 and give negligible improvement. I’ll now rebuild both monoclinic WO₃ alternatives with this same accepted polarization/strain/texture model before making the final symmetry choice.
+
+With the accepted nuisance model, the monoclinic neutron structure and P‑1 structure become nearly indistinguishable (Rwp 7.259% vs 7.253%); the older monoclinic record remains clearly worse. I’m selecting the room-temperature P2₁/c neutron model on physical/parsimony grounds and will report the near-monoclinic P‑1 ambiguity. I’m re-testing trace BaWO₄ against that final symmetry choice now.
+
+The common-profile re-challenge supports a tentative third phase: scheelite BaWO₄ at about 0.6 wt%, while BaCO₃ and monoclinic WO₃ make up the balance. Its strongest evidence comes from several coherent but partly overlapped peak families, so I’m treating the trace fraction as model-dependent and am now doing the full-range replay, project/export consistency check, and final diagnostics.
+
+The provisional model is physically well behaved: the background remains positive and smooth, and the accepted common profile uses only nonnegative U/X broadening plus one angular correction. I’m explicitly testing whether the ~0.6 wt% BaWO₄ scale returns from both near-zero and deliberately high starts, then I’ll lock the full measured 9.903–100.095° range for the submitted replay.
+
+The full-range replay is stable and reproducible from both trace-phase starts (0.5681 wt% in each case). The profile inspection still shows family-dependent shape residuals around a few strong low/mid-angle peaks, so I’m doing the required symmetry-appropriate anisotropic broadening challenge before freezing the final model; it will be retained only if it is replay-stable and not compensating for background or texture.
+
+The BaCO₃ anisotropic-strain trials are rejecting themselves cleanly: they either diverge or require negative broadening and >99% correlation with the common profile/WO₃ strain. I’m letting the WO₃ axis trials finish because those replace its accepted isotropic term with only one additional degree of freedom; the BaCO₃ variants will not enter the submitted model.
+
+The WO₃ [0 1 1] uniaxial strain challenge is physically acceptable and replay-stable: both strain components remain positive (about 7080/4500 µstrain), it adds one variable, lowers χ² by ~240, and introduces no new >80% correlations. Because this changes the accepted profile, I’m now rebuilding the no-trace baseline and re-challenging BaWO₄ under that exact profile before updating the deliverables.
+
+The rebuilt watch-list test strengthens the trace assignment under the accepted anisotropic profile: adding BaWO₄ lowers Rwp from 7.2135% to 7.1491% and χ² by about 633 for one scale variable; near-zero and high starting scales both converge to 0.5815 wt%. I’ve updated and replayed `final.gpx`; the remaining work is the exact export audit and concise uncertainty report.
+
+Completed the full-range GSAS-II refinement.
+
+- BaCO₃: 53.57 wt%
+- WO₃: 45.85 wt%
+- BaWO₄: 0.582 wt% — tentative, model-dependent trace phase
+- Rwp: 7.149%; goodness of fit: 2.057
+
+The exact WO₃ monoclinic/triclinic symmetry and precise BaWO₄ fraction remain uncertain, as documented in the report.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [BaCO3.cif](<ATTEMPT_WORKSPACE>/BaCO3.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [BaWO4.cif](<ATTEMPT_WORKSPACE>/BaWO4.cif)
+
+The CIFs, fractions, profile arrays, and fit statistics were audited against the reopened final project.
+

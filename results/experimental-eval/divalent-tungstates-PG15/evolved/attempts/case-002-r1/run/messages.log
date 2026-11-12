@@ -1,0 +1,76 @@
+I’ll inspect the pattern, metadata, and the reusable refinement utilities first. Then I’ll build a chemically plausible phase inventory, test alternates under a common baseline, and only retain phases supported by the residual and stable refinements.
+
+The chemistry points first to barium tungstates plus possible unreacted BaO₂/WO₃, but the low synthesis temperature makes precursor and hydrate/peroxide-bearing alternatives important. I’m now extracting the peak families and locating the GSAS-II scripting interface so candidate rejection is based on full-profile behavior, not formula alone.
+
+The peak families now separate cleanly into monoclinic WO₃ and tetragonal BaO₂, with several weaker features matching scheelite BaWO₄ (notably near 48.6°, 53.8/54.5°, and 68.9°). I’m carrying BaWO₄ as a watch-list phase and will test whether its scale remains positive and replay-stable once the common profile is established.
+
+The first width trial is behaving badly in a useful way: size-only broadening drives every phase to the imposed lower size bound, so it is not a physically adequate baseline. I’m letting the replay finish, then I’ll compare strain-only and mixed models rather than accepting boundary-driven crystallite sizes.
+
+The inventory screen exposed two bad database records that explain the unstable fits: the nominal “monoclinic BaO₂” entry is actually Ba(OH)₂ with omitted H, and the only exact BaWO₄ entry uses a split half-occupied oxygen model with nonphysical 1.47 Å W–O contacts. I’ve rejected those records. I’m switching WO₃ to the physically sound neutron structure and, for the BaWO₄ watch-list test, using a same-symmetry BaMoO₄ prototype with Mo→W substitution and the BaWO₄ cell.
+
+With the corrected structural records and seeded cells, the two-phase baseline replays at Rwp ≈14.75%. The mandated neutral width tests were decisive: size-only collapsed to 10 nm bounds and strain-only to 10,000 µstrain bounds, both worsened on replay. I’ve rejected those refinements and returned to the restrained ~40 nm width inferred directly from isolated peak FWHM; next I’m testing only the shared nonnegative U/W/X profile before re-challenging BaWO₄.
+
+The common-profile challenge currently supports monoclinic WO₃ and BaO₂ as the major phases, with a weak but replay-stable scheelite BaWO₄ contribution near 2–3 wt%. I’m finishing the physical-alternate and texture/source checks now, then I’ll export everything from one reopened final project so the CIFs, fractions, and profile agree exactly.
+
+One alternate did materially change the conclusion: the physically sound triclinic WO₃ record fits the split peak positions substantially better than the monoclinic model (reopened-project Rwp 13.10% versus 14.75%). I’m therefore promoting triclinic WO₃ to the working model and re-running the weak BaWO₄ and nuisance-term challenges against that cleaner baseline; the orthorhombic alternate was clearly rejected (Rwp 17.82%).
+
+The triclinic baseline survives the inventory rebuild, and ordered BaWO₄ remains positive after save/reopen replay: about 66.1 wt% WO₃, 31.2 wt% BaO₂, and 2.7 wt% BaWO₄, with Rwp 12.72%. The BaWO₄ lattice is weakly constrained, so I’m now separating “phase present” evidence from any unsupported precision in its cell and fraction.
+
+Polarization refined back to 0.496 with no fit gain, and the roughness pair was 100% correlated for only a 0.002-point Rwp change; both are rejected. That leaves a clean intensity baseline. I’m comparing low-index March–Dollase axes one at a time now and will retain texture only if several independent peak families support it after replay.
+
+The texture grid is still running because eleven independent one-parameter trials are sharing the available CPU. Each writes a separate project, so I’ll read the completed projects directly and compare them to the no-texture baseline; no trial can contaminate the working refinement.
+
+The texture comparison does not justify adding a correction: the best BaO₂ axes improve Rwp by only ~0.027 point, two inequivalent axes fit essentially equally, and the one reasonably isolated BaO₂ family does not improve coherently. WO₃ axes stay very near random orientation. I’m keeping texture neutral and doing the final watch-list pass for BaO and alternative Ba–W–O products before locking the inventory.
+
+The final watch-list pass found one additional signal worth taking seriously: normal rocksalt BaO refines to a positive ~1.2 wt% and lowers Rwp from 12.72% to 12.61%. Ba₃W₂O₉ collapses to zero, and Ba₃WO₆ is only 0.09 wt% with uncertainty of the same size. I’m checking whether BaO is supported by several coherent reflections rather than merely borrowing intensity from BaO₂/WO₃ overlaps.
+
+BaO is supported by the partly isolated 200 and 220 families near 32.8° and 47.0°, plus consistent improvements at several higher-angle families; only the overlapped 222 region worsens. I’m retaining it as a minor impurity. For BaWO₄, a second room-temperature EuWO₄→BaWO₄ isovalent prototype gives physical W–O/Ba–O geometry and the same fit/fraction as the first prototype, so I’m using that better-geometry model for the final rebuild.
+
+The four-phase replay exposed exactly the instability the residual-led rules are meant to catch: when both minor-phase cells remain free, BaWO₄ and BaO trade cell position and scale between reopens while Rwp changes only ~0.01 point. I’m pruning those unsupported cell refinements back to their physical source/prototype cells, while retaining their positive scales; only the well-supported WO₃ and BaO₂ cells will remain free in the submitted project.
+
+The pruned four-phase model is now replay-stable across three reopenings: Rwp stays at 12.7053%, and phase fractions vary by less than 0.001 percentage point. The final watch-list replay rejects Ba₃W₂O₉ (zero scale) and Ba₃WO₆ (~0.10±0.09 wt%); Ba₀.₁₅WO₃ remains only a marginal ~0.55±0.24 wt% possibility with negligible fit gain, so it will be documented but not quantified as a phase.
+
+Before exporting, I’m doing one last profile audit on the stable inventory: a fixed common-size grid, with all other nuisance terms identical. This checks that the nominal 40 nm broadening used for peak shape is near the residual minimum and is not silently biasing the minor fractions; it will be reported only as a nuisance choice, not as a crystallite-size measurement.
+
+The audit found a materially better, still physical common-width solution: 25 nm gives Rwp 9.02% versus 12.71% at 40 nm, while the neutral-size model is plainly inadequate (Rwp 30.24%). This also reduces the tentative BaWO₄ scale, so I’m not locking the earlier fractions. I’m bracketing the width minimum, then I’ll rebuild and re-challenge the minor phases under that profile as requested.
+
+The common-width minimum is now well bracketed at about 0.023 µm (Rwp 8.8985%); 0.0225 and 0.0235 µm are nearly equivalent, which quantifies the profile uncertainty. Under this cleaner profile BaWO₄ is only ~0.5 wt% and strongly width-dependent, while BaO stays near 1.1 wt%. I’m testing WO₃ and BaO₂ size/strain one phase at a time before deciding whether any phase-specific broadening is replay-stable.
+
+The phase-by-phase trials resolve the main ambiguity. WO₃ size refines stably to ~23.5 nm; BaO₂ to ~19.3 nm. The BaO₂ strain alternative hits its upper bound and is rejected. Crucially, once BaO₂ has its own supported width, BaWO₄ collapses to zero scale—showing that the earlier 0.5–2.7 wt% estimate was a peak-width surrogate. I’m rebuilding a clean WO₃ + BaO₂ + BaO model, then will re-challenge BaWO₄ rather than report a spurious fraction.
+
+The decisive re-challenge is complete: both independent, physically screened scheelite BaWO₄ prototypes refine to the zero-scale bound after the supported WO₃/BaO₂ widths are included. BaWO₄ will therefore not be submitted as a crystalline phase; its earlier apparent fraction was not robust. The current modeled inventory is triclinic WO₃, tetragonal BaO₂, and minor rocksalt BaO.
+
+One residual candidate remains on the watch list: physical R-3c Ba₃W₂O₉ refines to ~0.44±0.10 wt% with only a 0.008-point Rwp gain; the disordered Ba₃WO₆ model gives ~0.21 wt% and an even smaller gain. I’m checking whether Ba₃W₂O₉ has multiple distinct supporting families. At this level, formal covariance significance alone is not enough because the residuals are strongly correlated.
+
+Ba₃W₂O₉ does have more than a single coincidence: its partly isolated 110/104/300 families near 17.77°, 27.75°, and 30.81° refine coherently, and the 300 residual window drops by ~68%. I’m retaining it provisionally at roughly 0.4 wt%, with a fixed literature cell and a large systematic uncertainty. The disordered Ba₃WO₆ model lacks comparable family support and remains excluded.
+
+The texture audit rejects BaO₂ texture: all tested axes refine to unity within uncertainty. WO₃ has one potentially meaningful [101] March–Dollase solution (r = 0.966, ΔRwp ≈ 0.044), so I’m checking its low-, mid-, and high-angle families directly. I’ll accept it only if the residual improvement is distributed across several independent families rather than dominated by one peak cluster.
+
+The WO₃ [101] texture term is supported across several partly isolated families at low/mid/high angle (notably near 26.85°, 29.12°, 42.04°, 46.15–47.50°, 60.64°, 76.97°, and 82.15°), while alternative axes fit less well and BaO₂ remains random. I’m accepting this modest correction (March–Dollase r≈0.966) and replaying it repeatedly before the final export.
+
+The accepted model now replays with Rwp ≈8.741% and stable fractions. The remaining residual is correlated (Durbin–Watson ≈0.38), so I’ll preserve both formal covariance errors and more conservative model-based uncertainties in the outputs. I’m now creating `final.gpx`, exporting each CIF and `fit.csv` from that exact reopened project, then validating the exported structures and file agreement.
+
+The exact final replay converged with maximum shift/esd 0.018, Rwp 8.7410%, GOF 2.402, and fractions 63.874% WO₃, 34.718% BaO₂, 0.978% BaO, and 0.430% tentative Ba₃W₂O₉. I’m validating CIF stoichiometry/bond geometry and checking that `result.json` and `fit.csv` numerically reproduce `final.gpx`.
+
+The final crystalline-phase model is:
+
+- Triclinic WO₃: 63.87 wt%
+- Tetragonal BaO₂: 34.72 wt%
+- Rocksalt BaO: 0.98 wt%
+- Rhombohedral Ba₃W₂O₉: 0.43 wt% — tentative trace phase
+
+Fractions are normalized over modeled crystalline phases. BaWO₄ was re-tested with two physical models and refined to zero scale. Final fit: Rwp 8.741%, Rp 6.847%, GOF 2.402.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_1_WO3_triclinic.cif)
+- [BaO₂ CIF](<ATTEMPT_WORKSPACE>/phase_2_BaO2_tetragonal.cif)
+- [BaO CIF](<ATTEMPT_WORKSPACE>/phase_3_BaO_rocksalt.cif)
+- [Ba₃W₂O₉ CIF](<ATTEMPT_WORKSPACE>/phase_4_Ba3W2O9_rhombohedral.cif)
+
+The exported profile, fractions, statistics, and CIFs were numerically cross-checked against the reopened final project.
+

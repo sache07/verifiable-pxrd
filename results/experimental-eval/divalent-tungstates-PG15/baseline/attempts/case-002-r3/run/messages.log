@@ -1,0 +1,46 @@
+I’ll inspect the measurement metadata and diffraction profile first, then identify candidate phases, build a multiphase GSAS-II refinement, and validate that the exported CIFs, fractions, profile, and project all agree. I’ll keep phase count conservative and call out any ambiguity rather than overfit weak features.
+
+The sample is a low-temperature BaO₂–WO₃ reaction measured with a Cu Kα doublet. Likely candidates include a barium tungstate product plus residual precursor(s) or ambient-derived barium phases, but I’ll let the peak positions and full-pattern fit decide rather than assuming complete reaction.
+
+Peak positions now point strongly to two residual crystalline precursors: monoclinic WO₃ supplies the 23.4/23.9/24.65° triplet and split 33–34.5° group, while tetragonal BaO₂ supplies the intense 26.32°, 27.05°, 42.97°, 46.64°, and ~56° features. The diagnostic BaWO₄ line near 31.9° is not evident, so I’m testing a two-phase precursor model before considering trace product.
+
+The first two-phase Rietveld trial already fits every major feature and gives roughly 35 wt% BaO₂ / 65 wt% WO₃, but the initial project exposed an exact scale-factor degeneracy and a mediocre WO₃ intensity match. I’m correcting that refinement setup and screening the room-temperature monoclinic WO₃ coordinate models before treating the fraction as final.
+
+All five WO₃ structural variants are being refined under the same background, profile, and scale protocol. This comparison is important because several database entries share nearly identical peak positions but predict noticeably different relative intensities; the latter dominate the remaining residual and can bias quantitative phase analysis.
+
+The model screen is still converging rather than stalled; each candidate needs several full-pattern cycles because the peaks are strongly size/strain broadened. The refinement protocol keeps the reported Cu wavelengths and Kα₂/Kα₁ ratio fixed so the comparison does not gain fit quality by distorting known measurement parameters.
+
+The initial broadening screen was numerically unstable when crystallite size and microstrain were released simultaneously, so I discarded those comparisons and restarted the three plausible monoclinic/triclinic WO₃ models with staged profile refinement. This avoids choosing a structure based on a failed least-squares path.
+
+The staged runs are progressing normally. Once the best WO₃ model is selected, I’ll test whether any unmodeled peaks justify BaWO₄ or another crystalline phase; that trace-phase check will use the residual profile rather than chemistry alone.
+
+The triclinic WO₃ model is preferred (Rwp 7.53% versus 8.60% for the monoclinic alternative) and converges cleanly with physical line-shape bounds. Its apparent fraction is now stable near 65 wt%, with BaO₂ near 35 wt%. Residual maxima remain centered on already modeled broadened reflections, suggesting profile/structure imperfections rather than a missing crystalline phase.
+
+A minor orthorhombic BaCO₃ component is supported: adding it lowers Rwp from 7.53% to 7.17%, refines to a chemically and crystallographically sensible cell, and settles near 3–5 wt% depending on whether its weak-peak broadening is refined. In contrast, BaWO₄ and Ba(OH)₂ scales collapse to zero. I’m now testing whether the carbonate fraction remains stable against reasonable structure/profile refinements before including it.
+
+The carbonate assignment survives reasonable preferred-orientation tests: orientation ratios refine within about 1% of random powder, and all phase fractions stay within roughly 0.5 wt%. The remaining important uncertainty is the weak carbonate peak width; I’m bracketing it with size-only and strain-only models so the reported trace fraction is not tied to an arbitrary fixed broadening term.
+
+The alternative broadening fits are still converging; they share the same phase identities, cells, Cu wavelengths, and background, differing only in how the weak BaCO₃ line width is represented. This is a sensitivity check on the trace fraction, not a search for a lower R-factor at any cost.
+
+The trace phase is real enough to include, but its detailed line broadening is not independently resolvable: size-only and strain-only models place BaCO₃ between 3.2 and 3.8 wt%. I’m therefore fixing its preliminary refined cell/profile and refining only its scale in the final cycle; this prevents an unstable trace-phase width/scale correlation from masquerading as precision.
+
+The final phase model is now stable and converged: BaO₂ 34.8 wt%, triclinic WO₃ 61.5 wt%, and minor BaCO₃ 3.7 wt% (normalized crystalline basis). BaWO₄ refines to zero. I’m doing the final full-range calculation/export and then validating that the CIFs, profile CSV, JSON values, and saved GSAS-II project are internally consistent.
+
+Completed the GSAS-II multiphase refinement.
+
+- BaO₂: 34.78 wt%
+- Triclinic WO₃: 61.54 wt%
+- BaCO₃: 3.68 wt%
+
+Fractions are normalized over crystalline phases. Final fit: Rwp 7.10%, Rp 5.38%, GOF 1.95. BaWO₄ was tested but refined to zero.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [BaO2.cif](<ATTEMPT_WORKSPACE>/BaO2.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [BaCO3.cif](<ATTEMPT_WORKSPACE>/BaCO3.cif)
+

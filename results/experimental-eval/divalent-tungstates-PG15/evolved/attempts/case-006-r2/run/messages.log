@@ -1,0 +1,73 @@
+I’ll first inspect the pattern, metadata, and reusable refinement helpers, then build a phase inventory before committing to any structural model. I’ll treat phase inclusion as residual-led and verify that the final exports exactly match the saved GSAS-II project.
+
+The chemistry points first to CuWO₄, with CuO and WO₃ as the obvious residual-phase watch list, but I’m not assuming conversion or phase count. I’m now extracting peak positions and checking database candidates—including polymorph/source-condition variants—before refinement.
+
+Initial line matching confirms the triclinic CuWO₄ family, while the high-pressure monoclinic record is clearly inconsistent. Several apparent “CuO-like” lines are actually members of the dense triclinic CuWO₄ pattern; I’m testing residual precursor phases only after allowing the CuWO₄ cell and the Cu Kα doublet to fit coherently.
+
+A full-cell search now gives a coherent ambient triclinic CuWO₄ metric (about 4.71 × 5.85 × 4.88 Å; α≈91.66°, β≈92.54°, γ≈82.75°) and aligns the strong low-, mid-, and high-angle families. The data also require an approximately +0.30° angular correction; I’ll test whether zero or specimen displacement gives the physically cleaner replay before finalizing.
+
+The single-phase baseline is chemically and crystallographically coherent, but the isolated low-angle peaks show the same pronounced low-angle tail. That is genuine axial-divergence asymmetry, so I’m releasing only GSAS-II’s SH/L term; the symmetric W-only width otherwise remains adequate and nonnegative.
+
+Isotropic microstrain is clearly supported, and a finite size term adds a smaller but replay-stable, angle-complementary improvement. I’m now doing the prescribed no-texture comparison against independent axial and diagonal directions; any axis must improve several isolated families, not just one overlapped peak.
+
+The accepted common profile now has six smooth background coefficients, nonnegative W, SH/L asymmetry, isotropic size/strain, and weak [110] texture; replay is stable at Rwp ≈ 6.36%. I’m re-challenging CuO, two room-temperature WO₃ polymorphs, and the other Cu–W–O stoichiometries against that same profile, starting with scale only as required.
+
+One watch-list result is nonzero: room-temperature monoclinic WO₃ reduces Rwp from about 6.36% to 6.01% at a small scale. I’m treating that as provisional—not yet as a phase—until its cell refines and several WO₃-unique families survive a clean replay. The CuO records collapse to zero scale.
+
+The WO₃ signal is not just an overlap surrogate: the refined monoclinic model accounts for the shoulder at 24.69°, the weak 26.91° family, and additional mid/high-angle families, and gives about 1.8 wt%. I’m finishing the lower-symmetry triclinic WO₃ comparison now; it must beat the monoclinic model enough to justify its extra cell freedom.
+
+The inventory is now coherent: ambient triclinic CuWO₄ is dominant, with a weak but reproducible monoclinic WO₃ contribution; the other chemically plausible records either collapse to zero scale or lack independent peak-family support. I’m replay-testing the weak-phase broadening term now, then I’ll compare the single angular correction choices and lock the exact final project before export.
+
+The WO₃ microstrain term survives save/reopen replay at a finite value (~3150 µstrain) and improves Rwp from 5.62% to 5.57%; the size alternative hit its bound and was rejected. I’m now testing specimen displacement against the current zero-offset model, with all phase scales, cells, and the common profile allowed to reconverge so the comparison is fair.
+
+The displacement trial found a nominally plausible height (~−0.59 mm) but failed the required replay test and drove the CuWO₄ size term to its hard lower bound, so that parameterization is not acceptable as-is. I’m giving it one controlled re-test with crystallite size neutralized; if it remains unstable or does not improve isolated-family positions consistently, the stable zero-offset baseline will be retained.
+
+The controlled displacement model is replay-stable once the unsupported size term is removed, and it fits better than the constant-zero model. I’m rebuilding the common width baseline from neutral broadening now; this is the slower check because the profile must reconverge after removing both phase-strain terms, but it directly tests whether those terms are genuinely required rather than inherited.
+
+The neutral-width baseline is converging toward a much worse fit (χ² roughly 82,900 versus ~42,600 with phase strain), so the broadening is not merely being absorbed by the common W term. I’m letting it finish and replay before restoring terms one at a time; the long cycle time itself reflects the overly broad common-profile trial, not a stalled process.
+
+The neutral-width model has finished at roughly double the misfit and with large parameter shifts, confirming that a single common width cannot represent both phases over the full angular range. The save/reopen replay is running now; after that, each strain term starts from zero in its own branch, which should converge much faster than this intentionally poor baseline.
+
+The replayed neutral baseline is stable but poor (Rwp 7.67%, W alone inflated to 28.8). The size-only branch is struggling and requires heavy damping, consistent with the earlier bound collapse; I’ll treat size as unsupported unless this branch reaches a finite, replay-stable minimum. The decisive comparison is the strain-only branch against this same baseline.
+
+The size-only branch remains far above the strain model and repeatedly diverges unless strongly damped (χ² still ~63,900 after six cycles). That is enough evidence that size is not the appropriate replay-stable broadening description here; I’m stopping this unproductive branch and will run the strain-only comparison directly from the saved neutral baseline.
+
+The strain-only branch has already reduced χ² from ~82,500 to ~43,200 without damping or bounds, nearly recovering the full accepted fit. This cleanly identifies microstrain—not crystallite size—as the needed phase-dependent width term for CuWO₄; I’m completing its replay, then I’ll add and replay-test the WO₃ strain separately.
+
+Both strain terms now pass the one-at-a-time test: CuWO₄ converges near 2440 µstrain and WO₃ near 3150 µstrain, with size fixed neutral; the combined model gives Rwp 5.51%. I’m doing the required texture re-challenge under this rebuilt displacement/profile model, starting from no texture and comparing the distinct low-index axial and diagonal directions.
+
+The texture challenge is decisive and replay-stable: no texture gives Rwp 5.595%, while [110] gives 5.510%; all other axial/diagonal choices are worse. The refined March–Dollase value is only 1.0197, so I’ll keep it as weak preferred orientation. I’m now re-challenging the only marginal watch-list phase (Cu₃WO₆) under this final common profile before freezing the inventory.
+
+The Cu₃WO₆ watch-list scale remains tiny (~0.08 wt% equivalent, about 2.2σ after goodness-of-fit scaling) and only improves overlapping regions; its strongest unique low-angle family remains absent. I’m excluding it from the modeled inventory but will report that sub-0.1 wt% ambiguity. Next I’m checking occupancies and cation–oxygen geometry in the exact two-phase model before the final replay/export.
+
+The dominant CuWO₄ geometry is physically sound (Cu–O 1.86–2.43 Å; W–O 1.84–2.29 Å; full occupancy, no short contacts). The current WO₃ record has no short contacts but one very long sixth W–O contact, so I found two same-symmetry exact-composition COD alternates and am screening their source conditions and geometry before accepting the weak-phase structure.
+
+The neutron-derived room-temperature WO₃ alternate (COD 2311041) is both geometrically better—six normal W–O bonds per W—and a better intensity model under identical nuisance terms (Rwp 5.481% versus 5.510%). I’m adopting that record and rebuilding a clean two-phase project so the final GPX contains no disabled/rejected phase remnants.
+
+The clean two-phase rebuild is stable at Rwp 5.481% and now uses the physically superior neutron WO₃ model. Because that source replacement slightly changes weak intensities, I’m performing one final Cu₃WO₆ watch-list replay against this exact profile; after that I’ll rename/export the clean WO₃ phase and freeze the project.
+
+With the adopted WO₃ structure, Cu₃WO₆ falls further to ~0.05 wt% equivalent and only 1.5σ, with no unique-family support; it is excluded. The inventory is therefore frozen at CuWO₄ + WO₃. I’m now writing and replaying the clean renamed `final.gpx`, then exporting CIFs and the exact profile from that same saved state.
+
+The exact final replay has converged cleanly (maximum shift/σ 0.006) with 40 parameters, Rwp 5.4808%, GOF 2.2578, and normalized crystalline fractions 97.464% CuWO₄ / 2.536% WO₃. I’m generating `fit.csv` directly from the saved GPX arrays and then validating that the CIF cells, fractions, and profile all reproduce the project exactly.
+
+All required deliverables are written. I’m on the final consistency audit now: reopening `final.gpx`, round-tripping every `fit.csv` value, checking JSON normalization/statistics, and confirming both CIFs reproduce the exact project cells and contain only the two accepted phases.
+
+The project/profile/fraction audit is exact. The only failed assertion was GSAS-II’s default CIF text precision (angles rounded to 0.0001°), not a model mismatch. I’m increasing the exported CIF numeric precision to the saved GPX values and will rerun the audit so the submitted CIFs reproduce the project without exporter-rounding ambiguity.
+
+Completed and validated against the final GSAS-II project.
+
+- CuWO₄, P -1: **97.464 wt%**
+- WO₃, P 21/c: **2.536 wt%**
+- Fit: Rwp 5.4808%, Rp 4.3108%, GOF 2.2578
+
+Fractions are normalized over modeled crystalline phases. Minor WO₃ is supported, though its exact fraction has greater systematic uncertainty than the formal 0.063 percentage-point ESD. Cu₃WO₆ below ~0.1 wt% could not be established reliably.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [CuWO4.cif](<ATTEMPT_WORKSPACE>/CuWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+

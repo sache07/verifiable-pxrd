@@ -1,0 +1,56 @@
+I’ve resumed from the replay-consistent three-phase model (wolframite ZnWO₄ + monoclinic γ-WO₃ + wurtzite ZnO). The coordinate sequence reached Rwp ≈12.68%; I’ll first validate those refined sites and bond geometry, then refine only supported specimen/profile terms and produce the required replayable outputs.
+
+Geometry screening changes one same-composition choice: COD 1528915 contains 1.57 Å O–O contacts, while the nearly fit-equivalent γ-WO₃ model COD 2311041 has normal O–O/W–O geometry. The instructions require the physical model when fits are close, so I’m replacing only that WO₃ reference and rebuilding the three-phase checkpoint before any further refinement. The unconstrained ZnO/oxygen shifts are also being rolled back.
+
+The geometry audit keeps the two heavy-atom checkpoints: their maximum framework shifts are small and all contacts remain normal. The oxygen least-squares steps were too large (especially WO₃, which produced 1.11 Å W–O), so those are rejected. I’m retrying oxygen coordinates from the heavy-only checkpoint at one-tenth the step size; if geometry still leaves the reference neighborhood, I’ll retain the heavy-only model.
+
+The bounded coordinate grid behaves physically and monotonically. I’m retaining the conservative z20/w04 checkpoint: ZnWO₄ and WO₃ oxygen shifts stay near the published frameworks (about ≤0.07 Å and ≤0.06 Å), all contacts remain normal, and replayed Rwp improves to 13.33%. No reflection family remains unindexed, so library search is now stopped; the remaining work is specimen/intensity/profile refinement only.
+
+The phase inventory is now complete and physically consistent: ZnWO₄, monoclinic WO₃, and wurtzite ZnO account for every coherent reflection family. I’m resuming from the best replay-consistent checkpoint (Rwp ≈ 13.33%) and will test only bounded specimen/intensity terms now, then freeze the best full-grid model and export the required project, CIFs, profile, JSON, and report.
+
+The first texture screen shows only a very weak ZnWO₄ effect (March–Dollase coefficients 0.97–1.04), improving Rwp by at most ~0.04 percentage point. I’m continuing the same bounded test for the two residual phases; any term retained will need to remain near unity and improve a replayed fit, so it cannot absorb an incorrect phase model.
+
+The WO₃ [110] texture term has a shallow, reproducible minimum at an MD coefficient of about 1.35 (inside the 0.7–1.4 physical interval), reducing Rwp to ~13.25%. I’m checking whether independent weak texture in ZnWO₄ or ZnO adds support on top of that model; this is the last model-complexity branch before final validation/export.
+
+Polarization is decisively supported: the replayed fit improves from Rwp 13.22% at the default 0.70 to 11.70% at the physical upper limit of 1.00. This large, smooth improvement also corrects the high-angle intensity trend, so I’m retaining 1.00 and testing the remaining low-angle intensity effect (surface roughness) against that checkpoint.
+
+The physical roughness optimum sits at the allowed edge (A ≈ 0.60, B ≈ 0.32); fixing A = 0.60 and B = 0.30 gives the same Rwp to 0.00002%, so I’m keeping that stable bounded checkpoint. Displacement-parameter tests favor a moderate WO₃ Uiso near 0.01 Å² and low isotropic ZnO Uiso; the published mixed ZnWO₄ values fit better than forcing that phase to a common value. I’m combining only those supported thermal terms next.
+
+Revisiting profile terms after correcting polarization/intensity has resolved the earlier boundary artifact. ZnWO₄ crystallite size now converges reproducibly from two starts to ~0.0659 µm and drops Rwp sharply from 11.28% to 9.11%. I’m screening the residual-phase sizes independently, then I’ll combine the supported values and test only the allowed uniaxial strain axes.
+
+The primary-phase uniaxial strain branches all demand a negative component, so they are nonphysical and rejected; the stable isotropic-size model remains better. The same test on WO₃ is showing the same sign problem so far. I’ll complete the residual-phase audit, but numerical branches with a zero/negative component will not enter the final project.
+
+The only fully positive anisotropic-strain branch is for minor ZnO along [100], but it improves Rwp by just 0.002% with two extra parameters and only 16 ZnO reflections; I’m treating that as unsupported and omitting it. The accepted physical profile is isotropic size ≈0.0659 µm for ZnWO₄, 0.040 µm for WO₃, and ≈0.0533 µm for ZnO. I’m now doing the final cell/calibration alternation from this improved profile before freezing the model.
+
+The corrected profile makes peak-position information much sharper: alternating cell and calibration terms has reduced Rwp from 9.10% to 7.63%, with all cell changes still well inside the stated 0.5% strain range. A second alternation still moved the height/zero terms modestly, so I’m continuing until those correlated terms stop changing materially, then I’ll replay the fixed solution.
+
+A simultaneous zero/height/cell refinement is numerically non-identifiable (99.99% zero–height correlation), drives both calibration terms to opposite bounds, and replays catastrophically (Rwp 26.0%); that branch is rejected. The alternating checkpoint remains physical and replayable at Rwp 7.56%. I’m fixing its calibration values and doing one final profile-size reoptimization, which avoids that singular direction.
+
+The final profile/cell state changes the texture assessment: the earlier strong WO₃ correction was compensating profile error. Re-screening now gives only weak, physically plausible coefficients—ZnWO₄ ≈0.98 and WO₃ ≈1.06—and lowers replayed Rwp to 7.21%. I’m fine-tuning that shallow minimum, then will stop model search and perform the final replay/export checks.
+
+The final thermal-factor audit gives WO₃ Uiso ≈0.005 Å² and a very shallow ZnO optimum near 0.006 Å². Across equally acceptable ZnO values, its fraction varies by roughly 0.3 wt%, which I’ll report as a real model uncertainty rather than false precision. The bounded roughness refinement is taking longer because its two parameters are strongly correlated; I’ll retain the stable A=0.60/B=0.30 checkpoint unless the replayed result is both physical and materially better.
+
+The final profile audit is complete: all common instrument coefficients remain at their physical boundaries with no replayed improvement, while the accepted phase sizes and cells are stable. The best physical model now replays at Rwp ≈6.96%; all coherent reflection families are assigned. I’m freezing this checkpoint as `final.gpx`, then exporting and cross-validating the CIFs, fractions, profile, and statistics directly from that project.
+
+Completed and validated the three-phase refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| ZnWO₄, wolframite `P 2/c` | 74.24 wt% |
+| WO₃, monoclinic `P 21/c` | 20.28 wt% |
+| ZnO, wurtzite `P 63mc` | 5.48 wt% |
+
+Final fit: Rwp 6.9609%, Rp 5.4351%, Rexp 3.7916%, GOF 1.8371. Fractions are normalized over modeled crystalline phases.
+
+Deliverables:
+
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r1-retry1/workspace/final.gpx)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r1-retry1/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r1-retry1/workspace/fit.csv)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r1-retry1/workspace/report.md)
+- [ZnWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r1-retry1/workspace/phase_ZnWO4.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r1-retry1/workspace/phase_WO3.cif)
+- [ZnO CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-015-r1-retry1/workspace/phase_ZnO.cif)
+
+The phase identities are reliable; practical fraction uncertainties are approximately ±1 wt% for ZnWO₄/WO₃ and ±0.5 wt% for minor ZnO.
+

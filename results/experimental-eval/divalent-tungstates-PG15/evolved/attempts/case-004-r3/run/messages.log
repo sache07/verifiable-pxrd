@@ -1,0 +1,81 @@
+I’ll first inspect the pattern metadata, reusable refinement tooling, and candidate-database interfaces. Then I’ll build a chemically plausible phase inventory, refine it in GSAS-II with residual-led checks, and export the exact final project and profiles.
+
+The chemistry points first to wolframite-type CoWO₄, but the phase count is deliberately unknown. I’m treating CoWO₄ only as an initial candidate and will test residual peak families for unreacted oxides, cobalt tungstate polymorphs, and chemically plausible minor phases under the same profile model.
+
+The measured maxima form the characteristic dense wolframite cluster near 23–25° plus strong lines near 30.7°, 34.2°, 36.4°, 41.5°, 50.0°, and 54.2°. The only indexed CoWO₄ COD entry is an old, incomplete-coordinate record, so I’m also screening same-stoichiometry wolframite analogues and will prefer a physically complete parent for Co substitution if it reproduces the pattern.
+
+Two coherent phase families are now evident: monoclinic WO₃ explains the 23.18/23.67/24.42° triplet and its repeated high-angle families, while wolframite CoWO₄ explains the otherwise unaccounted 30.71°, 36.44°, 38.62°, 44.40°, 52.15°, 65.15°, 68.78°, and 71.96° lines. I’m moving to quantitative GSAS-II refinement and will explicitly re-test CoO and Co₃O₄ after establishing the shared baseline.
+
+I’ve fixed the starting nuisance model to the measurement geometry: Cu Kα₁/Kα₂ with the reported 0.5 ratio, reflection geometry, one zero correction, smooth Chebyshev background, and neutral phase size/strain/texture/roughness. The next pass will establish common nonnegative U/W/X broadening before any phase-specific broadening is considered.
+
+The initial two-phase refinement already gives a stable crystalline split near 69 wt% WO₃ / 31 wt% CoWO₄ and Rwp ≈ 11.4% before cell/profile optimization. I found one avoidable scale degeneracy in the imported histogram (overall sample scale was active alongside phase scales); I’ll disable that in the comparison runs so uncertainty and model tests are clean.
+
+The cleaned common-profile model is nonsingular and leaves the overall sample scale fixed. It refines to 67.26(19) wt% WO₃ and 32.74(19) wt% CoWO₄ with Rwp 8.49%. Common U collapses to zero, so it has been pruned; W and a small X term remain. I’m now comparing complete FeWO₄- and CoMoO₄-derived wolframite parents under this identical model, as required before accepting the substituted structure.
+
+The parent-record comparison is decisive: the FeWO₄-derived isovalent Co substitution reaches Rwp 8.17% versus 8.49% for the CoMoO₄-derived model, while a second FeWO₄ record drives to an unphysical cell and Rwp 14.6%. I’m retaining the physically normal P2/c FeWO₄ parent (Co²⁺ for Fe²⁺) and now using its residual profile to challenge CoO, Co₃O₄, and reduced WOₓ watch-list phases.
+
+Both cobalt-oxide challenges collapse on replay: CoO refines to 0.03(23) wt% and Co₃O₄ to the zero-scale bound. Neither has a coherent unique family, so neither is retained. The mixed-valence W₁₈O₄₉ check required neutral-W X-ray scattering because GSAS-II lacks a W⁵⁺ form-factor key; that affects only the screening model, not the final phases.
+
+The W₁₈O₄₉ screen is computationally heavier because its large monoclinic cell generates many reflections; it is still running under the same constrained profile. Its diagnostic lines near 26.1° are not visibly present, so I expect this to be an exclusion check rather than a new phase.
+
+The reduced-tungsten candidate is also unsupported: its fraction falls from 0.48(30) to 0.24(30) wt% on replay, worsens Rwp slightly, and lacks its diagnostic 26.1° family. The coherent inventory is therefore two phases. I’m now refining only physically testable profile/background, polarization, size/strain, and texture variants, retaining terms only when replay-stable and supported across multiple isolated families.
+
+The inventory is now stable at two phases: monoclinic WO₃ and wolframite-type CoWO₄. The exact CoWO₄ database record was unsuitable, while an isovalent FeWO₄→CoWO₄ analogue gave the physically sound, clearly superior model; CoO, Co₃O₄, and W₁₈O₄₉ challenges refined to zero or below significance. I’m now finishing the residual-led background/profile tests, then I’ll lock and replay the exact final project before exporting every requested artifact.
+
+The background comparison is physically smooth: the extra terms correct a broad fluorescence/background curvature rather than creating peak-like oscillations. I’m checking the next order only for diminishing returns, then I’ll carry the lowest adequate background into asymmetry, polarization, broadening, and texture challenges so those terms are not rewarded for compensating background error.
+
+Two conclusions are already clear. Axial asymmetry is unsupported (SH/L is smaller than its uncertainty and 98% correlated with zero), so it will stay neutral. A shared high-angle intensity trend is strongly supported across both phases by the polarization correction; it lowers Rwp by more than one percentage point and is not acting like a phase-specific texture term. I’m replaying that model to verify stability before using it as the common profile baseline.
+
+Phase-specific broadening is not symmetric. CoWO₄ size runs to the neutral upper limit and its strain trial becomes nonphysical (negative), so both are rejected. WO₃ independently supports finite broadening by both size and strain; I’m now combining those two only and will keep them only if they remain positive, stable after reopen/replay, and reduce different residual features rather than trading against each other.
+
+The accepted broadening model is now clean: WO₃ isotropic microstrain is positive and replay-stable; finite size is not complementary and is dropped. The residuals are dominated by family-specific intensities, not a missing common width term. I’m screening symmetry-distinct March–Dollase axes for each phase next; any texture term must improve several independent families and survive a fresh replay.
+
+The texture screen is broader than a single “best-looking” direction: I am testing eight inequivalent low-index axes in each monoclinic phase. The first parallel batch saturated the numerical runtime, so two jobs aborted before touching their projects; the remaining independent jobs are still valid, and I’ll rerun the two missing cases with single-threaded math after this batch clears.
+
+The axis screen supports weak but reproducible preferred orientation in both phases: WO₃ along [111] and CoWO₄ along [001]. Both coefficients are many standard uncertainties from random orientation, and the combined model improves distinct low-, mid-, and high-angle families after three replays. I’m now pruning the background again under that accepted texture model, because the highest-order terms may no longer earn their place once family intensities are modeled correctly.
+
+One structural issue deserves a direct check before I freeze the model: the WO₃ entry used so far is an older room-temperature monoclinic record, while COD also contains a neutron-derived alternate setting of the same polymorph and a closely related room-temperature triclinic record. I’m comparing both under the same background, common profile, scale, cell, and isotropic-strain model. This tests the record itself rather than “explaining” coordinate-dependent intensity residuals with extra nuisance parameters.
+
+The alternate-record test materially changed the result. The neutron monoclinic WO₃ record beats the older coordinates decisively, and the room-temperature triclinic WO₃ record is better again even after accounting for its two extra cell variables (Rwp 5.11% versus 6.19%, with a χ² drop of about 9,400). I’m therefore replacing—not supplementing—the WO₃ model and rebuilding the common baseline from neutral profile, broadening, polarization, and texture settings before any final fractions are accepted.
+
+The replacement baseline is still converging through its staged scale/cell/common-width sequence. This is a full clean rebuild with only the two selected phases present, CoWO₄ β held at 90° because its earlier deviation was statistically unsupported, and every unused size/strain/roughness/asymmetry term neutral. Once it finishes, polarization and phase broadening will be re-tested from scratch against this better WO₃ structure.
+
+The rebuilt profile confirms the same qualitative behavior with the improved WO₃ structure: polarization is data-required but lands at its physical upper limit, so it is fixed at 1.0 rather than left frozen; WO₃ supports positive isotropic microstrain (~0.32%), while CoWO₄ strain again becomes negative and is rejected. The size trials are still finishing; after that I’ll re-evaluate asymmetry on the accepted broadening baseline.
+
+The asymmetry term is now retained provisionally: it is physically sized (SH/L ≈ 0.035), stable after reopen/replay, and improves asymmetric residuals in several low-, middle-, and high-angle windows, even though it remains strongly coupled to zero. The competing WO₃ size term becomes effectively infinite once strain is present, so only strain survives. I’m moving to a fresh texture-axis screen for the triclinic WO₃ model and will then re-challenge SH/L and background order under the selected texture model.
+
+The triclinic texture screen is internally consistent: [101] is the clear winner and remains stable after three replays (MD 0.9648 ± 0.0024). Axes such as [110] and [10̄1] return essentially random orientation, which is a useful negative control. I’m now testing CoWO₄ directions on top of that fixed inventory/profile choice rather than fitting both texture axes simultaneously from arbitrary starts.
+
+The width residuals support only a modest, low-dimensional anisotropy: a uniaxial WO₃ strain model along [001] improves χ² by about 41 for one extra degree of freedom, with both strain components positive and well determined. The [010] trial is effectively null, again serving as a negative control. I’m finishing the diagonal-axis checks before deciding whether [001] is sufficiently unique and replay-stable to retain.
+
+The latest symmetry-aware broadening test found a clear, replay-stable WO₃ [111] uniaxial microstrain term (one extra degree of freedom, χ² 18,995 → 18,393). I’m checking that improvement against the profile visually, then I’ll re-test the remaining nuisance terms and weak-phase watch list under this rebuilt model before final export.
+
+The anisotropic term is visibly addressing real family-dependent widths rather than isolated noise; the background remains smooth and the main residual structure is intensity/shape mismatch in several overlapping families. I’m now removing SH/L and reducing the background order in controlled variants to ensure those terms remain independently supported after the broadening change.
+
+Both challenged terms survive: fixing SH/L to neutral worsens χ² by 232 for one parameter, and reducing the smooth background from 12 to 10 terms worsens χ² by 120 for two parameters. I’m retaining both, while noting the strong SH/L–zero correlation as a systematic uncertainty. The final phase-inventory re-challenge now tests CoO, Co₃O₄, and W₁₈O₄₉ against this same common profile.
+
+The rebuilt watch-list test leaves only the two principal phases: CoO and W₁₈O₄₉ drive to the zero-scale bound, while Co₃O₄ refines to only 0.18(16) wt% and improves χ² by about 2.6 for one parameter—insufficient and not supported by coherent unique families. I’m proceeding with WO₃ + CoWO₄, extending the refinement to every measured point, then exporting directly from the reopened final project.
+
+The full-range model has now been saved, reopened, and replayed three times with all 8,301 points. It is stable with no frozen parameters (Rwp 4.883%, GOF 1.492; 70.28/29.72 wt%), and repeat-to-repeat changes are below practical significance. Next I’m exporting CIF/profile/JSON from that exact reopened state and validating phase geometry plus project-to-export identity.
+
+Both exported structures pass the physical screen: WO₃ has sixfold W–O distances of 1.716–2.219 Å; CoWO₄ has Co–O 2.041–2.172 Å and W–O 1.764–2.115 Å, with no implausible short contacts. I’m recording the source-model caveat for CoWO₄ and the conditional nature of the crystalline-only fractions in the final report.
+
+Completed the two-phase refinement:
+
+- Triclinic WO₃: 70.28 wt%
+- Wolframite CoWO₄: 29.72 wt%
+- Final fit: Rwp 4.883%, GOF 1.492
+
+Fractions are normalized over modeled crystalline phases; amorphous content is not quantified.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [phase_CoWO4.cif](<ATTEMPT_WORKSPACE>/phase_CoWO4.cif)
+
+All 8,301 measured points were included, and the saved project reopens without frozen parameters.
+

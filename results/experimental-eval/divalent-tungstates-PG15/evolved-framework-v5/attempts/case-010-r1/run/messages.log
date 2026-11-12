@@ -1,0 +1,46 @@
+I’ll first inspect the specimen metadata/pattern and the frozen analysis tooling/reference index, then build the chemically ordinary multiphase model in GSAS‑II and validate every coherent residual family before finalizing the project and exports.
+
+The chemistry points first to MnWO₄ plus possible residual Mn₂O₃/WO₃ at 500 °C, but I’ll treat that only as a starting hypothesis. I’m now extracting the observed reflection families and checking the frozen reference index/tooling for exact-composition candidates and precursor structures.
+
+The observed peak family is already much more consistent with distorted room-temperature WO₃ than with MnWO₄: the WO₃ triplet and its higher-angle families recur, while MnWO₄’s diagnostic 15.5°, 18.5°, and 30.0–30.5° reflections are not evident. I’m checking whether the remaining peaks require Mn₂O₃ and which physically valid WO₃ polymorph best reproduces the full family.
+
+The residual family confirms Mn₂O₃: its (222), (400), (332), (440), and (622) sequence appears at about 33.27°, 38.53°, 45.13°, 55.1–55.6°, and 66.03°. The angle-dependent shift is consistent with specimen height, not separate unidentified phases. I’m now running matched GSAS‑II branches for the valid WO₃ and Mn₂O₃ references, with identical refinement schedules, so the topology choice is based on the full profile rather than isolated peaks.
+
+The first completed comparisons favor monoclinic WO₃ over orthorhombic WO₃, but several longer triclinic/monoclinic branches were interrupted after their first checkpoint. I’m rerunning those branches to completion and keeping zero and specimen height separate where their near-perfect correlation makes a joint step unstable.
+
+The valid monoclinic WO₃ model now gives Rwp = 6.86% with physical cell changes and both precursor scales positive; triclinic WO₃ is worse (7.31%) and collapses metrically toward monoclinic symmetry. The provisional mass ratio is about 73:27 WO₃:Mn₂O₃, close to the 1:1 Mn:W precursor charge. I’m checking the two defensible Mn₂O₃ symmetry models next, then I’ll move the excessive common broadening into bounded phase size/strain terms.
+
+The Mn₂O₃ comparison is decisive enough: centrosymmetric bixbyite Ia‑3 gives Rwp = 6.86% versus 7.31% for I2₁3, with much better Mn₂O₃ Bragg agreement. No residual family remains that calls for MnWO₄, Mn₃WO₆, or a third oxide. I’m now refining a generator-consistent physical profile—instrument terms within the stated lab ranges, with separate crystallite size/microstrain for each accepted phase.
+
+A bounded two-phase profile reproduces the unbounded fit essentially as well (Rwp = 6.89%) with plausible sizes (~0.12 µm), Mn₂O₃ microstrain (~1130 ppm), and instrument terms inside the stated ranges. I’m preserving that checkpoint and now refining atomic coordinates in the requested heavy-then-light order, with geometry screening and rollback if the oxygen framework becomes nonphysical.
+
+The unconstrained oxygen refinement remained chemically valid, but it moved some O sites by several tenths of an ångström and did not beat the pre-coordinate checkpoint, so I’m not accepting it as-is. I’m testing grouped, positive displacement parameters plus the physically available low-angle intensity corrections; this separates real coordinate evidence from intensity compensation before deciding which coordinate checkpoint to retain.
+
+The coordinate branches confirm the starting structures are already at the best stable minimum: every heavy/light refinement either worsens Rwp or requires disproportionate oxygen shifts. I’ve rolled back to the physical pre-coordinate checkpoint. One supported intensity effect remains to test—bounded March–Dollase texture on the allowed low-index axes—before freezing the model.
+
+The phase inventory is now well constrained: monoclinic WO₃ plus bixbyite Mn₂O₃ account for every coherent reflection family; the expected MnWO₄/Mn₃WO₆ signatures are absent. I’m rebuilding the chosen refinement as a self-consistent full-grid GSAS-II checkpoint now, then I’ll export the CIFs, profile, fractions, and report from that exact project.
+
+The first full-range replay exposed two nearly redundant parameter pairs (zero/specimen height and common Lorentzian width/phase size). I’m removing those unsupported degrees of freedom—fixing the nominal instrument zero and common profile term while retaining phase broadening—so the submitted project is numerically stable as well as physically bounded.
+
+The bounded anisotropic-width test is materially supported for monoclinic WO₃ (Rwp improves from 7.23% to about 6.8% without changing topology or introducing texture). I’m completing the small symmetry-direction screen and will retain only the stable, interior solution—not simply whichever branch has the lowest number.
+
+The final checkpoint is selected and exported: WO₃ 72.03 wt% and Mn₂O₃ 27.97 wt%, normalized over crystalline phases, with full-range Rwp 6.78%. I’m doing the last independent checks now—CIF parsing/bond geometry, project-to-CSV numerical identity, and output schema—before writing the uncertainty report.
+
+Completed the phase analysis and GSAS-II refinement.
+
+- Monoclinic WO₃ (P 21/c): 72.03 wt%
+- Bixbyite Mn₂O₃ (Ia-3): 27.97 wt%
+- Full-range Rwp: 6.780%
+- Fractions are normalized over modeled crystalline phases; estimated systematic uncertainty is approximately ±2 wt% absolute.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r1/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r1/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r1/workspace/fit.csv)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r1/workspace/phase_WO3_monoclinic.cif)
+- [Mn₂O₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-010-r1/workspace/phase_Mn2O3_bixbyite.cif)
+
+The CIFs parsed successfully, have ordinary W–O and Mn–O geometry, and all exported quantities were verified against the submitted GSAS-II project.
+

@@ -1,0 +1,69 @@
+I’ll inspect the specimen metadata and pattern first, then identify candidate phases from the frozen reference index and build/refine a complete multiphase GSAS-II model. I’ll preserve physical checkpoints and only pursue residual families that remain coherently unassigned.
+
+The chemistry is PbO + WO₃ heated at 500 °C, so Pb–W–O products plus residual precursors are the chemically ordinary starting inventory. The scan is a dense Cu Kα₁/Kα₂ reflection pattern from 10–100° 2θ; I’m now extracting peak families and locating exact-composition Pb–W–O references before any analogue search.
+
+Three coherent families are already evident:
+
+- scheelite-type PbWO₄ accounts for the dominant series (27.70, 33.05, 45.02, 51.48, 55.54, 72.27°);
+- monoclinic WO₃ accounts for the 23.38/23.88/24.64° triplet and its higher-angle family;
+- orthorhombic massicot PbO accounts for 29.34/30.62/38.12/53.39/60.53/63.28°.
+
+These assignments have broad-family support, not just isolated peak matches. I’m moving them into a joint refinement and will test whether any coherent residual family remains afterward.
+
+The joint refinement is stable and all three phase scales remain positive. At this checkpoint the modeled crystalline fractions are approximately 79% PbWO₄, 12% WO₃, and 10% PbO, with Rwp down to 15.3%. The remaining mismatch is mostly profile/intensity structure rather than new unmatched peak positions; I’m now separating instrumental broadening from phase size/strain and checking residual families before touching atomic coordinates.
+
+The first exact-composition branch, monoclinic PbWO₄ (raspite), refined to essentially zero abundance and did not explain the residual family, so I’m rejecting it. I’m screening the remaining Pb–O and W–O references against the full residual profile now; any candidate must improve several separated reflections and retain a positive scale in GSAS-II.
+
+The residual screen supports a second PbO polymorph: tetragonal litharge refines to a stable ~2.7 wt% contribution and improves separated peaks across 29–78°. The dominant unresolved peaks at 25.92, 30.14, and 31.04° are not explained by litharge. I’m testing oxidized Pb precursor phases before any analogue-derived tungstate; a candidate will be rejected if it needs implausible cell distortion even when its numerical fit improves.
+
+An exact structural analogue resolves the residual family: COD 7220560, Pb₂MoO₅ (C2/m), becomes chemically plausible Pb₂WO₅ by the single isovalent Mo⁶⁺→W⁶⁺ substitution. Its calculated reflections match the unresolved series across the entire scan—25.70, 29.11, 30.45, 30.89, 34.84, 39.25, 43.22, 47.24, 51.87, 54.74, 60.02, 64.36, 71.62, and 78.05° before the common specimen shift. I’m adding this physically screened analogue now; this is the justified cross-chemistry step because the exact Pb₂WO₅ composition is absent from the frozen index.
+
+Both analogue-derived tungstates pass the acceptance tests. Pb₂WO₅ lowers Rwp from 14.89% to 12.28% with only ~0.5% cell changes from Pb₂MoO₅ and physical tetrahedral W–O distances. An ordered Pb₃WO₆ model derived from Ba₃WO₆ then lowers Rwp to 11.55% at ~3.1 wt%, with all W–O/Pb–O contacts physical and a stable positive scale. I’m checking the six-phase residual once more; if no new coherent family remains, I’ll stop phase search and refine this accepted inventory.
+
+The accepted inventory remains stable through renewed cell/calibration refinement: fractions are currently about 63.5% PbWO₄, 14.1% Pb₂WO₅, 9.9% WO₃, 6.6% massicot PbO, 3.1% Pb₃WO₆, and 2.7% litharge PbO. Zero and specimen displacement both remain within the laboratory’s physical ranges. The phase-specific size/strain refinement is still running; that is the key step for replacing the earlier nonphysical negative instrumental U term.
+
+No additional phase family remains after the six-phase model; the largest residuals coincide with accepted reflections and have peak-shape/intensity signatures. Calibration-only tests give only a marginal change, so I’m now screening the five physically allowed March–Dollase axes for each phase in parallel. This will distinguish real texture corrections from coordinate/profile mismatch before atomic refinement.
+
+The texture model is supported, lowering Rwp to 10.65%; heavy-coordinate refinement reaches 9.81%. Before accepting that gain, I’m auditing the refined bond geometry and coordinate displacements against the physical parent structures. The calibration terms moved but remain within the stated ranges; because zero and displacement are strongly correlated, I’ll retain them only if the structural audit and a rollback comparison support the checkpoint.
+
+The six-phase inventory is now fully indexed and the best physical checkpoint is at Rwp ≈ 9.81%. I’m finishing the coordinate rollback tests, checking that every exported CIF has the intended stoichiometry and geometry, then I’ll package and cross-verify the GSAS-II project, profiles, fractions, and report.
+
+All oxygen-coordinate branches failed the physical rollback criterion: each worsened the fit, and litharge’s oxygen coordinate was numerically unconstrained. I’m retaining the heavy-atom-only checkpoint and treating those oxygen results as rejected tests, not as phase evidence.
+
+One integrity check caught a real issue before packaging: the COD litharge entry was imported with the wrong origin-choice transform, giving a nonphysical Pb₂O multiplicity in GSAS-II. I’m repairing that phase to the correct P4/nmm PbO special positions and will re-refine from the accepted checkpoint; this can legitimately change both its intensity contribution and the normalized fractions.
+
+The repaired PbO model both restores the correct stoichiometry and improves the fit substantially (Rwp 9.07%, versus 9.81% before the repair). Its refined contribution remains positive and stable. I’m now auditing the newly refined bond geometry and testing only a few specimen-level terms that the measurement model supports; the corrected checkpoint is already a complete fallback.
+
+The geometry audit found that the first monoclinic WO₃ reference itself contains an impossible 1.58 Å O–O contact inherited from an old approximate COD model. Because the prompt prioritizes physical structure over a small fit gain, I’m replacing it with the exact-composition, same-volume P2₁/c neutron structure (COD 2311041), then rechecking fit and geometry rather than submitting the defective reference.
+
+The replacement WO₃ structure fits nearly as well, but its unconstrained W-coordinate branch shortened one bond to 1.60 Å, so that branch is rejected. The source neutron coordinates are physical; I’m keeping them fixed and screening preferred orientation in the new crystallographic setting, where the old texture axis cannot be transferred directly.
+
+The optional specimen-term screens are negative: zero, displacement, and polarization change Rwp by less than 0.00005, while surface roughness collapses to its lower bounds with a singular 100% correlation. I’m rejecting those additions and keeping the simpler physical checkpoint. No coherent residual reflection family remains; the remaining mismatch is profile/intensity-level.
+
+The accepted model is now converged over all 8,282 supplied points (Rwp 9.073%, Rp 6.595%, GOF 2.598; max shift/esd 0.017). I’m at the packaging stage: exporting CIFs directly from that exact checkpoint, propagating scale covariance to statistical fraction errors, and validating that every file replays to the same profile and statistics.
+
+The deliverables are now generated from one checkpoint, and the independent GSAS-II forward replay exactly reproduces all six phase fractions and Rwp (9.0732%) without profile review flags. I’m doing the final schema/structure cross-check now, including CIF occupancy, stoichiometry, and full-grid CSV validation.
+
+Analysis complete. Crystalline fractions, normalized to 100% crystalline material:
+
+| Phase | wt% |
+|---|---:|
+| PbWO₄, scheelite | 55.69 ± 0.22 |
+| Pb₂WO₅, monoclinic model | 15.25 ± 0.20 |
+| WO₃, monoclinic | 9.34 ± 0.16 |
+| PbO, litharge | 8.33 ± 0.12 |
+| PbO, massicot | 7.34 ± 0.14 |
+| Pb₃WO₆, ordered model | 4.05 ± 0.08 |
+
+Final fit: Rwp 9.073%, Rp 6.595%, GOF 2.598. Independent GSAS-II replay reproduced the fit and fractions without profile-geometry warnings.
+
+Outputs:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-013-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-013-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-013-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-013-r3/workspace/final.gpx)
+- [Phase CIFs](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-013-r3/workspace/phase_1_PbWO4_scheelite.cif)
+
+Pb₂WO₅ and especially the minor Pb₃WO₆ model are analogue-derived; their detailed oxygen arrangement/order is less reliable than their indexed reflection families and approximate fractions.
+

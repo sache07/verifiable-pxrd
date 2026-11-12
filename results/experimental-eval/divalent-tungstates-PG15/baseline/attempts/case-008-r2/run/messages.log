@@ -1,0 +1,31 @@
+I’ll inspect the measurement metadata and pattern first, then identify candidate phases, build/refine the multiphase model in GSAS-II, and validate that every reported fraction and profile comes from the saved final project.
+
+The chemistry strongly suggests manganese tungstate, but I’ll let the diffraction pattern determine whether it is single-phase or contains residual/secondary oxides. I’m now checking peak positions and the installed crystallographic workflow so candidate selection is evidence-driven.
+
+The major and minor reflections all index to monoclinic wolframite-type MnWO₄ (P2/c); the alternative Mn₃WO₆ and precursor oxide patterns have strong unmatched lines. I’m moving into quantitative refinement now, including a residual-peak check so trace crystalline phases are not missed.
+
+The first refinement confirms a single MnWO₄ lattice across the full range (ambient-like cell, with a sizeable pattern zero offset). I found and am correcting two technical issues before trusting the statistics: a redundant overall scale factor and an unconstrained profile fit that wandered into nonphysical negative-width coefficients.
+
+The physically constrained single-phase model now gives \(R_{wp}\approx7.43\%\) and \(R_p\approx5.20\%\). Its residual contains derivative-shaped errors at MnWO₄ peaks rather than independent extra peaks; I’m nevertheless fitting the chemically plausible residual phases one at a time to establish detection limits and avoid declaring single-phase by inspection alone.
+
+The residual-phase test resolves a real second phase: monoclinic γ-WO₃. Its diagnostic weak peaks account for the satellites near 23.45° and 24.68°, and its refined cell is \(a=7.3062\), \(b=7.5470\), \(c=7.6879\) Å, \(\beta=90.830^\circ\). The crystalline fractions converge to about 97.88 wt% MnWO₄ and 2.12 wt% WO₃; alternative WO₃ polymorphs and manganese oxides are not uniquely supported. I’m packaging the exact final refinement and exports now.
+
+The deliverables are written. I’m doing a final consistency audit now: reopening `final.gpx`, parsing both CIFs, checking normalized fractions and fit statistics, and confirming every `fit.csv` difference value equals observed minus calculated.
+
+Completed the two-phase refinement:
+
+- MnWO₄, P2/c: 97.878(70) wt%
+- γ-WO₃, P2₁/n: 2.122(70) wt%
+- Rp = 4.938%, Rwp = 7.063%, GOF = 2.565
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MnWO4.cif](<ATTEMPT_WORKSPACE>/MnWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+
+The WO₃ atomic coordinates could not be independently refined at its low abundance and remain reference-model values. Possible sub-0.5 wt% manganese oxides were non-unique and are not reported as phases.
+

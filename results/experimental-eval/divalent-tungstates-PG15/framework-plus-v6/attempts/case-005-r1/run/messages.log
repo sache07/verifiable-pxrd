@@ -1,0 +1,46 @@
+I’ll first inspect the metadata, pattern, and the frozen analysis package, then build a phase inventory before refining. I’ll keep the submitted CIFs, profile, fractions, and statistics tied to a replayed `final.gpx` so the exports are internally consistent.
+
+The chemistry is Co–W–O at 500 °C, where CoWO₄, residual WO₃/Co₃O₄, and cobalt tungstate intermediates all remain plausible. The scan has 8,301 points over 9.9–100.1° with Cu Kα1/Kα2; I’m now extracting peak families and querying the frozen COD inventory rather than assuming a single target phase.
+
+Peak-family matching strongly supports two precursor phases: monoclinic WO₃ (the 23.46/23.95/24.71° triplet and its 33–56° families) and spinel Co₃O₄ (unique families at 19.37, 31.63, 37.20, 38.90, 45.15, 59.67, and 65.55°). The exact CoWO₄ database record is incomplete, so I’m treating a repaired wolframite analogue only as a watch-list challenge; its strongest unique ~30.5° family is not evident. Next I’m testing that inventory under one common GSAS-II profile.
+
+The two-phase baseline drops from 13.5% to 3.73% Rwp once cells, displacement, and a common width are fitted, while the fractions stabilize near 74:26 wt%. The common Lorentzian width then hits its physical bound, which is the expected signal to test phase-specific broadening rather than accept a bound profile. I’m branching from the pre-bound stage and will compare size/strain phase-by-phase, then re-challenge weak CoWO₄ under the rebuilt profile.
+
+The residuals are centered on already indexed WO₃/Co₃O₄ reflections rather than at new peak families, so the remaining mismatch is chiefly intensity/profile modeling, not an obvious missing phase. I’m now comparing the viable monoclinic, triclinic, and orthorhombic WO₃ records with identical background, displacement, size, and polarization treatment; the malformed P2₁/m record was rejected on a 0.46 Å contact.
+
+The source comparison is still running through full-range reconvergence for each record. I’m letting it finish because the two monoclinic records have nearly identical peak positions but materially different oxygen coordinates and intensity distributions—the distinction that matters here.
+
+The record comparison favors COD 2311041 as the defensible WO₃ model: its refined cell stays within ~0.3% and 0.12° of the published monoclinic parent. A triclinic record lowers Rwp by only 0.08 percentage point but must distort its angles by 0.9–1.6°, far beyond the allowed reference mismatch and toward the monoclinic metric; the other monoclinic record fits worse, and Pnma is decisively rejected. I’m retaining the physically stable P2₁/c model and now quantifying watch-list phase scales.
+
+The common intensity audit supports refining polarization (0.843, replay-stable) but rejects surface roughness: one Suortti parameter collapses to zero and the pair is 99.4% correlated, behaving as a scale surrogate. I’ve therefore returned to the no-roughness project and am testing only symmetry-distinct March–Dollase axes, one phase at a time.
+
+None of the texture trials is supported: WO₃ ratios return to 0.994–1.006, while Co₃O₄ axis choices change Rwp by less than 0.0003 percentage point despite unstable ratios. I’m pruning texture. Symmetry-allowed coordinate refinement is supported by both low- and high-angle families and lowers Rwp to ~3.30%; I’m replaying that model to convergence and checking its geometry before accepting it.
+
+A replay-stable anisotropic broadening term is supported only for WO₃ along [010] (equatorial/axial microstrain ≈4785/3490 ppm); Co₃O₄ returns to isotropic width. SH/L stays at 0.03007 with negligible change, so asymmetry is also pruned. I’m limiting the final coordinate refinement to the heavy W sublattice first, since the full oxygen model oscillated and is not reliable enough to submit unqualified.
+
+The heavy-atom model now replays cleanly: refining the W sublattice lowers Rwp to 3.3624% and converges to max shift/esd <0.002. The spinel oxygen parameter gives a small but stable further improvement; a single constrained WO₃ Uiso converges at 0.00641 Å². Co₃O₄ Uiso drifts and is rejected. I’m now validating contacts, export/project agreement, and full-range replay before producing the deliverables.
+
+I’ve narrowed the pattern to monoclinic WO₃ plus spinel Co₃O₄ and rejected the plausible CoWO₄/CoO watch-list candidates by zero refined scale. I’m checking the last oxygen-coordinate challenge now; then I’ll lock the replay-stable model and export all deliverables directly from that exact project.
+
+The oxygen-coordinate challenge is not replay-stable: several WO₃ oxygen coordinates alternate between two solutions and shift by up to ~4.8σ despite only a small Rwp gain. I’m rejecting that overfit and retaining the physically sound source oxygen framework, while keeping the stable tungsten, spinel-oxygen, cell, scale, and profile refinements.
+
+The accepted model has now been saved, reopened, and refined twice more. Both replays converged with maximum shift/σ below 0.006; the phase fractions changed by less than 0.000001 absolute. I’m now independently regenerating the full 10–100° profile from `final.gpx` while ignoring its cached calculated curve, which is the key project/export consistency check.
+
+The independent replay passed with no profile-review flags and reproduced fractions of 0.7607166 WO₃ and 0.2392834 Co₃O₄. The final profile is Rwp 3.358% over all 8,301 points. I’m doing the last submission-level checks now: CIF geometry, CIF↔project numerical agreement, fraction normalization, and exact grid/profile integrity.
+
+Completed. The crystalline material is:
+
+- Monoclinic WO₃, P2₁/c: **76.07 wt%**
+- Spinel Co₃O₄, Fd-3m: **23.93 wt%**
+
+Independent GSAS-II forward replay gave Rwp = **3.358%** with no physical profile-review flags. CoWO₄ and CoO trials refined to effectively zero scale and were excluded. The WO₃ oxygen coordinates remain source-model values because their refinement was not replay-stable.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-005-r1-retry1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-005-r1-retry1/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-005-r1-retry1/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-005-r1-retry1/workspace/final.gpx)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-005-r1-retry1/workspace/phase_WO3.cif)
+- [phase_Co3O4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-005-r1-retry1/workspace/phase_Co3O4.cif)
+

@@ -1,0 +1,36 @@
+I’ll inspect the measurement metadata and diffraction profile first, then identify candidate phases from the chemical constraints and peak positions. I’ll refine the strongest structural model(s) in GSAS-II, validate phase fractions and residuals, and export the requested CIFs, profile, JSON, report, and final project.
+
+The chemistry points first toward strontium tungstates, but the phase count is explicitly unknown, so I’m treating that only as a search constraint. I’m now extracting peak positions/intensities and checking the installed crystallographic backends and reference database before choosing any structural model.
+
+The dominant phase is now unambiguous: tetragonal scheelite SrWO₄ (I4₁/a). Its diagnostic reflections align across the full range, including the strong 112/103 overlap near 28°, 200 near 33.4°, 204 near 45.5°, and 312 near 56.1°. Several reproducible peaks remain outside that model, so I’m separating those residuals and testing precursor/product-side candidates rather than forcing a single-phase fit.
+
+I’ve separated two securely identified components: scheelite SrWO₄ and monoclinic WO₃ (the latter is supported by its characteristic 23–25° triplet and matching higher-angle multiplets). I’m beginning quantitative GSAS-II trials now; I’ll use residual reduction and physically sensible refined cells/scales to decide whether any third phase is warranted.
+
+The first quantitative trials confirm that WO₃ improves the fit, but its unconstrained crystallite-size parameter tried to compensate for still-unmodeled peaks, so I rejected that overfit. I’ve fixed the profile treatment and am comparing explicit third-phase candidates on equal terms; the key discriminator is the strong residual sequence at 29.76°, 32.61°, 44.67°, 48.61°, and 67.03°.
+
+The three-phase model is now chemically and positionally coherent. I’m doing the last stability check—testing only minimal preferred-orientation and peak-profile corrections—before freezing the phase fractions and exporting the final GSAS-II project.
+
+The orientation check found no meaningful texture in scheelite SrWO₄, but the minor monoclinic component is sensitive to how its overlapping intensities are modeled. I’m treating that as a real uncertainty rather than accepting a lower residual blindly, and I’m rechecking all chemically plausible Sr–W–O database entries against the unmatched peak positions.
+
+The phase-position evidence still favors scheelite SrWO₄ + monoclinic WO₃ + a fergusonite-type SrWO₄ component. The current check is specifically separating true phase intensity from an uncalibrated instrumental-width effect; this is the main source of uncertainty in the minor-phase fraction.
+
+The database-wide residual search confirms the third peak family is best matched by the fergusonite-type SrWO₄ entry; the next chemically plausible Sr–W–O candidate is substantially poorer. I’m now freezing a conservative model with no arbitrary texture correction, using a reflection-geometry sample-displacement correction, and exporting all requested deliverables from that same final project.
+
+Identified three modeled crystalline phases:
+
+- Scheelite SrWO₄ (I4₁/a): 76.95 wt%
+- Monoclinic WO₃ (P2₁/n): 11.00 wt%
+- Fergusonite-type SrWO₄ (I2/a): 12.06 wt%, provisional assignment
+
+Fit: Rwp 16.47%, Rp 12.25%, GoF 4.66. The fergusonite-type model matches a distinct residual peak family but is lower confidence because its reference structure is pressure-stabilized and no pressure treatment was reported.
+
+Deliverables:
+
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [Scheelite SrWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_SrWO4_scheelite.cif)
+- [Monoclinic WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_monoclinic.cif)
+- [Fergusonite-type SrWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_SrWO4_fergusonite_type.cif)
+

@@ -1,0 +1,58 @@
+I’ll inspect the measurement metadata, pattern, and the reusable refinement utilities first. Then I’ll build a chemically screened phase inventory, test alternatives under a common baseline, and export only the replay-verified final model.
+
+The chemistry is a Mn–W–O solid-state product heated at 500 °C, with raw Cu Kα reflection data over 9.9–100.1°. I’m now extracting peak families and screening the local structure database for Mn/W oxides and plausible precursor residues before committing to any phase count.
+
+The dominant peak families are consistent with a low-symmetry WO₃ lattice, while a coherent secondary set near 29.0, 44.6, 51.0, 58–60, 64–66, and 77° points to a manganese oxide rather than MnWO₄ (whose strong 18.5 and 30.0° lines are absent). I’m testing the WO₃ polymorphs and Mn-oxide records under the same profile model, and I’m keeping mixed Mn–W oxides on the watch list until their unique lines are explicitly rejected.
+
+The first whole-pattern test shows the Mn₃O₄ scale is weak and its cell becomes unstable, while the WO₃ phase absorbs nearly all coherent intensity. That is evidence against forcing a manganese-oxide residue into the model; I’m re-running the WO₃ polymorphs one at a time to determine whether the apparent “secondary” lines are simply the split reflections of the low-symmetry WO₃ cell.
+
+The two physically plausible room-temperature WO₃ records both converge, with the triclinic 1978 model fitting better than the monoclinic 1960 model under an identical profile (Rwp 11.03% versus 11.67%). Some older/high-temperature records need staged refinement because simultaneous scale/cell fitting was numerically unstable; I’m giving those records the required second chance rather than treating the failed run as phase rejection.
+
+The residual resolves the inventory: its coherent maxima occur at 33.255, 38.526, 45.491, 49.620, 55.466, and 66.029°, exactly the Ia‑3 Mn₂O₃ family after the common ~0.31° angular correction. That sequence includes several isolated lines and explains why Mn₃O₄ was unstable. I’m adding Mn₂O₃ now and comparing its centrosymmetric and noncentrosymmetric records under the same WO₃ baseline.
+
+The Mn₂O₃ addition is decisive: Rwp falls from 11.03% to 7.57%, and the refined phase is 26.7 wt% with a = 9.4167 Å. The physically correct centrosymmetric bixbyite record (Ia‑3) also fits better than the I2₁3 alternate (7.57% versus 7.77% Rwp). I’m rebuilding the shared profile on the accepted two-phase inventory before re-challenging weaker phases.
+
+The common U/W/X profile remains physical and positive across 15–95° (calculated FWHM ≈0.15–0.46°). SH/L gives only a 0.003% Rwp improvement and is 98% correlated with displacement, so I’m pruning it. WO₃ strain drives both strain and W negative and is rejected; Mn₂O₃ shows a small but real phase-specific broadening signal, so I’m replay-testing size versus strain before choosing one.
+
+The phase inventory is now coherent around triclinic WO₃ plus bixbyite Mn₂O₃. I’m finishing the nuisance-model challenges and then I’ll replay and export one exact final GSAS-II state so the CIFs, fractions, and profile all agree.
+
+Texture does not survive the challenge: the WO₃ March–Dollase factors stayed within about 1.6% of unity for every distinct trial axis, while Mn₂O₃ texture was numerically unstable and strongly correlated with scale. I’m pruning texture and re-testing the chemically plausible minor phases against the same clean common profile.
+
+The first watch-list result already behaves as a rejection: rocksalt MnO has no supported scale, its cell becomes singular, and replay loses all reflections in range. That is the expected signature of an absent candidate rather than evidence to retain it. The tungstates and Mn₃O₄ challenges are still converging.
+
+The watch list is more interesting than a simple zero-scale screen: MnWO₄ and Mn₃O₄ both obtain small positive scales, while Mn₃WO₆ is only ~0.35 wt%. I’m now checking whether those gains come from several phase-specific peak families or merely from overlapping residuals; only the former warrants adding a phase.
+
+MnWO₄ passes the residual-family test: its separate 30.14°, 30.60°, 36.23°, and 24.41° families all address positive residuals, and the refined ambient-scale cell remains physically plausible despite the available reference being measured at 2.4 GPa. The rebuilt three-phase model is replay-stable at Rwp 7.4275%; I’m now testing whether Mn₃O₄ or Mn₃WO₆ still has independent support after MnWO₄ is included.
+
+The post-MnWO₄ re-challenge rejects both extra phases on physical evidence: Mn₃O₄’s gain comes mainly from peaks already assigned to MnWO₄/WO₃, and its diagnostic 33.0° and 18.3° lines are unsupported; Mn₃WO₆ improves overlaps at 29°/55° but worsens its strong isolated 20.2°, 20.8°, and 46.8° families. I’m retaining them only as sub-percent watch-list possibilities, not as determined phases.
+
+The broadening tests are now physically selective. WO₃ size hit the neutral upper bound and WO₃ strain forced negative strain plus negative W, so both are rejected. Mn₂O₃ has replay-stable isotropic size broadening (~138 nm), and weak MnWO₄ has independently supported broadening (~73 nm) at its isolated 30.14°/30.60° pair; their mutual profile correlations are low enough to retain both.
+
+One chemistry-driven gap remains: the direct reaction stoichiometry Mn₂O₃ + WO₃ → Mn₂WO₆ has no exact local structure record. Per the analogue-search rule, I’m screening cross-chemistry Mn₂WO₆ prototypes before locking the report; this is the last phase-inventory challenge and could replace the tentative ~1.3 wt% MnWO₄ assignment if its peak families fit better.
+
+The analogue candidates are physically sensible isovalent substitutions (Mn³⁺ for Cr³⁺, Fe³⁺, or V³⁺), with full occupancy and reasonable Mn–O/W–O distances. Their scale-first GSAS-II challenges are running now; candidate cells remain fixed until scale has been tested, then are allowed to move only within the parent symmetry.
+
+All three Mn₂WO₆ analogues find small formal scales, but their evidence is internally inconsistent: the fitted cells depend strongly on the chosen parent, and each model’s strongest diagnostic family is absent or worsens the residual while gains come from weaker overlaps. I’m directly replacing MnWO₄ with the two best prototypes as a final control; if they cannot reproduce the 30.1°/30.6° families, MnWO₄ remains the defensible minor phase and Mn₂WO₆ stays “not reliably determined.”
+
+A grouped-ADP challenge for WO₃ improves Rwp numerically but drives the W displacement parameter to −0.009 Å², so it is physically invalid and will be pruned. The zero-ADP literature model is therefore being retained as a neutral fixed structure rather than accepting an intensity surrogate.
+
+The direct replacement control is decisive: Mn₂WO₆ prototypes converge at Rwp 7.476–7.479%, substantially worse than the retained MnWO₄ model at 7.4238%. Combined with their missing strongest lines and parent-dependent cells, Mn₂WO₆ cannot be assigned reliably and is excluded from the modeled crystalline fractions. The submitted three-phase project remains unchanged.
+
+Completed the refinement. Modeled crystalline fractions are:
+
+- Triclinic WO₃: 70.704(31) wt%
+- Bixbyite Mn₂O₃: 28.001(28) wt%
+- Wolframite MnWO₄: 1.295(14) wt%
+
+Rwp = 7.4238%, Rp = 5.5648%, GOF = 2.7928. MnWO₄ is the least certain assignment; Mn₂WO₆ could not be identified reliably.
+
+Files:
+
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_1_WO3_triclinic.cif)
+- [Mn₂O₃ CIF](<ATTEMPT_WORKSPACE>/phase_2_Mn2O3_bixbyite.cif)
+- [MnWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_3_MnWO4_wolframite.cif)
+

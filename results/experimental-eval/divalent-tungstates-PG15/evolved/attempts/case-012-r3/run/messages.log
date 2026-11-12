@@ -1,0 +1,38 @@
+I’ll first inspect the measurement metadata, pattern range/resolution, and the reusable refinement utilities in `learned/`. Then I’ll build a chemically screened phase inventory and refine it in GSAS-II, using residual-led additions only after establishing a stable baseline.
+
+The chemistry points first to nickel tungstate, but the unknown stoichiometry and phase count make residual NiO/WO₃ and alternate Ni–W–O compounds genuine candidates. I’m now extracting peak positions and querying the local crystallographic index before committing to any structure record.
+
+The strongest families separate cleanly into wolframite-type NiWO₄ (notably 19.19°, 30.87°, 36.52°, 54.58°) and monoclinic WO₃ (the 23.06/23.53/24.28° cluster plus 26.53°). I’m checking all locally available WO₃ polymorph records and keeping NiO on the watch list; its diagnostic 43.3° family appears absent or very weak.
+
+The two-phase baseline is already coherent: once cells and a common width term are released, Rwp drops from ~22% to ~6.6%, with provisional crystalline fractions near 81% NiWO₄ / 19% WO₃. The refined common width is much larger than the generic instrument default, so I’m letting the nonnegative U/W/X baseline reconverge before testing phase-specific broadening or weak NiO.
+
+The common profile is stable and replayable, and refining the previously unknown polarization gives a physically plausible 0.720 and improves Rwp to ~5.02%. I’m now comparing the exact but incomplete 1951 NiWO₄ record against the high-quality ZnWO₄ prototype with Ni substitution, and separately challenging monoclinic WO₃ against its triclinic/orthorhombic alternatives under the same nuisance model.
+
+The phase-by-phase profile tests are decisive: NiWO₄ size and strain both run to their neutral bounds, while WO₃ gains a replay-stable isotropic microstrain term (1438 ± 97 µstrain) and lowers Rwp to ~4.95%. I’m retaining only that term and now checking asymmetry and texture; unsupported terms will remain fixed at neutral values.
+
+The structural refinement is now physically coherent: the coarse NiWO₄ coordinates refine to plausible octahedra (Ni–O 1.96–2.01 Å; W–O 1.90–2.21 Å), and the final nonnegative U/W/X profile is stable. NiO re-challenges to a scale floor with a ~0.09 wt% one-sigma detection estimate, so it will not be included. I’m pruning the rejected terms, replaying from a reopened project, and exporting all deliverables directly from that exact project state.
+
+The final two-phase refinement has converged. I’m now checking that every exported CIF, fraction, and profile matches the reopened `final.gpx` exactly, then I’ll write the uncertainty-focused report.
+
+The reopened project and all exports agree byte-for-value at the numerical level: 8,282 profile rows, both fractions, and every fit statistic match. The CIFs also parse cleanly as P2/c NiWO₄ and P2₁/c WO₃ with chemically sensible coordination and bond-valence states.
+
+The remaining model ambiguity is now quantified: an almost pseudosymmetric triclinic WO₃ alternative fits only marginally worse and shifts the phase fractions by about 0.65 wt%, while orthorhombic WO₃ is clearly rejected. I’ll report the formal covariance errors separately from a more realistic ±1 wt% practical uncertainty.
+
+Identified two crystalline phases:
+
+- NiWO₄, P2/c: **76.40 wt%**
+- Monoclinic γ-WO₃, P2₁/c: **23.60 wt%**
+
+Fractions are normalized over crystalline phases. Final Rwp = **4.549%**, GOF = **1.310**. Practical fraction uncertainty is approximately ±1 wt%; monoclinic versus pseudosymmetric triclinic WO₃ remains the main structural ambiguity. NiO was not detected above an estimated ~0.3 wt% model-based limit.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_1_NiWO4.cif](<ATTEMPT_WORKSPACE>/phase_1_NiWO4.cif)
+- [phase_2_WO3.cif](<ATTEMPT_WORKSPACE>/phase_2_WO3.cif)
+
+The project was saved, reopened, replayed, and verified against all exported numerical values.
+

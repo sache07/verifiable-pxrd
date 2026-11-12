@@ -1,0 +1,45 @@
+I’ll inspect the specimen metadata, pattern, and the frozen reference/tooling notes first. Then I’ll build and refine the simplest chemically supported multiphase GSAS‑II model, checking that every coherent residual peak family is accounted for before exporting the final project and profiles.
+
+The specimen is a 500 °C Co₃O₄ + WO₃ reaction under Cu Kα, so the chemically ordinary starting inventory is CoWO₄ plus possible residual Co₃O₄ and WO₃. I’m now extracting peak families and querying only the frozen COD index for exact Co–W–O and precursor structures; any additional phase will need a coherent unmatched family, not just a single residual peak.
+
+Peak-position mapping already supports exactly two coherent families: monoclinic WO₃ (the 23–25° triplet and its 33–56° families) and spinel Co₃O₄ (31.64, 37.20, 45.14, 59.68, 65.56, 77.20 and 94.34°). The apparent offset decreases with angle, which is the expected Bragg–Brentano specimen-height signature. I found that one tempting WO₃ entry has 0.46 Å atom contacts, so I’m excluding it and comparing only physically valid room-temperature WO₃ models.
+
+The first physical two-phase refinement reaches Rwp ≈ 3.28% with positive scales (about 74% WO₃ / 26% Co₃O₄). That is already near the counting-statistics regime, but the unconstrained shared profile wandered outside the instrument’s documented range, so I’m treating it as a diagnostic checkpoint only. I’m comparing the remaining physical WO₃ polymorph references now, then I’ll refit the winning structure with bounded/profile-specific broadening and inspect the residual peak map.
+
+The polymorph comparison is still refining; several low-symmetry WO₃ cells make these branches slower than the spinel fit. The current accepted inventory remains the two unreacted precursors—no product-phase claim is being made unless the post-fit residuals require it.
+
+The bounded physical profile gives Rwp = 3.288% at 74.45% WO₃ / 25.55% Co₃O₄, with all instrument and phase-broadening terms inside the documented ranges. Residual extrema occur as positive/negative lobes around the WO₃ families rather than as a new independent set of d-spacings. I’m therefore following the requested path: refine the accepted WO₃ topology’s W coordinates first, then O (including the spinel oxygen parameter), with geometry checks and rollback before considering texture or another phase.
+
+The oxygen branch confirms the danger the prompt warned about: an unconstrained O refinement lowers Rwp only slightly while moving several O atoms by 0.2–0.47 Å, far beyond the expected modest reference mismatch. I am rejecting that checkpoint. Bounded starts remain physical but many O parameters press against their bounds, which is evidence that the monoclinic reference may be approximating the closely related triclinic WO₃ topology. I’m testing that exact-composition alternative under the same physical bounds before choosing the final topology.
+
+A uniaxial WO₃ microstrain model along b is supported: Rwp improves from 3.207% to 3.181%, with positive equatorial/axial strains (4313/3249 ppm). The other axes are weaker and anisotropy in Co₃O₄ is unsupported. I’m retaining only that one extra profile term and checking the five allowed March–Dollase axes phase-by-phase; a texture term will be kept only if its ratio stays physical and the improvement is family-wide.
+
+The accepted profile now has only one mild texture term (WO₃ [010], March ratio 1.011); it reduces Rwp to 3.168% without distorting geometry. A common-Uiso scan strongly favors the low end for WO₃, so I’m using the physical lower bound (0.003 Å²) rather than the formally better but nonphysical zero value. I’m finishing the analogous Co₃O₄ Uiso check, then I’ll remap residuals and test whether any coherent family remains unassigned.
+
+Residual-phase tests are behaving as intended: the candidate structures are being admitted only through a positive scale, then cell and profile checks. I’m testing (1) analogue-derived wolframite CoWO₄ and (2) two same-composition WO₃ alternatives. The latter are especially important because a correlated second WO₃ scale would indicate model mismatch rather than a defensible extra phase unless it remains stable across the full reflection family.
+
+These three-phase refinements are much slower because the two WO₃ models are highly collinear. That numerical behavior itself is a warning against reporting both polymorphs as independently quantified; I’m letting the current checkpoints finish so the scale stability and final Rwp can be assessed rather than treating slow convergence as rejection.
+
+The product-phase test is decisive: analogue-derived wolframite CoWO₄ refines to the positive-scale floor (effectively 0 wt%), and its diagnostic 30.4–30.7° doublet is absent. Same-composition WO₃ alternatives can absorb only 1.4–2.0 wt% and are strongly anti-correlated with the main WO₃ scale (−0.81 to −0.91), so that minor-polymorph fraction is not independently reliable and will not be reported as a phase. The two accepted fractions also reproduce the nominal 1:1 Co:W precursor mass balance closely.
+
+The complete two-phase checkpoint is now finalized: 75.64 wt% monoclinic WO₃ and 24.36 wt% Co₃O₄, with full-grid Rwp = 3.181%. I’m doing the final consistency audit now—reloading `final.gpx`, independently replaying its native GSAS‑II profile, checking CIF geometry/composition, and verifying that `fit.csv`, `result.json`, and the project fractions agree.
+
+Identified crystalline phases:
+
+- Monoclinic WO₃: 75.64 wt%
+- Spinel Co₃O₄: 24.36 wt%
+- No detectable crystalline CoWO₄
+
+Full-grid fit: Rwp 3.181%, Rp 2.275%, GoF 1.850. Fractions carry roughly 1–2 percentage-point systematic uncertainty; a possible sub-2 wt% WO₃ polymorph was not reliably distinguishable.
+
+Outputs:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r2/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r2/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r2/workspace/fit.csv)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r2/workspace/phase_WO3.cif)
+- [phase_Co3O4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r2/workspace/phase_Co3O4.cif)
+
+The final project passed an independent native GSAS-II replay with matching fractions and no profile-review flags.
+

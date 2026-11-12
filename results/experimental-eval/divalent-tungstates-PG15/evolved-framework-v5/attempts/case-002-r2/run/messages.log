@@ -1,0 +1,42 @@
+I’ll first inspect the specimen metadata, pattern, and the frozen analysis/tooling guidance. Then I’ll identify candidate phases, build a full GSAS-II multiphase refinement, and verify that every coherent reflection family is accounted for before exporting the requested files.
+
+The chemistry and low firing temperature make unreacted BaO₂ and WO₃ the first physically ordinary inventory to test, with BaWO₄ as the obvious possible reaction product. I’m now extracting peak positions and checking the frozen COD index for exact-composition references before building any refinement.
+
+Peak-family matching supports a two-phase precursor mixture: the 23.4–24.7° triplet and its higher-angle families are WO₃, while the 27.05°, 33.55°, 42.97°, 46.64°, and 55.84° family is tetragonal BaO₂. The apparent shifts have opposite phase-specific components, so I’m comparing physical WO₃ polymorphs by refined full-profile fits rather than choosing from peak positions alone; BaWO₄ will be tested only after this complete precursor model is stable.
+
+The first two-phase GSAS-II trial is stable and already gives ~41 wt% BaO₂ / 59 wt% WO₃, close to the stoichiometric precursor-mass ratio. I found that refining both zero offset and specimen displacement simultaneously is nearly singular, as expected; I’ll keep only the physically identifiable calibration term in the final model after the polymorph comparison.
+
+The physically bounded fit drives both phases to the lower allowed crystallite-size limit (~40 nm) with several thousand ppm strain, consistent with the observed breadth. Its current Rwp is 7.24%, but some profile parameters sit on bounds, so I’m treating it as a screening checkpoint—not the final refinement—and comparing the two physical ambient WO₃ settings next.
+
+The candidate comparison is decisive enough to choose triclinic P-1 WO₃ (COD 2106293): Rwp 7.24% versus 7.92% for the equivalent monoclinic setting and 8.92% for the older P2₁/n model under the same physical bounds. I’ll now refine that accepted two-phase inventory from its best checkpoint, then map positive residual families and explicitly test BaWO₄ only if those residuals support it.
+
+Grouped phase Uiso and W-coordinate refinement remained physical but did not beat the pre-coordinate checkpoint (7.48% vs 7.24% Rwp), so it is not yet accepted. I’m testing the corresponding oxygen-coordinate branch with a short bounded-by-rollback refinement; it will be discarded if bond geometry degrades or the full-profile checkpoint does not improve after profile re-equilibration.
+
+The coordinate branches confirm that the main residual is profile shape, not missing chemistry: unrestricted oxygen shifts overfit without improving the replay-consistent profile, so I have rolled them back. I also found GSAS-II’s bound-freezing can leave a stale displayed Rwp; from here I’m ranking only checkpoints recomputed from their stored parameters, which is essential for a valid final.gpx.
+
+Neither anisotropic strain nor March–Dollase texture survives replay validation: their apparent gains vanish or are negligible once the stored parameters are recomputed. The best clean checkpoint remains the simpler isotropic model at Rwp 7.19%, with no frozen variables. I’m now re-equilibrating lattice and angular calibration on that checkpoint before the residual-phase test.
+
+Residual-product testing rejects BaWO₄ quantitatively: 0.017 ± 0.066 wt% and no Rwp improvement. Cubic BaO picks up only ~0.30 wt% with a 0.014-point Rwp change, so I’m checking whether that tiny scale is supported by a coherent, cell-consistent reflection family; absent that, it will be treated as systematic overlap and excluded.
+
+The tiny BaO signal is not coherent: its predicted 28.38°, 32.84°, 46.98°, and 55.66° lines do not align as one residual family, and the phase contributes only 0.30 wt% for a 0.014-point Rwp change. I’m excluding it, along with BaWO₄, and finalizing the two accepted precursor phases using the bounded one-cycle W-coordinate checkpoint rather than the larger overfit coordinate branch.
+
+The submitted project is now replay-stable: an independent reload/refinement changed Rwp by less than 0.000001 percentage point and fractions by ~0.00001 absolute, with no frozen variables. Final fractions are 34.66 wt% BaO₂ and 65.34 wt% WO₃; I’m performing CIF/profile consistency checks and then writing the uncertainty report.
+
+Completed the crystalline-phase analysis.
+
+- BaO₂ (*I4/mmm*): 34.66 wt%
+- WO₃ (*P-1*): 65.34 wt%
+- Rwp: 7.183%; Rp: 5.371%
+- No supported crystalline BaWO₄ product
+
+Files:
+
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r2/workspace/final.gpx)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r2/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r2/workspace/fit.csv)
+- [phase_BaO2.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r2/workspace/phase_BaO2.cif)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r2/workspace/phase_WO3.cif)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-002-r2/workspace/report.md)
+
+The saved project was independently reloaded and reproduced its Rwp and phase fractions without frozen parameters.
+

@@ -1,0 +1,36 @@
+I’ll first inspect the specimen metadata, pattern grid, and the frozen analysis package, then identify peak families and build a replayable GSAS-II refinement. I’ll prioritize a complete chemically ordinary multiphase model before testing any residual assignments.
+
+The specimen is a low-temperature MnO₂ + WO₃ reaction (300 °C), so the first physical inventory is residual manganese oxide, residual tungsten oxide, and any manganese tungstate product. I’m now extracting peak families and checking the exact-composition COD references before refinement.
+
+Peak matching already supports two coherent precursor families: monoclinic WO₃ (the 23.44/23.93/24.69° triplet and related lines) and rutile-type pyrolusite MnO₂ (29.01, 37.68, 56.96, 59.66, 72.53°). I’m comparing the physically sound room-temperature WO₃ references in GSAS-II; the tungstate product will be tested only against residual intensity after this two-phase checkpoint.
+
+The historical 1931 WO₃ entry fails both the physical screen (sub-ångström atom contacts) and refinement stability, so it is diagnostic-only. The modern neutron monoclinic, triclinic, and orthorhombic models are still being compared on identical bounded refinements.
+
+The two-phase inventory is complete: no residual family suggests a third phase. Refining the physically sound monoclinic model’s W positions gives a real improvement with only ~0.04 Å shifts; unconstrained WO₃ oxygen refinement moves atoms by ~0.2–0.3 Å and creates a 1.59 Å W–O contact, so that branch is being rolled back. I’m checking the close triclinic checkpoint under the same coordinate test before committing to the room-temperature monoclinic topology.
+
+The profile refinement is now physical and internally separated: shared instrument width is constrained by the sharp MnO₂ lines, while WO₃ needs its own finite size/strain broadening. The fit is at Rwp ≈ 5.71%, with the phase fraction near 71/29 wt%. I’m doing the final bounded oxygen-coordinate test; the earlier unconstrained oxygen branch remains rejected.
+
+The accepted inventory is now fixed at two phases. A final MnWO₄ trial refined to only ~0.15 wt% and lacks unique-family support, so it will not be modeled as a crystalline phase; that trace-level suggestion will be reported as below reliable detection. I’m exporting the best physical two-phase checkpoint and validating the project/CIF/profile consistency now.
+
+The physical two-phase model is complete and independently replayed. I’m doing one final submission/schema check now, then I’ll hand over the project and outputs.
+
+The files themselves are present; the last check hit a local validator API mismatch, not a refinement problem. I’m correcting that invocation and verifying the exported profile against the raw pattern.
+
+Analysis complete. The crystalline specimen is:
+
+- Monoclinic WO₃ (P2₁/c): **71.51 wt%**
+- Pyrolusite MnO₂ (P4₂/mnm): **28.49 wt%**
+
+Formal fraction uncertainty is ±0.15 wt%, though model/systematic uncertainty is approximately ±1–2 wt%. Fit: Rwp 5.523%, Rp 4.054%, GOF 2.054. A tested MnWO₄ contribution was unsupported; its approximate 3σ upper bound is 0.31 wt%.
+
+Files:
+
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-011-r3/workspace/final.gpx)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-011-r3/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-011-r3/workspace/fit.csv)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-011-r3/workspace/report.md)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-011-r3/workspace/phase_WO3_monoclinic.cif)
+- [MnO₂ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-011-r3/workspace/phase_MnO2_pyrolusite.cif)
+
+The final project replayed successfully over all 8,301 measured points and reproduced the submitted profile and fractions.
+

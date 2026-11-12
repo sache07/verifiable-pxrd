@@ -1,0 +1,8 @@
+Completed and validated by fresh zero-cycle GSAS-II replay.
+
+- MgWO₄, P2/c: 77.12 wt%
+- WO₃, P2₁/c: 14.75 wt%
+- MgO, Fm-3m: 8.12 wt%
+- \(R_{wp}=5.7197\%\), \(R_p=4.0995\%\)
+
+Files: [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-007-r1-retry1/workspace/result.json), [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-007-r1-retry1/workspace/report.md), [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-007-r1-retry1/workspace/fit.csv), [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-007-r1-retry1/workspace/final.gpx), [MgWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-007-r1-retry1/workspace/phase_MgWO4.cif), [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-007-r1-retry1/workspace/phase_WO3.cif), [MgO CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-007-r1-retry1/workspace/phase_MgO.cif).

@@ -1,0 +1,50 @@
+I’ll first inventory the data, metadata, and reusable refinement utilities, then identify candidate phases from peak positions and chemistry. I’ll keep the phase list reversible: candidates will be tested under a common baseline, with rejected or weak phases revisited after the profile model is stable.
+
+The chemistry strongly suggests a Sr–W–O reaction product, but I’m not assuming a single-phase SrWO₄ sample. I’m now extracting a background-aware peak list and querying exact Sr/W/O records (including precursor and likely intermediate phases) so that polymorphs and residual reactants can be screened against the same data.
+
+The dominant phase is now positionally secure as tetragonal scheelite SrWO₄: its isolated families from 18° through 95° index coherently, refining provisionally to about \(a=5.421\), \(c=11.948\) Å with one common specimen-height-like angular correction. Several broad residual families remain, especially near 23–25°, 29.75°, 32.56°, 34–35°, and 44.67°, so I’m screening residual WO₃/SrCO₃, alternate SrWO₄ records, and Sr-rich tungstate prototypes rather than forcing them into profile or texture terms.
+
+The first common-profile refinement exposed an important nuisance-model issue: the default GSAS-II phase microstrain is not neutral, and allowing it implicitly drove the instrumental \(U\) term negative. I reset size/strain to neutral values and am now replaying each candidate with the same nonnegative \(W\)-only profile, background order, angular correction, and cell protocol; this makes the record comparison physically meaningful.
+
+The common correction and \(W/X\) profile now fit the two secure phases substantially better, and a single physical surface-roughness term explains a real cross-phase low-angle attenuation; unconstrained polarization and the two-parameter roughness model both ran to unphysical values and were rejected. A coherent third set remains (notably 29.75°, 32.56°, 44.67°, 48.57°, 53.44°, 56.97°, and 61.22°), so I’m indexing that family and searching Sr-rich tungstate prototypes rather than attributing it to texture.
+
+The remaining peak families point to a more promising Sr-rich prototype than the first trial: orthorhombic Ba₂ReO₅ has a coherent set corresponding to the residuals near 29.75°, 32.56°, 44.67°, and higher angles. I’m testing the isovalent Sr₂WO₅ substitution scale-first, then I’ll rebuild the common profile and re-challenge the weaker alternatives.
+
+The Sr₂WO₅ prototype is strongly supported: at fixed cell it lowers Rwp from 16.54% to 9.02%, and after cell refinement to 8.17%, with a positive ~24 wt% contribution and multiple matched families across the range. I’m now checking alternate Sr₂MO₅/A₂WO₅ parent structures and the local coordination, because the phase identity is much firmer than the exact substituted atomic model.
+
+The first broadening trials confirm the baseline diagnosis: scheelite wants no added size broadening (it runs to the neutral 10 µm limit), while a strain fit becomes negative and is therefore rejected. The narrower scheelite peaks should define the instrument profile; any accepted extra broadening must belong to the minor phases.
+
+The reconstructed profile is now physically admissible (U fixed at 0; W/X positive; one specimen shift; one low-angle roughness term), and separate size/strain trials show only small, non-unique gains for the minor phases. I’m keeping those terms out for now and re-challenging plausible weak phases against this cleaner three-phase baseline before deciding whether any broadening term is warranted.
+
+The clean-profile watch-list challenge is behaving sensibly: alternative high-pressure/tungstate records can borrow only about 0.4–0.7 wt% through overlap, while rhombohedral SrCO₃ goes to zero and orthorhombic SrCO₃ is below 0.4 wt% with large relative uncertainty. I’m finishing the precursor/oxide checks and will retain only phases supported by reproducible, distinctive families.
+
+The selected phase models have physically plausible coordination (Sr–O ≈2.60–2.91 Å; W–O ≈1.75–2.01 Å in the substituted Sr₂WO₅ model), while the two closest alternate prototypes collapse to zero scale. I’m now testing the remaining intensity-systematic possibility—symmetry-distinct scheelite texture axes—before locking the structural and quantitative model.
+
+The six-term background was too rigid at the scan ends. A 10-coefficient Chebyshev background remains smooth, nonnegative, and monotonic-to-flat over the 90° range, while reducing Rwp from 7.91% to 7.36%. I’m rebuilding W/X and re-testing the single roughness term under that background so the low-angle correction is not acting as a background surrogate.
+
+Under the rebuilt background/profile, the broadening decision is clearer: scheelite again reaches the neutral size limit and demands an unphysical negative strain; WO₃ broadening is weak and poorly determined. I’m waiting on the Sr₂WO₅ pair, where the earlier size/strain alternatives were most competitive.
+
+The accepted profile now uses only one phase-specific term: isotropic microstrain for Sr₂WO₅, about 0.116%. Adding size gives a negligible ΔRwp and 0.88 correlation with strain, so size is pruned. The full-range replay is at Rwp 7.30%; I’m making one final structural check by allowing only the three symmetry-independent scheelite oxygen coordinates, then validating bond lengths.
+
+The final project is now being replayed over all 8,282 measured points with the accepted model only. The export step will read that saved project back from disk, then generate the three CIFs, profile, and JSON from the same state so the reported fractions and files agree exactly.
+
+The full-range replay converged cleanly (maximum shift/σ 0.020) and exported all 8,282 profile points, including both endpoints. Final normalized crystalline fractions are 66.11% SrWO₄, 8.99% monoclinic WO₃, and 24.90% provisional orthorhombic Sr₂WO₅; I’m validating the exported CIF geometry and project/profile identity before writing the uncertainty report.
+
+Completed. Normalized crystalline composition:
+
+- SrWO₄ scheelite: 66.11 wt%
+- Monoclinic WO₃: 8.99 wt%
+- Provisional Pnma Sr₂WO₅: 24.90 wt%
+
+Final fit: Rwp 7.118%, Rp 5.336%, GOF 2.017. The Sr₂WO₅ topology is prototype-derived and its fraction is reliable only to approximately ±2 wt%.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [SrWO4_scheelite.cif](<ATTEMPT_WORKSPACE>/SrWO4_scheelite.cif)
+- [WO3_monoclinic_P21n.cif](<ATTEMPT_WORKSPACE>/WO3_monoclinic_P21n.cif)
+- [Sr2WO5_Pnma_prototype.cif](<ATTEMPT_WORKSPACE>/Sr2WO5_Pnma_prototype.cif)
+

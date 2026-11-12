@@ -1,0 +1,69 @@
+I’ll first inspect the specimen metadata, pattern format, and the frozen analysis utilities, then build and refine a chemically plausible multiphase GSAS‑II model. I’ll keep the submitted project replayable and validate that every coherent reflection family is accounted for before finalizing fractions and fit statistics.
+
+The chemistry points first to cobalt tungstate, but I’m treating that only as a starting hypothesis. I’m now extracting the observed peak families and checking exact Co–W–O references plus plausible residual Co/WO₃ precursor phases; phase count will be driven by reflections, not by the reaction equation.
+
+The strongest triplet at 23.18/23.67/24.42° and its higher-angle companions matches residual monoclinic WO₃ very closely. Separate families at 19.09, 31.53, 36.44, 38.62, 44.40, 59.39, and 65.15° support spinel Co₃O₄, while the intense 30.71° line is evidence for a third, wolframite-type cobalt tungstate product. I’m screening reference structures for all three families and checking whether any line remains unmatched.
+
+Reference screening confirms the three-phase inventory is internally consistent: γ‑WO₃ (monoclinic P2₁/n) explains the dominant family, wolframite CoWO₄ explains the 30.7°, 36.4°, 51–54° family, and weak Co₃O₄-only lines appear near 37.0°, 44.9°, and 59.4°. The lone exact-composition CoWO₄ database entry is malformed (duplicated/overlapping sites), so I’m using the physical P2/c wolframite topology from a room-temperature ZnWO₄ reference with Zn→Co, then refining it against the specimen.
+
+The complete three-phase model already gives Rwp ≈ 14.0% and initial crystalline fractions near 71% WO₃, 27% CoWO₄, and 2% Co₃O₄. Simultaneously freeing every cell destabilized the very weak spinel cell, so I’ve rolled back to the last physical checkpoint and am refining the two well-supported cells sequentially; the Co₃O₄ lattice will remain fixed unless its unique lines constrain it stably.
+
+The WO₃ cell refinement is stable and improves Rwp to 13.14%. The first joint CoWO₄-cell step took an overlarge least-squares jump, so I’m rejecting that numerical branch and will restart CoWO₄ from bounded/manual cell estimates before freeing smaller parameter blocks. Numerical divergence here is not evidence against the phase.
+
+With the cobalt-tungstate cell bounded near the physically plausible solution, the fit improves to Rwp ≈ 9.30%. At that point Co₃O₄’s independently refined scale collapses to zero, so I’m no longer accepting it merely from weak coincident lines. I’m now comparing positive fixed-scale grids for Co₃O₄ and residual CoO against the two-phase checkpoint; only a stable positive improvement will justify a cobalt-oxide phase.
+
+The residual map shows no new unindexed family: its largest features sit on WO₃/CoWO₄ peaks and have the derivative shape of small position/width/intensity errors. Co₃O₄ worsens the profile monotonically; CoO has only a shallow ≈1 wt% optimum supported mostly by overlaps, so I’m withholding it for now. I’m refining the accepted WO₃ + CoWO₄ model’s cells, coordinates, and phase-specific peak widths before the final minor-phase decision.
+
+Heavy-atom refinements remain physical and reduce Rwp from 9.10% to 8.97%. The WO₃ tungsten shifts are modest; the CoWO₄ special-position shifts improve its intensity fit without changing topology. Oxygen-coordinate stages are still running and will be kept only if bond geometry remains credible.
+
+Phase-specific size broadening is strongly supported: WO₃ refines to about 0.051 μm and drops Rwp to 7.13%; allowing CoWO₄ size lowers it further. This explains the earlier derivative-like residuals and materially changes the quantitative phase ratio, so I’m carrying these profile terms into the physical checkpoint.
+
+Isotropic microstrain refined to negative values, so those branches are physically invalid and rejected despite their lower Rwp. The retained checkpoint is the 6.92% fit with positive crystallite sizes (WO₃ ≈ 0.051 μm, CoWO₄ ≈ 0.064 μm). I’m continuing from that checkpoint with shared positive instrument broadening terms.
+
+The joint U/W branch drives U negative and the X/SH‑L additions are highly correlated, so I’m rejecting that branch. I’m testing a bounded instrument model from the 6.92% checkpoint—W alone first, with U kept nonnegative—and will only retain terms that stay physical and identifiable.
+
+W alone remains positive but refines above the lab’s expected profile range, while polarization tries to exceed its physical maximum. I’m therefore replacing those unconstrained branches with bounded checkpoints (W ≤ 40, polarization ≤ 1) and reoptimizing phase sizes. This prevents profile/intensity terms from masquerading as structure.
+
+The unconstrained surface-roughness fit drives its principal coefficient negative and is rejected. I’m now screening March–Dollase texture directions with every other parameter frozen; this cleanly tests whether a specific crystallographic axis, rather than a generic intensity correction, is supported.
+
+The two-phase physical model is now near the final stage: monoclinic WO₃ plus wolframite CoWO₄, with the cobalt-oxide alternatives collapsing or lacking an independent reflection family. I’m finishing a narrowly bounded preferred-orientation check, then I’ll lock the accepted model, replay it, and generate the requested project, CIFs, profile, and reports.
+
+The texture screen found only mild, physically plausible effects: the strongest single tests were WO₃ [110] (Rwp 5.732%) and CoWO₄ [001] (5.743%), with March–Dollase ratios close to 1. I’ll test those additions sequentially in the full model and retain them only if they stay stable when scales, cells, background, and line widths are re-optimized.
+
+The residual intensity pattern can also be explained by small oxygen-coordinate corrections, which is chemically preferable to treating every mismatch as texture. I’m therefore applying bounded 5–20% steps toward the unconstrained oxygen least-squares direction (roughly ≤0.1 Å shifts), with oxygen positions fixed during each trial, before deciding whether either texture term is genuinely needed.
+
+The bounded WO₃ oxygen moves improve the fit monotonically but only slightly (Rwp 5.786% → 5.764% at the 10% step); the 20% trial is still converging. That trend is useful, but I will cap the accepted displacement by geometry rather than chase the unconstrained minimum.
+
+At the 20% bounded step, all coordination remains ordinary: WO₃ has six W–O contacts of 1.77–2.14 Å; CoWO₄ has Co–O 2.06–2.14 Å and W–O 1.84–2.13 Å. The combined fit reaches Rwp 5.710%. I’m now re-testing the two weak texture signals on this corrected structural model; this separates genuine specimen texture from intensity errors formerly absorbed by the starting oxygen coordinates.
+
+Both texture terms remain independently supported after the oxygen correction and stay modest (WO₃ [110] = 1.078; CoWO₄ [001] = 0.946), lowering Rwp to 5.618%. I’m keeping them provisionally. The joint cycle reports a high normalized shift from parameter correlation, so I’m stabilizing the same physical model in separated refinement blocks before accepting its numerical state.
+
+The accepted two-phase refinement now replays cleanly: the repeated full cycle converged with maximum shift/esd 0.10 and unchanged Rwp (5.6183%). Before freezing the inventory, I’m doing the required final independent-scale tests for residual CoO precursor and Co₃O₄; all major-phase and profile parameters will be held fixed so a minor phase must support its own positive scale.
+
+The one-parameter precursor tests drove both candidate scales to the zero boundary and then became numerically singular. Per the stated rule, I am treating that as unknown—not as rejection. I also caught GSAS-II auto-saving an added CoO phase into a working checkpoint; I’m rebuilding from the last clean checkpoint and will use fixed-positive scale grids with the major scales/background re-optimized, which gives a valid comparison at the boundary.
+
+The fixed-positive grids resolve the inventory cleanly. The two-phase baseline is Rwp 5.618255%; even 0.134 wt% Co₃O₄ worsens it to 5.618676%, and 0.021 wt% CoO worsens it to 5.618271%, with deterioration increasing monotonically at larger fractions. No independent residual family supports either precursor/oxide, so the accepted crystalline inventory is WO₃ + CoWO₄ and the phase search is closed.
+
+I’m now producing the clean deliverable project with only the two accepted phases. Its final refinement will retain the supported scale/background, cells, specimen displacement, isotropic domain sizes, and the two mild texture terms; oxygen coordinates remain at the bounded physical checkpoint. I’ll then regenerate the entire 9.903–100.095° profile from the saved atomic model (not cached fit arrays) so `fit.csv`, CIFs, fractions, and `final.gpx` are independently consistent.
+
+The clean project is complete and numerically stable: exactly two active phases, maximum shift/esd 0.108, refined-range Rwp 5.61823%, and crystalline-normalized fractions 67.349% WO₃ / 32.651% CoWO₄. I’m performing the final read-only replay now; this regenerates reflection lists and the full measured-grid prediction directly from `final.gpx`, and will be the source of the submitted `fit.csv` and consistency checks.
+
+The read-only replay passed with no physical review flags. It regenerated both submitted phases from atomic structure factors, preserved the project unchanged, and predicts every one of the 8,301 measured points with full-grid Rwp 5.60997% (Rp 4.32955%). The replay fractions exactly match the project: WO₃ 0.6734938 and CoWO₄ 0.3265062.
+
+The output files are internally consistent, but I’m doing one final structural sanity check before sealing them: specifically, I’m comparing the CoWO₄ oxygen positions against the available exact-composition record despite that record’s invalid duplicated occupancies. This is only a coordinate cross-check—the accepted phase inventory and fractions are already fixed—and I will not replace the physical wolframite model unless the valid unique sites can be recovered unambiguously.
+
+The exact-composition CoWO₄ record is recoverable only as low-precision unique-site guidance, and it confirms the submitted model rather than changing it: Co/W special sites and both O sites agree within the expected old-record precision, while the submitted coordination remains physical. I’m sealing the already replayed model and writing the final profile and summary files.
+
+All requested deliverables are written. I’m running the final consistency audit now: JSON normalization and paths, full-grid profile identity, CIF chemistry/geometry, and exact agreement between the submitted CIFs/fractions and the read-only project replay.
+
+Completed and independently replay-validated.
+
+- γ-WO₃ (P2₁/c): 67.35 wt%
+- CoWO₄ (P2/c): 32.65 wt%
+- Full-grid Rwp: 5.60997%; Rp: 4.32955%
+- No replay physical-review flags
+
+Fractions are normalized over crystalline material; amorphous content is unquantified.
+
+Files: [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-004-r1/workspace/result.json), [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-004-r1/workspace/report.md), [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-004-r1/workspace/fit.csv), [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-004-r1/workspace/final.gpx), [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-004-r1/workspace/phase_wo3.cif), [CoWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-004-r1/workspace/phase_cowo4.cif).
+

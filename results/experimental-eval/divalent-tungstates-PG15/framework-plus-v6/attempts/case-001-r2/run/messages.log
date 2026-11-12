@@ -1,0 +1,53 @@
+I’ll inspect the measurement metadata, pattern, and the frozen divalent-tungstate workflow first. Then I’ll build a chemically plausible phase inventory, test candidates in GSAS-II, refine the defensible model, and verify that the exported CIFs, profile, fractions, statistics, and final project agree.
+
+The chemistry narrows the initial inventory to BaCO₃, WO₃, and possible Ba–W oxides (especially BaWO₄), but the low firing temperature makes residual precursors credible. I’m now extracting peak positions and screening the frozen COD entries by occupied composition, polymorph, and diffraction match before any refinement.
+
+Peak-family matching strongly favors ordinary orthorhombic witherite plus room-temperature monoclinic WO₃: the three WO₃ peaks near 23–25° and the witherite line between them all recur at the expected offsets. I’m testing all physically credible WO₃ records under one identical, restrained background/profile model; this will distinguish source-record quality from phase absence.
+
+The first batch of candidate refinements is still running; these are independent, identical-model comparisons. While they finish, I’m keeping the inventory fixed so differences in fit reflect the WO₃ structure rather than extra nuisance freedom.
+
+The leading monoclinic WO₃ model remains stable after refining both cells and the single specimen-displacement correction; its Rwp has dropped from 21.6% to 19.3% before profile broadening is released. The alternative records are materially poorer at the same stage, so I’m completing the common-profile test on this model and then will challenge weak BaWO₄ explicitly.
+
+The width decomposition is now physical and stable: both phases need finite crystallite size (about 0.08–0.09 µm), while WO₃ additionally needs substantially more microstrain than BaCO₃. This model improves Rwp without driving the shared instrument terms outside the laboratory ranges. I’m now refining the shared profile one term at a time and checking whether anisotropy is actually supported.
+
+Coordinate refinement is clearly supported: refining WO₃ coordinates lowers Rwp to 6.80%, and allowing both phases reaches 6.71%, well beyond the small gains from profile anisotropy. I’m screening the refined structures now for bond geometry and coordinate overreach before accepting those parameters; unsupported atomic freedom will be rolled back.
+
+The unconstrained all-atom fits were rejected: they shortened one carbonate C–O bond to 1.15 Å and displaced several WO₃ oxygens implausibly. Heavy-atom-only shifts remain modest (roughly hundredths of an ångström) and defensible. I’ve also found that the physically required common Uiso model exposes a strong angular-intensity trend, so I’m testing polarization and surface roughness before considering any preferred orientation.
+
+The physical Uiso constraint is important: an unconstrained WO₃ Uiso goes negative, so I will not use that apparent fit gain. A bounded surface-roughness trial also collapses to its weakest allowed effect and is being pruned. The remaining intensity test is phase-specific texture across all permitted low-index axes, requiring a repeatable multi-family improvement rather than a single peak.
+
+The phase re-challenge found no meaningful support for Ba₃W₂O₉ or Ba₃WO₆ (about 0.1–0.3 wt% surrogate scales), but BaWO₄ is different: a fixed-cell trial gives ~0.46 wt% and lowers Rwp by ~0.06 percentage point. That is small but chemically plausible, so I’m treating it as a watch-list phase and testing whether its unique/partly overlapped reflection families and cell remain coherent rather than discarding it on abundance alone.
+
+BaWO₄ survives the cell test: its refined tetragonal cell stays within about 0.5% of the literature model and the scale remains >13σ. A free size trial, however, collapses to an impossible ~0.004 µm and inflates the scale, so that broadening model is rejected as a background surrogate; the weak phase will retain a restrained nominal width unless a physical trial is supported.
+
+The weak BaWO₄ model is now defensible but explicitly uncertain: several independent families improve coherently, its scale is highly significant, and a [001] March–Dollase term is supported; however, its strongest 020 line is not independently clean and its size runs to the physical lower limit. I’ll include it at roughly 1 wt% with that uncertainty stated, while keeping its coordinates fixed and its width restrained rather than accepting the collapsed free-width solution.
+
+The phase inventory is now narrowed to BaCO₃, WO₃, and a weak BaWO₄ contribution. I’m finishing the full-range refinement and then independently replaying the saved GSAS-II project so the CIFs, fractions, and profile all come from the exact submitted state.
+
+The finalized full-range refinement converged at Rwp 6.648% with crystalline fractions of 55.01% BaCO₃, 44.04% WO₃, and 0.96% BaWO₄. The weak tungstate is the only inventory item whose fraction is materially model-sensitive; I’m now checking the exported structures and replay consistency before writing the result and uncertainty statement.
+
+The independent replay regenerated the profile at Rwp 6.6480% with identical fractions, no profile-review flags, and all three submitted CIFs match their project phases. One structural caveat surfaced in the BaWO₄ database record: it encodes two half-occupied, mutually exclusive oxygen sites. I’m comparing ordered scheelite records under the same refinement model before deciding whether to retain that disorder description.
+
+The ordered scheelite analogue gives the same fit within 0.0002 Rwp points (6.64818% versus 6.64801%) while removing the split-site 1.16 Å O···O ambiguity. I’m adopting the ordered BaMoO₄-derived prototype with isovalent Mo⁶⁺→W⁶⁺ substitution; its Ba–O and W–O geometry passes the physical screen, and its refined BaWO₄ fraction remains 0.95%.
+
+The texture challenge favors BaWO₄ [110] very slightly (Rwp 6.64747%) over [001] (6.64818%), [111] (6.64871%), [100] (6.65243%), and no texture (6.65509%). Because the [110] result is also preferred with the alternate database record and is supported by several reflection families, I’m using it, while treating the axis and trace fraction as systematic uncertainties rather than over-interpreting the tiny Rwp differences.
+
+The selected [110] model reconverged cleanly (maximum shift/e.s.d. 0.009). Independent atomic replay gives Rwp 6.647473%, reproduces all three fractions exactly, reports no negative-background/profile/ADP flags, and confirms each exported CIF matches the saved project. I’m writing the machine-readable result and the concise evidence/uncertainty report now.
+
+Completed and independently replay-verified.
+
+- BaCO₃ (witherite-type): 55.11 wt%
+- Monoclinic WO₃: 44.00 wt%
+- BaWO₄ (scheelite-type): 0.89 wt%, tentative/semiquantitative
+- Rwp: 6.6475%; Rp: 5.1575%
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-001-r2-retry1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-001-r2-retry1/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-001-r2-retry1/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-001-r2-retry1/workspace/final.gpx)
+- [BaCO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-001-r2-retry1/workspace/phase_BaCO3.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-001-r2-retry1/workspace/phase_WO3.cif)
+- [BaWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-001-r2-retry1/workspace/phase_BaWO4.cif)
+

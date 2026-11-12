@@ -1,0 +1,60 @@
+{
+  "assessment": "Native final.gpx replay with fitted calibration preserved; observed-data Rwp on 10.1-99.9 degrees with weights 1/max(counts,1); hidden-phase structure matches and physical checks. No synthetic score. Outputs stay outside the evolution run.",
+  "attempts": 45,
+  "cases": 15,
+  "condition": "P0 baseline; Max reasoning effort",
+  "created_at": "2026-11-04T05:41:20.329523+00:00",
+  "database": "DARA filtered COD 2024; full frozen filtered index, no added masks, no DARA solver, no web or ICSD",
+  "database_sha256": "03599f54f03f04420523dca36cc06927b74ce0070a4a80e6d859faa38a6c5aed",
+  "dispatch": {
+    "capacity_note": "All sixteen two-core slots on 32 vCPU; the evolution controller is stopped (2026-11-04). Lower this before resuming any evolution run on the same host.",
+    "capacity_retry_seconds": 60,
+    "max_concurrent_solvers": 16,
+    "minimum_available_ram_gib": 8,
+    "minimum_free_disk_gib": 6,
+    "monitor_seconds": 300
+  },
+  "effort": "max",
+  "experiment": "<PANEL>",
+  "inputs_byte_identical_to_P0": true,
+  "inputs_source": "<SOURCE_ARTIFACT>",
+  "model": "gpt-5.6-sol",
+  "not_supplied": [
+    "prior outcomes",
+    "canonical answers",
+    "paper",
+    "calibrated instrument file",
+    "new xye uncertainties",
+    "output checker",
+    "synthetic truths or scores"
+  ],
+  "package_prompt_sha256": null,
+  "package_source": null,
+  "packages": {
+    "evolved": {
+      "files": {
+        "guidance.md": "ed1dffd19e70e2fa6aed61b8dff05a43ad3940966d4218396a072c297d885b05",
+        "helpers/stoichiometric_analogues.py": "0d58e24b4c66dfc7d43567767635c32522c40d000b584912343304844794e5b8",
+        "prompt.md": "06abcffca01d2785a0020887c9fa78db1d851de2bfd9e4c35d5c8f36dfb1b7e6",
+        "proposal.json": "96a315b5389197e2516a3fc294c0a3d7eb8d130410859fe481883304e81c46a9"
+      },
+      "guidance_words": 331,
+      "note": "Incumbent v6 of the divalent-tungstates run started 2026-11-02 (promoted 2026-11-03); the run was stopped 2026-11-04.",
+      "prompt_sha256": "06abcffca01d2785a0020887c9fa78db1d851de2bfd9e4c35d5c8f36dfb1b7e6",
+      "source": "<RUN>/policies/v6"
+    }
+  },
+  "per_attempt": {
+    "cpu_quota": "200%",
+    "memory_max": "5G",
+    "numeric_threads": 2,
+    "tasks_max": 128
+  },
+  "repeats": 3,
+  "scientific_package_changes": [],
+  "supplied_inputs": [
+    "inputs/pattern.csv",
+    "inputs/metadata.json"
+  ],
+  "timeout_seconds": null
+}

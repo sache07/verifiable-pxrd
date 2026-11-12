@@ -1,0 +1,41 @@
+I’ll inspect the measurement metadata, pattern, and reusable refinement utilities first. Then I’ll build a chemically plausible candidate inventory, refine it residual-first in GSAS-II, and verify that the exported CIFs, phase fractions, profile, and project all agree.
+
+The chemistry points first to cobalt tungstate with possible unreacted cobalt oxide and tungsten oxide, but I’m treating that only as an inventory hypothesis. I’m now extracting peak families and locating the installed GSAS-II/COD interfaces so each candidate can be tested structurally rather than accepted by formula alone.
+
+The dominant pattern is now unambiguous: the three-line group near 23–25°, the clustered 33–35° family, and matching lines near 42°, 50°, and 56° are the low-temperature monoclinic WO₃ pattern, all carrying an approximately constant +0.3° angular offset. I’m fitting that offset first and using the remaining coherent peaks to decide whether cobalt is present as CoWO₄, Co₃O₄, or another minor phase.
+
+The strongest residual families index cleanly as spinel Co₃O₄: 19.37°, 31.63°, 37.20°, 38.90°, 55.98°, 59.68°, and 65.55° all follow one cubic cell after the same displacement correction. This is stronger evidence than a single residual peak; I’m now comparing both available Co₃O₄ records and keeping CoWO₄ on the watch list under the rebuilt two-phase profile.
+
+The two CoWO₄ analogue models and CoO all refined to the GSAS-II scale floor on replay, while both accepted phases stayed stable. I’m therefore closing the crystalline inventory at monoclinic WO₃ plus cubic Co₃O₄ and now testing only defensible structural degrees of freedom: the W sublattice in WO₃ and the oxygen positional parameter in spinel Co₃O₄, with geometry checks before acceptance.
+
+The two-phase inventory is now coherent: monoclinic WO₃ plus cubic Co₃O₄, while CoO and two independently constructed CoWO₄ models repeatedly refine to zero scale. I’m finishing the required challenges to polarization, roughness, and texture, then I’ll freeze and replay the supported model before exporting the exact project-linked deliverables.
+
+Both angular-intensity challenges are statistically supported and remain interior to their bounds: polarization refines to 0.713(7), while a one-parameter, exactly nested surface-roughness model refines to 0.0751(12). Because either term can mimic part of the same low-angle trend, I’m testing them together and checking covariance and phase-fraction stability before allowing either into the final baseline.
+
+The joint correction is over-parameterized: polarization becomes strongly coupled to roughness and phase scales (|r| up to 0.98), while the conventional fixed 0.5 polarization plus one roughness term is stable and gives the better-supported physical interpretation. I’ve retained that model and am now challenging symmetry-distinct texture axes for both phases against the rebuilt common profile.
+
+Texture is not justified. Every WO₃ axis refines to a March–Dollase ratio within 0.6% of random orientation, and Co₃O₄ texture is numerically unidentifiable; none provides the required multi-family physical signal. I’m pruning texture and making one final profile challenge—axial-divergence asymmetry—before the save/reopen replay and exports.
+
+Axial asymmetry is also rejected: it is 98.7% correlated with specimen displacement, drifts on replay, and moves both cells while only marginally changing the fit. The selected model is now fully pruned; I’m serializing it to `final.gpx`, reopening it for two full-range replays, and exporting every reported artifact from that reopened project.
+
+The frozen project replays cleanly: the final maximum shift/esd is 0.009, fractions change by less than 0.000001 between reopenings, both exported CIFs re-import into GSAS-II, and all 8,301 profile rows satisfy observed − calculated = difference. I’m writing the concise evidence/uncertainty report and doing a final cross-file consistency audit now.
+
+Resolved two crystalline phases:
+
+- Monoclinic WO₃, P 21/c: **74.894 wt%**
+- Cubic Co₃O₄ spinel, F d -3 m: **25.106 wt%**
+
+Fractions are normalized over modeled crystalline phases. A realistic systematic uncertainty is approximately ±2 wt%; covariance-only esd is 0.177 wt%. CoO and two CoWO₄ analogue models refined repeatedly to zero scale.
+
+Final fit: Rwp = 3.3752%, Rp = 2.4705%, GOF = 1.9622. The reopened final project converged with maximum shift/esd = 0.0092.
+
+Deliverables:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [phase_1_WO3.cif](<ATTEMPT_WORKSPACE>/phase_1_WO3.cif)
+- [phase_2_Co3O4.cif](<ATTEMPT_WORKSPACE>/phase_2_Co3O4.cif)
+- [final_audit.json](<ATTEMPT_WORKSPACE>/final_audit.json)
+

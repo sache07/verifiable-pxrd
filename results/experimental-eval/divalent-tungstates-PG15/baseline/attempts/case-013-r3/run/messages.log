@@ -1,0 +1,81 @@
+I’ll inspect the diffraction pattern, metadata, and the installed crystallography toolchain first. Then I’ll identify candidate phases, build a GSAS-II refinement, and verify that every submitted artifact is generated from the final project.
+
+The chemistry is constrained to the Pb–W–O system, measured with Cu Kα radiation over an unprocessed reflection scan. I’m now extracting peak positions and checking which installed reference-search/refinement interfaces are usable; the main ambiguity to resolve is whether the product is a single lead tungstate polymorph or a mixture with unreacted/secondary oxides.
+
+The strongest reflections form a coherent scheelite-type PbWO₄ pattern, but they are displaced by roughly +0.25–0.30° 2θ, indicating a specimen-height/zero-offset effect. Several non-scheelite peaks line up with residual PbO and WO₃ families, so I’m testing those polymorphs quantitatively rather than assigning every residual peak by eye.
+
+The peak assignment is becoming more specific: the apparent 47.28° “extra” line is actually PbWO₄ (220), while the 29.35°, 30.62°, 32.75°, and 38.09° set is diagnostic of orthorhombic massicot PbO. A second PbO pattern (litharge) and the low-angle WO₃ triplet are also plausible. I’m comparing nested GSAS-II models now, using fit improvement and physically positive phase scales to decide which are warranted.
+
+The first refinements are running cleanly. I’m deliberately comparing single-addition models before the full mixture: this exposes whether a candidate phase earns its scale independently, rather than allowing several correlated minor phases to trade intensity.
+
+The model sweep is slower than expected because each candidate is being fully re-refined over all 8,282 points, but it is still progressing. No user input is needed; once the nested comparisons finish, I’ll inspect the difference curve for any phase family the database candidates fail to explain.
+
+The four-phase model is statistically better, but its residual is structured, so it is not yet acceptable as a final interpretation. The unexplained lines also resemble mixed-valence lead oxides (especially Pb₃O₄/Pb₂O₃), which are chemically possible near 500 °C. I’m expanding the comparison to those phases; this is preferable to forcing their intensity into PbO and biasing the quantitative fractions.
+
+The mixed-valence comparison is still processing. Early numerical warnings are confined to rejected trial cells during least-squares steps; the projects recover or are discarded, and I will only retain models with stable cells, positive scales, and reproducible convergence.
+
+The sweep has reached the higher-phase-count models, which take longer because the full-cell refinements add many correlated metric terms. I’m letting those complete, but the acceptance criterion remains conservative: a lower profile residual alone will not justify a chemically implausible or unstable phase.
+
+A decisive structural match has emerged: the previously unexplained 25.91°, 29.35°, 30.6–31.05°, 39.54°, and 43.45° reflections follow the C2/m Pb₂MO₅ structure family. The local database contains isostructural Pb₂MoO₅; replacing Mo⁶⁺ with W⁶⁺ gives the chemically expected Pb₂WO₅ phase and predicts the residual peaks as a single coherent pattern. I’m now refining that structural analogue directly rather than retaining the spurious mixed-valence lead-oxide phases.
+
+The Pb₂WO₅ candidate is being tested in all relevant nested combinations: alone with scheelite, then with WO₃ and each PbO polymorph. This will show whether the apparent PbO assignments survive once the correct ternary phase is present, which is essential for unbiased weight fractions.
+
+The higher-order Pb₂WO₅ combinations are numerically heavier because its monoclinic cell contributes four independent metric terms, but the refinements remain active. I’ll retain the smallest phase set that removes distinct unmatched reflections; phases that only marginally lower the residual through overlap will be excluded.
+
+The five-phase model explains the chemically coherent pattern and cuts the profile residual substantially. I’m doing one last “false-positive” audit by adding each plausible oxide polymorph separately; only a phase that produces a stable, meaningful scale and removes its own unique peaks will survive.
+
+The audit is now in the final high-complexity refinements. The main remaining mismatch is line-shape asymmetry and overlapping intensity around 29–31°, not a broad set of unexplained Bragg positions; that points more toward profile/structural-model limitations than another major phase.
+
+The nested audit supports six phases. Pb₂O₃ is not just a statistical surrogate: its two strongest refined reflections fall at 30.14° and 30.28°, matching the otherwise unexplained double feature, and additional lines coincide at ~43.5°, 50.2°, and 52.0°. PbO₂ and Pb₃O₄ alternatives fit less well and lack that full correspondence. I’m keeping Pb₂O₃ and now regularizing the profile/texture model before exporting final quantities.
+
+The final-model refinement is now focused on physically interpretable parameters: axial-divergence asymmetry and heavy-atom coordinates, staged one phase at a time. I’m monitoring coordinate shifts and fraction stability so the improved fit does not come from an implausible structural distortion.
+
+The coordinate refinement is taking longer than the phase-identification runs because each structural derivative is evaluated over the full profile. The project remains stable; if any phase develops unrealistic coordinates or high parameter correlation, I’ll revert that stage and retain the preceding project.
+
+The last heavy-atom stage is still running. This is the final expensive refinement pass; afterward I’ll freeze the accepted model, export CIFs and the exact calculated profile, and validate that all files agree with the saved `.gpx`.
+
+The all-at-once derivative calculation is proving disproportionately slow. I’m allowing this pass a little more time because it is already near completion; if it does not return promptly, I’ll stop it and use the converged pre-coordinate model, whose phase identities and fractions are already stable.
+
+The structural refinements improved the fit without changing the phase set. I’m now replacing the mathematically flexible but partly negative instrumental-width coefficients with a bounded, physically positive profile parameterization. This may raise \(R_{wp}\) slightly, but it gives a more defensible final model and more reliable fractions.
+
+The six-phase refinement has converged (\(R_{wp}\approx11.41\%\), maximum shift/esd 0.24). I’m completing a final trace-phase challenge with Pb₃O₄ and PbO₂; these must improve unique reflections, not merely borrow intensity from the six established phases.
+
+The trace-phase fits are in their final cycles. The accepted six-phase fractions have remained stable across the profile and coordinate tests to roughly 1–2 absolute wt% for major phases and about 0.5–1 wt% for minor phases; the formal covariance errors are smaller than those systematic limits.
+
+The trace-phase challenge is complete. Pb₃O₄ gives only a marginal, highly overlapping ~1 wt% contribution; PbO₂ can lower the residual but all of its strong lines overlap existing phases and it is inconsistent with the 500 °C context. I’m excluding both as non-unique. The final six-phase model is converged and I’m exporting all deliverables directly from that saved project now.
+
+The six-phase refinement is converged. I’m exporting the final GSAS-II project, CIFs, and profile now, then I’ll validate that every reported fraction and fit statistic matches the saved project.
+
+The exports are complete. The selected model is 60.47 wt% PbWO₄, with Pb₂WO₅, WO₃, both PbO polymorphs, and Pb₂O₃ accounting for the remainder; I’m checking CIF readability, fraction normalization, profile arithmetic, and project reloadability before writing the report.
+
+One validation check caught a real export issue in the litharge CIF: the saved atom symmetry/coordinates are being interpreted as Pb₂O in P4/mmm instead of PbO in P4/nmm. I’m correcting that phase model/export before finalizing, while keeping the refined lattice and phase scale tied to the GSAS-II project.
+
+The corrected litharge model both restores PbO stoichiometry and improves the fit materially (Rwp 11.41% → 10.24%); its crystalline fraction rises from the invalid preliminary value to about 4.54 wt%. I’m running the final convergence passes and will regenerate every deliverable from this corrected project.
+
+All six CIFs now parse with the intended formulas and space groups, including corrected litharge PbO, and the profile contains all 8,282 measured points with exact observed-minus-calculated arithmetic. I’m drafting the uncertainty statement around the phase-specific peak evidence and the limits imposed by overlap and the uncalibrated line profile.
+
+The report now records the distinctive peak groups, the exact refinement statistics, and the principal caveats: crystalline-only normalization, microabsorption/overlap, empirical peak shape, and the isostructural basis of Pb₂WO₅. I’m doing one final cross-check against the original CSV and the saved GSAS-II project.
+
+Completed and validated a six-phase GSAS-II refinement:
+
+| Phase | Weight fraction |
+|---|---:|
+| PbWO₄, scheelite | 59.43 wt% |
+| Pb₂WO₅ | 14.38 wt% |
+| WO₃, monoclinic | 9.88 wt% |
+| PbO, massicot | 7.08 wt% |
+| Pb₂O₃ | 4.68 wt% |
+| PbO, litharge | 4.55 wt% |
+
+Final fit: Rwp 10.2345%, Rp 7.3447%, GOF 2.931. Fractions are normalized over modeled crystalline phases.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [Phase CIF files](<ATTEMPT_WORKSPACE>/phase_01_PbWO4_scheelite.cif)
+
+The report notes that Pb₂WO₅ uses an isostructural Pb₂MoO₅-derived model and that overlap, microabsorption, and the uncalibrated peak profile make practical fraction uncertainties larger than the formal errors.
+

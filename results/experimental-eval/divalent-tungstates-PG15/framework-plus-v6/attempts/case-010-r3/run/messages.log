@@ -1,0 +1,41 @@
+I’ll inspect the pattern metadata, the frozen powder-XRD workflow, and available refinement backends first. Then I’ll build a phase inventory, test plausible structures under a common instrumental/profile model, and validate that the exported CIFs, fractions, profile, and `final.gpx` all come from the same replayed refinement.
+
+The chemistry is a 500 °C Mn₂O₃ + WO₃ reaction, so I’m treating Mn–W–O products, both precursors, and plausible manganese/tungsten intermediates as candidates—not assuming the nominal MnWO₄ product is the only phase. The scan has a substantial low-angle background, so phase screening will use background-subtracted peak positions and coherent reflection families before any abundance judgment.
+
+The peak inventory already separates into three coherent sets: monoclinic/triclinic WO₃ dominates the 23–24.7° triplet and its split higher-angle families; bixbyite Mn₂O₃ accounts for 33.27, 38.53, 49.60, 55.49, and 66.03°; weak features near 15.83, 18.74, and 30.26° make MnWO₄ a live minor-phase candidate. I’m now testing alternate WO₃ and Mn₂O₃ records under the same restrained background, angular correction, and profile so a source-record mismatch is not mistaken for absence.
+
+The initial common-profile fit reaches about 8.35% Rwp with WO₃ + Mn₂O₃, while MnWO₄ is driven to essentially zero scale and destabilizes its cell if allowed to refine. I’m not accepting that zero-scale result as definitive yet: the current WO₃ record/profile may be absorbing weak intensity, so I’m completing the alternate-record screen before re-challenging MnWO₄ and Mn₃WO₆ under the clean profile.
+
+The physically constrained replay is stable: fixing a modest positive U/W/X baseline and introducing isotropic size and strain phase-by-phase reproduces the same ~7.00% Rwp without negative profile terms. Both phases require finite size (about 0.14 µm in the current partition); WO₃ clearly benefits from strain, while the Mn₂O₃ strain term is weak and will be pruned unless it remains useful after structural refinement. I’m keeping the common X term fixed because releasing it is nearly singular with crystallite size.
+
+The common intensity trend is real: polarization plus a modest Suortti low-angle roughness correction lowers Rwp from 6.89% to 6.42% without bound hits; using specimen displacement instead of the established zero correction does not help. Texture trials collapse close to random powder and are being rejected. In contrast, WO₃ shows replay-stable, strongly significant uniaxial microstrain along its monoclinic b direction (about 3.10 vs 5.21×10³ ppm axial/equatorial), reducing Rwp to 6.23%; Mn₂O₃ anisotropy is unsupported.
+
+The clean-model watch-list challenge finds no defensible Mn₃WO₆ (≤0.08 wt% before its cell drifts) and rejects Mn₃O₄: its nominal ~0.23 wt% “improvement” requires an implausible 15% cell-volume expansion. MnWO₄ is different: several weak families give a positive ~0.9 wt% scale and lower Rwp from 6.23% to 6.17%, but the sole exact COD record needs a ~1.3% a-axis change. I’m therefore treating MnWO₄ as provisional and testing physical wolframite analogues before deciding whether its structure/fraction is reliable enough to submit.
+
+The phase inventory is now coherent: monoclinic WO₃ and bixbyite Mn₂O₃ are the major phases, with a weak but reproducible MnWO₄ contribution. I’m doing the final full-range replay and export checks now; the main remaining issue is quantifying how model-dependent that trace MnWO₄ fraction is.
+
+The current residuals are dominated by imperfect peak-shape/intensity agreement at the strongest WO₃ families, not by a coherent set of unassigned peaks. I’m therefore retaining the three-phase inventory and will report MnWO₄ as provisional, with a wider model-based fraction range than its formal least-squares uncertainty.
+
+I’ve frozen the accepted atomic coordinates after their staged refinement and reconverged only the cells, scales, background, and supported profile terms. This removes the near-singular paired-W coordinate directions while preserving the refined structure; the fit changes by less than 0.001 percentage point in Rwp.
+
+The final project now passes independent atomic forward replay on the complete measured grid, with no negative profile widths, background, or displacement-tensor flags. The three CIFs also pass composition, density, occupancy, and short-contact checks, and their structures/fractions match the saved GSAS-II project.
+
+Completed the PXRD analysis.
+
+- WO₃, P2₁/c: 74.435 wt%
+- Mn₂O₃, Ia-3: 24.641 wt%
+- MnWO₄, P2/c: 0.924 wt% — provisional; profile-model range 0.28–1.43 wt%
+- Final Rwp: 6.1633%; GOF: 2.3186
+
+The full-range GSAS-II atomic replay and CIF physical-screen checks passed.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-010-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-010-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-010-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-010-r3/workspace/final.gpx)
+- [WO3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-010-r3/workspace/phase_1_WO3.cif)
+- [Mn2O3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-010-r3/workspace/phase_2_Mn2O3.cif)
+- [MnWO4 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-010-r3/workspace/phase_3_MnWO4.cif)
+

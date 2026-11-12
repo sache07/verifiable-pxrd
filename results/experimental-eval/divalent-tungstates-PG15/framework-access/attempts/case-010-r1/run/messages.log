@@ -1,0 +1,52 @@
+I’ll inspect the pattern, metadata, and the supplied tungstate workflow/tooling first, then identify candidate phases and carry a quantitative GSAS‑II refinement through to exported CIFs and profiles. I’ll keep the phase count evidence-driven and flag any ambiguity in the final report.
+
+The chemistry narrows the plausible inventory to Mn–W–O products plus residual Mn₂O₃/WO₃, but at 500 °C partial reaction and multiple polymorphs are credible. I’m now extracting the peak inventory and checking the frozen COD/DARA and GSAS‑II interfaces so candidate selection is based on the full profile rather than a few diagnostic lines.
+
+Search–match isolates two crystalline components: monoclinic WO₃ accounts for the dominant 23–25° triplet and 33–35° group, while bixbyite-type Mn₂O₃ explains the independent residual sequence near 23.4, 33.3, 38.5, 45.4, 49.6, 55.4, and 66.0°. MnWO₄ and Mn₃WO₆ leave their strongest expected peaks unexplained and are not supported at a meaningful level. I’m moving to full-pattern GSAS‑II refinement to resolve the close WO₃/Mn₂O₃ reference variants and quantify the fractions.
+
+The first two-phase Rietveld model is converging now. I’m refining calibration, both cells, phase-specific broadening, and the per-phase isotropic displacement factors in stages; after that I’ll compare the close structural variants on the same parameterization, rather than choosing the database entry from search–match alone.
+
+The variant matrix is running in parallel. The initial unconstrained fit exposed the expected profile correlations, so I bounded the instrument terms to the measurement model and separated common instrumental width from phase-specific size/strain in alternating stages. That is yielding a more defensible comparison and prevents a candidate from “winning” by absorbing structural errors into nonphysical peak widths.
+
+The refined residual is not random: its strongest positive sequence (34.48, 34.14, 50.22, 48.53, 47.53°) coincides with additional low-symmetry WO₃ reflections. I’m therefore reopening the phase count and testing triclinic/orthorhombic WO₃ models and a possible WO₃ polymorph mixture. This is stronger evidence than forcing the two-phase model through texture or excessive broadening.
+
+The alternative single-phase WO₃ tests are still refining; the P2₁/m model already failed decisively. In parallel, the residual match to triclinic WO₃ remains a live hypothesis, but I will only add it if its refined scale stays positive and it removes unique reflections across the pattern—not merely the crowded 23–25° region.
+
+A third WO₃ phase is not yet justified: a ~4.6 wt% duplicate monoclinic component improves the fit, but a two-parameter uniaxial microstrain model along WO₃ [100] achieves essentially the same reduction with far fewer parameters and matches an allowed specimen effect. I’m retaining the two-phase interpretation while testing texture and the Mn₂O₃ profile; the extra phase remains a fallback only if unique peaks survive.
+
+I’ve narrowed the pattern to a two-phase WO₃/Mn₂O₃ model. I’m now resolving whether the WO₃ distortion is genuinely triclinic or adequately monoclinic, then I’ll consolidate the physically constrained refinement and export the requested deliverables.
+
+The triclinic branch gains almost nothing from preferred orientation, whereas the monoclinic branch requires a much stronger texture correction. That is useful evidence for a genuinely lower-symmetry WO₃ phase, but I’m checking it against model complexity and the generator’s physical bounds before committing.
+
+I’m rebuilding the monoclinic model from the published parent coordinates and enforcing the generator’s physical ranges. This avoids letting the lower-symmetry alternative win merely by moving weakly scattering oxygen sites far beyond the allowed reference mismatch. I’ll compare fixed specimen-height branches because height, zero, and lattice parameters are strongly correlated.
+
+The physically constrained monoclinic refinement is stable at about 6.4% Rwp before the small coordinate corrections. The remaining discrepancy is concentrated in peak intensities and widths, not unexplained reflections; the phase inventory remains two phases.
+
+The profile scan found one important point: the apparent 8,000 ppm strain boundary was not driving the solution. Polarization has a modest effect, and surface roughness is at most marginal. I’m now validating candidate projects by fresh GSAS-II replay, because cached post-refinement curves can otherwise make very small Rwp differences misleading.
+
+The constrained solution has converged to approximately 75.1 wt% monoclinic WO₃ and 24.9 wt% orthorhombic Mn₂O₃. I’m regularizing the weak oxygen coordinates to the known reference-mismatch scale; that costs only ~0.02 percentage points in Rwp but avoids reporting spuriously precise, over-displaced oxygen sites.
+
+The final GPX and CIFs pass the structural and replay checks. One submission-format check caught that the angle-column label was too verbose for the scorer’s alias set; I’m correcting that header and rerunning the end-to-end validation.
+
+A residual check warrants one last audit: a second WO₃ polymorph previously absorbed about 5 wt% when the peak-shape model was less mature. I’m retesting that candidate against the final constrained profile to distinguish a real minor phase from a broadening surrogate.
+
+The minor-polymorph scale falls to only ~1.6–2.6 wt% against the mature model. Its apparent benefit is small and highly correlated with cell/profile terms; I’m waiting for its physical size/strain refinement before deciding whether it is identifiable.
+
+The audit confirms the second WO₃ polymorph is not independently identifiable: it only models broad residual tails at the crystallite-size lower bound. I’ve retained the defensible two-phase result and documented that ~2 wt% ambiguity explicitly. Final consistency checks are now complete.
+
+Completed. The refined crystalline composition is:
+
+- WO₃, monoclinic P2₁/c: 75.10 wt%
+- Mn₂O₃, orthorhombic Pbca: 24.90 wt%
+
+Fresh GSAS-II replay gives Rwp 5.874%, Rp 4.269%, and GOF 2.209. A possible ~2 wt% secondary WO₃ polymorph was not reliably distinguishable from peak-shape mismatch and is documented as uncertainty.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-010-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-010-r1/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-010-r1/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-010-r1/workspace/fit.csv)
+- [WO3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-010-r1/workspace/phase_1_WO3.cif)
+- [Mn2O3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-010-r1/workspace/phase_2_Mn2O3.cif)
+

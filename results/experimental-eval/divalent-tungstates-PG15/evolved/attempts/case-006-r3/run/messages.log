@@ -1,0 +1,38 @@
+I’ll inspect the pattern, metadata, and reusable analysis package first, then build a chemically screened phase inventory before any refinement. I’ll keep rejected-but-plausible candidates on a watch list and only finalize phases that remain physically coherent after profile and baseline replays.
+
+The chemistry points first to copper tungstate, with CuO and/or WO₃ as plausible residual phases after an 800 °C reaction. I’m now extracting the observed peak families and checking what indexing/search and GSAS‑II automation are already installed, so candidate records are judged by positions, symmetry, occupancies, and geometry—not by database labels alone.
+
+The peak-position test is decisive for the provisional inventory: an ambient-pressure triclinic CuWO₄ cell predicts the entire strong family set, while the observed peaks carry an almost uniform ≈+0.30° offset. That points to one dominant CuWO₄ phase plus an angular correction, not separate WO₃/CuO peaks. I’m moving into GSAS‑II now, with CuO, monoclinic/triclinic WO₃, and Cu₃WO₆ retained as explicit watch-list challenges after the common profile is established.
+
+The first GSAS‑II passes confirm the inventory but expose a baseline issue: the nominal symmetric profile tried to drive Gaussian W negative because the low-angle peaks have repeated axial asymmetry. I rejected that solution, fixed W at its neutral nonnegative value, removed a sample/phase scale degeneracy, and released only SH/L; the fit improved without adding phase-specific broadening. The remaining largest errors are intensity/structure-model errors, so I’m checking for a true ambient CuWO₄ coordinate model before testing texture or extra phases.
+
+The ambient Cu-rich prototype is materially better than the high-pressure exact record, and the Cu→mixed-site substitution is physically clean: after restrained coordinate refinement the model retains CuO₆ Jahn–Teller distances of about 1.92–1.96 and 2.35–2.39 Å and a plausible distorted WO₆ shell. With the nonnegative common profile and SH/L, Rwp is now about 5.43%. I’m re-challenging CuO, WO₃ polymorphs, Cu₃WO₆, and reduced Cu₂WO₄ under this same profile before accepting the single-phase inventory.
+
+The inventory changed once and remained stable after the required rebuild: monoclinic WO₃ is supported at roughly 2.4–2.5 wt% by the 23–24°, 33–35°, 42°, 50°, and 56° families; both ambient monoclinic source records refine to the same cell. Replays now drive both CuO records, Cu₃WO₆, and Cu₂WO₄ to the nonnegative zero-scale boundary. I’m finishing nuisance-term trials now, keeping only terms that improve isolated-family widths/intensities without trading against the common profile or phase scales.
+
+The phase inventory is now coherent: triclinic CuWO₄ with a small monoclinic WO₃ residual phase. I’m finishing the required nuisance-model challenges (polarization, roughness, and symmetry-distinct texture), then I’ll replay the clean model and export the exact project, CIFs, profile, and audit files.
+
+The common profile is physically well behaved and the two-phase replay is converged (Rwp 4.459%, GOF 1.837). The earlier size and strain trials were non-identifiable against the instrument profile, so I’m keeping both neutral and testing only intensity corrections now.
+
+The intensity challenge is now decisive enough to prune terms: polarization trades strongly against atomic displacement factors, and all six March–Dollase axes remain within about 1% of random orientation with only marginal gains. A one-parameter low-angle surface correction materially improves several isolated families; I’m checking that correction against background order and then will re-challenge the weak-phase watch list under that final common profile.
+
+The accepted correction is stable across 6-, 8-, and 10-coefficient smooth backgrounds (B ≈ 0.050–0.053), while the crystalline fractions move by only about 0.07 wt%. Re-challenging CuO polymorphs, Cu₃WO₆, and Cu₂WO₄ under that profile again drove every added scale to zero. I’m now performing the explicit full-measured-range save/reopen replay and exporting directly from that project.
+
+All submitted artifacts now agree exactly with the two-phase project: 8301 profile points, fractions summing to 1.0, no frozen parameters, and no retained size/strain/texture terms. Both CIFs also parse cleanly with the intended compositions and physically plausible coordination environments.
+
+Completed the two-phase refinement:
+
+- Triclinic CuWO₄, P−1: **97.5425 wt%**
+- Monoclinic WO₃, P2₁/n: **2.4575 wt%**
+
+Fractions are normalized over modeled crystalline phases. Rwp = **4.3167%**, Rp = **3.3504%**, GOF = **1.7786**. A conservative fraction uncertainty is about ±0.2 wt%; amorphous content is not quantified.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [CuWO4_triclinic.cif](<ATTEMPT_WORKSPACE>/CuWO4_triclinic.cif)
+- [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_monoclinic.cif)
+

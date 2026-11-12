@@ -1,0 +1,11 @@
+# Powder XRD phase analysis
+
+The pattern is described by two crystalline phases: wolframite-type NiWO4 and monoclinic WO3. Their refined crystalline weight fractions are 0.7702 and 0.2298, respectively (77.02 and 22.98 wt%). These values are normalized only over the modeled crystalline material.
+
+NiWO4 (P2/c) accounts for the dominant families at approximately 19.2, 24.9, 30.9, 36.5, 41.6, and 54.6 degrees 2-theta. Because an exact-composition NiWO4 entry was absent from the frozen reference index, its model was derived from the wolframite MgWO4 topology (COD 9013902) by Mg-to-Ni substitution and then refined. Coordinate starts transferred independently from ZnWO4 (COD 1520641) and MnWO4 (COD 1520200) converged to the same minimum. The final octahedral distances are physically ordinary: Ni-O 1.978-2.019 A and W-O 1.888-2.219 A.
+
+WO3 (P2_1/c, COD 2311041) accounts for the resolved 23.05/23.54/24.29 and 33.20/33.52/34.09 degree families and numerous weaker lines. A same-composition 1960 reference gave a superficially close fit but was rejected because it contains an implausible 1.57 A O-O contact. The submitted WO3 model passes the contact screen and has W-O distances of 1.693-2.166 A. No coherent residual family supports NiO: in particular, its strongest expected line near 43.4 degrees is absent. All observed reflection families are indexed by the accepted two-phase inventory.
+
+The full-grid GSAS-II refinement gives Rwp = 4.1438%, Rp = 3.1994%, Rexp = 3.4788%, and goodness of fit = 1.195 for 8,282 points. A fresh zero-cycle replay of `final.gpx` reproduced the profile and fractions without physical/profile review flags. The refined structures also pass the scorer's occupancy, density, and short-contact checks.
+
+The phase identities and wolframite/WO3 topologies are well supported. The crystalline fractions are estimated to have roughly 1-2 wt% systematic uncertainty from profile/background correlation and overlapping peaks; any amorphous content cannot be quantified from this analysis, so absolute bulk fractions are not determined. Oxygen coordinates, especially in the minor WO3 phase, are less reliable than the cells and heavy-atom framework and should not be interpreted as a high-precision single-crystal determination.

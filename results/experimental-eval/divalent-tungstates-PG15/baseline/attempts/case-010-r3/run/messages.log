@@ -1,0 +1,39 @@
+I’ll inspect the diffraction data, metadata, and available crystallography tooling first, then identify candidate phases and refine a multiphase GSAS-II model. I’ll keep the final artifacts internally consistent with the saved `final.gpx` and call out any ambiguous identification or quantification.
+
+The chemistry points toward manganese tungstates, but I won’t assume a single product: at 500 °C, residual WO₃/Mn₂O₃ or competing Mn–W–O phases are plausible. I’m now extracting peak positions and checking the installed reference-search/indexing and GSAS-II interfaces so phase selection is driven by the full pattern.
+
+The peak fingerprint is already decisive at the family level: the three dominant lines near 23.4°, 23.9°, and 24.7°, together with the split 33–35° group, match low-symmetry WO₃; MnWO₄ is inconsistent because its strongest 30.0/30.5° doublet is absent. I’m testing the monoclinic/triclinic WO₃ variants and possible minor Mn oxides by actual whole-pattern refinements, since the broad, anisotropic-looking peaks make peak-list matching alone unreliable.
+
+The initial refinement exposed a scale-parameter degeneracy in GSAS-II (histogram scale and phase scale were both active); I removed that redundancy. The corrected screening is converging and currently favors a doubled-cell monoclinic WO₃ model over the smaller orthorhombic approximation, with sample displacement accounting for the systematic low-angle shift.
+
+A conservative monoclinic WO₃ refinement now fits essentially every observed feature across 10–100° (`Rwp ≈ 11.1%`, unweighted profile `R ≈ 7.3%`). The remaining structured residual is concentrated in overlapping WO₃ multiplets rather than at an obvious unmatched MnWO₄ fingerprint. I’m testing whether Mn₂O₃ adds statistically and chemically credible intensity, then I’ll avoid reporting it if its scale collapses or creates unsupported peaks.
+
+The second phase is real and quantitatively substantial: cubic bixbyite Mn₂O₃ lowers `Rwp` from about 11.1% to 8.1% and accounts for its independent 33.3°, 38.5°, 49.6°, and 55.5° lines. The refined ratio is close to a stoichiometric precursor blend. A neutron-derived monoclinic WO₃ model improves the fit further; I’m now stabilizing the profile/cell refinement and checking how much the phase fractions move across defensible WO₃ models.
+
+The fractions shift by about 2 wt% across reasonable WO₃ coordinate/thermal-factor choices, while the phase identities stay unequivocal. I’m checking a constrained, phase-average displacement model now; this is the main remaining systematic in quantitative scale factors, and it will determine whether I report the formal precision alone or a broader model-based uncertainty.
+
+The phase search has converged on monoclinic γ-WO₃ plus cubic bixbyite α-Mn₂O₃; manganese tungstate fingerprints are absent. I’m now rebuilding the clean final GSAS-II project from those references and validating that every exported result reproduces the project’s refined fractions and profile.
+
+The clean rebuild is progressing normally. The two-phase scale ratio is already stable near 74:26; the remaining iterations are fitting specimen displacement, cell metrics, line broadening, and polarization before export.
+
+The final refinement converged with no parameters pinned at bounds: 74.47 wt% γ-WO₃ and 25.53 wt% α-Mn₂O₃, with Rwp 6.813%. I’m performing independent CIF parsing and cross-checking the CSV arrays, phase fractions, and fit statistics against the saved GPX now.
+
+Analysis complete:
+
+- γ-WO₃ (monoclinic, P2₁/c): **74.47 wt%**
+- α-Mn₂O₃ (bixbyite, Ia-3): **25.53 wt%**
+- Rwp: **6.813%**, GOF: **2.564**
+
+Fractions are normalized over modeled crystalline material; realistic model-dependent uncertainty is approximately ±2 wt% absolute.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [phase_Mn2O3.cif](<ATTEMPT_WORKSPACE>/phase_Mn2O3.cif)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+
+Both CIFs were independently parsed successfully, and the exported profile and fractions were verified against the saved GSAS-II project.
+

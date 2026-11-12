@@ -1,0 +1,47 @@
+I’ll inspect the measurement metadata, pattern, and reusable refinement utilities first. Then I’ll build a chemically plausible phase inventory, test alternatives under a common baseline, and only retain phases supported by coherent diffraction families before exporting the final GSAS-II project and deliverables.
+
+The chemistry points to Ba–W–O with likely residual precursor(s) at only 400 °C, but I’ll treat BaWO₄, BaCO₃ polymorphs, and WO₃ polymorphs as hypotheses rather than assumptions. I’m now extracting peak positions and checking the installed phase-search/refinement interfaces so every candidate is tested against the same observed profile.
+
+The peak inventory already separates into two coherent families: monoclinic WO₃ accounts for the repeated triplet/splitting pattern near 23–25°, 33–35°, 42°, 50°, and 56°, while orthorhombic BaCO₃ accounts for families near 24.2°, 28.0°, 34.9°, 42.3°, 45.2°, and 47.1°. A common ~+0.25° shift is consistent with specimen displacement, so I’m preserving that as one shared angular correction. BaWO₄ remains on the watch list, but its diagnostic ~31.9° reflection is not evident yet.
+
+The first two-phase refinement is running more slowly than a simple profile match because GSAS-II is evaluating the full 8,301-point range and covariance. I’ve staged it conservatively—background/scales, then displacement, then cells, then a bounded common U/W/X profile—so a profile parameter cannot mask a missing phase.
+
+With the correct Bragg–Brentano specimen-shift parameter, the shared angular offset refines to about −0.52 mm and both cells remain close to literature values, confirming that the earlier apparent cell contraction was a geometry surrogate. A common Lorentzian X term reduces Rwp to ~9.18%; U and W collapse to zero and will be pruned rather than retained. I’m now re-challenging alternate WO₃/BaCO₃ records and the BaWO₄ watch-list candidate against that fixed common profile.
+
+The alternate-record challenge is decisive: the physically sound monoclinic WO₃ record COD 2311041 improves Rwp from 9.17% to 8.88%, while triclinic WO₃ is worse (9.64%) and orthorhombic/tetragonal/hexagonal records are much worse (14.9–28.2%). Orthorhombic BaCO₃ COD 9010928 is likewise uniquely supported; alternate BaCO₃ polymorphs drive its scale near zero and leave Rwp near 26%.
+
+An ordered scheelite BaWO₄ prototype gives a small but reproducible ~1.2 wt% scale and lowers Rwp by ~0.19 percentage point. I’m checking whether that gain comes from several coherent BaWO₄ families—including a genuinely diagnostic one—or only from overlapped peaks before deciding whether to retain it.
+
+One important baseline issue surfaced in the GSAS-II defaults: “unrefined” size and microstrain still contribute finite broadening (1 µm and 1000 µstrain). I’m now explicitly neutralizing them (effectively infinite size, zero strain), rebuilding the common profile, and then I’ll add phase broadening back one phase at a time. This is necessary before treating the weak BaWO₄ scale as stable.
+
+The neutral common U/W/X profile is stable and positive (U≈43, W≈10, X≈13.7), with Rwp≈8.61%. The one-at-a-time phase-width trials are still running; these will show whether any apparent size/strain term is replay-stable or merely trades against the shared profile.
+
+Refining the previously unknown effective polarization is strongly supported: it converges near 0.776 and reduces Rwp from 8.53% to about 7.40%. Under that physically better intensity model, W becomes unnecessary and hits zero, so I’m pruning W and replaying both the no-phase-broadening baseline and the WO₃-size model before accepting the latter.
+
+I’ve narrowed the model to monoclinic WO₃, orthorhombic BaCO₃, and a near-detection scheelite BaWO₄ phase. I’m doing the final fair two-versus-three-phase challenge under the same profile/texture model, then I’ll replay the chosen project and export every deliverable directly from it.
+
+The fair challenge still favors the weak third phase: with identical BaCO₃ [110] texture, the two-phase fit settles at Rwp 7.2954%, versus 7.2217% with BaWO₄. The gain is modest but coherent across several scheelite reflection families, so I’m retaining BaWO₄ with an explicit near-detection-limit caveat.
+
+The baseline is physically stable: peak-position offsets show no monotonic low-to-high-angle trend, observed/calculated widths agree closely for the strongest isolated low-angle peaks and remain comparable for middle/high-angle families, and releasing asymmetry gave only ΔRwp ≈ 0.002% while correlating strongly with displacement. I’m now freezing that supported model and generating the CIFs, profile, JSON, and report from the same final replay.
+
+All requested artifacts now exist and the three CIFs parse successfully as WO₃, BaCO₃, and BaWO₄ with physical nearest-neighbor distances. I’m doing an independent consistency audit now—fractions, refinement flags, CSV arrays, CIF cells, and final.gpx replay state—before handing them over.
+
+Completed the GSAS-II refinement and consistency audit.
+
+- BaCO₃ (witherite): **53.19 wt%**
+- Monoclinic WO₃: **46.14 wt%**
+- Scheelite BaWO₄: **0.67 wt%**, provisional/near detection limit
+- Final fit: **Rwp 7.2217%, Rp 5.5990%, GOF 2.078**
+
+Major-phase identities are robust. BaWO₄ and its fraction are less reliable; amorphous content cannot be quantified.
+
+Files:
+
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [phase_BaCO3.cif](<ATTEMPT_WORKSPACE>/phase_BaCO3.cif)
+- [phase_BaWO4.cif](<ATTEMPT_WORKSPACE>/phase_BaWO4.cif)
+

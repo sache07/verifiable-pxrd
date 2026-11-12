@@ -1,0 +1,40 @@
+I’ll inspect the specimen metadata, pattern grid, and the frozen PXRD tool guidance first, then build and refine a complete multiphase GSAS-II model. I’ll keep the search chemistry-led and stop once all coherent peak families are assigned.
+
+The chemistry points first to Mg–W–O phases, but I’m treating that only as a prior. I’m now extracting the observed peak families and querying the frozen COD index for exact Mg/W/O references (including MgO and WO₃), before committing any phase inventory.
+
+The observed families now support a complete ordinary inventory: wolframite-type MgWO₄ is the major phase, while the WO₃ triplet families and rocksalt MgO reflections are both present as residual precursors. I’m setting up controlled GSAS-II branches to select the WO₃ polymorph by whole-pattern agreement, then I’ll refine the accepted three-phase model rather than continue searching.
+
+The whole-pattern branches distinguish the room-temperature monoclinic WO₃ model: COD 1528915 is already materially better (Rwp 17.51% before profile refinement) than triclinic 2106293 (18.83%) and orthorhombic 2107312 (20.28%); the P2₁/m model is much worse. I’m checking the remaining exact-composition WO₃ references, including an alternate monoclinic setting, before freezing that choice.
+
+The alternate WO₃ model (COD 2311041) is the defensible choice: it gives the best checkpoint fit and comes from a neutron structure with normal W–O geometry. The superficially close 1528915 model contains 1.575 Å O–O contacts, so I rejected it despite its similar peak positions. Coordinate trials on the accepted topology are being rolled back when they require shifts larger than the stated reference-mismatch scale; I’m now refining broadening one supported term at a time.
+
+The remaining residual is dominated by relative-intensity errors, not unindexed peaks. A physically supported correction is isotropic displacement: the frozen model registration normalizes every site to a shared phase Uiso, and the specimen settings then assign one phase value. I’m replacing unconstrained site-by-site U trials with common, bounded phase values (0.003–0.020 Å²), which is both replayable and consistent with the experiment model.
+
+The accepted model is now fully physical and all residual maxima coincide with its three reflection families; there is no coherent fourth family. Common phase Uiso values and the instrument/profile terms are within the laboratory bounds. I’m doing one final pass from the smooth 30-term background checkpoint, then I’ll freeze the project and export all deliverables from that exact state.
+
+The physical full-grid checkpoint is frozen at Rwp 8.320% (Rp 5.904%). I’m now running the same consistency checks the evaluator uses: CIF parsing/geometry, exact fit-grid reproduction, and a fresh GSAS-II replay from `final.gpx` rather than its cached calculated array.
+
+The three-phase model is complete: MgWO₄, monoclinic WO₃, and MgO. I’m doing the final replay consistency check now, then I’ll write the uncertainty/evidence report and verify every deliverable.
+
+The saved project reproduces the submitted profile exactly on replay: 8,301 points, Rwp 8.31998%, and a maximum calculated-profile difference of only \(5\times10^{-11}\) counts. I’m recording the model-selection evidence and the limits on fraction precision in the report.
+
+Completed the three-phase refinement:
+
+- MgWO₄: **77.02 wt%**
+- Monoclinic WO₃: **15.05 wt%**
+- MgO: **7.93 wt%**
+
+Full-pattern fit: **Rwp 8.3200%**, Rp 5.9045%, GOF 2.9122. The project replay reproduced all 8,301 calculated points and phase fractions.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r3/workspace/final.gpx)
+- [MgWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r3/workspace/MgWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r3/workspace/WO3.cif)
+- [MgO.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r3/workspace/MgO.cif)
+
+Fractions are normalized over crystalline phases. No coherent fourth-phase reflection family remains, but trace or amorphous material and sub-percent absolute fraction accuracy cannot be established reliably.
+

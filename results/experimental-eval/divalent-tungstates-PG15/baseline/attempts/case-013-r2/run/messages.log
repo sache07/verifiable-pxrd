@@ -1,0 +1,44 @@
+I’ll inspect the diffraction pattern, metadata, and available crystallographic tooling first, then identify candidate phases and build/refine a multiphase GSAS-II model. I’ll keep the reported fractions limited to what the data can support and preserve the final refinement project.
+
+The chemistry points naturally toward lead tungstates, but I won’t assume a single PbWO₄ product: residual PbO/WO₃ and intermediate Pb–W–O stoichiometries are plausible at 500 °C. I’m now extracting peak positions and checking the installed phase-search/indexing and GSAS-II interfaces against those possibilities.
+
+The peak pattern is not single-phase. The dominant reflections form a coherent tetragonal scheelite PbWO₄ series; two weaker signatures are also visible: the characteristic WO₃ low-angle triplet near 23–25° and orthorhombic PbO reflections near 15°, 29–31°, and 38°. I’m testing these three models quantitatively and checking whether monoclinic PbWO₄ explains any peaks better than the precursor oxides.
+
+The two-phase tests confirm both residual precursor signatures are real: adding massicot PbO lowers Rwp from 18.35% to 16.28%, while adding monoclinic WO₃ alone lowers it to 17.33%. I’m now testing the combined three-phase model and alternatives for the remaining unmatched peaks; the key question is whether a fourth lead-tungstate phase is warranted or would merely absorb profile errors.
+
+The three-phase refinement reaches Rwp = 15.08% and gives roughly 78.5% scheelite PbWO₄, 9.8% massicot PbO, and 11.7% monoclinic WO₃. It also exposes a coherent set of still-unmodeled reflections (notably 25.91°, 30.15°, and 31.05°), so I’m indexing that residual set and searching for a chemically plausible fourth Pb–W–O phase rather than accepting an incomplete model.
+
+The residual phase is now identified convincingly as Pb₂WO₅: an isostructural Pb₂MoO₅ model with Mo→W reproduces the unmatched peak series, and adding it lowers Rwp from 15.08% to 12.71%. The refined monoclinic cell (C2/m, a≈14.230, b≈5.811, c≈7.361 Å, β≈113.88°) remains close to the analog structure. I’m checking each minor phase’s necessity and then will refine the final model conservatively, including phase-specific broadening only where supported.
+
+All four phases remain independently required: omitting WO₃ raises Rwp to 14.23%, omitting PbO raises it to 14.64%, and omitting Pb₂WO₅ raises it to 15.08%. Two equivalent monoclinic WO₃ settings give nearly identical fractions and fit quality; I’m using the structural variant supported best by the full profile and checking the lower-symmetry alternative before finalizing.
+
+The pattern resolves into four crystalline components: scheelite PbWO₄, massicot PbO, monoclinic WO₃, and Pb₂WO₅. I’m finishing the stable GSAS-II refinement now; the main remaining judgment is whether a small instrumental-profile improvement is robust enough to retain without destabilizing the phase fractions.
+
+The more complete profile model converged cleanly and leaves the phase fractions essentially unchanged (all shifts below 0.13 wt%). I’m retaining that model because the axial-divergence and polarization terms are physically plausible and improve the fit without introducing the unstable crystallite-size behavior seen in exploratory refinements.
+
+The final full-range refinement is converged: Rwp = 12.57%, with crystalline fractions 67.88% PbWO₄, 14.52% Pb₂WO₅, 10.36% WO₃, and 7.24% PbO. I’ve generated the project, profiles, and CIFs; I’m validating that every CIF re-imports correctly and that the JSON/profile values exactly match the saved GSAS-II project before writing the uncertainty note.
+
+Completed the four-phase GSAS-II refinement. Fractions are normalized over modeled crystalline phases:
+
+| Phase | Weight fraction |
+|---|---:|
+| PbWO₄ (scheelite) | 67.88% |
+| Pb₂WO₅ | 14.52% |
+| WO₃ (monoclinic) | 10.36% |
+| PbO (massicot) | 7.24% |
+
+Final fit: Rwp = 12.571%, Rp = 8.573%, goodness of fit = 3.600.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [PbWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_PbWO4_scheelite.cif)
+- [Pb₂WO₅ CIF](<ATTEMPT_WORKSPACE>/phase_Pb2WO5.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_monoclinic.cif)
+- [PbO CIF](<ATTEMPT_WORKSPACE>/phase_PbO_massicot.cif)
+
+The Pb₂WO₅ identification is supported by its complete peak series, but its atomic coordinates were transferred from an isostructural Pb₂MoO₅ prototype; consequently, its detailed structure is less certain than its phase presence and fraction. All CIFs were validated by re-import, and `fit.csv` exactly matches `final.gpx`.
+

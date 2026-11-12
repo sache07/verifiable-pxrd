@@ -1,0 +1,60 @@
+I’ll first inspect the measurement metadata, pattern range, and the reusable indexing/refinement utilities. Then I’ll build a chemically plausible phase inventory, test alternatives against the residual, and only commit phases that remain physically supported after replaying the final refinement.
+
+The chemistry points to manganese tungstate formation, but the 500 °C synthesis makes residual precursor oxides and metastable Mn–W–O polymorphs realistic. I’m treating those as an inventory to test rather than assuming a single nominal product. Next I’m extracting peak families and checking what the installed search/indexing backends can resolve from them.
+
+The residual families now make a coherent two-phase hypothesis: low-symmetry WO₃ explains the dominant triplet and most broad high-angle envelopes, while cubic bixbyite Mn₂O₃ independently lands on the 33.26°, 38.53°, 49.61°, 55.48°, and ~66.0° families. MnWO₄’s diagnostic 30.0/30.45° pair and Mn₃WO₆’s strong ~20° pair are not apparent, so both remain watch-list candidates rather than assumed products. I’m now comparing physical WO₃/Mn₂O₃ records under one common profile before refining fractions.
+
+The common-profile record screen is still converging; each candidate is being allowed the same six-term smooth background, one zero correction, scale, and symmetry-constrained cell refinement. This is important here because monoclinic and triclinic WO₃ records share many lines, and a source record should not win merely from having more adjustable nuisance terms.
+
+The alternate-record result is decisive so far: monoclinic WO₃ (P2₁/c) reaches Rwp ≈18.0% with the restrained baseline, versus ≈23.5% for triclinic WO₃ and ≥30% for the higher-symmetry/ancient alternatives. I’m now re-challenging the residual with three Mn₂O₃ symmetry records and the MnWO₄/Mn₃WO₆ watch-list phases under that same baseline.
+
+Neutralizing the default phase broadening exposed an important baseline issue: an unconstrained U/W/X fit drove W negative. I’ve rejected that parameterization and am replaying nonnegative common-profile alternatives with W fixed at small physical values while U, X, and the repeated low-angle asymmetry term refine. No phase-specific broadening is active in these tests.
+
+The accepted intensity correction is a refined effective polarization of about 0.689 (stable across replays), which materially improves the whole angular range and is physically plausible for this reflection setup. Texture has therefore not been invoked. The common-profile record replay is now checking whether the WO₃ space-group choice still wins once that correction and the Mn₂O₃ broadening are held consistent.
+
+These fresh-project replays are slower because all symmetry-constrained cells are reconverging from their source values over the full 8,301-point range. The current model itself is already stable; this pass is a falsification check on the alternate WO₃ records, not a search for extra fit flexibility.
+
+The alternate-cell batch is computationally heavy but still within the intended full-range replay. If any candidate fails to converge cleanly, I’ll use its stable earlier stage and report it as rejected rather than allowing a runaway cell fit to influence the submitted model.
+
+The common-profile replay confirms the structural choice: P2₁/c WO₃ gives Rwp 7.229%, while P2₁/n and P-1 alternatives remain around 8.61–8.66% and Pnma is much worse. Their refined volumes converge near the same value, so the advantage comes from the physical reflection/intensity model, not merely cell freedom.
+
+The remaining symmetry check concerns Mn₂O₃ only. The standard centrosymmetric bixbyite record is already the physically preferred model; I’m verifying that its small fit advantage over the historical non-centrosymmetric and orthorhombic descriptions survives the exact same profile and weighting.
+
+Both historical Mn₂O₃ alternatives require substantially longer convergence, which itself reflects their poorer/less constrained descriptions. I’ll let this replay finish, but the submitted phase will only use an alternative if it yields a stable, physically credible improvement—not simply a lower-symmetry fit.
+
+The residual challenge found one credible weak-phase signal: the exact MnWO₄ record has a positive scale at 6.3σ under fixed nuisances, whereas Mn₃WO₆, Mn₃O₄, and alternate WO₃ polymorphs are ≤2.6σ. I’m promoting MnWO₄ provisionally and comparing its high-pressure source record with a physically screened ambient wolframite analogue before deciding whether the phase and fraction are reliable.
+
+MnWO₄ remains a plausible ~0.9 wt% phase after full reconvergence; two independent wolframite models give nearly the same fraction, while only the exact MnWO₄ record gives a physically reasonable refined cell. Its evidence is concentrated in the unique 30.36/30.73° doublet, so I will label it tentative. Mn₃WO₆ improves only overlapped regions while worsening its strongest unique ~20° pair, so it is being excluded as non-robust.
+
+I’m checking the final reopen/replay now. The remaining work is export and consistency validation; the only deliberately tentative assignment is the weak ~1 wt% MnWO₄ phase.
+
+The prior process has already exited and its live session is no longer available. I’m inspecting the saved replay project directly, then I’ll perform one fresh reopen/replay so the submitted exports come from a verified project state.
+
+The saved project is healthy: Rwp 7.1609%, fractions 70.43% WO₃ / 28.66% Mn₂O₃ / 0.91% MnWO₄, with the minor-phase cell fixed to prevent a weak-phase scale/cell oscillation. I’m now replaying that exact restrained model three times from disk and checking numerical convergence.
+
+The replay is stable to better than 0.002 wt% for every phase and 0.00011% in Rwp across three independent reopen/refine cycles. I’m exporting directly from that verified state and recording both covariance uncertainties and the larger model caveat for the weak phase.
+
+A metadata issue surfaced in the first CIF check: GSAS-II’s automatic formula-unit divisor left chemically equivalent but unreduced formulas (`W2O6`, `Mn4O6`). I’m setting the conventional Z values in the submitted project metadata and regenerating the CIFs so they report `WO3` and `Mn2O3` directly; this does not alter the refinement.
+
+All requested artifacts now exist. I’m doing the final cross-check: CIF parse/composition, fractions summing to one, `fit.csv` matching the arrays inside `final.gpx`, and project/export cell agreement.
+
+Completed the GSAS-II refinement and validated all exports.
+
+- WO₃ (P2₁/c): 70.43(28) wt%
+- Mn₂O₃ (Ia-3): 28.66(27) wt%
+- MnWO₄ (P2/c): 0.91(8) wt%, tentative and model-dependent
+
+Fractions are normalized over modeled crystalline phases. Final Rwp = 7.1609%, Rp = 5.4081%, GoF = 2.6923.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [Mn2O3.cif](<ATTEMPT_WORKSPACE>/Mn2O3.cif)
+- [MnWO4.cif](<ATTEMPT_WORKSPACE>/MnWO4.cif)
+
+The CIFs parse with the expected formulas and space groups, and `fit.csv` was verified against the arrays stored in `final.gpx`.
+

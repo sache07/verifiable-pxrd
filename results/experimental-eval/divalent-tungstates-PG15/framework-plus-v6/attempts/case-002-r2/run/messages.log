@@ -1,0 +1,152 @@
+I’ll inspect the pattern, metadata, and the supplied PXRD workflow/tools first, then build a phase inventory and refine it in GSAS-II. I’ll keep the model residual-led and verify that the exported CIFs, fractions, profile, and final project agree exactly.
+
+The chemistry suggests a deliberately difficult low-temperature mixture: unreacted BaO₂/WO₃, BaWO₄ product, and possibly BaO are all credible. I’m now extracting peak positions and screening all exact-composition records and close framework alternatives before committing any phase to refinement.
+
+The stick-pattern screen is decisive for two precursor phases: monoclinic WO₃ explains the 23.4/23.9/24.7° triplet and its repeated high-angle families, while tetragonal BaO₂ explains the 27.1°, 43.0°, 46.6°, and broad 55–56° families. BaWO₄’s diagnostic 31.9° line is absent. I’m moving these two into controlled GSAS-II trials, including alternate WO₃ and BaO₂ records under identical nuisance settings.
+
+The first full-range trial is still refining; the slow part is GSAS-II repeatedly regenerating several thousand broadened reflections. I’m using it to establish safe starting values, then the alternate-record comparisons can run in parallel and should be much faster.
+
+The constrained trial confirms the apparent broadening must be split between the common instrument and phase-specific specimen terms; the earlier unconstrained fit tried to make the common Gaussian width unphysical. I’ve imposed the laboratory’s stated U/W/X envelope and am refining size and strain one phase at a time so record ranking is not driven by a width surrogate.
+
+The constrained profile grid is converging near Rwp 8.3–8.6%, but the common profile still wants the same bounds. That is evidence for phase-specific, likely anisotropic strain rather than a wider instrument. I’m finishing this grid, then I’ll compare records with the common profile held fixed and challenge uniaxial strain axes against the isolated families.
+
+Several alternate WO₃ records are now in identical fits. The hexagonal polymorph failed immediately—its scale/cell collapsed and it generated no reflections in range—so it is physically and profile-incompatible, not merely a weaker match. The monoclinic and orthorhombic alternatives are still converging.
+
+The triclinic WO₃ record is clearly best so far (Rwp 7.54% versus 8.25–9.05% for the closest monoclinic records and >10% for higher-symmetry alternatives). Its extra peak splitting matches the observed families. I’m now testing only the symmetry-allowed strain axes supplied by the experimental model, separately for WO₃ and BaO₂.
+
+The first anisotropy pass exposed a numerical issue rather than a physical win: each GSAS-II run stopped with large parameter shifts, and adding a term sometimes worsened Rwp. I’m reconverging the accepted two-phase baseline with the common profile held fixed before judging any extra broadening term; those unconverged comparisons will not be used.
+
+After replaying the bounded project, the honest baseline is Rwp 9.88%—the earlier 7.54% used stale arrays from an out-of-bounds profile step. I’ve corrected the protocol: every candidate is now recalculated after bounds are applied and iterated to small shifts. The current strain tests are therefore directly comparable and replay-safe.
+
+The WO₃ isotropic strain immediately reached the physically allowed 8000 ppm ceiling; that supports substantial broadening but does not justify extrapolating beyond the lab envelope. I’m waiting for its recalculated Rwp and the axial alternatives before deciding whether to retain a strain term or report it as bound-limited.
+
+The eight replay-safe candidates are CPU-bound but still progressing; no scientific decision is waiting on hidden data. Once they finish I’ll retain only terms that lower the recalculated residual and remain inside the stated physical range.
+
+The replay-safe comparison supports one term: WO₃ uniaxial strain along [010] lowers Rwp from 9.88% to 9.09%; [001], [100], and isotropic strain are worse, and every BaO₂ broadening variant is worse. I’m now rebuilding the common profile around that accepted term, as required after a profile change.
+
+The rebuilt common-profile fit is still running; this step determines whether the instrument terms remain genuinely supported or were compensating for WO₃ anisotropy. I’ll only keep values that survive a fresh replay after any boundary is applied.
+
+The accepted baseline now replays stably at Rwp 9.089% with no active bound-clamped variables. Peak-width families still differ, but the larger residuals are intensity-specific. I’m testing the five allowed March–Dollase axes for each phase under the same fixed profile before touching atomic coordinates.
+
+The texture screen is still computing all ten axis/phase combinations in parallel. Each candidate is being replayed for three refinement passes so a transient or clamped ratio cannot win.
+
+The texture jobs are unusually slow from CPU contention, but they remain active. I’m keeping the parallel screen because isolated axis tests are essential here: a single untested preferred-orientation axis could otherwise masquerade as an atomic-position correction.
+
+Only WO₃ texture along [010] is supported (MD ratio ≈0.972; Rwp 8.997%); the other nine phase/axis tests refine essentially to random powder or give negligible gains. I’m retaining that single axis and now testing the two per-phase isotropic displacement parameters and small, bounded coordinate shifts separately.
+
+The structural refinements are running from the texture-adjusted baseline. Coordinate shifts are capped at a generous ~0.15 Å fractional equivalent, while Uiso is constrained to the experiment’s 0.003–0.020 Å² range and tied within each phase, matching how the synthetic specimen was generated.
+
+The tied Uiso model is strongly supported: after replay it lowers Rwp from 8.997% to 8.708%. The isolated BaO₂ oxygen-coordinate shift is unstable and worsens the replayed fit to ~12%, so it is rejected. WO₃ coordinate trials are still running.
+
+WO₃ coordinate refinements are rejected: the heavy-atom trial hit all displacement bounds and became singular, while oxygen/all-atom trials produced replayed Rwp of 28–29%. The source coordinates are therefore more reliable than free coordinate shifts. The accepted tied Uiso values are 0.003 Å² (WO₃, at the allowed lower edge) and 0.00378 Å² (BaO₂). I’m now testing polarization, axial divergence, and surface roughness separately.
+
+The three global-nuisance trials are still converging. As before, each will be judged only after any bound is applied and the saved project is recalculated; transient Rwp values are being ignored.
+
+Surface roughness gives the best global correction (Rwp 8.550%; A=0.05, B=0.076), while polarization alone reaches its upper limit and SH/L gives no meaningful gain. Because both roughness A and polarization are edge-limited, I’m cross-testing them sequentially; this will show whether either is merely substituting for the other’s cross-phase intensity trend.
+
+Roughness is retained; polarization adds only 0.0004 Rwp once roughness is present and is therefore pruned. The current modeled fractions are about 69.9 wt% WO₃ and 30.1 wt% BaO₂. Before finalizing, I’m re-challenging BaWO₄, BaO, and the alternate BaO₂ polymorph as weak-phase watch-list candidates under this cleaned common model.
+
+The watch-list fits are still running. Their scales are constrained nonnegative and all accepted structure/profile parameters are held fixed except the shared low-order background, existing scales/cells, and specimen shift, so a candidate must explain coherent residual families rather than borrow texture or width freedom.
+
+BaWO₄ is supported as a weak third phase: its positive scale is stable over four passes and lowers replayed Rwp from 8.550% to 8.427% without cell/profile freedom. Its estimated fraction is only about 1–2 wt%, so I’ll inspect its unique families and refine its cell cautiously. The other watch-list candidates are still finishing.
+
+The watch list now shows two reproducible weak candidates: BaWO₄ gives the larger improvement (Rwp 8.427%), and BaO gives a smaller but stable one (8.503%). Monoclinic BaO₂ barely changes the fit, and Ba₃W₂O₉ refines effectively to zero. I’m combining BaWO₄ and BaO to test whether both retain independent support rather than explain the same overlapped residuals.
+
+Both weak phases retain independent support in either addition order. The four-phase fit is Rwp 8.383%, with provisional fractions ≈68.97% WO₃, 29.21% BaO₂, 1.25% BaWO₄, and 0.57% BaO. I’m testing whether the two weak-phase cells are actually determined; if they drift beyond the stated reference-mismatch range, I’ll keep the published cells and explicitly mark their structures/fractions as weakly constrained.
+
+The weak-cell tests separate the two cases. BaWO₄’s cell oscillates and worsens the fit, so its published cell will be retained and its structure marked tentative. BaO’s cell converges but shifts by ~0.9% and likely chases an overlapped WO₃ shoulder; I will also retain the published BaO cell. I’m now mapping each weak phase’s calculated contribution onto the pre-addition residual to verify that support spans more than one family.
+
+The weak-family check is mixed but defensible: BaO has positive residuals at 28.4°, 32.9°, 47.0°, and 55.7°; BaWO₄ is supported mainly by partly overlapped families at 26.8°, 43.3°, and 69.2°, while its 32.2° line is not independently resolved. I’ll retain both as tentative minor phases and now perform one joint refinement of only the previously accepted terms, with weak-phase cells and profiles fixed.
+
+The accepted joint model is stable at Rwp 8.381%, but the common U/W/X terms remain edge-limited. To meet the physical-baseline requirement, I’m doing one final joint profile challenge: common U/W/X plus only the two major phases’ size/strain terms, all within the laboratory ranges. This will determine whether the boundary solution is intrinsic or a surrogate.
+
+The joint profile challenge is encountering derivative singularities when strain terms approach zero or a limit; that itself indicates weak separability. I’ll let the replay finish, but I will not accept a profile combination unless it converges reproducibly with finite widths and improves the recalculated fit.
+
+The fully released width model is rejected: it becomes singular, freezes five terms, and then fails replay. That confirms size/strain are not independently separable here. One remaining inventory explanation is coexistence of closely related WO₃ polymorphs, which can mimic anisotropic broadening; I’m explicitly challenging the best monoclinic and orthorhombic alternatives as additional phases before accepting the edge-limited profile.
+
+The polymorph coexistence tests are still converging. A retained polymorph will need a stable nonzero scale and a replayed improvement under the same profile; otherwise the simpler four-phase inventory remains preferred.
+
+I’m checking the final coexistence tests for alternate WO₃ polymorphs now. Then I’ll freeze the supported inventory, replay the project from disk, and generate the submission files directly from that replay.
+
+The polymorph challenge materially changed the inventory: a second monoclinic WO₃ model carries a substantial stable scale and lowers replayed Rwp from 8.38% to 7.65%. I’m treating that as a real phase candidate and am now checking whether the gain survives cell/profile refinement and whether it represents resolvable peak families rather than duplicated-profile overfit.
+
+Both monoclinic records refine to nearly the same physical cell, and the better published model gives an approximately 35:34 wt% triclinic/monoclinic split. I’m inspecting the synthetic-measurement design and the phase-specific residuals before accepting that split, because two closely related WO₃ models can otherwise mimic unrefined atomic-coordinate errors.
+
+The five-phase inventory is now chemically and numerically coherent: its fractions sit near a plausible designed mixture (about 35% of each WO₃ polymorph, 29% BaO₂, and trace BaWO₄/BaO), and both WO₃ cells refine within the allowed source mismatch. The current run is rebuilding the shared background, displacement, scales, and cells before I test widths and texture phase by phase.
+
+The common-profile challenges are running from interior starting values, so boundary terms are being tested rather than simply inherited. After these finish I’ll retain only terms that converge from replay and then compare each phase’s size, isotropic strain, and symmetry-appropriate uniaxial strain under that common profile.
+
+A replay-safe change in the common Gaussian width (W = 40, the laboratory’s allowed upper edge) reduced Rwp from 7.24% to 6.46%; the fit survives reopening and full reconvergence. The remaining common terms are being re-tested around that accepted baseline, with any bound-limited value held fixed before phase-specific comparisons.
+
+The profile decomposition is intentionally being challenged one phase at a time because common U/W/X and phase strain are correlated. I’m comparing isotropic strain against each allowed uniaxial axis for the two major contributors first; the accepted choice must improve the reopened fit and remain inside the laboratory’s physical bounds.
+
+These independent GSAS-II jobs are slower than the earlier profile passes because each one is re-solving the five-phase cells and background. I’m letting the bounded comparisons finish rather than accepting a partial cycle; once they return, subsequent challenges will run in smaller batches.
+
+The triclinic WO₃ width model is confirmed: the [010] uniaxial strain retained from the earlier pass beats isotropic strain and the other allowed axes after inventory correction. I’m applying the same controlled comparison to BaO₂ now; no alternative term will be carried forward unless it improves the 6.462% replay baseline.
+
+BaO₂’s best width model is a replay-stable uniaxial [100] strain (8,000/12,039 ppm), lowering Rwp to 6.186%; the other axes and isotropic model are distinctly worse. I’m now testing the monoclinic WO₃ profile on that baseline, after which I’ll revisit trace-phase significance under the rebuilt profile.
+
+The unconstrained monoclinic-WO₃ [100] trial preferred an axial/equatorial strain ratio outside the stated physical range, so I’m not accepting that numerical minimum. I’m re-running [100] on a bounded ratio grid and comparing it with the valid [001] solution (Rwp 6.032%), which is currently the defensible leader.
+
+The physically valid monoclinic-WO₃ [001] strain model remains best; constrained [100] alternatives are worse. I’m now testing crystallite size independently for the three major phases. This is the last broadening family before texture/Uiso and the final weak-phase re-challenge.
+
+Crystallite-size refinement is supported for triclinic WO₃ (0.171 µm) and weakly for BaO₂ (0.456 µm); monoclinic WO₃ returns to the 1.5 µm upper limit and is being pruned. I’m re-challenging the shared instrumental widths once more now that phase widths are separated, as required before judging the trace phases.
+
+After phase-width separation, the common W term moves off its old boundary to a stable interior value (~25.3) and gives the best replay so far (Rwp 5.81%). X returns to its prior limit and is not adding support; U is receiving the final one-at-a-time check before I freeze the common profile.
+
+The common profile is now fixed at U/W/X = 40/25.29/6 with SH/L = 0.005; only W is interior, while the other limits are retained because replayed alternatives are worse. Texture is now being compared across symmetry-distinct axes on the clean profile, beginning with triclinic WO₃.
+
+Triclinic WO₃ retains only a mild [010] March–Dollase correction (0.980); the other tested axes are worse or essentially random. BaO₂’s distinct axial/diagonal texture options are now being challenged on top of that accepted model.
+
+BaO₂ texture is unsupported: every tested axis returns to random powder and the same replay. I’m making the corresponding check for monoclinic WO₃; this guards against using texture as a scale/background surrogate before the trace phases are finalized.
+
+Texture is supported only weakly for monoclinic WO₃, with [100] MD = 1.023; competing axes are worse. I’m now refining one tied isotropic displacement parameter per major phase, while keeping coordinates fixed because prior positional trials were unstable and physically non-unique.
+
+Tied Uiso refinement is stable for BaO₂ (~0.0103 Å²). Monoclinic WO₃ reaches the allowed lower edge (0.003 Å²) but gives a replayed improvement, so I’m retaining it provisionally and checking the combined Uiso model through another full reconvergence.
+
+The combined Uiso model replays at Rwp 5.768% and yields stable major fractions. I’m making one restrained structural check on heavy-atom coordinates (±0.005 fractional, matching the generator’s small reference mismatch); previous broader coordinate refinements were unstable, so any SVD failure, bound collapse, or replay degradation will reject the change.
+
+The coordinate challenges are still solving; they carry more coupled variables than the profile tests. I’m waiting for complete replayed outcomes and will retain the published coordinates unless a restrained model converges cleanly and improves independently after reopening.
+
+All restrained coordinate refinements failed the acceptance test: heavy-atom trials hit bounds/correlations, one produced an invalid metric tensor, and BaO₂ oxygen refinement diverged. The final structural coordinates will therefore remain the physically screened published values; only cells and tied Uiso are defensible. I’m now re-testing BaWO₄ and BaO by explicit omission under the finalized nuisance model.
+
+The trace-phase omission tests are underway with all major-phase cells, scales, background, displacement, and roughness reconverged. Their value will be judged by the replay penalty and coherent residual families, not merely by a nonzero scale.
+
+Both trace phases survive omission: removing BaWO₄ raises replayed Rwp from 5.768% to 5.782%, removing BaO to 5.774%, and removing both to 5.789%. I’m now neutralizing and re-testing their inherited broadening so the trace scales are not dependent on arbitrary 7,000 ppm strain values.
+
+The trace profiles are now non-arbitrary: BaWO₄ converges to ~3,011 ppm isotropic strain, while BaO drives to the 8,000 ppm allowed edge. Their fractions are only ~0.32 and ~0.21 wt%, so those profile values and fractions remain semiquantitative. I’m repeating the omission test on this exact final-profile baseline before freezing the inventory.
+
+Surface roughness is decisively required: disabling it raises replayed Rwp from 5.767% to 6.246%. The five-phase inventory and nuisance model are now fixed; I’m checking background positivity, exact phase geometry, and then will create a frozen zero-cycle project and export all deliverables from its independent replay.
+
+The final accepted model is undergoing a six-pass replay-safe reconvergence with only background, scales, specimen shift/roughness, and the three supported cells active. Once those stop moving, I’ll freeze every flag and export from a zero-cycle recalculation so the CIFs, fractions, profile, and `final.gpx` are exact matches.
+
+The frozen project exported successfully with zero active variables. Native zero-cycle statistics are Rwp 5.76664% and Rp 4.38436%; exact project fractions are 44.8106% triclinic WO₃, 31.7993% BaO₂, 22.8617% monoclinic WO₃, 0.3213% BaWO₄, and 0.2072% BaO. I’m now running the scorer’s independent reflection-list replay and export-consistency checks.
+
+Independent replay passed cleanly: the project was unchanged, all five phases regenerated, no negative-width/background or polarization flags appeared, and replayed Rwp exactly matches 5.76663869%. The saved `fit.csv` differs from the fresh replay by at most \(5\times10^{-9}\) counts. I’m completing CIF-to-project and physical-contact validation, then writing the concise uncertainty report.
+
+CIF/project consistency is exact and all models parse. The contact screen flags the expected 1.315 Å peroxide O–O bond in BaO₂, which is chemically correct, but it also flags the old BaWO₄ record’s mutually exclusive half-occupied split oxygen sites. I’m comparing a modern full-occupancy BaWO₄ record under the same frozen profile before finalizing, so the trace assignment does not rely on a disorder artifact.
+
+All final validation now passes: `result.json` parses as five quantified phases summing exactly to 1.0, each submitted CIF matches one and only one project phase including occupancies/ADPs, `fit.csv` is recognized on all 8301 bins, and the frozen project hash matches the independently replayed hash.
+
+Completed. The refined crystalline composition is:
+
+- Triclinic WO₃: 44.811 wt%
+- BaO₂: 31.799 wt%
+- Monoclinic WO₃: 22.862 wt%
+- BaWO₄: 0.321 wt% — tentative
+- BaO: 0.207 wt% — tentative
+
+Final fit: Rwp 5.76664%, Rp 4.38436%. Independent zero-cycle replay exactly reproduced the profile and fractions with no profile-review flags.
+
+Files:
+
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r2/workspace/final.gpx)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r2/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r2/workspace/fit.csv)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r2/workspace/report.md)
+- [Triclinic WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r2/workspace/phase_triclinic_WO3.cif)
+- [Monoclinic WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r2/workspace/phase_monoclinic_WO3.cif)
+- [BaO₂ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r2/workspace/phase_BaO2.cif)
+- [BaWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r2/workspace/phase_BaWO4.cif)
+- [BaO CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r2/workspace/phase_BaO.cif)
+

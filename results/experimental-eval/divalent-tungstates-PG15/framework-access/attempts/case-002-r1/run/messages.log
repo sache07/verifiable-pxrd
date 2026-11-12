@@ -1,0 +1,70 @@
+I’ll inspect the pattern, metadata, and the provided crystallography workflow, then identify candidate phases and refine them in GSAS-II. I’ll keep the reported fractions tied to the final saved project and explicitly flag any ambiguity.
+
+The chemistry is a low-temperature BaO₂ + WO₃ reaction, so residual precursors are as plausible as BaWO₄. I’m now indexing the observed peak set and checking Ba–W–O reference structures; phase count will be decided from unmatched peaks rather than assumed from the recipe.
+
+Peak matching confirms two dominant components: tetragonal BaO₂ and low-temperature monoclinic WO₃. The weak 29° and 36° features favor the full monoclinic WO₃ model over the simplified early cell; I’m testing the close COD variants quantitatively before locking the structural parent. No independent BaWO₄-only reflection is evident at this stage.
+
+The first full-profile refinement (BaO₂ + monoclinic WO₃ COD 1528915) gives 33.6/66.4 wt% and Rwp 8.68%. The fit is already chemically coherent, but the angular zero and specimen displacement are strongly correlated, so I’m comparing structural variants with the same nuisance model and will then regularize those calibration terms in the final refinement.
+
+The candidate tests are still refining rather than stalled; each uses identical background, scale, cell, and broadening stages so the Rwp comparison is meaningful. The main discrimination is in the WO₃ intensity distribution around 29°, 34°, and 48–55°.
+
+The simplified WO₃ parent is decisively worse (Rwp 15.1%). Full distorted WO₃ models reach 7.7–8.7%; the triclinic model currently leads at 7.74%, while one equivalent monoclinic setting briefly reached 7.87% before an unstable redundant size parameter moved it away. I’m treating that as a refinement-conditioning issue, not evidence for an extra phase.
+
+The unconstrained screens were useful for phase selection but pushed calibration and line-width terms outside the laboratory’s allowed ranges. I’m now rerunning the leading distorted-WO₃ models with the documented bounds (zero ±0.25°, displacement ±800 µm, instrument/profile ranges, and ≤0.5% reference mismatch), then refining shared Uiso and symmetry-allowed coordinates. This should separate a genuinely better structure from nuisance-parameter overfit.
+
+With physical bounds enforced, the triclinic model has improved from 29.9% to 16.7% Rwp after angular/cell registration. Both zero and displacement initially hit opposite bounds—expected from their >99.9% correlation—so later stages repeatedly release them while the profile and cell settle; the final model will retain only values inside the supplied laboratory ranges.
+
+The constrained triclinic fit is now at Rwp 7.16% and 33.4/66.6 wt% (BaO₂/WO₃). Instrument terms are trying to sit on their permitted edges, which points to unmodeled phase-specific anisotropy or preferred orientation; the coordinate stages are still running and will show whether structural mismatch accounts for the residual.
+
+A repeated isotropic-profile cycle worsened and was automatically rejected, preserving the 7.16% checkpoint. The shared-Uiso/coordinate refinement is more expensive because the triclinic WO₃ model has many independent sites; I’m retaining checkpoints so a singular or overfit step cannot degrade the submitted project.
+
+The shared-Uiso step is taking disproportionately long relative to the profile refinements, likely because GSAS-II is resolving equality constraints against many active bounded variables. The last accepted project is safely checkpointed; if this cycle does not finish promptly I’ll stop it and resume from that checkpoint with fewer simultaneous variables.
+
+I stopped the slow constraint-heavy cycle and confirmed the 7.16% checkpoint is intact. I’m now comparing the two closest monoclinic parents under the same physical bounds, stopping at the profile checkpoint; after choosing the parent, I’ll refine Uiso/coordinates in small blocks with nuisance terms fixed.
+
+At the cell-registered checkpoint the monoclinic candidates are similar (Rwp 17.31–17.56%) and slightly behind the triclinic model (16.66%). Their constrained profile stages are still running; this comparison is less sensitive to the extra triclinic cell degrees of freedom because all cells are limited around their published parents.
+
+Under identical physical bounds, triclinic WO₃ is the clear best parent: Rwp 7.16% versus 7.79% for the nearest monoclinic model and 8.66% for the other. The refined crystalline fraction is consistently ~33.5 wt% BaO₂ and ~66.5 wt% WO₃, so I’m proceeding with the triclinic structure and testing the generator-supported anisotropy/texture terms.
+
+The first effect branches were numerically unstable because re-optimizing background and scales from a boundary solution let them move far from the checkpoint. I corrected the test to vary one effect at a time with the accepted profile fixed; the reruns are local sensitivity tests, so a lower Rwp will now be attributable to that effect itself.
+
+A fresh zero-cycle replay exposed an important GSAS-II detail: when a parameter crosses a bound, GSAS clamps/freeze its stored value but leaves the cached curve from the out-of-bounds trial. Thus the apparent 7.16% was not replay-consistent (fresh Rwp 23.45%). I’m correcting the workflow by retaining frozen boundary variables, re-optimizing the remaining terms, and explicitly regenerating the curve after every bounded pass—the submitted Rwp will be based only on that fresh calculation.
+
+The initial convergence rerun found no active variables because a diagnostic read had inadvertently saved cleared refinement flags into that temporary checkpoint. I switched to an untouched pre-Uiso checkpoint, cleared only the atom flags on a copy, and retained all profile/cell/scale flags plus the frozen-boundary list. This pass is now doing the intended replay-consistent optimization.
+
+The bounded refinement is now replay-consistent: fresh and saved Rwp both 8.858%, with 33.24 wt% BaO₂ and 66.76 wt% triclinic WO₃. I’ll use this verified checkpoint for all subsequent effect tests; any improvement must survive a zero-cycle regeneration before it is accepted.
+
+The replay-consistent triclinic fit is visually good but still shows systematic intensity/shape residuals. Texture and uniaxial strain improve Rwp by only 0.02–0.04 points, while roughness refines to its “off” boundary. Before investing in coordinates, I’m applying the same fresh-replay convergence to the two monoclinic projects, because their earlier 7.8–8.7% figures may also contain boundary-cache bias.
+
+A replay-safe comparison slightly changes the model ranking: monoclinic WO₃ (P2₁/c, COD 2311041) gives Rwp 8.70%, narrowly better than the triclinic alternative at 8.86%. I’m using that distinction as provisional, and will now test whether physically bounded atomic/thermal refinement strengthens it before producing the final replay-verified project and exports.
+
+The current profile fit is chemically sensible but several nuisance parameters are pinned at their allowed limits, so their numerical values are not yet trustworthy. I’m separating structural intensity refinement from peak-position/width refinement; this should tell us whether the narrow P2₁/c advantage is genuine or merely compensating for an imperfect profile model.
+
+Bounded coordinate refinement supports the monoclinic assignment: P2₁/c improves to replayed Rwp 8.50%, while the more flexible triclinic model reaches only 8.68%. The fractions remain stable (about 34% BaO₂ / 66% WO₃), which is encouraging. I’m now diagnosing the residual peak shapes and positions before deciding which additional specimen effects are justified.
+
+The unconstrained oxygen-coordinate pass reduced Rwp but implied an oxygen RMS shift of about 0.13 Å—well beyond the known 0.01–0.05 Å reference-variation range. I’m rejecting that as overfitting and rerunning with tighter coordinate bounds; the final model will favor structural defensibility over a cosmetically lower residual.
+
+The tightened model now stays within the synthetic reference-variation envelope (WO₃ RMS shifts: W ≈0.040 Å, O ≈0.048 Å) at Rwp 8.48%. One remaining issue is the BaO₂ cell/calibration correlation: the unconstrained solution exceeds the permitted 0.5% cell strain. I’m resolving that with a bounded multistart search over cell, zero offset, and specimen displacement rather than reporting a boundary-pinned cell as reliable.
+
+The physically constrained cell remapping cannot preserve the observed peak positions without a large fit penalty, confirming that cell dimensions, zero offset, and specimen displacement are too correlated to quote independently from this scan. I’ll retain the profile-supported lattice in the submitted project and explicitly mark those calibration/cell values as non-unique. Before export, I’m doing one final omission/addition check for trace BaWO₄ so the two-phase inventory is defensible.
+
+The inventory check is decisive: adding scheelite BaWO₄ drives its refined fraction to essentially zero (≈7×10⁻¹⁴) and does not improve the replayed fit. The selected two-phase project now replays cleanly with no negative background or peak-width flags; I’m writing the final curve, JSON, and uncertainty report from that fresh replay rather than from cached GSAS-II arrays.
+
+Identified two crystalline phases:
+
+- BaO₂, tetragonal I4/mmm: 33.59 wt%
+- WO₃, monoclinic P2₁/c: 66.41 wt%
+
+Fractions are normalized over crystalline material; estimated model sensitivity is ±2 wt% absolute. The WO₃ polymorph assignment is moderate-confidence because a triclinic model fits only slightly worse. No BaWO₄ was detected.
+
+Replay-verified fit: Rwp 8.480%, Rp 6.336%. Project/CIF/fraction consistency checks passed.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r1/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r1/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r1/workspace/fit.csv)
+- [phase_BaO2.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r1/workspace/phase_BaO2.cif)
+- [phase_WO3_monoclinic.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-002-r1/workspace/phase_WO3_monoclinic.cif)
+

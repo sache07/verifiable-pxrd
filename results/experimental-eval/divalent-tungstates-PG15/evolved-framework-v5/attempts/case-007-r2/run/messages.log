@@ -1,0 +1,54 @@
+I’ll inspect the specimen metadata, pattern, and the frozen analysis/tooling guidance first. Then I’ll identify candidate phases, build a complete multiphase GSAS-II refinement, validate residual peak families and physical geometry, and export the requested replayable project and files.
+
+The chemistry is a 1:1 MgO/WO₃ reaction fired at 900 °C, so MgWO₄ is the chemically ordinary principal product; residual MgO, WO₃, or an off-stoichiometric Mg–W–O phase remain plausible until the diffraction families are accounted for. I’m now verifying the configured scientific environment and frozen COD index before any phase assignment.
+
+The framework’s evolution-controller check reports only that the separate workshop/controller is not deployed. That controller is explicitly outside this specimen-only task; the local COD index, DICVOL, materials Python stack, and GSAS-II remain available, so I’ll continue with those standalone scientific tools.
+
+The peak-family map already supports three chemically ordinary phases: wolframite-type MgWO₄ dominates; the 23.43/23.93/24.67° triplet and its higher-angle companions identify monoclinic WO₃; and the isolated 43.21° line with 62.54°/75.00° companions identifies residual MgO. I’ll now discriminate among same-composition references and refine the full three-phase state before considering anything less ordinary.
+
+The full three-phase model is converging and gives sensible first-pass abundances near 81 wt% MgWO₄, 15 wt% WO₃, and 5 wt% MgO. The initial simultaneous zero/height fit is highly correlated and briefly wandered beyond the laboratory displacement range, so I’m treating that checkpoint as provisional and will stabilize calibration against refined cells before accepting fractions.
+
+The stabilized calibration now sits inside the stated laboratory ranges (zero ≈ +0.05°, specimen shift ≈ −0.46 mm), and the complete model reaches Rwp ≈ 10.21% before coordinate/specimen refinements. I’m comparing the two physically valid room-temperature monoclinic WO₃ settings on identical terms; their topology is equivalent, so the decision will be based on broad intensity-family agreement and geometry, not a marginal numerical gain.
+
+The isotropic-size branches expose a shallow instrument/size ridge: equally good fits span X≈1–3 with MgWO₄ and WO₃ domains ≈0.16–0.27 µm. I’m retaining the interior, unconstrained solution (X≈1.06; domains ≈0.16 µm) as the physical checkpoint and testing whether phase-specific strain is actually supported; bound-hitting alternatives will be rejected even if their Rwp differs only in the third decimal place.
+
+Phase-specific strain is supported only for WO₃, but its magnitude is strongly correlated with the global Gaussian profile; the unconstrained fit drives U to the top of the documented range. I’ve preserved that as a provisional profile checkpoint and am now isolating polarization and surface roughness with all profile/cell terms held fixed, so their support is judged cleanly rather than through parameter drift.
+
+The bounded specimen test supports strong low-angle attenuation: a physical Suortti roughness model with A fixed at its allowed lower edge (0.05), B≈0.12, and polarization fixed at the allowed lower edge (0.50) reduces Rwp reproducibly to ≈8.08%. These edge values are correlated, so I’ll report that limitation. I’m now refining heavy-atom coordinates phase by phase, with profile and cells held, and will retain each step only if bond geometry remains ordinary.
+
+Both accepted phases show only very weak texture (March–Dollase ratios within about 2% of 1); MgWO₄ [001] gives the only clear, though small, improvement. WO₃ oxygen refinement is statistically underdetermined and moved several sites far beyond the documented reference-mismatch scale despite only ΔRwp≈0.07%, so I rolled that branch back and retained the published oxygen topology. Next I’m testing phase displacement factors and then one final controlled profile release.
+
+The accepted full model is now replay-stable (Rwp 7.72239% before replay and 7.72238% after), with all profile and structural values interior to their physical ranges. Fractions at this checkpoint are about 76.48% MgWO₄, 15.38% WO₃, and 8.14% MgO. I’ll do one last isolated test for phase-specific strain; if it is not interior and replay-stable, this checkpoint becomes final.
+
+The final supported complexity is uniaxial WO₃ microstrain along [010] (≈4479/6008 ppm equatorial/axial), with all values interior and a replay-stable Rwp ≈7.643%. I’m now auditing the final residual against the reflection lists, then I’ll export the three CIFs, full-grid fit profile, normalized fractions/statistics, report, and the exact final GPX.
+
+The three-phase model is complete and all coherent reflection families are assigned to MgWO₄, WO₃, and MgO. I’m checking the final replay-stable refinement now, then I’ll export the CIFs, profile, project, and concise uncertainty report.
+
+Fixing the correlated instrumental X term removed the soft singularity without changing the fit or phase fractions materially. I’m doing one clean replay from that checkpoint to confirm the saved project reproduces exactly before export.
+
+The replay is stable (no SVD-zero parameters, maximum shift/σ 0.05) at Rwp 7.6425%. The accepted inventory remains 76.275 wt% MgWO₄, 15.618 wt% WO₃, and 8.107 wt% MgO; I’m now exporting directly from that exact checkpoint.
+
+One edge detail surfaced: GSAS-II’s nominal 10–100° limits excluded 17 raw edge bins. Since the requested deliverable should be full-grid, I’m extending the final refinement to every measured point (9.903–100.095°) and will export all 8,301 rows.
+
+The requested files are exported from the exact full-grid project. I’m validating CIF round-trips, phase stoichiometries, bond geometry, fraction normalization, and that `fit.csv` is numerically identical to the profile stored in `final.gpx` before writing the final report.
+
+Completed and validated the full-grid GSAS-II refinement.
+
+Crystalline phase fractions:
+
+- MgWO₄: 76.253 ± 0.172 wt%
+- WO₃: 15.598 ± 0.090 wt%
+- MgO: 8.150 ± 0.183 wt%
+
+Rwp = 7.616%, Rp = 5.291%, GOF = 2.666. No coherent fourth-phase reflection family was found. Fractions exclude any undetermined amorphous content; WO₃ oxygen coordinates were not independently reliable and retain the reference model.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r2/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r2/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r2/workspace/final.gpx)
+- [MgWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r2/workspace/phase_MgWO4.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r2/workspace/phase_WO3.cif)
+- [MgO CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-007-r2/workspace/phase_MgO.cif)
+

@@ -1,0 +1,47 @@
+I’ll first inspect the specimen metadata, pattern grid, and the frozen analysis guidance, then identify candidate phases and build a replayable GSAS-II refinement. I’ll prioritize a complete physical multiphase model before testing any residual branches.
+
+The chemistry points first to CuWO₄, with CuO and WO₃ as the most plausible residual phases after the 800 °C firing. I’m now extracting the experimental peak families and querying the frozen COD index for exact Cu–W–O, Cu–O, and W–O structures; the phase count will be decided from broad peak-family coverage, not chemistry alone.
+
+The exact CuWO₄ entries in the frozen index are both explicitly high-pressure structures, and their reflection positions do not explain the ambient specimen’s full family. That makes them diagnostic rather than physically acceptable parents here. The residual families already support monoclinic WO₃ and tenorite CuO; I’m testing an ambient wolframite CuWO₄ model transferred from ordinary divalent tungstates, as the chemistry and low-angle CuWO₄ reflections justify that one cross-chemistry step.
+
+The phase inventory has converged to one phase: every strong family from 15.6° through the high-angle region maps to ambient triclinic wolframite CuWO₄ after replacing the 10% Zn in COD 2101690 by Cu. The mapping is unusually coherent—for example 28.693→28.985°, 30.121→30.441°, 31.577→31.941°, and 32.085→32.440°—with the common offset expected from specimen/calibration. CuO and WO₃ do not contribute independent families, so I’m stopping phase search and moving to staged refinement of this single physical model.
+
+The first coordinate pass confirms the topology, but oxygen refinement before correcting peak breadth tries to absorb profile/intensity errors and moves one O site by about 0.24 Å—too large for the supported reference mismatch. I’m rolling that light-atom branch back. The next checkpoint keeps only the small Cu adjustment, applies bounded nonnegative profile terms, and will revisit O coordinates only after specimen/profile effects are accounted for.
+
+The physical model now refines to Rwp ≈ 5.84% with a plausible −500 µm specimen shift, 0.06° zero offset, polarization 0.72, and only weak [001] texture. Surface roughness was numerically singular and provided no independent improvement, so it is excluded. I’m using a Le Bail diagnostic next to separate remaining peak-shape/position error from structure-factor error; it will not be used as the submitted structural model.
+
+The Le Bail diagnostic remains profile-limited at about 5.0%, so both breadth and structure factors contribute. I also found an important structural issue in the prior staging: in centrosymmetric P\(\bar1\), the origin is fixed at an inversion center, so the W site is not an arbitrary origin gauge. I had held W fixed; I’m correcting that by refining W as the second heavy-atom site before judging the oxygen model.
+
+After the heavy-site correction, the residual reveals a genuine second family that was hidden under CuWO₄: positive peaks at about 23.43°, 24.69°, 33.55°, and 34.48° match the ambient monoclinic WO₃ triplet and its higher-angle reflections under the same displacement. I’m now adding and comparing the physically ordinary monoclinic WO₃ references. CuO will only be retained if it contributes its own independent family with a stable positive scale.
+
+The WO₃ branch is strongly supported: adding monoclinic WO₃ lowers Rwp from 5.26% to 4.24–4.27% with a stable positive fraction of about 2.55 wt%. The neutron-derived P2₁/c reference (COD 2311041) is slightly better and physically equivalent to the standard P2₁/n setting; I’m finishing the triclinic checkpoint only to verify that the room-temperature monoclinic model is genuinely preferred.
+
+CuO is rejected: with its cell held physical, the tenorite scale collapses to the positive lower bound (effectively \(<10^{-6}\) weight fraction), and freeing its cell becomes numerically unstable. The accepted inventory is therefore CuWO₄ + monoclinic WO₃ only. I’m now refining the minor WO₃ structure from the best two-phase checkpoint, starting with its W sites and rolling back any geometry-damaging light-atom branch.
+
+The accepted two-phase model is now at Rwp ≈ 4.15%. The supported profile additions are weak [001] texture, a [001] uniaxial microstrain component, and a positive-definite Caglioti profile; unsupported WO₃ texture/size/strain and the geometry-damaging WO₃ coordinate branch were rolled back. I’m doing two small CuWO₄ coordinate restarts to check that the refined structure is not a local minimum, then I’ll freeze and export the best physical checkpoint.
+
+The accepted model is ambient triclinic CuWO₄ with a small monoclinic WO₃ remainder; CuO’s scale collapsed to effectively zero. I’m now putting that model through a final full-measured-range refinement and physical-geometry check before freezing the deliverables.
+
+The full-grid refinement confirms the phase inventory, but it also exposed a redundant calibration pair: instrument zero and specimen-height shift were 99.99% correlated. I fixed the statistically insignificant zero offset at its calibrated value and retained the physically interpretable specimen displacement; the modest Rwp change (about 0.015 percentage point) is preferable to an underdetermined correction.
+
+The final candidate is now stable on all 8,301 measured points: Rwp 4.167%, Rp 3.242%, with physically sensible Cu–O and W–O coordination. I also fixed the polarization factor at the instrument value (0.8), because refining it was strongly correlated with displacement parameters and improved Rwp by only 0.003 percentage point.
+
+Validation passed: the saved project reloads cleanly, reproduces the 8,301-point profile and reported R factors, the normalized fractions sum to 1, and both exported CIFs parse with physical coordination geometry.
+
+Completed.
+
+- CuWO₄, triclinic P −1: 97.22 wt%
+- WO₃, monoclinic P 2₁/c: 2.78 wt%
+- Rwp: 4.167%; Rp: 3.242%; GOF: 1.718
+
+CuO was not supported above the detection limit. Fractions exclude amorphous or undetected material.
+
+Files:
+
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r3/workspace/report.md)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r3/workspace/result.json)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r3/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r3/workspace/fit.csv)
+- [phase_CuWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r3/workspace/phase_CuWO4.cif)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r3/workspace/phase_WO3.cif)
+

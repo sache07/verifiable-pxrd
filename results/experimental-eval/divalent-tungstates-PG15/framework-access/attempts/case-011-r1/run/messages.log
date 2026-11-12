@@ -1,0 +1,35 @@
+I’ll first inspect the measurement metadata, pattern format, and the framework’s PXRD tooling, then use search/indexing and GSAS-II refinement to build and verify the phase model. I’ll keep the final artifacts internally consistent with the saved `final.gpx`.
+
+The context strongly favors a low-temperature, partially reacted Mn–W–O mixture, but I won’t assume the precursor structures: I’m extracting peak positions and checking the frozen COD search/index resources before deciding how many phases are warranted.
+
+Peak matching identifies two crystalline components with no convincing unexplained strong lines: monoclinic WO₃ (the room-temperature P2₁/c framework) and rutile-type β‑MnO₂ (P4₂/mnm). Their peaks share the expected specimen-dependent angular shift, including the WO₃ 23–25° triplet and MnO₂ lines near 29.0°, 37.7°, 57.0°, and 59.7°. I’m now refining the full profile and testing whether any third phase improves rather than merely overfits.
+
+The quantitative result has stabilized near the stoichiometric unreacted-precursor ratio (about 73 wt% WO₃ / 27 wt% MnO₂). Tests of alternate texture and anisotropic broadening models show only a weak MnO₂ [110] texture and possible c-axis strain anisotropy; WO₃ does not support a meaningful texture term. I’m tightening the atomic-coordinate/background fit now and will retain only effects that are supported and physically bounded.
+
+I’ve converged on a two-phase model: monoclinic WO₃ plus rutile β-MnO₂. I’m now doing the independent project replay and export checks so the CIFs, profile, fractions, and `final.gpx` all come from the same saved refinement.
+
+The saved project replays cleanly on all 8,301 original points without using its stored calculated curve. It reproduces the fit at \(R_\mathrm{wp}=5.479\%\), and the replayed phase inventory gives 72.624 wt% WO₃ and 27.376 wt% β-MnO₂.
+
+The exported CIFs also pass the scorer’s independent occupancy/contact checks, and `result.json` parses as a complete, correctly normalized two-phase inventory. I’m running the final project-to-CIF consistency check now; this catches rounding or export mismatches that a normal fit check can miss.
+
+The fully sandboxed checker cannot start here because this kernel disables unprivileged namespaces. The equivalent native replay already succeeded, so I’m completing the remaining CIF/fraction correspondence check directly against those replay exports.
+
+Completed the two-phase Rietveld analysis:
+
+- Monoclinic WO₃, P 21/c: **72.624 wt%**
+- Rutile-type β-MnO₂, P 4₂/mnm: **27.376 wt%**
+- Fit: **Rwp 5.479%, Rp 4.041%, GoF 2.039**
+
+The fractions are normalized over modeled crystalline material; amorphous content cannot be quantified. A practical fraction uncertainty is approximately ±2 wt percentage points.
+
+Outputs:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r1/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r1/workspace/fit.csv)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r1/workspace/phase_WO3.cif)
+- [phase_beta_MnO2.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r1/workspace/phase_beta_MnO2.cif)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-011-r1/workspace/final.gpx)
+
+The project was independently replayed across all 8,301 observations, and both CIFs passed occupancy, contact, and project-export consistency checks.
+

@@ -1,0 +1,56 @@
+I’ll first inspect the specimen metadata, pattern range/resolution, and the frozen analysis tooling. Then I’ll establish the ordinary chemically expected phase inventory, refine a replayable GSAS-II model, and only investigate residual families that remain coherent.
+
+The chemistry points first to scheelite SrWO₄, but at 900 °C residual SrCO₃/WO₃ or a secondary Sr–W–O phase remains plausible. I’m treating that only as a starting hypothesis and will test it against the full reflection families and quantitative residuals.
+
+The dominant family matches tetragonal scheelite SrWO₄ across the entire 10–100° range, including the resolved high-angle Cu Kα doublets. A second coherent family remains near 23–25°, 29–35°, 41–45°, and 49–63°; I’m now fitting the scheelite phase first so that family can be indexed without intensity/overlap bias.
+
+The scheelite-only refinement leaves a broad, repeated residual family and gives Rwp ≈18.6%, so a second crystalline phase is required. Its strongest low-angle triplet is WO₃-like, but I’m comparing the ambient monoclinic variants and the exact Sr–W–O alternatives in full-profile refinements because several references differ mainly by setting or subtle distortion.
+
+After accounting for ambient monoclinic WO₃, the remaining dominant residual at 29.75° is accompanied by weaker members near 42.1°, 52.0°, and 61.2°. A frozen-index search strongly favors the Ba₃WO₆ framework over exact Sr₃W₂O₉, SrO, SrCO₃, and other tungstate/oxide references. That supports a chemically plausible Sr₃WO₆ analogue, so I’m testing that transfer now while retaining the published Ba parent for provenance and geometry checks.
+
+The direct Ba→Sr disorder model does identify the residual lattice, but it contains half-occupied split Sr sites with unrealistically short Sr–O alternatives. I’m repairing that published disorder model by testing ordered and midpoint realizations of each split pair; only a geometry-safe realization will be retained, even if the uncorrected model fits slightly better.
+
+The phase inventory is now coherent: scheelite SrWO₄, monoclinic WO₃, and a minority Sr₃WO₆-type family. I’m resolving the last structural choice for Sr₃WO₆—using an ordered, physically plausible realization—then I’ll repair profile parameters, refine the complete three-phase model, and replay-check the submitted project.
+
+The ordered midpoint Sr₃WO₆ model improves the complete fit to Rwp 16.32% after cell refinement, while preserving sensible W–O and Sr–O geometry. Its refined fraction is about 7.8%; I’m now replacing inherited unconstrained broadening values with bounded physical parameters before any coordinate refinement.
+
+The bounded re-refinement is running over the full 8,282-point grid. I’m staging common instrumental width, then phase-specific size/strain, then cells and specimen displacement; this keeps the resulting fractions tied to a physically valid line-shape model.
+
+A geometry audit found one short O–O contact inherited from the published Ba₃WO₆ dynamic-disorder model. Because that is not acceptable for a final structural model, I’m replacing it with the corresponding ordered double-perovskite topology (same indexed lattice and stoichiometry) and will retain it only if the residual family remains broadly supported.
+
+The first bounded pass exposed a GSAS-II bookkeeping issue: parameters that had once touched a limit remained automatically frozen in later branches. I’ve cleared that inherited frozen list and am rerunning the ordered-midpoint and physical P2₁/n double-perovskite models on equal footing; the comparison will now reflect structure rather than checkpoint history.
+
+Both clean branches have passed the scale/background and common-profile stages and are still refining phase broadening on the full pattern. I’ll reject any nominally lower-Rwp branch if its contacts, scale, or broadening become nonphysical or unstable.
+
+On an equal, bounded profile model, the physically valid P2₁/n Sr₃WO₆ topology gives Rwp 15.50% versus 15.06% for the disordered model with the bad O–O contact. I’m selecting the physical topology and testing only small, bounded coordinate adjustments—first Sr, then O—with geometry rollback.
+
+The clean three-phase rebuild is now internally consistent and converges to Rwp 15.64%, with fractions near 81.0% SrWO₄, 12.2% WO₃, and 6.8% Sr₃WO₆. Cell refinement improves the fit without distorting the P2₁/n topology; I’m finishing convergence and then will test only the supported intensity terms against this clean checkpoint.
+
+A physically meaningful oxygen shift improves the Sr₃WO₆ model: W–O contracts from about 2.05–2.09 Å to 1.95–2.01 Å, all Sr–O contacts remain ≥2.47 Å, and the replayed Rwp improves slightly. I’m checking two final bounded oxygen starts to locate the physical optimum, then I’ll freeze the accepted coordinates.
+
+A geometry check also caught an old 1960 WO₃ coordinate set with an implausible 1.58 Å O–O contact. Its peak lattice is correct, but I won’t submit those coordinates. I’m auditing the close modern monoclinic WO₃ references and will transfer the best physical topology onto the already indexed/refined cell.
+
+The modern neutron-derived monoclinic WO₃ model fits within 0.06 Rwp points of the older bad-contact model and has normal O–O geometry, so it is the accepted WO₃ structure. The retained coordinate changes are now limited to physically improving O positions in scheelite SrWO₄ and the Sr₃WO₆ analogue; WO₃ coordinate branches that shortened W–O excessively were rolled back.
+
+The final physical checkpoint is converged (maximum shift/esd 0.008) at Rwp 15.57%. Its provisional crystalline fractions are 81.53% SrWO₄, 11.41% WO₃, and 7.06% Sr₃WO₆. I’m now performing the evaluator-style fresh atomic replay, which ignores cached calculated arrays and checks peak widths/background directly.
+
+Completed and replay-verified the three-phase GSAS-II model.
+
+| Phase | Weight fraction |
+|---|---:|
+| SrWO₄, scheelite I4₁/a | 81.53% |
+| WO₃, monoclinic P2₁/c | 11.41% |
+| Sr₃WO₆-type, P2₁/n | 7.06% |
+
+Rwp = 15.57%, Rp = 10.71%, GOF = 4.41. Fractions are normalized over modeled crystalline phases. The Sr₃WO₆ structure and fraction remain less certain and are discussed in the report.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r3/workspace/final.gpx)
+- [SrWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r3/workspace/phase_SrWO4.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r3/workspace/phase_WO3.cif)
+- [Sr₃WO₆ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r3/workspace/phase_Sr3WO6.cif)
+

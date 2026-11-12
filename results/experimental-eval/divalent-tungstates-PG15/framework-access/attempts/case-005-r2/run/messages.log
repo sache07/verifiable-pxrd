@@ -1,0 +1,34 @@
+I’ll inspect the measurement metadata, pattern, and the frozen divalent-tungstate tooling first, then identify candidate phases and refine them in GSAS-II. I’ll keep the deliverables tied to the final project so the CIFs, fractions, and profile all come from the same refinement.
+
+The chemistry points first to Co–W–O products plus possible Co₃O₄/WO₃ residue, but I’m treating that only as a candidate set. The key discriminants will be unmatched peak positions and whole-pattern fits, especially because the synthetic lab permits intermediate/off-stoichiometric phases and reference-cell perturbations.
+
+Peak-position matching now supports two precursor phases: monoclinic γ-WO₃ (P2₁/c) and cubic Co₃O₄ spinel (Fd-3m). Their independent lines share the same angle-dependent positive displacement—for example, observed 19.368/31.636/37.200° match Co₃O₄ 19.000/31.272/36.848°, while the 23.465/23.954/24.714° triplet matches γ-WO₃. I’m moving from identification to joint quantitative refinement and will use residuals to test whether a third phase is needed.
+
+The first Rietveld pass reached Rwp ≈4.1%, confirming that those two phases account for the visible peaks, but the adjacent WO₃ intensities expose a structural-model ambiguity: the observed low-angle triplet is closer to a high-quality triclinic WO₃ reference than to the older monoclinic reference used in the first pass. I’m screening the available WO₃ polymorphs before allowing coordinate refinement; otherwise the refinement can compensate for a wrong polymorph with implausibly large oxygen shifts.
+
+The polymorph screen resolves the ambiguity in favor of monoclinic WO₃ COD 2311041: its refined cell stays within the generator’s allowed ≤0.5% reference strain, whereas the triclinic alternative must collapse two cell angles by about 1°, outside that model. Preferred-orientation tests return March ratios within ~0.006 of unity, so texture is not supported. The remaining dominant residual is peak-shape anisotropy (calculated shoulders too broad around the strongest WO₃ lines), which I’m testing with the allowed uniaxial microstrain models.
+
+Both chemically plausible third phases tested so far—CoWO₄ product and CoO—refine to effectively zero scale, so the data support an unreacted two-phase mixture rather than a detectable reaction product. I’m also checking whether the WO₃ line-shape residual could represent a monoclinic/triclinic polymorph mixture; that fit is slower because the two profiles are highly collinear.
+
+The phase test has converged on a two-phase model: monoclinic WO₃ plus spinel Co₃O₄. I’m now doing the final replay/export checks—especially CIF/project consistency, normalized fractions, and the exact profile schema—before writing the deliverables.
+
+The independent GSAS-II replay passes cleanly: no negative background/width/ADP flags, and the regenerated whole-pattern fit is \(R_{wp}=3.1222\%\). It gives 76.302 wt% WO₃ and 23.698 wt% Co₃O₄ over the crystalline phases; added CoWO₄, CoO, and alternate-WO₃ trials did not retain credible nonzero fractions.
+
+The requested files are now written. I’m running the same submission-level checks the evaluator uses—CIF parsing and physical contacts, `fit.csv` grid equality, fraction normalization, and project-to-CIF structural agreement—so any export-rounding or schema mismatch is caught before handoff.
+
+Two crystalline phases were identified:
+
+- Monoclinic WO₃ (P2₁/c): 76.30 wt%
+- Cubic Co₃O₄ spinel (Fd-3m): 23.70 wt%
+
+Verified GSAS-II replay: \(R_{wp}=3.1222\%\), \(R_p=2.2386\%\), GOF = 1.8165. No reliable third crystalline phase was resolved; fractions are conservatively uncertain by about 2–3 absolute wt%.
+
+Deliverables:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-005-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-005-r2/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-005-r2/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-005-r2/workspace/fit.csv)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-005-r2/workspace/phase_WO3.cif)
+- [phase_Co3O4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-005-r2/workspace/phase_Co3O4.cif)
+

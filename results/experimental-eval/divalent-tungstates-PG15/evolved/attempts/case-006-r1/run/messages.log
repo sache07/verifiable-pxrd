@@ -1,0 +1,55 @@
+I’ll first inspect the measurement metadata, pattern coverage, and the reusable crystallography utilities in `learned/`. Then I’ll build a chemically plausible phase inventory, refine it in GSAS-II with residual-led challenges, and verify that the final project, CIF exports, profile, fractions, and reported statistics all agree.
+
+The chemistry strongly suggests copper tungstate formation, but CuO/WO₃ remnants and alternate Cu–W–O compounds remain plausible at 800 °C. I’m keeping those as candidates rather than assuming a single CuWO₄ phase; next I’m checking the peak families and the local structure/refinement toolchain.
+
+The initial exact CuWO₄ database hit is a high-pressure structure, which explains its systematically contracted peak positions and makes it an unsuitable unmodified ambient-pressure model. The observed peak set instead tracks the known ambient triclinic CuWO₄ metric; I’m now testing that physical alternate alongside residual CuO/WO₃ and Cu₃WO₆, using the same peak/profile assumptions so a database-record mismatch is not mistaken for phase absence.
+
+The ambient CuWO₄ model now accounts coherently for the strong and weak peak families across the full range after one reflection-geometry angular shift; examples include the 15.61°, 19.32°, 23–26°, 28.98–32.43°, 35.95–38.86°, 53.47/53.80°, and 66.82° groups. I have not found a unique unassigned family supporting CuO, WO₃, Cu₃WO₆, or Cu₂WO₄ yet. I’m moving into GSAS-II refinement with Poisson counting weights, initially keeping all sample broadening, roughness, and texture neutral.
+
+The first automated pass exposed two baseline problems rather than a phase problem: GSAS-II had both histogram and phase scales active (an exact singularity), and a simultaneous U/W/X release drove W negative. I’m correcting the scale definition, increasing convergence cycles, and rebuilding the profile sequentially from nonnegative seeds before interpreting residuals or adding sample terms.
+
+The clean W/X baseline is replay-stable at Rwp ≈ 8.74%, with a smooth positive background and no frozen or bound terms. Its dominant residual is repeated low-angle tailing and peak-centroid bias at the isolated 15.6° and 19.3° families (also visible near 23–26°), while middle/high-angle widths are broadly adequate. That is the specific evidence required to test axial-divergence asymmetry (`SH/L`) before invoking texture, roughness, or extra phases.
+
+The low-angle intensity ratios are not monotonic with angle: for example, the extracted 100 reflection is suppressed (Fo²/Fc² ≈ 0.87), while neighboring 011 and 01−1 are enhanced (≈1.22 and 1.13). That argues against background or a simple low-angle attenuation surrogate. I’m nevertheless running explicit polarization and Suortti roughness controls, then symmetry-distinct March–Dollase axis trials to see whether one orientation model is supported by several independent families.
+
+A trial-management issue contaminated that comparison set: changing parameter limits caused GSAS-II to auto-save the still-open baseline before the candidate was renamed, so later trials inherited earlier nuisance terms. I caught this because the logs showed `SH/L` and polarization active in nominal texture-only runs. I’m discarding those comparisons and rebuilding a clean replay baseline; each new challenge will be renamed before any mutation so the evidence remains one-term-at-a-time.
+
+The roughness challenge is replay-stable and materially better (Rwp 8.74% → 8.42%) without changing the smooth background or width model. Although the two Suortti parameters are not separately identifiable, fixing A and refining only B gives nearly the same attenuation curve across several fixed-A choices; I’ll retain the simplest one-parameter correction provisionally and now re-test polarization, asymmetry, and all texture axes under that rebuilt profile.
+
+With roughness active, the unspecified polarization becomes well determined at about 0.44 and lowers Rwp to 7.95% without bounds or reported high correlations; this is physically reasonable for the reflection geometry. Texture remains weak (best March–Dollase ratio ≈0.98 and only ~0.07% absolute Rwp gain), so I’m not retaining it. The remaining residual is hkl-dependent width: I’m now comparing isotropic size and strain, then low-index uniaxial broadening axes, while accounting for the exact confounding between single-phase isotropic size and the common Lorentzian X term.
+
+The broadening tests reject isotropic strain and nearly all uniaxial strain models because they collapse to zero or hit bounds. Replacing the single-phase-confounded X term with a phase size model gives the same fit, as expected; adding one uniaxial size axis [1 −1 0] is supported without bounds (apparent domains ~0.153/0.108 µm) and lowers Rwp to 7.76%. Attempts to add strain or refine the Lorentzian/Gaussian mix hit bounds, so those are pruned. I’m now checking whether limited coordinate/ADP refinement improves intensities without degrading Cu–O/W–O geometry.
+
+The selected structural refinement is parsimonious and physically stable: heavy-atom shifts are strongly supported; only three significant oxygen coordinate components were released, giving essentially the same fit as all 18 coordinates. The resulting Cu–O distances are 1.93–2.40 Å and W–O 1.76–2.24 Å, consistent with Jahn–Teller-distorted CuO₆/WO₆. Constrained isotropic ADPs remain positive and plausible, bringing Rwp to 7.17%. I’m now re-challenging the phase watch list under this common profile, giving each candidate the same fixed weak-phase broadening before allowing any cell change.
+
+The inventory re-challenge found a real second phase: monoclinic WO₃ gives a large, coherent improvement (Rwp 7.17% → 6.53%) at ~2.3 wt%, supported by partly overlapped families near 23–25°, 33–34°, 41–42°, 50°, and 56°. CuO and Cu₂O scales collapse to zero in two alternate records; Cu₃WO₆ gives only a tentative ~0.3 wt% before rebuilding the two-phase profile. I’m now refining and comparing the physically plausible WO₃ polymorphs under identical conditions, then I’ll re-test all weak candidates against the rebuilt two-phase model.
+
+The WO₃ cell refines stably only for the monoclinic P2₁/c model (a≈7.299, b≈7.539, c≈7.684 Å, β≈90.874°), which also fits materially better than triclinic, P2₁/m, or tetragonal records. Its peaks are broader than CuWO₄: isotropic size broadening refines to an apparent ~58 nm and raises the crystalline fraction to ~3.05 wt%. Adding strain then collapses to zero, so size alone is retained. I’m now repeating the weak-phase screen on this rebuilt two-phase baseline.
+
+The final source audit confirms the selected WO₃ record is explicitly the room-temperature monoclinic structure (P2₁/n, full occupancy), appropriate for a cooled 800 °C product. Its 1960 CIF uses zero displacement parameters as placeholders, which is not a physical room-temperature choice. I’m testing fixed neutral ADPs and a restrained two-parameter W/O ADP refinement; coordinates will remain fixed because the ~3 wt% phase cannot support a reliable independent structure refinement.
+
+The WO₃ ADP refinement is not supportable: it drives oxygen displacement parameters to a bound/unphysical values, so it is rejected. Fixed neutral room-temperature Uiso values give a stable two-phase model at Rwp ≈ 6.47% and ~3.19 wt% WO₃. Before final export I’m doing the required post-inventory texture/asymmetry replay; only terms that remain interior, physically interpretable, and materially supported will survive.
+
+The phase inventory is coherent: CuWO₄ is dominant, with a small monoclinic WO₃ residual phase. I’m doing the final stability pass now—removing one highly correlated displacement parameter, replaying the full measured range, then exporting and cross-checking every submitted artifact against the saved GSAS-II project.
+
+The correlated W displacement term was not carrying independent information: fixing it at a neutral positive value changed Rwp by only 0.0001 percentage point and left the phase fractions unchanged. I’ve pruned that term. The only remaining strong covariance is between the dominant-phase scale and the physically required low-angle roughness correction; I’m retaining the latter because removing it causes a large, angle-dependent misfit, and I’ll treat the quoted fraction errors as statistical rather than full systematic uncertainties.
+
+The full-range replay is converged and serialization-stable: 8,301/8,301 points, Rwp 6.477%, with maximum shift/esd 0.007 on the final pass. The crystalline fractions are 96.79 wt% CuWO₄ and 3.21 wt% WO₃; I’m now checking CIF/project identity, chemistry, geometry, and profile arithmetic before writing the uncertainty note.
+
+Completed the full-range GSAS-II refinement.
+
+- CuWO₄, P −1: **96.79 wt%**
+- WO₃, P 2₁/n: **3.21 wt%**
+- Rwp: **6.477%**, Rp: **4.788%**, GOF: **2.668**
+
+Fractions are normalized over crystalline phases. The formal uncertainty is 0.10 wt%, but the practical WO₃ uncertainty is approximately ±1 wt% due to model covariance and correlated residuals.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [CuWO4.cif](<ATTEMPT_WORKSPACE>/CuWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+

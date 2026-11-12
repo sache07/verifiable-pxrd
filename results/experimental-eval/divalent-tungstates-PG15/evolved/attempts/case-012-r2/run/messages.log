@@ -1,0 +1,49 @@
+I’ll first inspect the pattern, metadata, learned workflow helpers, and available crystallographic executables. Then I’ll build a chemically screened phase inventory, refine it in GSAS-II, and validate the exported files against the saved project.
+
+The synthesis context points first to NiWO₄, with NiO and WO₃ as chemically credible residual phases, but I’m treating those as candidates rather than conclusions. I’m now extracting peak families and searching exact COD records plus plausible polymorphs before any refinement.
+
+An exact COD record was present but malformed for automated import: it lists the correct NiWO₄ wolframite cell and sites, yet duplicates symmetry-generated atoms and truncates one oxygen orbit. I’m reconstructing the valid P2/c asymmetric unit from that record and cross-checking it against complete ZnWO₄, MnWO₄, and FeWO₄ analogues before refinement.
+
+The one-phase residual is chemically coherent, not random: three strong unmatched lines at about 23.05°, 23.53°, and 24.29°, plus families near 33–34°, 41.4°, 49.9°, and 55.9°, are the fingerprint of monoclinic WO₃. I’m now comparing all available WO₃ polymorph records under the same fixed nuisance model; NiO remains on the watch list because its strongest unique families are not yet clearly present.
+
+The room-temperature monoclinic WO₃ model drops Rwp from about 14.7% to about 5.9% with no extra phase broadening or texture, and its cell-refined peak positions explain the previously unmatched families. I’m completing equivalent alternate-polymorph trials now; the first model has also survived a save/reopen replay.
+
+NiO’s scale refined to effectively zero (its integrated intensity fell to ~5×10⁻⁹), and attempting to refine its cell correctly became singular because no NiO reflections were supported. I’m repeating the challenge with the physically known NiO cell held fixed, which is the appropriate zero-scale test rather than letting an absent phase’s lattice drift.
+
+The phase-width trials reject crystallite size (both trials ran to hard bounds with enormous uncertainty) and NiWO₄ strain (worse fit). A modest WO₃ isotropic microstrain term is replay-stable (~2780 ± 320 µstrain) and improves the high-angle families, so I’m carrying only that term forward. Next I’m testing symmetry-distinct texture axes against this baseline; any bound or single-family solution will be pruned.
+
+The unconstrained all-atom NiWO₄ release improves Rwp strongly but fails the geometry screen: it compresses all six Ni–O bonds to roughly 1.92–2.00 Å and shifts oxygen far beyond the complete wolframite analogues. I’m rejecting that overfit. The cation-only release is physically sound (Ni–O ≈2.06–2.10 Å) and stable; I’m now comparing it against complete ZnWO₄- and MnWO₄-derived oxygen frameworks with Ni²⁺ substituted on the same octahedral site.
+
+The phase inventory is now stable: wolframite NiWO₄ plus monoclinic WO₃, with NiO rejected by its collapsed scale and absent unique reflections. I’m checking the best physically credible NiWO₄ analogue model now, then I’ll run the final source/profile challenges and export a replay-verified GSAS-II project and deliverables.
+
+The analogue check is physically satisfactory: the ZnWO₄-derived oxygen framework (isostructural divalent-cation substitution) gives refined Ni–O distances of 2.065–2.087 Å and W–O distances of 1.787–2.105 Å, while improving the fit over both the incomplete old NiWO₄ record and the Mn analogue. I’m retaining only the two cation coordinates as refinable; oxygen coordinates remain fixed because Cu X-rays do not constrain them reliably here.
+
+The rebuilt profile challenge confirms the profile choice: NiWO₄ size runs to the 10 μm ceiling, NiWO₄ strain becomes nonphysical, and WO₃ size collapses to the lower bound. Only WO₃ isotropic microstrain is replay-stable (about 3,370 µstrain) and improves Rwp from 5.402% to 5.371%, so that is the sole phase-specific broadening term retained.
+
+The low-angle intensity challenge favors a single effective-polarization correction (0.674 ± 0.004): it is physically plausible for the uncalibrated reflection optics and removes the common high-angle intensity trend in both phases. A surface-roughness alternative fits slightly better numerically but is much more scale-correlated, its two-parameter form collapses to a boundary, and it over-corrects low-angle extracted intensities; I’m rejecting it as an intensity/scale surrogate. SH/L is 97% correlated with specimen displacement and U collapses to zero, so neither is retained.
+
+The final watch-list replay again drives NiO to the lower bound (scale \(10^{-12}\)); its unique 43.3°, 62.9°, and 75.5° families are absent. Texture trials produce only shallow, axis-ambiguous gains: even the best NiWO₄ [110] correction improves one family while worsening symmetry-related low-index evidence (for example 100 versus 200), so no preferred-orientation term is accepted.
+
+The accepted model is now fixed: two crystalline phases, one common W/X profile, one displacement correction, refined effective polarization, and WO₃-only isotropic microstrain. I’m doing the final exact-endpoint replay now; all CIFs, fractions, statistics, and profile rows will be exported from the same reopened `final.gpx`.
+
+The exact full-range replay converged cleanly over all 8,282 points (maximum shift/esd 0.015). It gives 76.48 wt% NiWO₄ and 23.52 wt% WO₃, with Rwp 4.849% and GOF 1.396. I’m validating the exported CIF cells/coordinates, CSV arrays, JSON fractions, and project agreement now.
+
+The exported profile also passes visual residual review: low-, mid-, and high-angle peak positions, widths, and doublet/asymmetry behavior track without a systematic trend. I’m doing one last post-polarization size/strain audit on copies of the project to ensure the accepted WO₃ strain term remains uniquely supported under the exact final intensity correction; `final.gpx` itself remains untouched.
+
+Completed the crystalline-phase analysis:
+
+- NiWO₄ wolframite: **76.48 wt%**
+- Monoclinic WO₃: **23.52 wt%**
+- Rwp: **4.849%**, GOF: **1.396**
+
+Fractions are normalized over modeled crystalline phases; realistic systematic uncertainty is approximately ±1 percentage point. Subtle monoclinic versus triclinic WO₃ distortion is not reliably resolved. NiO was tested and rejected.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [NiWO4_wolframite.cif](<ATTEMPT_WORKSPACE>/phases/NiWO4_wolframite.cif)
+- [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/phases/WO3_monoclinic.cif)
+

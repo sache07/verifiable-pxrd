@@ -1,0 +1,32 @@
+I’ll first inspect the measurement metadata, pattern shape, and the framework’s available PXRD/GSAS-II tooling. Then I’ll identify candidate phases, refine them jointly, and validate that every submitted artifact comes from the saved `final.gpx`.
+
+The chemistry is Co–W–O at 500 °C, so the first hypotheses are cobalt tungstate plus residual Co₃O₄/WO₃, but I won’t assume that inventory. I’m now extracting peak positions and querying the frozen COD index, while inspecting the supplied GSAS-II automation so the refinement and exports stay internally consistent.
+
+The peak positions confirm two crystalline components: cubic Co₃O₄ and low-symmetry WO₃. A first joint refinement already reaches Rwp ≈ 4.3%, with no obvious unmatched strong reflections. I’m now discriminating among the closely related monoclinic/triclinic WO₃ models and then will refine the specimen-height, broadening, texture, and atomic terms without letting correlated parameters wander unphysically.
+
+The two-phase inventory is holding up: residuals occur at the same WO₃ reflections rather than as a separate unmatched peak set. Atomic refinement improves the fit, but an unconstrained oxygen refinement began distorting the WO₃ polyhedra, so I’m rolling back to the heavy-atom checkpoint and imposing displacement bounds consistent with a modest reference mismatch before testing texture and anisotropic broadening.
+
+The evidence currently supports two crystalline phases—Co₃O₄ and monoclinic WO₃—with no resolved CoWO₄ peak set. I’m finishing the constrained profile refinement and then will export all deliverables from one replay-verified GSAS-II project so the CIFs, fractions, and `fit.csv` remain internally consistent.
+
+The fitted calibration is physically plausible (notably a −610 µm specimen displacement and polarization ≈0.867). The remaining residual is dominated by correlated peak-width and low-scattering-power oxygen-coordinate effects, so I’m alternating only bounded profile terms while keeping the phase inventory fixed; this avoids turning minor residuals into spurious phases.
+
+The two-phase model is stable under re-refinement: no additional phase is required, and the Co₃O₄ oxygen parameter and WO₃ heavy-atom coordinates move only slightly when revisited. I’ve selected the last stable checkpoint (no frozen/limit-hit parameters) and am now regenerating the complete 9.90–100.09° profile directly from that saved project for the submitted files.
+
+The exported structures pass the geometry/occupancy screen (no short contacts), the two fractions sum exactly to one, and the submitted profile reproduces all 8,301 original grid points with nonnegative calculated counts. I’m doing the last project/CIF hash and replay-consistency audit now.
+
+Identified two crystalline phases:
+
+- Co₃O₄ (Fd-3m): 23.95 wt%
+- WO₃ (P2₁/c): 76.05 wt%
+
+Fractions are normalized over modeled crystalline material. No resolved CoWO₄ was detected. Full-grid fit: Rwp 3.066%, Rp 2.217%, GOF 1.784.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-005-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-005-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-005-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-005-r3/workspace/final.gpx)
+- [Co3O4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-005-r3/workspace/Co3O4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-005-r3/workspace/WO3.cif)
+

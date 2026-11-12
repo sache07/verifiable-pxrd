@@ -1,0 +1,43 @@
+I’m resuming from the retained two-phase model (monoclinic WO₃ + orthorhombic BaCO₃). I’ll first rebase/check the retained projects in this workspace, then finish the remaining correlation tests, physical validation, replay, and exact CIF/profile/result exports.
+
+I’m picking up from the retained refinements. I’ll first verify the surviving project files, then finish the conservative refinement branch, re-challenge BaWO₄, and produce/replay the exact final GSAS-II project and exports.
+
+The retained evidence is intact. I’m pruning the axis-ambiguous WO₃ anisotropic strain term and rebuilding the heavy-atom refinement on the simpler model (isotropic WO₃ broadening, supported BaCO₃ [010] strain/texture), so the submitted structure does not depend on a marginal nuisance term.
+
+The simpler branch converged at Rwp 7.026%—only 0.015 percentage point above the more elaborate WO₃-anisotropy model—so that extra term is not justified. I’m now mapping the known polarization/thermal-parameter correlation while enforcing the physically supported isotropic-displacement range from the experiment generator.
+
+The grid shows WO₃ Uiso always collapsing to the physical lower bound, so it is not independently determined and will not be refined. I’m fixing WO₃ at the source model’s 0.005 Å² and refining only the well-supported BaCO₃ phase Uiso, with polarization fixed at the independently established common-profile value (0.9291) to break the scale–ADP–polarization correlation.
+
+The supported model gives WO₃/BaCO₃ = 46.1/53.9 wt%; plausible polarization choices shift this by only about ±0.4 wt%. Before freezing that inventory, I’m reintroducing BaWO₄ under the same converged profile and nuisance model to test whether any coherent product peaks support it.
+
+BaWO₄ does not refine to exactly zero, but only 0.245 wt% and improves Rwp by 0.034 percentage point. That is below a defensible quantitative level, so I’m checking its scale significance and whether the gain comes from multiple unique scheelite reflections rather than one residual feature before deciding whether it belongs in the modeled inventory.
+
+The weak scheelite contribution survives cell refinement, and its tetragonal cell moves by only −0.03% in a and −0.11% in c—chemically plausible and positionally coherent. I’m testing its peak width from several starts; a real phase should converge to the same interior size, while a residual surrogate tends to collapse to a bound or depend strongly on the start.
+
+The watch-list test is decisive: BaWO₄’s strongest nominally unique families at 32.23°, 69.35°, and 96.79° worsen rather than improve, while the apparent gain comes mainly from peaks overlapped with WO₃/BaCO₃. Its size also collapses to the 0.04 µm lower bound from every start. I’m therefore excluding it from the quantitative inventory and will document only a sub-percent, non-quantifiable possibility.
+
+I’m freezing the two-phase model now: full-range reconvergence, save/reopen refinement, CIF export directly from that project, and initial profile/statistics generation. Afterward I’ll run the scorer’s independent native GSAS-II replay and replace the curve/statistics with the replayed values if any stale-array difference appears.
+
+The serialized final model converged reproducibly (maximum shift/esd 0.056) at 46.07 wt% WO₃ and 53.93 wt% BaCO₃, with Rwp 6.874%. I’m now running a parameter-free native replay from `final.gpx`; this validates the atomic model, full-grid profile, phase fractions, and absence of unsupported project features.
+
+The independent replay passed cleanly: no fitting, no project mutation, no negative background/width/ADP warnings, and exactly the reported phase fractions. I’m doing the last structural checks now—submitted CIF versus project-export identity, occupancies, densities, and short-contact geometry—before writing the scientific report.
+
+All required artifacts are now present. The CIFs pass occupancy/geometry checks and match the project’s replay exports exactly; `result.json` parses as a complete normalized two-phase answer, and `fit.csv` covers all 8301 original points with an independently recomputed Rwp matching the declaration. I’m performing one final checksum and cross-file consistency pass.
+
+Analysis complete.
+
+- WO₃, P2₁/c: 46.07 wt%
+- BaCO₃, Pnma: 53.93 wt%
+- Native replay: Rwp 6.8739%, Rp 5.3645%, GOF 1.9790; no review flags.
+
+BaWO₄ was tested but excluded because its sub-percent fraction and bound-limited broadening were not reliably supported by unique reflections.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-001-r1-retry1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-001-r1-retry1/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-001-r1-retry1/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-001-r1-retry1/workspace/final.gpx)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-001-r1-retry1/workspace/phase_WO3.cif)
+- [phase_BaCO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-001-r1-retry1/workspace/phase_BaCO3.cif)
+

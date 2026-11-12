@@ -1,0 +1,40 @@
+I’ll inspect the pattern, metadata, and reusable analysis scripts first, then build a chemically plausible phase inventory before refining a common GSAS-II profile. I’ll preserve competing records long enough to test them under the same nuisance model and will report any phase or fraction that remains ambiguous.
+
+The chemistry points first to scheelite-type SrWO₄, with residual SrCO₃/WO₃ or other Sr–W–O intermediates as realistic competitors. I’m now checking peak positions and the available indexing/database/refinement interfaces rather than treating the nominal reaction product as known.
+
+The dominant phase is unambiguously tetragonal scheelite SrWO₄: its low-, mid-, and high-angle families, including resolved Kα doublets above 70°, recur coherently. A second substantial peak set is not explained by scheelite; monoclinic WO₃ is plausible for part of it, but several strong families require testing Sr-rich tungstate prototypes rather than forcing a precursor record.
+
+The first common-profile challenges are underway. SrCO₃ has already converged as a test model; the denser WO₃ and Sr₃W₂O₉ structures take longer because they generate many more reflections. I’m comparing them by retained positive scale, unique-family residual reduction, and physical cell behavior—not by a small Rwp change alone.
+
+The residual inventory now shows a coherent Ca₃WO₆-type family: a unique line near 22.1°, a split cluster at roughly 29.8/30.9/32.6°, and matching mid/high-angle families. I’m therefore testing the chemically exact Sr₃WO₆ composition using both the Ca₃WO₆ framework (Ca→Sr) and the Sr₃UO₆ framework (U→W); these substitutions preserve charge/site topology and will be rejected if the refined cell or geometry becomes nonphysical.
+
+The dominant scheelite SrWO₄ and monoclinic WO₃ are secure. I’ve now found a chemically plausible Sr₂WO₅ analogue whose calculated families coincide with several residual peaks; I’m testing competing Pnma and tetragonal parents under the already-converged common profile before deciding whether the earlier Sr₃WO₆ candidate survives.
+
+The first Sr₂WO₅ scale challenge is positive (~7 wt% before cell refinement), but the test exposed a project-copy quirk: GSAS-II autosaved the newly added phase into the source baseline. I retained the untouched two-phase backup and am rerunning from an explicit project copy; the duplicated trial is being discarded, not interpreted.
+
+The inventory comparison is resolving cleanly: P4/n Sr₂WO₅ drives to zero scale, and SrCO₃ is only ~0.9 wt% with a distorted cell and no fit gain. The Pnma Sr₂WO₅ parent remains positive and, when challenged alongside the earlier Sr₃WO₆ watch-list model, it takes the coherent intensity while Sr₃WO₆ collapses to zero. I’m rebuilding a clean three-phase project from that physically plausible Pnma basin to remove the zero-scale phase and verify replay stability.
+
+The common peak profile is behaving well: phase-size trials collapse to bounds and are rejected; SrWO₄ strain stays at zero. WO₃ and Sr₂WO₅ show small positive isotropic-strain signals, so I’m replay-testing those individually with the common profile. Texture screens over axial and diagonal directions gave March parameters within ~3% of unity and negligible fit gains, so texture will remain neutral.
+
+The joint accepted model is replay-stable at Rwp ≈ 7.90%: SrWO₄ has physical refined displacement parameters, while modest isotropic microstrain remains significant for the two minor/intermediate phases. An unconstrained oxygen-coordinate trial improved Rwp but stretched tetrahedral W–O to ~1.99 Å, so it is rejected on geometry. I’m now doing the required final watch-list re-challenge under this clean profile before locking the inventory.
+
+The final inventory is locked at three modeled crystalline phases. The clean full-range replay is complete, the sub-percent watch-list candidates were excluded as non-unique, and all requested exports now come directly from the saved final project. I’m doing one last cross-check that the CIF cells/compositions, fractions, profile arrays, and project statistics agree exactly.
+
+Identified crystalline phases, normalized over modeled crystalline material:
+
+- SrWO₄, scheelite: **64.19 wt%**
+- monoclinic WO₃: **9.90 wt%**
+- Pnma Sr₂WO₅ prototype: **25.91 wt%**
+
+Final fit: **Rwp 7.897%, Rp 6.102%, GOF 2.238**. The Sr₂WO₅ topology is well supported, but its atomic coordinates remain prototype-level; practical fraction uncertainty is about 1–3 absolute wt%.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [SrWO4 CIF](<ATTEMPT_WORKSPACE>/phase_1_SrWO4.cif)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_2_WO3.cif)
+- [Sr2WO5 CIF](<ATTEMPT_WORKSPACE>/phase_3_Sr2WO5_Pnma.cif)
+

@@ -1,0 +1,50 @@
+I’ll first inspect the measurement metadata, pattern coverage, and the reusable refinement utilities in `learned/`. Then I’ll build a chemically plausible phase inventory, test candidate structures under a common baseline, and refine/export the final GSAS-II project and requested files.
+
+The chemistry points to Mn–W–O phases, but a 300 °C treatment can leave precursor polymorphs or produce a poorly crystalline intermediate. I’m now extracting the peak inventory and checking exact Mn/W/O database entries before assigning anything; the common profile will be evaluated only after candidate scales are tested.
+
+The occupied peak families identify two strong candidates already: monoclinic γ-WO₃ accounts for the 23.44/23.93/24.69° triplet and its repeated higher-angle families, while rutile-type β-MnO₂ accounts for the independent 29.01, 37.67, 56.96, 59.66, and 72.53° series. I’m comparing the physically plausible alternate database records now; MnWO₄ remains on the watch list until its unique 18.5/30.0/30.5° families are explicitly challenged.
+
+The polymorph comparison is running under the same eight-term smooth background, common zero correction, refined cells, and shared nonnegative U/X profile. This is deliberately keeping texture, size, strain, roughness, and extinction neutral so that a database record wins on its diffraction physics rather than nuisance flexibility.
+
+The common-profile check exposed an important issue: isolated β-MnO₂ lines from 37–65° have fitted single-line FWHM values around 0.10–0.12°, whereas the WO₃ triplet is about 0.17°. So a profile optimized without phase broadening was mistaking WO₃ microstructure for instrument width. I’m resetting the common instrument profile to the narrow-phase envelope and testing WO₃ size versus strain one at a time.
+
+The phase-width trials are decisive: β-MnO₂ asks for no extra broadening (its size term runs to the neutral maximum, and a strain trial turns negative), while WO₃ supports about 0.45–0.49% isotropic microstrain. A separate WO₃ size term adds almost nothing once strain is present, so I’m pruning it. Roughness and strain-mixing trials are unphysical; a small axial-asymmetry term is supported and remains under review with replay.
+
+The ten-coefficient background is justified by the broad, monotonic low-angle decay: its improvement is concentrated below 20° and the curve remains smooth, with phase fractions essentially unchanged. I’m now doing exact save/reopen replays with tighter convergence; this is also checking whether the apparent axial asymmetry survives independently of the angular correction rather than merely trading against it.
+
+The tightened baseline now reopens and replays essentially unchanged (Rwp 5.97323→5.97323%, fraction shift 0.00006), so it is stable. I’m challenging preferred orientation across symmetry-distinct axial and diagonal directions for both phases; any accepted axis must improve multiple families and survive a second replay, not just repair the strong 29° line.
+
+Several texture directions are computationally slower because they couple strongly to scale and cell terms, but the trials are still converging rather than stalled. The already completed directions show no bound failures; I’m letting the remaining directions finish so the no-texture decision is based on the full symmetry-distinct set.
+
+The first anisotropic-strain pass sat exactly on the isotropic solution and produced no descent, so I restarted each uniaxial model away from that symmetry point. This is the last profile-complexity challenge; if the axial/equatorial split is not replay-stable, the isotropic WO₃ strain model stays.
+
+The accepted β-MnO₂ [110] texture is supported across six independent families, not only the dominant 29° reflection. The WO₃ anisotropy challenge gives only a small, axis-sensitive gain; I’m carrying the best replay-stable low-dimensional variant into the watch-list test, where MnWO₄ and plausible manganese-reduction products must earn nonnegative scales from coherent unique families.
+
+The watch list is now resolved. MnWO₄ (both the exact record and an isovalent FeWO₄→MnWO₄ wolframite prototype), Mn₃WO₆, and Mn₃O₄ refine to zero or statistically null scales. Mn₂O₃ gives an apparent ~1.1 wt% scale, but nearly all its gain comes from one overlapped 33.3° feature while its independent 38.6°, 66.1°, and higher-angle families worsen; I’m rejecting it as an intensity surrogate, not a defensible third phase.
+
+The two-phase model is now replay-stable and the exported profile agrees exactly with the saved GSAS-II project. I’m writing the concise evidence/uncertainty report and doing the final cross-file consistency checks.
+
+The report now separates the small covariance uncertainty from the larger, structure-model-driven uncertainty. The last check is verifying phase names, fractions, statistics, and every profile column directly against the reopened `final.gpx`.
+
+One validation assertion caught GSAS-II’s expected behavior at the 17 raw points outside the active 10–100° refinement limits: those edge points are exported, but their calculated/difference arrays are zeroed. Within the refined range, and column-for-column against the project, the export is consistent; I’m rerunning the check with the project limits applied.
+
+The crystalline mixture is:
+
+- Triclinic/pseudomonoclinic WO₃, *P* -1: **72.88 ± 0.13 wt%**
+- β-MnO₂ (pyrolusite), *P* 42/*mnm*: **27.12 ± 0.13 wt%**
+
+Fractions are normalized over modeled crystalline material. No coherent third phase or MnWO₄ was detected; phases below roughly 1 wt% and amorphous material cannot be excluded. WO₃ symmetry contributes an estimated systematic uncertainty of about 1 wt%.
+
+Fit statistics: Rwp 5.7245%, Rp 4.2042%, GOF 2.1265.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_P-1.cif)
+- [β-MnO₂ CIF](<ATTEMPT_WORKSPACE>/phase_beta-MnO2.cif)
+
+The reopened project, exported profile, phase fractions, and reported statistics passed cross-file consistency validation.
+

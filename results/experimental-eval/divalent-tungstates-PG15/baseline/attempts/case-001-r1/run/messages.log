@@ -1,0 +1,26 @@
+I’ll inspect the diffraction data and metadata first, then use the available indexing/search and GSAS-II tooling to identify phases, refine the multiphase model, and validate that every requested artifact is internally consistent.
+
+The chemistry suggests a Ba–W–O reaction system, but the 400 °C treatment makes residual precursors or intermediates plausible. I’m now mapping the peak set and checking which local crystallographic databases and refinement interfaces are available before committing to phase identities.
+
+The peak positions now separate cleanly into two precursor signatures: monoclinic WO₃ gives the shifted 23.43/23.90/24.66° triplet, while orthorhombic BaCO₃ accounts for the 24.21° line and its full higher-angle series. The common ≈+0.3° displacement is instrumental/specimen-position related; I’ll model that in GSAS-II rather than distorting either lattice. I’m also testing whether any BaWO₄ contribution is statistically supported.
+
+The first full refinements already give a good two-phase fit (about 8% weighted profile R-factor), with both phases refining to sensible room-temperature cells. I’m comparing symmetry-equivalent and alternative WO₃ models in parallel, because choosing the correct WO₃ polymorph matters more here than squeezing the profile with extra empirical parameters.
+
+Both precursor phases are independently required: either one alone leaves a weighted profile R-factor near 25–27%, versus ~7.3% together. A trace BaWO₄ scale is also statistically positive in a controlled test, so I’m now refining that candidate conservatively with its cell fixed; this avoids mistaking an unstable trace-phase cell refinement for evidence of a real product.
+
+The conservative three-phase model is holding: BaCO₃ and WO₃ dominate, while scheelite BaWO₄ refines near 0.6 wt% and remains significant when all other parameters are reoptimized. Competing Ba–W oxides only fit at sub-0.2 wt% levels comparable to residual-model bias, so I’m excluding those rather than overfitting. The final clean project and exports are being regenerated from the raw pattern now.
+
+The final refinement is converged and all requested scientific exports now exist. I’m doing a last cross-check that the CIF cells, normalized fractions, GSAS-II project, and every row of the observed/calculated/difference CSV agree numerically before handing it over.
+
+Completed and validated the GSAS-II refinement.
+
+| Phase | Crystalline weight fraction | CIF |
+|---|---:|---|
+| WO₃, triclinic P-1 | 45.648% | [phase_wo3.cif](<ATTEMPT_WORKSPACE>/phase_wo3.cif) |
+| BaCO₃, witherite | 53.776% | [phase_baco3.cif](<ATTEMPT_WORKSPACE>/phase_baco3.cif) |
+| BaWO₄, scheelite | 0.576% | [phase_bawo4.cif](<ATTEMPT_WORKSPACE>/phase_bawo4.cif) |
+
+Fit: Rwp = 7.203%, Rp = 5.462%, goodness-of-fit = 2.073. BaWO₄ is a credible trace indication, but its precise fraction and structure are near the reliable determination limit.
+
+Files: [result.json](<ATTEMPT_WORKSPACE>/result.json), [report.md](<ATTEMPT_WORKSPACE>/report.md), [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv), and [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx).
+

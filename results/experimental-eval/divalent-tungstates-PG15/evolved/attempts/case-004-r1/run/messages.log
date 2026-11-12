@@ -1,0 +1,53 @@
+I’ll first inventory the measurement, chemistry, available reference databases, and reusable refinement utilities. Then I’ll identify candidate phases from peak positions/intensities, build a restrained GSAS-II baseline, and iteratively challenge plausible alternates and weak-phase candidates before exporting the final project and artifacts.
+
+The chemistry points naturally toward cobalt tungstates, but I’m treating that only as a prior: the precursor pair can also leave CoO/Co₃O₄ or WO₃ polymorphs, and Co–W–O has alternate stoichiometries. I’m now extracting the peak families and checking exact database records before any refinement.
+
+The only exact CoWO₄ entry in the supplied filtered COD index is an old 1951 model with duplicated symmetry-equivalent metal sites and incomplete/awkward oxygen encoding. I’m retaining it as a pattern check, not accepting it structurally; I’ll inspect modern wolframite analogues and physically validate substituted Co/W coordinates and geometry as requested.
+
+Peak-family screening now supports two definite phases: monoclinic γ-WO₃ (its diagnostic 23.18/23.67/24.42° triplet and split 33–34°, 41–42° families) plus wolframite CoWO₄ (unique 19.09°, 30.71°, 31.53°, 38.62°, 52.15° families). CoO and Co₃O₄ remain on the watch list because some of their strongest lines overlap these phases; their unique lines will be tested after the two-phase baseline is converged.
+
+The initial two-phase refinement is already strongly positive for both candidates: neither scale collapsed, and the provisional fit reached Rwp ≈12.3% before cell/profile adjustment. I also found and corrected a setup issue for the next pass: GSAS-II was refining the overall specimen scale by default, which is redundant with phase scales and creates a singularity; I’ll fix it at unity so the phase fractions and their uncertainties are well conditioned.
+
+The physical profile replay is stable with the redundant specimen scale removed: Rwp ≈8.38%, WO₃ ≈67.2 wt%, CoWO₄ ≈32.8 wt%, and a nonnegative common W/X profile. The attempted U term ran negative and has been pruned at U=0. I’m now doing the required source/polymorph challenge—monoclinic, triclinic, orthorhombic, and higher-temperature WO₃ records, plus several wolframite prototype parents—under this same fixed nuisance model.
+
+The source challenge is still running through the full 10–100° range. I’m holding background order, polarization, angular correction type, and W/X profile identical across candidates; only phase scales and cells are reconverged, so the comparison tests crystallography rather than giving each record extra fitting freedom.
+
+Both oxide watch-list phases obtained tiny positive formal scales only after cell motion (about 0.6 wt% CoO or 0.2 wt% Co₃O₄), but neither is yet accepted: the improvements are only ~0.02–0.03 Rwp points and several supposed unique lines do not align coherently. I’m replaying the phase-free baseline to the same convergence depth and will compare scale uncertainties and family-by-family residual reduction before deciding whether either trace phase is real.
+
+A joint intensity fit tries to drive the polarization coefficient to its upper bound, so I’m rejecting that bound solution as an intensity surrogate rather than accepting an implausibly “perfect” fit. The physically meaningful alternative is a Suortti surface-roughness correction for reflection geometry; I’m comparing that against the unpolarized baseline before considering any texture.
+
+The surface-roughness model is the supported intensity correction: one interior Suortti parameter (B ≈0.158, A fixed at 0) improves both phases coherently and outperforms the polarization model without driving an instrument parameter to a bound. The six-term background remains smooth and positive. With that baseline fixed, I’m now testing isotropic size and strain separately for each phase from multiple neutral starts; only replay-stable, interior terms will survive.
+
+The broadening trials are taking longer because each candidate is replayed from three distinct starts. That redundancy is useful here: it distinguishes a real size/strain minimum from GSAS-II’s common tendency to park a weakly determined breadth term at its numerical limit.
+
+Broadening is now physically coherent: CoWO₄ size collapsed to the neutral 10 µm limit and its strain demanded a negative value, so both are rejected. WO₃ alone supports a replay-stable positive isotropic microstrain; after rebuilding the common profile, the accepted joint values are about 2.17×10³ µstrain with nonnegative W/X and no asymmetry term (SH/L collapsed to its floor). I’m doing the final texture challenge across axial and diagonal low-index directions for each symmetry.
+
+Texture screening is still running; each direction is a one-parameter trial against the same frozen roughness/profile/strain model. I’ll retain texture only if one symmetry-distinct axis gives a reproducible interior March–Dollase value and improves several isolated families—not merely one overlapped peak cluster.
+
+No texture term passes the family test. The best WO₃ direction improves some low/mid-angle groups but worsens the independent 33–34° and 55–56° families; CoWO₄ directions likewise trade the 19/31° lines against 36/52°. I’m keeping the no-texture model. Geometry is physical (WO₃ W–O 1.715–2.217 Å; CoWO₄ Co–O 2.032–2.162 Å and W–O 1.774–2.152 Å), so I’m now doing the final blockwise reconvergence and export.
+
+The final accepted model has converged blockwise (maximum shift/esd 0.36 in the last cycle) at Rwp ≈5.72%, with no texture or trace phase. Before export I’m restoring the exact measured endpoints so `fit.csv` and the replay use every one of the 8,301 observations, then I’ll save/reopen and verify the project, CIF cells, fractions, and profile are identical.
+
+The refinement is complete and the final project replays exactly. I’m doing the last consistency pass now—checking the exported CIFs, JSON/profile alignment, and then I’ll write the concise evidence and uncertainty report.
+
+The exports are internally consistent: both CIFs parse with the intended formulas and symmetries, the fractions sum to 1.000000, and all 8,301 profile rows satisfy observed − calculated = difference to numerical precision. I’m now capturing the phase-selection evidence, rejected watch-list phases, and the distinction between formal and practical fraction uncertainty in `report.md`.
+
+The report is drafted. One final audit will compare `result.json` and `fit.csv` directly against a fresh read of `final.gpx`, so the handoff reflects the saved project rather than an intermediate refinement state.
+
+Completed and validated against the reopened GSAS-II project.
+
+- Triclinic WO₃, P -1: **69.821 wt%**
+- Wolframite CoWO₄, P 2/c: **30.179 wt%**
+- Fit: Rwp 5.727%, Rp 4.618%, GOF 1.747
+
+Fractions are normalized over modeled crystalline phases. Practical uncertainty is approximately ±2–3 percentage points; amorphous content and possible impurities below ~1 wt% cannot be quantified reliably.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_wo3_triclinic.cif)
+- [CoWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_cowo4_wolframite.cif)
+

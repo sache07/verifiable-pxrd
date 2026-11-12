@@ -1,0 +1,76 @@
+I’ll first inspect the measurement metadata, pattern format, and the reusable refinement utilities in `learned/`. Then I’ll build a chemically screened phase inventory, refine it in GSAS‑II with residual-led checks, and verify that the exported CIFs, profile, fractions, and project all agree.
+
+The chemistry points first to the PbO–WO₃ binary system, but the unknown stoichiometry and 500 °C synthesis make residual oxides and intermediate lead tungstates credible. I’m treating those as an inventory to test—not assuming PbWO₄ is the only product—and will use peak families and source records to distinguish them.
+
+The dominant peak family is consistent with scheelite-type PbWO₄, but several intense lines (especially near 45.02°, 51.48°, 56.82°, and 72.27°) cannot be assigned to that phase. I’m now comparing all locally available Pb–W–O, PbO, and WO₃ records—including alternate polymorphs—under a common peak-position test before any scale refinement.
+
+The inventory now has three strongly supported families: scheelite-related lead tungstate, orthorhombic massicot PbO, and monoclinic WO₃. A chemically plausible Pb-deficient scheelite superstructure (Pb₇W₈O₍₃₂₋ₓ₎) is also on the watch list because it shares the dominant reflections but adds weak superlattice lines. I’m moving to controlled GSAS‑II trials so that overlapping main peaks do not decide that ambiguity by eye.
+
+The first full trial converged to approximately 76 wt% lead tungstate, 11 wt% massicot, and 13 wt% WO₃, with a refined zero offset near +0.27°. It also exposed two baseline issues I’m correcting before comparing records: GSAS‑II had left a redundant histogram scale active, and the profile’s U term collapsed to its nonnegative bound. I’m pruning that unsupported term and replaying all candidate inventories with the same W/X profile.
+
+The phase-record challenge is decisive for PbO: standard litharge is markedly worse, while adding the published long-period α‑PbO approximant lowers Rwp from 17.48% to 15.87% and retains a positive ~5.7 wt% scale alongside ~10.4 wt% massicot. I’m checking whether that gain comes from coherent unique reflections across the range or merely from its many weak lines absorbing residual/background structure; it will only remain if it survives that residual test.
+
+The long-period PbO phase is supported by distinct lines—not just an Rwp gain—including its 001 near 17.9°, a strong family near 25.9°, and repeated families around 32.1°, 35.9°, 48.8°, 55.0°, and 60°. For the common baseline, a refined polarization term gives a larger, coherent intensity correction than texture would be allowed to mimic; fixed physically plausible displacement factors also improve the high-angle trend. I’m now testing those two corrections together and checking their correlation before any preferred-orientation trial.
+
+The phase-width tests separate cleanly: PbWO₄ and WO₃ drive size/strain to neutral bounds, while both PbO forms reproducibly require substantial angle-dependent broadening. The fitted microstrain is large (~1.5% for massicot and ~2.3% for the long-period PbO), so I’m treating the corresponding fractions as potentially model-sensitive. I’m testing both broadened PbO phases together and comparing Gaussian/Lorentzian shape choices before accepting those terms.
+
+The simultaneous PbO-broadening fit is slower than the individual trials, but it is still converging. I’m keeping the shape variants separate so their phase-fraction sensitivity can be measured rather than hidden in one preferred profile.
+
+The joint Lorentzian test failed the physical/replay criteria: the long-period PbO strain ran to its upper bound, its cell distorted, and the fractions shifted strongly on replay. I’m treating both phase-specific strain terms as non-identifiable in combination and returning to the clean common profile before the required alternate-phase and texture challenges.
+
+The clean-profile watch list now behaves decisively: the disordered Pb–W–O record refines to zero, raspite falls below 0.05 wt% and below its uncertainty, and conventional litharge only captures overlapping fundamental reflections of the long-period PbO model. I’m leaving those out and screening symmetry-distinct texture axes with all other parameters fixed first.
+
+The first texture results show only small one-parameter gains for stolzite and WO₃, while massicot [100] gives a larger signal. The full symmetry screen is still running; I’ll only carry a texture term forward if it remains distinct from scale/background and improves several reflection families on full replay.
+
+The [011] massicot texture survives full reconvergence and replay (March–Dollase ≈1.97), improving several distinct families rather than only the strongest line; its scale correlation is appreciable but not singular. I’m now re-running the weak-phase watch list against that accepted profile before freezing the final model.
+
+The post-texture screen changes one conclusion: conventional litharge now carries a stable ~0.8 wt% scale and improves several low/mid-angle families, while raspite remains only ~2.2σ and worsens most of its strongest unique lines. I’m promoting litharge to a provisional fifth phase, testing whether its cell can refine physically; raspite and the disordered Pb–W–O record remain excluded.
+
+The weak litharge cell refines close to its 295 K reference and survives a true reopen/replay, so it is now retained as a fifth phase. Its own size and strain trials collapse to neutral bounds; I’ve pruned them and am reconverging the five-phase common profile before testing whether the broad PbO families require anisotropic strain.
+
+The five-phase refinement is settling under damped replay; the first pass lowered Rwp to about 13.62% without any bound terms. This also separates true model improvement from the small solver oscillations seen in undamped all-at-once cycles.
+
+The uniaxial strain screen is in progress. Early gains are only a few hundredths of Rwp and require extra profile parameters; I’m waiting for all axial/diagonal directions so any apparent gain can be judged against axis degeneracy and bounds.
+
+The anisotropy challenge is informative: long-period PbO gains only ~0.02 Rwp with nearly degenerate axes, so I’m rejecting that extra term. Massicot gains ~0.42 Rwp with a bound-free [100] uniaxial strain model; I’m testing [100] and the next physical diagonal alternative under full damped reopen/replay before accepting it.
+
+Both massicot anisotropy variants are still refining. The long runtime comes from full-profile replay, not a stalled process; the decisive checks will be whether one axis remains preferred, avoids bounds, and gives stable phase fractions after reopening.
+
+The [100] massicot strain model is replay-stable and fits materially better; the [011] complement gives nearly the same result, so the anisotropy magnitude is supported but its crystallographic direction is not unique. Before freezing it, I’m re-testing whether the strong massicot texture remains independently necessary under this broader model.
+
+The texture term remains independently required: removing it raises Rwp to 14.22% and forces the massicot axial strain to a bound. The final watch-list replay again gives zero for the disordered Pb–W–O model and only 0.45(23) wt% raspite without coherent unique-line support, so neither is retained. I’m now doing the exact full-range final replay and exports.
+
+The exact full-range replay is complete: five phases, no frozen/bound parameters, 8,282 points, and Rwp 12.956%. I’m validating the exported CIF chemistry/geometry and checking that `fit.csv`, `result.json`, and `final.gpx` agree numerically before writing the uncertainty report.
+
+The geometry audit caught a real source-import problem in the provisional litharge record: GSAS-II’s origin conversion doubled the Pb multiplicity, producing Pb₂O in the exported CIF. I’m replacing that record with a physically equivalent origin-compatible PbO litharge model and will recompute the fraction; the other four CIFs pass composition and distance checks.
+
+The corrected origin-choice model is now true PbO (2 Pb and 2 O per cell), with physical Pb–O distances. It still refines to about 1.2 wt% at roughly 4σ, but with larger uncertainty than the flawed import—exactly the sort of weak-phase sensitivity the report will flag. I’m repeating its broadening and alternate-phase checks once against this corrected model.
+
+The corrected litharge size/strain terms are not replay-stable and do not improve the fit (changes are below 0.01 Rwp), so they are pruned. The corrected phase is retained only through its coherent scale and physically refined cell.
+
+All required artifacts are now present. The corrected CIF set is stoichiometric and geometrically physical; I’m doing the final cross-file audit now—fractions sum, profile columns reproduce the GPX arrays, CIF paths parse, and no frozen refinement variables remain.
+
+Completed the five-phase refinement. Fractions are normalized over modeled crystalline phases.
+
+| Phase | Weight fraction |
+|---|---:|
+| PbWO₄, stolzite | 70.18(24)% |
+| WO₃, monoclinic γ-WO₃ | 13.03(22)% |
+| PbO, massicot | 9.03(15)% |
+| Modulated α-PbO approximant | 6.49(40)% |
+| PbO, litharge | 1.26(32)% |
+
+Final fit: Rwp 13.000%, Rp 9.053%, Rexp 3.502%, GoF 3.713. The modulated-PbO/litharge split is strongly anticorrelated; their combined fraction of about 7.75 wt% is more reliable than either individual value.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [Stolzite CIF](<ATTEMPT_WORKSPACE>/phase_1_pbwo4_stolzite.cif)
+- [Massicot CIF](<ATTEMPT_WORKSPACE>/phase_2_pbo_massicot.cif)
+- [Modulated α-PbO CIF](<ATTEMPT_WORKSPACE>/phase_3_pbo_modulated_alpha.cif)
+- [Monoclinic WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_4_wo3_monoclinic.cif)
+- [Litharge CIF](<ATTEMPT_WORKSPACE>/phase_5_pbo_litharge.cif)
+

@@ -1,0 +1,62 @@
+I’ll first inspect the pattern, metadata, and reusable refinement utilities, then build a chemically plausible phase inventory before fitting. I’ll keep phase inclusion residual-led and verify that the final CIFs, fractions, profile export, and `final.gpx` all come from the same replayed GSAS-II project.
+
+The chemistry strongly suggests lead tungstates, but at 500 °C residual PbO/WO₃ and intermediate Pb–W–O compounds remain plausible. I’m now extracting peak positions and querying exact COD records across the Pb–W–O composition space; I’ll test more than one physical record where a candidate is plausible.
+
+Peak-family matching now supports a provisional three-phase inventory: scheelite PbWO₄ is dominant; monoclinic WO₃ explains the 23.36/23.89/24.64° triplet and related lines; orthorhombic PbO explains the coherent 29.33/30.61/38.11/53.36/60.54° family. All three share an approximately +0.3° low-angle displacement, so I’ll refine one common angular correction before judging any weaker residuals.
+
+The first common-profile fit exposes a coherent unmodeled family—not random background—most clearly at 15.33, 17.97, 25.91, and 31.05°. I’m revisiting the inventory now. Since the COD subset has no exact Pb₂WO₅ record, the chemically closest analogue search returned Pb₂MoO₅ (same Pb₂M⁶⁺O₅ stoichiometry); I’ll test W-for-Mo substitution against those residuals and compare alternate analogue parents before adding it.
+
+The controlled record comparisons are running in parallel. I’ve standardized them to the same eight-term smooth background, one zero correction, neutral phase broadening, common constrained U/W/X profile, and replay-on-reopen; this should separate genuine structural-record improvements from nuisance-model differences.
+
+The analogue-derived Pb₂WO₅ phase is strongly supported: under the rebuilt common profile it refines to about 15 wt% and drops Rwp from roughly 17.5% to 14.7%, while its scale stays well above zero and its cell remains close to the Mo-parent prototype. I’m finishing the alternate-record challenges now, especially WO₃ polymorphism and PbWO₄ source sensitivity.
+
+The source challenge is behaving sensibly: the 2001 room-temperature PbWO₄ record is clearly preferred; the two standard monoclinic WO₃ records give nearly identical fractions, with the neutron-derived 1966 model slightly improving the fit. A triclinic WO₃ model gains only ~0.02 Rwp point beyond that while adding symmetry freedom, so it is not yet compelling.
+
+Several remaining residual lines form a second coherent Pb–O family (31.04, 46.33, 50.1, 56.3, and 64.36°), matching ambient-temperature minium Pb₃O₄. I’ve put Pb₃O₄ on the watch list alongside raspite and the defect scheelite-like Pb₇W₈O₂₈.₈ record; each is being challenged under the same baseline, with inclusion requiring a positive replay-stable scale and unique-family improvement.
+
+The fifth-phase challenge is still converging; the key discriminator will be whether it improves the sharp unique residuals without distorting the four established cells or collapsing another phase’s scale.
+
+The ambient tetragonal Pb₃O₄ record passes the watch-list test: ~2.0 wt%, a stable positive scale, a physically unchanged cell, and a better fit than its low-temperature orthorhombic alternative. Raspite collapses to zero; the defect scheelite record is too collinear with PbWO₄ and destabilizes the fit, so neither will be retained. I’m now testing asymmetry/polarization and phase broadening one term at a time.
+
+The common polarization correction is strongly supported and refines to ~0.82, whereas SH/L changes the fit only marginally. Isotropic size trials are either rejected at the neutral upper bound or collapse to an unphysical 0.01 µm bound with unstable fractions; those size terms will be pruned. Strain trials are finishing now.
+
+Texture is not supported for PbWO₄ or WO₃ (March–Dollase parameters stay within ~4% of 1). Massicot PbO shows a reproducible, axis-specific [100] effect (MD ≈ 0.87) and improves several distinct PbO families; I’m checking whether the analogous Pb₂WO₅ axes outperform it before deciding which minimal texture term to retain.
+
+Pb₂WO₅ shows the clearest texture signature: [100] is distinctly better than [010], [001], or [101], with MD ≈ 1.22 and a replay-stable fit gain. Because this phase is prototype-derived, I’m treating its texture-sensitive fraction as a systematic uncertainty and testing only complementary terms from that model—not refining atomic coordinates.
+
+The minimal accepted model is now fixed: common polarization, common SH/L asymmetry, and [100] March–Dollase terms only for Pb₂WO₅ and massicot PbO. Roughness hit a bound, isotropic size/strain acted as fraction surrogates, and all other texture axes were unsupported. I’m rebuilding `final.gpx`, pruning bound U from refinement, replaying the full range repeatedly, then exporting directly from that project.
+
+The final exports are in place. I’m doing the last physical audit now: checking the weak minium cell against its ambient reference model, validating bond geometry, and confirming that every exported number exactly matches the reopened GSAS-II project.
+
+The minium challenge is informative: fixing its 293 K literature cell worsens Rwp from 12.95% to 13.13% and shifts its estimate from 2.59 to 1.70 wt%. That phase is real enough to improve several coherent reflections, but its lattice and abundance are model-sensitive; I’ll flag it as tentative rather than let the formal standard error imply false precision.
+
+The final project has now been replayed across all 8,282 measured points; the endpoint omission in the first export is corrected. The converged full-range result is Rwp 12.952%, with fractions changing by less than 0.001 wt% from the prior replay.
+
+All structural and export checks pass: the five CIFs reproduce the project cells and space groups, fractions sum exactly to 1.0, `fit.csv` matches every input x/intensity value and satisfies observed − calculated = difference, and the GPX arrays match the CSV bit-for-bit. I’m at the final handoff check now.
+
+Completed the GSAS-II refinement and export.
+
+| Phase | Weight % | Confidence |
+|---|---:|---|
+| PbWO4, scheelite | 63.55 | well supported |
+| Pb2WO5, C2/m analogue | 16.56 | provisional structure |
+| WO3, monoclinic | 10.61 | well supported |
+| PbO, massicot | 6.69 | well supported |
+| Pb3O4, minium | 2.59 | tentative; model-sensitive |
+
+Fractions are normalized over modeled crystalline phases. Final fit: Rwp 12.952%, Rp 8.750%, GOF 3.707. Pb2WO5 uses a W-substituted Pb2MoO5 prototype; Pb3O4 is best regarded as roughly 2 wt% rather than precise.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [PbWO4 CIF](<ATTEMPT_WORKSPACE>/phase_1_PbWO4_scheelite.cif)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_2_WO3_monoclinic.cif)
+- [PbO CIF](<ATTEMPT_WORKSPACE>/phase_3_PbO_massicot.cif)
+- [Pb2WO5 CIF](<ATTEMPT_WORKSPACE>/phase_4_Pb2WO5_prototype.cif)
+- [Pb3O4 CIF](<ATTEMPT_WORKSPACE>/phase_5_Pb3O4_minium.cif)
+
+The reopened GPX, CIF cells, phase fractions, and all 8,282 exported profile points were cross-validated exactly.
+

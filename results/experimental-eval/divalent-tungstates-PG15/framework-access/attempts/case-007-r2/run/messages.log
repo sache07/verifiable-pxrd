@@ -1,0 +1,48 @@
+I’ll inspect the metadata, diffraction pattern, and the frozen PXRD tooling first, then identify candidate phases and carry a quantitative GSAS-II refinement through to exported CIFs, profile, project, and report. I’ll treat phase count as an inference problem and check plausible impurities rather than assuming a single product.
+
+The chemistry points first to MgWO₄, but the lab design explicitly permits residual MgO/WO₃ and off-stoichiometric intermediates. I’m now extracting the observed peak set and querying the permitted COD index for every Mg–W–O candidate before deciding how many structures to refine.
+
+Three phases are now supported by independent peak families: wolframite MgWO₄ is dominant; monoclinic room-temperature WO₃ accounts for the 23.44/23.93/24.68° triplet and its higher-angle companions; cubic MgO accounts for 37.31, 43.21, 62.54, and 75.05°. I’m moving from identification to a joint refinement, including the shared angular calibration, phase-specific cells/broadening, specimen effects, and mass scales.
+
+The initial joint fit is behaving well: adding cell and specimen-displacement refinement dropped Rwp from 33% to about 12%, with provisional fractions near 77% MgWO₄, 15% WO₃, and 8% MgO. The remaining mismatch is mainly peak shape and perturbed atom positions; those stages are still running.
+
+The conservative refinement has stabilized the profile parameters without nonphysical values. It now gives roughly 77% MgWO₄, 15% WO₃, and 8% MgO; the width model is converging, and the next decisive test is refinement of the symmetry-constrained atomic coordinates (the synthetic setup intentionally perturbs them from the COD parents).
+
+Preferred-orientation screening gives only a small improvement (best on MgWO₄ [001]), so it is not the main missing physics. The residual peak-width pattern is hkl-dependent, which points instead to the generator’s allowed uniaxial microstrain; I’m screening the permitted crystallographic axes next.
+
+Surface roughness is present at least weakly, but it still does not explain the full intensity pattern. I’m checking the complete COD wolframite framework family now: if the hidden MgWO₄ model was adapted from a divalent-metal analogue, its atomic coordinates can differ enough from the sole MgWO₄ entry to matter while keeping the same peak positions.
+
+I’m running a Le Bail diagnostic now to separate two possibilities: incorrect structure-factor intensities versus unresolved peak-position/shape effects. This does not enter the submitted model; it tells me where further refinement effort is scientifically justified.
+
+The Le Bail limit is about 7.5% after profile optimization, so the remaining gap is predominantly peak-shape complexity rather than wrong phase inventory. Importantly, the optimized instrument values remain inside the laboratory’s allowed ranges; I’m completing one more pass and will transfer only physically defensible parameters back to the structural model.
+
+The phase inventory is now stable—MgWO₄, residual WO₃, and MgO. I’m finishing the structural (non-Le Bail) refinement from the optimized profile parameters, then I’ll export and cross-check every deliverable against the saved GSAS-II project.
+
+The Le Bail profile optimization converged at Rwp ≈ 7.38%, which is close to the counting-noise floor and confirms that no additional crystalline phase is needed. I’m now using those peak positions and widths as fixed starting values while comparing parent-like and bounded coordinate models; this limits the usual oxygen-coordinate overfitting in laboratory XRD.
+
+The intensity model now supports modest texture and phase-specific displacement parameters; these reduce the structural Rietveld fit to Rwp ≈ 8.58%. The phase fractions remain somewhat correlated with MgO’s weak high-angle intensity, so I’m treating that trace-phase fraction conservatively rather than accepting a numerically tiny Uiso-driven improvement.
+
+The remaining profile mismatch is dominated by line-shape recovery rather than missing reflections: anisotropic-strain screens do not materially improve WO₃ or MgO, and only a small, partly nonphysical improvement appears for MgWO₄. I’m doing a final regularization check now—shrinking refined coordinates toward the literature parents and testing the weakly constrained thermal/profile terms—before freezing the project.
+
+The constrained structural model now passes the hard geometry screen for MgWO₄ and MgO; monoclinic WO₃ retains only the same short O···O review flag already present in its literature parent, with no new hard contact. The final regularized fit is Rwp ≈ 8.28%, with fractions stabilizing near 76.5/16.0/7.4 wt%. I’m exporting and replay-validating that exact project now.
+
+Completed the three-phase refinement:
+
+- MgWO₄ (P 2/c): 76.54 wt%
+- Monoclinic WO₃ (P 21/n): 16.05 wt%
+- MgO (F m -3 m): 7.41 wt%
+
+Final fit: Rwp 8.279%, Rp 5.792%. Native GSAS-II replay reproduced the fit and confirmed CIF/project/fraction consistency.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-007-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-007-r2/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-007-r2/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-007-r2/workspace/final.gpx)
+- [MgWO4 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-007-r2/workspace/phase_1_MgWO4.cif)
+- [WO3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-007-r2/workspace/phase_2_WO3.cif)
+- [MgO CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-007-r2/workspace/phase_3_MgO.cif)
+
+The main remaining uncertainty is in the individual WO₃ oxygen coordinates and correlated systematic fraction errors, as detailed in the report.
+

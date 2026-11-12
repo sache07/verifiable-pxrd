@@ -1,0 +1,76 @@
+I’ll inspect the measurement metadata, diffraction pattern, and the reusable refinement tools first. Then I’ll build a chemically plausible phase inventory, refine it residual-first in GSAS-II, and verify that the exported CIFs, fractions, profile, statistics, and final project all agree.
+
+The chemistry points first toward calcium tungstate formation, with residual CaCO₃ and/or WO₃ plausible at 500 °C. I’m treating that only as an initial inventory: I’ll compare peak positions and coherent unique families before accepting any phase, and keep weak precursor/polymorph candidates on a watch list.
+
+The peak families resolve the provisional inventory cleanly: monoclinic WO₃ accounts for the 23.4/23.9/24.7° triplet and its 26.9/33.6/33.9/34.5° companions; calcite accounts for 29.7°, 36.3°, 39.7°, and 43.5°; scheelite CaWO₄ is independently required by 18.89° and supported at 31.72° and several overlaps. All show the same positive, angle-dependent displacement, so I’ll refine one shared specimen correction rather than shifting cells to absorb it.
+
+I’ve selected physically screened starting records: ambient scheelite CaWO₄ (I4₁/a, complete occupancies), room-temperature monoclinic WO₃ (P2₁/n, complete WO₆ network), and ambient calcite (R‑3c, complete CaCO₃ atom content despite a malformed source formula tag). I’m now fitting only background, phase scales, one specimen displacement, and cells; all phase size/strain, roughness, texture, and extinction terms are neutralized.
+
+The first baseline confirms all three phases have positive, stable scales (about 52 % WO₃, 41 % calcite, 7 % CaWO₄ before profile refinement), and peak positions are already coherent under one displacement correction. The largest remaining systematic error is the relative intensity of the WO₃ triplet: the first WO₃ record overpredicts 23.4° and underpredicts 23.9°. Per the reversible inventory rule, I’m re-challenging it with an independent room-temperature P2₁/c neutron structure before adding profile terms.
+
+The alternate WO₃ structure is decisively better under the same baseline (Rwp 35.6 % versus 37.1 % before width fitting) and has replaced the first record. Refining only the common Gaussian width W then drops Rwp to 14.9 %, confirming that the initial residual was primarily a physically inadequate instrumental profile rather than missing phases or texture. I’m now testing the minimum U/W/X profile sequentially and will prune any term that collapses to a bound.
+
+The zoomed families show why a single broad common profile is not physically adequate: calcite’s isolated 29.71°/36.30° peaks are substantially narrower, while CaWO₄ at 18.89° is much broader and WO₃ is intermediate. I’m therefore rebuilding the baseline from the narrowest crystalline phase and comparing isotropic size versus strain for each broader phase, one phase at a time; this avoids using a common U term as a surrogate for phase-dependent broadening.
+
+The phase-width tests are now physically coherent and replay-stable: WO₃ favors finite crystallite size (~90 nm) over strain-only broadening, while CaWO₄ strongly favors size (~25 nm); its strain-only trial runs to the imposed bound and is rejected. This correction also restores near-stoichiometric Ca/W balance among residual precursors plus product, so I’m retaining both size terms and now re-optimizing the common profile from that baseline.
+
+The accepted profile is now replay-stable at Rwp ≈ 9.53 % with interior W/X values; releasing U destabilizes the WO₃ strain term and drives two widths to zero, so U is rejected. The remaining dominant intensity mismatch is calcite (104), which is too strong and too sharp relative to its other families. I’m testing polarization and low-angle asymmetry first, then symmetry-distinct calcite texture axes under the same profile.
+
+I’ve reached a stable common-profile baseline (Rwp ≈ 9.53%). I’m now testing the remaining physically motivated corrections—polarization, axial asymmetry, and symmetry-distinct calcite texture axes—one at a time from that saved baseline.
+
+The tests are decisive: polarization is a strong, interior correction (0.735; Rwp 9.53→8.63%), while SH/L is highly correlated with displacement and gives no meaningful gain, so I’m rejecting SH/L. Calcite [104] texture is the only axis with a materially distinct improvement; I’m combining it with polarization next and will verify that it improves several calcite families, not just the dominant 104 line.
+
+The combined model is replay-stable at Rwp ≈ 8.28%, and the [104] texture correction improves independent calcite families (104, 110, 202, 211/122, and 300), not only one peak. It also restores the residual CaCO₃/WO₃ molar balance to within about 4%, which is chemically consistent with CaWO₄ formation. I’m now challenging the remaining family-dependent widths with symmetry-appropriate anisotropic size models and will retain them only if they replay stably.
+
+The width audit pruned WO₃ crystallite size: removing it changes Rwp by less than 0.001 percentage point and avoids a poorly determined parameter. WO₃ microstrain is essential, and a uniaxial model along the monoclinic unique b axis is strongly supported (Rwp 8.28→8.12%, both components far from bounds). Scheelite c-axis size anisotropy gives only a marginal, ~2σ change and will not be retained. I’m using the pruned WO₃ model to make the final texture challenge and residual-phase recheck.
+
+The final texture challenge supports a modest scheelite [110] March–Dollase correction: it improves the unique 101 line at 18.91°, the 004 family at 31.71°, and the 112 region, not just a single overlap. WO₃ texture is weak and axis-ambiguous (all MD ratios within ~2% of 1), so I’m pruning it. I’m doing one last peak-shape mixing check, then I’ll re-challenge the phase inventory under this common model.
+
+Peak-shape mixing is now resolved: WO₃ strain has a stable interior Lorentzian/Gaussian mix and improves Rwp to ≈8.04%; scheelite size mixing is 99% correlated, crosses its bound, and is rejected. The accepted nuisance model is therefore fully interior except for intentionally fixed neutral terms. I’m now testing plausible weak-phase candidates and alternate WO₃ records against this same saved profile before freezing the inventory.
+
+The inventory recheck found two nonzero watch-list signals that require a provisional inventory change: CaO refines to ~0.23 wt% with a plausible 4.811 Å cell, and orthorhombic WO₃ gains coherent intensity with only modest cell shifts. Ca₃WO₆ and aragonite collapse to zero; vaterite is insignificant and its cell drifts unphysically. Because the WO₃ polymorphs overlap strongly, I’m rebuilding a joint CaO + orthorhombic-WO₃ model and will then re-test triclinic WO₃ and the other watch-list entries under that shared profile before deciding whether either weak phase is reportable.
+
+The joint model is stable with orthorhombic WO₃ at ~1.80 wt% and CaO at ~0.28 wt%; both cells remain chemically and crystallographically plausible. I’m now rebuilding their phase-specific broadening from neutral values. After that I’ll re-run triclinic WO₃, Ca₃WO₆, aragonite, and vaterite as scale-first challenges under the rebuilt five-phase profile.
+
+The rebuilt profile retains orthorhombic WO₃ broadening as isotropic strain (~0.31%, significant); CaO size/strain are indeterminate and remain neutral. Triclinic WO₃ still refines to ~2.6 wt% with a plausible cell even in the presence of orthorhombic WO₃, while Ca₃WO₆ and aragonite again go to zero and vaterite remains statistically unsupported. Before accepting a three-polymorph WO₃ inventory, I’m checking the remaining exact WO₃ structural records to ensure this is not compensation for an inferior monoclinic parent model.
+
+The exact-record screen confirms that the remaining monoclinic WO₃ entry (COD 1563541) is a high-pressure half-volume polymorph, not a physical replacement for the ambient parent; the other historical parent was already inferior under identical nuisance terms. The triclinic signal survives the orthorhombic model at ~2.6 wt% with a near-reference cell, so I’m carrying it provisionally into a six-phase inventory and reconverging the entire model before testing its own broadening.
+
+The six-phase fit exposes a real covariance issue: the three weak-phase cells remain physically plausible, but simultaneous replay lets their overlapping WO₃ cells oscillate and changes Rwp by ~0.006%. I’m freezing those weak-phase cells at their fitted values (not their database values), while continuing to refine all scales, the three major-phase cells, background, displacement, polarization, and common profile. This should make the inventory test replay-stable before any weak-phase width decision.
+
+The stabilized six-phase model now replays to Rwp ≈7.591% with invariant fractions. Triclinic size and strain both hit bounds or become unstable, so it stays at neutral broadening. I’m making leave-one-phase-out refinements for CaO, orthorhombic WO₃, and triclinic WO₃; this is the final test of whether each weak phase contributes coherent information after all other terms can reconverge.
+
+The leave-one-out tests are strong: removing orthorhombic WO₃ raises Rwp to 7.94%, removing triclinic WO₃ to 7.75%, and removing CaO to 7.60%; each phase improves several independent reflection families. I’m retaining all six phases. One final baseline challenge remains: release common-profile U under the stable inventory. If it again becomes bound or destabilizes replay, the current two-parameter W/X profile stays.
+
+The final U test is now well behaved: U refines to ~9.8±3.9, remains positive/interior, and its removal worsens the weighted residual, so I’m retaining the three-term U/W/X profile. The six-phase inventory and fractions are essentially unchanged. I’m now preparing a cleanly named final project, replaying it after reopening, and exporting the exact CIF/profile/JSON artifacts from that project.
+
+The final project has passed two independent reopen/replay cycles with Rwp stable to 0.000003% and maximum shift/e.s.d. below 0.002. The exported fractions are 53.67% monoclinic WO₃, 28.41% calcite, 12.28% scheelite CaWO₄, 2.70% orthorhombic WO₃, 2.66% triclinic WO₃, and 0.278% CaO. I’m validating the exported CIF geometry, profile arithmetic, and project/export agreement before writing the uncertainty report.
+
+All requested artifacts are now written. One validation view raced the plot generator and did not inspect the image; the data checks themselves are unaffected. I’m rerunning that final visual/file audit sequentially now.
+
+Completed and validated with two GSAS-II reopen/replay cycles.
+
+Crystalline weight fractions:
+
+- Monoclinic WO₃: 53.671%
+- Calcite CaCO₃: 28.412%
+- Scheelite CaWO₄: 12.279%
+- Orthorhombic WO₃: 2.700%
+- Triclinic WO₃: 2.661%
+- CaO: 0.278%
+
+Fit: Rwp 7.591%, Rp 5.912%, GOF 3.177. Fractions are normalized crystalline fractions. The WO₃ polymorph split is model-dependent, and trace CaO is less certain than its formal e.s.d.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [Monoclinic WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_1_WO3_monoclinic.cif)
+- [Calcite CIF](<ATTEMPT_WORKSPACE>/phase_2_CaCO3_calcite.cif)
+- [CaWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_3_CaWO4_scheelite.cif)
+- [Orthorhombic WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_4_WO3_orthorhombic.cif)
+- [CaO CIF](<ATTEMPT_WORKSPACE>/phase_5_CaO.cif)
+- [Triclinic WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_6_WO3_triclinic.cif)
+

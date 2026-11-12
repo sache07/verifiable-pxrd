@@ -1,0 +1,97 @@
+I’ll first inspect the measurement metadata, pattern shape, and the frozen PXRD workflow, then build a chemically screened phase inventory before refining it in GSAS‑II. I’ll keep candidate rejection residual-led and verify the exported CIFs, fractions, profile, and final project against one another.
+
+The chemistry is MgO + WO₃ fired at 900 °C, so MgWO₄ is the principal expectation, but the inventory must still allow residual MgO/WO₃ and off-stoichiometric Mg–W–O phases. I’m now extracting peak families and checking the permitted COD index and GSAS‑II interfaces so the shortlist is based on the actual scan, not synthesis expectation alone.
+
+The peak inventory is already coherent: the dominant families track wolframite MgWO₄; the extra triplet near 23.44/23.93/24.68° and its higher-angle companions track monoclinic WO₃; and the otherwise-unexplained 43.21° line supports residual MgO. I’m retaining alternate WO₃ records/settings and will compare them under the same background/profile model before deciding which physical structure to refine.
+
+The first restrained three-phase fit gives positive, substantial scales for all three phases (provisionally about 71 % MgWO₄, 19 % WO₃, 10 % MgO before profile/structure convergence). That rules out the idea that the MgO line is merely an overlap. The fit is still converging cells and common peak shape, so those fractions are not yet final.
+
+I’m replaying the plausible WO₃ records in parallel with identical background, angular, cell, and common-profile treatment. The current common profile has acceptable positive parameters but is too broad in its Lorentzian term, a sign that phase-specific size/strain must be separated before the structural or fraction estimates are trusted.
+
+The alternate-record refinements are still running; no intervention is needed. Once they finish I’ll rank them by replayed Rwp and, more importantly, inspect whether each accounts for the WO₃-specific split families without forcing implausible cells or zero scale.
+
+The screening batch is taking longer because several low-symmetry WO₃ descriptions contain hundreds of reflections and are being fully replayed. I’m letting those finish rather than truncating the comparison; the project work is local and deterministic.
+
+The screening rejects the high-temperature/incorrect WO₃ variants decisively. A triclinic record gives the lowest raw Rwp (9.65 %), but only by distorting its source angles by roughly 1° toward monoclinic symmetry—well outside the stated reference perturbation scale—so I’m treating that as flexibility, not phase evidence. The physically stable shortlist is the monoclinic γ‑WO₃ pair (Rwp ≈9.8–10.0 %) plus the clearly established MgWO₄ and MgO.
+
+I’m now comparing size-only, strain-only, and combined isotropic broadening from deliberately narrow common-profile starts. This is the key adequacy test: a useful phase term must lower residuals while returning the shared U/W/X values to the permitted instrument range and remaining stable on replay.
+
+The unconstrained broadening trials exposed the expected correlations: size-only collapses the common profile to zero, while unconstrained strain tries negative values and drives U beyond the laboratory range. Those models are rejected. I’m repeating the combined model with physical bounds (instrument U/W/X and positive phase size/strain) and staged release so boundary behavior cannot masquerade as evidence.
+
+Visual inspection shows the dominant remaining error is intensity, not missing peaks: several low-angle families from different phases are overcalculated together, while mid-angle scale is reasonable. That is the signature to test surface roughness before texture. I’m comparing roughness and polarization corrections under the unchanged inventory/profile, as required.
+
+Roughness is strongly supported (Rwp 9.81 → 8.75 %), and polarization adds independent improvement, but the unconstrained two-parameter fit runs to nonphysical limits. I’m reducing roughness to an identifiable one-parameter correction (fixed plausible A, refined B) and enforcing the stated polarization range before releasing any phase texture or atomic coordinates.
+
+Peak-by-peak width checks show the shared profile is overbroad at high angle (for example MgWO₄ near 58.7° and MgO 200), while low-angle MgWO₄ peaks need extra nearly angle-independent broadening. I’m therefore rebuilding from a narrower fixed common profile and releasing isotropic size one phase at a time, then re-releasing U/W/X only after the phase widths are established.
+
+The staged size refinements are running from four common-profile starting points. I’ll reject any solution that depends on the start, drives sizes to bounds, or re-inflates U/X; the replay-stable basin is what matters, not the single lowest transient Rwp.
+
+The low-symmetry projects are still converging through the sequential releases. This is expected: each candidate is being saved and replayed after five refinement stages, so the comparison also tests persistence rather than only an in-memory minimum.
+
+No errors have surfaced; the batch remains CPU-bound. I’m keeping the current runs because interrupting now would discard the replay comparison that distinguishes stable profile terms from correlated transients.
+
+The size terms are supported for all three phases and converge from the mid/high starts, but U and W still clip at opposite bounds; the low-start solution is unstable. I’m replacing those clipped refinements with a fixed interior common profile (U = 39, W = 2.2), retaining only the replay-supported phase sizes and refined X/SH‑L. This removes bound artifacts before testing strain.
+
+The three-phase inventory is now stable: MgWO₄, monoclinic WO₃, and MgO all have distinct supporting reflections and positive scales. I’ve established a replay-stable baseline with one angular correction, a smooth background, common instrumental broadening, and phase size broadening; next I’m challenging strain, atomic coordinates, and texture one at a time before freezing the final project.
+
+The MgO strain challenge is unsupported: it did not move from its starting value, worsened the profile slightly, and was 98% correlated with crystallite size. I’m retaining neutral MgO strain and checking the two tungstate/oxide trials now.
+
+Both major-phase strain trials reduce the residual, but the unconstrained combinations trade against the common profile or crystallite size at a bound. That is exactly the failure mode the requested protocol warns about, so I’m not accepting those fits. I’m returning to a narrower fixed instrumental envelope and will compare size-only versus strain-only broadening for each phase before combining any terms.
+
+A fixed-profile trial is replay-stable and confirms complementary broadening: MgWO₄ and WO₃ need angle-dependent strain, while MgO is adequately described by size alone. The first decomposition gives an unphysically large effective MgWO₄ domain size, so I’m using the laboratory’s stated 0.04–1.5 µm range as a physical screen and lowering the common Lorentzian width until all phase-size terms are interior.
+
+Heavy-atom refinements are stable and physically small: MgWO₄ shifts are about hundredths of an ångström, and the WO₃ W sites move by roughly a few hundredths to a tenth of an ångström while lowering Rwp. I’m now enforcing the generator’s physically appropriate model of one shared isotropic displacement parameter per phase before deciding whether oxygen-coordinate refinement is supported.
+
+The unconstrained WO₃ oxygen stage is improving Rwp, but several O sites have already moved far beyond the stated 0.01–0.05 Å reference-mismatch scale. I’m letting the replay finish for diagnosis, then I’ll reject or restrain that stage based on geometry rather than accepting the numerical gain.
+
+The GSAS-II hard-limit mechanism is unsuitable for coordinate displacements here—it rewrote clipped displacement variables as absolute coordinates, so that diagnostic project is discarded. I’m switching to a trust-region approach: one damped oxygen-coordinate step, then freezing those positions and replaying. This preserves a reversible parent model and lets the actual Cartesian displacement decide acceptance.
+
+The low-angle correction re-challenge confirms the earlier result: freeing roughness A and polarization drives both to their physical lower limits and destabilizes Uiso, so those extra degrees of freedom are not supported. I’m retaining the one-dimensional roughness model (A fixed at 0.05, B refined) and polarization 0.50, then rebuilding the phase-width model around the refined structures.
+
+The physical rebuild exposes a source-model warning: with the 2311041 WO₃ record, both MgWO₄ and WO₃ domain-size terms collapse toward “no size broadening” even at the minimum common Lorentzian width, and WO₃ oxygen refinement demands implausible shifts. I’m therefore revisiting the alternate ambient monoclinic WO₃ record under the same nuisance model; this tests the record rather than discarding a chemically supported WO₃ phase.
+
+The pruned width model is now replay-stable with no frozen parameters: fixed 1.5 µm effective sizes for the two broad oxide phases, isotropic strains of about 3670 and 4345 ppm, an interior common W of 7.76, and a refined MgO size of 0.130 µm. Its fractions are about 76.7% MgWO₄, 14.8% WO₃, and 8.5% MgO. I’m now testing the three symmetry-distinct uniaxial strain directions for each strained phase.
+
+Uniaxial broadening is supported for both noncubic phases. MgWO₄ clearly favors [001] (about 4060 ppm transverse and 3110 ppm axial), while WO₃ favors [010] (about 4120/5130 ppm); alternate axes fit measurably worse and all accepted values are interior. Next I’m challenging preferred orientation across axial and diagonal low-index directions, including the three distinct cubic directions for MgO.
+
+MgWO₄ texture is not supported: the completed [100], [010], and [110] trials all refine to a March ratio within 0.002 of random powder and give no meaningful residual gain. I’m waiting on [001]/[111], then will apply the same test to WO₃ and MgO.
+
+WO₃ [100] and [111] texture trials also stay close to random (ratios 0.984–0.986) and improve Rwp by only 0.004–0.005. These are too small and too axis-insensitive to justify texture; three directions are still completing.
+
+All texture challenges are now complete. No phase has defensible preferred orientation: major-phase ratios remain within about 1.5% of random, while MgO’s larger ratio change is supported by too few reflections and is nearly scale-degenerate. I’m pruning texture entirely and performing a final joint refinement of only the accepted coordinates, linked Uiso values, cells, scales, background, and profile terms.
+
+The accepted joint model replays at Rwp 6.297% with no frozen parameters. One physical correction remains: MgWO₄ Uiso refines slightly below the laboratory’s 0.003 Å² floor, so it will be fixed at 0.003. Before that final replay, I’m profiling the otherwise non-identifiable common U term across its allowed range; the two phase strains absorb its shared part, while MgO provides the independent high-angle check.
+
+The common-U profile is monotonic through the allowed 0–40 range, so I’m not treating U=40 as an accepted boundary solution. This indicates the earlier neutral MgO-strain decision must be revisited: MgO is the only phase that cannot trade common U against its own strain in the current model. I’m adding MgO strain at an interior fixed U=20 and checking whether size and strain become a stable complementary pair.
+
+The MgO size/strain trial was strongly correlated and did not improve the replayed fit, so I’m treating it as unsupported rather than carrying extra broadening parameters forward. I’m now checking whether the common instrumental-width trend has a genuine optimum or is masking another model deficiency; then I’ll lock the physical baseline, replay it, and export all deliverables from that exact project.
+
+The width profile does not yet show an in-range optimum: increasing common \(U\) beyond the stated source envelope keeps trading against MgO crystallite size and major-phase strain. That is a classic non-identifiability signal, not evidence for an out-of-range instrument. I’m constraining the common profile to the physical source range and will compare one-parameter MgO size-only and strain-only descriptions so the final model does not encode that tradeoff twice.
+
+The common-intensity re-challenge is still converging across six roughness hypotheses. These are independent copies of the same \(U=40\) baseline; the only deliberate difference is whether roughness is absent or \(A\) is fixed across its physical range while \(B\) refines. This directly tests whether the current low-angle correction is real or merely compensating scale/background.
+
+The low-angle correction is decisively supported: removing it raises \(R_{wp}\) from about 6.02% to 7.63%, while the \(A\)-profile has its minimum at the physical lower edge and becomes progressively worse above it. I’ll therefore keep \(A=0.05\), refine only \(B\), and explicitly report their scale correlation. I’m also doing one final geometry cross-check because the fitted constant offset (\(+0.355^\circ\)) plausibly absorbs specimen height; the accepted project will contain only the better of zero or displacement, never both.
+
+The geometry test is decisive: a single specimen-displacement term improves the zero-only model from \(R_{wp}=6.02\%\) to a cycle-0 replay value of \(5.72\%\), with \(-594\ \mu\text{m}\) safely inside the stated ±800 µm range. The associated lattice changes are small and coherent across all three phases. I’m adopting displacement and rebuilding the common-width profile under that geometry before final structural cleanup.
+
+The rebuilt width profile still improves monotonically through the allowed \(U\) interval, so \(U\), major-phase microstrain, and MgO size are not uniquely separable. I’m retaining the best physically allowed endpoint (\(U=40\)) and will state that profile-derived sizes/strains are qualitative. The observed/calculated overlay shows no coherent unmatched peak family; the remaining mismatch is mainly intensity/shape error in overlaps, especially near 24–25° and 53–55°, rather than evidence for a fourth crystalline phase.
+
+The physical cleanup has settled the nuisance model without degrading the fit: fixing the unsupported MgWO₄ displacement parameter at the allowed lower limit and refitting scales/background leaves the replay near 5.72%. Cells have reconverged with no frozen variables. The final two stages release displacement, then only the previously supported coordinates and shared phase \(U_{\mathrm{iso}}\) values.
+
+The final staged refinement now replays stably with no frozen parameters and a maximum shift/esd of 0.003. Structural screening passes: MgWO₄ remains P2/c with shortest W–O 1.80 Å and O–O 2.47 Å; WO₃ remains P2₁/c with shortest W–O 1.72 Å and O–O 2.54 Å; MgO remains Fm-3m. I’m validating the saved project through the same fresh-reflection replay path used by the framework, then I’ll export CIFs and fractions from that exact state.
+
+The final project passed fresh atomic replay unchanged: all three phases exported exactly, fractions sum to 1.000000, the background stays positive, all analytic peak widths stay nonnegative, and the replay raised no review flags. Final agreement is \(R_{wp}=5.7197\%\), \(R_p=4.0995\%\), versus \(R_\mathrm{exp}=2.8626\%\). I’m writing the machine-readable result and the concise evidence/uncertainty report now.
+
+The structures and fractions pass the framework parser and project-to-CIF consistency check. One cosmetic interoperability issue surfaced: the fit checker normalizes `two_theta_deg` differently from its accepted angle aliases. I’m changing only that CSV header to `two_theta`; the 8,301 replayed data rows remain untouched, then I’ll run the final verification once more.
+
+All requested artifacts are now present. The final audit will only re-read them: JSON normalization, CIF physical validity and project equivalence, exact observed grid/profile agreement, and the immutable `final.gpx` hash. No further model changes are planned unless that audit finds a mismatch.
+
+Completed and validated by fresh zero-cycle GSAS-II replay.
+
+- MgWO₄, P2/c: 77.12 wt%
+- WO₃, P2₁/c: 14.75 wt%
+- MgO, Fm-3m: 8.12 wt%
+- \(R_{wp}=5.7197\%\), \(R_p=4.0995\%\)
+
+Files: [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-007-r1-retry1/workspace/result.json), [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-007-r1-retry1/workspace/report.md), [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-007-r1-retry1/workspace/fit.csv), [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-007-r1-retry1/workspace/final.gpx), [MgWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-007-r1-retry1/workspace/phase_MgWO4.cif), [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-007-r1-retry1/workspace/phase_WO3.cif), [MgO CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-007-r1-retry1/workspace/phase_MgO.cif).
+

@@ -1,0 +1,48 @@
+I’ll inspect the pattern, metadata, and the reusable diffraction workflows first, then build a phase inventory and refine it in GSAS‑II with residual-led checks. I’ll preserve intermediate evidence and verify that the final GPX, CIF exports, fractions, and profile all agree.
+
+The chemistry points first toward manganese tungstates, but I’m treating unreacted oxides and alternate Mn–W–O stoichiometries/polymorphs as live candidates. Next I’m extracting the peak families and checking the local structure inventory before any refinement, so weak or poorly matching records are not prematurely discarded.
+
+The peak-family test now gives a coherent provisional inventory: monoclinic room-temperature WO₃ plus cubic bixbyite Mn₂O₃. A common ≈+0.29° angular offset aligns multiple isolated families of both phases (not just the intense 23–25° cluster), while MnWO₄’s diagnostic 15.5°, 18.5°, and 30.0/30.45° families are absent. I’m keeping MnWO₄ and Mn₃WO₆ on the watch list until the common-profile residual is established.
+
+The first common-profile fit converged reproducibly to about 72.8 wt% WO₃ / 27.2 wt% Mn₂O₃, but it is not yet the final model: alternating residuals around isolated peaks show that a constant zero correction is slightly wrong for this reflection-geometry scan. I’m now comparing the physically appropriate specimen-displacement correction and alternate structural records under the same background/profile model before accepting fractions.
+
+Refining the unknown effective polarization was strongly supported (0.744 ± 0.006) and reduced Rwp from 7.70% to 7.00% without a texture term; this confirms the cross-phase intensity trend was instrumental, not a scale/background surrogate. I’m now re-running the alternate WO₃ and Mn₂O₃ records and the phase-specific broadening trials against this corrected common profile.
+
+One baseline defect emerged during the polarization replay: the redundant Gaussian constant term W drifted slightly negative. I’m pruning it to the physical boundary (W = 0, fixed), retaining positive U and X, and then testing the repeated low-angle asymmetry with a single SH/L term. This is the required return to the baseline rather than accepting an interior-looking but nonphysical profile.
+
+The physical baseline now replays cleanly with W fixed at zero; SH/L was unsupported and 98% correlated with displacement, so it is pruned. The isotropic size trials either hit the neutral bound or were weakly correlated; two phase-specific strain terms replayed stably and are being carried provisionally while I test texture axes and watch-list phases.
+
+The phase inventory is now stable: monoclinic WO₃ and cubic Mn₂O₃ dominate, with a reproducible trace MnWO₄ contribution. I’m producing the final replayed GSAS-II project and exports now, then I’ll cross-check every reported fraction and profile point against that saved project.
+
+The final replay converged cleanly (maximum shift/e.s.d. 0.011), and the three crystalline fractions normalize to 100.000%. The trace phase refines to 0.605 wt%; I’m treating that number cautiously because its cell had to remain fixed to the source structure to prevent an unsupported drift.
+
+One source audit caught an important nuance before handoff: the provisional MnWO₄ record comes from a high-pressure study and carries a pressure field, despite its otherwise physical 293 K structure. I’m checking ambient-pressure MnWO₄ records under the same fixed-cell nuisance model; if one fits equivalently, I’ll replace the trace CIF with the better-matched source record and replay everything.
+
+The ambient-compatible alternate is materially better: a 4.2 K hübnerite record with only 3% Fe on the Mn site (replaced by Mn) fits better at fixed cell than the high-pressure record and gives about 0.80 wt% MnWO₄. Releasing its cell moves it to a plausible near-ambient volume and about 1.08 wt%, but I’m replaying that model further because a trace-phase cell is only acceptable if it is genuinely stable, not merely chemically plausible.
+
+The selected trace model is now fixed and replay-stable at 0.798 wt%, with a lower Rwp than the pressure-tagged alternative. Its strongest diagnostic residuals near 18.69°, 30.22°, and 30.57° are substantially reduced. I’m doing the required final watch-list re-challenge against this rebuilt common profile before freezing the report.
+
+The final watch-list pass leaves the three-phase inventory unchanged. Mn₃O₄ collapses to zero; Mn₃WO₆ reaches only 0.22 ± 0.11 wt% and improves a few overlaps while worsening several of its strongest predicted families, so it is not a defensible fourth phase. I’ve written the result and uncertainty report and am running the final artifact-consistency checks.
+
+Completed the crystalline phase analysis. Fractions are normalized over modeled crystalline phases:
+
+| Phase | Weight fraction |
+|---|---:|
+| Monoclinic WO₃, P2₁/c | 71.840 wt% |
+| Bixbyite Mn₂O₃, Ia-3 | 27.362 wt% |
+| MnWO₄, P2/c | 0.798 wt% |
+
+Final fit: Rwp 6.9088%, Rp 5.1260%, GOF 2.5986. The MnWO₄ presence is supported, but its practical fraction is model-dependent, approximately 0.6–1.1 wt%. A subtle cubic-versus-orthorhombic distortion of Mn₂O₃ cannot be resolved reliably.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_1_WO3.cif)
+- [Mn₂O₃ CIF](<ATTEMPT_WORKSPACE>/phase_2_Mn2O3.cif)
+- [MnWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_3_MnWO4.cif)
+
+The 8,301 profile rows, phase fractions, CIFs, and fit statistics were verified against the reopened final GSAS-II project.
+

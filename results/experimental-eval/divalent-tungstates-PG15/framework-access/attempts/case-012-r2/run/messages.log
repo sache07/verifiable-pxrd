@@ -1,0 +1,42 @@
+I’ll inspect the measurement metadata, pattern, and the provided PXRD/GSAS-II tooling first, then identify candidate phases and refine them into a final multiphase project. I’ll keep the deliverables tied to the actual refinement and flag any phase assignment that remains non-unique.
+
+The chemistry narrows the plausible crystalline inventory to Ni–W–O products plus residual NiO/WO₃, but I’m not assuming completion at 900 °C. I’m now matching the observed peak positions against the frozen COD library and checking for weak unmatched peaks before choosing the refinement inventory.
+
+Peak accounting now supports two phases: wolframite-type NiWO₄ explains the dominant series, while monoclinic WO₃ uniquely explains the 23.06/23.53/24.28° triplet and its higher-angle companions. The strongest NiO line expected near 43.4° is absent, so I’m treating NiO as an upper-limit candidate rather than including it by default. Next I’m comparing the plausible WO₃ structural variants by full-profile refinement.
+
+The first screening refinement initialized successfully but the profile-parameter stage needs a longer run than the initial command window. I’m continuing it with staged convergence checks; no phase inventory change is indicated so far.
+
+The structural comparison is decisive for the main phase: the repaired NiWO₄ coordinates from COD 5910277 fit far better than a ZnWO₄-derived analogue (Rwp 4.37% versus 5.40%). For the secondary phase, triclinic WO₃ (COD 2106293) narrowly outperforms the monoclinic alternatives and strongly outperforms orthorhombic/P2₁/m models. I’m now refining the small symmetry-preserving cell/site perturbations and checking specimen effects against the known measurement model.
+
+The site refinements lower Rwp to about 4.02% and recover plausible small shifts; imposing the generator’s common per-phase Uiso gives ~0.0093 Å². I’m now testing the finite set of allowed texture and anisotropic-strain axes. These tests are important because a modest preferred orientation can bias both the refined fraction and atomic coordinates if omitted.
+
+The texture tests refine to essentially random powder (March–Dollase ratios within ~0.5% of 1), and NiO refines to only 0.14(8) wt%, so neither is supported as a modeled phase. The remaining profile mismatch is mostly peak-shape/site-parameter correlation. I found the unconstrained oxygen refinements wander beyond the known synthetic perturbation bounds, so I’m regularizing displacements to the physically allowed 0.01–0.05 Å range before finalizing the structures.
+
+I’ve narrowed the pattern to dominant wolframite NiWO₄ plus monoclinic/triclinic WO₃, with no statistically significant NiO. I’m now locking down a replay-stable GSAS-II refinement, checking the exported structures for physical plausibility, and generating all requested artifacts from that exact saved project.
+
+The replay check exposed one unstable trial with nonphysical displacement parameters, so I’m excluding it. The stable two-phase project is internally consistent; I’m comparing a restrained structural version against the best-profile version before freezing the final model.
+
+A crystallographic cross-check changed the secondary-phase interpretation: the best unconstrained triclinic cell relaxes almost exactly onto a monoclinic metric, while moving too far from the published triclinic WO₃ reference to be explained by the allowed lattice perturbation. I’m therefore re-testing the monoclinic WO₃ model with equivalent refinement freedom; this is the main remaining phase-model ambiguity.
+
+The monoclinic WO₃ model is now decisive: with the same restrained coordinate freedom it fits slightly better than the triclinic alternative and stays within the allowed lattice perturbation, while the triclinic cell had to collapse toward monoclinic metrics. The selected replay-stable model gives 76.37 wt% NiWO₄ and 23.63 wt% WO₃, with full-grid Rwp 4.079% and no physical-screen or replay warnings.
+
+The final artifacts now pass the same consistency checks used by the framework: both CIFs match the saved project atom-for-atom, fractions match exactly, `fit.csv` covers all 8,282 bins, and a fresh project replay reproduces Rwp 4.0785% with no review flags. I’m doing one last residual/inventory audit before handing off the files.
+
+Completed and replay-verified.
+
+- NiWO₄, P2/c: 76.37 wt%
+- WO₃, P2₁/c: 23.63 wt%
+- Full-grid Rwp: 4.0785%; Rp: 3.1799%
+- NiO was below reliable quantification (~0.14(8) wt%) and excluded.
+
+Artifacts:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-012-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-012-r2/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-012-r2/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-012-r2/workspace/final.gpx)
+- [phase_NiWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-012-r2/workspace/phase_NiWO4.cif)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-012-r2/workspace/phase_WO3.cif)
+
+Fresh GSAS-II replay reproduced the submitted profile and fractions with no physical-review flags.
+

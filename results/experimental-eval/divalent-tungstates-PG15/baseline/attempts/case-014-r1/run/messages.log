@@ -1,0 +1,48 @@
+I’ll inspect the measurement metadata and diffraction pattern first, then use the installed crystallography/indexing tools to identify candidate phases and refine a quantitative multiphase GSAS-II model. I’ll preserve the final refinement project and derive all submitted CIFs, fractions, and profiles from that same model.
+
+The chemistry points toward a strontium tungstate reaction product, but I’m treating that only as a search prior: unreacted precursors, polymorphs, or secondary tungstates still need to be tested against every observed peak. I’m now mapping the peak positions and checking the installed phase-search/refinement interfaces.
+
+A first peak-position check already confirms scheelite-type SrWO₄ as a major phase: its diagnostic 112/004/200-family sequence and high-angle reflections recur across the full 10–100° range. Several substantial peaks are not explained by scheelite, so I’m separating that contribution before deciding whether they are residual SrCO₃/WO₃ or a second Sr–W–O phase.
+
+The residual pattern is now more specific: the 23.45/23.97/24.73° triplet and its higher-angle partners are characteristic of monoclinic WO₃, while a strong 29.75° feature still needs testing against unreacted SrCO₃ or another strontium tungstate. I’m moving from peak matching to full-profile candidate refinements so phase inclusion is judged by the entire pattern and physically meaningful scale factors.
+
+The full-profile screen is running across the plausible phase combinations. The one-phase SrWO₄ model leaves a large structured residual (so a single crystalline phase is inadequate); I’m comparing how much each candidate lowers that residual and whether its refined scale remains positive and its cell stays crystallographically sensible.
+
+Both independent monoclinic WO₃ structure settings improve the fit and converge to the same cell volume and roughly 12–13 wt%, which is strong cross-validation of that phase rather than a database-setting artifact. The remaining candidates are being tested for the prominent residual near 29.75° and its matching high-angle lines.
+
+The screening excludes both SrCO₃ polymorphs and the available Sr₃W₂O₉ model: their scale factors collapse to zero instead of accounting for the residual peaks. I’m now inspecting the two-phase difference curve directly; this will show whether the remaining mismatch is an omitted crystalline phase or mainly profile/intensity effects such as texture, anisotropic broadening, or imperfect atomic coordinates.
+
+The two-phase Le Bail test reveals that the large 29.75° peak is accidentally indexable as a nominally near-extinct WO₃ reflection; the structural WO₃ model cannot physically generate its intensity. Its companion lines form a perovskite-like series, so I’m searching local structure data for Sr-rich tungstate analogues (including substitutable A₃WO₆ models) rather than misassigning that intensity to WO₃.
+
+The two-phase model is stable—scheelite SrWO₄ plus monoclinic WO₃—but a set of residual peaks still needs to be tested before I treat it as profile/texture error. I’m indexing those residuals independently and comparing plausible Sr–W–O structures; that will decide whether the final model needs a third crystalline phase.
+
+The residual-line test found a coherent third pattern: the unexplained 30.895°, 32.633°, 54.116°, 61.277°, 78.490°, and 91.747° peaks align with orthorhombic SrO₂ (COD 9008161), while SrO and both SrCO₃ polymorphs miss that sequence. I’m now testing SrO₂ quantitatively in GSAS-II and checking the source CIF’s chemistry—especially whether the old entry omits hydrogen—before accepting the label.
+
+The hydroxide match was coincidental: when its scale was refined against the full profile, it went to zero. A more compelling explanation is a reduced tungsten oxide: W₁₈O₄₉ reproduces not only the WO₃-like 23–25° triplet, but also the otherwise unexplained peaks at about 26.23°, 30.90°, 32.63°, 35.32°, 39.04°, 54.12°, and 57.34°. I’m comparing that whole-pattern model directly with the SrWO₄ + WO₃ model now.
+
+A third phase now has substantially stronger evidence: monoclinic Sr₃W₂O₉ indexes the residual sequence at approximately 29.75°, 32.63°, 44.67°, 48.57°, 57.34°, 67.0°, 72.98°, and 83.91°, and lowers Rwp from 17.77% to about 17.12% even with the first two phases frozen. The current trial has not converged yet, so I’m continuing and regularizing that refinement before using its fraction; the phase is chemically plausible, though its reference structure was originally reported from high-pressure synthesis, which I’ll flag as a model-identification caveat.
+
+The three-phase refinement has converged at Rwp ≈15.29% and about 76.2/11.3/12.5 wt% (SrWO₄/WO₃/Sr₃W₂O₉). A trial that freed atomic displacement factors lowered Rwp further but drove all SrWO₄ displacement parameters negative, so I’m rejecting that statistically attractive but nonphysical model. Because the measurement metadata gives no effective polarization, I’m testing that instrumental correction instead; it is the physically appropriate way to address the systematic high-angle intensity bias.
+
+The unknown-polarization refinement stays physical (effective polarization ≈0.95), and a one-parameter March–Dollase correction for Sr₃W₂O₉ strongly improves its anomalous 29.75° reflection. I also replaced the earlier negative Lorentzian width term with a Gaussian Caglioti profile whose variance remains positive across 10–100°; it costs only ~0.17 percentage point in Rwp. I’m doing the last joint cycle with that more defensible profile, then I’ll export the CIFs and deliverables.
+
+The last unconstrained cycle exposed the remaining boundary: effective polarization tried to refine above 1, which is not physical. I’m fixing it at the physical upper limit (1.0) and re-optimizing the remaining parameters. This is preferable to reporting the slightly lower Rwp from an invalid correction.
+
+Completed the three-phase GSAS-II refinement:
+
+- SrWO₄: 78.55 wt%
+- WO₃: 10.89 wt%
+- Sr₃W₂O₉-like phase: 10.56 wt%
+
+Final fit: Rwp 12.894%, Rp 9.136%, GOF 3.652. The Sr₃W₂O₉ structure and fraction remain model-dependent due to preferred orientation and imperfect intensity agreement.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [SrWO4.cif](<ATTEMPT_WORKSPACE>/SrWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [Sr3W2O9.cif](<ATTEMPT_WORKSPACE>/Sr3W2O9.cif)
+

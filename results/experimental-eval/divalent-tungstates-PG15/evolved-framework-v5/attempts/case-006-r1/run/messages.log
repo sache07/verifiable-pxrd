@@ -1,0 +1,36 @@
+I’ll first inspect the specimen metadata, diffraction grid, and the frozen reference/tooling notes. Then I’ll identify the chemically expected phases, build a complete multiphase GSAS-II refinement, and only investigate residual families if the initial physical model leaves coherent unmatched peaks.
+
+The chemistry is tightly constrained to Cu–W–O after an 800 °C CuO + WO₃ firing, so CuWO₄ is the ordinary product and CuO/WO₃ are the first residual-phase candidates. I’m now checking the frozen COD entries and the observed peak families before committing any structure to refinement.
+
+The peak-family test resolves the apparent mixture: all major reflections follow a single triclinic CuWO₄ lattice. Using an ambient CuWO₄ cell, the entire sequence from 15.61° through the high-angle clusters aligns with one common specimen shift; CuO and WO₃ are not needed. The two exact-composition COD entries are high-pressure structures, so I’m retaining their P‑1 CuWO₄ topology but adapting it to the ambient cell and will refine it against the full grid.
+
+The one-phase model is already physically coherent: before cell/profile refinement it gives about 20.3% Rwp over all 8,301 points, with no extra reflections required. I’m refining calibration and cell first, then peak widths and coordinates in guarded checkpoints; the coordinate stages are the slow part.
+
+The refined model remains single-phase and the coordinate solution is stable. A physically constrained profile (fixed 1 µm size and 1000 ppm isotropic strain, avoiding exact one-phase profile degeneracies) gives 5.44% Rwp; refining the unknown polarization improves this to 5.33% at 0.782, within the instrument’s expected range. I’m now testing only the five supported texture axes and specimen-surface term, keeping whichever is both physical and broadly supported.
+
+A profile-function audit exposed an important distinction: GSAS-II’s default microstrain term here is Lorentzian in tan θ, so it is identifiable from the instrument’s Gaussian U term. I had conservatively fixed it while resolving the exact size/X degeneracy. I’m correcting that by refining only the physical, nonnegative strain term; this should remove the remaining systematic width error without adding an unsupported phase.
+
+All coherent reflections are now assigned, and the accepted model is physically ordinary CuWO₄ with no support for a second crystalline phase. The selected refinement has a valid Cu/W–O coordination network, 7.77 g cm⁻³ density, bounded surface roughness, and a supported [001] uniaxial strain term; texture tests returned March–Dollase ratios within 1.4% of unity and were rejected. I’m freezing the correlated calibration terms at their fitted values, doing the final stable refinement, and exporting the replay-consistent deliverables.
+
+The final stable refinement completed at Rwp 5.134% (Rp 3.616%) on all 8,301 points. I’ve exported the one-phase CIF and normalized fraction; I’m now running the same no-refinement atomic replay logic used for project verification, plus CIF geometry and output-consistency checks.
+
+Completed the refinement.
+
+- Phase: triclinic CuWO₄, space group P −1
+- Crystalline weight fraction: 1.0000
+- Rwp: 5.134%
+- Rp: 3.616%
+- Reduced χ²: 4.476
+
+No coherent residual reflections support CuO, WO₃, or another crystalline phase. The independent atomic replay passed with no profile-review flags and reproduced Rwp = 5.134%.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r1/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r1/workspace/final.gpx)
+- [phase_1_CuWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r1/workspace/phase_1_CuWO4.cif)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r1/workspace/fit.csv)
+
+The 100 wt% fraction is normalized over modeled crystalline phases; amorphous content and trace impurities below the residual/noise limit remain unconstrained.
+

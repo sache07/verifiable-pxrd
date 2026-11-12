@@ -1,0 +1,46 @@
+I’ll inspect the measurement metadata, pattern, and the frozen PXRD workflow first, then build a phase inventory and refine it in GSAS‑II. I’ll keep candidate phases reversible until the residuals and chemistry support the final set, and I’ll verify that every exported artifact matches the saved `final.gpx`.
+
+The chemistry points first to MnWO₄, but the lab protocol permits residual Mn₃O₄/WO₃ and off-stoichiometric intermediates, so I’m not treating that as a one-phase assumption. I’m now mapping the strongest and weakest peak families against the frozen COD library and checking what GSAS‑II automation is already available.
+
+Peak positions and relative intensities match monoclinic wolframite MnWO₄ across low, middle, and high angles; the obvious Mn₃WO₆, Mn₃O₄, Mn₂O₃, and WO₃ records each predict strong unique peaks that are absent. I’m starting the GSAS‑II baseline with MnWO₄ alone, while keeping those four as a watch list for a residual-led re-challenge after the common profile is established.
+
+The first instrument-only baseline reached about 9.32% GSAS weighted-profile R, but it forced the Gaussian \(U\) term negative. That is the expected diagnostic for an inadequate common profile, so I’m rejecting that baseline and testing explicit size/strain broadening with nonnegative instrumental width rather than accepting the numerically lower but unphysical profile.
+
+The first constrained split confirms why the unconstrained fit failed: a strain-only model drives strain negative because the data also require a nearly angle-independent Lorentzian component. I’m therefore testing crystallite size first (with \(X\) fixed at its physical lower limit), then I’ll add strain only if the high-angle families still broaden systematically.
+
+The coherent family-dependent broadening is now resolved: among the symmetry-distinct axes, only uniaxial microstrain along \([100]\) gives a material improvement (bounded profile Rwp 9.08% versus 9.44–9.45% for isotropic, \([001]\), or \([010]\)). Its fitted axial strain is about 7000 ppm and the equatorial term collapses near zero, which is physically allowed and matches the lab’s specimen model. I’m accepting that profile provisionally and reconverging background, scale, angular correction, and cell before testing intensity effects or weak phases.
+
+The intensity trend is physically explained by surface roughness, not by an out-of-range polarization surrogate: with polarization held in its allowed range, \(P\approx0.7\) and Suortti \(A\approx0.15,\ B\approx0.27\) lower Rwp from 9.08% to 5.72%. Fits above \(P\approx0.8\) require negative roughness and are rejected. I’m now testing the five allowed March–Dollase axes against this common baseline; after that I’ll refine the atomic model and re-challenge the phase inventory.
+
+The coordinate and isotropic-ADP refinements are chemically modest and statistically supported, but the residual is still dominated by paired positive/negative lobes around MnWO₄ peaks rather than by new unmatched peaks. That means the inventory is still one phase and the accepted profile needs rebuilding after the structural/intensity changes. I’m re-optimizing the bounded \([100]\) size/strain profile now, then I’ll inspect what coherent residual remains for secondary phases.
+
+The residual-led phase screen does not support a second crystalline phase. Mn₃WO₆, MnO, and orthorhombic Mn₃O₄ collapse to zero scale; spinel Mn₃O₄ stays below 0.04 wt%. Mn₂O₃ and several physically valid WO₃ polymorphs fit only 0.2–0.5 wt% and improve one overlapped low-angle region while worsening their other unique families. I’m therefore retaining them only as an uncertainty/upper-bound watch list, not as identified phases.
+
+After rebuilding the profile, the earlier large \([100]\) anisotropy is not replay-stable: the clean model drives isotropic strain to zero, while the tiny anisotropic alternatives require axial/equatorial ratios outside the lab’s allowed physical range and improve Rwp by only ~0.004 percentage point. I’m pruning microstrain and retaining a simpler positive \(U/W/X\) plus isotropic size model.
+
+The phase inventory is now coherent: MnWO₄ is the only phase supported across independent peak families, while Mn/WO oxide candidates collapse or rely on isolated overlaps. I’m checking the final isotropic-profile reconvergence now, then I’ll freeze the GSAS-II project and generate every submitted artifact from an independent replay of that exact project.
+
+The clean-profile replay is stable: a second bounded search changes Rwp by only 0.0005 percentage point and keeps every width term inside the physical ranges. I’m accepting that small update, reconverging only the correlated scale/background/cell/geometry terms, and then I’ll stop profile iteration unless the independent replay exposes a discrepancy.
+
+Before freezing the inventory, I’m giving the only nonzero watch-list candidates one last scale-only challenge under the final common profile. This is specifically testing whether their gains persist after the profile rebuild and whether they are supported by unique peaks, rather than by one shared shoulder.
+
+The last trace-phase test is still running because the triclinic WO₃ cell adds six weakly determined metric variables. I’m letting that bounded scientific challenge finish; any large or unstable cell movement will itself count against accepting the phase.
+
+The final watch-list challenge rejects those traces on physical/evidentiary grounds: triclinic WO₃ only improves by driving a nonconverged cell ~1.6% smaller, while tetragonal WO₃ and Mn₂O₃ gains are each dominated by one angle window and worsen several stronger unique peaks. I’m freezing the defensible single-phase model now; the report will retain those phases as unresolved sub-percent possibilities, not asserted components.
+
+The frozen project has now passed the evaluator-style atomic replay: one original-data histogram, one positive-scale MnWO₄ phase, fresh reflection generation, nonnegative profile/background, valid polarization, and no physical review flags. I’m deriving `fit.csv`, statistics, and the report from that replay—not from cached GSAS-II arrays.
+
+The submission-level checks now pass as well: `result.json` parses as one complete quantified phase, the CIF passes occupancy/contact screening, the CIF agrees numerically with the phase exported from `final.gpx`, and `fit.csv` is recognized on all 8,301 original bins with recomputed Rwp = 5.30907%. I’m doing one final artifact/hash audit before handing it over.
+
+Analysis complete. The modeled crystalline fraction is 100% wolframite MnWO₄, P2/c, with Rwp = 5.3091%. Possible WO₃/Mn oxide residues below roughly 0.5 wt% could not be established reliably and were excluded.
+
+Artifacts:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-009-r1-retry1/workspace/result.json)
+- [MnWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-009-r1-retry1/workspace/MnWO4.cif)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-009-r1-retry1/workspace/fit.csv)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-009-r1-retry1/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-009-r1-retry1/workspace/final.gpx)
+
+The final project passed fresh atomic replay, CIF/project consistency, fraction normalization, and physical-profile checks.
+

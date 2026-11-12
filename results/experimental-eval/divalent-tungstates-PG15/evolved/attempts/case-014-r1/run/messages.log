@@ -1,0 +1,44 @@
+I’ll first inspect the pattern, metadata, reusable scripts, and available crystallography backends. Then I’ll build a chemically plausible phase inventory, refine it in GSAS-II with residual-led checks, and verify that the exported CIFs, profile, fractions, and project all agree.
+
+The chemistry points first to scheelite SrWO₄, but I’m treating unreacted SrCO₃/WO₃ and alternate strontium tungstates as genuine candidates rather than assuming a single-phase product. I’m now extracting peak families and checking the local COD inventory for exact records and polymorphs before any refinement.
+
+The dominant peak series is unambiguously tetragonal scheelite SrWO₄: its 101, 112/103, 004, 200, 204, 220, 116, and 312 families track the observed pattern across the full range. A substantial second series remains, so I’m indexing those residual peaks and screening Sr-rich tungstate prototypes plus both SrCO₃ polymorphs; this is not consistent with a clean one-phase reaction.
+
+The residual triplet at about 23.45/23.97/24.73° identifies WO₃, but several ambient and high-temperature WO₃ records share that signature. I’m comparing those records under the same background, scale, zero, cell, and profile model; the choice will be based on unique-family residuals and a physically stable scale/cell, not simply the lowest Rwp.
+
+The two-phase fit still shows a coherent high-angle intensity deficit and an unmodeled family near 29.75/30.90/32.56°. Before assigning a third phase, I’m correcting the common baseline: the imported SrWO₄ record carried a generic Uiso and GSAS-II’s default fixed size/strain terms were not neutral. I’m removing those fixed broadening contributions and testing the physically relevant polarization correction first; only then will I re-challenge carbonate and Sr-rich tungstate candidates.
+
+The residual family is well indexed by the exact C2/c Sr₃W₂O₉ record (29.76, 32.64, 44.58, and 48.66° after cell refinement), and its refined scale is clearly nonzero. However, that record was synthesized at high pressure and its β angle moved by about 2°, so I’m not accepting it blindly. Per the analogue search, I’m now comparing isovalent Sr₃WO₆ models derived independently from Sr₃UO₆, Ca₃WO₆, and Ba₃WO₆ parents; this is the key composition/structure ambiguity in the residual series.
+
+The dominant inventory is now clear: scheelite SrWO₄ plus monoclinic WO₃, with a coherent third family best matched by an isovalent Sr₃UO₆→Sr₃WO₆ prototype. I’m now replaying that three-phase model from disk, checking geometry and convergence, then I’ll re-challenge the minor-phase watch list under the rebuilt common profile.
+
+The P2₁ Sr₃WO₆ analogue is numerically strong and replay-stable (about 9.8 wt%), but the unrelaxed U→W substitution leaves three W–O distances at 2.34–2.42 Å—too long for a trustworthy W(VI) octahedron. I’m therefore treating that record as a peak-indexing prototype, not yet an acceptable submitted structure, and testing physically better analogue geometries and constrained coordinate relaxation before choosing the third-phase model.
+
+The residual families separate cleanly: the exact Sr₃W₂O₉ record accounts for lines near 32.60°, 44.66°, and 48.62°, while the physically screened P2₁/c Sr₃WO₆ prototype accounts for the independent 18.1°, 29.75°, 42.15°, 52°, and 61.2° family. Both retain nonzero scale together (currently about 5.6 and 6.5 wt%), so I’m retaining both provisionally and reconverging the common profile before deciding whether the ~1 wt% SrO/SrCO₃ signals survive.
+
+The common profile is now replay-stable at Rwp ≈14.82%. SrO survives as a coherent weak phase (about 1.1 wt%) through several independent families; SrCO₃ does not—its strongest isolated line at 25.56° is absent—so I’m rejecting the carbonate despite a nominal nonzero scale. I’m now challenging isotropic size and strain one phase at a time from neutral values.
+
+The profile challenges are resolved: phase-size terms either hit limits or failed, only WO₃ retains a stable interior isotropic strain term (~1.7×10³ µstrain), and all tested texture axes gave only marginal MD ratios near unity. Refining the scheelite oxygen coordinate is both statistically meaningful and chemically improves the tetrahedron (W–O ≈1.75 Å), lowering Rwp to ≈14.67%. I’m now producing the exact final replay, exports, and consistency checks.
+
+The submitted project and exports now agree exactly: five normalized fractions sum to 1.000000, `fit.csv` contains all 8280 fitted points, its recomputed Rwp matches `result.json` to numerical precision, every CIF parses with the intended formula/space group, and the final disk replay converged at maximum shift/e.s.d. 0.053.
+
+Refinement completed with five modeled crystalline phases:
+
+| Phase | Weight fraction |
+|---|---:|
+| SrWO₄, scheelite | 74.91(34)% |
+| WO₃, monoclinic | 11.47(26)% |
+| Sr₃W₂O₉-like | 5.76(19)% |
+| Sr₃WO₆-like | 6.86(21)% |
+| SrO | 1.01(11)% |
+
+Final fit: Rwp 14.665%, Rp 10.142%, GOF 4.157. The Sr₃W₂O₉ and prototype-derived Sr₃WO₆ assignments remain provisional and their fractions are model-dependent.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [SrWO4.cif](<ATTEMPT_WORKSPACE>/SrWO4.cif), [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif), [Sr3W2O9.cif](<ATTEMPT_WORKSPACE>/Sr3W2O9.cif), [Sr3WO6.cif](<ATTEMPT_WORKSPACE>/Sr3WO6.cif), [SrO.cif](<ATTEMPT_WORKSPACE>/SrO.cif)
+

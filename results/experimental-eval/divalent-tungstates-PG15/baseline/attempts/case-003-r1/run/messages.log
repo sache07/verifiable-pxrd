@@ -1,0 +1,30 @@
+I’ll inspect the diffraction data and metadata first, then identify candidate phases, refine them in GSAS-II, and validate that the exported CIFs, profile, fractions, statistics, and final project all agree. I’ll flag any phase assignment or quantification that remains ambiguous.
+
+The chemistry points toward calcium tungstate formation, but 500 °C can leave precursor or intermediate phases. I’m now extracting peak positions and checking the locally available crystallographic search/refinement backends so the phase count is driven by the pattern rather than assumed from the reaction.
+
+Three crystalline components are now supported by independent peak families: monoclinic WO₃ (the 23–25° triplet), scheelite CaWO₄ (including 18.89°, 29.02°, and 58.16°), and calcite CaCO₃ (29.71°, 39.72°, and 43.47°). All families share an approximately +0.3° specimen-position shift, so I’ll include sample displacement/zero correction before judging lattice mismatches or minor residual phases.
+
+The model comparison strongly favors room-temperature monoclinic WO₃: it reaches \(R_{wp}\approx9.58\%\), while an alternative monoclinic setting/model gives 11.72%, triclinic WO₃ gives 9.66% despite extra cell parameters, and the smaller-cell P2₁/m polymorph fails badly. I’m retaining the simpler P2₁/c model and now checking residual peaks, phase-specific broadening, and any intensity bias that could affect the weight fractions.
+
+The residual contains no independent peak family requiring another phase. A March–Dollase correction along calcite’s natural (104) cleavage direction is statistically supported and lowers calcite’s reflection \(R_F\) from about 2.68% to 1.73%; it materially changes the calcite fraction, so I’ll report that texture correction as the main systematic uncertainty. CaWO₄ and WO₃ texture tests were negligible.
+
+The final refinement is converged and the requested files are written. I’m doing a consistency pass now: reloading the submitted GPX, parsing each exported CIF, checking fraction normalization, and confirming every row in `fit.csv` reproduces the GPX observed–calculated residual.
+
+Completed the three-phase Rietveld analysis:
+
+- Monoclinic WO₃: 60.11 wt%
+- Scheelite CaWO₄: 12.19 wt%
+- Calcite CaCO₃: 27.70 wt%
+
+Fit: \(R_{wp}=7.778\%\), \(R_p=5.752\%\), GOF = 3.255. Fractions exclude amorphous content; calcite texture introduces several percentage points of systematic uncertainty.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_monoclinic.cif)
+- [CaWO4_scheelite.cif](<ATTEMPT_WORKSPACE>/CaWO4_scheelite.cif)
+- [CaCO3_calcite.cif](<ATTEMPT_WORKSPACE>/CaCO3_calcite.cif)
+

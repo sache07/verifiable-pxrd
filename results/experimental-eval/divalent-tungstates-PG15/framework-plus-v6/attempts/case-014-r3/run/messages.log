@@ -1,0 +1,66 @@
+I’ll first inspect the pattern metadata, the frozen baseline workflow, and the available diffraction utilities. Then I’ll build a chemically screened phase inventory, test competing records under a common profile model, and carry the accepted model through GSAS-II refinement and export.
+
+The chemistry is SrCO₃ + WO₃ at 900 °C, so the initial inventory includes scheelite SrWO₄, residual precursor/decomposition phases, and plausible Sr–W–O intermediates or off-stoichiometric products. I’m now extracting the observed peak families and querying the frozen COD index rather than assuming the nominal 1:1 product is the only phase.
+
+The scheelite SrWO₄ family is unequivocal: its isolated reflections recur from 18° through 95°, with the angle-dependent displacement expected from a slightly different cell plus specimen-height correction. A monoclinic WO₃-like triplet near 23.5–24.7° is also plausible, but a substantial set of coherent reflections remains; I’m indexing that residual set and screening off-stoichiometric Sr–W–O prototype families before accepting any minor phase.
+
+The first one-phase refinement confirms that the extra families are real, not background: SrWO₄ accounts for the dominant repeated pattern but leaves organized residuals across the entire scan, and forcing a single common width drives profile terms to bounds. I’m now comparing physical alternate records under the same restrained baseline; the batch is still converging.
+
+Several alternate fits are numerically unstable when their cells are released—useful negative evidence in itself, but I’m not letting those failures contaminate the baseline. I’m retaining their fixed-cell scale tests separately and will only release a candidate cell after its reflection families align coherently.
+
+The residual index points to a distorted double-perovskite-type Sr₃WO₆ phase. In particular, an Sr₃UO₆ parent transformed by U→W predicts the otherwise unexplained 20.7°, 29.5–30.0°, 35.0°, 42.1°, 61.1–62.3°, and 69–70° families. I’ve generated several symmetry-preserving Sr₃WO₆ analogues and am testing them alongside scheelite SrWO₄ and monoclinic WO₃; the defective Ba-parent record was rejected for a 0.68 Å contact.
+
+The candidate survives the common-profile challenge in both P2₁ and centrosymmetric P2₁/c forms. I’m now separating crystallite-size and microstrain contributions phase by phase; this is the key test for whether the apparent Sr₃WO₆ improvement is structural or merely a peak-width surrogate.
+
+The phase-width refinements are computationally heavier than the inventory screens because each stage is replaying the full 10–100° grid. They are still progressing; no additional nuisance terms are being introduced while this comparison runs.
+
+The residual-led search identifies Sr₂WO₅ much more strongly than Sr₃WO₆. A Pnma Ba₂ReO₅ prototype with Ba→Sr and Re→W, after physically expected cell contraction, cuts the weighted residual sum by about 54% on its own and accounts for the two unique low-angle peaks as well as the 29.75°, 30.91°, 32.60°, and 44.65° families. I’m promoting Sr₂WO₅ into the provisional inventory and returning Sr₃WO₆ to the watch list.
+
+The three-phase inventory now gives Rwp ≈10.9% even with an intentionally crude common width, and Sr₂WO₅ refines to about 25 wt%. I’m comparing restrained common profiles with phase-specific size only; this should lower the mismatch without allowing instrument width to impersonate a missing phase.
+
+The three-phase inventory is now coherent: scheelite SrWO₄, monoclinic WO₃, and a Pnma Sr₂WO₅ analogue derived from the Ba₂ReO₅ prototype. I’ve rejected Sr₃WO₆ and other plausible records by replayed residual fits; I’m now tightening the accepted model with cautious coordinate/texture tests, then I’ll export and independently replay the exact final project.
+
+The first coordinate trial is not convincing: scheelite oxygen motion changes Rwp by only ~0.06 percentage point and remains poorly converged, so I will not accept it. The more flexible WO₃ and Sr₂WO₅ trials are still being checked for convergence and physically sensible contacts before any coordinate change is retained.
+
+The broad coordinate refinements exposed an important confounder: they can lower Rwp by distorting bond geometry or by absorbing intensity systematics. I’m therefore rolling back those provisional coordinate changes and challenging the symmetry-distinct March–Dollase texture axes under the same accepted roughness/profile model; only afterward will I revisit small, physically bounded coordinate shifts.
+
+Texture is unsupported: all tested axes refined essentially to unity (dominant SrWO₄ within 0.7%, WO₃ within 1.2%, Sr₂WO₅ within 7.3%) and changed Rwp by at most 0.02 percentage point, so I’ve pruned it. A physically screened refinement of only the Sr/W coordinates in the analogue phase is supported and preserves a 1.77 Å shortest W–O contact; oxygen-coordinate trials in the other phases are being rejected as unstable or marginal. Next I’m rebuilding the common peak profile with sizes temporarily frozen, including a direct asymmetry test.
+
+The common-profile challenge behaved cleanly: freeing U/W/X drove all three terms to physical bounds and froze them, so that model is rejected despite its lower numerical Rwp. SH/L alone converged stably to 0.0238 and is retained. Both uniaxial strain and uniaxial-size challenges were unsupported (strain collapsed/singular; size changed Rwp by only 0.02), so the final peak model remains common U/W/X plus isotropic phase sizes. I’m now completing the required parent-prototype comparison for Sr₂WO₅ before freezing the inventory.
+
+The alternative Pnma A₂BO₅ parents have now been geometry-screened. Their least-strained axis permutations still create 1.19–1.27 Å contacts after mapping to the indexed Sr₂WO₅ cell, versus 1.77 Å for the Ba₂ReO₅-derived model. I’m finishing their fixed-cell scale tests anyway; this prevents rejecting a chemically plausible parent solely because its first structural mapping is imperfect.
+
+The prototype comparison is decisive: under the same fixed indexed cell and nuisance model, the Nd₂TiO₅- and La₂TiO₅-derived alternatives refine the Sr₂WO₅ scale to effectively zero; the Eu analogue becomes singular. The Ba₂ReO₅-derived parent retains ~26.6 wt% and a positive scale. I’m freezing that inventory now and performing the final save–reopen replay and exact CIF/profile exports.
+
+One caveat surfaced in the physical audit: the best-fitting 1960 WO₃ record contains four 1.58 Å O–O contacts. That is not a hard failure, but it makes the detailed oxygen geometry uncertain. I’m running the modern monoclinic WO₃ alternate through the same three-phase profile before deciding whether the modest fit advantage justifies retaining the older record.
+
+The modern WO₃ record is the better choice: it passes the contact screen and, under the same three-phase size/roughness model, gives Rwp 8.376% versus 8.412% for the older record. I’m replacing the provisional WO₃ structure and replaying the already accepted Sr₂WO₅ coordinate, profile, and Uiso stages before regenerating the deliverables.
+
+The modern WO₃ model remains preferred after the full replay: Rwp reaches 7.550%, all contacts pass, and a further W-coordinate trial gains only 0.014 percentage point with >95% coordinate correlation, so it is rejected. I’m now overwriting the provisional exports with this physically cleaner final model and repeating the independent atomic replay.
+
+The structural model is converged and independently replayed. I’m doing the final provenance/geometry checks now, then I’ll add the brief uncertainty report and verify that every submitted artifact agrees with `final.gpx`.
+
+The phase inventory survived the common-profile re-challenge: the minor WO₃ record is physically sound and fits slightly better than its older alternative, while the Sr₂WO₅ analogue is supported by several distinct peak families and does not collapse to zero scale. I’m recording the key limitations explicitly—especially that Sr₂WO₅’s oxygen substructure is prototype-derived.
+
+Final validation passed: all three fractions sum to 1, the 8,282 rows in `fit.csv` match the profile stored in `final.gpx` exactly, the reported Rwp matches the project, no parameters remain frozen, and the independent replay reports no profile-review flags.
+
+Three crystalline phases were resolved; fractions are normalized over modeled crystalline material:
+
+| Phase | Space group | Weight fraction |
+|---|---|---:|
+| SrWO₄ | I4₁/a | 64.31% |
+| WO₃ | P2₁/c | 9.60% |
+| Sr₂WO₅ | Pnma | 26.09% |
+
+Final fit: Rwp 7.5494%, Rp 5.6338%, GOF 2.1384. Sr₂WO₅ is supported by multiple peak families, but its oxygen substructure is analogue-derived and not uniquely determined. Amorphous content cannot be quantified without an internal standard.
+
+Deliverables:
+
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-014-r3/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-014-r3/workspace/fit.csv:1)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-014-r3/workspace/result.json:1)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-014-r3/workspace/report.md:1)
+- [SrWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-014-r3/workspace/phase_SrWO4.cif:1)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-014-r3/workspace/phase_WO3.cif:1)
+- [Sr₂WO₅ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-014-r3/workspace/phase_Sr2WO5.cif:1)
+

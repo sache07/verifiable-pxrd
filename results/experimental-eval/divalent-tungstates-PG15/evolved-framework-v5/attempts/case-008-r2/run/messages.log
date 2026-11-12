@@ -1,0 +1,40 @@
+I’ll first inspect the specimen metadata and diffraction profile, then use the frozen reference/indexing and GSAS-II tooling to identify a chemically plausible multiphase model. I’ll keep the project replayable, verify that every coherent reflection family is accounted for, and only then export the CIFs, profile, fractions, and report.
+
+The chemistry is MnO + WO₃ fired at 900 °C, so MnWO₄ is the ordinary first model, with residual Mn oxides/WO₃ and off-stoichiometric Mn–W–O phases as the main alternatives. I’m now extracting the observed peak families and querying only the frozen COD index for exact Mn–W–O and precursor compositions before building the first GSAS-II fit.
+
+The first one-phase Rietveld fit is computationally heavier than the setup step and is still running. I’m letting the staged background/scale, cell/displacement, and profile refinements finish before interpreting residual peaks; no phase-search expansion is justified until that baseline is stable.
+
+The one-phase MnWO₄ model accounts for every coherent reflection family; the residuals are derivative- and intensity-shaped around MnWO₄ peaks, not a second indexed family. Oxygen-coordinate refinement lowered Rwp from 7.54% to 7.08% while retaining six-coordinate Mn and W polyhedra, so I’m now testing the two physically motivated intensity corrections—surface roughness and a few low-index March–Dollase axes—without reopening phase search.
+
+The physical branches are converging consistently on a single wolframite phase: [110] preferred orientation (March ratio ≈1.07), polarization ≈0.81, and positive isotropic displacement factors. An unconstrained surface-roughness branch drove a parameter negative and was rejected; uniaxial-strain branches were singular and gave negligible gains. I’m retaining the simpler physical model and now refining the remaining independent angular zero plus a smooth-background check.
+
+A coupled polarization/thermal-factor refinement tried to push polarization above its physical range, so I rejected that apparent numerical gain. I’m running a bounded grid over physically allowed polarization and positive isotropic displacement factors; this is deliberately slower, but it prevents intensity parameters from compensating each other unphysically.
+
+The bounded grid is taking longer than expected because several edge combinations are numerically stiff. I’ve allowed enough combinations to complete for a defensible physical comparison; I’m stopping any remaining edge cases rather than spending time on unstable parameter corners, then I’ll retain the best converged in-range checkpoint.
+
+The residual-family test found a real secondary phase: monoclinic WO₃ refines to about 1.83 wt% with a >25σ positive fraction and lowers Rwp from 6.69% to 6.37%. MnO and Mn₃O₄ refine to only ~0.15–0.18 wt% with uncertainties of the same order, while Mn₃WO₆ collapses to zero. I’m accepting MnWO₄ + monoclinic WO₃ and refining the WO₃ cell, then testing only its supported phase-specific peak width.
+
+The geometry screen caught an important problem: the first monoclinic WO₃ reference has a 1.58 Å O–O contact, which is not credible for stoichiometric WO₃. Per the physical-model criterion, I’m discarding that lower-Rwp checkpoint and comparing only same-composition WO₃ references/settings already indicated by the residual family, prioritizing valid WO₆ geometry over the small profile gain.
+
+The physical WO₃ comparison is now restricted to four plausible, six-coordinate WO₆ models. I’m refining scale and cell for each on the same full-grid MnWO₄ checkpoint; the winning model must retain normal O–O/W–O distances as well as broad residual-family support.
+
+The accepted project now uses the physical neutron-derived monoclinic WO₃ model; the defective short-contact checkpoint has been fully replaced. I’ve generated the final project, CIFs, profile, JSON, and report, and I’m doing a last replay-consistency check between `final.gpx`, `fit.csv`, the CIF cells/coordinates, and the reported fractions/statistics.
+
+Completed the PXRD analysis.
+
+Best physical model:
+
+- MnWO₄ (wolframite, P2/c): 97.97(7) wt%
+- Monoclinic WO₃ (P2₁/c): 2.03(7) wt%
+
+Fit: Rwp 6.3515%, Rp 4.4345%, goodness of fit 2.3087. Fractions are normalized over crystalline phases; WO₃ systematic uncertainty is a few tenths of a wt%.
+
+Files:
+
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r2/workspace/final.gpx)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r2/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r2/workspace/fit.csv)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r2/workspace/report.md)
+- [MnWO4 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r2/workspace/phase_1_MnWO4.cif)
+- [WO3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-008-r2/workspace/phase_2_WO3.cif)
+

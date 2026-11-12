@@ -1,0 +1,62 @@
+I’ll inspect the measurement, chemical context, and the frozen PXRD workflow first, then build a candidate inventory and refine it in GSAS‑II. I’ll keep phase inclusion residual-led and verify the exported CIFs, fractions, profile, and project against one another.
+
+The scan is a high-background Cu Kα pattern from the BaO₂–WO₃ system at 200 °C, so the first inventory must include unreacted precursors as seriously as Ba–W–O products. I’m now extracting peak positions and querying the frozen COD index for exact-composition records and physically related polymorphs.
+
+The peak inventory is already coherent: monoclinic γ‑WO₃ explains the characteristic 23–25° triplet and its split higher-angle families, while tetragonal BaO₂ explains the 26–27°, 43°, 47°, and broad high-angle families. I’m fitting that two-phase baseline first; BaWO₄ remains on the watch list because its strongest lines overlap, but its unique 31.9° family is not visibly present.
+
+The two-phase project is refining now. The first passes keep texture, roughness, size, and strain neutral while solving only the smooth background, scales, specimen shift, cells, and a shared nonnegative U/W/X profile; this makes the later phase-specific broadening tests interpretable.
+
+The first simultaneous size/strain trial was deliberately rejected: GSAS drove both phase widths to opposing physical limits and reported singular correlations. I’m now comparing size and strain one at a time, phase by phase, under a fixed common profile—the reversible check needed to distinguish real broadening from parameter tradeoff.
+
+The bounded physical model now gives a stable two-phase fit with plausible common Uiso values and crystallite sizes (~0.11 µm WO₃, ~0.08 µm BaO₂), but isotropic strain sits at the laboratory’s 8000 ppm ceiling. The remaining residual is family-dependent, so I’m testing only the three generator-supported uniaxial strain axes for each phase while holding the accepted size/intensity terms fixed.
+
+The two-phase inventory is now stable: monoclinic γ-WO₃ plus tetragonal BaO₂. I’m finishing the line-broadening comparisons, then I’ll challenge trace BaWO₄ and texture before freezing the final replayable GSAS-II model.
+
+The combined broadening trials reject BaO₂ anisotropy: the apparent gains either hit limits or break tetragonal equivalence. I’m retaining only the reproducible WO₃ [001] broadening candidate and am now testing whether an interior common profile can reproduce it without boundary-driven parameters.
+
+The interior-profile grid is still computing; each branch is independently reconverging background, scales, shift, cells, and both phase sizes. The purpose is to separate real sample broadening from an instrument solution parked at its allowed limits.
+
+The profile grid found a clean interior solution (U/W/X = 35/4/5.5) with essentially unchanged fit and no frozen variables. A strain grid independently confirms that both phases are genuinely very broad/high-strain; reducing strain degrades the whole-angle fit monotonically rather than being absorbed by crystallite size.
+
+The BaWO₄ watch-list challenge converged reproducibly to only ~0.5 wt% and improved Rwp by 0.014 percentage point. That is below what scale alone can establish, so I’m checking its scale significance and its unique 17.3°/31.9° families before deciding whether it is a real trace phase or an overlap/noise surrogate.
+
+The trace-phase test is chemically plausible but fails the residual-led criterion: BaWO₄’s unique 31.85° peak is absent and explicitly worsens when the phase is added, while its nominal scale is borrowed from overlaps. I’m excluding it unless the remaining texture trials reveal a coherent independent signal.
+
+Both accepted texture terms are replay-stable and symmetry-consistent: WO₃ favors [111] (MD ≈ 0.917) and BaO₂ favors the tetragonally equivalent [100]/[010] family (MD ≈ 1.096). Their combined improvement is additive, unlike the rejected trace phase. I’m now testing only the small structural-coordinate adjustments allowed by the source-model uncertainty.
+
+The unconstrained WO₃ coordinate fit lowers Rwp strongly but drives oxygen sites by up to ~1 Å, far beyond the generator’s ≤0.05 Å oxygen RMS and into chemically dubious geometry, so it is rejected as intensity overfit. I’m separating heavy-atom and individual oxygen contributions; only small, source-consistent shifts will be retained.
+
+No atomic coordinate met the physical mismatch envelope independently: the least-squares gains require 0.08–0.97 Å shifts versus the allowed ≤0.04 Å W and ≤0.05 Å O RMS. I’m therefore retaining the chemically screened source coordinates, while keeping the well-determined refined cells, Uiso values, texture, sizes, and scales. Next is the required full-range reopen/replay and final trace-phase re-challenge.
+
+The reopened full-range model is numerically stable (Rwp changes <0.00004 percentage point) and retains 69.0/31.0 wt% across replays. The final BaWO₄ challenge again borrows ~0.5 wt% from overlaps but contradicts its strongest unique 31.85° line, so the submitted crystalline inventory remains two phases.
+
+The final GPX has now passed a read-only atomic replay over all 8,301 original points with no profile-review flags, and both exported CIFs match the replay exports byte-for-byte. I’m generating the exact replay profile and independent full-range statistics now, then I’ll write the concise evidence/uncertainty report.
+
+The full-profile plot confirms that peak positions and widths are broadly adequate, while the largest residuals are intensity—not inventory—errors. I’m making one final, physically constrained coordinate test using the source WO₆ bond network; this can recover small source-model mismatch without allowing the ~1 Å oxygen drift seen in the rejected free-coordinate fit.
+
+The bond-network restraint behaves as intended but is still too weak at ordinary weights: it cuts the intensity residual yet permits oxygen RMS ≈0.55 Å. Stronger branches are running now; acceptance requires oxygen RMS ≤0.05 Å and no degraded source geometry, regardless of Rwp.
+
+The direct coordinate-envelope test is computationally heavier because each branch regenerates the full reflection Jacobian. It is enforcing the actual source-mismatch scale (0.02–0.07 Å) as hard absolute coordinate bounds; this is the decisive check on whether any intensity gain survives a physically permitted structure.
+
+A physically projected coordinate model does survive: scaling the data-supported displacement direction to the generator’s exact element-wise limits gives WO₃ RMS shifts of 0.050 Å (O) and 0.030 Å (W), no frozen terms, and Rwp 8.322%. I’m screening that geometry and testing the single symmetry-allowed BaO₂ peroxide coordinate on the same bounded basis.
+
+The bounded coordinate model improves every 10° interval above 20° and passes the same source-level geometry screen; it also makes the BaO₂ O–O distance more chemically plausible (1.415 Å). I’m adopting it with an explicit report caveat that these small coordinates are prior-limited, while phase identity, cells, and fractions are much more robust.
+
+All final checks pass: `result.json` parses as two valid quantified models, `fit.csv` matches all 8,301 observed points and is recognized by the scorer, the replayed phase fractions agree exactly, and both CIFs agree with the final GPX exports.
+
+Completed. The crystalline model is:
+
+- 68.78 wt% monoclinic γ-WO₃, P2₁/n
+- 31.22 wt% tetragonal BaO₂, I4/mmm
+
+Fractions are normalized over modeled crystalline phases. Full-range replay gives Rwp 8.263%, Rp 6.071%, and GOF 2.273. Sub-percent BaWO₄ cannot be excluded reliably but was not supported by its strongest unique reflection.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r3/workspace/final.gpx)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r3/workspace/phase_WO3.cif)
+- [phase_BaO2.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-002-r3/workspace/phase_BaO2.cif)
+

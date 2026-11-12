@@ -1,0 +1,40 @@
+I’ll first inspect the pattern, metadata, and the frozen powder-XRD workflow, then build a candidate phase inventory before touching refinement. I’ll keep phase identification and nuisance/profile modeling separate, and verify the final exports against the saved GSAS-II project.
+
+The chemistry is Ni–W–O at 900 °C, so NiWO₄ is the obvious principal candidate, but the unknown inventory could also include residual NiO/WO₃ or a less obvious Ni–W–O phase. I’m now checking the actual peak families and the supplied structure-library/index interfaces before accepting any candidate.
+
+The observed families separate cleanly into a wolframite-type NiWO₄ pattern (including the dominant 30.87° line and matching low/mid/high-angle families) plus a monoclinic WO₃ triplet near 23–24.3° and its companion lines near 33–34°. NiO is on the watch list, but its strongest 43.4° family is absent, so the isolated 37.2° feature is not enough to include it. Next I’m comparing several physical wolframite parents and WO₃ polymorphs under a common profile model.
+
+The first common-model refinement is running longer than a quick screening fit because GSAS-II is regenerating full dual-wavelength profiles across all 8,282 bins. The starting cells already align the dominant families to about 0.1° before angular correction; I’m checking convergence and parameter bounds before launching the candidate matrix.
+
+The inventory challenge is decisive: orthorhombic WO₃ leaves coherent unmatched families (Rwp ≈ 9.08%), while monoclinic/triclinic models reach ≈ 6.42–6.45% under the identical fixed-coordinate nuisance model. The physically cleaner P2₁/c neutron model has much better WO₃ structure-factor residuals than the lower-symmetry P‑1 alternative, so both remain in comparison while I test wolframite parent sensitivity and then atomic-coordinate refinement.
+
+Atomic refinement exposed the key model-quality issue: freely refining all WO₃ oxygen coordinates lowers Rwp slightly but creates chemically impossible W–O contacts (down to 0.59 Å for P‑1 and 1.30 Å for P2₁/c). I’m rejecting those overfit variants. The defensible route is refined heavy-atom positions for WO₃, with oxygen refinement confined to the simpler wolframite phase; profile broadening is now being added phase-by-phase to bring the common X term back inside the physically supplied range.
+
+The low-angle discrepancy is background curvature, not roughness: physical roughness values did not improve the 10–20° residual and instead traded against the dominant phase scale. I’m pruning roughness and increasing only the smooth background order enough to represent the measured exponential-like decay; this should remove the broad residual without distorting phase intensities.
+
+The revised baseline is now physically adequate across isolated low-, mid-, and high-angle families, with a positive smooth background and no bound broadening terms. NiO refines to effectively zero scale, including at its unique 43.4° line, so it is rejected. I’m performing the final symmetry-distinct texture challenge one phase at a time; only a replay-stable improvement supported across several families will be retained.
+
+The phase inventory is stable at NiWO₄ + WO₃; NiO has refined to zero and is excluded. I’m resolving the last correlated intensity term (per-phase displacement parameters versus polarization), then I’ll freeze the defensible model, replay the saved GSAS-II project, and export all requested files from that exact project.
+
+Fixing polarization at its independently refined value removes the apparent ADP inflation: the constrained isotropic displacement parameters settle at 0.0053 Å² (NiWO₄) and 0.0068 Å² (WO₃), both physically ordinary. The fit gain is negligible, so I’m checking their uncertainties and will retain only terms that remain independently supported.
+
+The coordinate refinement is now at the practical limit: the WO₃ heavy-atom shifts are supported collectively, but two common-coordinate modes remain ~99% correlated. I’m preserving the best converged, physically screened state rather than chasing a numerically drifting last decimal; this uncertainty will be stated explicitly. Next is a fresh no-refinement forward replay of that frozen project.
+
+The frozen project replayed successfully with no profile warnings and no parameter optimization. Its independently regenerated full-range fit is Rwp = 4.2288%, with 76.113 wt% NiWO₄ and 23.887 wt% WO₃; calculated intensity and background stay positive everywhere. I’m now running export-consistency and geometry checks on the submitted CIFs, then I’ll write the concise evidence/uncertainty report.
+
+Identified two crystalline phases:
+
+- NiWO₄ (wolframite, P 2/c): **76.11 wt%**
+- WO₃ (monoclinic, P 2₁/c): **23.89 wt%**
+
+No detectable crystalline NiO was supported. Fresh GSAS-II replay gave Rwp = **4.2288%**, Rp = **3.2519%**, with no profile or geometry warnings. The main uncertainty is the detailed WO₃ distortion; fractions carry an estimated systematic uncertainty of about ±1 wt%.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r1-retry1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r1-retry1/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r1-retry1/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r1-retry1/workspace/final.gpx)
+- [NiWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r1-retry1/workspace/NiWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-012-r1-retry1/workspace/WO3.cif)
+

@@ -1,0 +1,74 @@
+{
+  "generation": {
+    "availability": [
+      "full",
+      "withhold_principal_composition"
+    ],
+    "fraction_constraint": "positive mass fractions sum to one; detectability reported separately",
+    "instrument_seed": 20261021,
+    "max_components": 16,
+    "noise": "Poisson applied once to physically scaled summed diffraction plus background",
+    "reference_variation": {
+      "implementation": "automatic per-phase reference_mismatch from LAB.md for every case, with element-specific coordinate RMS; curator-selected perturbed source registration using perturb_model.py remains available for larger deliberate variants",
+      "maximum_cell_strain": 0.005,
+      "maximum_position_rms_A": 0.08,
+      "preserve_symmetry": true,
+      "retain_parent_reference_for_refinement_cases": true
+    },
+    "selection": "Research agent chooses cases and sources. Six is the initial batch size, not a lifetime case budget.",
+    "source_model_Uiso_A2": 0.005,
+    "training_cases": 6
+  },
+  "note": "Lab-independent generator settings. Every property of the simulated laboratory comes from the lab settings block in LAB.md.",
+  "schema_version": 1,
+  "solver_evaluation": {
+    "calibration": "submitted project, never generating calibration",
+    "expected_counts": "access only after prediction is frozen",
+    "observed_rwp": "original grid; 1/max(observed,1) weights",
+    "parameters_optimized": 0,
+    "phase_assignment": "maximum_total_credited_agreement",
+    "primary_metric": "profile_primary_agreement",
+    "profile_prediction": "verified_final_gpx_replay",
+    "profile_role": "Primary term: profile = 1/(1 + D). Smaller D means the predicted pattern is closer to the true noise-free pattern.",
+    "structure_role": "Secondary term: inventory, abundance, fractions and scattering-weighted site agreement; cell error reported only.",
+    "structures_and_fractions": "CIF/result.json must agree with final.gpx within declared export-rounding tolerances",
+    "version": "7.0.1"
+  },
+  "verification": {
+    "alternative_solutions": "retain strict recovery and profile-consistency results separately; report unanticipated alternatives for fixed-rule audit without outcome-driven scoring changes",
+    "angular_zero_mode": "known_generating_zero",
+    "candidate_quality": "separate nonnegative known-phase amplitude fit, explicitly not submitted quantitation",
+    "continuous_profile_search": {
+      "ftol": 1e-07,
+      "gtol": 1e-05,
+      "max_nfev": 120,
+      "seed": 735019,
+      "starts": 3,
+      "xtol": 1e-07
+    },
+    "instrument_mode": "known_generating_instrument",
+    "later_score": "Profile agreement (D from verified final.gpx replay against the hidden noise-free pattern) is primary, gated by physical validity; a secondary structural term credits inventory, fractions and scattering-weighted sites. Independent Rwp is a separate diagnostic.",
+    "matcher": {
+      "allow_subset": false,
+      "angle_tol": 5,
+      "attempt_supercell": true,
+      "comparator": "ElementComparator",
+      "ltol": 0.2,
+      "primitive_cell": true,
+      "scale": false,
+      "stol": 0.3,
+      "symmetric": true
+    },
+    "minimum_omission_rms_noise_units": 0.25,
+    "nuisance": "Generation/self-consistency audit only: generating instrument, zero and background shape parameters known; observed-data scale, nonnegative background amplitudes and supported specimen search. This audit does not score solver submissions.",
+    "optional_profile_search": {
+      "coordinate_max_passes": 12,
+      "coordinate_starts": 6,
+      "exhaustive_max_combinations": 4096
+    },
+    "oracle_max_fraction_error": 0.03,
+    "role": "Case-generation/self-consistency checks. Solver scoring is specified separately by solver_evaluation and scorer/config.json.",
+    "submitted_solution": "Legacy structure-only generation audit; final solver scoring is specified separately in solver_evaluation.",
+    "weighting": "1 / max(observed_counts, 1) for submitted fits; 1 / max(noise_free_mean, 1) for detectability checks"
+  }
+}

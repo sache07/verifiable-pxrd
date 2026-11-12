@@ -1,0 +1,47 @@
+I’ll inspect the specimen metadata, pattern, and frozen reference index first, then build and verify a chemically plausible multiphase GSAS-II refinement. I’ll preserve replayable checkpoints and only explore additional phases if coherent residual peak families remain.
+
+The specimen is a CuO + WO₃ reaction fired at 800 °C, so CuWO₄ is the chemically ordinary principal candidate, with CuO and WO₃ polymorphs as plausible residuals. I’m now extracting the observed peak families and querying only the frozen COD index for exact Cu–W–O and precursor compositions before committing to any model.
+
+Peak indexing confirms the dominant family is ambient triclinic CuWO₄ (P\(\bar{1}\)): fifteen independent low-angle reflections fit a≈4.7063, b≈5.8407, c≈4.8789 Å, α≈91.66°, β≈92.52°, γ≈82.75° with only ~0.003° positional RMS after a common specimen/calibration correction. The sole exact-composition COD parent is a high-pressure CuWO₄ form, so I’ll use its topology but initialize the cell at the indexed ambient metric and let the physical structure refine.
+
+The one-phase full-grid Rietveld fit already explains every strong reflection (Rwp 8.46%), and the residuals are derivative/intensity errors centered on CuWO₄ peaks rather than a separate coherent family. I found one nonphysical nuisance result—negative instrumental U—from width-parameter correlation; I’m rolling that back, removing a redundant scale degree of freedom, and refining Cu/W-relative coordinates before oxygen coordinates.
+
+The coordinate refinement remains chemically sensible (shortest W–O ≈1.81 Å; CuO₆ ≈1.88–2.41 Å) and lowers Rwp to 8.02%. Residual-phase screening so far rejects CuO (its scale collapses to zero). Several WO₃ polymorphs give only ~0.2–0.6 wt% and tiny Rwp gains; I’m checking whether any one has broad-family support or is merely absorbing CuWO₄ profile errors.
+
+A broad residual family at 23.44°, 23.91°, 24.68°, 34.48°, 42.20°, 50–56°, and 61–63° indexes consistently as room-temperature monoclinic WO₃. Its positive scale is stable at about 2.05 wt%, while CuO is absent. Among equivalent WO₃ descriptions I’m retaining the physical 1966 neutron P2₁/c model (six-coordinate W); its Rwp is essentially tied with lower-symmetry alternatives, and its geometry is clearly better than the slightly lower-Rwp but under-coordinated historical model. Library search is now stopped.
+
+The accepted two-phase model is now 97.7 wt% CuWO₄ and 2.3 wt% WO₃ with Rwp 7.48%; both coordination environments remain physical. The remaining error is concentrated in peak asymmetry and relative intensities, so I’m testing only bounded, laboratory-supported nuisance terms (axial divergence, surface roughness, polarization, size/strain, and the allowed texture axes), one at a time.
+
+The supported terms improve Rwp to 7.32% at the best checkpoint: polarization 0.697, isotropic microstrain ~793 ppm, weak [100] texture (March ratio 1.018), and SH/L 0.0315—all inside the stated laboratory ranges. A subsequent cycle worsened the fit, so I have rolled back to that best checkpoint. I’m doing one final supported check for uniaxial strain, then bounded coordinate restarts to ensure the CuWO₄ intensity model is not trapped in a local minimum.
+
+The uniaxial [001] microstrain model is supported (≈1091/495 ppm, axial ratio 2.2) and improves Rwp to 7.286%. Coordinate restarts all return the same minimum. A common CuWO₄ Uiso grid improves monotonically up to the laboratory’s stated upper bound (0.020 Å²), giving Rwp 7.174%; I’m checking that bounded model’s geometry and repeatability before accepting it.
+
+The high-Uiso checkpoint is repeatable and remains physically coordinated. A final W/X/size branch lowered Rwp numerically but drove microstrain negative or below the stated range and introduced 99% parameter correlation, so it is rejected. The best physical checkpoint remains Rwp 7.172% with about 97.83 wt% CuWO₄ and 2.17 wt% WO₃; I’m now exporting and replay-checking that exact checkpoint.
+
+I’ve reached a two-phase physical model: ambient triclinic CuWO₄ with a small monoclinic WO₃ remainder; CuO tests collapse to zero scale. I’m now locking the best physically admissible checkpoint, extending it to the complete measured grid, and validating the exported CIFs and fractions through an independent GSAS-II replay before writing the final deliverables.
+
+The minor-phase displacement-factor sensitivity is effectively flat: changing WO₃’s fixed common Uiso from 0.003–0.020 Å² changes Rwp by only ~0.002 percentage point while shifting its fraction from 2.02% to 2.23%. That parameter is not independently determined at this phase abundance, so I’m retaining the conservative 0.008 Å² checkpoint and will treat the resulting fraction spread as a systematic uncertainty rather than claiming the numerically lowest grid point.
+
+The full-grid checkpoint independently regenerates exactly from the atomic models (all 8,301 bins), with no physical-review flags: nonnegative background and widths, positive phase scales, valid ADPs, and polarization 0.986 within bounds. Replay gives Rwp 7.1875%, Rp 5.2023%, and 97.9186/2.0814 wt% CuWO₄/WO₃. A repeat refinement was marginally worse, so I’m preserving the prior full-grid checkpoint as requested.
+
+Final artifacts are now written from the exact submitted `final.gpx`. The CIF geometry parser passes both structures with no flagged contacts, the phase fractions sum to exactly 1, and `fit.csv` matches the original grid/observations and the fresh GSAS-II atomic replay to numerical precision. I’m doing the last packaging check now.
+
+Completed the full-grid GSAS-II refinement.
+
+- Triclinic CuWO₄, P-1: **97.9186 wt%**
+- Monoclinic WO₃, P2₁/c: **2.0814 wt%**
+- Rwp: **7.1875%**, Rp: **5.2023%**
+- CuO was not supported by a stable positive scale.
+- Practical WO₃ fraction uncertainty is approximately ±0.2 wt%; its detailed coordinates are not independently resolvable at this abundance.
+
+Deliverables:
+
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r2/workspace/final.gpx)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r2/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r2/workspace/fit.csv)
+- [CuWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r2/workspace/CuWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-006-r2/workspace/WO3.cif)
+
+The final project was independently replayed over all 8,301 observations with no physical-review flags.
+

@@ -1,0 +1,52 @@
+I’ll inspect the measurement metadata, pattern, and the frozen PXRD workflow first, then build a phase inventory and carry the selected models through a replay-checked GSAS-II refinement. I’ll keep the final exports tied to the exact saved project.
+
+The chemistry narrows the first inventory to Co–W–O products plus residual Co₃O₄/WO₃, but I’m treating those as hypotheses, not assignments. Next I’m matching the observed peak families against all exact Co–W–O/precursor records in the frozen COD and will retain alternate polymorphs where the peak geometry warrants it.
+
+The peak geometry now supports a compact two-phase inventory: monoclinic γ-WO₃ accounts for the 23–25° triplet and its higher-angle families, while Co₃O₄ accounts independently for 19.37, 31.63, 37.20, 45.15, 59.67, and 65.55°. The shift decreases with angle as expected for specimen displacement, so I’m using displacement—not a second zero correction—as the common angular term. CoWO₄ remains on the watch list for a scale/residual challenge after the common profile is stable.
+
+The first restrained two-phase refinement already gives Rwp ≈ 3.6% and a provisional 73.5/26.5 wt% WO₃/Co₃O₄ split. The common-width model is not yet physically acceptable—its Gaussian width reached a bound—so I’m now comparing alternate WO₃ records under the identical nuisance model before assigning phase-specific size/strain.
+
+The alternate-record test rejects the orthorhombic and small-cell monoclinic WO₃ records decisively (Rwp 7.3% and 17.8%). The close contest is the expected γ-WO₃ framework in monoclinic versus subtly triclinic symmetry (3.59% versus 3.58% before phase-width correction), so I’m retaining both symmetry hypotheses while determining which phase actually carries the angle-dependent broadening.
+
+The watch-list challenge is now decisive: three independent, physically screened CoWO₄ wolframite prototypes (CoMoO₄→CoWO₄, FeWO₄→CoWO₄, and ZnWO₄→CoWO₄) all refine to effectively zero scale. The coherent residual improvement comes from isotropic strain on WO₃; size is not independently supported, and Co₃O₄ size/strain trials collapse. I’m pruning those terms and testing the remaining cross-phase intensity effects before any texture or atomic refinement.
+
+A low-angle deficit is supported, but the two raw Suortti roughness parameters are almost perfectly correlated, so they are not separately identifiable. I’m reducing that correction to one effective degree of freedom; the unconstrained polarization-plus-roughness fit hit bounds and will not be retained.
+
+The reduced roughness model is replay-stable (no frozen parameters) and improves Rwp to about 3.45%; its two equivalent one-parameter forms give the same profile, confirming only the low-angle attenuation—not separate A/B values—is determined. I’m now screening symmetry-distinct texture axes; any axis that only improves one overlapping peak or drifts back to a ratio of 1 will be pruned.
+
+The texture screen favors Co₃O₄ [110] over WO₃ texture, but it also exposed a numerical issue: SH/L and specimen displacement remain ~99% correlated, making repeated refinements wander slightly. I’m fixing SH/L at its repeatedly recovered value (~0.035) and reconverging the baseline before accepting texture or atomic-parameter changes; this should separate real intensity gains from replay drift.
+
+The stabilized replay shows neither phase-common Uiso nor the Co₃O₄ oxygen coordinate is supported; both either worsen the fit or hit a bound. A simultaneous 12-parameter W-coordinate release is also unstable against the triclinic cell, so I’m rejecting that unconstrained result and will only retain atomic shifts if a fixed-cell, tighter-bounded test survives physical screening and nuisance reconvergence.
+
+The phase inventory is now stable: triclinic WO₃ and spinel Co₃O₄, with CoWO₄ analogue trials refining to zero scale. I’m finishing two coupled checks—whether the small low-angle attenuation is genuinely supported, and whether WO₃ needs directional rather than isotropic broadening—before freezing and replay-validating the final project.
+
+The attenuation survives when a phase-wide displacement parameter is released, but the phase fraction shifts appreciably; that coupling is now the main quantitative uncertainty. I’m checking the frozen generator conventions and using replay-stable one-at-a-time trials so the final fraction is not chosen from a transient local minimum.
+
+The framework confirms that phase-wide Uiso values and occasional roughness are genuine generator effects, so retaining them is scientifically justified. The best replay-stable path currently gives \(R_{wp}=3.35\%\), but roughness is 98% correlated with absolute scale; I’ll quantify that ridge and report the resulting fraction uncertainty instead of treating the least-squares covariance as definitive.
+
+The width diagnostics are decisive: WO₃ needs uniaxial microstrain along [010] (about 3.32×10³ ppm perpendicular and 2.18×10³ ppm parallel), while [100] is effectively isotropic and [001] is weaker. Releasing the constant Gaussian term also gives a stable improvement; polarization refines reproducibly to about 0.673. I’m combining only those supported terms now.
+
+The final profile model is now physically coherent: instrument \(U/W/X\approx15.9/11.3/7.6\), Co₃O₄ size ≈0.44 µm, and WO₃ [010] microstrain, with no frozen variables or reported high correlations. The CoWO₄ watch-list test is at most ~0.09 wt% before an implausibly large cell distortion, so it remains below reliable detection rather than becoming a third phase.
+
+The retained model has now replay-converged to a maximum shift/esd below \(6\times10^{-4}\), with \(R_{wp}=3.278\%\) and crystalline fractions 0.7674 WO₃ / 0.2326 Co₃O₄. I’m at the verification stage: native GSAS-II forward replay over the untouched 8,301-point grid, exact CIF export, and consistency checks between the project, CIFs, fractions, and profile.
+
+The exact exports now match the verifier’s own CIF exports byte-for-byte, both structures pass occupancy/contact screening, and `fit.csv` reproduces the native no-refit replay over the full original grid. I’m doing one final submission-format and project-integrity audit; no further refinement is being introduced.
+
+Identified two crystalline phases:
+
+- Triclinic WO₃ (P -1): 76.74 wt%
+- Co₃O₄ spinel (F d -3 m): 23.26 wt%
+
+Fractions are normalized over modeled crystalline material; estimated systematic uncertainty is about ±2 percentage points. CoWO₄ was not reliably detected (approximately sub-1 wt% limit).
+
+Final fit: Rwp 3.2779%, Rp 2.3824%, GOF 1.9052. Native GSAS-II replay passed without profile-review flags.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-005-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-005-r3/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-005-r3/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-005-r3/workspace/fit.csv)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-005-r3/workspace/phase_WO3.cif)
+- [phase_Co3O4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-005-r3/workspace/phase_Co3O4.cif)
+

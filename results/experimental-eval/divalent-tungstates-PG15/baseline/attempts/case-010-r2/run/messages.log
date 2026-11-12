@@ -1,0 +1,46 @@
+I’ll inspect the diffraction pattern, metadata, and available crystallography tooling first. Then I’ll identify candidate phases, refine them jointly, and validate that the exported CIFs, profile, fractions, statistics, and GSAS-II project all come from the same final model.
+
+The chemistry points toward manganese tungstates with possible residual oxides, but I’ll let the peak positions and full-pattern fit decide the phase count. I’m now mapping the installed indexing/database/GSAS-II interfaces and extracting an unbiased peak list from the raw scan.
+
+Peak positions resolve the phase inventory cleanly: monoclinic WO₃ accounts for the characteristic 23–25° triplet, while cubic bixbyite Mn₂O₃ is required by its strongest line at 33.27° and corroborating lines at 38.53°, 49.60°, and 55.49°. All of these share an approximately +0.3° instrument/sample offset, which I’ll refine rather than treating as a lattice change. No manganese tungstate peaks are evident at this stage.
+
+The first GSAS-II trial exposed a setup issue rather than a chemistry issue: the imported histogram scale was also flagged for refinement, making it degenerate with both phase scales and collapsing the Mn₂O₃ scale to its lower bound. I’m fixing that scale degeneracy, switching to the better neutron-derived WO₃ coordinates (which reproduce the near-equal low-angle triplet intensities), and staging the profile/lattice refinements more conservatively.
+
+The corrected refinement now supports both phases quantitatively: before lattice refinement it converges near 73 wt% WO₃ / 27 wt% Mn₂O₃, with Mn₂O₃ Bragg residuals around 3–4%. The profile fit has already improved from ~15.6% to ~10.3% weighted R-profile; the longer lattice/profile stage is still running, after which I’ll compare alternate WO₃ symmetry models and test whether any third phase is justified.
+
+The one-phase WO₃ control is decisively worse (Rwp 10.59%) than the two-phase fit (~6.96%), so the Mn₂O₃ assignment is not merely absorbing noise. The symmetry comparisons are still converging; I’m using identical backgrounds, wavelength treatment, and refinement schedules so their residuals and phase fractions are directly comparable.
+
+The WO₃ symmetry test favors the monoclinic P2₁/c model: Rwp 6.94% versus 7.06% for triclinic, despite the triclinic model having two additional lattice variables. A separate monoclinic coordinate set fits much worse (8.34%), which is why the final model will retain the neutron-derived atomic arrangement rather than relying only on matching unit-cell metrics.
+
+A third-phase sensitivity test finds weak positive scales for manganese tungstates: about 1.0 wt% MnWO₄ lowers Rwp from 6.944% to 6.897%, while Mn₃WO₆ gives ~0.9 wt% and Rwp 6.918%. Because sub‑percent phases can easily absorb small profile/model imperfections, I’m checking whether either candidate has independent, non-overlapped reflections and whether the improvement survives better intensity modeling before accepting a third phase.
+
+The minor MnWO₄ assignment has independent support at ~30.14°, 30.57°, 18.84°, and 36.09°, where the two-phase model leaves positive residuals; its strongest modeled contribution is ~150 counts against ~37-count point noise. It also remains strongly favored by BIC despite five added variables. I’m now varying background order, angular range, and profile freedom to make sure its ~1 wt% scale is stable rather than a fitting artifact.
+
+The robustness checks keep MnWO₄ between roughly 0.7 and 1.0 wt% across background orders and fit ranges; the full-range 12-term model gives 0.97(9) wt%. The formal error understates model systematics, so I’ll report the minor fraction cautiously (about 1 wt%, with a practical uncertainty of a few tenths of a percent). A final preferred-orientation check is running, but I will reject it if the March parameter becomes nonphysical or unstable.
+
+Coordinate tests show that refining only the heavy W positions improves Rwp to 6.68% while keeping sensible W–O distances (about 1.76–2.16 Å) and leaving MnWO₄ at 0.96 wt%. Oxygen-coordinate refinements are much less trustworthy with Cu X-rays, so I’ll keep O positions fixed. I’m doing one last competing-minor-phase screen (WO₃ polymorphs and manganese oxides) before freezing the final three-phase project.
+
+The heavy-atom coordinate improvement did not survive repeated convergence checks: the two W y-coordinates oscillate and remain ~98% correlated. I’m therefore fixing all atomic coordinates to the reference structures and retaining only well-determined lattice, scale, zero, background, and profile refinements. This is the more defensible structural model; the report will explicitly note that atomic coordinates cannot be refined reliably from this pattern.
+
+The stable final parameterization is now fixed: full 9.903–100.095° range, 12-term background, reported Cu Kα doublet, refined zero/profile/polarization and major-phase cells, with the weak MnWO₄ cell fixed after its provisional refinement because its individual metrics were unstable. The final cycle converges without singularities (maximum shift/esd ≈0.022). I’m exporting all deliverables from that exact project and then will re-open and validate them.
+
+All required files now pass consistency checks: `final.gpx` reopens with exactly three phases and the reported fractions/statistics; all CIFs parse with the intended compositions and space groups; `fit.csv` has all 8,301 measured points, finite values, and `difference = observed − calculated` to numerical precision. I’m doing the final handoff now.
+
+Completed the three-phase GSAS-II refinement:
+
+- Monoclinic WO₃: 72.21(20) wt%
+- Cubic α-Mn₂O₃: 26.78(19) wt%
+- Monoclinic MnWO₄: 1.01(9) wt% — tentative minor phase
+
+Fit: Rp 4.975%, Rwp 6.845%, GOF 2.575. Fractions are normalized over modeled crystalline phases.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_monoclinic.cif)
+- [Mn2O3_bixbyite.cif](<ATTEMPT_WORKSPACE>/Mn2O3_bixbyite.cif)
+- [MnWO4_wolframite.cif](<ATTEMPT_WORKSPACE>/MnWO4_wolframite.cif)
+

@@ -1,0 +1,74 @@
+I’ll inspect the specimen metadata and diffraction grid first, then locate the frozen analysis tooling and reference index. I’ll build a complete chemically plausible multiphase GSAS-II model before exploring any residual-family branches, and I’ll preserve the best replayable checkpoint as `final.gpx`.
+
+The chemistry points first to scheelite-type SrWO₄, with SrCO₃ and WO₃ as the most plausible residual phases. I’m now checking the frozen solver interface and reference-index conventions, then I’ll compare the observed peak families against those candidates rather than assuming a single-phase product.
+
+Peak-family comparison confirms scheelite SrWO₄ as the dominant phase: its strong reflections track the observed 18.33°, 27.99°, 30.21°, 33.39°, 45.47°, 51.98°, 56.08°, and 57.35° peaks after the expected specimen-height/cell corrections. A separate family around 23.47–24.73° is consistent with residual monoclinic WO₃, while several other peaks remain unassigned; I’m moving to a quantitative GSAS-II checkpoint so those residuals can be mapped cleanly.
+
+The two-phase checkpoint refines to about 88 wt% SrWO₄ and 12 wt% WO₃, but `Rwp ≈ 17.6%` and a coherent residual family remains (notably 29.76°, 32.61°, 44.67°, 48.62°, 53.44°, and high-angle companions). That is too structured to treat as background. I’m testing the exact-composition Sr–C–O and Sr–W–O references against the same checkpoint, while keeping the high-pressure SrWO₄ polymorph diagnostic-only unless it has both broad support and defensible geometry.
+
+The residual-family search has found a strong structural match: a tetragonal tungsten-bronze framework (the Ca₄.₂₆W₁₀O₃₀ reference) predicts the otherwise unexplained 30.9°, 32.6°, 35.3°, 38.2°, 53.4°, and related reflections, with its strongest low-angle lines overlapping the modeled WO₃/SrWO₄ peaks. I’m testing a chemically admissible Sr-for-Ca analogue with a modest lattice expansion and will retain it only if the scale stays positive, the full family is supported, and Sr–O/W–O geometry remains physical.
+
+The bronze model passes the positional test but its published Ca-derived intensities are not yet a physical Rietveld solution: a Le Bail diagnostic drops `Rwp` to about 11.7%, while the structure-factor model only reaches ~17.3%. The residuals also separate into a second near-harmonic family (29.76°, 42.18°, 52.0°, 61.2°, 69.6°, 77.5°) matching an A₃WO₆ framework. I’m testing that family explicitly before committing to the bronze; the Le Bail fit will not be used for phase fractions or submission.
+
+I’ve narrowed the reliable core to scheelite SrWO₄ plus monoclinic WO₃. I’m finishing the residual-phase checks now, then I’ll re-refine that inventory with physically bounded peak-shape and coordinate terms before deciding whether any weak third phase is defensible.
+
+The SrO/SrO₂ branches collapsed to zero scale and then became numerically singular; importantly, their required strong reflection families are absent, so they are not supported phases. I’m now rebuilding the two-phase model from clean starting values, with bounds tied to the synthesis generator’s physical ranges, so the final fit is not benefiting from runaway cell or profile parameters.
+
+The clean refinement is running. The key calibration terms are now explicitly limited to ±0.25° zero offset and ±800 µm displacement, while U/W/X, crystallite size, microstrain, asymmetry, and polarization are confined to the lab’s stated generation ranges; each stage is automatically rolled back if it becomes nonphysical.
+
+The bounded model converged at Rwp ≈ 17.01%, improving on the unconstrained 17.64% fit. It places both phases at very small coherent-domain sizes (SrWO₄ ≈ 0.055 µm; WO₃ at the 0.040 µm lower bound), with microstrain refining to zero; this explains why the earlier unconstrained fit inflated the instrumental W term. I’m now testing intensity-only causes—texture, Uiso, and small symmetry-preserving coordinate shifts—before attributing residual intensity to another phase.
+
+A replay check exposed an important GSAS-II detail: when a bounded variable is frozen at a limit, the stored profile can still reflect the pre-clipped trial value. I’ve rejected those stale 17.01% arrays. I’m re-optimizing from the clipped physical values with boundary terms fixed, then recalculating from zero cycles; only checkpoints whose Rwp reproduces on reload will be eligible for submission.
+
+The replayable two-phase checkpoint is now Rwp 17.39% with physical profile values (U=0, W≈29.85, X≈1.15, SH/L≈0.028; sizes 0.10 and 0.04 µm). Texture tests give only small gains; the only notable one is a bounded [111] March–Dollase term for minor WO₃ (Rwp 17.36%). The strong residual family near 29.75/30.91/32.60/44.65° remains, so it cannot be explained by texture alone.
+
+The remaining peaks form a tetragonal-bronze metric (approximately a≈12.52 Å, c≈3.90 Å): its 410, 221, 311, 610, and 531 reflections map to the strongest unassigned peaks across the scan. Because no exact Sr–W–O reference exists in the frozen index, I’m now comparing the small set of P4/mbm tungsten-bronze prototypes after Sr substitution, requiring a positive scale, a stable cell, and improvement over the full reflection family—not just the dominant 29.75° line.
+
+The bronze prototype has a stable positive scale and improves the full fit to a replayable Rwp 15.92%, giving a provisional ~5.9 wt% fraction. Its indexed cell is robust, but the strongest bronze reflections remain underfit, so the prototype’s structure factors—and therefore its fraction—are not yet reliable. I’m testing light-atom coordinates now, with an automatic geometry check and rollback if W–O/Sr–O contacts or displacements become implausible.
+
+The bronze model accounts for one residual lattice, but the residual plot also separates a second, simpler family: 29.75, 35.30, 50.55, 59.56, 73.28, 81.96, and 94.13° follows rock-salt SrO. The earlier SrO branch started far enough off-position that its scale collapsed before the cell could move; per the “numerical failure is unknown” rule, I’m retesting SrO from the physically calibrated checkpoint with its cell initialized at the supported peak family.
+
+A closer residual decomposition changes the interpretation: 29.75/42.17/52.00/61.23/≈69.5/76–78° is an F-centered cubic sequence with a≈8.55 Å, characteristic of ordered double-perovskite Sr₂(SrW)O₆ = Sr₃WO₆. That stoichiometry is charge-balanced and directly supported by the SrCO₃/WO₃ chemistry. I’m testing an ideal Fm-3m Sr₃WO₆ model now; this is more chemically credible than forcing the reduced tungsten-bronze analogue to absorb those peaks.
+
+All coherent reflection families are now assigned to four positive-scale phases: SrWO₄, WO₃, cubic Sr₃WO₆, and a tetragonal SrₓWO₃ bronze. I’m stopping phase/library search as instructed. The final pass now holds the selected physical profile/texture models, re-optimizes all four scales, then jointly refines calibration and cells; any cell or geometry regression will be rolled back.
+
+The accepted four-phase model now refines replayably at Rwp ≈ 15.25%. A final joint cell/calibration cycle slightly worsened the objective, so I rolled it back to the prior checkpoint. The unconstrained WO₃ heavy-atom branch improved numerically only by moving W by 0.17–0.31 Å and was rejected; a bounded ~0.04 Å coordinate start was retained. I’m now validating exact replay, interatomic geometry, fractions, and output consistency before exporting the deliverables.
+
+A final geometry audit found the current WO₃ reference has an implausibly short O–O contact, so I’m treating that model as provisional. I’m now comparing the exact-composition WO₃ references in the frozen index and will retain the physical one, even if its profile fit is marginally worse.
+
+The frozen index contains two physically sound room-temperature WO₃ models with nearly the observed metric: a neutron-derived monoclinic model (COD 2311041) and a triclinic model (COD 2106293). I’m testing those in the accepted four-phase state; the high-pressure and high-temperature polymorphs are chemically less appropriate here.
+
+The physical neutron-derived monoclinic model is a close fit (Rwp 15.41% versus 15.25% for the defective legacy coordinates) and retains a positive WO₃ scale. That small penalty is not enough to justify the bad O–O contact. I’m mapping the WO₃ texture axis in its transformed setting, then I’ll replay and export the physical model.
+
+The unconstrained coordinate optimizer drove all WO₃ coordinates to parameter bounds and produced nonphysical geometry, so that branch is rejected and the neutron coordinates are restored. This is a numerical failure, not evidence against WO₃. I’m finishing only the stable stages—calibration/cells, profile terms, crystallite sizes, and a full-grid scale/background replay.
+
+The physical WO₃ model is stable through the cell/profile sequence so far. I’m preserving every accepted checkpoint and will use the lowest-Rwp replayable state, not simply the last attempted stage.
+
+A checkpoint audit caught an important GSAS-II scripting trap: refinements overwrite the loaded project in place, so the attempted “rollback” file was not immutable. I’ve stopped that branch. The pre-coordinate automatic backup is intact; I’m restoring from it and will make each remaining trial on a copied GPX before refinement.
+
+The immutable-checkpoint rerun is behaving correctly: rejected trials no longer contaminate the selected state. The final choice will therefore be traceable to a specific accepted GPX, with coordinates unchanged from the physical references.
+
+The corrected refinement converged to a physical model with Rwp 15.214%, slightly better than the discarded defective-coordinate fit. All four phase scales remain positive; WO₃ is now represented by the physical COD 2311041 neutron structure. I’m exporting from that immutable checkpoint and validating replay, geometry, fractions, and file consistency.
+
+All submitted CIFs now pass the geometry audit: WO₃ has six W–O contacts at 1.715–2.159 Å and a 2.539 Å minimum O–O separation; the other phases likewise have ordinary coordination. A zero-cycle replay reproduces the submitted calculated profile exactly.
+
+Completed the four-phase crystalline model:
+
+- SrWO₄: 75.50 wt%
+- Monoclinic WO₃: 14.03 wt%
+- Cubic Sr₃WO₆: 3.95 wt%
+- Sr tungsten-bronze model: 6.51 wt%
+
+Fractions are normalized over modeled crystalline phases. Rwp = 15.214%. The bronze structure and fraction remain model-dependent; Sr₃WO₆ is a moderate-confidence prototype assignment. Zero-cycle GSAS-II replay reproduced the calculated profile exactly.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r2/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r2/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r2/workspace/fit.csv)
+- [SrWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r2/workspace/SrWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r2/workspace/WO3.cif)
+- [Sr3WO6.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r2/workspace/Sr3WO6.cif)
+- [Sr_tungsten_bronze.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-014-r2/workspace/Sr_tungsten_bronze.cif)
+

@@ -1,0 +1,35 @@
+I’ll inspect the diffraction data and metadata first, then identify candidate phases, refine them jointly against the pattern, and verify that the exported CIFs, profile, fractions, and GSAS-II project all agree. I’ll keep the phase count data-driven and call out any ambiguity in the final report.
+
+The chemistry strongly points to the PbO–WO₃ reaction system, but at 500 °C several lead tungstate stoichiometries and residual oxides are plausible. I’m now mapping the peak positions and checking the installed phase-search/refinement utilities before committing to candidates.
+
+The peak sets separate cleanly into three chemically sensible patterns: scheelite PbWO₄ dominates; monoclinic WO₃ accounts for the 23–25° triplet and related lines; orthorhombic PbO (massicot) accounts for the 29.3/30.6° pair and its higher-angle series. I’m testing those three structures together now, including the Cu Kα doublet and the angle-dependent specimen-displacement shift visible across the scan.
+
+The first joint refinement is converging, and all three phase scales are positive and significant. The initial profile fit is intentionally conservative; I’m now tightening the zero offset, unit cells, and crystallite broadening, then I’ll compare alternate WO₃ and lead-tungstate models rather than accepting the first chemically plausible combination.
+
+The chemically correct reference structures are now established, but the absolute fractions move by a few percentage points when unconstrained line-broadening terms are allowed—an expected consequence of having no calibrated instrument profile. I’ve therefore switched to a consistent constrained profile model and am comparing (in parallel) the three-phase solution against vacancy-ordered lead tungstate, litharge PbO, and two-phase omissions.
+
+The comparison jobs are still refining rather than waiting on external services. The key test is whether the extra minor-phase peak families disappear when PbO or WO₃ is omitted; I’m also checking that the vacancy-ordered Pb-deficient model does not gain fit quality merely from its larger cell and extra reflections.
+
+The model-selection result is decisive: the three-phase model gives \(R_{wp}=14.68\%\), versus 15.98% without WO₃ and 17.17% without PbO; litharge is driven essentially to zero. Vacancy-ordered Pb₇W₈O₂₈.₈ is also worse (15.31%), so the dominant phase is ordinary scheelite PbWO₄. I’m now exporting the converged, physically constrained model and checking every deliverable against the saved final project.
+
+The exports are written. I’m doing the final integrity pass now: reopening `final.gpx`, cross-checking its phase fractions and calculated profile against `result.json`/`fit.csv`, and independently parsing each exported CIF to verify formula, symmetry, and refined cell.
+
+Completed the three-phase refinement:
+
+- PbWO₄ scheelite: 72.42 wt%
+- PbO massicot: 16.04 wt%
+- Monoclinic WO₃: 11.54 wt%
+- Fit: Rwp = 14.680%, Rp = 10.206%
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [PbWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_1_PbWO4.cif)
+- [PbO CIF](<ATTEMPT_WORKSPACE>/phase_2_PbO_massicot.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_3_WO3_monoclinic.cif)
+
+All exported values were cross-checked against the reopened final GSAS-II project.
+

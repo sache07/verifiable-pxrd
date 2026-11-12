@@ -1,0 +1,36 @@
+I’ll inspect the pattern metadata and available diffraction tooling first, then index/search candidate phases, refine the best structural mixture in GSAS-II, and validate that every submitted artifact comes from the final project. I’ll keep phase assignments conservative where the data do not uniquely support them.
+
+The measurement is raw Cu Kα reflection data, with no supplied uncertainties or calibrated profile, and the chemistry is constrained only to the Mn–W–O precursor system after mild 300 °C heating. I’m now extracting peak positions and checking the local phase-search/indexing interfaces before committing to candidate structures.
+
+The dominant peak triplet near 23–25° and the accompanying lines near 29°, 34°, 42°, and 50° strongly resemble a distorted tungsten oxide pattern, while weaker features could contain manganese oxide or reaction product. I’m comparing all locally available Mn–O, W–O, and Mn–W–O structures against the full trace, including a possible systematic 2θ offset and Kα doublet.
+
+Two phases are now supported by independent lines: monoclinic WO₃ accounts for the 23–25° triplet and most W-dominated peaks, while rutile-type β‑MnO₂ uniquely explains peaks at about 37.67°, 43.1°, 56.96°, 59.66°, and 72.6°. MnWO₄ would require strong 30–31° peaks that are absent. I’m moving to a two-phase GSAS-II refinement, with phase fractions derived from refined scale factors and with the instrumental offset/profile treated explicitly.
+
+The first full two-phase refinement already reaches \(R_{wp}\approx6.85\%\) with about 69.7 wt% WO₃ and 30.3 wt% β‑MnO₂. Before finalizing, I’m screening the plausible monoclinic/triclinic WO₃ reference models under the same refinement recipe; this tests whether the phase fraction depends materially on the chosen WO₃ polymorph/setting.
+
+The model screen is decisive: the Loopstra–Boldrini monoclinic γ‑WO₃ model (COD 2311041, \(P2_1/c\), an alternate cell setting) gives \(R_{wp}\approx6.85\%\), versus about 8.07% for another monoclinic coordinate set and ≥15% for orthorhombic/triclinic alternatives. Its fraction remains near 70 wt%, so the phase assignment and abundance are stable. I’m checking the residual for any missing crystalline phase and then tightening only defensible profile/structural parameters.
+
+The residual contains no independent unmatched peak series; its largest features are derivative/intensity errors exactly at modeled WO₃/MnO₂ reflections, so a third crystalline phase is not warranted. A physically appropriate Bragg–Brentano specimen-height correction gives the same fractions and slightly better fit than a constant zero offset; refining the previously unknown effective polarization improves \(R_{wp}\) to about 6.49% while keeping WO₃ near 70.2 wt%. I’m testing a small set of remaining physically meaningful corrections and will reject any unstable or highly correlated additions.
+
+The retained refinement model is now fixed: two phases, specimen-height correction, refined cells/scales/effective polarization, and isotropic crystallite-size plus microstrain terms. Preferred orientation refined to essentially unity, axial divergence was strongly correlated with specimen height, and atomic-coordinate trials were >97% correlated, so those additions are being excluded. This leaves a stable quantitative model with an expected fraction near 71/29 and makes the coordinate limitation explicit rather than over-refining it.
+
+The reproducible final refinement completed cleanly with no SVD singularity and a final maximum shift/e.s.d. below 0.1. I’m now validating the saved project against the exported CIFs and profile point-for-point, then I’ll write the concise uncertainty report and remove only the temporary screening artifacts.
+
+Identified two crystalline phases:
+
+- Monoclinic γ‑WO₃: 71.00 wt%
+- β‑MnO₂ (pyrolusite): 29.00 wt%
+
+Fractions are normalized over modeled crystalline material; realistic uncertainty is about ±2 wt%. No crystalline MnWO₄ was resolved. Final fit: \(R_{wp}=6.105\%\), GoF = 2.270.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [phase_beta_MnO2.cif](<ATTEMPT_WORKSPACE>/phase_beta_MnO2.cif)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+
+The final project was reloaded successfully, both CIFs were independently parsed, and `fit.csv` was verified point-for-point against `final.gpx`.
+

@@ -1,0 +1,62 @@
+I’ll inspect the measurement metadata, pattern, and reusable refinement utilities first, then build a chemistry-aware phase inventory before fitting. I’ll keep candidate rejection residual-led and verify that the final exports exactly match the saved GSAS-II project.
+
+The chemistry suggests a Ba–W–O reaction mixture, but 200 °C is low enough that unreacted precursor or metastable/intermediate phases remain plausible. I’m now extracting peak positions and checking the installed phase-search/refinement interfaces; I won’t assume BaWO₄ is the sole product.
+
+The peak inventory resolves into two coherent families: monoclinic WO₃ accounts for the 23.4/23.9/24.65° triplet and its higher-angle repetitions, while tetragonal BaO₂ accounts for 26.31/27.05/33.55° and matching higher-angle lines. The strongest nominal BaWO₄-only line near 31.9° is absent, so BaWO₄ is currently a watch-list phase rather than accepted. I’m comparing alternate WO₃/BaO₂ records and then will refine them under one common instrumental/profile model.
+
+I’ve selected physically credible starting records: ambient tetragonal BaO₂ (I4/mmm, intact peroxide dumbbells) and room-temperature γ-WO₃ (P2₁/n, fully occupied distorted WO₆ network). The alternate “BaO₂” monoclinic record is actually a hydrogen-bearing high-pressure composition and is unsuitable; the older WO₃ alternatives will still be tested by scale/fit, not discarded on metadata alone.
+
+The first quantitative passes confirm both phases at nonzero scale (roughly 61 wt% WO₃ / 39 wt% BaO₂ before adequate line-shape modeling). Peak positions converge with a small common angular correction, but the neutral-width baseline is intentionally poor (Rwp ≈36%); the active run is now separating common instrument broadening from phase size/strain.
+
+A physically constrained replay (instrument U/W/X all nonnegative and fixed near resolution-limited values) improves to Rwp ≈8.80% using positive phase broadening. Both phases require microstrain; BaO₂ also clearly needs finite-size broadening. WO₃ size and strain are highly correlated, so I’m now pruning/replaying single-term variants and will only retain complementary, stable terms.
+
+The anisotropy challenge is informative: BaO₂ broadening is not isotropic. A tetragonal-axis strain model improves χ² materially; fully generalized Stephens strain adds parameters without improving on the simpler axial model. Size anisotropy gives only a small further gain, so I’m treating it cautiously while testing WO₃’s symmetry-distinct directions.
+
+The alternate-record replay changes the structural choice: the newer triclinic WO₃ record fits substantially better than both monoclinic records under the same isotropic nuisance model (Rwp 7.44% versus 7.90% and 8.80%). The orthorhombic polymorph is decisively poorer (9.70%). I’m therefore carrying triclinic WO₃ forward, while checking that its advantage survives conditioning, anisotropy tests, and full-range replay rather than accepting it from Rwp alone.
+
+The triclinic advantage survives the full physical replay. Its isotropic size and strain are both required, and a stable six-term diagonal Stephens microstrain subset improves Rwp to 7.09% with every retained coefficient >4.8σ; replay converges without SVD loss or negative widths. I’m screening the remaining cross terms one at a time so unsupported anisotropy is not carried into the final project.
+
+I’m finishing the profile-model comparison now. The key remaining checks are replay stability, preferred orientation/polarization, and a clean re-test of the plausible BaWO₄ product phase before I freeze and export the exact GSAS-II project.
+
+The eight-coefficient WO₃ strain model does not replay: its cross terms oscillate and the fit moves between local solutions. I’m pruning it. The six diagonal Stephens terms replay cleanly (Rwp 7.0935%, no singular values, fraction changes below 0.004 wt%), so that is the defensible anisotropic baseline for the remaining tests.
+
+The common-width screen is now physically coherent: only U remains positive and replay-stable; W went negative, X was singular, and SH/L went negative and correlated 97% with zero, so those are rejected. Polarization refines stably to about 0.766. A 10-coefficient polynomial is materially smoother against the data than 6–9 terms while remaining slowly varying; I’m using that converged baseline to challenge texture rather than letting texture mimic the intensity trend.
+
+Preferred orientation is absent for BaO₂ and negligible along five of six tested WO₃ axes. A weak WO₃ [101] March–Dollase term is the sole reproducible exception (about 0.969 ± 0.004), with a modest but real residual reduction; I’m retaining it provisionally while I test whether any Ba–W–O product can account for the same residuals instead.
+
+The weak-product challenge is not robust enough to add a phase. BaWO₄ refines to ~0.15 wt% only when forced narrow and to zero when broadened; its unique 32.16° line sits on a negative residual. Ba₃WO₆ appears only when forced broad and disappears when narrow. Those are width-dependent residual surrogates, not coherent phase families.
+
+A genuine structural correction did emerge: the BaO₂ oxygen coordinate refines from z=0.404 to 0.3938(9), improving Rwp by ~0.06 points and giving a physically sensible peroxide O–O distance near 1.46 Å. I’m retaining that coordinate and rebuilding the texture check around it.
+
+The full six-term Stephens model is statistically stronger but was stopping on GSAS-II’s loose default Δχ² criterion while some strain shifts remained above one standard uncertainty. Before discarding needed anisotropy, I’m tightening the convergence criterion by three orders of magnitude and replaying it; this distinguishes true instability from premature stopping.
+
+The tight-convergence replay is taking many cycles rather than immediately declaring convergence, which confirms the earlier stopping criterion was masking the issue. I’m letting this complete, then I’ll keep the anisotropic model only if a second full replay returns the same coefficients without singularities or negative widths.
+
+The tighter solve converged the six-term model once, but the next replay exposed ~90% correlations among two strain terms and WO₃ size and eventually stalled. I’m therefore screening reduced positive Stephens subsets now; the stable uniaxial fallback is already available, so the final project will not carry a numerically fragile profile merely for a lower Rwp.
+
+The reduced screen confirms the six-term model is not acceptably conditioned, so I’ve selected the replay-stable WO₃ [011] uniaxial strain model. Re-testing texture on that profile changes the preferred axis: [001] is now the best supported low-index direction (MD ≈0.991), while BaO₂ remains texture-free. I’m replaying that simpler model and will use it unless the parameter drifts.
+
+The stable model now replays to Rwp 7.0851% with max shift/σ 0.017, zero singular values, and fractions stable to 0.001 wt%. The observed/calculated profile tracks peak positions and widths from the 23–27° multiplet through the 69–93° families; the largest remaining errors are intensity/shape residuals on overlapping low-angle WO₃ peaks, not unexplained sharp lines. I’m now doing the exact full-range final replay and export.
+
+One final geometry check is warranted before I lock the report: the fitted constant zero is relatively large (~0.300°) and correlated with lattice scale. I’m comparing it directly with a specimen-displacement-only model, keeping every other term unchanged; the submitted project will use whichever correction gives the cleaner low-to-high-angle position trend.
+
+The displacement-only alternative is requiring a full cell re-optimization rather than a quick parameter swap, so it is taking longer than the final zero model. That behavior itself is informative, but I’m waiting for the converged profile comparison rather than judging from intermediate cells.
+
+The zero-only model is decisively preferred: the displacement-only replay converged at Rwp 11.51% versus 7.08% and introduced >95% profile correlation. The submitted project therefore keeps the single constant zero correction. All requested files are now generated; I’m running cross-file consistency checks against `final.gpx`.
+
+Two crystalline phases were identified, normalized over modeled crystalline material:
+
+- Triclinic WO₃ (P -1): **65.10 wt%**
+- Tetragonal BaO₂ (I4/mmm): **34.90 wt%**
+
+Formal fraction uncertainty is ±0.14 wt%; profile-model uncertainty is approximately ±0.5 wt%. No Ba–W–O product was reliably detected. Final fit: Rwp 7.0839%, Rp 5.3439%, GOF 1.9493, with a clean replay and zero singular values.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3_triclinic.cif](<ATTEMPT_WORKSPACE>/WO3_triclinic.cif)
+- [BaO2_tetragonal.cif](<ATTEMPT_WORKSPACE>/BaO2_tetragonal.cif)
+

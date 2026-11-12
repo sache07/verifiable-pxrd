@@ -1,0 +1,44 @@
+I’ll first inspect the specimen metadata, diffraction grid, and the frozen analysis tooling/reference index. Then I’ll build the ordinary chemically supported phase inventory, refine it in GSAS-II, and verify that the exported CIFs, profile, fractions, statistics, and `final.gpx` all reproduce the same checkpoint.
+
+The specimen is a 500 °C Co₃O₄/WO₃ reaction measured as raw Cu Kα₁/Kα₂ counts on a 10–100° grid. I’m treating CoWO₄ plus residual reactants/decomposition products as the initial chemical hypothesis, but I’ll let the coherent peak families decide the actual inventory and will stop searching once those families are assigned.
+
+Two strong families are already clear: monoclinic room-temperature WO₃ accounts for the dominant 23–25° triplet and its higher-angle multiplets, while cubic Co₃O₄ accounts for the 31.6/37.2/45.2/59.7/65.6° sequence. I’m now testing whether the weaker residuals require wolframite CoWO₄ (or another W oxide) before fixing the phase count.
+
+A first two-phase Rietveld checkpoint reaches \(R_{wp}=3.38\%\) with positive, chemically sensible fractions near 71.4 wt% WO₃ and 28.6 wt% Co₃O₄. That is already close to the expected precursor mass ratio, and no distinct CoWO₄ 30.4/30.7° family is visible. I’m checking the residual family-by-family and replacing the provisional over-flexible peak-width fit with bounded instrument plus phase-specific broadening before deciding whether any third phase is real.
+
+The heavy-atom WO₃ refinement gives a small, physical improvement (\(R_{wp}=3.23\%\), W shifts only about 0.01–0.04 Å). A simultaneous oxygen refinement tried to run far beyond chemically credible displacements, so I rejected that branch and retained the heavy-atom checkpoint. I’m now comparing the close monoclinic/triclinic WO₃ references under the same bounded profile model; this is the last structural-reference check before final refinement.
+
+The conventional monoclinic WO₃ entry (COD 1528915) is decisively worse under the same model (\(R_{wp}\approx4.79\%\)) and pushes several profile terms to bounds. The alternate-setting monoclinic model already used (COD 2311041) remains the physical incumbent; the remaining comparisons are running only to exclude lower-symmetry/orthorhombic decoys.
+
+The close triclinic WO₃ alternative fits slightly worse (\(R_{wp}=3.30\%\) versus 3.23% for the monoclinic incumbent), while the older/orthorhombic alternatives are substantially worse or numerically invalid. A physical wolframite CoWO₄ test drives its scale to the GSAS-II floor (effectively zero), consistent with the missing 30.4/30.7° family. The accepted inventory is therefore fixed at WO₃ + Co₃O₄; I’m stopping phase search and refining only supported calibration/specimen/structure terms.
+
+Specimen terms are now constrained by the data: surface roughness refines to essentially zero, and preferred-orientation ratios stay within 1.2% of random, so both are rejected. WO₃ does show supported uniaxial microstrain along \(b\) (about 4127/3070 ppm), lowering \(R_{wp}\) to 3.20%; Co₃O₄ remains isotropic. I’m testing the final physically expected phase-wise displacement parameters next.
+
+The chemically supported inventory is now WO₃ plus residual Co₃O₄; a CoWO₄ trial refined to zero scale and no unassigned reflection family remains. I’m consolidating the best physical checkpoint, checking its geometry and convergence, then I’ll export the replayable project and requested deliverables.
+
+The accepted model gives 74.9/25.1 wt% and Rwp ≈3.19%, but the last pass exposed a 99% correlation between zero offset and sample displacement. I’m removing that numerical ambiguity by holding the current zero calibration fixed and re-refining the physically angle-dependent displacement; this should preserve the fit while making the saved solution stable and replayable.
+
+One physical issue remains in the reference import: WO₃ lacked reported displacement parameters, so GSAS-II imported them as zero. I’m doing a small bounded common-Uiso scan within the laboratory’s plausible 0.003–0.020 Å² range; this tests the high-angle intensity balance without adding unconstrained atom parameters.
+
+The bounded scan converged cleanly. A moderate fixed WO₃ Uiso gives the same 75/25 result while improving the full-range intensity fit; larger values force polarization and Co₃O₄ displacement parameters to their limits, so I’m retaining the interior solution rather than the lowest boundary-driven Rwp. Next I’m validating bond distances and then freezing only the strongly correlated asymmetry term for the final replay.
+
+Geometry checks are physical: WO₃ retains sixfold W–O coordination at 1.74–2.13 Å, and spinel Co₃O₄ gives tetrahedral/octahedral Co–O distances near 1.92–1.93 Å. The final refinement is converged (maximum shift/e.s.d. 0.12), so I’m exporting all deliverables directly from that exact checkpoint.
+
+All requested files are present. I’m doing the final integrity pass now: reopening and replaying `final.gpx`, checking that both CIFs parse with the intended formulas/space groups, and independently recomputing Rwp and the phase-fraction sum from the exported files.
+
+Identified crystalline phases, normalized over modeled crystalline material:
+
+- WO₃, monoclinic P2₁/c: 75.04 wt%
+- Co₃O₄, cubic Fd-3m: 24.96 wt%
+
+Final fit: Rwp 3.168%, Rp 2.271%, GOF 1.843. CoWO₄ was tested but refined to zero scale; trace material below roughly 0.5–1 wt% cannot be excluded.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r3/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r3/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r3/workspace/fit.csv)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r3/workspace/WO3.cif)
+- [Co3O4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/attempts/fwaccess-v5-exp-case-005-r3/workspace/Co3O4.cif)
+

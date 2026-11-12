@@ -1,0 +1,68 @@
+I’ll first inspect the measurement metadata, pattern shape, and the reusable analysis tooling in `learned/`. Then I’ll build a chemically plausible phase inventory, test candidates against peak positions and intensities, and only carry supported phases into a replayed GSAS-II refinement.
+
+The chemistry points first to MgWO₄, with unreacted MgO/WO₃ and Mg–W–O polymorphs as the initial watch list. I’m now extracting the observed peak families and checking what GSAS-II automation and reference-structure sources are available locally before choosing records; no phase count will be assumed from the precursor list.
+
+Peak-family screening now supports three phases, not one: wolframite-type MgWO₄, room-temperature monoclinic WO₃, and residual rocksalt MgO. Their diagnostic families occur at approximately 15.93/19.24/30.81°, 23.43/23.93/33.57°, and 37.30/43.21/62.54°, respectively. I’m using the room-temperature WO₃ record (P2₁/n) rather than high-temperature or high-pressure polymorphs, and will explicitly re-challenge the alternatives after a common profile is established.
+
+The three-phase baseline is converging cleanly: after allowing the cells to adjust, the weighted profile residual dropped from about 24% to 14.4%, and all three phase scales remain positive. The provisional crystalline fractions are roughly 78% MgWO₄, 14% WO₃, and 8% MgO; I’m now refining only the common nonnegative U/W/X width terms and checking whether phase-specific broadening is genuinely needed.
+
+The common profile is physically well behaved (U, W, and X are all positive and away from bounds), but the strongest low-angle MgWO₄ peaks show the same asymmetric residual shape. I’ve released only the axial-divergence term and am comparing that against a specimen-displacement model, lower/higher background order, and plausible fixed polarization values before adding any phase-specific broadening or texture.
+
+The initial SH/L improvement was not replay-stable—the saved project continued moving when reopened—so I’m not accepting that intermediate minimum. The one-at-a-time size/strain trials likewise do not earn their extra parameters once replayed. I’m now forcing repeated save/reopen cycles until the common-profile solution itself is stationary; only then will I judge texture or minor-phase polymorphs.
+
+The replay-stable baseline settles at Rwp ≈ 10.36% with a positive common profile (U≈55, W≈12.4, X≈8.14) and SH/L≈0.0318. Isotropic size/strain trials for all three phases are statistically unsupported (values smaller than their uncertainties; one strain trial becomes nonphysical), so those terms are being pruned. Texture axes are now being challenged from that stable baseline.
+
+A single, symmetry-distinct MgWO₄ [110] March–Dollase term is strongly supported (1.0845±0.0033), improves several independent families, and is completely replay-stable; axial and other diagonal trials are much weaker or null. With that profile fixed as the common nuisance model, I’m now re-testing room-temperature, triclinic, orthorhombic, tetragonal, high-pressure, and equivalent-setting WO₃ records.
+
+The unconstrained WO₃ source screen found the accurate room-temperature neutron model (COD 2311041) best, with triclinic WO₃ close behind and high-temperature/high-pressure forms much worse. However, every freely rebuilt trial pushed the common W term slightly negative, so those low Rwp values are not admissible. I’m re-running the comparison with W fixed at the physical boundary (0) and U/X/SH/L free; this keeps the source comparison fair without accepting a profile surrogate.
+
+The constrained physical model remains best for room-temperature monoclinic WO₃ (COD 2311041): Rwp 7.58%, versus 7.64% for the low-temperature triclinic form and 11.40% for orthorhombic WO₃. Replacing placeholder zero ADPs with constrained common isotropic terms gives positive, well-determined values (W ≈0.0154 Å²; O ≈0.0207 Å²), but those terms correlate with the unknown effective polarization and shift the WO₃ fraction by about 1.4 wt%. I’m quantifying that model dependence before fixing the reported fraction.
+
+With the final common ADP/profile model, triclinic WO₃ is only marginally lower in Rwp (7.332% vs 7.355%) and requires a much larger effective oxygen Uiso (~0.039 Å²); the room-temperature monoclinic neutron structure gives more restrained ADPs and matches the expected ambient phase field. I’m retaining monoclinic WO₃, while treating the monoclinic/triclinic distinction as a small residual uncertainty, and doing the last zero-vs-displacement/background-order checks on that exact model.
+
+On the final common profile, MgWO₄ isotropic size is unsupported, but an isotropic microstrain term is reproducible and physically meaningful (970±102 µstrain). It lets the minor WO₃/MgO families share a narrower common profile while accounting for the broader MgWO₄ families, so I’m provisionally accepting it and checking whether either minor phase needs an additional complementary term.
+
+The three-phase inventory is now stable: wolframite MgWO₄, monoclinic WO₃, and rocksalt MgO. I’m doing the last residual-shape check, then I’ll replay the accepted model over the entire measured range and export every deliverable from that exact saved project.
+
+The residuals still concentrate around the strongest modeled reflections, not at a new set of unindexed peak positions. A few peak-shape lobes are family-dependent, so I’m explicitly challenging the two strained phases with low-index uniaxial strain models before freezing the profile; this is the final nuisance-model comparison.
+
+The anisotropy grid is still running cleanly; it compares seven crystallographic directions for each of MgWO₄ and WO₃ from the same converged isotropic baseline. I’ll retain a direction only if the added parameter is physical, significant, and replay-stable.
+
+No variant has failed or hit an immediate numerical stop; output is buffered until the grid finishes. The broader search is deliberate here because an anisotropic term can otherwise mimic phase fraction or instrumental width.
+
+The WO₃ [011] anisotropy is strongly supported (about 19σ for the axial component and a clear Rwp drop), while remaining well below its allowed bound. I’m now checking whether MgWO₄ anisotropy adds independently and whether any size term remains after those strain terms; unsupported size terms will be removed.
+
+The follow-up is taking longer because each candidate is being saved, reopened, and replayed four times rather than judged from a single cycle. That directly tests the “reversible/replay-stable” requirement and catches parameters that only look favorable transiently.
+
+The process remains active with no failed variant; GSAS-II is buffering the per-model summaries. Once it finishes, I’ll select the smallest adequate model, extend the limits to the exact measured endpoints, and do the final stationary replay.
+
+One important issue surfaced: the retained WO₃ record uses an equivalent but highly skewed β≈136° cell, which makes two cell metrics strongly correlated in GSAS-II. I’m converting that exact neutron structure to a conventional equivalent cell before final refinement; this changes only the crystallographic basis, not the phase or atomic arrangement, and should remove the numerical correlation.
+
+The basis transformation is correct, but the generated CIF labeled the transformed glide as standard `P2₁/c`; GSAS-II correctly rejected that mismatch. I’m relabeling the equivalent setting as `P2₁/n` (space-group No. 14), which matches the transformed symmetry operators, then rebuilding again.
+
+The rebuilt conventional-cell project is refining successfully now. It uses the exact same physical WO₃ structure and mapped strain direction, but the full measured 9.903–100.095° range is active and the problematic skew-cell metric pair is gone.
+
+The conventional setting removed the WO₃ cell correlation, but it also exposed that the added MgWO₄ anisotropy is coupled to the common X width term (76.7%) and prevents a valid convergence. Per the pruning rule, I’m rejecting that MgWO₄ anisotropy and retaining its simpler isotropic strain; the strongly supported WO₃ anisotropy remains.
+
+The minimal accepted model is now fixed: isotropic strain for MgWO₄, uniaxial [110] strain for conventional-cell WO₃, no crystallite-size terms, and no MgO broadening. I’m writing `final.gpx` with three full-range save/reopen refinements—the last replay is expected to be the converged stationary state used for all exports.
+
+The final replay is converged over all 8,301 observations: Rwp 6.739%, Rp 5.262%, Rexp 2.863%, GOF 2.358. The normalized crystalline fractions are 78.31% MgWO₄, 14.61% WO₃, and 7.08% MgO; I’m exporting CIFs, the exact profile arrays, and the machine-readable result from this unchanged project now.
+
+The structural exports pass independent geometry checks: all three CIFs parse with the intended compositions and space groups, all occupancies are full, and cation–oxygen coordination distances are chemically sensible. I’m running one final consistency audit across `final.gpx`, `result.json`, `fit.csv`, and the exported CIF cells before handing it over.
+
+Completed the full-range GSAS-II refinement. The modeled crystalline composition is:
+
+- MgWO₄ wolframite: 78.31 wt%
+- Monoclinic WO₃: 14.61 wt%
+- MgO periclase: 7.08 wt%
+
+Fit: Rwp 6.739%, Rp 5.262%, GOF 2.358. No coherent fourth crystalline phase was supported. Fractions are crystalline-normalized; realistic systematic uncertainty is approximately ±1–2 percentage points.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- CIFs: [MgWO4.cif](<ATTEMPT_WORKSPACE>/MgWO4.cif), [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif), [MgO.cif](<ATTEMPT_WORKSPACE>/MgO.cif)
+

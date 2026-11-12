@@ -1,0 +1,64 @@
+I’ll inspect the measurement metadata, pattern, and the frozen PXRD workflow first, then build a chemically screened phase inventory and refine it in GSAS-II. I’ll keep phase identification residual-led and verify that the exported CIFs, fractions, profile, and saved project all agree.
+
+The chemical prior is CaCO₃ + WO₃ fired at 500 °C, so the initial inventory must include CaWO₄ plus plausible residual/decomposition phases—but I won’t assume that inventory from chemistry alone. I’m now extracting peak families and matching them against the frozen COD library, including alternate records/polymorphs where a plausible record fails.
+
+The peak families already separate into three coherent groups: monoclinic WO₃ (the 23–25° triplet), scheelite CaWO₄, and calcite CaCO₃. The whole pattern is displaced by roughly +0.3° 2θ, so I’m comparing candidate records under one common angular correction before judging any record by scale or residual.
+
+The three-phase inventory refines to nonzero scales and drops the baseline Rwp from ~30% to ~11%, which confirms all three phases are needed. The unconstrained common profile tried to use a negative W and an implausibly large U, so I’m rejecting that nuisance solution and returning to a nonnegative instrument baseline before adding phase-specific size/strain one phase at a time.
+
+With size and strain separated, the common profile is now nonnegative (U = 0, W ≈ 13.5, X fixed at its lower trial bound) and the isolated families are broadly reproduced; Rwp is 8.78%. Calcite size is unsupported and ran to the no-broadening limit, so that term will be pruned. I’m comparing the alternate common zero correction and a second physically valid WO₃ record under this same nuisance model before refining intensities or anisotropy.
+
+The displacement-only model is slightly better (Rwp 8.780% versus 8.819%) and requires much smaller phase-cell changes, so I’m retaining specimen displacement and fixing zero at zero. The fit has three strong, phase-specific scale contributions; I’m now re-running the physically valid triclinic WO₃ alternate under the identical profile restraints to make sure the selected monoclinic record is not just benefiting from nuisance flexibility.
+
+Normalizing the COD records to the generator’s documented common isotropic ADP convention improved Rwp to 8.62% and stabilized the fractions near 57% WO₃, 12% CaWO₄, and 31% CaCO₃. I’m now profiling one shared Uiso per phase over the physically allowed range; this addresses the coherent high-angle intensity trend without adding atom-by-atom thermal parameters.
+
+Common SH/L and polarization changes were unsupported, and the roughness pair was 100% correlated for only a 0.026-point Rwp gain, so I’m rejecting all three as nuisance surrogates. The next check is phase-width anisotropy: symmetry-distinct uniaxial directions will be challenged one phase at a time, with both strain components required to remain physical and replay-stable.
+
+The phase inventory is stable at monoclinic WO₃, scheelite CaWO₄, and calcite CaCO₃. I’ve rejected alternate WO₃ records and unsupported common-profile terms; I’m now testing symmetry-distinct preferred-orientation axes before moving to restrained coordinate refinement and final replay verification.
+
+WO₃ texture is unsupported: every tested axis stays essentially random and improves Rwp by at most 0.014 percentage point. CaWO₄ shows a possible [001] effect, so I’m completing all distinct axes and will retain it only if the improvement is reproducible and not acting as a scale/background surrogate.
+
+The texture sweep found modest, phase-specific improvements: calcite [001] converged cleanly; the nominal CaWO₄ [111] solution did not (maximum shift/esd remained ~17), so it is provisional rather than accepted evidence. I’ll now refine the symmetry-allowed atomic coordinates from both textured and untextured baselines; this is the cleanest way to see whether those intensity trends are genuine orientation or merely compensating for source-structure mismatch.
+
+The first coordinate test is decisive and physical in both branches: refining only the two WO₃ W sites lowers Rwp by about 0.24 point, converges to shift/esd <0.15, and moves the sites only 0.03–0.05 Å—exactly the scale expected from the synthetic source mismatch. Oxygen-site tests are now running.
+
+The unconstrained O refinements are acting as surrogates: WO₃ O sites drift by 0.2–0.4 Å and CaWO₄ O by 0.14–0.18 Å, far beyond the generator’s 0.01–0.05 Å oxygen mismatch. I’m rejecting those coordinates. I’ll rebuild with only the physically supported WO₃ W displacement and the small calcite O shift, then repeat the texture challenge on that clean baseline.
+
+After rebuilding the physical coordinate model, WO₃ again shows no credible texture (ratios remain within ~2% of random). The small calcite O shift is retained; I’m completing the CaWO₄/calcite axis replay to decide whether either orientation term survives without absorbing atomic-position error.
+
+Both texture terms survive the clean-coordinate replay: CaWO₄ [111] refines to ~1.31 and calcite [001] to ~0.94, while calcite’s O shift contracts to a physically plausible ~0.013 Å. I’m retaining those terms provisionally, reconverging from disk, and then re-profiling the per-phase isotropic displacement values so the scales and fractions are not biased by the earlier coarse model.
+
+The updated displacement profile has a clear WO₃ minimum near Uiso = 0.009 Å². CaWO₄ is trending higher than the earlier coarse estimate, so I’m letting that profile finish before fixing the phase scales; each trial is being fully re-refined rather than read from a single covariance step.
+
+The profile widths and positions are now consistent across low, middle, and high angle, but several WO₃ intensities remain structured. Rather than release all 18 WO₃ oxygen coordinates—which produced nonphysical drift—I’m testing one independent O site at a time and will keep only replay-stable gains that preserve the known ≤0.05 Å aggregate mismatch envelope (with a small tolerance).
+
+Only WO₃ O5 survives the site-wise challenge: it improves Rwp significantly for three coordinates while keeping the six-site oxygen RMS at 0.035 Å and the largest shift at 0.085 Å. The other O sites either offer negligible gain or require 0.14–0.27 Å displacements, so they remain at the published positions. I’m freezing the validated coordinates now and replaying all common scales, background, displacement, cells, and accepted profile terms from disk.
+
+The final candidate is physically clean and stable: all three exported structures pass the contact/occupancy screen, no parameters are frozen, and save/reopen replay converges at max shift/esd 0.059. The crystalline fractions are 56.12% WO₃, 12.19% CaWO₄, and 31.69% CaCO₃; model variants move these by roughly 1–2 percentage points, larger than the covariance-only errors. I’m now producing the submission files and independently replaying `final.gpx` against the original pattern.
+
+The independent replay succeeds and reproduces all three CIF exports exactly. One validation script assumed an older parser return shape; I’ve corrected the fit header to the scorer’s recognized format and am rerunning the submission parser and profile checks directly.
+
+A final geometry audit found that continued joint refinement had let the WO₃ W-site RMS drift just beyond the generator’s 0.04 Å envelope, despite the earlier accepted W-only solution being within it. I’m correcting this with a one-dimensional profile along the refined displacement direction (0–0.04 Å), fixing the selected bounded value, and then regenerating/replaying the deliverables so the submitted structure remains physically defensible.
+
+The bounded W-site model costs only 0.013 Rwp point and leaves fractions essentially unchanged, while satisfying the physical displacement envelope. The regenerated project now converges at shift/esd 0.011; I’m doing the final schema, geometry, hash, fraction, and profile-consistency checks on the exact files to be returned.
+
+Completed and independently replay-verified.
+
+Crystalline-normalized phase fractions:
+
+- Monoclinic WO₃: 56.12 wt%
+- Scheelite CaWO₄: 12.13 wt%
+- Calcite CaCO₃: 31.75 wt%
+
+Final fit: Rwp 7.7864%, Rp 5.9728%, GoF 3.2572. Estimated model-dependent fraction uncertainty is approximately ±2 wt% absolute.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-003-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-003-r2/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-003-r2/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-003-r2/workspace/final.gpx)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-003-r2/workspace/phase_WO3.cif)
+- [CaWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-003-r2/workspace/phase_CaWO4.cif)
+- [CaCO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-003-r2/workspace/phase_CaCO3.cif)
+

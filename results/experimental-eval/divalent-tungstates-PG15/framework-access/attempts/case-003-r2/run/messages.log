@@ -1,0 +1,46 @@
+I’ll inspect the measurement metadata, diffraction pattern, and the framework’s analysis guidance first, then identify candidate phases and refine them in GSAS-II. I’ll preserve a reproducible final project and validate that every reported fraction and profile comes directly from that refinement.
+
+The scan is a full raw Cu Kα pattern (10–100° 2θ, 8,293 points) from CaCO₃ + WO₃ fired at 500 °C. That chemistry admits product CaWO₄ plus residual/decomposition phases, so I’m now extracting peak positions and checking the frozen COD/GSAS-II interfaces rather than assuming a single product.
+
+Peak positions separate cleanly into three familiar fingerprints, all sharing roughly the same positive angular shift: monoclinic WO₃ (23.4/23.9/24.7° triplet), scheelite CaWO₄ (18.9/29.0/31.7°), and calcite CaCO₃ (29.7/39.7/43.5°). I’m testing those assignments against complete calculated patterns and setting up a three-phase Rietveld refinement; weaker unassigned peaks will be used to decide whether a fourth phase is needed.
+
+The three-phase model is refining now. The peak widths are strongly phase-dependent—CaWO₄ is substantially broader than calcite and WO₃—so I’m retaining separate crystallite-size/microstrain terms; a single common profile would bias both fractions and minor-phase identification.
+
+The current refinement already accounts for essentially every visible peak, supporting exactly three crystalline phases. I’m comparing the two closest monoclinic/triclinic WO₃ references now; their low-angle triplets are similar, but the 33–56° peak splitting and relative intensities provide a discriminant.
+
+The monoclinic WO₃ reference derived from COD 2311041 is clearly superior to the alternative monoclinic parent (about two percentage points lower Rwp before coordinate refinement). The triclinic comparison is slower because it carries extra cell degrees of freedom; I’m letting it finish to avoid mistaking flexible overfitting for a genuine phase assignment.
+
+The constrained run confirms why the earlier fit was deceptively low: unconstrained GSAS-II drove instrumental widths negative. With the laboratory bounds enforced, the common profile reaches its physical limits, indicating that phase-specific broadening—and likely anisotropic strain—must carry the remaining width. I’m keeping the bounded result and will grid-check any parameter that freezes at a limit.
+
+Texture is modest but detectable: CaWO₄ favors a [111] March–Dollase correction (ratio ≈1.17), calcite shows a weaker [001] effect, and WO₃ is essentially random. The remaining dominant residual is a common low-angle intensity bias, so I’m testing the generator’s bounded surface-roughness model next.
+
+With anisotropic strain and per-phase Uiso included, Rwp has fallen from 8.47% to 7.48%. The strongest remaining errors are peak-shape/intensity redistributions rather than missing reflections, so I’m now revisiting the common instrumental profile after those specimen terms are fixed; this avoids forcing U/W/X to compensate for anisotropic phase broadening.
+
+The phase assignment is now stable: scheelite CaWO₄, calcite CaCO₃, and monoclinic γ-WO₃ account for the full pattern. I’m finishing the last profile-model checks, then I’ll export the refined CIFs and validate that the saved GSAS-II project reproduces the submitted fit and fractions.
+
+The physical profile terms are behaving consistently with the laboratory model: the no-roughness control is measurably worse (Rwp 7.43% versus 7.37%), while all refined phase-broadening and calibration parameters remain inside the generator’s allowed ranges. I’m doing one final refinement loop to remove dependence on staging order and to settle the reported fractions.
+
+The final loop improved the fit to Rwp ≈ 7.31%; the remaining mismatch is concentrated in relative intensities of heavily overlapped WO₃ peaks, not unexplained peak positions. I’m rechecking the low-angle roughness term against multiple starting points because it is the main systematic parameter that can bias phase fractions even when the phase identities are secure.
+
+The roughness check converged to a weak but nonzero low-angle correction; a zero-roughness model was substantially worse. Re-optimizing the already selected texture axes reduced Rwp to 7.25% without changing the three-phase conclusion. I’m now freezing that model, exporting the exact project-backed CIFs/profile, and running consistency checks on every deliverable.
+
+The deliverables now pass the same structural and profile checks used by the framework: all three CIFs pass occupancy/contact screening, fractions sum exactly to 1.0, `fit.csv` preserves all 8293 observations, and independent GSAS-II replay reproduces Rwp 7.2536% with no profile-review flags. I’m making one last saved-array/replay comparison so opening `final.gpx` shows the same profile that was submitted.
+
+Completed the three-phase Rietveld model:
+
+- Scheelite CaWO₄ (*I*4₁/*a*): 13.13 wt%
+- Calcite CaCO₃ (*R*-3*c*): 31.15 wt%
+- Monoclinic γ-WO₃ (*P*2₁/*c*): 55.71 wt%
+
+Fractions are normalized over crystalline phases. Rwp = 7.254%, Rp = 5.292%. Independent GSAS-II replay validated the project, profile, CIFs, and fractions.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-003-r2/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-003-r2/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-003-r2/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-003-r2/workspace/final.gpx)
+- [CaWO4_scheelite.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-003-r2/workspace/CaWO4_scheelite.cif)
+- [CaCO3_calcite.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-003-r2/workspace/CaCO3_calcite.cif)
+- [WO3_monoclinic.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/attempts/framework-access-exp-case-003-r2/workspace/WO3_monoclinic.cif)
+

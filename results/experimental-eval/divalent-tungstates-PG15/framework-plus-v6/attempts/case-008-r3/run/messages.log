@@ -1,0 +1,43 @@
+I’ll inspect the pattern, metadata, and the learned PXRD workflow first, then build a chemically screened phase inventory before refining. I’ll preserve a replayable GSAS-II project and verify every exported result against it.
+
+The chemistry points first to Mn–W–O products (especially wolframite-type MnWO₄), but I’m treating that only as a hypothesis. I’m now matching the observed peak families against exact Mn/W/O entries and plausible residual or intermediate phases, including alternate records before rejecting any composition.
+
+The peak positions and systematic absences match monoclinic wolframite MnWO₄ across the full 10–100° range, including the diagnostic 30.1/30.6° double family and dense high-angle families. The sole exact library entry is a 2.4 GPa structure, so I’m using it only as a parent and will refine its ambient cell/coordinates; I’m also keeping Mn₃WO₆, MnO, and WO₃ variants as explicit challengers for residual peaks.
+
+The baseline is physically coherent: one displacement correction, positive U/W/X, and a smooth six-term background. Surface roughness is strongly required, while size and isotropic strain collapse to their neutral limits or become nonphysical, so I’m rejecting those phase-width terms. I’m now separating roughness/polarization/atomic-coordinate effects before testing texture or extra phases.
+
+A coherent residual phase has emerged: residual WO₃ families at ~23–24°, 33–35°, and higher angles refine to a positive ~2.3 wt% scale with >25σ support. I’m comparing the physical WO₃ polymorph records now; the first two both fit, with monoclinic P2₁/c currently better than triclinic P-1.
+
+The inventory is now coherent: MnWO₄ is dominant, with a reproducible ~2.3–2.4 wt% room-temperature monoclinic WO₃ contribution. I’m tightening the common peak-shape model now; the low-angle asymmetry is real and strongly improves the fit, but I’m constraining the Gaussian width terms to stay physical before re-challenging trace phases.
+
+The asymmetry scan locates a clear constrained optimum near SH/L ≈ 0.06–0.07. An unconstrained least-squares step tries to make W slightly negative there, so I’m treating that as a boundary signal—not accepting it—and testing the same range with W fixed positive plus phase-specific broadening trials.
+
+The broader residual has been removed with a still-smooth 10-term background over the 90° scan; the remaining misfit is peak-local. I’m now re-testing the full precursor/oxide watch list under that cleaner profile, including MnO, Mn₂O₃, Mn₃O₄, and Mn₃WO₆, so a weak coherent family is not lost as a profile artifact.
+
+A physically useful width decomposition has emerged: isotropic terms were nearly degenerate, but uniaxial MnWO₄ microstrain along [001] improves Rwp from 4.20% to 4.10%, keeps both strain components positive, and restores the common U/X terms to a plausible range. The [100] and [010] alternatives are distinctly worse, so I’m retaining [001] provisionally and rebuilding the SH/L profile around it.
+
+The WO₃ polymorph check is now resolved physically rather than by a tiny Rwp difference: the triclinic parent can lower Rwp by only ~0.006 percentage point, but its refined α and γ shift by roughly a degree toward monoclinic metrics—far beyond a credible source mismatch and inconsistent with room-temperature WO₃. The room-temperature neutron P2₁/c model remains the defensible assignment; I’ll flag the near-degenerate triclinic fit as residual polymorph uncertainty.
+
+The final width terms no longer collapse: once both supported microstrain terms are present, a positive W grid has a shallow minimum near 5 (U≈30, X≈0.9), with all common-profile coefficients positive. I’m moving off the artificial W=2 boundary to that interior physical solution and checking its stability against SH/L.
+
+The accepted nuisance model is now replay-stable: all U/W/X terms are positive (about 35.3/3.18/1.25), SH/L is 0.076, and the [110] March–Dollase term is mild but significant (1.0117±0.0023) across several isolated families. I’m freezing this model, removing a stale unused ADP constraint, and doing the required save–reopen–full-range replay before export.
+
+Completed the full GSAS-II refinement and native replay.
+
+- MnWO₄, wolframite P2/c: 97.585 wt%
+- Monoclinic WO₃, P2₁/c: 2.415 wt%
+- Rwp: 3.9058%; Rp: 2.9841%; GOF: 1.4157
+
+The WO₃ fraction has a formal uncertainty of 0.06 wt%, though model uncertainty is closer to ±0.3 wt%. Trace Mn oxides below roughly 0.2–0.3 wt% cannot be excluded reliably.
+
+Outputs:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r3/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r3/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r3/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r3/workspace/final.gpx)
+- [MnWO4 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r3/workspace/phase_1_MnWO4.cif)
+- [WO3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-008-r3/workspace/phase_2_WO3.cif)
+
+The final project replays over all 8,301 observations with no negative-background, peak-width, polarization, or ADP flags.
+

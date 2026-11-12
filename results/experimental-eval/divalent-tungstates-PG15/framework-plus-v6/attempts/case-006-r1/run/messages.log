@@ -1,0 +1,45 @@
+I’ll inspect the measurement metadata, pattern, and the frozen PXRD workflow/tooling first. Then I’ll build a chemically plausible phase inventory, refine it in GSAS-II with residual-led challenges, and verify that the exported CIFs, profile, fractions, statistics, and final project all agree.
+
+The chemistry narrows the principal candidates to Cu–W–O phases plus residual CuO/WO₃, but I’ll treat that only as an inventory prior. I’m now checking the configured scientific environment and the exact GSAS-II replay/export expectations before identifying peaks or selecting database records.
+
+The framework’s research-controller check is intentionally undeployed for this standalone case, so its failure does not block the requested local analysis; the required local materials stack and GSAS-II interpreter are present. I’m proceeding directly against the public pattern and frozen COD index, without using any hidden case truth.
+
+The scan is dominated by a dense, low-symmetry tungstate-like pattern rather than a simple CuO/WO₃ mixture. The two catalogued CuWO₄ records explain the general peak density but not several key line positions under a physically modest cell/zero correction, so I’m expanding the inventory to wolframite-family analogues and keeping CuO/WO₃/Cu₃WO₆ as explicit watch-list phases.
+
+A site-substituted model from COD 2101690 (Zn→Cu) matches the complete low-, mid-, and high-angle peak sequence, including the otherwise diagnostic 22.9/23.6/24.1°, 28.7°, and 31.6/32.1° families. I’m using that as the provisional CuWO₄ parent, preserving P‑1 symmetry, and will now refine only background/scale/angular correction/cell before testing profile and structural degrees of freedom.
+
+The physically adequate baseline is now clear: one CuWO₄ phase, smooth six-term background, one zero correction, refined triclinic cell, and positive W/X profile terms gives Rwp ≈ 8.94%. U tries to cross its zero bound, so I’m rejecting U as unsupported and returning to the saved W/X baseline. The remaining residual is dominated by coherent low-angle intensity suppression plus smaller structure-factor differences, not unindexed peak families.
+
+The low-angle trend is best modeled as surface roughness; refining both roughness parameters is nearly singular, so I’m fixing the weakly identifiable A term at a small physical value and refining only B. Isotropic size is exactly degenerate with X, and isotropic strain runs to a bound, so both are rejected. Polarization and symmetry-preserving coordinate refinement each give independent improvements and remain physical; I’m combining those, then I’ll challenge texture and secondary phases against the rebuilt profile.
+
+The residual peaks track the principal CuWO₄ reflections and their shoulders rather than forming an obvious second lattice. I’m nevertheless re-challenging the chemically plausible watch list under the converged common profile: both CuO records, several physically valid WO₃ polymorphs, Cu₂O, Cu₃WO₆, and Cu₂WO₄. One WO₃ source with 0.46 Å O–O contacts is excluded as physically invalid, and another with 1.57 Å O–O contacts is diagnostic-only.
+
+The watch-list challenge found a genuine secondary family: low-symmetry WO₃ records refine to roughly 2–3 wt% and reduce Rwp from 7.86% to 7.05–7.34%, while both CuO records collapse to zero scale. The strongest evidence is the WO₃ low-angle triplet and its matching mid-angle families. I’m now comparing physical WO₃ polymorphs with cell refinement and rebuilding the shared profile before deciding the exact model and fraction.
+
+After rebuilding the two-phase profile, principal-phase size/strain again collapses or hits bounds and is rejected. WO₃ isotropic microstrain is independently supported (about 4,500 ppm, ~9σ, Rwp 6.92%); WO₃ size and atomic-coordinate trials are not supported. I’m checking whether that broadening is genuinely anisotropic or whether the simpler isotropic term should be retained.
+
+The phase inventory has converged to a dominant triclinic CuWO₄ phase plus weak monoclinic WO₃. I’m now freezing the supported nuisance model, replaying the full range, and checking that the exported CIFs, fractions, and profile agree exactly with the final GSAS-II project.
+
+The weak WO₃ component is supported across several separated peak families and refines to about 4 wt%. CuO, Cu₂O, Cu₃WO₆, Cu₂WO₄, and alternate WO₃ symmetries either collapsed to zero/trace scale or gave inferior or nonphysical models, so they are not being retained.
+
+The final least-squares replay is converged (`max shift/esd = 0.077`) over all 8,301 points. The modeled crystalline fractions are 95.798 wt% CuWO₄ and 4.202 wt% WO₃; the formal GSAS-II fraction uncertainty is about 0.11 percentage point, though the minor-phase model uncertainty is larger than that formal value.
+
+One cleanup surfaced in the final audit: earlier crystallite-size trials had left fixed values at their trial upper bounds. I’m explicitly resetting those unsupported size terms to a neutral large-domain value and reconverging, so the submitted profile does not retain a bound nuisance parameter.
+
+The artifact audit now passes end to end: both CIFs are byte-identical to fresh exports from `final.gpx`, the reported fractions match the project replay, `fit.csv` covers the original grid and reproduces Rwp = 6.900614%, both structures pass the physical screen, and the replay has no negative-background or peak-width flags.
+
+Completed the PXRD analysis and GSAS-II refinement.
+
+- CuWO₄, `P -1`: 95.798 wt%
+- WO₃, `P 21/c`: 4.202 wt%
+- Rwp: 6.9006%; Rp: 5.1289%; goodness of fit: 2.8426
+
+Artifacts:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-006-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-006-r1/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-006-r1/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-006-r1/workspace/final.gpx)
+- [phase_cuwo4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-006-r1/workspace/phase_cuwo4.cif)
+- [phase_wo3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/attempts/fwaccess-evolved-exp-case-006-r1/workspace/phase_wo3.cif)
+
