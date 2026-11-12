@@ -1,0 +1,26 @@
+I’ll first inspect the measurement metadata, pattern format, and the locally available diffraction/refinement utilities. Then I’ll identify candidate phases, refine a multiphase GSAS-II model, and verify that the exported CIFs, profile, fractions, and statistics all come from the saved final project.
+
+The chemistry strongly suggests calcium tungstate as the dominant reaction product, but the raw pattern must distinguish scheelite CaWO₄ from any residual CaO/WO₃, polymorphs, or secondary calcium tungstates. I’m checking peak positions and the installed reference/refinement backends before committing to a phase set.
+
+The observed peak sequence is internally consistent with scheelite CaWO₄ (space group I4₁/a), including the close 112/103 pair near 28.70/29.03°. No diagnostic peaks of CaO or common WO₃ polymorphs are obvious. I’m now setting up a full-pattern refinement and will test whether adding plausible residual phases is statistically and physically justified.
+
+A one-phase Rietveld model already reaches \(R_{wp}\approx2.33\%\), essentially the counting-statistics floor, and accounts for all 82 allowed reflections. I found a redundant overall-scale parameter and an unconstrained Lorentzian coefficient in the trial setup; I’m removing those artifacts before using the refinement for phase-fraction or uncertainty reporting.
+
+The corrected profile model now converges cleanly at \(R_{wp}=2.3249\%\), \(R_{exp}=2.2815\%\), and GOF \(=1.0205\), with no singular parameters. I’m stress-testing that single-phase assignment by adding CaO, ambient WO₃ polymorphs, and Ca₃WO₆ one at a time; their refined scales and uncertainties will set practical impurity limits.
+
+The impurity tests did not justify another modeled phase: monoclinic WO₃ refined to \(0.022(37)\,\mathrm{wt\%}\); CaO gave only a borderline \(0.16(7)\,\mathrm{wt\%}\) signal (2.3σ, poor phase \(R_F\), and no decisive unique peak); Ca₃WO₆ collapsed to zero scale. I’m therefore submitting the parsimonious one-phase model and will explicitly report conservative impurity upper limits rather than overstate trace detections.
+
+The final all-point refinement is complete and stable: \(R_{wp}=2.3241\%\), GOF \(=1.0204\), no SVD singularities, and maximum shift/esd \(=0.009\). The CIF, profile, project, JSON, and report are written; I’m doing a final cross-file consistency check and visual residual inspection now.
+
+The final profile visually tracks every peak and the difference curve is noise-like. I’m removing only the temporary trial projects, logs, plotting file, and helper scripts I created, leaving the requested deliverables plus the original inputs untouched; these temporary artifacts are reproducible from the retained final project but are not needed for submission.
+
+Completed. The modeled crystalline product is scheelite CaWO₄ (I4₁/a, No. 88), with normalized crystalline weight fraction 1.0000. Final fit: Rwp 2.3241%, Rp 1.7872%, GOF 1.0204.
+
+CaO showed only a borderline 0.16(7) wt% signal and WO₃ was not detected, so neither was retained; uncertainties and upper limits are documented in the report.
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [CaWO4_scheelite.cif](<ATTEMPT_WORKSPACE>/CaWO4_scheelite.cif)
+

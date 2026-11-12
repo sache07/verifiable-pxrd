@@ -1,0 +1,188 @@
+I’ll first inventory the measurement, metadata, reusable analysis scripts, and any prior guidance in `learned/`. Then I’ll establish a chemically constrained phase shortlist, health-screen every structural candidate, and build a replayable GSAS-II refinement before freezing the requested outputs.
+
+The chemistry is a Sr–W–O reaction at 650 °C, but the metadata contains no precursor masses or molar ratio, so an exact precursor balance is not available as a fixed numerical constraint. I’ll keep the stoichiometric SrWO₄ reaction and plausible unreacted/competing Sr–W–O phases as explicit hypotheses, while letting independent diffraction families—not assumed closure—decide the retained inventory.
+
+The dominant reflection sequence already matches a scheelite-type `SrWO4` lattice (including the low-, mid-, and high-angle families), while several strong 22–26° lines are independent of scheelite and require at least one additional phase. I’m now screening the credible scheelite parents, WO₃ polymorphs, SrCO₃ polymorphs, and the exact but high-pressure `Sr3W2O9` record before any scale refinement.
+
+The exact `Sr3W2O9` record passes geometry checks but its calculated peak sequence is inconsistent with the data and it is a high-pressure phase, so it remains a challenged watch-list candidate rather than a coexisting phase. The best scheelite source is the passing `SrMoO4` analogue (same Sr framework, Mo⁶⁺→W⁶⁺ isovalent substitution); I’ll compare it under the same nuisance model against a passing CaWO₄-derived analogue to make sure the parent choice is not driving the fit.
+
+I reset the failed single-phase profile trial: its refined W term went negative and is therefore not evidence for extra broadening or phases. The screening run uses the same fixed, nonnegative U/W/X profile, zero strain, 100 µm size, March ratio 1, zero roughness, identical background dimensionality, and only tests scale before cell—so candidate scales and residual gains are directly comparable.
+
+One import trial exposed charged atom labels that GSAS-II treated as unknown scatterers; those fits are invalid. I’m standardizing the already health-screened records to neutral element labels without changing sites, occupancies, or symmetry, then rerunning the health audit on those exact fitted files before repeating the matched screen.
+
+The standardized records now import with correct W/O/Sr/C scattering factors. The matched screen is still running because the low-symmetry WO₃ cells add several lattice variables; I’m retaining the scale-before-cell rule and will discard any candidate whose positive scale is not replay-stable.
+
+The long runtime is confined to independent screening projects, not the final refinement. No output has appeared yet because GSAS-II buffers the process; I’m letting the current fit complete, then I’ll compare Rwp, candidate scale sign/magnitude, and cell plausibility rather than ranking by Rwp alone.
+
+The scale screen decisively rejects `Sr3W2O9` and rhombohedral SrCO₃ (scales driven to the numerical floor) and gives orthorhombic SrCO₃ only a tiny unstable scale. Several WO₃ polymorphs give positive scales across multiple residual families; monoclinic/triclinic models are strongest, but their current cells distort when asked to absorb the remaining mismatch. I’m therefore treating “WO₃ present” as supported while keeping its exact room-temperature polymorph unresolved until a full inventory/profile replay separates source choice from nuisance effects.
+
+A key result is that scheelite cannot reproduce the position sequence: after refining its tetragonal cell and a zero correction, the 112 line aligns at 27.20°, but independent 204/312/116/200 families remain displaced by about 0.2–0.7°. That is a structured source-model failure, not profile broadening. I’m now following the balance gate explicitly by challenging non‑1:1 charge-balanced Sr–W–O formulas (`Sr2WO5`, `Sr3WO6`, `Sr3W2O9`, and W-rich analogues) before committing to scheelite.
+
+The non‑1:1 models all passed the adapted-CIF health audit. Their matched primary-phase tests are running now; this is the decisive check for whether the scheelite-like resemblance was misleading. I will require both a positive scale before cell refinement and coherent multi-family peak agreement after replay.
+
+The balance-driven primary tests confirm scheelite is still the best single structure; the only non‑1:1 model with a substantial pre-cell scale is the MgMo₂O₇-derived `SrW2O7`, but it fits worse alone. I’m now replaying that model as a weak-phase competitor alongside scheelite, plus the other leading balance candidates, to see whether it explains at least two independent residual families with a stable positive fraction.
+
+The full inventory replay is comparing monoclinic, triclinic, and tetragonal WO₃ as alternatives—not simultaneous phases—and testing one `SrW2O7` analogue at a time. This should distinguish a genuine third phase from a flexible low-symmetry cell that merely absorbs residual intensity.
+
+The combined low-symmetry fits are again computationally slower, but they remain independent, fixed-profile projects. I’m waiting for convergence rather than interrupting, because replay stability of the weak-phase scale is one of the explicit physical gates.
+
+No intermediate output is available because GSAS-II is buffering, but the process remains active. Once it returns I’ll reject any model whose cell runs implausibly, whose scale collapses on replay, or whose gain is confined to one overlapped line.
+
+The three-phase replay gives positive, stable scales for scheelite, monoclinic WO₃, and the MgMo₂O₇-derived `SrW2O7`, with the third phase improving Rwp from 22.47% to 21.76%. I’m now reconverging the common profile sequentially under explicit nonnegative U/W/X limits; any term that hits a bound will be removed and the simpler baseline restored before residual interpretation.
+
+The staged profile refinement is still active. It is deliberately allowing only one width term at a time before the joint challenge, which avoids interpreting the earlier U–W runaway as physical broadening.
+
+No profile term has reported yet because the refinement output is buffered. I’ll preserve only a non-bound solution that also improves the representative peak widths on replay; otherwise the fixed U=100, W=50, X=0.5 baseline remains the defensible model.
+
+The joint low-symmetry/project refinement is computationally heavy but remains within the same saved three-phase baseline. I’m letting this single profile challenge finish; after that, subsequent model tests will use the converged saved project rather than rebuilding from scratch.
+
+The profile challenge behaved exactly as the gate anticipates: simultaneous U/W/X drove U to its maximum and W to zero, freezing both. I am rejecting that bound solution. The valid staged solution remained positive (U≈480, W≈41, X≈10); I’m resetting to it and testing a simpler two-term U+X refinement with W fixed before any residual-based inventory decision.
+
+The simplified W+X model is stable and non-bound (W≈32.95, X≈11.50, no frozen variables), unlike any model that refines U jointly. I’ll compare it against U fixed at zero; if the gain from fixed U=100 is not supported by representative peak widths, I’ll use the simpler U=0 baseline.
+
+The numerical spot-check fails the finish gate: even after the stable W+X profile, calculated peaks nearest 17.46°, 44.83°, and 72.66° are displaced by roughly 0.24°, 0.39°, and 0.35°, respectively, with incorrect widths/intensities. This confirms the current inventory/source model is wrong. I’m switching to peak indexing and structure-family identification rather than trying additional nuisance terms.
+
+The three-phase trial is still failing the positional/FWHM gate, so I’m treating it as a source-model problem rather than polishing nuisance terms. I’m now indexing the coherent peak families independently; that should distinguish a genuinely lower-symmetry tungstate from misleading scheelite peak overlaps.
+
+The first indexing pass already rules out a clean scheelite metric for that selected family. It is generating several orthorhombic/tetragonal supercell aliases, but none is uniquely credible yet; I’m letting the search finish, then I’ll score the cells against the omitted peaks and chemistry rather than selecting the highest indexing figure blindly.
+
+A useful correction emerged from the indexing check: the data unquestionably contain the Cu Kα doublet (the 86.707/86.968° and 95.009/95.313° separations match it), so the high-angle drift is not a wavelength mistake. The scheelite fingerprint is present, but several “corresponding” maxima are being supplied by overlapping second-phase lines; I’m separating those families before another cell refinement.
+
+The peak-family split now has a chemically and crystallographically coherent explanation: a C2/c fergusonite-related AWO₄ cell maps 040→29.44°, 002/200→32.64/33.59°, 042/240→44.83°, 202→47.14°, and the 16±1 / 12±3 / 32±1 groups→51.39/55.53/56.84°. That is multiple independent families, not a one-line match. I’m building the Sr-substituted, peak-indexed version of the passing CaWO₄ parent and will test its scale before allowing the cell to move.
+
+The matched-nuisance scale test is decisive so far: the fergusonite-related SrWO₄ model has a large positive scale and improves the single-phase Rwp from 23.24% (scheelite) to 21.31% before any profile sophistication. I’m completing the alternate-topology controls now, then I’ll add WO₃ and replay the inventory; the lower-symmetry model will replace scheelite only if that advantage survives.
+
+The inventory replay is behaving sensibly: the reviewed WO₃ record gives a positive scale and lowers Rwp to 20.70%, while one passing monoclinic alternate becomes metrically unstable and is being rejected as that record—not as WO₃ chemistry. I’m continuing through the other passing WO₃ polymorphs and balance-motivated watch list under the identical nuisance model.
+
+The passing WO₃ record 2311041 is currently the best pair (Rwp 20.62%, positive scale), slightly ahead of the reviewed 1528915 model. The search is now in the lower-symmetry triclinic/orthorhombic controls, which take longer because their cells have more degrees of freedom.
+
+The orthorhombic WO₃ control is now clearly better than the monoclinic/triclinic records under the same model: Rwp 20.29% with a positive scale, versus about 20.61–20.70%. This is enough to promote orthorhombic WO₃ as the leading precursor-residue model; I’m finishing the tetragonal and non-1:1 watch-list replay before locking it in.
+
+The balance-driven watch list is not surviving the source correction: SrW₂O₇ gives no meaningful improvement (one analogue is slightly worse; the other gains only 0.20 Rwp and remains cell-correlated), while Sr₃W₂O₉ and rhombohedral SrCO₃ collapse to zero scale. This supports a two-phase inventory—C2/c SrWO₄ plus WO₃—pending the final three-phase replay.
+
+On the corrected two-phase model, the low-dimensional profile behaves physically: W-only and X-only both improve the fit, and joint W/X converges at positive interior values (W≈37.4, X≈5.11) with no frozen parameters. I’m completing the U-inclusive controls; any bound-seeking version will be discarded rather than treated as evidence.
+
+The U-inclusive models are doing exactly what the gate warns against: U runs to 1000 while W or X collapses to zero, with frozen parameters and ~99% metric correlations. Those apparent Rwp gains are nonphysical and rejected. The accepted common profile remains the simple positive W/X model.
+
+The fully joint U/W/X trial is numerically bogged down after the same bound-seeking behavior appeared in both two-term U controls. I’ll stop that trial if it does not return on this cycle; the stable W/X result already supplies the required lower-dimensional baseline and avoids over-parameterizing the profile.
+
+The numerical spot-check still fails the finish gate despite the source correction. Several independent strong families remain displaced by 0.5–0.7° (notably 32.64, 47.14, 51.39, 56.84, 72.66, 86.71°), and those positions follow the scheelite reflection sequence. That supplies the required evidence to test C2/c + tetragonal SrWO₄ coexistence as distinct families rather than treating the records as interchangeable polymorph candidates.
+
+The coexistence challenge rejects tetragonal SrWO₄: once the accepted C2/c + orthorhombic-WO₃ nuisance model is held fixed, the scheelite scale goes to the numerical floor and stays there on replay. The residual resemblance was therefore an indexing alias, not a supported third phase. I’m now indexing the positive residual profile itself and searching charge-balanced non-1:1 analogue records against those residual families.
+
+The independent +2/+6 CaMoO₄ coordinate parent is slightly worse than CaWO₄ (20.35% vs 20.29%), while the less direct +3/+5 YNbO₄ topology is becoming metrically unstable. That supports retaining the CaWO₄-derived coordinates; the remaining intensity mismatch should now be challenged with physical texture/geometry terms, not another arbitrary parent.
+
+The 10–12 coefficient backgrounds give only modest, stable gains; six coefficients is worse. The instrument-zero trial tries to run past −0.2° and freezes at the bound, so that apparent larger gain is rejected as required. The specimen-displacement, polarization, and roughness controls are still running.
+
+The pre-texture controls are now resolved: specimen shift and zero both hit their bounds; polarization collapses to 0; roughness is 100% correlated and slightly worsens the fit. All are rejected. A 12-term background gives a small stable gain, so I’m using that neutral geometry baseline for the required low-index March–Dollase comparisons.
+
+Texture is producing moderate, physically interior ratios rather than bound behavior. For C2/c SrWO₄, [110] is currently best (March ratio ≈0.76, Rwp 19.71%); [100] and [101] are weaker alternatives. I’m finishing the remaining diagonal and orthorhombic-WO₃ axes, then I’ll test whether the best terms are complementary on replay.
+
+The two texture terms are not safely complementary: WO₃ [100] is >95% correlated with its phase scale, which would make the weight fraction texture-dependent. I’m rejecting that term despite its small Rwp gain and retaining only the stable C2/c SrWO₄ [110] March term. Next is the mandated phase-size-versus-strain test from that saved baseline.
+
+The broadening test is also rejecting complexity: SrWO₄ size stays at the neutral 10 μm bound; SrWO₄ strain runs to 5000 ppm and freezes with X; WO₃ size collapses to its lower bound and destabilizes its cell. None is evidence for finite crystallite broadening. I’m finishing the WO₃ strain control, then the simpler neutral broadening model remains.
+
+The Le Bail diagnostic still stops at Rwp ≈15.2% and does not converge, so the present two cells cannot place all observed intensity even when structure factors are freed. I’m broadening the inventory search systematically: every chemically close AWO₄ and charge-balanced non-1:1 analogue in the local index is being scored against the positive residual peak families with an optimized lattice scale.
+
+The first residual-ranked addition, P2₁2₁2₁ SrW₂O₇ from BaV₂O₇, has a positive replay-stable scale but improves Rwp by only 0.084 percentage point. I’m keeping it on the watch list for family-by-family evidence; it is not retained yet because a dense low-symmetry pattern can gain globally without explaining two unique residual families.
+
+The triclinic La₃Re₂O₉-derived Sr₃W₂O₉ analogue also replays positively, but its gain is still only 0.10 Rwp despite six cell degrees of freedom. That remains below the evidentiary threshold until unique residual families are demonstrated; the independent Sm-parent control is running now.
+
+The Sm-parent Sr₃W₂O₉ model is the first watch-list candidate with a somewhat larger replay gain (Rwp 19.71→19.43%, positive scale), but it is still a dense triclinic analogue with non-isovalent parent substitutions. I’ll require direct peak-family attribution before retention. The Pnma Sr₂WO₅ files need a GSAS-compatible setting and will be retried from their original records.
+
+The low-symmetry watch-list refinements are slow because each candidate adds many metric parameters, but they are converging rather than hanging. I’m letting the current LiReO₄-derived competitor complete, then the simpler Pnma/P2/c alternatives should resolve more quickly.
+
+Family attribution rejects the dense watch-list models as final phases: their gains come mostly from one low-angle cluster or very small contributions to a second line, while the dominant 27.20/32.64/47.14/51.39/55.53/56.84° residuals remain. Since C2/c allows reflections at several of those positions but the CaWO₄-derived structure factors suppress them, I’m testing the two symmetry-allowed heavy-atom coordinates before inventing another phase.
+
+The heavy-atom coordinate tests trade directly against the common X broadening term—X freezes at zero in every branch—so those apparent gains are not independent structural evidence and I’m not retaining them. One required precursor control remains: exact Pnma SrCO₃ failed to import in an earlier generated setting, so I’m replaying the original health-passing record, along with competing WO₃ polymorphs, against the accepted baseline.
+
+Exact Pnma SrCO₃ now has a positive replay-stable scale and improves Rwp by 0.175, while added monoclinic/triclinic WO₃ polymorphs collapse to zero scale. SrCO₃ is therefore the strongest chemically direct weak-phase candidate so far; I’ll check whether it removes at least two noncoincident residual families before deciding to retain it.
+
+SrCO₃ passes the weak-phase gate: its positive scale survives replay and it removes separate 25.30/25.96°, 36.08°, 44.83°, and 49.46° residual families. I’m retaining it as unreacted precursor and now reconverging the three-phase model sequentially—background/scales/common W–X profile, then each cell—to avoid the metric correlations seen in simultaneous fits.
+
+I’ve converged on a three-phase model—monoclinic SrWO₄, orthorhombic WO₃, and residual orthorhombic SrCO₃. I’m completing the required post-inventory replay, numerical peak-shape checks, and final reopened-project consistency checks before freezing the deliverables.
+
+The numerical check confirms that the current model is converged but not yet scientifically adequate: several strong observed families are underfit or displaced, and the counting-statistics GOF remains 6.84. I’m treating that as a stop gate and reopening the structural/inventory diagnosis rather than simply exporting the converged project.
+
+The Le Bail ceiling is still Rwp ≈14.7%, so the problem is not just imperfect atom coordinates: at least one indexed source/cell assignment remains inadequate. The largest independent residual family (22.9/24.65/32.64/33.64° plus higher-angle partners) is consistent with incompletely modeled WO₃, so I’m now comparing WO₃ polymorphs as replacements—not co-adding alternate records—under the same three-phase nuisance model.
+
+The replacement screen is still refining the low-symmetry cells sequentially. I’ve constrained it to scale-first tests and separated cell stages so a dense monoclinic/triclinic reflection list cannot win by trading lattice parameters with SrWO₄ or SrCO₃.
+
+The first variant is taking longer than expected because GSAS-II is evaluating several hundred reflections over the full 8,301-point range. I’m letting this controlled comparison finish, since replacing the WO₃ record is the most direct test of the unresolved residual family and is more informative than adding another weak phase.
+
+The full sequential screen has stalled in an unstable cell branch, which itself fails the replay-stability gate. I’m terminating that branch and switching to bounded, one-cell-at-a-time replacements with immediate metric sanity checks so the comparison cannot disappear into an unphysical reflection explosion.
+
+A more decisive issue emerged: the adapted SrWO₄ CIF was imported in an oblique but equivalent C2/c basis. Refining that basis split the initially exact 32.64° family to 31.94/33.01°, indicating metric correlation rather than genuine evidence for another phase. I’m rebuilding the same health-passing topology in the direct near-orthogonal fergusonite setting and will compare it under identical nuisance terms before changing the inventory.
+
+The direct I2/a setting imports correctly once the nonstandard setting is declared explicitly. Its first refinement exposes the earlier problem cleanly: allowing all profile and cell terms together drives W to a bound, so I’m resetting to the simpler accepted profile and will judge the direct setting only after a fixed-profile, scale-then-cell replay. A bound profile term will not be used as evidence.
+
+The duplicate-metric challenge has a positive scale and is now in its cell replay. This is the correct discriminator: if it converges to a distinct metric and removes several non-coincident residual families, coexistence is supportable; if it collapses onto the first SrWO₄ phase or becomes highly correlated, it will be rejected as an alternate record rather than counted twice.
+
+The four-phase branch is computationally heavy but remains bounded; no extra nuisance terms have been released. I’m waiting for the fixed-cell replay rather than judging the transient gain, because the user’s gate specifically requires a replay-stable positive scale and distinct residual families.
+
+The metric-variant scale remains positive under the simpler W-only profile (Rwp 19.543 → 19.104), with moderate—not fatal—scale correlation. Before accepting two SrWO₄ metrics, I’m testing the physically simpler alternative: low-dimensional uniaxial microstrain along symmetry-distinct directions from that same W-only baseline. This will show whether the “second phase” is only a surrogate for anisotropic broadening.
+
+The uniaxial-strain competitors all run to the 5,000 ppm physical ceiling; their apparent gains therefore fail the gate and are being removed. The distinct-metric branch remains replay-stable, but its near-pseudotetragonal metric suggests a cleaner physical hypothesis: coexistence of ordinary scheelite SrWO₄ with the distorted I2/a form. I’m now testing an indexed scheelite model at that metric against the same W-only baseline.
+
+With the profile bound removed, the main SrWO₄ heavy-atom coordinates now refine independently: W-only lowers Rwp to 18.90 with no frozen parameters, and the displacement is along its allowed special-site coordinate. I’m finishing the paired Sr/W and oxygen challenges, then I’ll health-screen the exported geometry; any coordinate gain that creates implausible bonds will be discarded.
+
+The oxygen-coordinate gain is nonphysical (0.68–0.91 Å O–O contacts) and is rejected. The two special-site heavy-atom shifts pass the CIF health screen and lower Rwp to 18.875 without frozen terms, so I’m retaining those values provisionally. I’m now replaying the best WO₃ replacement against this updated four-phase model before final reconvergence.
+
+The triclinic WO₃ replacement is in its isolated cell stage. I’m keeping the accepted SrWO₄/SrCO₃ cells fixed during this comparison, so any gain must come from the WO₃ fingerprint itself rather than cross-phase metric drift.
+
+Orthorhombic WO₃ remains the better replacement after the updated model (Rwp 18.875 versus 18.934 for triclinic), so it stays. I now have a clean four-phase hypothesis: distorted I2/a SrWO₄, scheelite SrWO₄, orthorhombic WO₃, and residual Pnma SrCO₃. I’m freezing the validated heavy-atom coordinates and performing the required full nuisance/cell reconvergence from this inventory.
+
+The accepted angular term is a small, physical specimen displacement (+7.4 µm), which marginally outperforms a zero offset; 12 background coefficients remain supported over 10. I’m now confirming that X still collapses to the nonnegative boundary with the final inventory, then I’ll run the mandatory post-change scale replay for the charge-balanced watch list.
+
+The post-inventory watch-list replay is still running through the dense low-symmetry candidates. Every candidate is being tested with fixed cell first, neutral size/strain/texture, and the exact accepted background/profile/displacement model; no cell refinement is allowed to rescue a weak or zero scale.
+
+The post-change watch list remains negative by the stated gate: exact Sr₃W₂O₉ and Sr₂WO₅ go to zero; the adapted candidates gain mainly through the already-overlapped 27° line or a single low-angle cluster, without two independent unique residual families. They remain documented watch candidates, not retained phases. Before freezing, I’m checking whether the newly retained scheelite fraction needs a symmetry-distinct March–Dollase term.
+
+The c-axis scheelite texture term is replay-stable (ratio 1.54), improves Rwp by 0.18, and is only moderately correlated with scale. Because direct refinement of the other axes stepped through invalid negative ratios, I’m completing a fixed positive-ratio grid for axial and diagonal competitors; this preserves the required symmetry comparison without treating a failed optimizer as evidence.
+
+The symmetry comparison selects a scheelite [100] March–Dollase term (ratio 0.447): it is replay-stable, unbound, and gives Rwp 18.638; [001] is slightly worse and diagonal alternatives are worse. I’m now rebuilding `final.gpx` from that accepted state, sequentially rechecking every cell, then reopening and replaying the full range before any CIF or fraction is exported.
+
+`final.gpx` is in the sequential cell pass. All unsupported terms are already pruned: X is fixed at zero, strain is zero, size is 10 µm, roughness is zero, and only W, the 12-term background, two supported MD ratios, scales, and the small displacement remain active.
+
+The cell replay exposed a critical correlation: after cells moved, the scheelite MD ratio became 98.8% correlated with its scale and drove the scheelite fraction down to ~4%. That texture term is therefore unsupported in the converged model. I’m removing it and replaying the simpler four-phase baseline; the phase itself will only stay if its scale remains positive and its unique families survive without texture.
+
+I’ve narrowed the model to four crystalline phases and rejected the profile/texture terms that were unstable or strongly scale-correlated. I’m now freezing the simpler replay-stable project, extracting exact statistics and profile checks, then I’ll export and health-screen the final CIFs and validate every submitted file against the reopened project.
+
+The retained project is internally clean: full 9.90–100.09° range, four positive phase scales, neutral inactive size/strain/texture/roughness terms, no frozen parameters, and only moderate correlation between the two SrWO₄ scales (|r| = 0.443). I’m preserving the single supported C2/c [110] March term; the scheelite texture term is being omitted because its apparent improvement became almost perfectly correlated with scale after cell reconvergence.
+
+The required low/middle/high-angle spot check exposes why the fit must be reported as provisional: low and middle families are reasonably aligned, but a strong isolated high-angle family is centered at 95.009° observed versus 94.694° calculated, with markedly different width/asymmetry. Since several high-angle residuals appear coherent, I’m doing one final inventory/indexing challenge from the saved baseline before declaring the remaining structure ambiguity.
+
+The final challenge is comparing eleven distinct SrWO₄ topology analogues as mutually exclusive replacements, with coordinates fixed and the same background, angular correction, profile, and competing phases. All adapted candidates passed the occupancy/contact health screen; this test is specifically checking whether the high-angle residuals justify replacing the current fergusonite-related model rather than adding another weak phase.
+
+The replacement screen is still refining the low-symmetry competitors; it is computationally heavier because each candidate gets a scale-only replay, one cell challenge, and a fixed-cell replay. I’m letting it complete because this directly tests the strongest unresolved residual family under the user’s matched-nuisance gate.
+
+The screen has not emitted progress because the GSAS-II process is buffering output, but it remains active. I’ll cap this challenge rather than let one very low-symmetry model consume the run indefinitely; completed candidate projects can still be read and compared if the batch needs to be interrupted.
+
+The topology challenge confirms the current main model should be retained: the no-texture C2/c control gave Rwp 19.186%, while the strongest chemically plausible replacements were substantially worse (SrCrO₄-type P2₁/c 21.786%; AgMnO₄- and BaMnO₄-type Pnma about 22.23–22.26%). The residual therefore reflects an imperfect adapted structure/profile or an unresolved phase, but it does not justify replacing the main phase or adding a speculative weak phase.
+
+The reopened submission now passes the consistency audit: four phases, fractions summing to 1.000000, 8301 profile rows exactly matching the project arrays, all final CIF paths present, no frozen or bound active terms, and only the intended 19 variables active. I’m doing the final repeated profile spot-check and CIF health pass once more, then the deliverables are complete.
+
+Completed with a four-phase crystalline model:
+
+| Phase | Weight fraction |
+|---|---:|
+| Fergusonite-related SrWO₄, C2/c | 59.00% |
+| Orthorhombic WO₃, Pnma | 15.66% |
+| Orthorhombic SrCO₃, Pnma | 14.85% |
+| Scheelite SrWO₄, I4₁/a | 10.48% |
+
+Rwp = 18.77%, Rp = 12.30%, GOF = 6.57. All CIFs pass the health screen, and submitted fractions sum to one.
+
+The high GOF and high-angle residual mismatch mean the SrWO₄ oxygen structure and polymorph fraction split remain provisional; details are documented in the report.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [Fergusonite SrWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_SrWO4_fergusonite.cif)
+- [Scheelite SrWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_SrWO4_scheelite.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_orthorhombic.cif)
+- [SrCO₃ CIF](<ATTEMPT_WORKSPACE>/phase_SrCO3_orthorhombic.cif)
+

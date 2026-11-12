@@ -1,0 +1,64 @@
+I’ll begin with the requested physical inventory: measurement metadata, pattern characteristics, candidate sources, and the reusable workflows in `learned/`. I’ll keep that first fit provisional, screen alternates under the same nuisance model, and only then restart a clean final GSAS-II profile.
+
+The chemical system is Pb–W–O from WO₃ and Pb₃O₄ at 500 °C, with no declared product or phase count. I’m now mapping the available search/refinement interfaces and extracting diagnostic peak positions before accepting any database match; PbWO₄ is only a hypothesis at this point, with residual precursor/intermediate oxides still in scope.
+
+The observed maxima already suggest more than one reflection family: a scheelite-like backbone (notably near 27.81°, 33.16°, 45.13°, 55.63°) plus several strong, narrower features at 23.53–24.85° and around 26.81°, 29–30°, and 34.60°. I’m querying all Pb–W–O/Pb–O/W–O records and will compare both PbWO₄ polymorphs and plausible precursor-derived phases rather than assigning those extra peaks to line broadening.
+
+The database inventory separates two physically valid PbWO₄ polymorphs: synthetic room-temperature stolzite (I4₁/a, COD 9009811) and natural raspite (P2₁/a, COD 9007617). The sharp low-angle triplet is also characteristic of room-temperature monoclinic/triclinic WO₃, so I’m screening WO₃ polymorph records alongside both tungstates and PbO/Pb₃O₄. High-pressure or compositionally disordered records will be rejected on source/geometry grounds even if a few lines coincide.
+
+Peak-position consistency is now strong: a single ~+0.43° angular offset maps the stolzite lines at 27.37, 32.72, 44.69, 51.16, 55.20, and 71.95° onto the six dominant broad families, while monoclinic WO₃ maps its 23.12/23.58/24.38° triplet and 26.60° line onto the sharp features. Raspite predicts an intense unmatched line near 24.95° after that correction and is therefore disfavored, but I will still quantify it and alternate WO₃ polymorphs in provisional GSAS-II fits as requested.
+
+I’ve completed the source/geometry screen for the leading records. COD 9009811 (stolzite) is fully occupied, synthetic, measured at 290 K, and has sensible W–O/Pb–O distances; COD 2311041 is a fully occupied ambient WO₃ model with sensible ~1.72 Å minimum W–O and no short O–O contacts. One older WO₃ entry (1010618) has a 0.46 Å O–O contact and will not be used despite line coincidences. I’m setting up a uniform provisional refinement to compare the remaining polymorphs by scale, unique-peak residuals, and fit statistics.
+
+The first provisional two-phase refinement is stable in phase identity and angular calibration: both scales remain strongly positive, the refined offset is ~0.438°, and cells move only modestly from the screened records. The shared profile step exposed a correlation in the low-symmetry WO₃ cell representation, so I’m tightening the provisional schedule (bounded common widths and staged cell/profile updates) before running the full polymorph comparison.
+
+The bounded test confirmed that common U and W both seek the zero boundary, while X remains well inside its range (~8.0 centidegrees). Per the requested rule, I’m treating U/W as failed branches—not frozen values—and using an X-only common provisional resolution term for candidate comparison. The broad stolzite contribution is represented by a fixed provisional isotropic size (~0.04 µm); the sharp WO₃ phase is kept effectively size-neutral during inventory.
+
+The first controlled comparisons are decisive: omitting WO₃ worsens Rwp from ~9.42% to ~13.42% and leaves the 23–25° triplet residual enormous. The modern synthetic stolzite record also outperforms the older alternate (Rwp ~9.42% vs ~10.22%), consistent with its better Pb–O geometry. Screening of raspite and the remaining WO₃/precursor alternatives is still running.
+
+Raspite is now excluded by two independent tests: as a replacement it gives Rwp ~26.5% with many unmatched families; as an added phase its scale is statistically zero (0.015 ± 0.037) and its unconstrained cell becomes indeterminate. The preferred WO₃ record remains COD 2311041; monoclinic 1528915, triclinic, and orthorhombic alternatives all fit worse, with the latter two failing diagnostic splitting around 34°.
+
+The precursor balance changed the inventory: ambient tetragonal Pb₃O₄ is strongly supported (scale 0.845 ± 0.011; Rwp drops to ~7.13%), and the alternate Pb₃O₄ record fits worse and imports with chemically invalid O labels. Massicot PbO also has a significant scale and specifically removes the 29.56°, 30.89°, and 38.25° residual family. I’m now testing Pb₃O₄ and both PbO polymorphs together to determine whether PbO remains independently required once the precursor phase is present.
+
+The complete provisional inventory supports four crystalline phases: stolzite PbWO₄, monoclinic WO₃, tetragonal Pb₃O₄, and orthorhombic massicot PbO. The four-phase model lowers Rwp to ~6.27%; massicot remains independently required after Pb₃O₄ is included. Litharge adds only a marginal ~0.024 percentage-point improvement, lacks a clean unique family, and its available CIF requires a problematic origin conversion, so it is not yet retained. I’m checking the four-phase residual map and precursor/product mass balance before freezing the inventory and restarting the clean profile pass.
+
+The remaining large residuals are paired positive/negative lobes around already assigned reflections, confirming profile mismatch rather than a fifth phase. Cross-chemistry searches for Pb₂WO₅/Pb₃WO₆ prototypes also produced no candidate matching the observed diagnostic families. The four-phase inventory is therefore stable, and I’m restarting from a clean project with all default size/microstrain terms neutralized (the GSAS-II default 1000 µstrain was explicitly removed).
+
+The physical inventory is stable at four phases—stolzite PbWO₄, monoclinic WO₃, minium Pb₃O₄, and massicot PbO. I’m now restarting the clean profile refinement from neutral HAP terms, then I’ll challenge size/strain phase-by-phase and export only the replay-verified final model.
+
+The clean model confirms that all unused size, strain, texture, roughness, extinction, and displacement terms are neutral. I’m calibrating the common instrumental width only on resolved WO₃ families spanning low, middle, and high angle; the earlier nonnegative U/W trial drove those terms to zero, so they will be rejected rather than frozen.
+
+The valid profile-window replay gives X = 5.69(73) centidegrees. The joint U/W/X branch was unstable and all three terms crossed bounds; SH/L sought its lower bound, so both branches are rejected. I’m retaining X alone and now testing size-only versus strain-only for each of the four phases from the same neutral baseline.
+
+The phase-by-phase challenge is decisive for three phases: PbWO₄ and Pb₃O₄ favor finite size broadening; their strain alternatives are worse, and Pb₃O₄ strain hits the upper bound. WO₃ favors a small, finite strain term. PbO is the caution case—strain hits its bound and size approaches the lower bound with a large scale/profile correlation—so I’m testing that term against the combined model before accepting it.
+
+The combined replay exposed a 96% correlation between common X and PbWO₄ size when X was released, with two local profile solutions. That makes the freely refined branch non-identifiable. I’m fixing X at the independently calibrated sharp-WO₃ value (5.693) and replaying both the core and PbO-size models; this directly tests whether PbO broadening remains finite without borrowing instrumental width.
+
+The fixed-X replay is still converging cleanly; the key acceptance check is whether PbO size stays well inside bounds and whether its fraction remains stable. I’ll reject it if either the width or scale returns to a boundary-correlated solution.
+
+The polarization correction seeks its upper bound (1.0), so despite lowering Rwp it is rejected as a bound-seeking global surrogate. The accepted intensity baseline therefore remains polarization 0.7. I’m now comparing no texture against symmetry-distinct March–Dollase axes for each phase, one phase at a time.
+
+All texture axes refine to essentially random powder (MD 0.989–1.022) and change Rwp by at most 0.0015 percentage point, so texture is unsupported and will be pruned. The final model will retain only four positive phase scales, one zero term, calibrated X, PbWO₄/Pb₃O₄/PbO size terms, and WO₃ isotropic strain.
+
+The final native replay converged with no frozen variables (max shift/esd 0.002), Rwp 4.150%, Rp 3.102%, and fractions summing to 1.000000. I’m doing the last independent CIF/geometry and project-export agreement checks before writing the concise report.
+
+Completed the four-phase GSAS-II refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| [PbWO₄ stolzite](<ATTEMPT_WORKSPACE>/phase_1_PbWO4_stolzite.cif) | 58.09(15)% |
+| [Monoclinic WO₃](<ATTEMPT_WORKSPACE>/phase_2_WO3_monoclinic.cif) | 20.92(10)% |
+| [Pb₃O₄ minium](<ATTEMPT_WORKSPACE>/phase_3_Pb3O4_minium.cif) | 16.33(14)% |
+| [PbO massicot](<ATTEMPT_WORKSPACE>/phase_4_PbO_massicot.cif) | 4.65(9)% |
+
+Final fit: Rwp 4.150%, Rp 3.102%, GOF 1.673; no frozen variables.
+
+Outputs:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+
+Fractions are crystalline-normalized; practical systematic uncertainty likely exceeds the formal errors, especially for minor massicot.
+

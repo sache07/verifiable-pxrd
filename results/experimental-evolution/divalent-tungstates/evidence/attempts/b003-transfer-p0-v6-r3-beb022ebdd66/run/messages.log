@@ -1,0 +1,52 @@
+I’ll inspect the pattern, metadata, and reusable refinement utilities first, then build a phase inventory and refine it residual-first in GSAS-II. I’ll keep alternate structures on a watch list until the common profile is stable, and I’ll verify the exported CIFs, fractions, profile, and saved project agree exactly.
+
+The chemistry points first to NiWO₄, with residual NiO/WO₃ and possible tungsten-oxide polymorphs as the main alternatives—not assumptions to bake into the fit. I’m now extracting peak positions and checking the locally available COD/GSAS-II interfaces so the inventory is driven by unique reflection families and physical structure records.
+
+The peak inventory is already coherent for three phases: wolframite NiWO₄ (e.g. 19.27°, 23.96°, 24.92°, split 30.85/31.03°), monoclinic room-temperature WO₃ (the diagnostic 23.14/23.56/24.38° triplet), and rocksalt NiO (37.33/43.42/63.07/75.56/79.68°). The high-pressure WO₃ record fails that triplet, while two independent wolframite analogues support the same P2/c topology; I’m carrying the three-phase inventory into refinement and will re-test residuals afterward.
+
+The clean common-profile baseline converged reproducibly at Rwp 5.96% with positive scales and provisional fractions near 60.0% NiWO₄, 29.8% WO₃, and 10.2% NiO. The cells moved to physically expected values, and U/W/X stayed positive and interior. I’m now checking the actual low/mid/high-angle peak shapes and residual families; only supported size/strain, asymmetry, or texture terms will survive that test.
+
+The nuisance tests are decisive: omitting the angular correction worsens Rwp to 6.79%; zero and specimen shift are statistically equivalent, with zero marginally better (5.959% vs 5.960%). Refining polarization is strongly supported and physically interior (0.905), lowering Rwp to 5.436%. SH/L adds almost nothing and is 97% correlated with zero, while roughness parameters are 99.9% mutually correlated, so I’m pruning both rather than treating them as intensity surrogates.
+
+Phase-width trials did not justify extra broadening: NiWO₄ size/strain collapsed to the neutral boundary, and WO₃/NiO terms improved Rwp by only ~0.001% with 29–255% relative uncertainty. I’m retaining the clean common profile. Next I’m challenging preferred orientation across symmetry-distinct axial and diagonal axes for each phase, looking for one axis that improves several independent reflection families—not just one intense peak.
+
+The texture screen found small but reproducible orientation effects for NiWO₄ and WO₃; NiO texture is unsupported and scale-correlated. More importantly, the WO₃ residual triplet exposes a source-record issue: the old X-ray record underpredicts the 020 intensity, while the independent neutron record predicts the observed near-equal 002/020/200 triplet. I’m revisiting that phase source—and the alternate FeWO₄-derived wolframite parent—under the same background/profile/correction model before accepting any texture.
+
+The source-record cross-check is still refining all four combinations from scratch (Zn- vs Fe-derived wolframite; old X-ray vs neutron WO₃), including save/reopen replay. This is the most important model-selection step because it distinguishes genuine texture from incorrect structure-factor intensities.
+
+The source comparison resolved the model: replacing the old WO₃ record with the room-temperature neutron structure drops Rwp from 5.436% to 4.418%, and the FeWO₄-derived P2/c parent further improves it to 4.279% while retaining sensible Ni–O/W–O geometry. The selected no-texture fractions are now ~59.4% NiWO₄, 30.7% WO₃, and 9.9% NiO. I’m rebuilding the phase-profile/texture tests on this corrected structural baseline.
+
+On the corrected structures, the phase-shape tests are cleaner: only NiWO₄ isotropic microstrain is supported (199±34 µstrain; Rwp 4.270%); WO₃ and NiO width terms hit neutral bounds. Texture is axis-selective: NiWO₄ [101] and WO₃ [110] are the only materially improving directions, while NiO texture is weak/inconsistent across its six lines. I’m now combining just those complementary terms and checking replay stability and geometry.
+
+Heavy-atom coordinate refinement is strongly supported for NiWO₄: refining only Ni/W y positions lowers Rwp from 4.200% to 3.636%, with small uncertainties and modest shifts. WO₃ W-coordinate changes are minor and highly correlated, so they are unlikely to be defensible. I’m checking the resulting bond geometry now; the restrained oxygen trial needs a GSAS-II restraint-tree initialization fix before it can be judged.
+
+The refinement has converged on three crystalline phases: wolframite NiWO₄, monoclinic WO₃, and rocksalt NiO. I’m now freezing the conservative structural model—refined heavy-atom coordinates for NiWO₄, analogue-supported oxygen positions—then replaying it from the saved project and exporting every deliverable from that same final state.
+
+The accepted nuisance model is deliberately small: six background coefficients, one zero correction, common nonnegative U/W/X broadening, polarization, NiWO₄ isotropic microstrain, and only two supported preferred-orientation terms. Size, roughness, SH/L asymmetry, NiO texture, and WO₃ coordinate refinements were rejected as neutral, correlated, or boundary-seeking.
+
+The disk replay is stable (maximum shift/esd fell from 0.006 to 0.001). The synchronized final state gives 59.626 wt% NiWO₄, 30.634 wt% WO₃, and 9.740 wt% NiO, with Rwp 3.636% over 8,301 points. I’m checking CIF chemistry/geometry and byte-for-byte profile/project agreement before writing the uncertainty assessment.
+
+Validation confirms all three CIFs parse with the intended reduced formulas, no short contacts are present, the fractions sum to unity, and every exported profile value and fraction matches `final.gpx` exactly. The principal limitation is structural rather than phase identification: oxygen coordinates are reference-supported, not independently resolved by this laboratory pattern.
+
+Completed the three-phase Rietveld refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| NiWO₄, P 2/c | 59.626 ± 0.067 wt% |
+| WO₃, P 2₁/c | 30.634 ± 0.052 wt% |
+| NiO, Fm-3m | 9.740 ± 0.060 wt% |
+
+Fractions are normalized over modeled crystalline phases. Final Rwp = 3.6356% and Rp = 2.2604%.
+
+Deliverables:
+
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [NiWO4.cif](<ATTEMPT_WORKSPACE>/NiWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [NiO.cif](<ATTEMPT_WORKSPACE>/NiO.cif)
+
+The exports were verified to match `final.gpx` exactly. Oxygen coordinates are reference-supported rather than independently well determined; amorphous content cannot be quantified without an internal standard.
+

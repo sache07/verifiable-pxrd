@@ -1,0 +1,48 @@
+I’ll begin with the requested physical inventory: inspect the measurement metadata and pattern, map the chemically plausible phase space, then screen candidate structures and polymorphs before committing to a final GSAS-II refinement. I’ll keep the first profile provisional and restart it cleanly once the phase inventory stabilizes.
+
+The chemistry is a Mn–W–O solid-state reaction at 700 °C, measured with Cu Kα1/Kα2 in reflection geometry. Likely inventory members include one or more manganese tungstates/oxides plus residual WO₃ or Mn₃O₄, but I’ll let diagnostic reflections and physically screened structures decide rather than assume the nominal product.
+
+The first diagnostic match is a wolframite-type MnWO₄ phase (monoclinic P2/c): its low-angle 010/100/011/110 sequence and the split 11̄1/111 pair account for the prominent peaks at about 15.10, 18.06, 23.29/23.80, and 29.58/30.03°. The unusually large apparent low-angle shift is consistent with specimen displacement in reflection geometry, so I’ll refine a single displacement term rather than distort the cell. I’m now screening wolframite parent records and all precursor/secondary-phase alternatives against the same provisional profile.
+
+The physical screen rejects one superficially attractive FeWO₄ record before fitting: after Fe→Mn substitution it gives 1.54 Å W–O and 1.64 Å Mn–O contacts, so its coordinates are not a defensible oxide model. Two independent ordered wolframite parents instead give sensible MnO₆ (2.06–2.26 Å) and WO₆ (1.81–2.16 Å) octahedra. I’m fitting both of those, plus scheelite, fergusonite, MnMoO₄-type, and exact Mn₃WO₆ alternatives with the same provisional background/scale/displacement/cell schedule.
+
+The polymorph screen is decisive: both ordered wolframite parents converge, while scheelite, MnMoO₄-type, and exact Mn₃WO₆ drive their scales to the nonnegative bound. Fergusonite remains nonzero but fits far worse and leaves its diagnostic reflection families unexplained. The secondary-phase screen is now testing room-temperature WO₃ and manganese-oxide polymorphs; early WO₃ branches improve the provisional residual, so residual precursor WO₃ is a serious candidate rather than a background artifact.
+
+The physical inventory is now stable enough for the mandated restart: wolframite-type MnWO₄ plus monoclinic WO₃. The apparent Mn₃O₄ contribution is being treated as a provisional overlap surrogate because its diagnostic peaks miss systematically and its fitted cell expands implausibly. I’m now rebuilding the two-phase refinement from a clean project and will compare common-profile branches from identical starting conditions.
+
+The clean restart exposed a strong cell–specimen-displacement correlation: starting from literature cells makes the least-squares walk very slowly even though the inventory pass already located the relevant basin. I’m seeding only those geometric starting values from the inventory (while keeping all profile/intensity terms reset) so the branch comparison is made after genuine convergence rather than along that transient path.
+
+The common-profile screen is resolving cleanly: every branch containing U drives U through its nonnegative bound and is rejected, while W+X converges without freezing and gives the best accepted common profile so far. I’m finishing the remaining checks to confirm this is not start-value dependent, then I’ll test asymmetry and phase-specific size/strain from that accepted branch.
+
+The phase-by-phase broadening challenge is decisive: MnWO₄ size and strain both run to their neutral bounds and are rejected; WO₃ supports a finite size-only term of about 0.079 µm, lowering Rwp from 9.76% to 9.28%. The WO₃ strain-only alternative is worse and requires an unusually large ~6900 µstrain, so I’m retaining the simpler size interpretation and moving on to polarization and texture challenges after a save/reopen replay.
+
+The intensity tests support a refined effective polarization term, which drops Rwp from 9.28% to 8.03% without bounds or high correlations. Texture is weaker: MnWO₄ [001] gives a stable, modest March–Dollase coefficient (~0.964) and improves several isolated low-, mid-, and high-angle families; WO₃ texture improves the global number but not a consistent set of isolated reflections, so I’m rejecting the WO₃ texture surrogate and retaining only the weak MnWO₄ term.
+
+One physical-inventory issue surfaced before export: the selected WO₃ source CIF encodes all displacement parameters as zero (effectively “not reported”), which is not a credible 300 K model and can distort high-angle intensities. I’m assigning conservative fixed room-temperature values (Uiso(W)=0.0046 Å², Uiso(O)=0.0074 Å², matched to the screened tungstate parent) and, as required when the inventory model changes, restarting the entire final profile sequence from neutral settings.
+
+The clean restart is reproducing the earlier decisions with the corrected WO₃ thermal model: W+X remains the accepted common profile, U again fails at its bound, SH/L remains highly correlated with displacement and unsupported, and both MnWO₄ size and strain again collapse to neutral bounds. This confirms those choices are not artifacts of the original zero-ADP source.
+
+The restarted final model is stable at Rwp ≈ 7.92% with no frozen variables or >0.90 correlations. I also pruned the unsupported eighth background coefficient: seven terms have the better BIC, while six terms measurably degrade the fit. I’m now doing the last model-sensitivity and geometry checks before producing the exact project-matched CIF, profile, JSON, and report.
+
+The model and exports are complete. I’m doing the final cross-file audit now—JSON/CSV integrity, CIF parsing, and exact agreement between `final.gpx`, `fit.csv`, and the reported phase fractions.
+
+Completed and validated.
+
+| Phase | Space group | Crystalline weight fraction |
+|---|---:|---:|
+| Wolframite MnWO₄ | P2/c | 78.52 wt% |
+| Monoclinic WO₃ | P2₁/c | 21.48 wt% |
+
+Final fit: Rwp 7.923%, Rp 5.260%, GOF 3.186. Fractions are normalized over modeled crystalline phases. A realistic uncertainty is approximately ±2 wt% absolute; Mn₃O₄ and minor/amorphous material cannot be quantified reliably.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [MnWO4_wolframite.cif](<ATTEMPT_WORKSPACE>/MnWO4_wolframite.cif)
+- [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_monoclinic.cif)
+
+The final audit confirmed exact agreement between `final.gpx`, all 8,301 profile rows, reported fractions, and CIF structures, with no frozen variables or correlations ≥0.90.
+

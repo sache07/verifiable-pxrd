@@ -1,0 +1,70 @@
+I’ll first inventory the pattern, metadata, and reusable refinement utilities, then establish a neutral-profile baseline and screen candidate structures before any quantitative refinement. I’ll keep phase additions tied to reproducible residual families and finish by reopening the saved GSAS-II project to verify every submitted artifact agrees.
+
+The chemistry points to a Pb–W–O reaction at 500 °C, but the metadata gives no precursor quantities, so there is no numerical mass-balance constraint to enforce. I’m now extracting peak families and checking the local structure/indexing databases for PbWO₄, residual tungsten/lead oxides, and charge-balanced non‑1:1 alternatives; all candidates will be health-screened before fitting.
+
+Peak positions form a consistent picture: scheelite PbWO₄ is dominant, monoclinic WO₃ explains the 23.53/24.02/24.84° triplet, and tetragonal Pb₃O₄ explains independent families near 26.81, 31.22, 32.55, 52.52, 58.54, and 66.40°. A separate peak near 29.56° raises PbO as a watch-list phase, so I’ll test PbO and the alternate Pb₃O₄/WO₃ records under the same restored profile model rather than assigning it by one line.
+
+The candidate screen now has chemically sound records for the four likely phases: scheelite PbWO₄, monoclinic WO₃, tetragonal Pb₃O₄, and orthorhombic massicot PbO. The obvious alternate WO₃ record fails on 0.46 Å O–O contacts, so I’ll use the passing transformed monoclinic record and still compare the other passing polymorphs. I’m setting up matched GSAS‑II trials with dual Cu Kα radiation, one zero correction, fixed neutral size/strain/texture/roughness, and only a nonnegative U/W/X common profile.
+
+The four-phase baseline gives positive fractions for all four candidates (about 57% PbWO₄, 26% WO₃, 12% Pb₃O₄, 5% PbO), so PbO survives the first scale test rather than collapsing. That run also exposed a GSAS-II sample-scale/phase-scale redundancy and a nonphysical common-profile branch; I’m removing the redundant sample scale and changing the replay logic so each profile term is accepted only if its own physical solution survives, with the prior state restored exactly after a failure.
+
+With the redundant scale removed, the four-phase neutral baseline is nonsingular and gives Rwp = 7.95%, GoF = 3.20. Only W is a stable common-profile term; adding X lowers Rwp but drives another common term negative, and U itself refines negative, so both branches are rejected and the pre-trial W-only state is replayed. I’m now testing alternate records and polymorphs with those same neutral phase terms before allowing any phase-specific broadening.
+
+The source comparison favors COD 9009811 for scheelite PbWO₄ (Rwp 7.95% versus 8.38% for the other scheelite record and 25.46% for monoclinic PbWO₄). For WO₃, the passing monoclinic record remains slightly better than the reviewed close-contact record (7.95% versus 8.00%). A triclinic WO₃ record gives an apparently lower residual, but its replay aborts and it gains flexibility by splitting hkl families; per the physical gate, I’m not promoting it until the monoclinic model has been challenged with phase-specific broadening and anisotropy.
+
+The width audit explains the lower-symmetry temptation: WO₃ peaks are much narrower than the PbWO₄/Pb₃O₄/PbO peaks, so a single common width over-broadens WO₃ and a triclinic cell can mimic family-dependent broadening. Isotropic size trials stayed at or collapsed onto bounds and are rejected. Replay-stable positive strain is supported for PbWO₄ (~0.25%), Pb₃O₄ (~1.19%), and PbO (~0.69%); WO₃ strain goes negative and is rejected. I’m combining only those supported terms, then re-testing the common profile from the physical branch.
+
+The combined physical model is stable: common W drops from ~87 to ~34.5 while PbWO₄, Pb₃O₄, and PbO carry their independently supported strain; WO₃ remains unbroadened. Rwp improves to 7.35% with all terms positive and replayed. Releasing X again drives common W and PbWO₄ strain negative; releasing U drives U negative, so both are rejected from saved pre-trial states. Next I’m re-comparing WO₃ symmetry and the PbO/Pb₃O₄ polymorphs under this exact matched broadening model.
+
+The matched source tests now reject the flexibility artifacts: with the accepted broadening fixed, triclinic and orthorhombic WO₃ worsen to Rwp 8.20% and 8.51%, respectively, versus 7.35% for monoclinic WO₃. Orthorhombic Pb₃O₄ and alternate/litharge-like PbO models are also substantially worse or collapse. Removing massicot PbO raises Rwp to 8.21% and leaves independent residual families at 29.56°, 38.25°, 45.58°, 53.58°, 60.81°, and 63.61°; removing Pb₃O₄ raises it to 10.01%. The four-phase inventory is therefore replay-stable.
+
+One implementation detail needed correction before the final audit: the direct instrument dictionary left GSAS‑II’s sample record labeled Debye–Scherrer even though the metadata says reflection geometry. The diffraction type and dual-wavelength profile were already correct, and all geometry corrections were zero, but I’m rebuilding the accepted model with an explicit Bragg–Brentano sample record so the project, roughness challenge, and exported provenance are internally consistent.
+
+The cross-phase angular audit found a real global intensity trend. Refining polarization tries to 1.247 (outside the physical 0–1 range), so that branch is invalid. A Suortti roughness test from the required zero state instead gives a positive, replay-stable B = 0.215 and improves Rwp from 7.35% to 4.99% without collapsing phase scales. I’m now testing the complementary roughness parameter and re-testing polarization from that restored physical roughness baseline before considering any texture.
+
+Texture challenges are negative in the practical sense: PbWO₄ and WO₃ March ratios stay within 1.4% of unity, and Pb₃O₄ within 7%; gains are ≤0.009 Rwp points. A diagonal PbO model reaches 0.68 but changes the weak-phase fraction by ~13% for only 0.025 Rwp points, while the isolated PbO families already agree without texture; I’m rejecting that unstable fraction/intensity tradeoff and retaining no texture. The physically supported nuisance model is therefore one roughness B term, fixed unpolarized Cu geometry, and the three phase-strain terms.
+
+The four-phase model is now chemically and profile-wise coherent. I’m finishing the required replay checks under the accepted roughness correction, then I’ll freeze and independently reopen the GSAS-II project before exporting all deliverables.
+
+The closest WO₃ polymorph competitor remains materially worse after replay (Rwp 6.40% versus 4.99%) and does not fully converge, so the monoclinic WO₃ assignment survives the nuisance correction. I’m now replaying the remaining closest source and phase-removal challenges in parallel.
+
+The three replay challenges are still refining. Their scales and cells are being allowed to reconverge under the same background, angular correction, common profile, phase broadening, and roughness model used for the retained solution.
+
+The weak PbO phase passes the decisive removal test: deleting it raises Rwp from 4.99% to 5.99% and restores several independent residual families. Its alternate record becomes nonphysical (collapsed metric/huge strain), while the retained massicot record stays stable. The closest PbWO₄ alternate is also much worse and nonconvergent (Rwp 8.76%).
+
+The frozen full-range project reopens and replays cleanly: 8,301 points, 31 variables, Rwp 4.988%, GoF 2.011, with a final shift/esd of 0.0016. The normalized fractions are 56.13% PbWO₄, 21.46% WO₃, 17.65% Pb₃O₄, and 4.75% PbO. I’m now running the mandatory final-CIF health and geometry checks.
+
+The final CIFs all pass the occupancy/contact screen and are ordered, with chemically plausible nearest bonds. The peak-shape audit does show one remaining trend: the dominant PbWO₄ high-angle family is calculated somewhat broader than observed while low/mid-angle widths match. Per the requested gate, I’m challenging isotropic PbWO₄ strain with the symmetry-compatible anisotropic model before accepting the simpler profile.
+
+The anisotropy challenge is positive. A tetragonal generalized-strain model is physical and replay-stable (effective strain 3,832–5,296 με), lowers Rwp from 4.988% to 4.943%, and improves independent isolated PbWO₄ families near 27.8°, 45.1°, 55.6°, 69.0°, 78.5°, and 94.0°. I’m retaining it and repeating the leading source and weak-phase removal challenges under that same model.
+
+The first re-challenge has completed: even with generalized PbWO₄ strain, removing PbO gives Rwp 5.93% versus 4.94% and remains decisively inferior. This confirms that the weak phase is not a profile-broadening surrogate.
+
+The replayed competitors remain inferior under the retained anisotropy: triclinic WO₃ gives Rwp 6.37%, the alternate PbWO₄ record is still nonconvergent at 6.25%, and removing PbO gives 5.93%. I’m now freezing the generalized-strain solution as the final project and regenerating every dependent output from its reopened state.
+
+The generalized-strain final project has now been reopened and replayed again: Rwp 4.943%, GoF 1.993, shift/esd 0.0020. All four newly exported CIFs pass the final health screen with no disorder, partial occupancy, invalid sites, or hard contacts.
+
+The independent consistency audit now passes: `result.json` sums to 1.000000, its fractions match the reopened project to machine precision, all 8,301 `fit.csv` rows exactly match the project arrays, and every exported CIF cell matches the reopened GSAS-II phase. I’m writing the concise evidence/uncertainty report next.
+
+Completed the four-phase refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| Scheelite PbWO₄ | 56.19 wt% |
+| Monoclinic WO₃ | 21.51 wt% |
+| Pb₃O₄ (minium) | 17.59 wt% |
+| Orthorhombic PbO (massicot) | 4.71 wt% |
+
+Final fit: Rwp 4.943%, Rp 3.557%, GoF 1.993. Fractions are normalized over modeled crystalline material; amorphous content remains undetermined. All final CIFs passed the required health checks.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [PbWO4.cif](<ATTEMPT_WORKSPACE>/PbWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [Pb3O4.cif](<ATTEMPT_WORKSPACE>/Pb3O4.cif)
+- [PbO.cif](<ATTEMPT_WORKSPACE>/PbO.cif)
+

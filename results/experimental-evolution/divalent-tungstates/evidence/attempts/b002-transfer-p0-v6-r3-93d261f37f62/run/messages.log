@@ -1,0 +1,66 @@
+I’ll first inspect the pattern, metadata, reusable workflows, and available crystallographic databases. Then I’ll build a chemically screened phase inventory, refine it in GSAS-II with residual-led challenges, and verify that every exported artifact agrees with the final reopened project.
+
+The chemistry points first to MgWO₄, with residual WO₃ and/or MgO as plausible competitors, but I’m treating that only as a hypothesis. I’m now extracting the peak families and screening all visible COD records for composition, symmetry, cell, occupancy, and structural plausibility before any refinement.
+
+The peak positions now give a specific two-phase core: wolframite-type MgWO₄ (P2/c) matches the 18.879°, 23.823°, 30.408°/30.734° families, while room-temperature monoclinic WO₃ (P2₁/c, COD 2311041) uniquely matches 23.117°, 23.573°, 24.377°, 26.572°, and 28.930°. MgO remains on the watch list because several of its lines are overlapped; I’m testing its unique high-angle families rather than rejecting it from one ambiguous scale trial.
+
+I’ve confirmed that the reference models are physically appropriate: the MgWO₄ record is synthetic material measured at ambient pressure, and the selected WO₃ record is a room-temperature neutron structure with full occupancy. I’m now establishing the neutral baseline—no texture, roughness, extinction, size, or strain contribution; one zero correction; fixed reported Kα₂/Kα₁; and only nonnegative U/W/X profile terms—before testing any phase-dependent broadening.
+
+The neutral two-phase baseline converged reproducibly at Rwp 9.02%, with all common profile terms positive (U≈51.3, W≈12.0, X≈7.06) and no phase-dependent broadening. Its provisional fractions are about 62.0 wt% MgWO₄ and 38.0 wt% WO₃. I’m now re-challenging MgO and alternate WO₃ records under that same refinement recipe; the final inventory will be rebuilt if any candidate is supported.
+
+The candidate refinements are still converging. The key discriminator for MgO will be whether its scale remains positive and its 42.95°, 62.36°, 74.76°, and 78.71° families improve coherently after the common profile is rebuilt—not merely whether global Rwp drops.
+
+MgO is retained: its refined fraction is 7.28(40) wt%, and it removes a large, previously unmodeled 200 peak at 42.915° while also improving the 222 and 400 regions; the weaker 111/311 lines are overlapped. The selected WO₃ record remains decisively better than the alternate room-temperature record (Rwp 8.87% versus 9.45% after adding MgO-equivalent nuisance freedom), and the orthorhombic polymorph is rejected (12.14%).
+
+The largest remaining residual is the MgWO₄ 100 family, so I’m now testing symmetry-distinct March–Dollase axes and checking whether any accepted texture is supported by the related 200/300/400 families.
+
+The texture sweep is computationally heavier because each axis is being saved, reopened, and replayed. I’m preserving that replay check: a one-pass drop in Rwp is not enough to accept a texture term.
+
+The common-intensity challenge is decisive: surface roughness returns to its neutral bound and is rejected; SH/L changes Rwp by only 0.002 percentage point and is not yet justified. Refining the unknown effective polarization is physical and replay-stable (0.4435, Rwp 8.57%), so I’m rebuilding the texture comparison under that corrected common profile before accepting the [010] MgWO₄ orientation.
+
+The rebuilt texture result is strong and physical: MgWO₄ [010] March–Dollase coefficient 1.272, replayed Rwp 6.05%, and it simultaneously corrects the 100/200/300/400 versus 010/020/030/040 intensity balance. Its fraction is stable near 58.4 wt%. I’m now checking whether WO₃ has an independent supported orientation before moving on to phase-specific width and coordinate challenges.
+
+The WO₃ texture challenge gives only a mild but reproducible effect: [111] refines to 1.0340(40) and improves several independent WO₃ families (23.12°, 24.38°, 28.62°, 33.29°, 49.96°, 55.96°), though not every overlap. I’m retaining it provisionally and now testing isotropic size and strain one phase at a time from neutral values; unsupported or bound terms will be pruned.
+
+The one-term width trials are near completion. I’m specifically watching for two failure modes the refinement additions call out: a crystallite-size term pinned at GSAS-II’s 10 µm neutral ceiling, or a microstrain term pinned at zero. Either means the common profile already accounts for that phase and the term should not survive.
+
+A physically meaningful phase split emerges: WO₃ requires 7939(43) µstrain while MgWO₄ and MgO return to neutral size/strain bounds. Rebuilding the common profile around that term lowers Rwp from 6.02% to 2.35% without negative profile coefficients; the improvement spans low-, mid-, and high-angle WO₃ families. I’m now checking whether a size term or Gaussian/Lorentzian mixing adds independent information, and re-testing asymmetry on this corrected baseline.
+
+The complementary-term checks are still replaying. At this stage the accepted model is intentionally conservative: one WO₃ isotropic microstrain term only; size and profile-mixing will be admitted only if they move away from their neutral/bound values and improve multiple peak shapes.
+
+The size/strain combination is complementary in line-shape form and replay-stable: WO₃ refines to 0.168(5) µm plus 4304(116) µstrain, lowering Rwp to 2.23%. Their correlation is high (0.94), so those microstructural values will be treated as approximate nuisance descriptors rather than primary results. Strain mixing hits its Lorentzian boundary and is rejected. SH/L is now supported across the low-angle peaks (0.0168, Rwp 2.21%) and will be retained. Both texture terms survive explicit pruning tests.
+
+Next I’m challenging atomic coordinates one phase at a time and will keep only models whose bond geometry remains credible.
+
+Coordinate challenges separate cleanly. MgWO₄ coordinate refinement is stable and preserves normal octahedra (Mg–O 2.090–2.138 Å; W–O 1.753–2.162 Å), so it is accepted. For WO₃, refining W sites only gives credible W–O ranges (1.694–2.169 Å); unconstrained O refinement drives one W–O bond to 1.622 Å with poorly determined oxygen shifts, so that model is rejected. I’m now reconverging the accepted coordinate sets together.
+
+The accepted coordinate sets converge together at Rwp 1.696% (expected minimum 1.527%) with chemically sound geometry. The provisional quantitative result is now 51.20 wt% MgWO₄, 41.33 wt% WO₃, and 7.47 wt% MgO. I’m performing the last physical-adequacy checks now: isolated-family FWHM/asymmetry across angle, residual structure, and whether any anisotropic broadening is actually warranted.
+
+The isolated-family width checks are consistent across low, middle, and high angle, so anisotropic broadening is not justified. I’m now freezing the accepted common profile, replaying the model into the deliverable project, and exporting every artifact from that reopened project so the CIFs, fractions, and profile remain exactly synchronized.
+
+The final replay converged at Rwp 1.686%, and restoring the accepted polarization refinement made a small, physically sensible improvement. One bookkeeping detail remains: GSAS-II reports 8,284 fitted observations while a simple inclusive angle mask selects 8,283 rows, so I’m resolving its exact endpoint indexing before certifying `fit.csv`.
+
+The artifact cross-check itself is sound; the first verifier only failed because the GSAS-II environment does not bundle ASE for an independent bond-distance readback. I’m separating numerical/project consistency from CIF geometry validation and will run each in its native scientific environment.
+
+All submitted numerical artifacts now agree exactly with the reopened project: 8,284 fitted points, fractions summing to 1.000000, and profile/statistics values matching `final.gpx` bit-for-bit after CSV round-trip. Independent CIF readback also gives chemically credible six-coordinate shells (Mg–O 2.095–2.134 Å in MgWO₄, W–O 1.697–2.166 Å in WO₃, and Mg–O 2.105 Å in MgO).
+
+Completed the three-phase refinement:
+
+- MgWO₄ (P 2/c): 51.11 wt%
+- WO₃ (P 2₁/c): 41.45 wt%
+- MgO (F m −3 m): 7.43 wt%
+
+Final fit: Rwp 1.686%, Rp 1.319%, GOF 1.104. Fractions are normalized over crystalline phases; amorphous content is undetermined. Realistic fraction uncertainty is approximately 0.5–1 wt%.
+
+Deliverables:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [MgWO4.cif](<ATTEMPT_WORKSPACE>/MgWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [MgO.cif](<ATTEMPT_WORKSPACE>/MgO.cif)
+
+The reopened project, CIFs, fractions, statistics, and all 8,284 exported profile points were cross-validated for agreement.
+

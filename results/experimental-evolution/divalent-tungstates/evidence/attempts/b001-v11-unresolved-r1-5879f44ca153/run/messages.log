@@ -1,0 +1,343 @@
+I’ll begin by inventorying the pattern, metadata, and the reusable crystallography utilities in `learned/`. I’ll then screen candidate structures before fitting, build the GSAS-II model, and validate the final project by reopening it and checking that the exported CIFs, fractions, and profile all agree.
+
+The chemistry points first to lead tungstate formation from WO₃/Pb₃O₄, but I’m treating PbWO₄, non-1:1 lead tungstates, and unreacted/secondary oxides as competitors rather than assuming a single product. The immediate next check is the observed peak-family inventory and which local COD/GSAS-II interfaces are available.
+
+Two coherent phase families are already evident. The scheelite PbWO₄ reflections track the observed 27.81°, 33.17°, 45.13°, 51.59°, 55.63°, and 72.36° peaks with one common positive angular correction; monoclinic WO₃ accounts independently for the 23.53°/24.02°/24.84° triplet and further families near 33.67°, 34.61°, 41.91°, and 50.37°. PbO and Pb₃O₄ do not reproduce those diagnostic families. I’m now comparing the competing PbWO₄ and WO₃ records under matched profile terms, including a passing WO₃ alternate because one otherwise plausible record was health-flagged for short O–O contacts.
+
+The first full-profile refinement is running more slowly than the source screening, which is expected for 8,301 points and two low-symmetry structures. I’ve initialized all phase broadening and texture terms at genuinely neutral values (10 µm size, zero strain, March ratio 1, zero roughness) and fixed the supplied wavelengths and Kα₂/Kα₁ ratio.
+
+The first angular-correction attempt exposed a real failure mode: releasing specimen shift before the phase scales were established let it run to an unphysical value and effectively move the calculated peaks out of range. I rejected that trial and restored the pre-trial project. The rerun now establishes background and positive scales first, then releases the single Bragg–Brentano specimen-height correction.
+
+The corrected common-profile comparison is stable and chemically sensible. A single Lorentzian `X` term gives Rwp ≈ 10.57%; trials that nominally fit slightly better drove `W` or `U` negative, so they were invalidated and rolled back. At this checkpoint both phases have positive scales, with a provisional crystalline-only split of about 70.1 wt% PbWO₄ / 29.9 wt% WO₃. I’m now testing phase-specific size versus strain from this same saved state and auditing whether intensity trends call for texture or geometry terms.
+
+The broadening coordinate descent is still progressing through matched neutral/size/strain/combined forks for both phases. This is the expensive part of the audit because every fork is re-converged from a complete checkpoint; no partial parameter rollback is being used.
+
+The phase-specific broadening loop retained neither size nor strain: size collapsed to the 10 µm neutral boundary for WO₃, while the apparently beneficial WO₃ strain trials crossed into negative strain and were rejected. PbWO₄ strain stayed positive but changed Rwp by only ~0.0002 percentage point, so it was pruned as unsupported. The current pass is comparing background dimensionality, physical polarization, and Suortti roughness before any texture term is allowed.
+
+The shared-intensity comparison found two important boundaries: polarization alone tried to exceed its physical maximum, and one roughness seed drove its shape parameter negative. Those forks were rejected. A physical roughness solution was supported, and I’m repeating the full coordinate loop because roughness and polarization became complementary once background flexibility increased; their joint values need to stabilize before texture is considered.
+
+The replay is in its final coordinate cycle. So far the phase fractions remain stable within roughly a few tenths of a percent despite the nuisance-term challenges, which is a good sign; I’m waiting for the retained polarization/roughness values themselves to settle before freezing this checkpoint.
+
+The roughness model has now been pruned to one refined parameter (`A=0` fixed, `B` refined), which gives the same fit as the correlated two-parameter form without the soft singularity. The current texture challenge is limited to one low-index March–Dollase axis at a time for each phase; no spherical harmonics or high-order texture terms are being admitted.
+
+The low-order texture audit retained only one term: monoclinic WO₃ March–Dollase `[110]`, ratio ≈1.23. It replayed in both loops and improved Rwp from 9.2355% to 9.1901%; every PbWO₄ axis was either neutral or unsupported. The crystalline-only split moved modestly to about 69.7/30.3 wt%. Because texture altered the shared intensity balance, I’m reopening the common profile, roughness/polarization, and phase-broadening coordinates once more before source ranking.
+
+Source competition is underway with fresh projects, not phase swaps inside the fitted project. Each record is being re-established from neutral broadening/texture, then given the same background, angular, profile, roughness, and polarization opportunities. This includes the older scheelite, raspite, defect-scheelite, alternate monoclinic WO₃ records, and the lower-symmetry triclinic WO₃ model.
+
+The source fits remain numerically stable so far. I’m treating health status as a gate rather than a score: a reviewed record can only survive if it shows a reproducible advantage over the passing analogue under matched nuisance terms, while a lower-symmetry model must also explain observed splitting rather than merely shave Rwp.
+
+The longest-running cases are the low-symmetry WO₃ alternatives because they carry more independent cell variables and reflections. No user input is needed; I’m continuing through the remaining matched replays and will use the passing, physically stable model unless a competitor provides diagnostic evidence beyond a numerical residual reduction.
+
+Six source replays completed; the triclinic WO₃ case failed during reflection generation with an invalid metric tensor before a valid scale/cell solution existed. I’m treating that as a failed trial for now, but I’ll inspect its imported cell representation once rather than silently discarding the lower-symmetry competitor.
+
+The triclinic import failure traced to ionic scattering labels (`O−2`, `W+6`) in that CIF, not to its geometry. I made a chemically equivalent neutral-scattering-label copy, reran the required CIF health check (pass), and am giving that adapted P-1 model the same fresh refinement loop.
+
+The adapted triclinic model converged, but it is clearly inferior (Rwp ≈9.87% before texture versus ≈9.24% for passing monoclinic WO₃), and the pattern does not require its extra splitting. The passing 2001 scheelite PbWO₄ + passing 1966 monoclinic WO₃ source pair is the strongest matched-source solution; reviewed defect/older records and raspite are all worse. Next I’m checking non-1:1 charge-balanced lead tungstate analogues and replay-stable weak-phase scales against the remaining residual families.
+
+The non-1:1 search found two chemically useful parents: Pb₂MoO₅ for Pb₂WO₅ (isovalent Mo⁶⁺→W⁶⁺) and Pb₃UO₆ for Pb₃WO₆ (U⁶⁺→W⁶⁺). Both adapted models pass the geometry/occupancy gate. I’m now testing their scales—alongside PbO, Pb₃O₄, raspite, and defect scheelite—with candidate cell parameters fixed until a positive scale is demonstrated.
+
+Pb₃O₄ is not a trace-level ambiguity—it is a clear third crystalline phase. Its fixed-cell scale is positive and replay-stable at ~13.4 wt%, lowering Rwp from 9.19% to 6.49%, with independent matches at the residual families near 14.66°, 26.81°, 31.25°/32.55°, 50.37°/52.52°, 58.53°, and 63.64°. I’m accepting it, releasing its cell only now that scale is established, and rebuilding every nuisance/profile comparison around the three-phase inventory.
+
+The three-phase neutral rebuild is valid at Rwp ≈7.98%, with physical fixed polarization/zero roughness and fractions near 61.1% PbWO₄, 25.2% WO₃, and 13.7% Pb₃O₄. I’m now reopening the common U/W/X coordinate from true neutral values; the prior two-phase nuisance values are no longer being carried forward.
+
+The phase inventory has converged to scheelite PbWO₄, monoclinic WO₃, and residual Pb₃O₄. I’m now finishing the three-phase profile/texture challenges, then I’ll replay the selected model and freeze the project, CIFs, fractions, and profile together.
+
+The interrupted run stopped during a deliberately unstable size-plus-strain trial; no partial state was accepted. I’m restarting that coordinate from its saved checkpoint so every comparison begins from the same physical model.
+
+The broadening challenge is still running. The stable three-phase baseline remains at about 61% PbWO₄, 25% WO₃, and 14% Pb₃O₄; these are provisional until the shared-intensity and texture coordinates are closed.
+
+So far, none of the tested peak-width terms has earned acceptance merely from a numerical decrease; boundary-hitting and divergent trials are being treated as invalid and rolled back, as requested.
+
+The current pass is testing each phase independently against neutral, size, strain, and combined size–strain models. This is the slowest part of the loop because each comparison is fully reconverged rather than inherited from the preceding trial.
+
+The phase scales remain positive through the valid comparisons. I’m preserving the neutral 10 µm/zero-strain state unless a width term produces a physical, replay-stable improvement above the pre-set threshold.
+
+The loop is still advancing normally; the lack of console text is because the full GSAS-II refinement transcript is being captured to an audit log. Once it closes I’ll summarize only the accepted terms and rejected boundaries.
+
+This pass has now exceeded the two-phase runtime because Pb₃O₄ adds eight fully replayed comparisons across two coordinate loops. I’m letting it finish rather than accepting the earlier partial run.
+
+No user action is needed; all candidates and checkpoints are local. The final deliverables will be regenerated from the reopened winning project, so trial artifacts cannot leak into the submitted fractions or CIFs.
+
+The run is spending extra iterations on the deliberately difficult combined size–strain cases. Those cases are useful boundary checks even when rejected, but they do not alter the accepted checkpoint unless they converge physically.
+
+The selected common profile itself is not in danger: it remains the nonnegative X-only model. If a broadening comparison fails to terminate cleanly, it will be classified as invalid and the saved pre-trial project retained.
+
+This is longer than a routine refinement because the invalid combined cases repeatedly raise the damping parameter before GSAS-II abandons the step. I’ll cap only those failed paths if needed; accepted paths still receive full convergence and replay.
+
+The first two width loops disagreed only for Pb₃O₄: strain won initially, then a finite crystallite-size term (~56 nm) won after replay. Because that coordinate is not yet stable, I’m running one additional complete loop before allowing either term into the final model.
+
+The extra loop starts from the saved size model and independently reopens PbWO₄, WO₃, and Pb₃O₄ broadening. Stability here means the same retained terms survive, not simply that the global Rwp decreases again.
+
+The principal topology is already secure—these width tests affect Pb₃O₄ line shape and its scale, not the presence of its independent peak families. The extra loop is specifically protecting the reported fraction from broadening/scale correlation.
+
+The lower-symmetry and alternate-record competitors have already been given matched neutral-to-converged loops; none beat the selected passing source models with diagnostic splitting. The remaining work is nuisance convergence and final consistency checks.
+
+The candidate formulas beyond 1:1 chemistry were also screened: Pb₂WO₅- and Pb₃WO₆-type analogues could absorb residual intensity before Pb₃O₄ was included, but that is exactly the surrogate behavior the final four-phase replay will test and reject unless their scales remain independently supported.
+
+The third complete loop is stable: PbWO₄ and WO₃ stay neutral, while Pb₃O₄ retains an isotropic size term of ~56 nm; fractions and Rwp replay to the same values. I’m carrying that term jointly into the background/polarization/roughness coordinate rather than freezing it as a scale surrogate.
+
+The shared-intensity loop is now comparing 6/8/10-term smooth backgrounds, fixed versus refined polarization, and a one-parameter roughness model with its correlated partner fixed at zero. The retained Pb₃O₄ size is active in every comparison.
+
+Each accepted shared term must survive three coordinate passes with physical bounds. A lower Rwp is ignored if polarization leaves [0,1], roughness becomes negative, or the Pb₃O₄ size collapses back to the neutral boundary.
+
+The model remains full-range (9.90–100.09° 2θ) throughout; no residual window is being excluded to improve the score. The final difference profile will use exactly this same range and reopened project.
+
+The shared loop is stable in all three passes: 8 background coefficients, refined polarization, no roughness. Roughness trials were rejected because they drove both polarization above 1 and the roughness coefficient negative. Polarization converged near—but still inside—the physical upper limit (0.997), so texture will now be challenged jointly against it.
+
+Texture is being tested one phase at a time on symmetry-compatible low-index axes, with the physical common profile, Pb₃O₄ size, background, and polarization reopened in every trial. High-order harmonic texture is deliberately excluded.
+
+A March–Dollase term must improve Rwp by at least 0.02 percentage point, keep its ratio between 0.2 and 5, and remain non-neutral after replay. This prevents a texture parameter from merely repartitioning scale among overlapping phases.
+
+The texture challenge is still running normally. The important discriminator is family-specific intensity behavior across low, middle, and high angles; a global intensity gain alone will not retain an axis.
+
+After this two-pass texture loop, I’ll reopen the common profile and broadening coordinates once more. Any accepted texture must survive that complementary challenge before the model is frozen.
+
+The first texture loop is stable on replay: only a weak WO₃ [110] March–Dollase term survives (ratio ≈1.126); PbWO₄ and Pb₃O₄ texture gains stay below the acceptance threshold. I’m now running the required post-texture full coordinate loop, with every retained term active in every comparison.
+
+The post-texture loop is active. It re-tests common profile, all four broadening states for each phase, background/polarization/roughness, and all prior texture axes from a saved checkpoint; a final-state equality check will flag any coordinate drift.
+
+The full replay also guards the near-bound polarization value: any trial that crosses 1 is invalidated and its entire checkpoint discarded, including all refined values—not just its flags.
+
+The comparison is parameter-count conservative: extra background coefficients need a material gain, and size/strain or texture terms need their own larger thresholds. This keeps the final phase fractions from depending on marginal flexibility.
+
+The run is now in the phase-specific width comparisons. PbWO₄ and WO₃ previously rejected size/strain at physical boundaries; Pb₃O₄’s finite size is being re-estimated with the accepted texture and polarization active.
+
+All trial projects remain isolated on disk. The selected checkpoint advances only after validation, so an unstable combined size–strain fit cannot contaminate later background or texture comparisons.
+
+Once this closes, the remaining model-selection step is a four-phase replay of the weak watch list and Pb₃O₄ source/polymorph competitors. Only positive, replay-stable scales with distinct residual families will be retained.
+
+The full-loop fit is not being judged from Rwp alone: phase-scale positivity, physical specimen shift, nonnegative profile values, bounded polarization, finite broadening, and noncollapsed March ratios are all checked before selection.
+
+The coordinate loop is still progressing normally; its transcript is captured for audit. The final report will summarize retained terms and material competitors rather than expose this full internal refinement log.
+
+The last part of this pass is the low-index texture replay. It is intentionally exhaustive across the same axes as before so that “stable” means the same coordinate winner, not merely a similar fraction.
+
+The post-texture loop found genuine complementarity, so the model is not yet frozen: with polarization active, finite PbWO₄ broadening becomes strongly supported, the earlier WO₃ texture disappears, and 10 background terms become justified. I’m accepting that coordinated change provisionally and repeating the entire loop from this new checkpoint, as required.
+
+The second full loop starts from X-only common broadening, finite PbWO₄ and Pb₃O₄ sizes, 10 background terms, physical polarization, and no texture. It must return exactly that state—or the convergence cycle continues.
+
+This second pass is the decisive stability test for scale–broadening coupling. If the two finite sizes are retained with comparable values and the same phase fractions, their contribution is replay-stable rather than a one-pass artifact.
+
+The second pass exposed an invalid coordinate interaction: W+X was briefly physical at the profile step, but W became negative as soon as broadening was reopened, leaving no valid phase-width comparison. Per the rollback rule, I’m restoring the pre-profile checkpoint and treating that W+X branch as rejected; the X-only branch will be replayed intact.
+
+The W+X profile itself is physical and reproducible (W≈9.1, X≈5.8), so I’m not discarding it solely because a broadening restart was poorly seeded. I’ve corrected the replay to preserve accepted finite sizes when reopening them, while neutral and new strain trials still start from neutral physical values.
+
+The corrected replay is progressing. This distinguishes a true coordinate instability from a local-minimum artifact: retained size terms restart from their saved physical values, while competing neutral/strain states are still independently initialized and reconverged.
+
+The full common-profile comparison remains low-dimensional: neutral, W, X, U+W, W+X, and U+W+X only. Any negative profile coefficient or physical-bound crossing invalidates the whole branch.
+
+The accepted sizes are being judged jointly with phase scales and cells. That matters here because PbWO₄ and Pb₃O₄ overlap several intense families; a width term is retained only if the full replay remains physical and the fractions stabilize.
+
+No new phase has been introduced during nuisance convergence. The three established scales stay positive; phase-inventory challenges will be performed only after this profile state is stable.
+
+This pass is now through the most difficult width branches. Invalid negative-strain and profile combinations are retained only in the audit log; the live checkpoint remains the last fully physical model.
+
+The corrected full loop is stable: W+X remains nonnegative, PbWO₄ and Pb₃O₄ retain finite isotropic sizes, WO₃ stays neutral, 10 background terms and polarization survive, and no texture remains. The modeled crystalline fractions replay at roughly 61.35/20.88/17.77 wt%.
+
+The stable isotropic model now gets the remaining family-width challenge: uniaxial size along the tetragonal c axes for PbWO₄/Pb₃O₄ and along monoclinic b for WO₃. These are symmetry-compatible, low-dimensional tests; any boundary or extreme axial/equatorial split is rejected.
+
+The anisotropy check finds a small but physical PbWO₄ c-axis effect (66 versus 56 nm; ΔRwp≈0.019), above the broadening acceptance threshold. WO₃ and Pb₃O₄ anisotropy gains are too small. I’m provisionally retaining only PbWO₄ uniaxial size and running one more full coordinate loop.
+
+The anisotropic replay is using only two PbWO₄ size components tied to the tetragonal c axis. Equivalent a/b directions remain symmetry-related; ellipsoidal or generalized broadening is not being introduced.
+
+The loop now includes isotropic and uniaxial size as direct competitors for every phase. This ensures PbWO₄ anisotropy must beat its simpler isotropic model after all shared terms are reopened, not just in a one-off trial.
+
+The fractions have been stable to much better than 0.1 wt% across the anisotropy-only trials. The full replay is checking whether that remains true once common W/X, background, and polarization are reoptimized together.
+
+The weak preferred-orientation terms remain available as competitors in this pass. If the family-width model explains the earlier intensity trend, texture will stay pruned; if complementary, it can re-enter only above its threshold.
+
+No result has been frozen yet. The final project will be created only after this state equality check, then reopened and refined again before CIF/profile export.
+
+The current loop is in the final shared-intensity/texture coordinates. Any roughness attempt that repeats the earlier negative coefficient or pushes polarization above one will again be rejected with full rollback.
+
+The anisotropic full loop uncovered another complementary pair: Pb₃O₄ c-axis size and a low-index PbWO₄ [100] texture term now clear their thresholds together. Because the retained state changed, I’m repeating the complete loop again; this is precisely the coordinate-descent behavior the requested protocol is designed to expose.
+
+A hierarchy check catches one over-selection: Pb₃O₄ uniaxial size improves only 0.007 over its valid isotropic model, below the broadening threshold. I’m pruning that extra parameter, keeping the supported PbWO₄ [100] texture, and replaying from the corrected checkpoint.
+
+The corrected hierarchy checkpoint is physical (Rwp≈4.67) with isotropic Pb₃O₄ size and PbWO₄ [100] texture. This replay now explicitly requires uniaxial broadening to beat the valid isotropic alternative, not merely an invalid neutral branch.
+
+This pass should settle the last complexity question: PbWO₄ uniaxial size and [100] texture must both survive, while Pb₃O₄ should return to its simpler isotropic size unless the additional component gains at least 0.01 Rwp.
+
+The chemistry remains unchanged throughout these profile refinements. The major phase identities are anchored by many noncoincident reflection families; the loop is refining uncertainty in line shape and fractions, not inventing phases.
+
+The profile replay is still normal. Every phase remains scale-positive and the reported fractions will come only from the ultimately selected checkpoint, normalized over these modeled crystalline phases.
+
+After this loop, I’ll perform the source/weak-phase replay against the converged three-phase model. Those trials are shorter because they start scale-only and are discarded immediately if their positive scale does not survive full nuisance reconvergence.
+
+The final coordinate is now near completion. The output state will be compared structurally—profile terms, background order, broadening type, and texture axis—not just by rounded Rwp or fractions.
+
+The final coordinate state is now stable exactly: W+X, 10-term background, bounded polarization, PbWO₄ uniaxial size plus weak [100] texture, isotropic Pb₃O₄ size, no WO₃ broadening or texture. I’m moving to the chemistry gate: weak fourth phases and alternate source records under this same nuisance model.
+
+The watch list is being tested in sequence: PbO, raspite PbWO₄, the reviewed defect scheelite, and the charge-balanced Pb₂WO₅/Pb₃WO₆ analogues. Each must pass scale-only, matched full replay, and then cell release without losing a positive scale.
+
+The analogue structures are not treated as exact database identifications: they are explicitly isovalent Mo⁶⁺→W⁶⁺ and U⁶⁺→W⁶⁺ substitutions, health-screened before fitting. Their role is to test non-1:1 chemistry, not to claim a phase from a convenient residual reduction.
+
+The chemistry gate rejects PbO and the reviewed defect model at effectively zero scale. Raspite remains marginal (~0.9 wt%, tiny gain). The adapted Pb₂WO₅ and especially Pb₃WO₆ analogues retain positive scales (about 1.35% and 3.15%), so they cannot be dismissed numerically; I’m now testing whether they correspond to independent residual families or merely absorb correlated profile error.
+
+The residual-family audit separates the candidates. Pb₂WO₅ is driven almost entirely by one 29.5° family and worsens several of its other strong predicted peaks; raspite mostly borrows intensity from existing WO₃/PbWO₄ peaks. Pb₃WO₆, however, matches independent positive residual families near 29.49° and 45.63° (plus weaker high-angle support), so it advances to a four-phase convergence challenge.
+
+The Pb₃WO₆ analogue has been added as a named fourth phase and reconverges at ~3.16 wt% with the same two diagnostic families and Rwp≈4.25. I’m now reopening every profile, broadening, shared-intensity, and texture coordinate for the four-phase inventory.
+
+The four-phase loop is testing the new phase from a neutral 10 µm/zero-strain/no-texture state, then comparing isotropic size, strain, combined broadening, and a low-dimensional orthorhombic anisotropy challenge.
+
+The analogue’s atomic coordinates are held to the health-screened Pb₃UO₆ topology with isovalent U⁶⁺→W⁶⁺ substitution; only scale, cell, and profile/HAP nuisance terms are being refined. Its structural assignment will remain explicitly lower confidence than the database-matched phases.
+
+All four phase scales remain positive in the valid branches. The key question now is whether the Pb₃WO₆ fraction survives profile and texture freedom without collapsing or simply replacing Pb₃O₄/WO₃ intensity.
+
+The four-phase comparison uses the same full 9.90–100.09° range and Poisson counting weights as the three-phase model. No diagnostic peak windows receive special weighting.
+
+The profile coordinate is still advancing normally. If a candidate broadening or texture term crosses a bound, that entire trial project is rejected and the prior four-phase checkpoint is restored.
+
+This pass includes seven symmetry-compatible low-index texture competitors for orthorhombic Pb₃WO₆. A texture term must clear the same 0.02 Rwp threshold and retain a non-neutral physical March ratio.
+
+After this inventory rebuild, the rejected Pb₂WO₅, raspite, PbO, and defect phases will be re-challenged once more. Their earlier scales are not assumed to remain rejected after adding Pb₃WO₆.
+
+The current phase fractions are not being reported yet because this first four-phase loop may add or prune nuisance terms. A second full loop will be run if the retained state changes.
+
+The run is in its final texture comparisons. The longer runtime reflects the fourth phase’s additional broadening and axis trials, each fully reconverged from saved state.
+
+No intervention is needed; the run remains active and isolated. Only the validated winner of each coordinate advances to the next comparison.
+
+The full transcript is being retained for audit, including failed bound-crossing branches. The submitted project itself will contain only supported values and flags.
+
+The four-phase pass is taking longer than the three-phase loop because several weak-phase branches require extra damping cycles. These branches cannot alter the live state unless they finish physically.
+
+I’m allowing the present full loop to finish because terminating it would leave the weak-phase profile challenge incomplete. Subsequent replays will use the retained state and should be shorter if no new terms enter.
+
+The calculation remains within expected cost for an 80-site analogue and nearly 800 candidate reflections. The same model-selection thresholds and physical checks remain in force.
+
+No output is streamed because GSAS-II’s verbose refinement summaries are redirected to the audit file; the process is still responsive. I’ll report the retained four-phase state as soon as it closes.
+
+The loop has entered the tail of the orthorhombic texture trials. These are computationally heavier but remain bounded to low-index March–Dollase models; no harmonic expansion is being attempted.
+
+The calculation is still active without an error or boundary exception. I’m preserving it because this is the last exhaustive nuisance loop needed to decide whether the fourth phase is robust.
+
+This pass is materially slower than the three-phase model because the analogue has many more atomic sites. It is nevertheless finite: each refinement remains capped at 12 cycles and each coordinate at three convergence passes.
+
+The live checkpoint remains recoverable throughout. If a late trial fails, the previously validated four-phase state—not a partial iterate—will remain available for replay.
+
+The exhaustive loop has now run about twenty minutes, consistent with roughly 170 GSAS-II refinements for the four-phase coordinate grid. I’m continuing to completion rather than substituting a partial shortcut.
+
+No new user input is needed. All computations are local, and the final deliverables will still be generated only from the reopened winning project.
+
+The run is still active. The verbose log and project snapshots are isolated, so even this unusually long tail cannot overwrite the previously stable three-phase checkpoint or the validated four-phase seed.
+
+At this point the elapsed time is dominated by repeated matrix builds for the large analogue, not by additional model complexity. The tested model space remains exactly the low-dimensional grid already described.
+
+I’m continuing the final exhaustive loop because a complete state-equality result is more informative than stopping after an apparently favorable Pb₃WO₆ scale. The result will explicitly show whether the retained term set changed.
+
+The exhaustive four-phase loop hit the execution-time ceiling before writing its final state, but its saved trials are diagnostic: once candidate broadening was reopened, the Pb₃WO₆ scale fell from ~3.2% to ~0.4% and required ~1% microstrain plus large cell distortion. I’m auditing those saved branches now; this instability may disqualify the analogue as a retained phase.
+
+The saved four-phase branches show that PbWO₄ anisotropy and its earlier texture disappear after adding Pb₃WO₆; the new phase instead favors substantial isotropic strain. A Pb₃WO₆ [100] texture remains physical and scale-stable, while [010] is a clear scale/cell surrogate and is rejected. I’m completing the remaining candidate axes under explicit scale/cell-stability guards.
+
+The remaining Pb₃WO₆ axes are compared against the neutral-texture strain model. In addition to the March-ratio bounds, a texture branch is rejected if it moves the weak-phase fraction by more than a factor of two or any cell edge by more than 5%.
+
+These stability guards target the failure mode seen in [010]: a tiny scale plus extreme directional enhancement can mimic a few peaks while destroying a meaningful phase fraction. Such a branch is not accepted even if global Rwp falls.
+
+The completed axis audit retains Pb₃WO₆ [100] texture (March ratio ≈1.27, stable ~5.7 wt% fraction and cell). [011] is weaker; [010] and [101] are rejected as scale/cell or March-ratio surrogates. I’m replaying the full selected four-phase state once more with two convergence passes per coordinate.
+
+The second four-phase loop starts from the selected strain+[100]-texture model. Every coordinate is still re-evaluated, but two passes are sufficient here because the checkpoint and all accepted nuisance values are already converged.
+
+The four-phase stability criterion now includes term identity, phase-fraction stability, and weak-phase cell stability. A lower Rwp from a collapsing Pb₃WO₆ scale cannot win the texture coordinate.
+
+The Pb₃WO₆ model remains explicitly “analogue-derived.” Even if retained numerically, the report will separate confidence in the phase-like residual component from confidence in its exact Pnma atomic topology and fraction.
+
+The replay is proceeding without a zero/negative phase scale. PbO and the defect source have already failed that gate; Pb₂WO₅ and raspite will be re-tested only after this four-phase state closes.
+
+The common-profile and phase-width coordinates are the most expensive portion; the remaining shared-intensity and texture replays use the same saved project and should be shorter.
+
+The fit range, wavelengths, Kα₂ ratio, and precursor metadata remain fixed throughout. No precursor ratio was supplied in metadata, so no numerical mass-balance constraint can legitimately be imposed.
+
+The four-phase state is still active and responsive. The final result will not use the incomplete first loop; it will come only from this closed replay if the retained state matches its starting state.
+
+The current pass is entering the texture coordinate. The weak-phase [010]/[101] surrogate branches are now automatically invalidated by scale, cell, or March-ratio stability checks.
+
+No additional model class has entered the replay. The accepted candidate set remains limited to smooth background, W/X profile, low-dimensional phase broadening, bounded polarization, and one March–Dollase axis.
+
+The run remains within the expected duration for the four-phase, two-pass grid. I’ll use the saved state-equality result—not elapsed time—as the stop condition.
+
+All retained terms are still being judged under full-range replay. The high-angle region is included, which is important because several weak Pb₃WO₆-supporting reflections occur above 55°.
+
+The loop is still running cleanly. If its state is stable, the remaining tasks are a short watch-list recheck, source competition for Pb₃O₄, peak-family audit, and synchronized export.
+
+The project snapshots continue to be written normally. The final cleanup will prune every unsupported flag and replay the surviving state once more after reopening `final.gpx`.
+
+The longer tail again comes from candidate texture branches that require damping before being rejected. Those branches cannot advance unless all scale, cell, and texture checks pass.
+
+The replay remains active. Its validated checkpoint is safe, and no partial state will be promoted if the execution ceiling is reached.
+
+The second replay reached the platform’s per-process time ceiling during texture enumeration, but all earlier coordinates and snapshots were saved. I’m splitting the remaining texture comparisons into shorter chunks so the state audit can close without rerunning the expensive profile/broadening portion.
+
+The split texture replay is now self-contained: WO₃, Pb₃O₄, and Pb₃WO₆ axes are being compared sequentially from the saved post-broadening checkpoint. PbWO₄ has already returned to neutral texture.
+
+The state handed into this chunk already reflects the second loop’s selected profile and broadening: isotropic PbWO₄/Pb₃O₄ size, Pb₃WO₆ strain, W+X, 10 background terms, and bounded polarization.
+
+The candidate texture trials are reusing the same scale/cell-stability rules that rejected [010] and [101]. A physically moderate [100] term remains the provisional winner.
+
+This chunk is below the execution ceiling and is writing its own completion JSON and project. Once it closes, the four-phase nuisance state can be frozen or rejected on explicit stability evidence.
+
+The remaining comparisons are low-index March–Dollase axes only. No extra peak phases, harmonic texture, or atom-coordinate refinement is being introduced during this closure step.
+
+The candidate’s two diagnostic families remain part of the full-range objective; no local residual criterion is replacing the global physical checks.
+
+The split loop finds a replay-stable Pb₃WO₆ [101] orientation (March ratio ≈2.27) with a still-positive ~5.2 wt% fraction and stable cell; it beats [100] without the scale collapse seen for [010]. Because the texture axis changed, I’m running one final one-pass full-coordinate stability audit from this converged project.
+
+The final audit still runs every coordinate but only one capped GSAS-II refinement per trial, starting from a fully converged checkpoint. Its purpose is to detect any change in the winning term set after the [101] texture acceptance.
+
+A one-pass audit is appropriate here because each candidate begins from the already converged selected state; any branch that needs repeated damping or crosses a physical bound cannot displace it.
+
+The audit continues with all four scales positive. The weak-phase uncertainty is structural/model-based, not a current zero-scale failure.
+
+The phase inventory itself is now fixed for this audit. No fifth phase can enter; watch-list candidates are handled afterward as add-one challenges against the resulting four-phase checkpoint.
+
+The selected Pb₃WO₆ fraction remains in the few-percent range rather than collapsing under the profile/broadening coordinates. The final numeric value will come from the reopened project after this audit.
+
+The audit is approaching the shared-intensity and texture tail. Unsupported roughness and neutral texture axes remain available as direct competitors.
+
+The audit remains under the execution ceiling. If the state equality flag is true, no further model-selection loop will be needed.
+
+No high-order or atom-coordinate parameter has been introduced to improve the weak-phase fit. The audit remains confined to the predeclared low-dimensional nuisance terms.
+
+The final model’s goodness-of-fit will remain above one because the supplied pattern has no experimental uncertainty column and Poisson √counts weights are only an approximation; this will be stated explicitly.
+
+The one-pass grid is in its final texture comparisons. Candidate branches that previously collapsed scale or cell are being rejected automatically.
+
+The audit is still active and has not raised an error. The final state-equality result and fractions will be read directly from its completion JSON.
+
+The process remains within its time budget. No further exhaustive loop is planned unless this audit actually changes the retained term set.
+
+The final texture trials are the slowest because the analogue contains many sites and reflections. They remain bounded to one refinement each in this audit.
+
+The project snapshots are still updating normally. I’m letting the final candidate axes close so the selected [101] term is challenged on exactly the same footing as its competitors.
+
+The platform ceiling stopped the monolithic audit after all profile/broadening trials and the background coordinate, before texture. Those saved checkpoints are enough to test whether the expensive part changed; I’m reading that selected state directly and will finish only the short shared replay before freezing the already completed texture winner.
+
+The attempted four-phase full audit does not converge to a stable model: Pb₃WO₆ shifts between ~2–6 wt%, swaps strain for size, and drives texture/scale or polarization to bounds. Under the requested gate, that is insufficient despite two residual families. I’m excluding it from the quantitative inventory and returning to the fully stable three-phase checkpoint; the report will flag a Pb₃WO₆-like residual component as unresolved.
+
+The final source competition is now rebuilding Pb₃O₄ from the selected passing tetragonal record, a reviewed alternate tetragonal record, and a passing orthorhombic record under identical W/X, broadening, polarization, texture, and background terms.
+
+The Pb₃O₄ source competition is decisive: passing tetragonal COD 9012124 gives Rwp≈4.67; the reviewed tetragonal alternate is worse (4.80), and the orthorhombic record collapses to ~0.7 wt% while pushing polarization above one. I’m freezing the stable three-phase model and replaying it from `final.gpx`.
+
+The reopened final project reproduces exactly: Rwp 4.6713%, Rp 3.0496%, with crystalline fractions 61.365% PbWO₄, 20.916% WO₃, and 17.718% Pb₃O₄. I’m exporting CIFs and the profile now, then running the mandatory final CIF health and cross-file consistency checks.
+
+All three submitted CIFs pass the final geometry/occupancy health screen. I’m finishing the low/mid/high-angle peak-family audit and then will write `result.json` and the uncertainty-focused report from the reopened project.
+
+Completed and validated against the reopened GSAS-II project.
+
+- PbWO₄ scheelite: 61.365 wt%
+- Monoclinic WO₃: 20.916 wt%
+- Pb₃O₄: 17.718 wt%
+- Rwp: 4.6713%; Rp: 3.0496%; GOF: 1.8829
+
+A possible Pb₃WO₆-like residual component was not quantified because its structure and fraction were not replay-stable.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [PbWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_PbWO4_scheelite.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_monoclinic.cif)
+- [Pb₃O₄ CIF](<ATTEMPT_WORKSPACE>/phase_Pb3O4.cif)
+

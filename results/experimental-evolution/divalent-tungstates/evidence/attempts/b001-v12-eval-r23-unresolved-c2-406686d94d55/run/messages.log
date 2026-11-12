@@ -1,0 +1,56 @@
+I’ll first inspect the measurement metadata, pattern format, and the reusable diffraction utilities. Then I’ll build a chemistry-based candidate inventory, health-screen every serious CIF source, and only retain phases that survive profile replay and source challenges.
+
+The chemistry is a Pb–W–O reaction at 500 °C, so the initial exact-formula watch list is PbWO₄ (including its distinct polymorphs), residual WO₃/Pb₃O₄, and charge-balanced lead-rich or tungsten-rich oxides. No precursor amounts or ratio are present in the metadata, so I will not impose a mass-balance ratio that was not reported. I’m now mapping the observed peak families and the locally available COD/GSAS-II interfaces.
+
+The peak map already separates two width regimes: a broad dominant family (for example 27.81°, 45.13°, 55.63°, 72.36°) and several much sharper low-angle lines (23.53°, 24.02°, 24.84°). That is evidence for at least two crystalline components, not merely a single isotropically broadened phase. Before any profile fitting, I’m health-screening the distinct PbWO₄ records and the plausible precursor/oxide records as required.
+
+The exact source challenge is now well anchored: the broad family matches scheelite-like Pb–W–O positions, while the sharp triplet and its independent 33–35° and 49–56° families match monoclinic WO₃. I’m moving from stick-pattern matching to whole-profile tests, starting each source from the same neutral checkpoint so the very similar scheelite PbWO₄ and Pb-deficient superstructure cannot be selected by the dominant peaks alone.
+
+The first valid replay gives wR = 9.705% with nonnegative profile terms (X = 8.60, U = W = 0) and a 0.067 µm broad-domain size, versus 13.45% at the neutral-size checkpoint. WO₃ retains a positive scale. I’ve rejected the earlier numerically lower-looking route because U and W crossed below zero; that bound-crossing comparison is invalid under the requested protocol. Next I’m challenging the Pb–W–O source/topology at the same neutral and elaborated checkpoints.
+
+The PbWO₄ topology challenge is decisive for raspite (wR ≈ 26.72%, rejected), but scheelite PbWO₄ and Pb₇W₈O₂₈.₈ remain very close after broadening: 9.6945% versus 9.7048%. Scheelite is also better at the neutral checkpoint (13.2445% versus 13.4497%) with fewer structural complications, so it currently leads, but I’m treating the 0.01-point elaborated gap as potentially nuisance-coupled and will cross-seed/replay it. I’m now ranking distinct WO₃ polymorph records against that common scheelite model.
+
+The residual inventory reveals a third phase, not just a profile defect. The large unmatched families at 26.81°, 31.22°, 32.55°, 47–52°, 58.48°, and 66.57° all map coherently to Pb₃O₄ after the same angular correction; several are independent and non-coincident. This is unreacted precursor chemistry and meets the retention gate far more strongly than a weak-phase hypothesis. I’m adding Pb₃O₄ from a neutral checkpoint and comparing its tetragonal and orthorhombic records before allowing phase broadening.
+
+Pb₃O₄ is strongly retained: the health-passing tetragonal record lowers wR from 9.69% to 7.51% even with neutral phase width and to 6.80% with positive size broadening; its refined crystalline fraction is about 17%. The orthorhombic physical competitor remains much worse (9.39%), and one alternate record imported chemically invalid atom types, so it is excluded. I’m now resetting all three phases to genuinely neutral width terms and running size/strain/combined challenges from the same saved checkpoint.
+
+The first width loop exposed an important coupling: when the common X term was allowed to broaden all phases to X≈19.85, several strain refinements became negative, and WO₃ size hit the neutral boundary with singularity. Those comparisons are invalid and will not be advanced. I’m reloading the accepted X≈8.8 profile from the three-phase fit, keeping the sharp WO₃ width neutral, and challenging positive strain only as a complement to the already positive size terms for the two broad phases.
+
+The complementary strain test also failed physically: Lorentzian strain crossed negative, and Gaussian strain either crossed negative or stalled without a replay-stable gain. The accepted width model is therefore isotropic size for scheelite PbWO₄ and Pb₃O₄, with WO₃ neutral; this is the simpler replay-stable model. I’m now testing smooth background order and the shared high-angle intensity trend through polarization and surface roughness, while tracking whether fractions remain stable.
+
+The background/intensity replay is still running from the shared checkpoint. Once it finishes, I’ll keep only nuisance terms that are physical, replay-stable, and do not shift the phase fractions materially.
+
+The shared-intensity trials exposed a useful boundary: polarization drove essentially to its physical limit (~0.995), while the joint polarization/roughness fit went nonphysical (polarization >1, negative roughness). I’m treating that joint result as invalid and will challenge the remaining physical roughness model against simple texture and a fixed-boundary replay rather than accepting the lower residual at face value.
+
+The family-specific checks are now discriminating cleanly: PbWO₄ has replay-stable uniaxial size broadening (about 0.081 µm perpendicular to [001] versus 0.061 µm along it), improving Rwp from 6.804% to 6.780%. Pb₃O₄ anisotropy and all tested one-axis texture terms give only marginal gains; I’m now replaying those terms after the physical roughness correction to see whether they survive the shared-intensity change.
+
+The shared nuisance loop is stable from very different starts: the one-parameter roughness term converges to 0.1651 both times. A two-parameter roughness model remains highly correlated and drifts, so it is rejected. PbWO₄ [100] March–Dollase texture survives the roughness replay with a modest ratio of 1.050 and stable fractions; Pb₃O₄ uniaxial width also remains positive. I’m combining only those supported terms, then rerunning the close source-record competitors from that checkpoint.
+
+The first mature control replay reproduced the accepted result exactly (Rwp 5.078%). The alternate scheelite record then entered a poor local minimum from its literature cell, so I stopped that batch rather than count an invalid comparison. I’m cross-seeding each competitor with its independently refined cell and restarting the source challenge, as required for a fair ranking.
+
+The mature source replay is decisive. The retained records reproduce the checkpoint at Rwp 5.078%; the nearest competitors give 5.317% for Pb₇W₈O₂₈.₈, 5.458% for alternate monoclinic WO₃, and 5.152% for alternate tetragonal Pb₃O₄. Lower-symmetry WO₃ and orthorhombic Pb₃O₄ are much worse, with the latter also collapsing an axial size and distorting its cell. I’m now auditing angular residuals and isolated peak families before freezing the project.
+
+The profile audit supports the retained terms: isolated WO₃ triplet positions agree within 0.005–0.007° and FWHM within about 0.008°, while representative PbWO₄ low/mid/high families agree in position within 0.014°; the largest remaining mismatch is high-angle PbWO₄ width/asymmetry. I’m freezing the conservative eight-term-background model over every measured point and performing the required save–reopen–replay now.
+
+The full-range project converged identically after reopening (maximum shift/esd 0.001). Final Rwp is 5.0718%, and all three exported CIFs pass the required geometry/occupancy health screen. I’m doing the final cross-file consistency check now and will record the source discrimination and realistic fraction uncertainty in the report.
+
+The structural/result checks passed; the consistency script only tripped on the CSV’s decimal serialization tolerance. I’m quantifying that rounding difference and will regenerate at higher precision if needed so `fit.csv` numerically replays the project exactly.
+
+Completed the phase analysis and full-range GSAS-II refinement.
+
+- PbWO₄ (scheelite): 60.60 wt%
+- WO₃ (monoclinic): 21.98 wt%
+- Pb₃O₄ (tetragonal): 17.42 wt%
+
+Final fit: Rwp 5.0718%, Rp 3.3918%, GOF 2.0441. Fractions sum to 1.0 over modeled crystalline phases. All final CIFs passed the geometry/occupancy health screen. Practical fraction uncertainty is approximately 1–2 wt% absolute; amorphous content cannot be quantified.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [PbWO4.cif](<ATTEMPT_WORKSPACE>/PbWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [Pb3O4.cif](<ATTEMPT_WORKSPACE>/Pb3O4.cif)
+

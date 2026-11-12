@@ -1,0 +1,28 @@
+I’ll inspect the pattern, metadata, and the provided PXRD workflow guidance first, then identify candidate phases, build/refine them in GSAS-II, and verify that every submitted artifact is reproducible from `final.gpx`. I’ll treat phase fractions conservatively and flag any ambiguity in `report.md`.
+
+The chemistry is PbCO₃ + WO₃ fired at 550 °C, but I won’t assume complete conversion: plausible candidates include PbWO₄ plus residual precursor/decomposition or lead-rich tungstates. I’m now extracting peak positions and searching the frozen reference library by simulated-pattern agreement before any refinement.
+
+Three phases are now strongly evidenced: scheelite-type PbWO₄, monoclinic WO₃, and cerussite PbCO₃. Their independent line sets all share the same low-angle displacement trend, which is a good check against accidental peak matching. Next I’m selecting the exact WO₃ setting/reference and setting up a staged three-phase Rietveld refinement.
+
+The first GSAS trial reaches \(R_\mathrm{wp}\approx10.3\%\) before profile refinement, confirming PbWO₄ + WO₃, but it exposed a setting-conversion problem for the cerussite CIF: GSAS-II rejected its nonstandard `Pmcn` operators and effectively assigned it zero abundance. I’m standardizing that reference to a GSAS-compatible `Pnma` setting before trusting the fraction refinement.
+
+The standardized cerussite model is now accepted and refines to a clear nonzero contribution. I’m constraining angular/profile terms to the physically allowed measurement ranges because the unconstrained least-squares solution showed the expected near-degeneracy among zero, specimen height, and lattice parameters.
+
+The three-phase inventory is stable. Current work is now about model quality rather than identification: fitting phase-specific broadening on the full measured grid, then testing only symmetry-allowed heavy-atom coordinate changes and preferred orientation where the residuals justify them.
+
+The intensity model now supports two modest, statistically visible texture terms (cerussite [100], WO₃ [010]) and a refined polarization of 0.717. A shared isotropic displacement parameter per phase gives only a small further gain; WO₃ approaches the top of the physically expected \(U_\mathrm{iso}\) range, so I’m keeping that interpretation conservative while testing anisotropic broadening.
+
+A physically valid monoclinic WO₃ reference (`P2₁/c`, COD 2311041) fits slightly better than the older model and removes its 1.57 Å O–O contact warning. With the observed [010] texture, it lowers \(R_\mathrm{wp}\) to 3.51%, so I’m adopting that structural variant and rebuilding a clean three-phase project around it.
+
+The selected model now replays independently at \(R_\mathrm{wp}=3.506\%\) with a per-point weighted misfit of 1.086—close to the Poisson noise floor—and all three structures pass the contact/occupancy checks. I’ve exported the final CIFs and am running the final cross-consistency checks among `result.json`, `fit.csv`, the CIFs, and `final.gpx`.
+
+Completed the three-phase refinement:
+
+- PbWO₄, scheelite: 63.95 wt%
+- PbCO₃, cerussite: 18.58 wt%
+- WO₃, monoclinic P2₁/c: 17.47 wt%
+
+Independent full-grid replay gives Rwp = 3.506% and χ²/point = 1.086. Realistic fraction uncertainty is approximately 1–2 wt%; absolute lattice parameters are less certain because angular zero, specimen displacement, and cell dimensions are strongly correlated.
+
+Artifacts: [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-12491ee8c6d6/workspace/result.json), [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-12491ee8c6d6/workspace/report.md), [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-12491ee8c6d6/workspace/fit.csv), [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-12491ee8c6d6/workspace/final.gpx), [PbWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-12491ee8c6d6/workspace/PbWO4.cif), [PbCO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-12491ee8c6d6/workspace/PbCO3.cif), and [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-12491ee8c6d6/workspace/WO3.cif).
+

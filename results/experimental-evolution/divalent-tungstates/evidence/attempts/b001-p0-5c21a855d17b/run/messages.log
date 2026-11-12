@@ -1,0 +1,37 @@
+I’ll inspect the diffraction data, metadata, and available crystallographic utilities first, then identify candidate phases and carry the best model through a reproducible GSAS-II refinement. I’ll keep phase assignment and quantitative uncertainty separate so the final report is candid about what the pattern actually supports.
+
+The chemistry is a Sr–W–O reaction at 650 °C with Cu Kα₁/Kα₂ data and no stated product or phase count. I’m now extracting peak positions and checking both the supplied reference library and the installed refinement stack; low-temperature residual WO₃ or SrCO₃ must remain live possibilities until the full pattern is accounted for.
+
+The first database hit, high-pressure Sr₃W₂O₉, is decisively inconsistent: it predicts strong low-angle lines near 13.2° and 18.9° that are absent, and its principal line is near 28.9° rather than 27.20°. The observed cluster at 22.5–26.0° instead looks like unreacted/partly transformed oxide–carbonate superposed on a tungstate product, so I’m scoring the plausible SrWO₄, WO₃, and SrCO₃ structures against the whole peak set rather than accepting the chemistry-only hit.
+
+Three crystalline components now account for the distinctive lines: scheelite SrWO₄ dominates; orthorhombic SrCO₃ explains the shifted pairs near 24.65/25.30° and its higher-angle satellites; monoclinic WO₃ explains the 22.52/22.94/23.83° triplet. All phases share an approximately −0.6° instrumental/specimen offset, which is why direct database matching initially looked poor. I’m moving these three models into GSAS-II and will test whether the minor-phase scales remain stable when background, zero, cell, and peak shape are introduced progressively.
+
+The first quantitative pass already converged to approximately 62 wt% SrWO₄, 21 wt% WO₃, and 17 wt% SrCO₃ with \(R_{wp}\approx8.6\%\) before cell/profile optimization. I found one GSAS-II bookkeeping issue in that trial—the histogram scale was inadvertently free alongside every phase scale—so I’m removing that redundancy before trusting uncertainties or the final fractions. The phase assignment itself is stable and each minor phase has multiple isolated diagnostic reflections.
+
+After fixing the scale redundancy, the fractions remain essentially unchanged (about 61.8/21.6/16.6 wt%), which is a useful stability check rather than a coincidental first fit. Cell and zero refinement lowered \(R_{wp}\) to about 7.10%, and the first profile-shape step to about 6.95%; I’m letting the final profile cycle finish, then I’ll inspect the residual for any coherent unmodeled phase before exporting deliverables.
+
+The intensity residual is now explained mostly by two physically interpretable effects: the detector geometry requires a refined polarization factor (~0.77), and SrWO₄ shows mild [001] texture (March–Dollase 1.11). Those reduce \(R_{wp}\) to 5.94% without changing the phase set. I’m testing one analogous, crystallographically motivated WO₃ texture direction because its three isolated low-angle reflections have strongly unequal observed/calculated ratios; this is the main remaining source of fraction uncertainty.
+
+The selected final model is stable on a full-range refinement: 63.37 wt% SrWO₄, 20.91 wt% monoclinic WO₃, and 15.71 wt% SrCO₃, with \(R_{wp}=4.776\%\) and GOF = 1.669. The last cycle converged with no singular values; I’m now doing file-level validation—reopening the GPX, parsing every exported CIF, and checking that `fit.csv` and `result.json` exactly reproduce the serialized project.
+
+The refinement and deliverables are complete. I’m doing one final consistency check across the project, exported CIFs, profile, and reported fractions before handing them over.
+
+Completed. The modeled crystalline fraction contains:
+
+| Phase | Weight fraction | Structure |
+|---|---:|---|
+| SrWO₄, scheelite | 63.37 wt% | [SrWO4.cif](<ATTEMPT_WORKSPACE>/SrWO4.cif) |
+| monoclinic γ-WO₃ | 20.91 wt% | [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif) |
+| SrCO₃, strontianite | 15.71 wt% | [SrCO3.cif](<ATTEMPT_WORKSPACE>/SrCO3.cif) |
+
+Final fit: Rwp 4.776%, Rp 3.438%, Rexp 2.861%, goodness-of-fit 1.669.
+
+The fractions exclude any amorphous material. Estimated systematic uncertainties are approximately ±2.0, ±1.5, and ±1.5 absolute wt%, respectively; atomic coordinates were retained from reference structures because unconstrained coordinate refinement was not reliable.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+

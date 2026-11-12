@@ -1,0 +1,22 @@
+I’ll inspect the measurement metadata and diffraction profile first, then identify candidate phases, build/refine them in GSAS-II, and validate that the exported CIFs, fractions, profile, statistics, and final project all agree. I’ll flag any phase whose identity or fraction is not well constrained.
+
+The chemistry points naturally toward calcium tungstates, but the precursor ratio is unspecified, so I’m treating residual CaO/WO₃ and alternative Ca–W–O compounds as genuine possibilities. I’m now extracting the peak set and checking the locally available phase-search/indexing and GSAS-II interfaces rather than assuming CaWO₄ from composition alone.
+
+The peak positions resolve the phase count cleanly so far: the apparent extra line at 29.03° is CaWO₄ (103), not a second phase, and every strong/medium line through 100° maps to tetragonal scheelite CaWO₄ (space group I4₁/a). Candidate Ca₃WO₆, CaO, and the known WO₃ polymorphs all require strong low-angle peaks that are absent. I’m moving to a full-profile refinement to test whether weak residuals justify any impurity and to quantify the lattice, profile, and scale.
+
+The first full-profile pass confirms a one-phase fit (Rwp ≈ 7.9%), but it exposed two technical issues I’m correcting before accepting it: GSAS-II initially allowed redundant sample and phase scale factors, and an unconstrained Gaussian profile wandered to nonphysical negative coefficients. I’m separating those correlations, inspecting the residual shape, and will retain only physically meaningful, data-supported refinements.
+
+The corrected model is now stable and physically sensible: a purely Gaussian effective profile with axial-divergence asymmetry gives Rwp ≈ 2.71% and GOF ≈ 1.19, with no scale singularity. I’m doing one final model-selection check on oxygen coordinates/thermal terms and on possible weak impurities; I’ll keep extra parameters only if they improve the fit without becoming unstable or chemically implausible.
+
+The final full-range refinement has converged cleanly with one phase: Rwp 2.6643%, GOF 1.1698, and Bragg R(F) 1.9450%. The refined cell and oxygen/ADP model remain chemically sensible, and adding preferred orientation did not produce a meaningful improvement, so it was excluded. I’m now running consistency checks across the GPX, CIF, CSV, JSON, and report before handing them over.
+
+Completed: single-phase scheelite CaWO₄ (I4₁/a), 100.0 wt% normalized over modeled crystalline phases. Rwp = 2.6643%, GOF = 1.1698. Trace impurities or amorphous content cannot be quantified without an internal standard.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [CaWO4_scheelite.cif](<ATTEMPT_WORKSPACE>/CaWO4_scheelite.cif)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+

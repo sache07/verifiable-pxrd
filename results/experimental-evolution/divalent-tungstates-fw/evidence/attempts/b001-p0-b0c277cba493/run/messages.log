@@ -1,0 +1,19 @@
+I’ll first inspect the pattern, metadata, and the framework’s analysis/tool guidance, then identify candidate phases and build/refine the final GSAS-II model. I’ll keep the phase fractions tied to the refined crystalline model and explicitly flag any ambiguity.
+
+The chemistry is a low-temperature BaCO₃/WO₃ reaction, so unreacted precursors and BaWO₄ are all plausible; the pattern itself must decide the inventory. I’m now loading the exact database/search and GSAS-II workflow available in this environment before committing to candidates.
+
+The peak inventory strongly supports an unreacted two-phase mixture: orthorhombic witherite BaCO₃ and low-symmetry WO₃. Their strongest lines jointly explain the 23–25° cluster and the independent 33–35°, 42°, 45°, 50°, and 56° features; scheelite BaWO₄ would require a dominant line near 26.45° that is not evident. I’m testing the exact COD polymorphs and setting up a quantitative whole-pattern refinement next.
+
+The whole-pattern screen has narrowed WO₃ to the monoclinic room-temperature family. Two close reference models can fit peak positions, but only COD 2311041 reaches near-noise agreement without large, chemically implausible oxygen shifts; a competing COD 1528915 model needs strong over-refinement. I’m checking the triclinic near-neighbor and then will lock the physically defensible model before final quantitation/export.
+
+The selected physical model now gives a near-counting-statistics fit: Rwp 1.918% versus Rexp 1.835%, with 46.65 wt% BaCO₃ and 53.35 wt% WO₃. I’m doing the final independent replay/consistency checks now, including CIF–project agreement and physical-contact screening, before writing the uncertainty note.
+
+Completed. The crystalline material is:
+
+- Orthorhombic BaCO₃ (witherite): 46.65 wt%
+- Monoclinic WO₃: 53.35 wt%
+
+No defensible BaWO₄ fraction was detected. Final fit: Rwp 1.9177%, Rexp 1.8352%, goodness-of-fit 1.0449. Independent GSAS-II replay reproduced the profile and fractions; both CIFs passed consistency and physical-validity checks.
+
+Files: [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-b0c277cba493/workspace/result.json), [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-b0c277cba493/workspace/report.md), [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-b0c277cba493/workspace/fit.csv), [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-b0c277cba493/workspace/final.gpx), [BaCO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-b0c277cba493/workspace/phase_baco3.cif), [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-b0c277cba493/workspace/phase_wo3.cif).
+

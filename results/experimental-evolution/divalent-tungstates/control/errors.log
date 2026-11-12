@@ -1,0 +1,65 @@
+2026-11-02T19:52:44.322397+00:00
+Traceback (most recent call last):
+  File "<RUN>/control/broker.py", line 228, in requests
+    value = handle(state, r)
+            ^^^^^^^^^^^^^^^^
+  File "<RUN>/control/broker.py", line 109, in handle
+    result = freeze_batch(r)
+             ^^^^^^^^^^^^^^^
+  File "<RUN>/control/artifacts.py", line 131, in freeze_batch
+    raise ValueError('Reference physical review required. Repair with evidence or freeze as diagnostic-only: ' + ', '.join(flagged))
+ValueError: Reference physical review required. Repair with evidence or freeze as diagnostic-only: b001-c02, b001-c03, b001-c04, b001-c05, b001-c06
+
+2026-11-02T22:21:36.930025+00:00
+Traceback (most recent call last):
+  File "<RUN>/control/broker.py", line 228, in requests
+    value = handle(state, r)
+            ^^^^^^^^^^^^^^^^
+  File "<RUN>/control/broker.py", line 193, in handle
+    return start_procedure_test(state, r)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<RUN>/control/procedure_test.py", line 118, in start
+    chosen, skipped = select(state, r, cfg['procedure_test_max_attempts'])
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<RUN>/control/procedure_test.py", line 55, in select
+    raise ValueError(jid + ': ' + reason)
+ValueError: b001-v1-7b429625c5ca: unknown attempt
+
+2026-11-03T01:42:30.506010+00:00
+Traceback (most recent call last):
+  File "<RUN>/control/broker.py", line 228, in requests
+    value = handle(state, r)
+            ^^^^^^^^^^^^^^^^
+  File "<RUN>/control/broker.py", line 116, in handle
+    result = freeze_package(r)
+             ^^^^^^^^^^^^^^^^^
+  File "<RUN>/control/artifacts.py", line 159, in freeze_package
+    if not notes.read_text().strip():
+           ^^^^^^^^^^^^^^^^^
+  File "<HOME>/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '<RUN>/evolve/Final budget-limited replacement: preserve reversible watch-list/source recovery, require direct peak/background baseline adequacy, and use residual-family evidence for broadening, intensity, and texture; helper unchanged.'
+
+2026-11-03T09:44:19.325215+00:00
+Traceback (most recent call last):
+  File "<RUN>/control/broker.py", line 228, in requests
+    value = handle(state, r)
+            ^^^^^^^^^^^^^^^^
+  File "<RUN>/control/broker.py", line 116, in handle
+    result = freeze_package(r)
+             ^^^^^^^^^^^^^^^^^
+  File "<RUN>/control/artifacts.py", line 159, in freeze_package
+    if not notes.read_text().strip():
+           ^^^^^^^^^^^^^^^^^
+  File "<HOME>/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '<RUN>/evolve/v9 chemistry/source/schema guards plus saved-baseline restoration, physical-boundary retest, adequate-baseline source/coexistence comparison, and complementary phase-profile allocation'
+

@@ -1,0 +1,36 @@
+I’ll first inventory the pattern, metadata, and the reusable refinement utilities, then anchor plausible chemistry and source structures before fitting. I’ll keep candidate rejection separate from formula rejection and health-screen every model that reaches comparison.
+
+The chemistry narrows the first inventory to magnesium tungstates plus possible unreacted WO₃/MgO; the missing precursor ratio means mass balance cannot be used as a numeric constraint. I’m now extracting observed peak families and checking which local COD/GSAS-II tooling is available so the source comparison is pattern-led.
+
+Peak positions already discriminate the sources: wolframite MgWO₄ matches the 15.58/18.88/30.42–30.76° families, while monoclinic WO₃ record 2311041 matches the resolved 23.13/23.57/24.38° triplet and passes the geometry screen. MgO has independent candidates at 42.95° and 62.3° (with higher-angle support), so I’m carrying it as a weak-phase trial rather than assuming it away.
+
+The first full-profile comparison gives a stable three-phase baseline near 58 wt% MgWO₄, 35 wt% WO₃, and 7 wt% MgO. Monoclinic WO₃ is strongly preferred over tetragonal/orthorhombic/hexagonal records; a triclinic record gains only ~0.17 percentage point in Rwp, so I’m treating that as an unresolved topology-versus-width question and will test it from the same neutral checkpoint with phase broadening reopened.
+
+The reversible width loop is decisive: WO₃ needs extra broadening, with isotropic microstrain outperforming size broadening; the size+strain trial hit a size bound and was discarded. MgWO₄/MgO width trials either returned to the neutral limit or forced common U/X to zero, so they are not retained. A one-axis WO₃ strain anisotropy gives a small replayable gain with essentially unchanged fractions; I’m now challenging that checkpoint against background order, angular-intensity corrections, roughness, and simple texture.
+
+The intensity loop found one dominant, physically simple correction: March–Dollase texture of MgWO₄ along [010] (ratio ≈1.30) drops Rwp from ~7.1% to ~2.32% without destabilizing fractions. It replays after pruning the background from 12 to 10 terms; polarization also remains strongly supported, while roughness returns no information gain. The monoclinic WO₃ source still beats the triclinic competitor after all shared nuisance values are cross-seeded (2.315% vs 2.475% Rwp).
+
+The inventory now survives removal and scale-seed tests: omitting MgO worsens Rwp from ~2.31% to ~3.01%, and MgO converges to 7.50 wt% from both 0.2× and 5× starting scales. Its 200, 220, 222, and 400 families each reduce local misfit independently. No additional coherent residual family remains; the largest residuals alternate sign across already modeled peaks, indicating profile/source limitations rather than a missing crystalline phase. I’m freezing the pruned model over the exact full measured range and generating the required deliverables.
+
+Completed the full-range GSAS-II refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| MgWO₄, P2/c | 51.33 wt% |
+| WO₃, P2₁/c | 41.16 wt% |
+| MgO, Fm-3m | 7.50 wt% |
+
+Final fit: Rwp = 2.3048%, Rp = 1.7769%, GOF = 1.509. Fractions are normalized over modeled crystalline phases; amorphous content cannot be determined.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [MgWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_mgwo4.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_wo3.cif)
+- [MgO CIF](<ATTEMPT_WORKSPACE>/phase_mgo.cif)
+
+All final CIFs passed the supplied geometry and occupancy health screen.
+

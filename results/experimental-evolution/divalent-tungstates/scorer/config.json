@@ -1,0 +1,146 @@
+{
+  "adjudication": "Physical flags remain provisional. Unfinished registration returns explicit bounds. Equal final-objective phase assignments share a score and are flagged as ambiguous attribution. Evaluator errors are not solver zeros.",
+  "adoption": "Profile-primary 7.0.0; frozen after the accompanying validation on oracle, library-parent and refined projects. 7.0.1 changes only the interplay text.",
+  "aggregation": "Average repeats within each case, then cases equally; keep dataset, split and condition separate. Show all-attempt provisional means and fixed common adjudicated-case means with explicit denominators.",
+  "duplicate_match": {
+    "angle_tol": 0.0001,
+    "composition_tolerance": 1e-08,
+    "ltol": 1e-06,
+    "stol": 1e-06
+  },
+  "equivalence_classes": [],
+  "fractions": {
+    "sensitivity": [
+      0.01,
+      0.03,
+      0.05
+    ],
+    "tolerance": 0.03,
+    "used_for_total": false
+  },
+  "hard_failure": "Malformed top-level submission or unequivocal hard physical failure scores zero. Invalid individual model records count as unmatched assertions; preserve other valid structure credit. Preserve component diagnostics before the physical gate.",
+  "headline": {
+    "metric": "profile_primary_agreement",
+    "profile_scale_D": 1.0,
+    "profile_scale_note": "D is the mean Poisson deviance per bin against the noise-free pattern, about the mean squared standardized residual; D = 1 (one noise sigma per point) earns half profile credit, D = 0.05 about 95 percent.",
+    "profile_weight": 0.6,
+    "structure_weight": 0.4
+  },
+  "headline_metric": "profile_primary_agreement",
+  "matching": {
+    "allow_subset": false,
+    "angle_tol": 5,
+    "attempt_supercell": true,
+    "ltol": 0.2,
+    "primitive_cell": true,
+    "scale": false,
+    "stol": 0.3
+  },
+  "partial_submissions": {
+    "component_weights": "Profile 0.6 (requires a verified complete project; otherwise 0) plus structural 0.4.",
+    "explicit_unresolved_balance": "Preserve known absolute fractions below one when unresolved material is explicitly declared. Never renormalize away missing material; profile diagnostics may be unavailable.",
+    "invalid_model": "Count an invalid asserted atomic model as an unmatched prediction; do not silently discard it or redistribute its weight.",
+    "legacy_compatibility": "Recognize explicit unresolved/indexed records embedded in phases when no atomic model and no numeric mass fraction are supplied.",
+    "mass_credit": "sum(q * min(reference_fraction, submitted_fraction))/max(1,total_claimed_mass) for assigned quantified phases",
+    "models": "Score readable atomic phase models independently of missing fraction fields. Explicit unresolved records without atomic models are not identified phases.",
+    "profile": "Verified profile agreement requires the entire atomic-model set and complete valid fractions; otherwise the profile term is zero and only structural credit remains.",
+    "unknown_weights": "Retain inventory credit; no mass or fraction-precision credit for unknown fractions."
+  },
+  "physical_screen": {
+    "hard_contact_A": 0.8,
+    "note": "Existing necessary validity checks, applied identically to targets and submissions. The O-O flag is a review trigger specific to this oxide application, not a universal chemical prohibition.",
+    "oxide_oxygen_contact_review_A": 1.8,
+    "raw_cif_occupancies": "Reject nonfinite, negative or greater-than-1.0001 raw site occupancies before import; do not let a parser discard invalid atoms silently."
+  },
+  "profile": {
+    "angular_calibration": "Retain the submitted GSAS-II zero, instrument and polarization. No true calibration is substituted.",
+    "expected_mean": "hidden generation mean, read only after project prediction and consistency checks are complete",
+    "new_monte_carlo_calibration": false,
+    "nuisance": "All fitted instrument, specimen, background, scale and atomic parameters retained from final.gpx. No evaluator optimization.",
+    "quadratic_variance_floor": 1.0,
+    "reference": "unrefined generating mean compared to original observations; diagnostic only",
+    "reported_fractions_fixed": true,
+    "solver_measurement_diagnostics": "Recompute original-grid Rwp from verified final.gpx; fit.csv and declared scalar statistics remain separate untrusted diagnostics.",
+    "structures_fixed": true
+  },
+  "project_replay": {
+    "background": "Preserve native background basis on saved fit interval; evaluate or extrapolate over original grid.",
+    "consistency": {
+      "adp_tolerance_A2": 0.00011,
+      "angle_tolerance_deg": 0.005,
+      "fraction_absolute_tolerance": 0.005,
+      "lattice_relative_tolerance": 3e-05,
+      "occupancy_tolerance": 0.00051,
+      "position_tolerance_A": 0.002,
+      "purpose": "Numerical floors plus half-last-printed-digit rounding intervals, propagated through units/symmetry. Parenthesized standard uncertainties do not widen these intervals. Declared CIF ADPs are checked when present; omitted ADPs are supplied by the project.",
+      "rounding_rule": "Half a last printed decimal digit from each serialized value; bare integers/rational constants treated as exact. Fraction-vector tolerance unchanged."
+    },
+    "isolation": "GPX parsed only in bwrap with public observations, pinned scientific runtime, isolated outputs, no hidden truth or network.",
+    "missing_or_inconsistent_project": "Structural score remains independently evaluable; profile is unavailable and submission is explicitly incomplete.",
+    "optional_histogram_field": "refinement_histogram",
+    "original_grid": "all bins; saved exclusions do not remove scoring bins",
+    "parameters_optimized": 0,
+    "physical_review": "Negative atomic displacement tensors (eigenvalue below -1e-8 A2), negative analytic total peak widths, negative background, out-of-range polarization and auxiliary background peaks flag provisional interpretation.",
+    "project_filename": "final.gpx",
+    "reflection_generation_margin_deg": 0.0,
+    "unsupported_valid_model_or_evaluator_failure": "Explicit profile verification error with no invented Rwp/D; independent structural score may still be available.",
+    "weighting": "1/max(observed,1)"
+  },
+  "retrospective": false,
+  "revision_6_1_0": "Derived from 6.0.0 with unchanged scoring. A submission's allowed elements come from the case record written at generation; cases with an elements list in public metadata are read as before. Unused legacy modules (profile fitting, old rubrics, duplicated generator physics) were removed; the live import path is unchanged.",
+  "rubric": {
+    "definition": "100 x (0.6 x profile + 0.4 x structural/100), gated by physical validity. profile = 1/(1 + D/profile_scale_D) from the verified final.gpx replay against the hidden noise-free pattern; 0 when no verified project. structural = maximum one-to-one sum of phase credits: inventory/abundance times conditional scattering-weighted site precision and fraction precision; cell error is reported, not credited.",
+    "interplay": "A solution is good when its predicted pattern matches the data to the noise floor and every structure is physically valid. Fitting noise cannot lower D; misplacing atoms the pattern barely sees costs little structural credit.",
+    "profile_role": "Primary term. Independent Rwp on the observed grid remains a separate diagnostic.",
+    "score": "profile_primary_agreement"
+  },
+  "runtime_revision": {
+    "atomic_intensities_recalculated": true,
+    "hidden_calibration_used": false,
+    "native_forward_replay": true,
+    "nuisance_fitting": false
+  },
+  "soft_matching": {
+    "definition": "Shared common-cell enumeration and transport primitives. The legacy Gaussian scorer in soft_matching.py is not the headline metric; structural_registration.py defines the active Cauchy and square-root population matching.",
+    "lattice_angle_tol_deg": 5,
+    "lattice_ltol": 0.2,
+    "length_scale_A": 0.2,
+    "length_scale_sensitivity_A": [
+      0.1,
+      0.2,
+      0.3
+    ],
+    "max_lattice_registrations": 2048,
+    "max_origin_seeds": 20000,
+    "max_registered_atoms": 2000,
+    "origin_maxiter": 80,
+    "origin_refinement_starts": 16,
+    "primitive_tolerance_A": 1e-05,
+    "tie_tolerance": 1e-10
+  },
+  "structural_precision": {
+    "assignment": "maximum_total_credited_agreement",
+    "atomic_weighting": "scattering_population",
+    "cell_cap": 0.0,
+    "cell_scale": 0.001,
+    "family": "compound",
+    "fraction_cap": 0.25,
+    "fraction_scale": 0.05,
+    "inventory_weight": 0.5,
+    "note": "cell_cap 0: cell error is diagnostic only. Site credit per atom is Z_e / sum Z N, so light atoms and minor-phase atoms carry little weight.",
+    "position_cap": 0.5,
+    "position_scale_A": 0.03,
+    "presence_scale": 0.05
+  },
+  "structural_registration": {
+    "broad_cell_scale": 0.03,
+    "broad_position_scale_A": 0.15,
+    "inventory_deadline_seconds": 240,
+    "origin_maxiter": 100,
+    "origin_refinement_starts": 3,
+    "pair_deadline_seconds": 90,
+    "scope": "Finite deterministic multi-start common-cell/origin search; deadlines produce explicit bounds, never fabricated nonmatches.",
+    "shortlist_size": 9
+  },
+  "version": "7.0.1"
+}

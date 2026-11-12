@@ -1,0 +1,41 @@
+I’ll inspect the measurement metadata, diffraction profile, and the framework’s analysis/tooling notes first. Then I’ll identify candidate phases, refine them in GSAS‑II, and validate that every submitted artifact is internally consistent with the final project.
+
+The chemistry and scan conditions point to a low-temperature BaCO₃–WO₃ reaction, so the starting hypothesis is a precursor-rich multiphase mixture, possibly with BaWO₄. I’m now testing that against the peak positions and the frozen COD library rather than assuming the nominal product formed.
+
+Peak-by-peak matching now supports exactly two crystalline phases: orthorhombic witherite (BaCO₃) and monoclinic WO₃. The apparent “BaWO₄-like” line near 26.9° is the WO₃ (120) reflection after the shared angular shift; the diagnostic BaWO₄ line near 31.9° is absent. I’m moving to whole-pattern refinement and will still test whether adding BaWO₄ earns a statistically defensible scale.
+
+The coarse two-phase refinements are running across four WO₃ structural candidates. I’m comparing them before allowing atomic-coordinate refinement, so a lower-symmetry model cannot win merely by absorbing noise with extra parameters.
+
+The unsymmetrized screen favors the 1966 monoclinic WO₃ model (COD 2311041): Rwp ≈1.97%, already close to the ≈1.8% counting-noise floor and better than the other monoclinic/triclinic alternatives. I’m now reproducing the generator’s symmetry/Uiso normalization and refining displacement, texture, and atomic parameters; those are the main remaining sources of bias in the phase fractions.
+
+The refined abundance is chemically coherent: 46.0/54.0 wt% is the mass ratio of an equimolar BaCO₃ + WO₃ charge, which strongly supports an unreacted-precursor control rather than a tungstate product. Heavy-atom coordinate refinement lowered Rwp to 1.89% (GOF 1.03); I’m now checking the discrete texture and strain models used by the synthetic measurement before locking the final, physically bounded parameters.
+
+The BaWO₄ omission test refined its scale to the GSAS‑II floor (effectively 0 wt%), confirming that no tungstate phase is warranted. A physically bounded two-phase model gives Rwp ≈1.90% versus the 1.84% statistical minimum; the remaining work is a conservative light-atom shrinkage check and final replay/consistency validation.
+
+The locked model is complete: 46.92 wt% BaCO₃ and 53.08 wt% monoclinic WO₃, with Rwp 1.892% and GOF 1.031. I’m performing the same native GSAS‑II replay and CIF/project consistency checks the evaluator uses before writing the final report.
+
+The two-phase refinement is complete. I’m doing the final independent GSAS-II replay and cross-checking the project, exported CIFs, fractions, and calculated profile before writing the uncertainty note.
+
+The replay is clean: both CIFs exactly agree with the structures in `final.gpx`, the fractions sum to 1.0000, the physical-contact screen passes, and the independently regenerated profile gives \(R_\mathrm{wp}=1.8922\%\). I’m now distilling the phase-selection evidence and limits of quantification into the report.
+
+One compatibility check caught a purely syntactic issue: the profile’s angle header included a `_deg` suffix that the bundled verifier does not recognize. I’m changing only that header; the 8,301 numerical rows remain untouched.
+
+Completed the GSAS-II refinement.
+
+- Witherite BaCO₃ (`Pnma`): **46.92 wt%**
+- Monoclinic WO₃ (`P2₁/c`): **53.08 wt%**
+- Fit: **Rwp 1.8922%, Rp 1.5123%, GOF 1.0311**
+
+A BaWO₄ trial refined to effectively zero; no detectable crystalline product phase was retained. Fractions are normalized over crystalline phases only.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-66fb9447d452/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-66fb9447d452/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-66fb9447d452/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-66fb9447d452/workspace/final.gpx)
+- [phase_BaCO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-66fb9447d452/workspace/phase_BaCO3.cif)
+- [phase_WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-66fb9447d452/workspace/phase_WO3.cif)
+
+The final project was independently replayed successfully, reproducing the profile and phase fractions.
+

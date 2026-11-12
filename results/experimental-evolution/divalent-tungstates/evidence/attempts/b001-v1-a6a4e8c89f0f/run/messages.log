@@ -1,0 +1,52 @@
+I’ll first inventory the measurement metadata, candidate database helpers, and any existing refinement utilities. Then I’ll identify phases from diagnostic peaks and chemistry, compare plausible structures under the same profile model, and only export results after replaying and checking the final GSAS-II project.
+
+The chemistry points initially to Sr–W–O products plus possible unreacted WO₃/SrCO₃, but I’m treating that only as an inventory prior. I’m now extracting the observed peak families and checking what refinement/indexing backends are actually available before selecting any database record.
+
+The strongest family is internally consistent with tetragonal scheelite SrWO₄ (including its low-angle 101 and the 112/004/200/204/220/312 sequence). The remaining strong cluster near 23–26° and 29.44° is too coherent to dismiss as background, so I’m comparing all physically credible WO₃ and SrCO₃ polymorph records, not just the first database hit.
+
+The candidate screen has already rejected two problematic records: the BaWO₄ analogue has half-occupied duplicate oxygen sites and a 1.17 Å contact, and one nominal WO₃ record comes from a high-pressure Sc-tungstate study. I’m using the clean SrMoO₄ scheelite parent for the first adapted SrWO₄ model and the room-temperature neutron WO₃ structure as the first oxide trial, with GSAS-II’s default 1000 ppm strain explicitly reset to zero.
+
+The first coupled three-phase fit is already decisive on inventory: SrWO₄, WO₃, and SrCO₃ all refine to positive scales, at roughly 65/23/12 wt%, with Rwp 7.27%; the three low-angle WO₃ peaks and the carbonate pair are independently accounted for. I’m extending the profile convergence now and will compare alternate WO₃ and scheelite parents before accepting those numbers.
+
+Reconverged inventory tests show the quantitative impact cleanly: SrWO₄ alone gives Rwp 12.08%, adding monoclinic WO₃ drops it to 7.70%, and adding SrCO₃ to that fully reconverged base drops it further to 7.27%. The carbonate cannot replace WO₃, and Sr₃W₂O₉ drives to zero scale when used as the missing-phase hypothesis. Next I’m holding this same nuisance model fixed in scope while comparing room-temperature monoclinic, triclinic, orthorhombic, and tetragonal WO₃ records.
+
+The tetragonal WO₃ model is already excluded under the matched refinement: Rwp remains 11.69%, its fraction collapses to about 4%, and it forces implausible cell changes in both WO₃ and SrCO₃. The lower-symmetry trials are still converging; I’m waiting for those before choosing between monoclinic and triclinic WO₃.
+
+The matched polymorph comparison selects the clean 1966 neutron monoclinic WO₃ record (P2₁/c): Rwp 7.27%, versus 7.65% for the older monoclinic coordinates, 7.99% orthorhombic, 8.06% triclinic, and 11.69% tetragonal. The alternate clean CaWO₄ scheelite parent, adapted Ca→Sr, improves Rwp further to 7.06% without extra nuisance terms, so I’m carrying that parent forward and now checking residual peak families and whether a small, physically safe oxygen-coordinate refinement is supported.
+
+A third, more chemically faithful analogue changes the outcome materially: clean room-temperature EuWO₄ (Eu²⁺ is isovalent and nearly radius-matched to Sr²⁺) gives an adapted SrWO₄ model with W–O 1.777 Å and Sr–O 2.58–2.61 Å. Under the identical fit it lowers Rwp to 6.63%, clearly outperforming the SrMoO₄ and CaWO₄ parents without texture or phase broadening. I’m adopting this physically screened parent and repeating the staged profile extension and fraction checks from that model.
+
+The WO₃ residuals show a reproducible hkl-dependent intensity effect: its 20−2/020/002 low-angle triplet is observed in a strongly non-statistical ratio. A one-parameter March–Dollase test along 20−2 improves Rwp from 6.55% to 5.53% with a moderate coefficient of 1.248; alternative principal axes are distinctly worse. I’m retaining that supported texture term provisionally and testing whether the remaining scheelite intensity pattern supports one similarly modest term.
+
+The scheelite residuals also support one modest texture term: a [110] March–Dollase coefficient of 0.735 lowers Rwp to 4.21% and explains several independent hkl intensity reversals. By contrast, carbonate texture is axis-nonunique and improves Rwp by only 0.03–0.06%, so I’m rejecting it as unsupported. I’m now testing one isotropic size or strain term per phase; any term that sticks at a bound or lacks a phase-specific width improvement will stay off.
+
+The phase-width tests are clean: SrWO₄ size/strain and SrCO₃ strain hit their neutral bounds; carbonate size gives no meaningful improvement. WO₃ alone supports isotropic microstrain (about 4457 ppm), lowering Rwp from 4.21% to 3.80%; WO₃ size does nothing. I’m keeping only that one supported broadening term, then checking correlations, residual peaks, and a fourth-phase Sr₃W₂O₉ addition against this fully converged base.
+
+The fourth-phase test is negative: Sr₃W₂O₉ refines to 0.026(62) wt%, changes Rwp by only 0.00004%, and its cell becomes indeterminate when released. I’m excluding it. The accepted three-phase fractions also give an independent chemical check: the residual WO₃ and SrCO₃ amounts are nearly equimolar, and total modeled Sr/W is essentially 1:1, exactly what incomplete SrWO₄ formation should produce. Before export I’m making the requested zero-versus-displacement comparison and then replaying the selected project.
+
+The selected displacement model is measurably better than zero-only (Rwp 3.796% vs 3.825%) and keeps all three cells closer to their parent values; zero and displacement were never refined together. The final project has now replayed to within 0.000004 Rwp, and all CIF/profile/fraction exports were generated from that saved replay. I’m doing the last exact cross-file and geometry checks now.
+
+The final project has replayed consistently and its CIFs, fractions, and profile export agree exactly. I’m now adding the concise evidence/uncertainty report, then I’ll run one last artifact-integrity check.
+
+The report now records the candidate rejections, profile choices, mass-balance evidence, and realistic uncertainty. I’m checking the required filenames, JSON validity, and the full 8,301-point profile export before handing it over.
+
+Completed and validated against the replayed GSAS-II project.
+
+| Phase | Crystalline weight fraction |
+|---|---:|
+| SrWO4 | 61.79 wt% |
+| WO3 | 23.46 wt% |
+| SrCO3 | 14.75 wt% |
+
+Final fit: Rwp 3.796%, Rp 2.845%, GOF 1.329. Fractions are normalized over crystalline phases; practical systematic uncertainty is approximately ±2–3 wt% absolute. Amorphous content and any fourth trace phase cannot be determined reliably.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [SrWO4.cif](<ATTEMPT_WORKSPACE>/SrWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [SrCO3.cif](<ATTEMPT_WORKSPACE>/SrCO3.cif)
+

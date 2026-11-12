@@ -1,0 +1,30 @@
+I’ll first inventory the pattern, metadata, and reusable refinement utilities, then screen candidate phases against peak positions and chemistry before building the GSAS-II model. I’ll keep phase inclusion residual-led and verify the exported CIFs, fractions, profile, and final project agree exactly.
+
+The chemistry points first to Ca–W–O products, but I’m not assuming single-phase CaWO₄: I’m extracting peak families and checking exact COD records for CaWO₄, residual WO₃/CaO, and plausible competing calcium tungstates. The metadata also confirms the profile must explicitly model the Cu Kα₁/Kα₂ doublet.
+
+The dominant pattern is an exceptionally close positional match to ambient scheelite CaWO₄ (I4₁/a, COD 7219229), including independent low-, mid-, and high-angle families. I’m now testing whether the weaker features are its Kα₂ components/profile tails or coherent evidence for a second crystalline phase; none of the obvious precursor/side-product references matches those features so far.
+
+The observed FWHM increases from about 0.16° at low angle to roughly 0.3° at high angle, so I’m establishing the common profile with nonnegative U/W/X terms and all phase size/strain terms neutral. This avoids mislabeling ordinary instrumental broadening as crystallite size or microstrain before the baseline is stable.
+
+The clean one-phase baseline converges reproducibly at Rwp 3.83% with no bound hits (U≈23.15, W≈36.17, X≈0.79; zero ≈−0.0024°). CaWO₄ accounts for all strong families. I’m examining the remaining structured residuals now—especially low-angle asymmetry and family-dependent intensity—to decide whether they justify SH/L, structural-coordinate refinement, texture, or a weak second phase.
+
+The intensity trend was structural, not a hidden phase: the source-record ADPs were too large for this dataset. Constraining all Uiso values to the physical lower limit of zero drops Rwp to 2.30%, essentially the Poisson-noise floor (Rwp,min 2.281%); unconstrained ADPs turn negative, so I’m retaining the nonnegative idealized limit and explicitly flagging ADPs as not reliably measurable. Oxygen coordinates refine stably with sensible uncertainties and a small additional improvement.
+
+The nuisance challenges are clean: specimen shift is slightly worse than zero; size gives no improvement and stays at its neutral maximum; isotropic strain trades against U/X and fails the information-criterion penalty; all tested [001], [100], [110], [101], and [111] texture axes refine essentially to unity and improve χ² by only ~3. I’m pruning those terms. A smoother eight-coefficient background is supported over six, so I’m rebuilding the common profile with that background before the final phase watch-list tests.
+
+Under the rebuilt profile, none of the chemically plausible watch-list phases is supported: CaO, Ca₃WO₆, and three ambient WO₃ records remain below 3σ and fail the BIC penalty; their strongest unique families are absent. The largest spurious estimate is only about 0.11 wt% CaO (0.06 wt% s.u.). I’m tightening replay convergence and checking where the SH/L gain occurs before freezing the final inventory at one crystalline phase.
+
+The accepted one-phase model is now fully exported from the saved/reopened `final.gpx`. It reaches Rwp 2.2785%, Rp 1.7336%, and reduced χ² 1.0003 over all 8,301 points. I’m doing the final cross-check now: CIF geometry, CSV/project identity, normalized fraction, and file/schema integrity.
+
+Completed. The pattern is single-phase scheelite CaWO₄ (I4₁/a), 100.0 wt% normalized over modeled crystalline phases.
+
+Refined cell: a = 5.248891(50) Å, c = 11.386094(87) Å. Fit: Rwp = 2.2785%, Rp = 1.7336%, GOF = 1.0001.
+
+Trace impurities below roughly 0.3 wt% cannot be excluded. Refined ADPs were nonphysical, so Uiso values were fixed at zero and are not reliable thermal parameters.
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [phase_CaWO4.cif](<ATTEMPT_WORKSPACE>/phase_CaWO4.cif)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+

@@ -1,0 +1,205 @@
+I’ll first inspect the metadata, diffraction data, and reusable analysis tools, then build a chemically constrained phase inventory. I’ll health-screen every serious CIF candidate before fitting and preserve checkpoints so profile/model comparisons are reversible.
+
+The chemistry is a Sr–W–O reaction at 650 °C with no reported mixing ratio, so SrWO₄ is a strong hypothesis but not a sufficient inventory. I’m now extracting peak families and querying exact/analogue structure records for SrWO₄, unreacted precursors, and charge-balanced Sr-rich/W-rich products before any refinement.
+
+Health screening gives a clean ordered SrMoO₄ scheelite analogue for adapting Sr→W chemistry, while the BaWO₄ record is disordered and one WO₃ record has impossible 0.46 Å O–O contacts. I’ll exclude those defective records and compare the passing alternatives against the observed peak families under the same wavelength and neutral peak broadening.
+
+The peak inventory supports a dominant scheelite family (including the 17.46°, 27.20°, 29.45°, 32.65°, 44.82°, 47.13°, 51.40°, 55.53° and 56.82° lines) plus separate oxide/carbonate families near 22–26° and at higher angles. I’m setting up a neutral GSAS‑II baseline with the reported Cu Kα doublet fixed, Poisson counting weights, zero size/strain/texture effects, and reversible candidate checkpoints.
+
+A one-phase smoke test exposed exactly the kind of invalid comparison the instructions warn about: unconstrained U refined negative and an added size term collapsed to GSAS‑II’s 0.001 µm floor. I’m discarding that branch wholesale. The next model sweep compares nonnegative shared-profile parameter sets from identical checkpoints, with phase size/strain still neutral, so source and topology rankings are not being driven by collapsed broadening.
+
+The valid one-phase baseline converges at Rwp ≈ 12.00% with a shared W+X profile; adding tetragonal WO₃ lowers it to ≈ 11.06% with a positive ~10.9 wt% scale. That is promising but not yet decisive—I’m testing carbonate and other WO₃ polymorphs under the identical loop and will require distinct residual-family support plus replay stability.
+
+The carbonate branch also remains positive (~18 wt%) but gives only Rwp ≈ 11.57%. A monoclinic WO₃ record improves more strongly (≈ 9.75%), although its preliminary mass fraction is implausibly dominant and therefore needs source-normalization, cell, peak-family, and competing-polymorph checks before it can be trusted. I’m treating that fraction as provisional, not as closure.
+
+The implausible monoclinic fraction has a concrete source-record cause: that COD file labels atoms `W+` and `O-`, which GSAS‑II silently imported as hydrogen (phase mass 16.128 instead of 927.4 u). The geometry health check alone cannot catch this importer-specific chemistry error. I’m correcting only the element labels in an adapted CIF, re-running health screening, and replaying the same fit; the prior monoclinic result is rejected.
+
+After correcting the atom labels, monoclinic WO₃ remains strongly supported: Rwp improves to ≈ 8.88% with a chemically sensible positive fraction of ~19.7 wt%, while SrWO₄ remains ~80.3 wt%. I’m now checking whether SrCO₃ supplies independent residual families on top of this corrected two-phase model and then will challenge all other WO₃ records/polymorphs equally.
+
+The corrected WO₃ + SrWO₄ model is substantially better than adding SrCO₃; carbonate changes the fractions dramatically but improves Rwp by only ~0.015 percentage point, a warning sign for correlated intensity splitting rather than an independently supported phase. I’ll quantify that with family-level residuals after the polymorph sweep, and I’ll reject carbonate unless at least two non-coincident families survive removal/replay.
+
+The P4/nmm and P4/ncc tetragonal WO₃ variants are essentially tied (Rwp ≈ 11.05–11.06%, both ~10.9 wt%), so neither can be selected by Rwp alone. The corrected monoclinic model remains clearly ahead; I’m continuing the equal-loop comparisons, especially against alternate monoclinic/triclinic records that can express the observed 22–25° splitting.
+
+One older monoclinic record fits better numerically (Rwp ≈ 8.19%, ~26 wt%) but fails the structural gate for fully occupied 1.57 Å O–O contacts. Per the requested rules, I am not accepting it on fit quality; it must be compared against the passing alternate monoclinic record under the same nuisance terms.
+
+The passing alternate monoclinic WO₃ record now wins cleanly: Rwp ≈ 7.86% with ~25.7 wt% WO₃ and ~74.3 wt% SrWO₄, better than both the health-reviewed record and the cleaned high-pressure analogue. This satisfies the “review versus passing alternate” gate provisionally; replay, broadening, texture, and residual-family challenges still remain.
+
+Triclinic WO₃ is only marginally lower than monoclinic (7.841% versus 7.863% Rwp), whereas orthorhombic Pnma is clearly worse (~8.85%). I will not let the triclinic model win on that 0.022-point difference: it must show observed diagnostic splitting and remain advantageous after phase-specific broadening/texture are given equally to both models.
+
+Hexagonal WO₃ is weak and poor (~5.4 wt%, Rwp 11.80%). The high-pressure Sr₃W₂O₉ candidate collapses to effectively zero scale and is rejected; the disordered R‑3m SrCO₃ trial destabilizes its cell until no reflections remain, so that whole branch is invalid and is not being compared by Rwp. These outcomes narrow the credible inventory to SrWO₄ plus monoclinic/triclinic WO₃.
+
+The remaining long-running branch is the triclinic WO₃ + carbonate challenge. Its purpose is diagnostic: if carbonate merely reallocates overlapping intensity without stable global improvement, it will be pruned even if its formal scale stays positive.
+
+Carbonate becomes strongly beneficial only when the WO₃ model can reproduce the low-angle splitting: the triclinic + carbonate inventory reaches Rwp ≈ 6.89% with all three scales positive. I’m repeating that three-phase inventory with the passing monoclinic alternate, the reviewed monoclinic source, orthorhombic WO₃, and the tied tetragonal variant; this is the required post-inventory source-ranking loop.
+
+The source-ranking replay is still running; all branches start from the same neutral phase terms and shared shift/profile checkpoints. I’m watching for negative or collapsed U/scale/cell branches and will discard them wholesale rather than retaining a favorable endpoint.
+
+With carbonate present, the health-reviewed monoclinic WO₃ source reaches Rwp ≈ 7.31%, still worse than the passing-model/triclinic target and still structurally unacceptable. The passing monoclinic replay is the key comparison now.
+
+The passing monoclinic three-phase model converges at Rwp ≈ 6.917% with ~61.7 wt% SrWO₄, ~21.8 wt% WO₃, and ~16.5 wt% SrCO₃. Triclinic remains only 0.031 Rwp point lower, so phase symmetry is still unresolved pending diagnostic-splitting and equal broadening challenges; the fractions are already close between the two models.
+
+The post-inventory sweep is stable: tetragonal and orthorhombic WO₃ remain substantially worse, while monoclinic and triclinic models give nearly identical three-phase fractions. I’m moving to the reversible convergence loop now—phase-by-phase size/strain/anisotropy, then shared-intensity/texture challenges—starting independently from the same monoclinic and triclinic checkpoints.
+
+The current residuals show cross-phase intensity errors (for example, SrWO₄ is overpredicted at 17.46°/32.65° and underpredicted at 27.20°/55.53°), so profile terms alone are not enough. Before texture, I’m testing the other health-passing scheelite parent: ordered CaWO₄ provides W–O coordinates, adapted by isovalent Ca²⁺→Sr²⁺ substitution while retaining the Sr-scale cell. This distinguishes a structural-source error from preferred orientation.
+
+The alternate scheelite-source fits are still running under the same full three-phase loop. If the CaWO₄-derived coordinates do not materially improve the replay, I’ll keep the SrMoO₄-derived model and move intensity corrections to physically testable polarization/texture terms.
+
+The ordered CaWO₄-derived scheelite coordinates improve the passing-monoclinic inventory to Rwp ≈ 6.84% (from 6.92%) while keeping similar fractions (~63.0% SrWO₄, 21.1% WO₃, 15.8% SrCO₃). That is a real but modest source advantage; I’m awaiting the corresponding triclinic comparison before accepting it.
+
+The triclinic replay is slower because the lower-symmetry WO₃ phase contributes roughly twice as many reflections and cell variables. It remains an equal-loop comparison; no extra degrees of freedom beyond its crystallographic symmetry have been enabled.
+
+The monoclinic finalist is in the first phase-by-phase broadening pass. Each phase is being compared from one saved checkpoint in neutral, size-only, strain-only, and combined modes; branches with floors, negative shared profile terms, SVD singularities, or nonpositive scales are invalidated before selection.
+
+No branch has surfaced as a terminal error; the process is still working through the reversible trials. Because each comparison is refined twice and saved independently, this stage is deliberately slower than the inventory sweep but preserves complete rollback state.
+
+The loop is still active. Once it reaches the shared-intensity stage, background order, polarization, and Suortti roughness will be compared before any March–Dollase term, as required; texture is not being allowed to absorb profile or global-angle trends prematurely.
+
+The run remains computationally busy rather than stalled; the lower-symmetry WO₃ reflection list makes each full-profile replay nontrivial. I’m retaining the exhaustive branch set because it is needed to distinguish genuine phase broadening from the shared X term.
+
+The convergence run is still progressing without emitting an exception. All intermediate projects and a detailed trial summary are being written under `analysis/converge/mono`, so any accepted term can later be replayed or pruned from its exact pre-trial state.
+
+Still active. I’m allowing it to complete the second-pass reversibility checks; prematurely stopping here would leave broadening/source conclusions dependent on a one-pass term order, which the requested protocol explicitly rules out.
+
+A status audit shows the run has completed both broadening passes and reached shared-intensity trials. Roughness B alone produces a substantial χ² reduction; the two-parameter roughness branch is 99.96% correlated and fits worse, so it should not survive. Polarization and the combined low-dimensional branch are still being completed before texture.
+
+The process has moved beyond the shared roughness branches and is continuing. Any retained roughness term will be single-parameter B with A fixed at its neutral value; the correlated A+B branch is being treated as a failed comparison even though the optimizer technically converged.
+
+The first texture pass is underway after shared-intensity selection. The current checkpoint is much improved, but roughness B is ~96% correlated with the SrWO₄ scale, so I’ll explicitly challenge it after texture rather than accepting it solely for χ² gain. Low-index March axes are being tested one phase at a time from identical checkpoints.
+
+The run is still active with no fatal branch. Once this texture pass is selected, the script reopens every phase’s neutral/size/strain alternatives again; this is the complementary-term test that prevents the final profile from depending on whether texture or broadening was introduced first.
+
+One carbonate texture branch has encountered Hessian normalization failures and dropped singular variables. That comparison is not trustworthy even if its endpoint Rwp is low; I’ll require a clean second replay/max-shift check and otherwise reload the pre-trial checkpoint.
+
+The first texture pass exposed an invalid downstream state: a previously accepted March ratio crossed into a nonphysical value during a later phase trial, causing NaNs/SVD failures in the next broadening pass. I’m stopping this run, restoring the pre-texture checkpoint, and tightening validation so every active March term—not only the term currently tested—must remain positive, finite, and replay-stable.
+
+Inspection of the saved branches clarifies the failure: an active size term had sat exactly at GSAS‑II’s 10 µm boundary, and later another phase’s trial drove previously accepted broadening negative. I’m tightening the gate globally: every active size/strain/texture/shared-intensity term must stay interior and finite after each replay, max shift/esd must be finite, and ≥99.5% parameter correlations invalidate the branch. Parsimony will also favor a one-term strain model when a combined model’s gain is negligible.
+
+The corrected monoclinic loop is running from the untouched three-phase finalist. The 10 µm size ceiling is now treated as a fixed neutral boundary, so only interior, replay-stable broadening values can be accepted.
+
+The rerun remains healthy and is continuing through the equal broadening branches. Negative strain branches and size-floor/ceiling branches are now rejected globally, including drift in terms accepted for other phases.
+
+The corrected run has reached the second texture pass. Some alternative axes still drive the March ratio through zero and trigger SVD failure, but those are now isolated failed branches; the saved common checkpoint remains intact and the neutral/valid alternatives continue.
+
+The valid branch set is still replaying; the failure is confined to nonphysical axis trials. The final selection requires clean convergence and finite max shift/esd, so those failed projects cannot propagate into the post-texture model.
+
+The revised driver itself hung while evaluating a failed second-pass axis, but all valid checkpoints through the post-texture broadening pass were saved. I’m not restarting the expensive sweep. I’ll recover the last clean checkpoint directly, audit every active term, and run only targeted removal/replacement challenges from that file.
+
+I’ve selected the last clean post-texture checkpoint: it has positive isotropic strain for SrWO₄ (~417 µstrain) and WO₃ (~4274 µstrain), neutral SrCO₃ broadening, and stable low-index March terms. I’m now running only targeted deletion/replacement tests—each phase, each texture, each strain, roughness, polarization, background order, X, and uniaxial strain—from that exact file.
+
+I’m continuing from the clean three-phase checkpoint. I’ll first verify the targeted deletion-test driver, then use those tests to prune correlated terms before freezing and replaying the final project.
+
+The driver is intact. I’m separating the finite pruning tests from anisotropic-strain branches so a difficult symmetry trial cannot stall the whole evidence set; each comparison still starts from the identical saved checkpoint.
+
+The pruning run is progressing through independent project copies. It is testing phase necessity, each March–Dollase term, both retained strain terms, roughness/polarization, background order, and the Lorentzian profile contribution.
+
+No branch has failed; the lack of terminal output is expected because GSAS-II logs are being captured per run. The job is still active, so I’m letting the bounded comparisons finish and will inspect both fit quality and covariance validity rather than ranking by Rwp alone.
+
+The run is longer because every deletion model is reconverged twice, including cell/scale/intensity compensation. That is deliberate: it measures whether a phase or term carries unique diffraction information after the remaining model is allowed to respond.
+
+The deletion results are decisive on phase inventory and texture: removing SrCO₃ raises Rwp from 4.154% to 5.398%, removing WO₃ or SrWO₄ drives the profile into an invalid negative-X surrogate, and all three preferred-orientation terms survive deletion. Roughness improves Rwp by only 0.017 points and was already strongly scale-correlated, so I’m treating it as unsupported and rebuilding from the no-roughness checkpoint.
+
+The roughness-free rebuild is now checking that the inventory and three texture axes remain stable without that correlated intensity term. I’m also reopening polarization, background order, and W/X from this same checkpoint, as required after a retained-model change.
+
+The common-profile replay is still converging normally. Once it completes, I’ll use the roughness-free model—not the slightly lower but correlated model—as the parent for all remaining broadening and polymorph comparisons.
+
+Inventory and texture remain stable after removing roughness: the SrCO₃ deletion penalty is still 1.24 Rwp points, WO₃ deletion again forces negative X, and texture-deletion penalties remain 0.06–1.28 points. I’m now rerunning neutral/size/strain/combined broadening for each phase from that rebuilt checkpoint.
+
+The broadening branches are still active. Boundary-hit trials will be rejected wholesale and the saved parent restored; the accepted comparison will therefore not inherit a collapsed crystallite size or negative strain from a failed branch.
+
+The rebuilt broadening loop is stable: SrWO₄ retains a small positive isotropic strain advantage (ΔRwp ≈ 0.009), WO₃ requires its much larger strain term, and every size/combined branch collapses to a bound. SrCO₃ strain gains only 0.0005 points and is rejected. I’m now challenging symmetry-compatible uniaxial strain; only a converged, interior solution with a material family-width gain can replace isotropic strain.
+
+Both phases show genuine hkl-dependent width differences: SrWO₄ favors uniaxial strain along [001] (Rwp 4.130%; [110] gives no gain), while monoclinic WO₃ favors [010] (4.100%, better than [001] or [100]). The parameters are positive, interior, converged, and not highly correlated. I’m combining those two accepted terms and then repeating the loop from the combined checkpoint.
+
+The combined anisotropic checkpoint has Rwp 4.052% and fractions near 61.9% SrWO₄, 23.5% WO₃, and 14.5% SrCO₃. I’m now reopening the common profile, angular correction, background, polarization, and roughness from this checkpoint before accepting those numbers.
+
+These comparisons are still converging normally. In particular, the three-coefficient U/W/X branch is being allowed to fail if any coefficient turns negative or covariance becomes singular; it will not be retained simply for a marginal lower residual.
+
+The common-term loop retains the 14-coefficient smooth background, W+X profile, polarization, and sample shift. U is positive when added but improves Rwp by only 0.0012 points and is pruned; removing shift caused refinement failure and an invalid cell. Reintroduced roughness gains only 0.015 points while correlating 96.2% with the dominant scale, so it remains rejected as a scale surrogate. Next is the full texture-axis replay.
+
+The texture replay is evaluating neutral and low-index axes independently for each phase, with the two accepted anisotropic-strain terms held in the common parent. This checks that texture is not merely absorbing hkl-dependent peak-width errors.
+
+The loop remains active and no branch has stalled. I’ll retain only the axis that reproduces the same ranking after reconvergence; a low-index alternative that merely shifts phase fractions without a clear profile gain will be rejected.
+
+Texture ranking is now replay-stable after anisotropic broadening: SrWO₄ [110], WO₃ [001], and SrCO₃ [001] are each the unique valid/best low-index choices. Neutralizing SrWO₄ texture also drives its width model negative; neutral WO₃ and SrCO₃ texture raises Rwp to 4.98% and 4.12%, respectively. I’m completing the final broadening replay from this checkpoint.
+
+The final broadening replay is still running across neutral, size, isotropic strain, combined, and alternate uniaxial axes. This is the last large coordinate-descent block before comparing WO₃ polymorph/source models under matched nuisance terms.
+
+The branch set remains active. Any size solution at GSAS-II’s numerical floor or neutral boundary is being marked invalid, even if its Rwp appears competitive, so only physically interior broadening survives.
+
+The long runtime reflects failed branches being attempted from fresh checkpoints rather than contaminating subsequent trials. The accepted parent itself remains unchanged and safely saved.
+
+The repeated broadening loop is stable: SrWO₄ [001] uniaxial and WO₃ [010] uniaxial reproduce the accepted Rwp, isotropic alternatives are worse by 0.049 and 0.078 points, and size terms again hit bounds. SrCO₃ broadening gains under 0.0003 points and stays neutral. I’m now giving the closest triclinic WO₃ competitor its own matched convergence, since its lower symmetry cannot be selected from the small early Rwp advantage alone.
+
+The triclinic competitor has converged under matched common terms at Rwp 5.03% before WO₃ texture—essentially the same neutral-texture regime as monoclinic WO₃. I’m now searching seven low-index triclinic texture axes from that common checkpoint.
+
+The triclinic texture search is still active. Because triclinic indexing permits more low-index directions, I’m requiring a unique, replayable axis rather than allowing its extra flexibility to win by chance.
+
+The competitor branches are independent and remain bounded; no accepted monoclinic parameter is being reused as hidden evidence for the triclinic source. The run should finish after the remaining diagonal axes.
+
+The triclinic competitor is now materially better after its own texture search: [001] gives Rwp 3.585% versus 4.052% for monoclinic, with [110] second at 3.882%. That is too large to dismiss, but lower symmetry still does not win automatically. I’m checking the March ratio, covariance, diagnostic peak splitting, and whether the advantage survives broadening/profile challenges.
+
+The triclinic [001] March ratio is 1.264±0.004, all scales and strain values are interior, and there are no >0.90 covariance correlations. Its fit advantage is therefore physical enough to challenge further. I’m testing neutral, size, isotropic, combined, and seven directional strain models now.
+
+The broadening challenge is still converging. For the triclinic model, I will not retain extra directional strain unless it gives a clear gain beyond the already successful isotropic term and remains stable when texture is reopened.
+
+The run remains bounded and active across the remaining diagonal axes. The current isotropic triclinic model is securely saved, so any failed anisotropic trial will be discarded without changing it.
+
+The triclinic branches take longer because its cell has six independent metric parameters and 875 reflections in range. The comparison remains apples-to-apples: identical background, common profile, polarization, shift, and non-WO₃ terms.
+
+Directional broadening strengthens the triclinic case: [010] strain lowers Rwp to 3.271%, with 2455±105 and 10 754±233 microstrain components, no high correlations, and stable fractions (61.9/23.6/14.6 wt%). I’m reopening all triclinic texture axes from that checkpoint; this tests whether the apparent gain depends on one coupled texture–strain choice.
+
+The texture replay is still active. The accepted triclinic model will need [001] to remain uniquely favored after [010] strain is present; otherwise I will simplify or reject that coupled model.
+
+No branch has failed or changed the common parent. The extra time is from the triclinic metric and reflection count; each axis still starts from the same saved project.
+
+The replay is progressing through the last diagonal axes. I’ll compare not only Rwp but also whether the strain components and phase fractions remain stable across the winning replay.
+
+The coupled model survives exactly: [001] texture replays at Rwp 3.27090%, while the next texture axis is 3.84058% and neutral texture is 5.008%. Fractions and strain values are unchanged to rounding. I’m reopening common profile/intensity terms and phase deletions on this triclinic finalist before diagnosing its symmetry-specific splittings.
+
+The triclinic common-term replay is active. As with the monoclinic finalist, roughness must overcome its scale correlation, and U must provide more than a negligible three-profile-parameter improvement to be retained.
+
+No branch has stalled. The phase-deletion tests are included again because the substantially improved WO₃ model could otherwise change how much independent evidence remains for weak SrCO₃.
+
+The remaining profile branches are still converging against 875 triclinic WO₃ reflections. The saved finalist remains untouched; only validated branch copies will be considered.
+
+The triclinic common replay is stable: removing SrCO₃ raises Rwp by 1.485 points, all three texture terms remain necessary, W+X and polarization remain required, and adding U gains only 0.0016 points. Roughness again behaves as a correlated scale surrogate despite a 0.021-point gain, so it stays pruned. I’m finishing the non-WO₃ broadening replay, then I’ll audit symmetry-diagnostic peak families directly.
+
+The last broadening replay is running from the triclinic finalist. It checks that SrWO₄ [001] strain and neutral SrCO₃ broadening remain preferred after the WO₃ source change, rather than being inherited from the monoclinic fit.
+
+The run remains active and the accepted project is unchanged. Once complete, I’ll move from global statistics to local position/FWHM/half-width evidence at isolated low-, mid-, and high-angle reflections.
+
+The final branches are progressing through SrCO₃. Any apparent improvement below roughly 0.001 Rwp points will be treated as unsupported unless it has a clear family-width signature and interior parameter.
+
+The non-WO₃ replay is stable as well: SrWO₄ retains [001] uniaxial strain, all size branches collapse, and SrCO₃ broadening improves Rwp by only 0.0012 points and is pruned. I’m now locating the angle windows where triclinic WO₃ improves weighted residuals most and matching those windows to its split reflection families and observed peak shapes.
+
+The local plot helper hit a missing plotting library inside the GSAS-II environment; the refinement data are unaffected. I’ll perform the same audit numerically (and, if available, render from the standard analysis environment) rather than altering the scientific environment.
+
+The symmetry audit supports triclinic WO₃ beyond global Rwp: it cuts weighted residuals by 50% in the 32.35–33.90° split family, 40% in 49.00–50.45°, and 17% in the resolved 85.2–87.2° high-angle doublet, while the refined triclinic angles differ from 90° by about 4.7σ, 133σ, and 5.3σ. One 54.7–55.9° family is slightly better monoclinic, so I’ll report polymorph uncertainty rather than overstate uniqueness. I’m now pruning flags, extending to the exact measured range, and replaying the final triclinic project.
+
+The exact-range reopen/replay completed successfully and froze `final.gpx`; the exported profile is internally consistent (`observed − calculated = difference`) and the normalized fractions sum to one. I’m now health-screening all three exported CIFs and validating JSON paths, project/CIF cells, and final geometry before writing the uncertainty report.
+
+All three final CIFs pass the required health screen: ordered full occupancies, no invalid sites or hard contacts, and sensible shortest contacts (WO₃ 1.715 Å; SrCO₃ 1.291 Å C–O). I’m performing the final machine audit now: parse `result.json`, compare fractions and cells against reopened `final.gpx`, verify every path/CSV row, and inspect active flags/covariance/background smoothness.
+
+The machine audit passed: all 8,301 profile points match `final.gpx`, CIF cells match the project, no >0.90 parameter correlations remain, and the background is positive and smooth. I’m adding one final dominant-phase deletion challenge and extracting the two independent SrCO₃ residual families for the written evidence.
+
+The final deletion evidence is complete: removing SrWO₄ gives an invalid negative-X surrogate at Rwp 22.42%; removing WO₃ gives 10.30%; removing SrCO₃ gives 4.76%. SrCO₃ is independently required by at least five non-coincident families—its 24.6° and 25.3° families alone increase local weighted residuals by factors of about 70 and 62 when removed. I’m writing the final report with the polymorph and high-angle width caveats stated explicitly.
+
+Completed the full-range GSAS-II refinement.
+
+- SrWO₄: 61.89 wt%
+- Triclinic WO₃: 23.56 wt%
+- SrCO₃: 14.55 wt%
+- Rwp: 3.271%; goodness-of-fit: 1.146
+
+All final CIFs passed the required health screening. Triclinic WO₃ is preferred over monoclinic WO₃, although some polymorph uncertainty remains; phase fractions are stable to that choice and are normalized over modeled crystalline material only.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [SrWO4.cif](<ATTEMPT_WORKSPACE>/SrWO4.cif)
+- [WO3_triclinic.cif](<ATTEMPT_WORKSPACE>/WO3_triclinic.cif)
+- [SrCO3.cif](<ATTEMPT_WORKSPACE>/SrCO3.cif)
+

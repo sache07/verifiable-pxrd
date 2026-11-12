@@ -1,0 +1,76 @@
+I’ll first inspect the measurement metadata, pattern range/resolution, reusable refinement utilities, and candidate databases. Then I’ll build a chemically plausible phase inventory, test alternatives under a common profile model, and only retain phases supported by coherent diffraction evidence.
+
+The chemistry points first to Mg–W–O reaction products, but at 700 °C unreacted MgO/WO₃ and polymorph/source-condition variants remain realistic. I’m now quantifying the peak set and inspecting the supplied analogue-search workflow before selecting records.
+
+The peak inventory already separates two obvious families: a dense low-angle/monoclinic set and the cubic MgO sequence near 42.94°, 62.26°, 74.57°, 78.88°, and 93.82°. The 23–24.5° multiplet also requires testing residual monoclinic WO₃ against MgWO₄ overlap rather than assigning it by chemistry alone.
+
+All major peaks now index coherently as three phases: wolframite-type MgWO₄, room-temperature monoclinic WO₃, and periclase MgO. The phase-discriminating peaks include MgWO₄ 100 at 18.879°, WO₃ 002/020/200 at 23.12/23.57/24.38°, and MgO 200 at 42.94°. I’ll carry all three into quantitative refinement and keep alternate WO₃ records on the challenge list.
+
+I’m setting up a conservative GSAS‑II baseline with the reported Cu Kα₁/Kα₂ wavelengths and 0.5 ratio, Poisson count weights, a low-order smooth background, one specimen-displacement term, and neutral phase broadening/texture terms. Atomic coordinates and occupancies will remain fixed unless the profile gives enough independent evidence to justify changing them.
+
+The three-phase baseline converged to roughly 57 wt% MgWO₄, 36 wt% WO₃, and 7 wt% MgO. A common nonnegative U/W/X profile reduced Rwp from 21.6% to 9.31%. Refining SH/L changed Rwp by only 0.0036 percentage points and was 97% correlated with specimen displacement, so it is currently unsupported and will be pruned. I’m inspecting residuals by isolated peak family before testing phase-specific broadening and alternate WO₃ records.
+
+The converged no-texture reference is stable at Rwp 9.3142% with no bound/frozen parameters. Its largest errors are intensity, not peak position: MgWO₄ 100/200 are consistently underpredicted while 010 is overpredicted, a coherent multi-order signature that makes [100] preferred orientation a physically testable hypothesis. The alternate WO₃ records are still running under the identical baseline.
+
+Record challenge results favor the neutron-derived room-temperature monoclinic WO₃ over the older X-ray record (Rwp 8.861% vs 9.314%), while orthorhombic WO₃ is decisively rejected (Rwp 11.997%, common U forced to its upper bound). A triclinic WO₃ record fits best at Rwp 8.696%, but that polymorph is normally a low-temperature form; because measurement temperature is absent, I’m retaining that symmetry assignment with explicit caution and will see whether physically supported texture/profile terms preserve the ranking.
+
+MgWO₄ texture is strongly supported across multiple orders: an MD axis [010] lowers Rwp from 8.696% to 6.194% with a moderate parameter of 1.273; [100], [001], and diagonal alternatives are all materially worse. This is not a single-peak fix—the MgWO₄ Bragg R factor falls from 7.37% to 3.78%. I’m now challenging WO₃ texture independently while keeping that accepted MgWO₄ model fixed in form.
+
+WO₃ texture trials all stayed within ~0.016 percentage points of the no-texture model and disagreed on axis, with MD values within about 2% of unity; that is not a robust multi-family texture signature, so WO₃ texture is rejected. MgO texture is even less identifiable: its scale and MD term correlate at 88–98% and refinements diverge, so MgO remains untextured. Next I’m comparing isotropic size and microstrain for each phase, one phase and one mechanism at a time.
+
+The first phase-specific broadening trials are failing the physical checks: MgWO₄ size collapses to the neutral limit, while its strain trial drives both strain and the common U term into bounds and worsens the fit. I’m treating those as rejected models and letting the equivalent WO₃/MgO challenges finish.
+
+WO₃ behaves differently: an isotropic crystallite-size term gives a large, stable improvement (Rwp 6.19% → 3.51%) at about 80 nm, with no bound hits. I’ll compare that directly against a WO₃ microstrain model before accepting it; the phase fractions move substantially, so this distinction matters.
+
+The size/strain comparison is computationally slow because each candidate is being saved, reopened, and replayed across the full 9.9–100.1° range. That replay is intentional: it catches refinements that look favorable in one pass but are not stable when reconstructed.
+
+WO₃ microstrain also has strong support and fits better than size alone (Rwp 2.98%, ~0.84% rms microstrain), but its replay has not yet reached the convergence threshold I want. After the MgO controls, I’ll test size plus strain together and retain only terms that stay finite, complementary, and replay-stable.
+
+The controls are clear: neither MgWO₄ nor MgO supports a phase-specific size/strain term; those trials return to neutral limits or hit bounds. Only WO₃ needs extra broadening, so I’m now refining its size and strain jointly, then I’ll compare the competing WO₃ symmetry records under that same final nuisance model.
+
+The joint model is now being challenged from a converged strain-only state. The strain-only solution is stable in value (about 8,340 µstrain) and fraction, though the all-parameter Hessian takes small damped steps because W and X are correlated at ~83%; there are still no bound hits or frozen parameters.
+
+The joint WO₃ size+strain trial is rejected: it does not improve Rwp, size and strain correlate at 93.5%, and the added size parameter destabilizes convergence. I have stopped that unnecessary replay and will retain the simpler strain-only broadening model for the symmetry comparison.
+
+The final-model symmetry challenge reverses the preliminary ranking: the room-temperature monoclinic WO₃ record (COD 2311041, P2₁/c setting) reaches Rwp 2.789% versus 2.982% for the triclinic record under the same MgWO₄ texture and WO₃ strain model. It also replays cleanly (max shift/esd 0.0046, no bounds), so monoclinic WO₃ is now the selected structure.
+
+A coherent cross-phase high-angle intensity trend is real: refining the instrument polarization fraction improves Rwp from 2.789% to 2.392%, converging to 0.5365 ± 0.0028—close to the physically expected 0.5 for an essentially unpolarized laboratory source and far from its bounds. I’m accepting this instrument correction before judging any further texture or roughness.
+
+The residual profile is now physically adequate across low, mid, and high angle: isolated peaks have aligned positions and comparable widths/asymmetry, the six-term background is smooth (about 3,190–3,590 counts), and no systematic hkl-dependent width pattern remains. I’m doing the required final texture re-challenge under this rebuilt profile so the earlier MgWO₄ [010] result is not carried forward uncritically.
+
+The no-texture replay worsens Rwp from 2.392% to 7.114%, confirming that MgWO₄ texture is not a background/scale surrogate. One implementation detail in the parallel WO₃/MgO challenges initially removed that accepted MgWO₄ term; I caught it from the residual jump, stopped those two invalid branches, and restarted them with MgWO₄ [010] retained.
+
+The rebuilt profile preserves a uniquely strong MgWO₄ [010] solution (Rwp 2.392%; alternatives tested so far are 5–7%). WO₃ shows a much smaller but stable [100] correction (MD ≈ 1.028, Rwp 2.339%); I’m finishing the diagonal-axis controls before deciding whether that modest term has enough directional support to retain.
+
+The texture re-challenge is complete. MgWO₄ [010] is uniquely and strongly supported. WO₃ gives several small, similarly good corrections ([100], [110], [101], [111]) without a uniquely defensible axis, so I’m pruning WO₃ texture as model-dependent; MgO texture is numerically unstable and scale-coupled and is also rejected. The selected fractions are essentially unchanged by those rejected WO₃ trials.
+
+All three phases survive the final inventory challenge. Removing MgO alone raises Rwp from 2.392% to 3.064% despite its ~7 wt% abundance; removing WO₃ or MgWO₄ raises it to 17.57% and >21%, respectively. MgO is therefore a supported weak phase, not a scale artifact. I’m doing one last fair WO₃ polymorph check with polarization refined in both models.
+
+The triclinic replay is taking longer because its cell/profile Hessian is less well conditioned than the selected monoclinic model. I’m allowing the full-range refinement to finish rather than comparing partially converged projects; the monoclinic reference already replays in a few seconds with no bound hits.
+
+The fair triclinic control has now optimized polarization separately and reconverged the full model once. It remains worse (Rwp 2.674% versus 2.392%) and is much less stable (max shift/esd 7.9 versus 0.008). I’m continuing grouped/full replay long enough to ensure this is not merely a starting-point artifact.
+
+The fully re-optimized triclinic alternative remains worse after staged polarization and three full nuisance reconvergences (Rwp 2.598%, still drifting, versus 2.392% and replay-stable for monoclinic). That is enough to reject it without spending more cycles on an ill-conditioned inferior model. I’m now freezing the selected model into `final.gpx` and generating the exact exports.
+
+The final project has been serialized, reopened, and replayed over the full range. It converged with no frozen/bound parameters (max shift/esd 0.0087), Rwp 2.39176%, and crystalline-normalized fractions 51.374% MgWO₄, 41.210% WO₃, and 7.416% MgO. I’m validating the CIF geometry and exact project/CSV/JSON agreement now.
+
+Completed and validated.
+
+Crystalline-normalized phase fractions:
+
+- MgWO₄ (wolframite): **51.37 wt%**
+- Monoclinic WO₃: **41.21 wt%**
+- MgO (periclase): **7.42 wt%**
+
+Final fit: Rwp 2.392%, Rp 1.824%, GOF 1.569. Realistic fraction uncertainty is approximately 1–2 absolute wt%; amorphous content was not determined.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MgWO4 CIF](<ATTEMPT_WORKSPACE>/phase_1_MgWO4.cif)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_2_WO3.cif)
+- [MgO CIF](<ATTEMPT_WORKSPACE>/phase_3_MgO.cif)
+

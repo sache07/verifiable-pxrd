@@ -1,0 +1,36 @@
+I’ll first inspect the measurement metadata, pattern shape, and the provided crystallography tooling/instructions. Then I’ll identify candidate phases, build and refine a multiphase GSAS-II model, and validate that every submitted artifact is internally consistent with the final project.
+
+The chemistry is CaO + WO₃ at 850 °C, so CaWO₄ is the obvious starting hypothesis, but the synthetic lab explicitly permits residual oxides and off-stoichiometric calcium tungstates. I’m now checking the baseline workflow, database interfaces, and scorer’s exact consistency requirements before doing search–match; this avoids producing a superficially good fit that cannot be replayed from `final.gpx`.
+
+The replay rules confirm that phase fractions are recomputed from each GSAS-II phase scale times unit-cell mass, and the evaluator regenerates the entire profile from the saved atomic models. Next I’m extracting an objective peak list and querying the frozen COD index for Ca–W–O and precursor structures, rather than assuming the nominal product is the only phase.
+
+Every statistically significant peak indexes to scheelite CaWO₄ (space group I4₁/a); even the apparent “extra” 29.04° line is its (103) reflection, and the high-angle companions follow the Cu Kα₂ splitting. I see no credible CaO, WO₃, or Ca₃WO₆ line set. I’m moving to a one-phase Rietveld model and will test residuals afterward for any weak crystalline impurity.
+
+I’m setting up a staged refinement so the scale/background, lattice and angular calibration, peak-shape terms, and structural parameters are introduced in a stable order. The model will retain both Cu wavelengths and the Bragg–Brentano specimen terms used by the data generator, which is important here because the peak displacement changes slightly with angle.
+
+The first trial stopped before refinement because the observed-data importer requires the formal GSAS-II instrument-file header (the simulator’s internal reader is less strict). I’m correcting that format and rerunning; no scientific result has been affected.
+
+The base refinement has already reached the counting-statistics floor: Rwp = 3.547%, with weighted χ² = 8278 for 8301 points. The refined pattern is physically sensible (positive profile widths, ~0.635 µm crystallite size, negligible microstrain), and the CaWO₄ oxygen coordinates moved only modestly. I’m now removing a redundant overall-scale flag and testing the optional texture, roughness, and anisotropic-strain terms; those tests will show whether any of them are genuinely supported or merely fit noise.
+
+The optional-effect tests support the simpler model: preferred-orientation ratios refine to within 0.22% of random, extra background terms reduce χ² by less than their parameter count, and the roughness fit drives its decay parameter below the generator’s physically allowed range. I’m retaining no texture/roughness/anisotropic strain. One statistical refinement remains: because uncertainties were not supplied, I’m comparing the usual \(1/I_\mathrm{obs}\) least squares with a Poisson iteratively reweighted fit, which should reduce the small ~1-count bias in the smooth fitted mean.
+
+A key consistency issue surfaced during the weighting comparison: GSAS-II’s cached calculated array can lag the saved full-precision model after a difficult refinement. I’m therefore replaying each candidate project through the same fresh-reflection mechanism used by the evaluator. The final choice will be based on that regenerated profile, not on a stale in-project curve.
+
+Fresh replay confirms the selected Poisson-weighted project is internally consistent and has no physical-profile review flags. Its regenerated fit is Rwp = 3.5450% (χ² = 8270.6 for 8301 bins), slightly better than the conventional-weight fit and at the Poisson noise floor. I’m now exporting the final project, CIF, replay-derived profile, JSON summary, and concise uncertainty report from that exact saved model.
+
+All required files are now written from the selected project. Before handoff I’m running the scorer-equivalent submission checks: CIF/project structural agreement (including occupancies and ADPs), normalized fractions, full-grid profile integrity, physical-contact screening, and a residual-peak search for any missed phase.
+
+The structural and physical checks pass, and the residuals are statistically white (standardized residual σ = 0.997) with no candidate-precursor line set. One formatting check found that the angle header included a unit suffix the scorer’s alias parser does not recognize. I’m changing only that header to `two_theta` and regenerating/rechecking the artifacts.
+
+Identified one crystalline phase: scheelite CaWO₄ (I4₁/a), 100.0 wt% normalized over modeled crystalline phases. Refined cell: a = 5.244270 Å, c = 11.379681 Å. Rwp = 3.5450%; no secondary crystalline phase is supported. Trace impurities or amorphous material cannot be excluded.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-8cbdd0a95afd/workspace/result.json)
+- [CaWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-8cbdd0a95afd/workspace/CaWO4.cif)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-8cbdd0a95afd/workspace/fit.csv)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-8cbdd0a95afd/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-8cbdd0a95afd/workspace/final.gpx)
+
+Fresh GSAS-II replay, CIF/project agreement, profile integrity, fraction normalization, and physical-structure checks all passed.
+

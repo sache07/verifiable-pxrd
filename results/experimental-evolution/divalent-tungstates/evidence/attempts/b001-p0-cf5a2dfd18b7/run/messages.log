@@ -1,0 +1,34 @@
+I’ll inspect the diffraction data and metadata first, then identify candidate phases, build/refine a multiphase GSAS‑II model, and verify that all exported files are internally consistent. I’ll treat phase count and composition as open questions and report any ambiguity rather than forcing a unique assignment.
+
+The experiment is Cu Kα reflection data from 9.9° upward, with WO₃ and Mn₃O₄ reacted at 700 °C. That chemistry makes manganese tungstates, residual precursor oxides, and nearby Mn–W–O stoichiometries the initial search space; I’m now extracting peak positions and checking the supplied structural reference library before committing to a phase set.
+
+The strongest low-angle cluster at 23.29/23.80° is a direct match to monoclinic/triclinic WO₃, and the 18.06°, 36.1°, 59.9°, and 64.6° lines indicate residual tetragonal Mn₃O₄. Those two alone do not explain the dominant 29.58/30.03° doublet, so a reacted manganese tungstate phase is also required. The supplied Mn₃WO₆ reference is inconsistent with the observed pattern (its strongest predicted peaks near 20.0, 20.5, 28.8, and 35.3° are not present in the needed proportions), so I’m broadening the structural search rather than accepting the only exact-composition library hit.
+
+The apparent cell mismatch resolves into an uncalibrated angular offset: the entire pattern is shifted by roughly −0.35 to −0.4° 2θ. Once that is accounted for, the dominant reflections index coherently as wolframite-type MnWO₄. A weaker WO₃ contribution remains plausible because its three strongest low-angle lines would overlap the MnWO₄ region, so I’ll test one-, two-, and precursor-residual models by full-profile refinement and retain extra phases only if they improve distinct, non-overlapped reflections and yield stable positive fractions.
+
+The first two-phase trial was deliberately conservative and exposed a refinement-order issue: because the minor WO₃ peaks are initially offset and broadened, its scale collapsed to zero before its cell/profile could align, making its cell refinement mathematically unstable. I’m restarting that comparison from the converged MnWO₄ profile, then introducing WO₃ with its scale and peak-shape parameters staged separately; this preserves the evidence test without letting an early local minimum decide the phase count.
+
+The clean two-phase refinement confirms monoclinic WO₃ as a real second phase: its independent 22.7–24.0°, 33–34°, and ~41.5° features reduce Rwp from ~13.7% to ~11.0%, with a stable crystalline weight fraction near 20%. A physically positive peak-width model is now in place. I’m checking preferred orientation and a possible trace Mn₃O₄ phase next, because both can otherwise bias the quantitative fraction even when the phase identities are correct.
+
+The precursor check supports a third, weak hausmannite Mn₃O₄ component. Its scale is formally significant and improves independent regions near 17.6, 31.8, 59.5, 64.5, and 80.5°; the refined fraction is ~5.2 wt%. The improvement is modest because most Mn₃O₄ peaks overlap the two major phases, so I’ll retain it but label that fraction as the least secure. The resulting residual WO₃:Mn₃O₄ mole ratio is also close to the 3:1 stoichiometry of unreacted precursors for MnWO₄ formation, which is chemically consistent.
+
+The final three-phase refinement is converged (maximum shift/esd 0.008). The crystalline fractions are 75.22% MnWO₄, 19.55% monoclinic WO₃, and 5.23% Mn₃O₄, with Rwp 10.55%. I’ve exported each refined phase and the full-range profile from that same final GSAS‑II project; I’m now writing the machine-readable summary and the uncertainty-focused report, then I’ll validate every deliverable against the project.
+
+Completed and validated the three-phase refinement:
+
+- MnWO₄: 75.22 wt%
+- Monoclinic WO₃: 19.55 wt%
+- Mn₃O₄: 5.23 wt% — least certain due to peak overlap
+
+Fractions are normalized over modeled crystalline phases. Final fit: Rwp 10.55%, Rp 7.15%, goodness-of-fit 4.24.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [MnWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_1_MnWO4.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_2_WO3.cif)
+- [Mn₃O₄ CIF](<ATTEMPT_WORKSPACE>/phase_3_Mn3O4.cif)
+

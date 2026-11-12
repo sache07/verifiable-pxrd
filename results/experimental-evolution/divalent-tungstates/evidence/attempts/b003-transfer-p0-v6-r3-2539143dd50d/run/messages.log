@@ -1,0 +1,30 @@
+I’ll inspect the measurement metadata and diffraction profile first, then identify candidate phases, build a multiphase GSAS-II refinement, and verify that every reported CIF, fraction, and profile is reproducible from the saved `final.gpx`.
+
+The chemistry points first to nickel tungstate, but I’ll treat that only as a hypothesis: I’m checking the full peak list for residual oxides, polymorphs, and unindexed reflections before choosing phase models.
+
+The peak accounting is now clear: the data require three crystalline phases—wolframite-type NiWO₄, room-temperature monoclinic WO₃, and residual rocksalt NiO. Their diagnostic peaks are independently visible (for example, NiWO₄ near 15.62/19.27/30.85–31.03°, WO₃’s 23.14/23.56/24.38° triplet, and NiO at 37.34/43.42/63.07°). I’m moving from identification to quantitative multiphase refinement.
+
+The first quantitative pass gives approximately 61% NiWO₄, 30% WO₃, and 9% NiO. I found and removed a GSAS-II scale redundancy in that trial and am now separating the sharp instrumental width from phase-specific broadening; that is important because an uncalibrated profile can otherwise bias both crystallite broadening and the phase fractions.
+
+The refinement now converges near 60.2% NiWO₄, 29.9% WO₃, and 9.9% NiO with \(R_\mathrm{wp}\approx2.37\%\). The phase fractions are stable across reasonable profile variants, while the formal errors are much smaller than the real systematic uncertainty; I’m checking the residual for unmodeled peaks and then freezing the final, physically constrained model for export.
+
+All requested deliverables are now written. I’m doing a final consistency audit: reopening `final.gpx`, re-reading each exported CIF, and checking that `fit.csv` and `result.json` exactly match the project’s stored profile and mass fractions.
+
+Completed. The modeled crystalline fraction is:
+
+- NiWO₄ (wolframite): 60.23 wt%
+- Monoclinic WO₃: 29.89 wt%
+- NiO (rocksalt): 9.88 wt%
+
+Final fit: Rwp = 2.372%, Rp = 1.819%, goodness of fit = 1.643. Realistic systematic fraction uncertainty is about ±1 percentage point; amorphous content cannot be quantified without an external standard.
+
+Files:
+
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- CIFs: [NiWO4.cif](<ATTEMPT_WORKSPACE>/NiWO4.cif), [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif), [NiO.cif](<ATTEMPT_WORKSPACE>/NiO.cif)
+
+The project, CIFs, fractions, and exported profile were reopened and cross-validated for consistency.
+

@@ -1,0 +1,40 @@
+I’ll first inspect the measurement metadata, pattern format, and available crystallography utilities. Then I’ll identify candidate phases, refine them jointly in GSAS-II, and verify that the exported CIFs, profile, fractions, statistics, and `final.gpx` all agree.
+
+The chemistry strongly suggests a manganese tungstate product, but the unreacted precursors and possible Mn–W–O intermediates make a single-phase assumption unsafe. I’m mapping the peak positions against the supplied structure library and checking the instrumental/profile options before refinement.
+
+The dominant line set matches monoclinic wolframite-type MnWO₄ (including the characteristic low-angle 15.1° and 18.1° peaks and the dense 29–41° cluster). I’m now testing whether weaker/unmatched lines require residual WO₃, manganese oxide, or another Mn–W–O phase rather than forcing them into the main structure.
+
+The one-phase refinement is already accounting for the peak positions and most intensity, with the profile residual dropping sharply as the empirical line width is released. I’m letting the remaining profile/coordinate stages converge, then I’ll inspect the difference curve specifically for coherent impurity peaks.
+
+The residual is not random: it contains the diagnostic WO₃ triplet near 22.7/23.1/24.0° plus matching lines near 26.2°, 28.2–28.5°, 33–34°, and 41–42°. This supports residual monoclinic WO₃ rather than a one-phase MnWO₄ model; I’m adding that phase and testing its scale, cell, and broadening independently.
+
+The WO₃ refinement is computationally heavier because its low-symmetry cell contributes many overlapping reflections. The job is still running; after it returns I’ll compare the two-phase residual and fraction stability against alternate WO₃ polymorphs before accepting the model.
+
+The two-phase model is now stable at about 85.1 wt% MnWO₄ and 14.9 wt% WO₃, and the WO₃ cell converges to the room-temperature monoclinic form. I’m now refining the common angular calibration and both metrics together, then I’ll test whether the reported fractions survive sensible profile and preferred-orientation choices.
+
+A trace residual precursor is also supported: tetragonal hausmannite Mn₃O₄ contributes coherent lines near the shifted 18°, 32°, 36°, 44°, 51°, and 59° positions. Trial scales for MnO, Mn₂O₃, and Mn₃WO₆ collapse to zero, while Mn₃O₄ refines to roughly 2–3 wt%; I’m retaining Mn₃O₄ and refining its metric before the final joint cycle.
+
+The retained three-phase model has converged jointly. The current crystalline mass fractions are about 76.3% MnWO₄, 19.6% monoclinic WO₃, and 4.1% Mn₃O₄; the profile fit is \(R_{wp}=5.58\%\). I’m exporting directly from that converged project now and will run consistency checks on every CIF, fraction sum, profile row, and project statistic.
+
+The deliverables are written. I’m doing a final cross-check that `result.json`, the CIF compositions/cells, `fit.csv`, and the mass fractions/statistics stored inside `final.gpx` are numerically identical and that all three CIFs parse cleanly.
+
+Identified three crystalline phases:
+
+- MnWO₄ (P 2/c): 76.32 wt%
+- Monoclinic WO₃ (P 2₁/n): 19.61 wt%
+- Mn₃O₄ hausmannite (I 4₁/amd): 4.07 wt%
+
+Final fit: Rwp 5.58%, Rp 3.93%, goodness-of-fit 2.25. Fractions are normalized over modeled crystalline material.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MnWO4 CIF](<ATTEMPT_WORKSPACE>/phase_MnWO4.cif)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [Mn3O4 CIF](<ATTEMPT_WORKSPACE>/phase_Mn3O4.cif)
+
+The exact low-symmetry WO₃ distortion and formal fraction uncertainties remain somewhat profile/background dependent, as detailed in the report.
+

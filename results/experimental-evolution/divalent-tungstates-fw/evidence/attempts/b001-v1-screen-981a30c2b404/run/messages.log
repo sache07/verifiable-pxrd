@@ -1,0 +1,48 @@
+I’ll begin with the public pattern and metadata, then inspect only the framework’s analysis/tooling guidance needed to run candidate normalization, physical screening, and GSAS-II. I’ll keep candidate identification evidence-based and avoid generator/scorer internals as requested.
+
+The public chemistry is ZnO + WO₃ fired at 750 °C, so Zn–W–O phases and residual precursors are the first plausible inventory—not assumptions about how many phases are present. I’m now extracting peak families and locating the supplied candidate-library/physical-screen utilities before proposing any structure.
+
+The peak positions already separate three coherent families: wolframite-like ZnWO₄, wurtzite ZnO, and monoclinic WO₃. That is only a working inventory; I’m preparing multiple independent parents for each family (including an alternate ZnWO₄ polymorph) and will retain phases only if whole-pattern residual/deletion tests support them.
+
+The first automated refinement exposed a numerical issue from fitting weak, position-misaligned phases simultaneously. I’ve corrected the sequence to register the dominant wolframite phase first, enforce positive phase scales, and only then release all phase cells/scales. The corrected comparison branch is now running.
+
+The simple zero-offset nuisance branch is currently slightly better and more stable (Rwp 11.61%) than the specimen-displacement restart (11.67% and still drifting). I’m using the stable branch only for the source/inventory screen, with fixed coordinates and identical flexibility; the displacement branch remains available as the required independent restart for the later final-model check.
+
+The source/inventory screen is decisive: the best passing models are wolframite ZnWO₄ (COD-derived Zn/Cd parent 1520642), wurtzite ZnO, and monoclinic P2₁/c WO₃ (COD 2311041). Deleting ZnO, WO₃, or ZnWO₄ raises Rwp to 12.55%, 20.87%, and 36.99%, respectively. A first effect test shows physically interpretable ZnWO₄ broadening (about 0.10 µm isotropic size) and lowers Rwp to 10.40%; I’m checking competing strain/texture explanations before retaining it.
+
+The stable low-complexity branch now fits at Rwp 5.04% (counting-statistics lower bound 2.69%). Retained effects are WO₃ [001] March–Dollase texture, isotropic ZnWO₄ microstrain, and refined polarization; size is rejected because strain alone fits better, and roughness/secondary textures are negligible. I’m at the final selective-coordinate stage and will keep only changes that reproduce and remain physically passing.
+
+The nuisance restarts exposed one important instability: ZnWO₄ coordinates, cells, and fractions are stable, but refined WO₃ W positions co-drift across background branches and become >0.95 correlated. I’m reverting those WO₃ coordinates to the published parent, as required by the stability criterion, while retaining the reproducible ZnWO₄ coordinate improvement.
+
+One more model hygiene issue surfaced in the project audit: GSAS-II’s nominal defaults (1 µm size and 1000 ppm strain) are active even when their refinement flags are off. I’m removing those untested fixed contributions, re-establishing the common profile, and then re-testing phase-specific broadening from true zero. This is necessary before the final export can be considered physical and defensible.
+
+I’m at the final model-selection check: the three-phase assignment is secure, and I’m testing whether the modest ZnWO₄ size-broadening improvement remains stable after a clean restart. I’ll keep it only if it survives without bound hits or extreme correlations, then regenerate and independently replay every deliverable.
+
+The first clean restart improved the fit but also moved the ZnWO₄ size/strain pair appreciably, so it was not yet converged. I’m continuing that same branch to convergence before judging it; the key acceptance tests are repeatability, no frozen/bound parameters, and a correlation below the project’s “extreme” threshold.
+
+A simultaneous reset exposed the expected size/profile coupling and became singular, so I’m rejecting that restart itself—not treating its worse fit as evidence. I’m rerunning the same alternative in controlled stages (background/profile first, then cells/coordinates, then strain and size) so the restart is a fair stability test. The independent specimen-shift branch has converged but remains worse than the zero-offset branch.
+
+The controlled restart passed cleanly: no frozen parameters, final Rwp 3.665% with 10 background terms, versus 3.671% with 8; fractions differed by at most 0.04 wt%. That improvement is negligible, so I’m selecting the simpler 8-term model. ZnWO₄ size and strain also reproduced closely (0.253 vs 0.257 µm; 2874 vs 2951 ppm), supporting their retention.
+
+The selected project has now been exported and replayed without re-optimization over all 8,301 measured points. Replay gives Rwp 3.669%, Rp 2.803%, GOF 1.366, and exactly reproduces the project fractions. I’m now running the independent CIF geometry, export-consistency, and fit-grid checks before writing the final report.
+
+Completed the three-phase refinement:
+
+- ZnWO₄ (wolframite): 70.1415 wt%
+- ZnO (wurtzite): 8.5459 wt%
+- WO₃ (monoclinic): 21.3127 wt%
+
+Independent full-grid replay: Rwp 3.6693%, Rp 2.8026%, GOF 1.3659. Fractions sum to 1.0, all CIFs pass the physical screen, and the replayed project agrees with the submitted structures and profile.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-981a30c2b404/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-981a30c2b404/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-981a30c2b404/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-981a30c2b404/workspace/final.gpx)
+- [ZnWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-981a30c2b404/workspace/phase_znwo4.cif)
+- [ZnO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-981a30c2b404/workspace/phase_zno.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-981a30c2b404/workspace/phase_wo3.cif)
+
+The fractions describe modeled crystalline material only; amorphous content cannot be quantified without an internal standard.
+

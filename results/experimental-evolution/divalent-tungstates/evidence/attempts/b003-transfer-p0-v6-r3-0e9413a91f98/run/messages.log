@@ -1,0 +1,30 @@
+I’ll inspect the diffraction data and metadata first, then identify candidate phases, refine them jointly in GSAS-II, and validate that the exported CIFs, fractions, profile, and project all agree. I’ll flag any phase assignment that remains non-unique.
+
+The chemistry points first to CuWO₄, with unreacted CuO or WO₃ as plausible secondary phases at 550 °C. I’m now testing that against the full peak set rather than assuming the nominal reaction went to completion.
+
+The peak positions and extinction pattern support two phases: monoclinic WO₃ and cubic Cu₃WO₆. Distinctive Cu₃WO₆-only peaks at about 15.75°, 20.37°, 58.19°, 63.88°, and 70.79° are all present; CuWO₄ and CuO would require strong peaks that are absent. The first joint refinement is converging near a 63:37 crystalline weight ratio, but I’m still treating that as provisional while I model peak shape and strong WO₃ texture.
+
+The unconstrained all-atom trial lowered the residual but produced impossible W–O distances, so I’m rejecting it. I’m switching the WO₃ model to the higher-quality neutron-derived P2₁/c structure and will only retain coordinate refinements that preserve sensible coordination; this is the main structural-validation step before finalizing the fractions.
+
+A scale-only residual test found no detectable CuWO₄, but it did find a reproducible CuO contribution near 5 wt% and reduced the weighted profile residual from 4.44% to 3.57%. I’m therefore promoting CuO to a full third-phase refinement and checking whether its entire reflection set—not just one overlapping peak—remains supported after cell and profile optimization.
+
+The three-phase model is now stable: monoclinic WO₃, cubic Cu₃WO₆, and minor monoclinic CuO at approximately 60.00/33.82/6.17 wt% of the modeled crystalline material. A triclinic WO₃ alternative fit worse and drove nonphysical displacement parameters, while CuWO₄, Cu₂O, and Cu₄O₃ refinements collapsed to zero scale. I’m exporting the validated model and doing consistency checks now.
+
+Identified three crystalline phases:
+
+- WO₃: 60.00 wt%
+- Cu₃WO₆: 33.82 wt%
+- CuO: 6.17 wt%
+
+Fractions are normalized over modeled crystalline phases. Final fit: Rwp = 3.307%, Rp = 2.571%, GOF = 1.377.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3_P21c.cif](<ATTEMPT_WORKSPACE>/WO3_P21c.cif)
+- [Cu3WO6_Pa-3.cif](<ATTEMPT_WORKSPACE>/Cu3WO6_Pa-3.cif)
+- [CuO_C2c.cif](<ATTEMPT_WORKSPACE>/CuO_C2c.cif)
+

@@ -1,0 +1,42 @@
+I’ll first inspect the measurement metadata, pattern format, and available crystallography backends. Then I’ll identify candidate phases, refine them jointly in GSAS-II, and validate that every submitted artifact is internally consistent with the final project.
+
+The chemistry points toward lead tungstate formation, but that alone is not enough to distinguish polymorphs or residual precursor phases. I’m now extracting the peak set and checking the installed search/indexing/refinement interfaces so the assignment is driven by the full diffraction pattern.
+
+The peak positions show a common positive 2θ displacement and already support three chemically plausible contributors: scheelite PbWO₄, monoclinic WO₃, and residual Pb₃O₄. I’m testing that three-phase hypothesis against all resolved peaks—including the weak low-angle Pb₃O₄ marker near 14.6°—before committing to the quantitative model.
+
+The phase assignment is now positionally coherent across the scan: the PbWO₄ and WO₃ peak families share the same displacement correction, while the low-angle and mid-angle residuals track tetragonal Pb₃O₄ rather than PbO. I’m moving into staged whole-pattern refinement, keeping atomic coordinates fixed initially so scale, cell, displacement, and line broadening are not destabilized by unnecessary parameters.
+
+The model comparison is decisive: adding Pb₃O₄ drops Rwp from about 9.25% to 6.57%, while an added PbO phase refines to essentially zero scale and destabilizes the cell. The three-phase chemistry is therefore supported; I’m now cleaning up the line-profile model because an unconstrained exploratory pass produced nonphysical strain/profile coefficients even though the phase identification itself is robust.
+
+The bounded polarization refinement is physically plausible for the unknown optics and markedly improves the whole-pattern agreement (Rwp ≈ 5.13%) without changing the phase set. The remaining systematic intensity mismatch traces partly to legacy CIFs that contain zero displacement parameters for WO₃ and Pb₃O₄, so I’m checking reasonable fixed and bounded displacement models before locking the fractions.
+
+The ADP sensitivity check confirms those parameters are not independently determined: free refinement drives several values to bounds and shifts fractions substantially. I’m therefore retaining fixed, chemically reasonable isotropic values and using alternative published WO₃/Pb₃O₄ structures as the next discrimination test; this avoids mistaking overfit thermal parameters for composition.
+
+The phase assignment is now well constrained: stolzite PbWO₄ is dominant, with monoclinic WO₃ and minium Pb₃O₄ as crystalline residues. I’m consolidating the stable three-phase refinement into the requested final GSAS-II project and validating the exported profiles, CIFs, and normalized fractions.
+
+One refinement choice remains: two published minium structures give nearly identical fits. I’m checking the newer room-temperature structure under the same constrained displacement model; if it remains correlation-limited, I’ll retain the numerically stable model and document that this does not affect the phase identity.
+
+The final refinement is running through its staged joint cycles now. The chosen model keeps atomic coordinates and physically plausible displacement parameters fixed, while refining phase scales, cells, sample displacement, crystallite broadening, and the limited instrumental terms supported by this uncalibrated pattern.
+
+The final joint refinement converged cleanly with no frozen parameters: Rwp = 4.915%, and the normalized crystalline fractions are 61.09% PbWO₄, 22.10% WO₃, and 16.81% Pb₃O₄. I’m now checking that each exported CIF re-imports correctly and that the saved GPX reproduces the exact profile and fractions recorded in the machine-readable result.
+
+Completed the three-phase GSAS-II refinement:
+
+- PbWO₄ stolzite: 61.09 wt%
+- Monoclinic WO₃: 22.10 wt%
+- Pb₃O₄ minium: 16.81 wt%
+
+Fractions are normalized over modeled crystalline phases; estimated systematic uncertainty is approximately ±2 wt% absolute. Final Rwp = 4.915%, Rp = 3.224%, GOF = 1.981. The refinement converged with no frozen parameters.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [PbWO4_stolzite.cif](<ATTEMPT_WORKSPACE>/PbWO4_stolzite.cif)
+- [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_monoclinic.cif)
+- [Pb3O4_minium.cif](<ATTEMPT_WORKSPACE>/Pb3O4_minium.cif)
+
+The CIFs were re-imported successfully, and the saved GPX reproduces the reported fractions and fit statistics exactly.
+

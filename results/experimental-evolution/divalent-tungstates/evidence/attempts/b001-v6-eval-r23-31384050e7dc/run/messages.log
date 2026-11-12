@@ -1,0 +1,48 @@
+I’ll inspect the measurement metadata, pattern, and the reusable crystallography utilities first. Then I’ll build a chemically plausible phase inventory, refine it residual-first in GSAS-II, and verify that the exported CIFs, fractions, profile, and project all agree.
+
+The chemical context points first to zinc tungstate, but I’m treating unreacted ZnO/WO₃ and alternate Zn–W–O polymorphs as live candidates until the peak families and refined scales reject them. I’m now matching the observed peak inventory against COD records and checking each candidate’s symmetry, cell, composition, and geometry before refinement.
+
+The peak inventory is now coherent: monoclinic wolframite-type ZnWO₄, monoclinic WO₃, and wurtzite ZnO each contribute multiple independent families, including diagnostic WO₃ triplets and the complete ZnO wurtzite sequence. I’m moving into staged refinement with all unused texture/roughness/size/strain terms neutralized first, then I’ll add phase broadening only where the residuals support it.
+
+The first stable passes retain all three phases at substantial positive scale (roughly 65% ZnWO₄, 21% WO₃, 13% ZnO before profile broadening). The cells move only slightly from the physical source structures. I’m letting the common-profile and one-phase-at-a-time size tests finish, then I’ll compare each against strain-only alternatives rather than accepting the first lower Rwp.
+
+The unrestricted U/W/X model was rejected: W collapsed exactly to its lower bound and later became singular, so I’m not carrying that nuisance model forward. The replay trials are now comparing simpler W-only, U/W, W/X, and fixed-W U/X baselines, each with size-only and strain-only broadening challenged from the same saved project state.
+
+The replay is deliberately doing more than one cycle per candidate and reopening each saved GPX between cycles. That catches terms that appear useful in one pass but drift, hit limits, or become redundant on replay—the main failure mode I’m screening out before finalizing fractions.
+
+The clean replay winner is the simpler W-only common Gaussian baseline plus isotropic crystallite size for each phase. It has no frozen or bound parameters and reaches Rwp ≈ 3.51%; strain-only models are much worse (≈4.27%) and force U to zero. I’m now inspecting the winning residual by isolated low/mid/high-angle families and testing whether any anisotropy or texture is actually supported.
+
+I’m also re-challenging WO₃ against two physically plausible room-temperature monoclinic/triclinic records and a smaller-cell monoclinic polymorph under exactly the same background, angular correction, profile, and size model. This is important because the current WO₃ residual is intensity-led: a different valid coordinate model may outperform texture without adding a nuisance term.
+
+So far the baseline itself is physically well behaved: all scales are positive, the refined zero offset is only ~0.027°, common W remains positive, and the isotropic sizes replay to about 65 nm (ZnWO₄), 120 nm (WO₃), and 320 nm (ZnO). No texture or strain term is currently active.
+
+The source-record comparison is slower because each alternate is being rebuilt from the raw pattern and fully reconverged, not transplanted into an already optimized fit. That keeps the comparison fair; I’ll retain an alternate only if it improves coherent peak families without introducing frozen parameters or implausible geometry.
+
+The alternate WO₃ record is decisively better: COD 2311041 (P2₁/c, Z=8) lowers Rwp from 3.51% to 3.27% with no extra parameters, frozen terms, or fraction instability. The triclinic record is slightly worse despite lower symmetry, and the small-cell monoclinic polymorph fails badly (Rwp ≈ 6.95%), so the P2₁/c model is now the structural baseline.
+
+The coherent cross-phase intensity trend is best handled by refining polarization (0.85–0.88, interior and physically plausible), not texture. Texture axes change Rwp by at most ~0.014% and March–Dollase ratios stay close to 1, so they are unsupported. A WO₃-only microstrain term is complementary to size and materially improves Rwp to ~3.05%; equivalent ZnWO₄ and ZnO strain trials collapse to zero and are rejected.
+
+Coordinate trials confirm that unconstrained WO₃ oxygen refinement is not trustworthy: it creates strongly inequivalent octahedra with W–O distances down to ~1.59 Å and is rejected despite a small fit gain. The dominant ZnWO₄ phase supports a modest refinement of the symmetry-allowed W/Zn coordinates while preserving normal octahedral distances; I’m checking its uncertainties and correlations before deciding whether to retain only those heavy-atom shifts or also the weaker oxygen shifts.
+
+The accepted structural refinement is now physically coherent and replay-stable: ZnWO₄ coordinates refine with normal ZnO₆/WO₆ distances, while only the two W positions are released in WO₃; its oxygen framework remains fixed to the validated source record. The combined model gives Rwp ≈ 2.91% with no frozen parameters and no unsupported texture. I’m doing the required full-range replay and exact project/CIF/profile export now.
+
+Resolved three crystalline phases:
+
+| Phase | Weight fraction |
+|---|---:|
+| ZnWO₄, P2/c | 72.80 wt% |
+| WO₃, P2₁/c | 18.51 wt% |
+| ZnO, P6₃mc | 8.69 wt% |
+
+Final fit: Rwp 2.908%, Rp 2.288%, Rexp 2.765%, goodness-of-fit 1.055. Fractions are normalized over crystalline phases; amorphous content cannot be determined without an internal standard.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [ZnWO4.cif](<ATTEMPT_WORKSPACE>/ZnWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [ZnO.cif](<ATTEMPT_WORKSPACE>/ZnO.cif)
+

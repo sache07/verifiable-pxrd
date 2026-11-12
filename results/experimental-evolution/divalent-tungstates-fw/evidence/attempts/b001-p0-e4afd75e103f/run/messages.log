@@ -1,0 +1,39 @@
+I’ll inspect the metadata, diffraction profile, and the framework’s analysis utilities first. Then I’ll identify candidate phases, refine them in GSAS-II, and validate that the exported CIFs, profile, fractions, statistics, and final project are mutually consistent.
+
+The chemical context is BaCO₃ + WO₃ fired at only 250 °C, so residual precursors are plausible and any BaWO₄ product may be partial. I’m now extracting peak positions and checking the local COD/DARA and GSAS-II interfaces; phase count will be decided from unmatched reflections, not assumed from the nominal reaction.
+
+The strongest reflections separate cleanly into two precursor fingerprints: orthorhombic witherite BaCO₃ (notably ~24.10, 42.09, 45.07°) and monoclinic WO₃ (the 23.42/23.87/24.64° triplet plus the 33.55–34.71° cluster). The strongest scheelite BaWO₄ line expected near 26.5° is absent at product-like intensity. I’m moving to whole-pattern refinement now and will explicitly test whether adding BaWO₄ is statistically and physically warranted.
+
+The first whole-pattern fit is still running. I’m using Poisson weights and refining in stages (background/scales, cell and zero, instrumental profile, then phase broadening and coordinates) to avoid false minor phases caused by a poor peak-shape model.
+
+The two-phase model already reaches an Rwp close to the counting-statistics floor. I found and corrected an unphysical local minimum from the exploratory fit (negative asymmetry/microstrain and a redundant overall scale); the rerun now enforces the laboratory parameter ranges before I compare alternate WO₃ models or claim fractions.
+
+A specimen-roughness correction is clearly supported by the low-angle intensity trend and lowers Rwp from ~1.97% to ~1.92% (the Poisson floor is ~1.84%). Because its two parameters are strongly correlated, I’m profiling the physically allowed range rather than accepting a boundary solution. I’m also keeping the structural refinement chemically screened—the unconstrained oxygen shifts can improve Rwp but are not automatically trustworthy.
+
+The published-coordinate prior is informative: leaving atoms at the database positions worsens Rwp to ~2.23%, while allowing only modest symmetry-preserving displacements recovers ~1.94%. That is exactly the expected signature of a slightly perturbed reference structure. I’m preserving the bounded solution so the final CIF does not inherit the much larger, chemically weak oxygen excursions from an unconstrained least-squares minimum.
+
+The pattern is decisively two-phase: orthorhombic BaCO₃ (witherite) plus monoclinic WO₃; characteristic BaWO₄ peaks are absent. I’m finishing the structural refinement with carbonate geometry constrained to remain chemically credible, then I’ll export the mutually consistent GPX, CIFs, profile, and report.
+
+The unrestricted least-squares fit reaches the counting-noise floor, but it lets some oxygen sites wander into chemically equivalent local minima. I’m therefore profiling a restrained solution against the published parent structures; this preserves the evidence for phase quantities while avoiding overclaiming poorly identifiable light-atom shifts.
+
+The phase fractions have stabilized at 45.97 wt% BaCO₃ and 54.03 wt% WO₃—essentially the expected 1:1-metal unreacted-precursor ratio. The remaining profile mismatch is modest (Rwp ≈2.15% versus Rexp ≈1.84%) and is dominated by light-atom/intensity-model ambiguity, not missing Bragg peaks.
+
+The deliverables are now generated from one synchronized final project. I’m running a replay/consistency audit next—checking that the submitted CIF coordinates, fractions, and exported profile exactly match `final.gpx`, not merely that the standalone files look plausible.
+
+Completed the two-phase Rietveld analysis:
+
+- Witherite BaCO₃: **45.97 wt%**
+- Monoclinic WO₃: **54.03 wt%**
+- Rwp: **2.147%**, GOF: **1.170**
+
+No crystalline BaWO₄ or other coherent phase was supported. Fractions carry an estimated ±1 wt% practical uncertainty; individual oxygen shifts and Uiso values are not reliably resolved.
+
+Files:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-e4afd75e103f/workspace/final.gpx)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-e4afd75e103f/workspace/result.json)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-e4afd75e103f/workspace/fit.csv)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-e4afd75e103f/workspace/report.md)
+- [BaCO3_witherite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-e4afd75e103f/workspace/BaCO3_witherite.cif)
+- [WO3_monoclinic.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-e4afd75e103f/workspace/WO3_monoclinic.cif)
+

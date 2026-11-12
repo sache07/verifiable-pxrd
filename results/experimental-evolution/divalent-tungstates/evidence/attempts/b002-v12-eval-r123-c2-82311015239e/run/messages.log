@@ -1,0 +1,65 @@
+I’ll first inventory the measurement, chemistry, reusable scripts, and candidate databases. Then I’ll health-screen chemically plausible structures before any fitting, establish a neutral GSAS-II baseline, and only retain phases or profile terms that survive replay and challenge tests.
+
+The chemistry points first to BaWO₄, with unreacted WO₃/BaCO₃ and non‑1:1 Ba–W–O compounds as the required balance watch list. No precursor amounts or ratio were reported, so there is no numerical mass-balance constraint to vary or enforce; phase selection must come from coherent diffraction families.
+
+The filtered structure inventory contains one scheelite BaWO₄ record, several physically distinct WO₃ polymorphs, two BaCO₃ polymorphs relevant at 750 °C, and a few exact non‑1:1 Ba–W–O records. I’m screening these sources now and will treat same-formula records as alternatives, never as simultaneous phases unless the diffraction independently demands coexistence.
+
+A uniform peak-position offset alone is not adequate: the observed shift decreases toward high angle, which is the reflection-geometry signature of specimen height. I’m therefore using one physically appropriate angular correction (Bragg–Brentano specimen shift), keeping instrumental zero fixed, and starting all phase-specific size/strain/texture terms at genuinely neutral values.
+
+The first baseline trial exposed a GSAS-II setup degeneracy: both the histogram scale and phase scale were active, giving a perfect correlation and invalidating every downstream comparison. I’m discarding that trial in full, fixing the histogram scale at unity, and rebuilding from the untouched source rather than carrying any flags or values forward.
+
+The clean BaWO₄ baseline converges reproducibly at \(R_{wp}=10.10\%\) with a positive W/X profile and no phase-specific broadening. Its residual contains substantial coherent peaks, so a one-phase interpretation is inadequate. I’m now ranking the chemically plausible second-phase records against that actual GSAS-II difference profile, rather than against the raw pattern.
+
+Ba₃W₂O₉ is decisively preferred: it lowers \(R_{wp}\) from 10.10% to 7.89% and accounts for independent families at 17.76, 26.28, 27.80, 30.82, 37.66, 40.80, 51.84, 63.07, and 63.82°. Competing WO₃ records improve the fit much less (best \(R_{wp}\approx8.98\%\)); the first BaCO₃ record gives only 9.74%, while its alternate collapses. I’m retaining Ba₃W₂O₉ provisionally and re-challenging all residual chemistry from that two-phase checkpoint.
+
+The profile loop retained positive strain broadening for Ba₃W₂O₉ and WO₃; size trials either hit limits or failed and were rejected. Low-dimensional anisotropy gives a small replay-stable gain for Ba₃W₂O₉ (\([001]\)) and monoclinic WO₃ (\([010]\)); the BaWO₄ anisotropy trial hit a bound and was fully discarded. A 12-term smooth background is favored, and a shared polarization refinement produces a large, stable improvement to about 0.80. The roughness trial is invalid because one parameter froze at its boundary, so none of its apparent gain is being retained.
+
+The retained phase fractions are stable under the accepted texture terms: BaWO₄ remains about 65%, Ba₃W₂O₉ about 18%, and WO₃ about 17%. One structural issue remains: the only exact BaWO₄ database record uses a split, half-occupied oxygen model that health-screened as “review” and leaves a comparatively high Bragg intensity residual. I’m now comparing several scheelite analogues to build a geometrically ordered Ba-substituted model before deciding whether that adaptation genuinely improves the diffraction fit.
+
+The first adapted-model replacement run is invalid: deleting and re-adding BaWO₄ renumbered phase IDs, so saved parameter bounds were applied to the wrong phases and variables froze. I’m discarding those projects completely. The replacement will now be done in-place, preserving every phase ID and all saved nuisance values, then replaying scale before cell exactly as required.
+
+I’ve completed the chemistry inventory and most convergence challenges. I’m now validating the staged ordered-BaWO₄ source replacements; then I’ll replay the winning model over the full range, challenge residual phases once more, and freeze/export the final project and deliverables.
+
+The staged comparison exposed one invalid shared-term result: polarization ran to its physical upper bound in both ordered-source replays. Per the convergence gate, I’m discarding those terminal states and rebuilding the comparison with the pre-trial polarization value restored and fixed; this preserves a clean source ranking without letting a bounded nuisance term decide it.
+
+The valid neutral checkpoint now gives a stable ranking: the ordered SrWO₄-topology BaWO₄ model is best (Rwp 5.885%), ahead of the exact split-site record (5.960%) and the BaMoO₄-derived model (6.459%), with no frozen variables. I’m repeating background, polarization/roughness, broadening, and symmetry-compatible texture challenges from this common checkpoint before accepting that source.
+
+Texture reverses the neutral source ranking: the exact split-site BaWO₄ record improves to Rwp 5.724% with a modest [001] March ratio (0.937), while the ordered model stays essentially texture-neutral at 5.877%. That is precisely the coupling case the protocol warns about. I’m cross-seeding the shared profile/background terms in both directions and testing refinement of the ordered model’s single oxygen coordinate set before deciding which structural representation is defensible.
+
+Cross-seeding reproduces the reversal exactly, so it is persistent intensity/texture coupling rather than a positional distinction. I’m retaining the simpler ordered I4₁/a representation for the convergence loop; its texture stays neutral, and its oxygen coordinates will remain parent-anchored because unconstrained coordinate refinement produced chemically implausible W–O distances. Next I’m repeating each phase’s width models from genuinely neutral checkpoints.
+
+The width loop is stable: BaWO₄ broadening remains neutral; Ba₃W₂O₉ and WO₃ retain positive symmetry-compatible microstrain, and only WO₃ [010] texture survives replay (MD ≈0.866). Background order 10 remains the parsimonious choice; polarization and roughness again hit bounds and are discarded. I’m now re-challenging unreacted/competing phases with scale-first, rollback-safe trials.
+
+One watch-list phase survives strongly: orthorhombic BaCO₃ (COD 9010928) refines to about 5.1 wt% and lowers Rwp from 5.833% to 5.555% with stable positive scale. A distinct Pnma record contributes only ~0.15 wt%, while Ba₃WO₆ collapses. I’m treating the BaCO₃ result as provisional until it passes the required independent-family, broadening, texture, and background/removal challenges.
+
+BaCO₃ passes the retention gate: its scale remains positive under removal/replacement, background, broadening, and texture challenges, with distinct residual families near 19.7°, 28.0°, and 34.8°. Its isotropic strain is supported; size and texture trials fail or give negligible gain. Crucially, once BaCO₃ is present, the prior WO₃ texture gain disappears—showing it was a surrogate—so I’ve pruned all texture terms and am replaying the four-phase model from that cleaner checkpoint.
+
+The rebuilt four-phase width loop changes the nuisance picture again: WO₃ anisotropy is no longer supported and will be reduced to isotropic strain; BaWO₄ remains neutral, and Ba₃W₂O₉ retains only its symmetry-compatible c-axis test. I’m recombining those pruned terms from a single checkpoint now, rather than carrying values across separate trial branches.
+
+The four-phase model has now survived a full second loop: no texture terms remain; U, polarization, and roughness all hit bounds and are rejected; background order 10 is stable; the alternate WO₃ record is worse (Rwp 5.557% versus 5.528%). I’m freezing these pruned terms, extending the replay to every measured point, and producing the final GSAS-II project and exports.
+
+The full-range project has converged cleanly with no frozen variables. Final CIF health now passes for all four phases. I’m doing the last consistency checks—isolated low/mid/high-angle peak-shape audit, residual-family scan, and JSON/CIF/profile cross-validation—then I’ll write the concise evidence/uncertainty report.
+
+The first consistency audit found a numerical serialization mismatch in `fit.csv` at tighter-than-reporting precision, not a model discrepancy. I’m quantifying it and will regenerate the profile with enough significant digits so the CSV re-parses to the GPX arrays within machine-level tolerance.
+
+Completed the full-range GSAS-II refinement.
+
+- BaWO₄: 65.23 wt%
+- Ba₃W₂O₉: 15.75 wt%
+- WO₃: 11.61 wt%
+- BaCO₃: 7.41 wt%
+- Rwp: 5.520%; Rp: 3.826%; goodness of fit: 1.830
+
+All final CIFs pass the geometry-health screen, fractions sum to one, and the final project has no frozen/bound variables. The largest uncertainty is the parent-anchored BaWO₄ oxygen model and associated fraction systematics, documented in the report.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [BaWO4.cif](<ATTEMPT_WORKSPACE>/BaWO4.cif)
+- [Ba3W2O9.cif](<ATTEMPT_WORKSPACE>/Ba3W2O9.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [BaCO3.cif](<ATTEMPT_WORKSPACE>/BaCO3.cif)
+

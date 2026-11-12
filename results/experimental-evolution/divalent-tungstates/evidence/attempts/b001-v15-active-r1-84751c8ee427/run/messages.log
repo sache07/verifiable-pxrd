@@ -1,0 +1,64 @@
+I’ll inspect the measurement metadata, diffraction grid, and the reusable refinement utilities first. Then I’ll build a chemically plausible phase inventory, test candidate structures against the pattern, and only refine complexity that the residuals support.
+
+The chemistry points first to calcium tungstates, but I’m treating precursor remnants and alternate Ca–W–O stoichiometries/polymorphs as real candidates rather than assuming single-phase CaWO₄. I’m now extracting peak positions and querying the supplied structure index for exact records and physical alternates.
+
+The peak families already separate cleanly into scheelite CaWO₄ (space group I4₁/a) and room-temperature monoclinic WO₃: the three WO₃ lines near 23–24.2° and their 33–34°, 41–42°, and 50–56° families are not explainable by CaWO₄. A common ≈−0.16° angular offset appears across both phases, so I’ll model one shared correction before changing cells. CaO remains on the weak-phase watch list because its 37.3° family may be present, but its companion lines need a joint test.
+
+The first two-phase refinement is running on the full, unresampled 8,301-point grid. I’ve fixed unused size/strain, roughness, and texture terms at neutral values and am refining only background, phase scales, and the shared angular offset at this stage.
+
+The common-profile challenge rejected Gaussian U and W: both collapsed to zero while the Lorentzian X term remained positive and materially improved the fit. I’m pruning those bound terms now and replaying from a clean checkpoint with only X active, as required; no bound/frozen variables will be retained.
+
+The first batch over-parallelized the numerical backend and hit a thread-resource limit; several trials did complete, but I won’t use partial results. I’m reducing concurrency and forcing one BLAS thread per trial, then I’ll compare only fully converged branches.
+
+The source-record screen is now narrowed to physically credible WO₃ polymorphs. I’m comparing the ambient monoclinic records against the triclinic and orthorhombic alternatives under the identical six-term background, X-only profile, angular correction, and refinement sequence; the high-pressure CaWO₄ record and malformed 1931 duplicate-site record are excluded on source/geometry grounds.
+
+The angle-dependent intensity correction is better represented by refined polarization than by the one-parameter roughness alternative once texture is challenged: polarization + CaWO₄ [110] March–Dollase gives Rwp ≈10.29%, versus ≈10.51% for roughness + [110]. Simultaneously refining both is strongly correlated (|r| up to 0.96 with scale), so I’m rejecting that combined surrogate model. I’m now re-testing CaO, Ca(OH)₂, and CaCO₃ against the clean polarization/[110] checkpoint.
+
+The two-phase inventory is now stable; CaO improves only the 32°/37° residuals while worsening its expected 53.6°, 63.9°, 67.1°, and 88.2° families, and its free cell drifts without convergence. I’m therefore leaving CaO on the watch list rather than reporting a spurious ~2% fraction. Next I’m comparing phase-specific neutral/size/strain/combined broadening from the same checkpoint.
+
+The broadening tests are replay-stable: CaWO₄ requires isotropic size (~0.13 μm) plus strain, and the strain is significantly anisotropic along [001] (equatorial ≈395 με, axial ≈2060 με). Making size anisotropic adds only ~0.0014 Rwp percentage point once strain anisotropy is present, so I’m pruning that extra term. WO₃ size/strain collapses to the neutral limit. I’m doing the final weak-phase re-challenge against this profile before coordinate testing.
+
+The exact-record weak-phase checks do not establish a third phase: CaO’s nominal scale is driven mainly by two residual regions and contradicts most of its companion families; Ca(OH)₂ is only ~2σ and calcite collapses to zero. Because the precursor ratio is unknown, I’m also following the supplied analogue route for Ca-rich tungstates—especially isovalent Ca₃OsO₆→Ca₃WO₆ and Ba₂ReO₅→Ca₂WO₅ prototypes—before closing the inventory.
+
+The analogue screen resolved the residual inventory decisively. Isovalent Ca₃OsO₆→Ca₃WO₆ (P2₁/n parent, Os⁶⁺→W⁶⁺) accounts for the coherent 18.9/19.5°, 22.2°, 30.8–32.3°, 36.7–37.7°, 45.2°, 49–51°, and 55–57° families; Rwp falls from 9.43% to 5.47%, with ~10 wt% scale. The U-parent polymorph goes to zero. Because the inventory changed, I’m now resetting phase broadening/texture and rebuilding the common profile before accepting fractions or testing any fourth phase.
+
+With the corrected three-phase inventory, the common profile changes materially: W and X are supported, U is not; SH/L again collapses. Low-angle roughness is now clearly favored over polarization (Rwp 7.38% vs 8.08%), showing that the missing Ca₃WO₆ had previously biased that decision. CaWO₄ [110] texture remains the best of six tested axes. I’m checking whether the Ca₃WO₆ analogue itself has supported orientation before phase-specific widths are rebuilt.
+
+The three-phase inventory is now coherent. I’m finishing the remaining symmetry-aware broadening challenges, then I’ll re-test all weak-phase candidates against that common profile before the mandated heavy-atom coordinate pass and exact final export.
+
+The anisotropy challenge is negative: uniaxial size improves Rwp by only 0.00086 percentage point with nearly equal axial/equatorial sizes, while uniaxial strain slightly worsens it. I’m retaining the simpler isotropic size-plus-strain model and now replaying the CaO, Ca(OH)₂, CaCO₃, and Ca₂WO₅ watch list from that same checkpoint.
+
+Three watch-list candidates are unsupported: hydroxide and carbonate scales collapse to zero; the Ca₂WO₅ analogue gives only 0.10(4) wt%, a 0.0013-point Rwp change, and fails stable replay. CaO remains the only borderline case at 0.32(5) wt%; I’m checking whether its full rocksalt reflection family is present, rather than accepting two overlapped low-angle residuals as a trace phase.
+
+CaO fails the family-coherence test: it improves the 111/200 windows but makes the stronger expected 220 window substantially worse and does not consistently improve the 311/222/331/420 companions. I’m therefore keeping it off the modeled inventory (with its 0.32 wt% trial as the trace-detection uncertainty), preparing the converged three-phase checkpoint, and then running the required one-site-at-a-time heavy-coordinate challenge.
+
+The starting checkpoint reopens cleanly (Rwp 3.9935%, no frozen variables, maximum shift/esd 0.010). The mandated coordinate helper is now testing each Ca/W site independently with its displacement, contact, and minimum-gain guards; I’ll only adopt its output if the accepted gain survives a fresh reopen.
+
+The coordinate pass accepted three physically bounded moves: both monoclinic WO₃ W sites (0.076 and 0.066 Å) and one Ca site in the Ca₃WO₆ prototype (0.050 Å). Rwp fell from 3.9935% to 3.8870%, no variables froze, and all phases passed contact checks; all other heavy sites failed the gain threshold. I’m now doing the independent reopen/replay check before adopting this project.
+
+After coordinate refinement, the CaO trial drops to 0.15(5) wt% and only a 0.0018-point Rwp change. The Ca₂WO₅ prototype appears at 0.18(4) wt%, but its cell-refined trial is unstable (maximum shift/esd 0.70). I’m separating scale support from cell drift now; a trace analogue will not be reported as a phase unless multiple families survive a fixed, physically screened model and stable replay.
+
+The fixed-cell Ca₂WO₅ test is only 0.11(4) wt% with a 0.0015-point Rwp gain; releasing its cell causes unstable drift. That is below reliable phase-identification support, so the final inventory remains three phases. I’m adopting the coordinate-refined project now, then checking every active/fixed profile term, contacts, fractions, and the exact observation grid before export.
+
+The exact final replay remains converged at Rwp 3.887% (Rp 3.108%, GOF 1.734), and the observed/calculated profiles track peak positions, widths, and asymmetry across low, middle, and high angle without a new coherent residual family. The requested CIFs, profile, and JSON are exported from that exact project; I’m doing independent CIF/grid/schema validation and writing the short uncertainty report.
+
+Completed and validated a three-phase model:
+
+| Phase | Weight fraction |
+|---|---:|
+| CaWO₄ (scheelite) | 78.603 ± 0.078 wt% |
+| Monoclinic WO₃ | 11.583 ± 0.049 wt% |
+| Monoclinic Ca₃WO₆ prototype | 9.814 ± 0.057 wt% |
+
+Final fit: Rwp 3.887%, Rp 3.108%, GOF 1.734. The Ca₃WO₆ structure is prototype-based and therefore less certain than its formal fraction uncertainty suggests.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [CaWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_CaWO4.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [Ca₃WO₆ CIF](<ATTEMPT_WORKSPACE>/phase_Ca3WO6.cif)
+

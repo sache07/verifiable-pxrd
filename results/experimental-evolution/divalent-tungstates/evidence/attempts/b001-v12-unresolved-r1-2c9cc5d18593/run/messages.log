@@ -1,0 +1,91 @@
+I’ll first inventory the pattern, metadata, reusable analysis scripts, and candidate structure library. Then I’ll health-screen chemically plausible structures before fitting, keep competing polymorphs separate, and preserve a replayable GSAS-II project through the final validation.
+
+The chemistry points first to Ca–W–O products (especially CaWO₄), with precursor remnants and non‑1:1 calcium tungstates kept on the watch list. I’m now mapping the observed peak families and enumerating exact-formula records; no phase will be accepted merely from formula plausibility.
+
+The observed families already separate into two coherent signatures: scheelite-like CaWO₄ (18.43°, 28.54°, 34.01°, 46.93°, 54.11°, 57.70°) and the diagnostic WO₃ low-angle triplet near 22.94°, 23.42°, and 24.23°. I’m health-screening all available CaWO₄ polymorphs and the physically plausible WO₃ records before any Rietveld scale or cell refinement.
+
+The source comparison will be made from the same neutral profile checkpoint: fixed 100 µm size, zero strain, March ratio 1, zero roughness, and a common smooth background/angular correction. I’m testing the refinement mechanics on the leading scheelite + monoclinic-WO₃ pair before replaying the identical sequence across competing WO₃ symmetries.
+
+The first full-profile model gives a positive WO₃ scale and an initial quantitative estimate near 86.5 wt% CaWO₄ / 13.5 wt% WO₃, but that fraction is provisional. The symmetry/source replay is still running; I’m checking whether the orthorhombic, monoclinic, or triclinic WO₃ description wins without phase-specific broadening or texture.
+
+The replay is computationally heavier than the initial test because each record is being reconverged at both fixed-profile and reopened-profile checkpoints. I’m letting each candidate finish rather than comparing partially converged R factors; any bound-frozen scale or width will be marked invalid.
+
+The source replay is decisive on topology: monoclinic P2₁/c WO₃ reaches Rwp ≈13.39%, while orthorhombic Pnma remains ≈14.73% and triclinic P‑1 is slightly worse despite more cell freedom. Two equivalent monoclinic records tie numerically; I’m retaining the geometry-pass record and rejecting the alternate record with 1.57 Å O–O contacts. Next I’m auditing residual peak families and phase-specific width/texture alternatives.
+
+The residual audit shows a real watch list beyond profile mismatch: reproducible unmatched lines occur near 18.74°, 19.29°, 22.01°, 30.71°, 32.18°, 37.53°, and 45.13°. Because these span independent low/mid-angle families, I’m now enumerating charge-balanced non‑1:1 Ca–W–O formulas (Ca₂WO₅, Ca₃WO₆, and W-rich CaW₂O₇) and screening analogue parents before deciding whether a third crystalline phase is defensible.
+
+The closest analogue is chemically and diffraction-wise specific: Ca₃OsO₆ (P2₁/n), with isovalent Os⁶⁺→W⁶⁺ substitution, predicts essentially every unmatched family at the right spacing. I corrected its nonstandard-setting import without changing the parent geometry, health-screened the Ca₃WO₆ model, and am now replaying scale-before-cell against two distinct Ca₃WO₆ topology competitors and residual CaO.
+
+The Ca₃WO₆ phase is replay-stable and substantial: adding it drops Rwp from 13.39% to 10.45%, with positive scale and many non-coincident families; the two alternate Ca₃WO₆ topologies collapse or contribute effectively zero. I’m now running the required neutral/size/strain/combined loop phase by phase, alongside background, polarization, roughness, and low-index texture trials from one saved checkpoint.
+
+Each trial reopens the common profile, angular correction, cells, scales, and background, so apparent gains cannot come from a frozen nuisance mismatch. Bound-frozen trials are being kept as invalid comparisons and will not be promoted into the final model.
+
+The run has moved into the texture-axis replays, which are the slowest portion because every axis is reconverged independently. Once complete, I’ll select only terms that improve the fit across independent families and leave phase fractions stable, then rerun the entire loop from that accepted checkpoint.
+
+No interactive input is needed; the replay remains healthy and is progressing through the remaining axes. The long runtime reflects full-range GSAS-II reconvergence, not a stalled process.
+
+I’m still within the expected runtime for the final few candidate axes. After this pass I’ll inspect the numerical ranking and residuals before making any acceptance decision; a lower Rwp alone is not enough if the March ratio is near a bound or fractions drift.
+
+The replay exposed a real issue rather than useful slow convergence: the WO₃ strain trial repeatedly reverses χ² after a nominal cycle, so its comparison is invalid under the prescribed convergence rule. I’m stopping this batch, preserving the completed checkpoints, and will restart shorter isolated trials from the neutral project so one unstable branch cannot hold up every later comparison.
+
+The first pass shows why the full loop matters: high-order smooth background and a shared polarization term are supported, while unconstrained phase-strain trials went negative and a size trial forced the common U term to its bound—those width comparisons are invalid and will be discarded. I’m now cross-testing background order, polarization, and roughness-B jointly before reopening nonnegative width terms.
+
+The joint shared-term trials are converging but some branches oscillate at tiny χ² changes; I’m retaining their full histories so they can be rejected if they do not replay cleanly. The accepted checkpoint will come from a stable branch, not simply the lowest transient residual.
+
+The shared correction has stabilized at background order 10, polarization 0.593, and Suortti roughness-B 0.096; order 8 gives essentially the same fractions, while order 10 is statistically favored. I’m now repeating all phase-width trials with explicit nonnegative bounds so the earlier negative-strain surrogates cannot masquerade as physical improvement.
+
+The bounded loop is doing exactly what it should: several branches are freezing at zero or producing singular coupled steps. Those branches will be invalidated and the saved common values restored; I’m allowing the complementary size/strain alternatives to finish so each phase has a fair comparison.
+
+The bounded profile results are now clear: CaWO₄ alone supports finite isotropic size broadening, refining to about 0.092 µm and lowering Rwp to 5.53% with all shared U/W/X terms interior. Every WO₃ and Ca₃WO₆ size/strain branch returns to the neutral boundary, and CaWO₄ strain either collapses or forces U to zero, so only CaWO₄ size is physically retained.
+
+The inventory now has three coherent candidates—scheelite CaWO₄, monoclinic WO₃, and a Ca₃WO₆ analogue—with a current full-range Rwp of 5.53%. I’m finishing the required reversible challenges now: texture/anisotropy, nuisance-term ablations, alternate WO₃ sources, and the CaO exclusion test before freezing the outputs.
+
+The texture/anisotropy matrix is still running; each branch reloads the same saved checkpoint, so a failed or bounded branch cannot contaminate the next comparison. The accepted CaWO₄ size term is also being retested against background order, polarization, and roughness removal.
+
+The broadening branches are behaving cleanly so far; the longer runtime comes from replaying every low-index March–Dollase axis independently rather than allowing several correlated texture terms at once. I’ll retain texture only if one simple axis gives a reproducible gain without shifting the phase fractions materially.
+
+A single physically simple texture term is strongly supported: CaWO₄ [110] March–Dollase reduces Rwp from 5.53% to 2.73% and converges at 1.241, while every tested alternative axis is distinctly worse. The fraction shift is modest but non-negligible, so I’m treating this as a new checkpoint and repeating the entire profile/source/inventory loop from it rather than accepting the first gain at face value.
+
+The [110] texture checkpoint is now being replayed against neutral, size-only, strain-only, and combined broadening for all three phases. I’m also cross-testing the best minor-phase texture axes; this distinguishes a genuine CaWO₄ intensity trend from a shared/background surrogate.
+
+No branch has been allowed to inherit a boundary hit: each comparison is reloaded from the accepted project and all parameter values are restored with it. This pass is taking a few minutes because the broadening boundary tests are deliberately reconverged rather than stopped at the first nominal convergence.
+
+The second loop confirms the CaWO₄ [110] texture and both shared angular-intensity terms; removing polarization or roughness raises Rwp to 3.45% or 2.92%. It also reveals a previously masked, positive Ca₃WO₆ broadening term: size-only beats strain-only, while a small added strain gives a further reproducible gain. I’m now testing whether that gain is isotropic or a symmetry-compatible monoclinic width anisotropy, and whether CaWO₄ needs only its slight [001] size anisotropy.
+
+The width hierarchy is now clear: monoclinic anisotropy does not earn its extra parameter, while the simpler isotropic Ca₃WO₆ size+strain model does. I’ve retained the simpler model and am replaying targeted deletions plus low/high cross-seeds; the key check is that all positive widths return to the same interior solution rather than merely fitting from one favorable start.
+
+The retained width model has replayed to the same interior solution from a low independent seed; deleting any one of the CaWO₄ or Ca₃WO₆ width terms worsens the penalized fit, while an intentionally extreme Ca₃WO₆ seed hit a bound and was discarded as an invalid branch. I’m now rebuilding the three-phase inventory separately for the leading WO₃ polymorphs, first with the common profile fixed and then with every shared nuisance reopened.
+
+The fresh source comparison is still running. Each WO₃ record is being judged twice with the same CaWO₄/Ca₃WO₆ geometry: once against the fixed accepted profile, then after reopening background, angular terms, widths, and texture. This directly tests whether the monoclinic ranking survives the more complete model.
+
+The retained model is replaying cleanly in the rebuilt projects. I’m letting the lower-symmetry and simpler WO₃ competitors fully reconverge because a poorer first cycle would reject only the starting record, not the chemistry; any bound-hit branch will be reported as invalid rather than ranked.
+
+The WO₃ ranking survives both stages: COD 2311041 gives Rwp 2.634%; triclinic WO₃ is next at 2.780% despite two extra cell metrics, the alternate monoclinic record gives 3.413%, and orthorhombic/tetragonal records are far worse or bound-unstable. I’m doing the final inventory stress test now—adding CaO, alternate Ca₃WO₆ parents, and fergusonite one at a time with scale before cell, plus removal tests for each minor retained phase.
+
+CaO is the only additive watch-list model that does not collapse: it refines to just 0.12 wt% and improves χ² by 16, while its cell is not independently supported. That is too weak to accept on statistics alone, so I’m now checking replay stability, width/texture sensitivity, and—most importantly—whether at least two non-overlapping CaO reflection families independently improve the residual. The alternate CaWO₄ and Ca₃WO₆ structures collapse to zero.
+
+The CaO signal fails the weak-phase gate. Its nominal scale is replay-stable near 0.12 wt%, but the only substantial residual improvements occur at CaO peaks coincident with WO₃/Ca₃WO₆; the one reasonably isolated low-angle CaO line improves χ² by only 1.8. Width trials collapse and texture is neutral, so there are not two independent non-coincident families. I’m excluding CaO and recording it only as a sub-detection-limit possibility. Peak half-widths from 18° through 90° otherwise match on both flanks, so no SH/L asymmetry term is warranted.
+
+The retained inventory is now fixed at three phases. Removing WO₃ or Ca₃WO₆ raises Rwp to 12.59% or 8.20% in bound-free replay tests, while the three-phase model remains at 2.63%. I’m performing the required final save–reopen–replay, then exporting CIFs and generating all tabular/JSON/report outputs from that exact reopened project.
+
+The final reopened replay is converged with no frozen variables: Rwp 2.6344%, Rp 2.0199%, GOF 1.1749; fractions sum exactly to one. I’ve exported all requested files from that state and am running the final CIF geometry screens plus a machine-level consistency audit of the GPX, CIF paths, fractions, and profile arrays.
+
+Completed. The modeled crystalline composition is:
+
+| Phase | Weight fraction | CIF |
+|---|---:|---|
+| Scheelite CaWO₄ | 78.21% | [phase_CaWO4.cif](<ATTEMPT_WORKSPACE>/phase_CaWO4.cif) |
+| Monoclinic WO₃ | 11.42% | [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif) |
+| Monoclinic Ca₃WO₆ analogue | 10.37% | [phase_Ca3WO6.cif](<ATTEMPT_WORKSPACE>/phase_Ca3WO6.cif) |
+
+Final fit: Rwp 2.6344%, Rp 2.0199%, GOF 1.1749. All final CIFs passed geometry/occupancy screening, and the fractions sum exactly to one.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+
+Ca₃WO₆ uses an isovalently substituted Ca₃OsO₆ parent, so its oxygen coordinates remain less certain. A nominal ∼0.12 wt% CaO trial lacked two independent non-overlapping reflection families and was not retained.
+

@@ -1,0 +1,56 @@
+I’ll first inspect the metadata, diffraction range, and the reusable analysis scripts, then build a candidate phase inventory before refining anything. I’ll keep alternate structures on a watch list and only finalize fractions after a clean, replayed GSAS-II refinement.
+
+The chemistry points to the Sr–W–O system, but the 650 °C synthesis can plausibly leave precursor or intermediate phases. I’m now screening exact database entries and the measured peak families together, including source quality, occupancy, symmetry, and geometry before admitting candidates to refinement.
+
+The peak inventory now shows a clear scheelite-type main phase plus two precursor-like families: monoclinic/low-symmetry WO₃ near 23–25° and orthorhombic SrCO₃ near 25–26°. Sr₃W₂O₉ is chemically plausible but its diagnostic 13.2°, 18.9°, and 28.9° reflections are absent, so it remains a rejected watch-list candidate rather than being discarded by scale alone. Next I’m comparing the WO₃ and carbonate polymorphs under identical profile terms.
+
+The first full trial project is running now. I’ve explicitly removed GSAS-II’s non-neutral default size/strain broadening before comparison; otherwise those hidden defaults can make a wrong polymorph look artificially competitive.
+
+The first controlled branch supports room-temperature monoclinic WO₃ and scheelite SrWO₄, while orthorhombic SrCO₃ goes to its nonnegative scale bound. I’m retaining carbonate on the watch list and now running the remaining WO₃ polymorphs with the identical fixed profile, background order, and angular correction; this is the diagnostic-reflection comparison rather than a scale-only rejection.
+
+The decisive low-angle triplet is at 22.943°, 23.834°, and 24.649°. Conventional monoclinic WO₃ predicts 22.970°, 23.845°, and 24.610° after cell refinement; the superficially competitive tetragonal model has no reflection for the third member. I’m still completing identical-profile replays for both source settings and the tetragonal control before locking the WO₃ record.
+
+A clean restart exposed the key calibration issue: every scheelite family from 17° through 95° is explained by one cell plus an approximately −0.61° angular offset (position RMS ≈0.015°). Under that same correction, the three precursor families separate cleanly: WO₃ at 22.51/22.94/23.83° and SrCO₃ at 24.65/25.30°. I’m restarting the inventory with that provisional correction so the precursor scales and cells are no longer biased by the earlier zero-near-zero local minimum.
+
+The displacement-only branch is materially better than zero-only (Rwp 7.80% versus 9.82%) and leaves WO₃/SrCO₃ cells essentially at their screened source metrics; the zero-only branch retains coherent angle-dependent residuals. I’m retaining specimen displacement only. The first common-profile fit improved Rwp to 7.12%, but U and SH/L reached bounds, so—per the requested protocol—I’m treating that branch as failed and replaying from a substantially different interior profile start.
+
+The screened neutron WO₃ source (same monoclinic structure in a different P2₁/c setting) improves the fixed-common-profile fit to Rwp 6.80%, while tetragonal WO₃ degrades it to 10.46% and high-temperature rhombohedral SrCO₃ to 8.19%. Because the source record changed, I’m repeating the clean common-profile pass for the neutron structure from both interior starts before any phase-specific broadening tests.
+
+The phase inventory is now stable at SrWO₄ (scheelite), monoclinic WO₃, and orthorhombic SrCO₃. I’m continuing from the clean common-profile fit: first I’ll re-challenge the weak watched phase under that exact profile, then run phase-by-phase size/strain and shared-intensity tests before exporting the final project and files.
+
+The watched Sr₃W₂O₉ record has now been re-tested with the final common profile. Its scale refined to the nonnegative floor (calculated weight fraction effectively zero), while its diagnostic low-angle reflections remain absent, so it is excluded rather than being rejected merely for a poor initial fit. I’m now isolating size and strain broadening for each of the three retained phases from neutral values and two starts.
+
+The broadening branches are decisive: SrWO₄ size and strain both ran to bounds on replay, and SrCO₃ strain is statistically indistinguishable from zero. Only WO₃ isotropic microstrain is reproducible from both starts (about 3,430 ± 190 µstrain), reducing Rwp from about 6.70% to 6.55%. I’m retaining that one term and will now compare background order, polarization, and surface roughness on the same replayed model.
+
+The shared-intensity comparison favors the 8-term smooth background: going to 10 terms changes Rwp by only 0.003%, whereas a physically plausible polarization correction gives a much larger, reproducible gain (Rwp 6.37%, polarization 0.652 ± 0.008). Surface roughness reaches different parameter pairs from different starts, indicating a correlated/local-minimum branch; I’m replaying those branches and testing whether roughness adds anything once polarization is present before deciding.
+
+Surface roughness does not survive the stricter comparison: with polarization active, one roughness parameter hits a bound from either start and the parameters are >0.99 correlated. Polarization instead converges to 0.6516 from starts of 0.30, 0.50, and 0.80, so I’m retaining polarization alone. The texture axis comparisons are still running across all three phases.
+
+All three preferred-orientation terms remain independently useful when combined. The current combined model reaches Rwp 4.76% with stable interior March–Dollase values: SrWO₄ [110] ≈0.739, WO₃ [101] ≈0.851, and SrCO₃ [001] ≈0.841. I’m now doing conditional axis swaps and a reopen/replay so the choice is based on distinct reflection families, not only the aggregate Rwp.
+
+The selected texture axes also win in conditional swaps, and the model is stable across two reopen/replays with no frozen or bound parameters. I noticed the provisional limits omitted only the 0.097° and 0.095° edge tails; I’m correcting that now so the submitted project and profile are a true replay of all 8,301 measured points.
+
+The true full-range refinement is converged (8,301 points; maximum shift/s.u. 0.00018) with no frozen variables. Drop-one replays confirm every retained non-neutral term: removing polarization, WO₃ strain, or any of the three texture terms worsens Rwp. I’m exporting the CIFs and machine-readable profile/results now, then I’ll round-trip the CIFs against the final project.
+
+Completed. Three crystalline phases were identified:
+
+| Phase | Weight fraction |
+|---|---:|
+| SrWO₄, scheelite | 61.19 ± 0.18 wt% |
+| WO₃, monoclinic | 23.25 ± 0.13 wt% |
+| SrCO₃, strontianite | 15.57 ± 0.19 wt% |
+
+Fractions are normalized over modeled crystalline phases. Formal uncertainties exclude model systematics, which may amount to a few absolute wt%. Final fit: Rwp 4.7598%, Rp 3.2972%, goodness-of-fit 1.666.
+
+Deliverables:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [SrWO4_scheelite.cif](<ATTEMPT_WORKSPACE>/SrWO4_scheelite.cif)
+- [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_monoclinic.cif)
+- [SrCO3_strontianite.cif](<ATTEMPT_WORKSPACE>/SrCO3_strontianite.cif)
+
+The final project was reopened and replayed over all 8,301 points with no frozen variables; exported CIFs were round-trip verified.
+

@@ -1,0 +1,41 @@
+I’ll inspect the pattern, metadata, and available diffraction/refinement utilities first. Then I’ll identify candidate phases, refine the structural model in GSAS-II, and verify that every submitted artifact is generated from the final project.
+
+The chemistry points to a Ba–W–O reaction product, but I’m treating that only as a constraint, not an identification. I’m now extracting peak positions and checking them against both known Ba/W oxide structures and indexing solutions, including possible unreacted precursors.
+
+Peak-by-peak matching now supports three crystalline components: scheelite BaWO₄, rhombohedral Ba₃W₂O₉, and monoclinic WO₃. Their diagnostic peaks independently track the same angular offset; I’m testing whether residual BaCO₃ is genuinely required before fixing the phase count.
+
+A strong residual at 24.17° is not explained by the three oxide phases, but it coincides exactly with the strongest orthorhombic BaCO₃ reflection after applying the refined zero shift. Several weaker residuals corroborate it, so I’m adding BaCO₃ as a fourth phase and checking whether its refined fraction remains significant.
+
+The four-phase model is stable. I’m now tightening the refinement so the peak-width model remains physically meaningful despite the absence of a calibrated instrument profile, and I’m comparing the plausible room-temperature WO₃ polymorphs rather than relying on chemistry alone.
+
+The phase-width sensitivity test is reassuring: across plausible resolution floors, the modeled fractions stay near 62% BaWO₄, 17% Ba₃W₂O₉, 13% WO₃, and 8% BaCO₃. The remaining spread is systematic (roughly 1–2 wt% absolute), larger than the formal least-squares errors.
+
+The phase-width sensitivity check is complete. I’m selecting ambient monoclinic γ-WO₃ for the submitted model; a triclinic alternative improves Rwp by only about 0.005 percentage point, so the diffraction data do not justify the lower symmetry. I’m now pruning the comparison project to the four active phases, rerunning the final refinement over the full measured range, and exporting the requested deliverables.
+
+The four-phase refinement itself converged at Rwp ≈ 5.46%; the export step hit a GSAS-II API shape difference when reading mass fractions. The project was saved safely before that point. I’m adapting the exporter to this installed GSAS-II version, then I’ll independently reload and validate the saved project and CIFs.
+
+The final four-phase result is now exported: 62.04 wt% BaWO₄, 17.86 wt% Ba₃W₂O₉, 12.54 wt% WO₃, and 7.57 wt% BaCO₃, with Rwp = 5.450%. The repeat refinement reduced the maximum shift/esd to 0.007. I’m doing the final integrity checks now: phase count, normalized fractions, profile arithmetic, CIF readability, and consistency between `final.gpx` and `result.json`.
+
+All required files pass the structural and numerical integrity checks: each CIF re-imports into GSAS-II, the project contains exactly four phases, the fractions sum to 1.000000, and all 8,301 profile rows satisfy observed − calculated = difference exactly. I’m making one last scientific consistency pass against the synthesis metadata and refined cell/phase parameters before handing off.
+
+Completed the four-phase Rietveld analysis.
+
+| Phase | Space group | Crystalline wt% |
+|---|---:|---:|
+| BaWO₄ | I4₁/a | 62.04 |
+| Ba₃W₂O₉ | R-3c | 17.86 |
+| γ-WO₃ | P2₁/c | 12.54 |
+| BaCO₃ | Pmcn | 7.57 |
+
+Final fit: Rp 3.784%, Rwp 5.450%, Rexp 3.017%, GOF 1.810.
+
+The fractions are normalized over modeled crystalline material. Realistic systematic uncertainty is approximately 1–2 wt% absolute. WO₃ symmetry remains provisional because a triclinic model fits essentially equally well; amorphous content cannot be quantified without an internal standard.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- CIFs: [BaWO4.cif](<ATTEMPT_WORKSPACE>/BaWO4.cif), [Ba3W2O9.cif](<ATTEMPT_WORKSPACE>/Ba3W2O9.cif), [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif), [BaCO3.cif](<ATTEMPT_WORKSPACE>/BaCO3.cif)
+

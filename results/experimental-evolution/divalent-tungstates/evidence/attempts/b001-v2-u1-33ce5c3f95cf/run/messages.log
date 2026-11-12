@@ -1,0 +1,64 @@
+I’ll first inspect the measurement metadata, diffraction range/quality, and the supplied candidate/refinement helpers. Then I’ll screen chemically valid structures, establish the phase inventory from diagnostic peaks, and only afterward refine cells, fractions, and profile terms into a replay-checked GSAS-II project.
+
+The chemistry strongly constrains the search to the Ca–W–O system, but I’ll keep precursor remnants and alternate Ca tungstate stoichiometries in play until the peak inventory rules them out. The scan is high-resolution Cu Kα data from about 9.9–100.1°, with no supplied uncertainty or calibrated instrumental profile, so absolute χ² will depend on the weighting model and profile parameters must stay deliberately low-dimensional.
+
+The candidate index contains three exact CaWO₄ records: two tetragonal scheelite models (space group 88) and one monoclinic record (space group 15), plus precursor CaO and several WO₃ polymorphs. I’m now checking their actual occupancies, source temperatures, and bond geometry before using any of them, while comparing their diagnostic reflections against a background-subtracted peak list.
+
+Two phases are now positionally secure: scheelite CaWO₄ accounts for the dominant 18.43°, 28.54°, 31.27°, 34.01°, 39.03°… family, while monoclinic room-temperature WO₃ accounts for the 22.94/23.42/24.23° triplet and its 26.44°, 33.10/33.43°, and 41.31/41.76° companions. CaO does not give a consistent common-shift match across its 32.2°, 37.3°, 53.8°, and 64.1° lines, so I’m not accepting it from a single overlap. A coherent residual family near 19.29°, 22.01°, 37.17°, 50.75°, and 62.14° warrants a cross-chemistry prototype search for Ca-rich tungstates.
+
+The residual family is consistent with a third phase, Ca₃WO₆ in a distorted double-perovskite model: an isovalent Ca₃OsO₆ parent (P2₁/n) predicts the otherwise unexplained 19.3°, 22.0°, 30.7°, 32.2°, 36.6–37.7°, 48.1°, 50.7°, and 55.2° families. The parent is fully occupied, measured at room temperature, and has sensible octahedral 1.93 Å Os–O and 2.26–2.91 Å Ca–O distances; Os⁶⁺→W⁶⁺ is chemically conservative. I’ll retain it as a documented prototype hypothesis and require its unique peaks and scale to survive full multiphase refinement before accepting it.
+
+A constant zero correction and a specimen-displacement-shaped correction fit selected CaWO₄ peak positions essentially equally (RMS 0.01927° vs 0.01929°), but adding both gives no meaningful gain. I’m therefore using the single, simpler zero term and will not co-refine displacement. The initial CaWO₄ cell from those peaks is about a = 5.241 Å, c = 11.375 Å with zero ≈ −0.194°.
+
+The prototype survives the first unbiased scale test with a positive, substantial contribution rather than an overlap-only trace. Before cell refinement, the three-phase model gives approximately 76 wt% CaWO₄, 13 wt% WO₃, and 11 wt% Ca₃WO₆, and releasing the single zero term drops Rwp from 38.6% to 13.4%. I’m now reconverging all three cells; those preliminary fractions are not yet final.
+
+The phase inventory remains stable after full cell reconvergence: about 74/13/13 wt%. A nonnegative common U/W/X baseline is strongly supported (Rwp 8.18% versus 10.81% for U/W only), with U ≈ 42.6, W ≈ 25.7, X ≈ 11.5 and no bound hits. I also found that the automatically transformed Ca₃WO₆ setting created a 96% cell-metric correlation; I’m replacing it with the same parent coordinates in its original near-orthogonal P2₁/n setting, then reconverging every scale, background, zero, and cell as required.
+
+The original P2₁/n setting removes the metric correlation without changing the fit. Its β angle is experimentally unresolved—it wandered around 90° with negligible χ² change—so I fixed the unsupported cross-term at the parent’s pseudorthogonal metric and refined a, b, and c. The fit is unchanged (Rwp 8.172%), no parameters are frozen, and the Ca₃WO₆ scale remains ~12.8 wt%. Next I’m running the required phase-by-phase size-only and strain-only challenges from neutral profiles.
+
+The profile challenge is decisive: CaWO₄ needs finite size broadening (0.0951(17) μm), improving Rwp from 8.172% to 7.097%. Its strain-only branch improves only to 8.123% and collapses the common U term, so strain is rejected. Both WO₃ and Ca₃WO₆ size/strain trials return to the no-broadening bounds and are pruned; I will not leave those frozen terms in the final project. The refined crystalline fractions on the accepted size branch are now about 78.3/11.5/10.2 wt%.
+
+A useful independent check emerges from the accepted unconstrained fractions: they imply overall Ca/W ≈ 1.004. In molar terms, the refined WO₃ amount is almost exactly twice the Ca₃WO₆ amount, so the Ca-rich and W-rich secondary phases balance to the nominal 1:1 CaO + WO₃ precursor inventory. That agreement was not imposed and strongly supports both the three-phase assignment and the scale factors. I’m testing one low-dimensional CaWO₄ [001] March–Dollase term because several 00l-rich intensities are reproducibly underfit; I’ll retain it only if the coefficient stays modest and the replay remains stable.
+
+The [001] texture term is modest (March–Dollase 0.895) yet strongly supported, lowering Rwp to 4.75%. Because the metadata did not supply effective polarization, I also tested that single global intensity correction; it refines to a plausible 0.875 and lowers Rwp further to 3.98% without strong correlations or bound hits. The phase fractions remain stable at roughly 79.0/11.5/9.4 wt% and still satisfy Ca/W ≈ 0.993. No asymmetry term is being added unless the final residual shows a reproducible low-angle shape error.
+
+The final residual is shape-neutral at low angle, so SH/L stays fixed at its minimal value. Before locking the model, I’m replaying the physically valid room-temperature triclinic and orthorhombic WO₃ alternatives under the same background, profile, texture, zero, and cell-refinement scheme. Records with impossible O–O contacts or high-pressure CaWO₄ conditions remain excluded rather than being rescued by nuisance terms.
+
+The polymorph replay favors monoclinic WO₃ (Rwp 3.984%) over the room-temperature triclinic record (4.076%, despite two extra cell variables) and decisively over orthorhombic WO₃ (8.47%). A second monoclinic record imports with invalid charged atom labels and an unstable metric and is rejected as flagged, not fitted. I’m doing the last inventory audit now: leave-one-phase-out replays plus an explicit CaO precursor addition, each fully reconverged.
+
+The leave-one-phase tests already show both WO₃ and Ca₃WO₆ are required. I’m finishing the CaO challenge now, then I’ll replay the accepted refinement from disk and export only from that replay-checked project.
+
+CaO refines to only 0.26 wt%, but it is positive and reproducible; the fit gain alone is too small to call it. I’m checking its unique reflections, source/geometry, and whether it independently closes the Ca:W balance before deciding whether it belongs in the submitted inventory.
+
+The CaO challenge fails the physical cross-check: allowing its cell to float contracts it by 0.60% so it can absorb one shoulder; fixing a credible room-temperature cell leaves only 0.13(6) wt%, while its strongest 200/220 lines are not supported as a family. I’m excluding it as an overfit and retaining the three-phase model.
+
+I’m now neutralizing the unused minor-phase size terms to a genuinely large value, then running the required save/reopen/full-range atomic replay. The final CIFs, fractions, and profile will all be exported from that same replayed project.
+
+The replay is stable: Rwp 3.9840%, GOF 1.7764, no frozen variables, no Le Bail phases, and the largest parameter correlation is 0.897 (below 0.90). Final crystalline fractions are 79.046% CaWO₄, 11.525% WO₃, and 9.429% Ca₃WO₆. I’m validating the exported CIF chemistry/geometry and file consistency now.
+
+The exported CIFs parse cleanly with full occupancy and the intended symmetries. Final bond ranges are chemically sensible: CaWO₄ W–O 1.762 Å; WO₃ W–O 1.713–2.157 Å; prototype Ca₃WO₆ W–O 1.922–1.939 Å, with no short O–O contacts.
+
+All requested outputs are present. I’m doing one last cross-file audit—project state versus JSON fractions/statistics, CSV arrays versus the stored GSAS-II profile, and CIF compositions—so the deliverables cannot silently disagree.
+
+One audit exposed a GSAS-II convention worth checking: inactive minor-phase size values are being serialized back as 10 µm, even when set larger. I’m verifying whether 10 µm is the program’s neutral cap or whether the value needs a different internal representation before I sign off.
+
+Completed the three-phase Rietveld model:
+
+| Phase | Crystalline weight fraction |
+|---|---:|
+| CaWO₄ | 79.046(79)% |
+| WO₃ | 11.525(47)% |
+| Ca₃WO₆ | 9.429(57)% |
+
+Final fit: Rp 3.0275%, Rwp 3.9840%, GOF 1.7764. Ca₃WO₆ uses an adapted Ca₃OsO₆ prototype, so its exact atomic structure remains provisional. Trace CaO was tested but could not be identified reliably.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [CaWO4.cif](<ATTEMPT_WORKSPACE>/CaWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [Ca3WO6.cif](<ATTEMPT_WORKSPACE>/Ca3WO6.cif)
+

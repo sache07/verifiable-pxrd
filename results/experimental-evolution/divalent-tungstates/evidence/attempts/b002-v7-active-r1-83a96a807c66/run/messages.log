@@ -1,0 +1,70 @@
+I’ll first inspect the measurement metadata, pattern format, and the reusable crystallography helpers in `learned/`. Then I’ll establish an indexed/phase-inventory baseline before refining anything, so candidate rejection is based on peak-level evidence rather than chemistry alone.
+
+The chemistry suggests Ba–W–O products, but I’m keeping precursor and non-1:1 phases in play: BaWO₄, Ba₂WO₅/Ba₃WO₆-type products, residual WO₃, and BaCO₃ are all initially plausible at 750 °C. I’m now extracting measured peak positions and checking which installed search/refinement interfaces are available.
+
+Two phases now have direct line-family support: scheelite BaWO₄ accounts for the dominant series, while rhombohedral Ba₃W₂O₉ predicts the otherwise unexplained 17.50°, 30.82°, 37.67°, and 40.80° families (with a small cell/zero-offset shift). The 23–24.7° cluster is not yet explained cleanly, so WO₃ and BaCO₃ remain on the watch list while I set up a common-profile GSAS-II comparison.
+
+The 23–24.7° family is now diagnostic for monoclinic WO₃: the same +≈0.25° offset maps its 23.15/23.61/24.37° triplet and its independent 28.64/28.96, 33.30/33.59, and 41.47/41.92° pairs onto measured peaks. That gives a chemically plausible three-phase inventory (BaWO₄ + Ba₃W₂O₉ + residual WO₃); BaCO₃ remains a weak-phase challenge rather than an accepted phase.
+
+The first GSAS-II pass is converging and already drops from Rwp 14.46% to 8.61% when the three phase cells are released. I found one import-format warning: the selected reader is treating the third uncertainty column as a separate line, so I’ll correct the data import before trusting final statistics; the phase/cell trend itself is still informative.
+
+With the import and scale degeneracy fixed, the clean three-phase baseline is Rwp = 6.79%, GOF = 2.25, with provisional crystalline fractions ≈69.8% BaWO₄, 17.4% Ba₃W₂O₉, and 12.9% WO₃. The unconstrained U term was unphysical (negative), so I neutralized it at zero; the supported common baseline is presently W-dominated with X near zero. I’m now running the precursor/watch-list and WO₃-polymorph comparisons under exactly that nuisance model.
+
+The comparison batch is still refining; no intervention is needed. Once it finishes I’ll use both ΔRwp and phase-scale stability—not merely candidate chemistry—to decide whether BaCO₃ or a different WO₃ polymorph is warranted.
+
+The slower cases are the deliberately mismatched inventories, where cells and scales need more damping cycles. I’m letting them finish because those failures are useful controls: they show whether the apparent minority phases are genuinely required rather than absorbed by background or profile width.
+
+The batch remains active and is now past the simple one-/two-phase controls. I’ll next inspect coherent residual families and phase-specific peak widths before allowing any size/strain or texture terms.
+
+The watch-list challenge is positive: adding room-temperature witherite BaCO₃ lowers Rwp from 6.79% to 6.47% and gives a stable ~6.4 wt% scale, while the monoclinic P2₁/n WO₃ model beats triclinic and orthorhombic alternatives. I’m retaining BaCO₃ provisionally and now checking whether its independent lines—and any remaining residual families—survive peak-by-peak audit.
+
+The profile audit exposed an important baseline issue: GSAS-II’s “fixed” default HAP terms still impose 1 µm size and 1000 µstrain broadening even when their refine flags are off. That violates the checkpoint’s neutralization requirement and helps explain the high-angle over-broadening. I’m rebuilding the comparisons with size effectively infinite, strain zero, and explicit nonnegative bounds on U/W/X before judging texture or fractions.
+
+Neutralizing the hidden phase broadening materially improved the four-phase fit to Rwp = 5.78%, GOF = 1.92, while leaving the fractions essentially unchanged. The supported common profile is now physical (U = 0, W ≈ 19.9, X ≈ 2.72, all nonnegative); the corrected inventory comparison is still running.
+
+The batch has reached the WO₃ polymorph and BaCO₃ challenges. After it finishes, I’ll freeze this corrected baseline, then test polarization/surface roughness and only afterward compare texture axes and phase-specific size versus strain.
+
+The nuisance challenge is decisive: refining the unknown effective polarization improves Rwp to 4.91%, and a one-parameter Suortti roughness correction improves it to 4.76%; specimen displacement is slightly worse than a single zero offset. A 16-term background helps only marginally and its last three added coefficients are insignificant, so I’m pruning that to a 13-term test and checking whether polarization and roughness remain complementary when refined together.
+
+Texture is supported only after the nuisance checks: BaWO₄ [112] March–Dollase gives the best distinct-axis result (Rwp = 4.37%, versus 4.56% for [001], 4.62% for [100], and 4.75% without texture). The ratio 1.373(6) is moderate and stable. I’m now replaying isotropic size versus strain for each phase, one phase at a time from the same saved no-texture baseline.
+
+The phase-broadening batch is still running. Any term that lands on the neutral bound (10 µm for size or zero strain), turns negative/frozen, or fails a save/reopen replay will be treated as unsupported and removed.
+
+The width challenge rejects BaWO₄ size and strain (both hit neutral bounds). For each minority phase, isotropic strain fits slightly better than size: about 1268 µstrain for Ba₃W₂O₉, 3304 µstrain for WO₃, and 8168 µstrain for BaCO₃. I’ll now add each to the saved [112]-texture baseline separately, then test the combined model for complementarity and replay stability.
+
+The phase inventory has converged to BaWO₄, Ba₃W₂O₉, monoclinic WO₃, and BaCO₃; their refined amounts also close the Ba/W precursor balance to about 1%. I’m now testing whether the remaining minority-phase width mismatch warrants anisotropic strain, then I’ll freeze and replay the selected project over the full measured range before exporting the scorer-ready files.
+
+The anisotropic-width challenge is negative in practical terms: seven uniaxial tests improve Rwp by at most 0.006 percentage point, and the nominal “best” Ba₃W₂O₉ split remains poorly converged. I’m retaining the simpler replay-stable isotropic strain model and will document that rejection rather than carry an unsupported extra parameter.
+
+One anisotropy split deserves a stricter check despite its tiny global Rwp gain: the crystallographically natural Ba₃W₂O₉ [001] model separates axial and equatorial strain by several standard uncertainties. I’m replaying that case to a tighter convergence threshold; it will be accepted only if the split and improvement persist without drift.
+
+The tighter replay stabilizes the Ba₃W₂O₉ [001] split (maximum shift/esd ≈0.003), and the one added parameter lowers χ² by about 44—well beyond a one-parameter information penalty. The WO₃ [001] split is also stable but weaker (Δχ²≈17), so I’m testing the two together once; BaCO₃ anisotropy remains unsupported.
+
+The combined Ba₃W₂O₉/WO₃ anisotropy is complementary and replay-stable (Rwp 4.173%, GOF 1.385 before reopening the end points), so that is the selected model. I’m now extending it from the working 10–100° interval to the exact measured 9.903–100.095° range and performing the mandated save–reopen–replay export.
+
+The reopened full-range project is stable: Rwp 4.1678%, Rp 3.0103%, GOF 1.3846, with maximum shift/esd 0.0016. The low/mid/high numerical peak audit is complete for all four phases; the only notably weak measurement is the isolated high-angle WO₃ family, which I’ll flag as low signal-to-noise rather than overstate.
+
+All requested artifacts are now written. I’m doing the last consistency audit directly against `final.gpx`: profile arrays versus `fit.csv`, project-derived fractions versus `result.json`, CIF/path existence, full-range limits, and the final residual plot.
+
+Completed the four-phase refinement:
+
+| Phase | Weight fraction |
+|---|---:|
+| BaWO₄, I 4₁/a | 61.819% |
+| Ba₃W₂O₉, R -3 c | 16.540% |
+| WO₃, P 2₁/n | 13.336% |
+| BaCO₃, P m c n | 8.305% |
+
+Final fit: Rwp 4.1678%, Rp 3.0103%, GOF 1.3846. Fractions are normalized over crystalline phases only. Atomic coordinates remain reference-model values; cells and quantitative/profile parameters were refined. Minor-phase fractions have larger systematic uncertainty than their formal errors.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [BaWO4.cif](<ATTEMPT_WORKSPACE>/BaWO4.cif)
+- [Ba3W2O9.cif](<ATTEMPT_WORKSPACE>/Ba3W2O9.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [BaCO3.cif](<ATTEMPT_WORKSPACE>/BaCO3.cif)
+

@@ -1,0 +1,43 @@
+I’ll inspect the measurement metadata and diffraction profile first, then inventory the installed crystallography tools and reference data. I’ll use the chemistry and peak positions to identify candidate phases, refine them in GSAS-II, and validate that every submitted artifact comes from the final project.
+
+The peak set is consistent with a barium–tungsten oxide reaction product, but several lower-angle peaks do not fit a single obvious phase by inspection. I’m now querying the local COD structure library for Ba–W–O candidates and likely unreacted precursors, then I’ll score their calculated patterns against the full dataset before choosing models for refinement.
+
+Three crystalline components now account for the independent peak families: scheelite BaWO₄ dominates; rhombohedral Ba₃W₂O₉ explains peaks near 17.79°, 26.27°, 30.82°, 37.67°, 40.80°, 51.84°, and 63–64°; monoclinic WO₃ explains the resolved 23.40/23.87/24.66° and 33.56/33.86/34.45° triplets. I’m moving these three models into a constrained quantitative refinement and will test whether any additional phase is justified by the residual.
+
+The first GSAS-II pass exposed a project-parameter issue rather than a phase-identification issue: the imported histogram scale and the phase scales were both allowed to vary, creating an exact 100% correlation and driving the minor-phase scales to bounds. I’m fixing that normalization (holding the single histogram scale fixed), then restarting the staged refinement so the phase fractions are identifiable.
+
+The corrected refinement is stable and already gives a strong whole-pattern match (Rwp 5.37%, reduced χ² ≈ 3.18 with Poisson-counting weights). Provisional crystalline fractions are about 69.5 wt% BaWO₄, 17.1 wt% Ba₃W₂O₉, and 13.4 wt% WO₃. I’m now inspecting the difference curve and parameter correlations, then I’ll test whether modest microstructure/texture terms improve the fit without destabilizing those fractions.
+
+The intensity residuals were traced mainly to structure-model quality, not a missing phase. Replacing the old split/disordered BaWO₄ oxygen model with the standard scheelite O(16f) site reduced Rwp from 5.19% to about 4.0%; refining that oxygen site and the Ba₃W₂O₉ octahedral coordinates produced chemically sensible W–O distances. A mild WO₃ preferred orientation is also statistically evident, so I’m selecting its axis by comparing low-index directions rather than assuming one.
+
+Phase-specific broadening is substantial for the two minor phases; treating every phase as instrument-limited underestimates their integrated intensities. A naïve all-phase size refinement was ill-conditioned because the dominant BaWO₄ size is nearly indistinguishable from the Lorentzian instrument terms. I’m therefore anchoring the profile on dominant BaWO₄ and refining only relative broadening of Ba₃W₂O₉ and WO₃, which is the identifiable quantity here.
+
+The refined difference curve reveals a fourth phase that was obscured by overlap: residual maxima at 24.17°, 24.58°, 34.84°, 42.26°, and 45.18° coincide as a set with orthorhombic BaCO₃. I’m adding the unreacted precursor explicitly and will re-refine; this should remove the largest remaining structured residual and prevent its intensity from biasing the other fractions.
+
+BaCO₃ is clearly broader than the dominant phase; a single isotropic broadening term improves χ² by over 300 and raises its integrated fraction from about 5.2 to 7.5–7.6 wt%. Because size and strain broadening can trade off, I’m comparing equally parameterized alternatives across all minor phases and will use the most parsimonious stable model; the spread will set the realistic fraction uncertainty.
+
+The model selection is now stable: two isotropic size terms for Ba₃W₂O₉/WO₃ plus one strain term for broad BaCO₃ peaks give the best equal-complexity fit, while alternative broadening models shift any fraction by at most about 0.4 wt%. I’m finalizing that four-phase project over the full measured range, then exporting all CIFs and machine-readable/profile outputs directly from that saved project.
+
+The final full-range refinement converged with maximum shift/esd 0.044. It gives 62.62 wt% BaWO₄, 16.48 wt% Ba₃W₂O₉, 13.24 wt% WO₃, and 7.65 wt% BaCO₃, with Rwp 3.121% and GOF 1.037. I’m performing the last integrity checks now: reloading `final.gpx`, matching its arrays/fractions to the CSV/JSON, and parsing every exported CIF.
+
+Completed the four-phase Rietveld model:
+
+| Phase | Weight fraction |
+|---|---:|
+| BaWO₄, I4₁/a | 62.62 wt% |
+| Ba₃W₂O₉, R-3c | 16.48 wt% |
+| WO₃, P2₁/n | 13.24 wt% |
+| BaCO₃, Pmcn | 7.65 wt% |
+
+Fractions are normalized over modeled crystalline phases. Final fit: Rwp 3.121%, Rp 2.396%, Rexp 3.017%, GOF 1.037. Practical phase-fraction uncertainty is approximately ±0.5 wt%; amorphous content cannot be quantified without an internal standard.
+
+Outputs:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- CIFs: [BaWO4.cif](<ATTEMPT_WORKSPACE>/BaWO4.cif), [Ba3W2O9.cif](<ATTEMPT_WORKSPACE>/Ba3W2O9.cif), [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif), [BaCO3.cif](<ATTEMPT_WORKSPACE>/BaCO3.cif)
+
+The project, profile arrays, fractions, and all exported CIFs were reloaded and validated successfully.
+

@@ -1,0 +1,54 @@
+I’ll first inspect the pattern, metadata, and the framework’s analysis/tool instructions. Then I’ll identify candidate phases, apply the required CIF physical screening, and build/refine a GSAS-II model with an independent replay check before writing the deliverables.
+
+The metadata narrows the chemistry to Pb–W–O with Cu Kα reflection data, but it does not establish that only PbWO₄ is present; unreacted PbCO₃/WO₃ or other Pb–W oxides remain possible. I’m now locating the frozen structure index and the supplied physical/project checks, while keeping generator and hidden-case information out of phase selection.
+
+The public structure library intentionally lacks a normal PbWO₄ entry, so this is a framework-adaptation problem rather than a direct database lookup. I’ll test both major ABO₄ families—scheelite and wolframite—using chemically substituted, normalized parents, while separately testing the actual precursor and oxide entries for residual-phase evidence.
+
+The initial whole-pattern screen is running across the chemically allowed database phases and several substituted ABO₄ frameworks under one common fixed-coordinate profile model. This is deliberately only a ranking stage; cells and nuisance terms will be refined identically for the finalists before any inventory decision.
+
+A strong, chemically coherent lead–tungsten oxide candidate has emerged: COD 9016035, reported as Pb₇W₈O₂₈.₈ in tetragonal P4/nnc, matches the multi-line peak family far better than precursor phases and slightly better than substituted scheelite parents. I’m checking its occupancy/geometry carefully because its nonstoichiometry makes source quality decisive; if it triggers physical review, the passing scheelite analogue takes precedence regardless of raw fit.
+
+The residual has now resolved into the characteristic WO₃ triplet at about 23.64/24.13/24.91° plus matching lines near 27.14, 29.1–29.5, 33.78–34.69, 41.9–42.4, 50.4, and 56.4°. I’m comparing monoclinic, triclinic, and orthorhombic WO₃ sources jointly with each viable lead–tungstate framework, using the same fixed-coordinate profile model and common calibration.
+
+The matrix comparison is still refining 16 two-phase branches. The key discriminants are not just Rwp: I’m also checking that phase scales stay positive, cell/calibration solutions remain consistent, and covariance does not become extreme; branches that “win” through a negative scale or co-drift will be rejected.
+
+The two-phase model is secure but incomplete: a third multi-line residual family remains, led by 25.36° and accompanied by 20.66, 26.04, 35.24–36.74, 44.09, and 49.41°. I’m now testing lead carbonate and both PbO polymorphs against that residual; I will only retain a third phase if its scale stays positive and the assignment survives deletion/restart tests after the WO₃ overlap is refit.
+
+The third phase is decisively cerussite PbCO₃: its strongest 18 calculated lines align with the residual family, and adding it lowers Rwp from 5.76% to 4.01% with a positive ~17 wt% scale. PbO controls collapse toward zero/unstable scales. The direct P4/nnc lead–tungsten oxide and scheelite remain close competitors; I’m now refining only common peak shape first, then testing phase-size and strain terms one at a time to see which framework remains preferred without overfitting.
+
+One phase-size trial exposed the instability guard the prompt warned about: the WO₃ size ran to GSAS-II’s 10 µm ceiling and became singular. I’ve discarded that cumulative branch and returned to the last stable model. The next tests restart independently from the common-profile fit so each size/strain effect is judged on its own rather than inheriting a bound-hit parameter.
+
+I caught a project-file handling issue in the diagnostic script: GSAS-II saves in place when refining, so later “independent” tests were inheriting the prior effect despite being reopened. No submission artifact was involved. I stopped the run, preserved the earlier clean common-profile snapshots, and am switching each test to its own copied project before refinement so the restart comparison is genuinely independent.
+
+The clean restarts confirm two stable points: scheelite remains better than P4/nnc under both common-profile and principal-size models (3.815% versus 3.884% Rwp), and the principal crystallite-size term is well determined at about 0.32 µm. The WO₃-size trial again runs to the ceiling, so it is rejected. The remaining independent PbCO₃/strain tests are still running.
+
+The simple branch had not fully converged—“do nothing but refine again” accounts for the tiny apparent gains from background/texture tests. Those effects are therefore rejected. Polarization is the only clear retained candidate so far; specimen displacement is a distinct lower-Rwp nuisance branch but changes cells and fractions enough to require a dedicated restart comparison. I’m first converging both principal-framework branches to a fixed point before comparing either addition.
+
+The nuisance restart is now stable. Refining polarization is reproducible across 4-, 6-, and 8-term backgrounds, giving ~65.8/18.2/15.9 wt% and Rwp ≈3.655%. A specimen-displacement branch converges too, but with polarization included it is slightly worse and requires a very large −0.919 mm shift based on an unreported goniometer radius; I’m retaining the zero-offset branch. Before atomic tests, I’m converting the monoclinic WO₃ parent to a conventional cell to remove the current setting-induced cell correlation.
+
+The stable three-phase model is PbWO₄ (scheelite), monoclinic WO₃, and PbCO₃. I’m now doing the last selective-coordinate and phase-deletion checks, then I’ll export and independently replay the final GSAS-II project so every submitted file agrees.
+
+Both WO₃ and PbCO₃ remain independently required: removing either raises Rwp from 3.65% to 5.37% or 5.60%. Refining the single scheelite oxygen site gives a small but reproducible improvement on two background branches; I’m checking its bond geometry and statistical stability before deciding whether to retain it.
+
+The final branch is stable at Rwp 3.6421% (GOF 1.084). Its independent replay regenerated all 8,301 points with no profile-review flags, and the three exported structures pass the contact/occupancy screen. The phase fractions are 65.76% PbWO₄, 18.23% WO₃, and 16.01% PbCO₃ by weight.
+
+Completed the three-phase Rietveld analysis:
+
+- PbWO₄, scheelite: 65.76(21) wt%
+- Monoclinic WO₃: 18.23(17) wt%
+- PbCO₃, cerussite: 16.01(14) wt%
+
+Final fit: Rwp 3.6421%, Rp 2.8719%, GOF 1.0843. Independent GSAS-II replay and physical screens passed without review flags.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-c3ba400e5d1b/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-c3ba400e5d1b/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-c3ba400e5d1b/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-c3ba400e5d1b/workspace/final.gpx)
+- [PbWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-c3ba400e5d1b/workspace/phase_pbwo4.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-c3ba400e5d1b/workspace/phase_wo3.cif)
+- [PbCO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-c3ba400e5d1b/workspace/phase_pbco3.cif)
+
+The principal PbWO₄ ordering and precise WO₃ polymorph retain some model uncertainty, documented in the report.
+

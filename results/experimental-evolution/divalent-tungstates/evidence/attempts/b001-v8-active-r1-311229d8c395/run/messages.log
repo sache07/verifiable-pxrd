@@ -1,0 +1,40 @@
+I’ll first inspect the pattern, metadata, and the reusable analysis utilities, then build a chemically balanced candidate inventory before refining anything. I’ll keep the final artifacts tied to one reopened-and-replayed GSAS-II project and explicitly validate CIF health, fractions, and profile agreement.
+
+The chemistry points first to the SrO–WO₃ system (most obviously scheelite SrWO₄), but the precursor ratio is not supplied, so I’m treating residual SrCO₃/WO₃ and non‑1:1 oxides such as Sr₂WO₅, Sr₃WO₆, and SrW₂O₇ as real competitors. I’m now matching the observed peak families against exact database records and checking candidate structures before they enter a fit.
+
+The peak inventory now supports a three-phase reaction mixture: scheelite SrWO₄ supplies the dominant families, monoclinic WO₃ supplies the shifted 22.5–24° triplet and related lines, and residual orthorhombic SrCO₃ supplies the 24.65/25.29° pair and its higher-angle companions. All three share a large low-angle offset, consistent with specimen displacement in reflection geometry; I’ll refine one common displacement rather than distort each cell to absorb it. The exact Sr₃W₂O₉ record is chemically possible but its unique 13.2°, 18.9°, 20.4°, and 28.9° families are absent, so it is currently a watch-list candidate, not a retained phase.
+
+The first three-phase refinement has already cut the weighted profile residual sharply, and all three phase scales remain positive. Cell/displacement refinement is more nonlinear than the scale fit (as expected from the large specimen-height error), so I’m staging it in smaller blocks and will compare the ambient WO₃ polymorph records under the identical profile/background model before accepting one.
+
+The nuisance-model tests are decisive: two extra background terms are negligible; a refined polarization of about 0.710 is stable and materially improves the fit; two-parameter roughness is nearly singular and drives one term to its bound, while a one-term roughness model strongly trades against scale and polarization. I’m retaining polarization and rejecting roughness. I’m now testing one physically interpretable March–Dollase direction at a time against that saved baseline, then I’ll test phase-specific strain versus size.
+
+A free refinement of the scheelite oxygen coordinates lowers Rwp strongly but is chemically false: it lengthens all W–O bonds to ~2.02 Å and creates four Sr–O contacts near 2.24 Å. I’m rejecting that numerical minimum and keeping oxygen geometry anchored to a passing isostructural model; only lattice metrics will be refined unless a passing analogue gives a better fit without distorted bonds. This is exactly the kind of fit/chemistry conflict the CIF-health gate is meant to catch.
+
+The parent-record challenge favors the retained ambient monoclinic WO₃ model: with identical background/profile/polarization and neutral WO₃ texture, its Rwp is 6.03%, versus 6.25% for triclinic WO₃, 6.56% for the reviewed short-O···O monoclinic record, and 7.38% for orthorhombic WO₃. I’m keeping the passing ambient P2₁/c record. Next I’m re-challenging the charge-balanced Sr₃W₂O₉ watch-list phase; its unique low-angle families are absent, so a physically constrained scale should collapse to zero if the inventory is complete.
+
+The three-phase model is stable: scheelite SrWO₄, monoclinic WO₃, and orthorhombic SrCO₃. I’m finishing the last profile-evidence check—testing whether a minimal harmonic texture model is genuinely better than the current preferred-orientation terms—then I’ll freeze, reopen, replay, and export all deliverables from that exact project.
+
+The fourth-order texture fit lowers the residual strongly, but two coefficients are 95.7% correlated, so it fails the “supported and replay-stable” standard in its current form. A one-coefficient second-order model gives only a small improvement. I’m checking positivity and replay behavior before deciding whether either term is physically defensible; the simpler March–Dollase model remains the conservative baseline.
+
+The profile test found a supported physical correction: WO₃ is substantially broadened relative to the other phases, corresponding to an isotropic coherent-domain size near 0.15 µm and lowering Rwp from 3.97% to 3.58%. SrCO₃ broadening is unsupported. I’m now comparing WO₃ size against microstrain and checking replay/correlation before retaining the size term.
+
+The accepted model has now been saved, reopened, and replayed twice over all 8,301 measured points. It converges at Rwp = 3.486%, GOF = 1.220, with fractions 60.18% SrWO₄, 24.77% WO₃, and 15.05% SrCO₃. I’m running the mandatory final CIF health/geometry checks and then will write and validate the machine-readable result and report.
+
+Identified three crystalline phases, normalized over modeled crystalline material:
+
+- SrWO₄: 60.18 wt%
+- WO₃: 24.77 wt%
+- SrCO₃: 15.05 wt%
+
+Final fit: Rwp 3.486%, Rp 2.686%, GOF 1.220. All final CIFs passed the required health checks. Practical fraction uncertainty is approximately 2–4 absolute wt%-points due mainly to preferred orientation and source-model dependence.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [SrWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_srwo4.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_wo3.cif)
+- [SrCO₃ CIF](<ATTEMPT_WORKSPACE>/phase_srco3.cif)
+

@@ -1,0 +1,50 @@
+I’ll first inventory the measurement and reusable refinement tools, then identify candidate phases from the chemistry and peak families. I’ll health-screen every structural candidate before fitting, build and replay the GSAS-II model, and only then freeze the CIFs, fractions, profile, project, and report.
+
+The chemistry points first to MgWO₄, but the unknown precursor ratio means MgO/WO₃ carryover and non‑1:1 magnesium tungstates must remain live hypotheses. I’m now extracting peak positions and checking the available COD/GSAS-II interfaces so candidates are judged by the full pattern, not by formula alone.
+
+The peak families separate cleanly into three provisional components: wolframite MgWO₄ (including 15.58° and 18.88°), low-temperature WO₃ (the 23.12/23.57/24.38° triplet and its higher-angle families), and rocksalt MgO (42.94°, 62.26°, 74.57°). I’m testing the WO₃ polymorphs and charge-balanced Mg–W–O alternatives before locking that inventory.
+
+The candidate refinements are running under an identical model: full 9.90–100.09° range, Poisson weights, neutral 100 μm/0 ppm phase broadening, no texture or roughness, eight background terms, one zero correction, and common nonnegative U/W/X. This makes the WO₃ polymorph comparison meaningful rather than letting nuisance terms rescue the wrong structure.
+
+The polymorph test is decisive: monoclinic γ‑WO₃ (COD 2311041, P2₁/c) gives Rwp 8.57%, versus 10.71% for triclinic, 11.62% orthorhombic, and ≥15.38% for the other models under the same nuisance model. Its strong triplet and higher-angle families all align. The baseline still has χ² well above counting statistics, so I’m now diagnosing peak widths, asymmetry, and intensity systematics rather than treating that fit as final.
+
+The baseline diagnostics identify two physical effects, both supported independently. Surface roughness was singular and returned to the neutral boundary; polarization only changed Rwp from 8.57% to 8.55%. In contrast, MgWO₄ has strong [010] March texture (ratio ≈1.274; Rwp 6.03%), and only WO₃ needs extra isotropic strain broadening (≈7000 ppm; Rwp 7.11%); phase-size broadening was unsupported. I’m now combining those terms by independent replay paths and will retain them only if they converge to the same solution.
+
+The replay paths agree to better than 0.001 wt% and converge to Rwp 2.409% with MgWO₄ March ratio 1.3002 and WO₃ strain 7887 ppm; refining the unknown polarization gives 0.5377 and Rwp 2.383%. Peak checks show the common profile already reproduces isolated FWHM closely (for example 18.879°: 0.131° observed vs 0.134° calculated; 42.94°: 0.202° vs 0.203°). The remaining strongest mismatch is in the broad WO₃ peak shapes, so I’m testing its Gaussian/Lorentzian strain mixture and a one-axis anisotropy—not releasing SH/L, since the isolated half-widths do not show repeated asymmetry.
+
+The phase inventory is now well constrained: wolframite MgWO₄ is the main product, with residual monoclinic WO₃ and MgO. I’ve also found a reproducible profile model in which MgWO₄ texture and [100]-uniaxial WO₃ microstrain are supported; I’m doing the final structural challenge, replay, and output-consistency checks now.
+
+The remaining misfit is mainly correlated intensity/line-shape residual, not unexplained peak positions. I’m challenging the best profile against limited coordinate refinements—especially the rounded WO₃ coordinates—while screening each adapted structure for implausible contacts so that a lower R factor alone cannot justify a distorted model.
+
+The coordinate challenge is computationally heavier than the profile branches because WO₃ has eight independent sites. The first limited MgWO₄ test completed; the WO₃ branches are still converging, and I’m keeping them as diagnostics unless the improvement is both statistically meaningful and geometrically sound.
+
+The limited coordinate model is strongly supported and remains chemically sound: refining MgWO₄ coordinates plus only the two X-ray-sensitive W sites in WO₃ lowers Rwp from 2.306% to 1.789%, with no singular variables and all CIF health checks passing. I’m now checking path independence and whether physically necessary displacement parameters change the phase fractions; this is the last substantive model-selection step.
+
+The structural result is path-independent: starting from either the MgWO₄-refined branch or the WO₃-refined branch returns the same minimum. WO₃ displacement-parameter refinements drive to the zero bound and are being rejected; the source’s zero-U convention cannot be independently resolved from scale with this powder dataset, so it will remain fixed and called out as a fraction uncertainty.
+
+Model selection is complete. I’m retaining the replay-stable coordinate-only model: the extra WO₃ oxygen coordinates and displacement parameters either add weak X-ray information, approach bounds, or correlate strongly with polarization, while changing fractions more than their formal errors. The selected model has Rwp ≈1.789% and GOF ≈1.175; I’m now freezing it into `final.gpx`, replaying it from disk, and generating mutually consistent CIF/profile/JSON outputs.
+
+The reopened full-range project reproduced the selected minimum exactly: Rwp 1.78936%, Rexp 1.52707%, GOF 1.17530, with maximum shift/esd 0.0015. Low-, mid-, and high-angle position/width checks agree closely; the remaining strongest residuals sit on modeled WO₃/MgWO₄ peaks rather than forming a new independent peak family. I’m running the final CIF geometry/health and cross-file consistency audit before writing the report.
+
+The consistency audit caught two validation-script assumptions rather than a model change: CSV decimal formatting needs a looser numerical tolerance, and pymatgen standardizes the unconventional β≈136° WO₃ setting on import. I’m resolving those explicitly and comparing invariant cell volumes/metric transformations so the audit tests the files correctly.
+
+All final CIFs pass health and explicit coordination checks, and the cross-file audit now passes: the three fractions sum to 1.0, every CIF cell agrees with `result.json` to CIF export precision, all 8301 rows of `fit.csv` match the reopened project, no variables are frozen, and inactive size/strain terms are neutral. The report now records the phase evidence, rejected alternatives, charge balance, profile checks, and systematic uncertainty.
+
+Completed the quantitative phase analysis.
+
+- MgWO₄ (wolframite): 51.10 wt%
+- Monoclinic γ-WO₃: 41.43 wt%
+- MgO: 7.47 wt%
+
+Final replay: Rwp 1.789%, GOF 1.175. Fractions are normalized crystalline fractions; systematic uncertainty is several tenths of a wt%, and amorphous content cannot be quantified.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [MgWO4.cif](<ATTEMPT_WORKSPACE>/MgWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [MgO.cif](<ATTEMPT_WORKSPACE>/MgO.cif)
+

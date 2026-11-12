@@ -1,0 +1,50 @@
+I’ll first inventory the measurement, chemical context, candidate database, and the reusable refinement helpers. Then I’ll identify phases from diagnostic peak families, screen candidate structures chemically and geometrically, and carry the accepted model through a fresh GSAS-II replay before exporting the requested artifacts.
+
+The chemistry points first to SrWO₄ formation, but at 650 °C unreacted WO₃/SrCO₃ or intermediate strontium tungstates remain plausible. I’m treating that only as a reaction prior: the phase count and polymorphs will be decided from the observed peak families and screened database records.
+
+The exact Sr–W–O inventory is sparse: it contains Sr₃W₂O₉ but no SrWO₄ record. I’m therefore screening the exact precursor/intermediate records and several scheelite ABO₄ parents (SrMoO₄, BaWO₄, CaWO₄) before adapting anything. This is important because an analogue is acceptable only if its reflection topology and geometry survive the Sr/W substitution.
+
+Peak-family matching now resolves the inventory cleanly: a single common angular offset aligns scheelite SrWO₄, room-temperature monoclinic WO₃, and orthorhombic SrCO₃ across low, middle, and high angles. In particular, the WO₃ triplet and its higher-angle descendants match as one coherent family; SrCO₃ has independent diagnostics near 24.65/25.30°, 36.08°, 43.67°, and 49.46°. I’m moving these three phases into controlled GSAS-II candidate trials, including alternate WO₃ records with better reported geometry.
+
+The first full three-phase trial already reaches \(wR=6.69\%\) with all three scales strongly positive. Its fractions also pass a useful independent check: residual WO₃ and SrCO₃ are close to equimolar, as expected if they are unreacted portions of an initially matched precursor charge. I’m now holding the nuisance schedule fixed while comparing the alternate WO₃ records, the carbonate polymorph, and zero-versus-specimen-displacement branches.
+
+The controlled comparison rejects orthorhombic WO₃ decisively and the rhombohedral carbonate drives its scale to zero. Two room-temperature WO₃ descriptions remain close: the neutron-derived monoclinic record fits much better than the alternate monoclinic record, while a triclinic model buys only a very small residual reduction through two extra cell degrees of freedom. I’m checking whether that small gain occurs at symmetry-diagnostic WO₃ reflections or is merely cell/profile compensation.
+
+The common-intensity tests are informative: low-angle asymmetry is unsupported and strongly correlated with specimen displacement; surface roughness seeks an unphysical bound and is rejected. Polarization refines stably to about 0.82 and modestly improves the fit, so I’m retaining it while testing phase-specific texture axes against reflection families rather than fitting a generic intensity surrogate.
+
+Texture tests are now reflection-specific rather than generic: scheelite [110] and monoclinic WO₃ [20 0 −2] improve several independent diagnostic families and stay well away from bounds. Before accepting that model, I’m replaying the same correction/texture complexity on the triclinic WO₃ alternative and on independent scheelite parent models, so a source record cannot win merely by exploiting a more favorable nuisance schedule.
+
+The first size/strain challenges exposed exactly the failure mode the refinement rules warn about: size and two strain branches ran to bounds, while the common U/W/X profile moved to a better minimum. I’m returning to the common profile, pruning all phase broadening, and replaying it before deciding whether the positive WO₃ strain term is genuine.
+
+The final correction branch is now clear: specimen displacement gives a slightly lower residual than zero-only and keeps the independently refined cells closer to their source ranges, so zero remains fixed and displacement is retained. One last controlled comparison remains: the triclinic WO₃ alternative must be replayed with the same winning scheelite parent, textures, strain term, and restrained oxygen refinement before I can state the WO₃ symmetry uncertainty honestly.
+
+The fair replay resolves the remaining symmetry question: once both models use the same CaWO₄-derived scheelite parent, phase textures, common profile, WO₃ strain, and restrained oxygen refinement, monoclinic WO₃ gives the lower residual with fewer cell parameters. I’m now performing the required full-range save/reopen/native replay and exporting every submitted artifact directly from that final project.
+
+The phase model and full-range refinement are complete. I’m doing the final consistency checks now—CIF geometry, project/export agreement, and normalized fractions—then I’ll write the machine-readable result and concise evidence report.
+
+The project environment does not include the independent structure parser, so I’m splitting the check across the crystallography runtime and the baseline scientific runtime. This does not affect the refinement; it is only an independent export validation.
+
+The exported profiles match the arrays stored in `final.gpx` exactly at all 8,301 points, and all three CIFs parse with the intended formulas and space groups. The geometry screen also passes (including W–O ≈ 1.814 Å in the adapted scheelite model). I’m now recording the final values and the model limitations.
+
+The final audit surfaced one labeling detail worth correcting: GSAS-II reports the per-phase statistic as \(R_F\), not \(R_\mathrm{Bragg}\). I’m aligning the JSON/report labels with the native project terminology before the last validation.
+
+Completed and validated against the saved GSAS-II project.
+
+Final crystalline fractions:
+
+- Scheelite SrWO₄: 60.53 wt%
+- Monoclinic WO₃: 24.43 wt%
+- Orthorhombic SrCO₃: 15.03 wt%
+
+Fit: Rwp = 3.535%, Rp = 2.712%, GOF = 1.237. Fractions exclude unquantified amorphous material.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [SrWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_SrWO4.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [SrCO₃ CIF](<ATTEMPT_WORKSPACE>/phase_SrCO3.cif)
+

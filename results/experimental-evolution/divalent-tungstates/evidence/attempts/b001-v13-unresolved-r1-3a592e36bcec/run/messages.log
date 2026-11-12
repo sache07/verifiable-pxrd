@@ -1,0 +1,146 @@
+I’ll first inventory the measurement, reusable refinement scripts, and candidate databases. Then I’ll identify chemically plausible phase sources, health-screen every candidate, and build/replay the coupled GSAS-II refinement before freezing the deliverables.
+
+The chemistry points first to Pb–W–O compounds, but the reported precursor list gives no amounts, so it cannot be used to force phase closure. I’m extracting the independent peak families now and checking the local COD index for exact Pb/W/O formulas and alternate polymorph records before considering analogues.
+
+The peak inventory gives a strong two-phase hypothesis: tetragonal scheelite PbWO₄ accounts for the dominant families, while monoclinic WO₃ accounts for the independent 23.5–24.8°, 33.7–34.6°, 41.9–42.3°, and ~50.4° families under the same angular offset. I’m health-screening alternate PbWO₄ and WO₃ records, plus PbO/Pb₃O₄ watch-list models, before any Rietveld trials.
+
+The first width challenge is invalid: unconstrained common U/W went negative, and a bounded one-phase size branch drove U and W to zero and the size to its limit. I’m restoring the common checkpoint and testing the physically coupled alternatives (including strain and joint phase widths) rather than accepting that lower Rwp.
+
+A staged physical solution is now stable: with the common Lorentzian width set from the narrower WO₃ peaks, PbWO₄ refines to a finite isotropic coherent-domain size near 0.068 μm; reopening the common X term leaves both terms interior and lowers Rwp from ~10.5% to ~9.72%. I’m now running the required neutral/size/strain/combined comparisons from one checkpoint and will retain width terms only if deletion reproduces coherent family-level error.
+
+The survey is separating cleanly: PbWO₄ size broadening is replay-stable and interior; PbWO₄ strain gives essentially no improvement, while WO₃ size has already collapsed at the 10 μm neutral limit. The combined Pb branch bound its strain at zero, so its apparent extra improvement is not admissible under the requested gate.
+
+The complete low-index anisotropy screen is consistent with the phasewise test: no WO₃ size term is identifiable (branches are singular or bound and trade almost perfectly with the common width). PbWO₄ shows only a modest axis-dependent gain; I’ll replay the best inequivalent axes and compare them against the isotropic deletion before deciding whether that extra parameter survives.
+
+The residual inventory has revealed a real third phase, not a profile artifact: the unmatched families at 26.81, 31.25, 32.55, 34.54, 47.90, 50.29, 52.52, 58.49, and 66.51° track tetragonal Pb₃O₄ under the same ~0.43° angular correction. That is well over the two-family retention gate. I’m adding and source-challenging Pb₃O₄, then restarting the coupled width/texture loop because this inventory change invalidates the earlier two-phase profile decisions.
+
+With the complete three-phase basis, PbWO₄ and Pb₃O₄ each show family-level size broadening; WO₃ width terms collapse. Pb₃O₄’s strain-only branch is interior but competes with its size term, so I’m now doing the required collective release and separate deletion tests from multiple physical seeds before fixing either representation.
+
+The phase inventory is now chemically and diffraction-consistent: scheelite PbWO₄, monoclinic WO₃, and residual Pb₃O₄. I’m completing the coupled profile/size challenge from a common checkpoint next, then I’ll rerun texture/source/watch-list checks before freezing the GSAS-II project and exports.
+
+The collective width refinement is replay-stable from two independent seeds: PbWO₄ and Pb₃O₄ converge to about 0.073 and 0.039 µm, respectively, while Pb₃O₄ strain hits a bound and is rejected. The stable branch gives Rwp ≈ 6.80%; I’m now testing deletion of each size term and reopening the shared U/W/X profile to verify that neither term is merely absorbing instrument broadening.
+
+Deleting either phase-size term raises Rwp sharply (to 7.74% without PbWO₄ size and 7.51% without Pb₃O₄ size), so both have family-level support. A full U/W/X trial improves nominally only by driving U to its zero bound in both reseeds; that comparison is invalid under the requested gate, so I restored the interior X-only checkpoint. I’m screening every symmetry-inequivalent low-index texture and uniaxial-size direction from that checkpoint now.
+
+The complete axis survey found no defensible anisotropic-size model: PbWO₄’s small gain shifts among several unrelated directions, WO₃ branches are singular and essentially 100% correlated with the common width, and Pb₃O₄ gains nothing. Texture is also neutral for WO₃ and Pb₃O₄; one PbWO₄ direction gives a modest improvement, so I’m replaying that branch and checking whether it survives alternate structural records and nuisance-model changes before deciding whether to retain it.
+
+A meaningful rank reversal appeared: the alternate scheelite PbWO₄ record (COD 1527935) becomes substantially better only after the texture term is allowed, whereas the monoclinic PbWO₄ polymorph collapses and is invalid. That is exactly the kind of coupled source/texture interaction the gate is intended to catch. I’m cross-seeding both scheelite records across all texture directions and multiple March-ratio seeds before choosing the record.
+
+The exhaustive cross-seed result is decisive: COD 1527935 wins with the [0 1 −2] March axis (Rwp ≈ 6.21%) from the high-ratio basin, while COD 9009811 cannot approach it under any low-index axis (best ≈ 6.74%). I’m treating 1527935 as the leading source, but it will only be retained if its texture and two size terms survive replay, term deletion, strain substitution, and a renewed common-profile challenge.
+
+The renewed comparison changed the shared profile basis: with the better PbWO₄ source, U/W/X converge to the same positive interior solution from two seeds (about U=3.9, W=8.21, X=6.05), so the earlier X-only restriction no longer applies. A failed strain branch also exposed a lower size basin. I’m reopening all supported phase widths jointly from low seeds against this interior profile, then I’ll delete terms one at a time from the resulting checkpoint.
+
+The low-seed collective loop reconverges to one interior solution (Rwp ≈ 6.164%) regardless of size seed: U/W/X all positive, PbWO₄ ≈ 0.0625 µm, Pb₃O₄ ≈ 0.0346 µm. WO₃ size is singular against X, and every strain-enriched branch binds at least one term, so those branches are invalid and restored. I’m now deleting each surviving profile, size, and texture term separately from this checkpoint.
+
+Term deletion prunes U: fixing U=0 changes Rwp by only 0.0007%, whereas removing W, X, either phase-size term, or texture gives clear deterioration. The simpler retained profile is therefore W/X with U=0. Because that pruning changes the coupled checkpoint, I’m repeating the complete-axis texture and anisotropy screens from the pruned model before nuisance/background tests.
+
+The pruned-axis loop is stable for texture: PbWO₄ [0 1 −2] remains uniquely preferred; WO₃ and Pb₃O₄ texture gains are small and direction-unstable. One new candidate deserves a hard check: uniaxial PbWO₄ size along [1 −2 −2] lowers Rwp from 6.165% to 6.078% with both dimensions interior. I’m reseeding and replaying that anisotropy before either retaining it or returning to the isotropic model.
+
+The PbWO₄ anisotropy is replay-stable: four widely separated seeds converge to the same [1 −2 −2] dimensions (≈0.0548 and 0.1034 µm), W/X values, fractions, and Rwp ≈ 6.078%. I’m retaining it provisionally and repeating the full texture loop from this elaborated checkpoint; any axis/source rank reversal will trigger another cross-seed comparison.
+
+The elaborated loop survives: PbWO₄ [0 1 −2] remains the texture winner after anisotropic broadening, while WO₃ has two nearly identical texture axes and Pb₃O₄ gains only noise-level improvement, so neither is retained. I’m now giving the competing PbWO₄ record the same W/X plus complete texture/anisotropy treatment; this is the final source-rank cross-check before nuisance-model tests.
+
+The source cross-check is closed: COD 9009811 converges reproducibly in W/X, but even its best complete-axis anisotropic model (Rwp ≈ 6.57%) remains far worse than COD 1527935 (≈6.08%). The leading source and coupled terms now survive a full loop. Next I’m comparing background order, polarization, surface roughness, and axial asymmetry while monitoring high-angle trends and fraction stability.
+
+Polarization is the only nuisance term with broad, phase-independent support: it converges to ~0.715 and lowers Rwp to 5.49%, including a large high-angle improvement. Two-parameter roughness also helps, but its parameters are almost collinear; SH/L is negligible, and low-order backgrounds destabilize fractions. I’m cross-seeding polarization and roughness jointly and separately, including their actual correction curves, to distinguish a physical angular correction from parameter tradeoff.
+
+The nuisance interaction is now clear: polarization converges to 0.715 from all seeds. Roughness can imitate the same angular trend from very different parameter pairs, and joint polarization/roughness branches are singular or seed-dependent while improving Rwp by only ~0.004%. I’m retaining the single polarization term and fixing roughness at zero. I’m checking the background-order elbow next, then repeating source/axis tests with polarization active.
+
+The polarization-enabled loop changes one earlier decision: PbWO₄ anisotropy axes now become nearly degenerate—the previous [1 −2 −2] axis and [0 1 −2] differ by less than 0.001% Rwp. I’m therefore testing an isotropic PbWO₄ size directly, along with deletion of every surviving W/X, size, texture, and polarization term. Unsupported anisotropy will be pruned even though it was stable before the intensity correction.
+
+Polarization leaves all substantive terms supported: removing W, X, either phase-size term, texture, or polarization materially worsens the fit. PbWO₄ anisotropic broadening is supported versus an isotropic model (5.49% vs 5.55% Rwp), but its direction is not yet unique. I’m cross-seeding the two tied axes and, in parallel conceptually, testing the alternate PbWO₄ source with polarization before freezing the simpler reproducible choice.
+
+The equal-treatment source check produced a genuine second rank reversal: once polarization is allowed, COD 9009811 converges reproducibly to an interior polarization of ~0.9805 and Rwp ≈ 4.697%, decisively below COD 1527935 at ~5.49%. I’m reopening the full axis, width, background, and roughness loop around 9009811; the earlier source will not be submitted unless it regains the lead under the same final basis.
+
+I’m finishing the coupled width-axis survey on the leading three-phase model, then I’ll run the remaining deletion, nuisance, and precursor watch-list challenges before freezing and exporting the full-range refinement.
+
+The axis inventory is complete. PbWO₄ and Pb₃O₄ broadening are real, but several nearly equivalent axes trade against the common profile; WO₃ anisotropic size is singular and will be rejected. I’m now testing each retained term by deletion and low-seed collective releases from the same checkpoint.
+
+The U-release branches lower the residual only by driving polarization to its upper bound, so they are invalid under the requested gate; the common U=0, W/X profile remains the admissible baseline. Replay confirms PbWO₄ anisotropic size is supported, while its two best axes are statistically indistinguishable.
+
+The joint size/strain branches either hit polarization/profile boundaries or become singular, including WO₃ size/strain; none is admissible. Direct deletions retain W, X, both Pb-bearing phase-size terms, PbWO₄ texture, and polarization. I’m now checking background order, roughness, asymmetry, and polarization cross-seeds on the accepted source.
+
+Background orders above eight reduce low-angle residuals but shift the Pb₃O₄ fraction by more than a percentage point and introduce oscillatory coefficients without improving the high-angle trend; that is compensating background behavior, so the eight-term smooth baseline remains favored. Polarization cross-seeds converge to the same interior value (~0.981).
+
+The first PbO record collapses reproducibly to essentially zero scale, so it fails the weak-phase gate before cell refinement. I’m applying the same scale-first test to the structurally distinct PbO record and the alternate Pb₃O₄ polymorph.
+
+A second PbO polymorph now shows a small but reproducible positive scale: about 0.25 wt%, ~7σ, stable against background order and polarization reseeding. I’m testing whether that signal survives physically plausible broadening and whether it is supported by at least two noncoincident reflection families before deciding whether to retain it.
+
+The PbO broadening challenge found a second basin: an extremely small apparent coherent size (~5.6 nm) and several-percent fraction. That can represent real nanocrystalline PbO or let a dense-supercell model absorb diffuse structure, so I’m cross-seeding it and will only accept it if the solution replays cleanly and distinct PbO families—not background curvature—drive the gain.
+
+The structurally distinct orthorhombic PbO record changes the inventory decisively: it refines to ~2.31 wt% with a 55σ scale and drops Rwp from 4.70% to 3.97%, while the incommensurate supercell is inferior. PbO therefore passes the scale gate; I’m promoting massicot PbO into the coupled basis and restarting the cell, width, texture, and source-ranking loop with four phases.
+
+PbO cell refinement is stable and improves Rwp further to 3.61%; its refined cell (5.8870 × 5.4825 × 4.7589 Å) is close to orthorhombic massicot. The four-phase fractions are now roughly 59.1% PbWO₄, 20.7% WO₃, 17.5% Pb₃O₄, and 2.75% PbO. I’m repeating the complete symmetry-inequivalent size and texture axis surveys on this expanded basis.
+
+On the four-phase basis, WO₃ size immediately returns to the inactive 10 µm bound with both anisotropic parameters dropped, so advancing its remaining axes would violate the width gate. I’m stopping that collapsed branch, retaining the already completed PbWO₄ set, and continuing the complete Pb₃O₄/PbO axis sets plus all texture axes.
+
+The four-phase axis pass is converging cleanly. Pb₃O₄ still benefits from anisotropic size, and PbO broadening is strongly supported: its fraction rises to ~4.6 wt% with an interior ~40–60 nm directional size. PbWO₄ texture and anisotropy effects have become marginal after adding PbO; final deletion tests will determine whether they remain.
+
+The complete Pb₃O₄ size survey is finished; [0,1,−1] is the best replay candidate, though several axes are close enough that direction will be treated as model uncertainty. The PbO size signal is robust across the axes tested so far, with multiple independent families contributing; the remaining PbO axes and full texture inventory are still running.
+
+PbO is supported by both distinct width families and multiple noncoincident reflections; its scale remains positive under every admissible branch. The current best size axis is [0,2,−1], but several alternatives are close, so I’ll retain the simplest replay-stable description that survives deletion rather than overinterpret the direction.
+
+The collective neutral-texture size checkpoint is clean and replay-stable (Rwp 3.322%): ~58.30% PbWO₄, 19.99% WO₃, 17.04% Pb₃O₄, and 4.67% PbO. I’m now repeating the full texture-axis inventory from this elaborated checkpoint, as required before term deletion.
+
+The low-seed collective size reseed returns to the same interior solution and fractions, confirming the retained PbWO₄/Pb₃O₄/PbO size terms are replay-stable. Texture ratios on the elaborated checkpoint are collapsing toward one for PbWO₄ and WO₃; I’m finishing Pb₃O₄/PbO texture and the U/strain collective branches.
+
+The lower-Rwp U and WO₃-strain branches are invalid: they force polarization to 1.0 and/or X to zero, with frozen parameters. Per the gate I’m restoring the common U=0, W/X baseline; valid low-seed strain branches must remain interior without those compensations.
+
+The exhaustive collective width release is now closed: all strain/U branches that lower Rwp do so through dropped, singular, or bound parameters; the clean low-seed size solution is the valid checkpoint. The elaborated texture survey leaves only one plausible term—a PbO [1,−1,−1] March correction—so I’m cross-testing it against the leading PbO/Pb₃O₄ size axes before pruning.
+
+The cross-seeded topology is stable: Pb₃O₄ [0,1,−1] and PbO [0,2,−1] remain the leading size axes, and the PbO [1,−1,−1] texture term replays at March ratio ~0.753. I’m now deleting every retained size/profile/texture term separately from that same interior checkpoint.
+
+Deletion confirms all retained terms: the three active size models, Pb₃O₄/PbO anisotropy, PbO texture, W, X, and polarization each leave coherent residual penalties when removed. A nuisance cross-seed returns to the same solution. I’m moving to the final background/roughness/asymmetry comparison and four-phase source re-ranking.
+
+The four-phase background comparison is much more stable than the earlier three-phase one. Higher orders now move any phase by ≤0.4 wt% and improve both low- and high-angle residuals; I’ll locate the order elbow before freezing it. Polarization remains interior and source-independent so far.
+
+The roughness-only branch is taking longer because it is highly coupled to scale and polarization. That behavior itself is diagnostic; I’m allowing the replay to finish, then I’ll reject it if it binds, becomes singular, or depends on the initial roughness seed.
+
+Roughness is rejected: joint branches are singular or fail, while roughness alone is worse. SH/L converges from two seeds to ~0.0176 with a small but replay-stable improvement across multiple mid/high-angle families, so I’m retaining it provisionally while locating the smooth-background order elbow.
+
+The first source-replacement attempt became invalid because too many coupled terms were active while the replacement scale was being introduced. I’m discarding that comparison and restarting correctly: hold the converged four-phase nuisance model fixed, refine only the replacement scale, then release its cell/width and reopen the shared terms.
+
+The staged source check is now holding all shared parameters fixed during scale introduction, then reopening the coupled model only after a positive scale is established. This avoids the invalid rank reversals seen in the first attempt; the first alternate is still refining.
+
+The four-phase basis is now stable: scheelite PbWO₄, monoclinic WO₃, Pb₃O₄, and massicot PbO. I’m finishing the equal-footing source challenges, then I’ll replay the accepted model over the full measured range and freeze all deliverables from that one project.
+
+The source challenges are behaving diagnostically: alternative WO₃ records either remain much worse or drive width parameters to bounds/singularities, while the retained monoclinic record stays at the ~3.27% Rwp baseline. I’m letting the Pb₃O₄/PbO alternatives finish before finalizing.
+
+The retained Pb₃O₄ structure also wins cleanly: the orthorhombic alternative is >6.5% Rwp and needs bound/frozen parameters. The remaining calculation is the PbO polymorph challenge; that one is slower because the alternative uses a much larger modulated/supercell description.
+
+The PbO supercell fit is close but still worse than massicot (3.309% vs 3.273% Rwp) and requires a ~2.1% long-axis collapse. The tetragonal PbO record has no reflections in the measured range after import, so that branch is invalid rather than competitive. I’m now doing the required cross-seeded checks on the two close alternatives before freezing the model.
+
+The complete low-index size-axis sweep for the PbO supercell is nearly done. Its best branch has only reached ~3.302% Rwp so far, still above massicot, and the phase fraction remains reproducibly ~4.4 wt%—good evidence that PbO itself is real even though its exact record must still be selected.
+
+The supercell’s texture sweep is also complete-axis, including sign-distinct and unequal-index diagonals. Early texture branches improve it only to ~3.298% Rwp, still not enough to reverse the massicot ranking; I’m continuing through all symmetry-inequivalent directions as requested.
+
+The complete sweeps preserve the ranking: no supercell size or texture axis beats the retained massicot model. I’m now cross-seeding the best supercell size+texture combination and the alternate PbWO₄ nuisance basin; these are the last coupled-source checks before the full-range replay.
+
+Both close-source cross-seeds are decisive. The alternate PbWO₄ settles at 4.29% Rwp, while the retained scheelite record returns to 3.271% from the alternate nuisance seed. The fully combined PbO supercell reaches 3.297% and remains ~4.33 wt% PbO, still worse than massicot.
+
+The retained model has now survived the source loop. I’ve pruned the cross-seeded PbWO₄ anisotropy/texture back to their neutral values and am replaying the exact 9.9034–100.0946° range. The CIFs, fractions, profile, and JSON will all be exported from that reopened project only.
+
+The full-range replay converged cleanly at Rwp 3.270% with no dropped or frozen variables. Final CIF health checks all pass; I’m doing one last artifact-consistency audit and documenting the phase-specific evidence and model uncertainty.
+
+Completed the full-range GSAS-II refinement. All final CIFs pass geometry/occupancy health checks.
+
+| Phase | Weight fraction |
+|---|---:|
+| Scheelite PbWO₄ | 0.58203 |
+| Monoclinic WO₃ | 0.20048 |
+| Pb₃O₄ (minium) | 0.17298 |
+| PbO (massicot) | 0.04450 |
+
+Fit: Rwp 3.2699%, Rp 2.4554%, GOF 1.3192. Fractions are normalized over modeled crystalline phases; amorphous content cannot be determined without an internal standard.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [PbWO4 CIF](<ATTEMPT_WORKSPACE>/phase_1_PbWO4.cif)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_2_WO3.cif)
+- [Pb3O4 CIF](<ATTEMPT_WORKSPACE>/phase_3_Pb3O4.cif)
+- [PbO CIF](<ATTEMPT_WORKSPACE>/phase_4_PbO.cif)
+

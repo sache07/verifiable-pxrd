@@ -1,0 +1,43 @@
+I’ll first inspect the measurement metadata, pattern, and reusable refinement utilities, then build a chemically balanced candidate inventory before fitting. I’ll keep phase records as competitors until profile evidence supports coexistence, and I’ll validate both candidate and final CIFs with the required health checks.
+
+The chemical baseline is the 1:1 reaction CaO + WO₃ → CaWO₄, with plausible imbalance products/excesses such as Ca₃WO₆ + WO₃ or CaWO₄ plus residual CaO/WO₃. I’m now extracting peak families and checking exact/analogue structure records, while keeping those alternatives on a watch list.
+
+Initial peak matching supports tetragonal scheelite CaWO₄ as the major phase and a low-symmetry WO₃ family as a substantial second phase; the WO₃ triplet near 22.94/23.42/24.23° strongly favors the orthorhombic/related distorted records over tetragonal or hexagonal WO₃. A coherent peak near 22.01° is not yet assigned, so I’m screening charge-balanced non-1:1 products before deciding whether it is a minor phase or a profile/artifact issue.
+
+The source audit leaves a clean scheelite CaWO₄ record and several clean WO₃ competitors; one monoclinic WO₃ record is only “review” because it contains 1.575 Å full-occupancy O···O contacts, and another record fails outright with 0.464 Å O···O contacts. I’ll retain those only as identification competitors, not final structures, unless they outperform clean analogues decisively—which is chemically unlikely.
+
+The first controlled replays already reject hexagonal and tetragonal WO₃ models: they leave large triplet residuals (Rwp about 17.0% and 15.8%) and drive profile U to its zero bound. The remaining distorted orthorhombic/monoclinic/triclinic models are still being compared with identical background, scale, cell, zero-shift, and U/W/X settings.
+
+The clean room-temperature monoclinic WO₃ record (P2₁/c, COD 2311041) is the best physically acceptable competitor: Rwp 13.29% and ~13.5 wt% WO₃. A reviewed monoclinic record improves Rwp by only 0.005 percentage point while containing impossible short O···O contacts, so chemistry—not fit alone—rejects it. Orthorhombic WO₃ is distinctly worse (Rwp 14.63%). I’m now diagnosing the still-large structured residual against the clean monoclinic baseline.
+
+Polarization, surface roughness, and CaWO₄ [001] March texture all improve the fit, but roughness and texture are the strongly complementary pair (Rwp 9.91%); adding polarization gives only a small further gain to 9.84% at a plausible 0.609. I’ll now replay the improved model, quantify peak widths/asymmetry, and test phase-specific broadening because the counting-statistical Rexp is only 2.25%.
+
+The watch-list CaO model refines to an impossible 4.558 Å cubic cell (vs 4.817 Å source) for only a 0.017-point Rwp gain, so it is rejected despite a nominal ~1.2 wt% scale. WO₃ size/strain terms return to neutral bounds, while CaWO₄ size broadening is strongly supported (0.888 µm) and beats CaWO₄ strain (Rwp 8.61% vs 9.18%). I’m retaining size and pruning the unsupported terms, then checking the replayed profile numerically.
+
+The phase inventory has converged to scheelite CaWO₄ plus monoclinic WO₃. I’m now doing the required numerical peak-shape checks and final replay/export; the key remaining question is how much systematic uncertainty to assign to the roughly 88/12 wt% split.
+
+The half-height checks show the refined profile tracks both width and Kα-driven asymmetry across the range: for example, observed/calculated FWHM are 0.218/0.234° at 18.43°, 0.304/0.303° at 46.93°, and 0.465/0.453° at 76.03°. That supports keeping SH/L fixed and retaining only the tested CaWO₄ size broadening.
+
+The saved/reopened project is replay-stable: two full-range replays changed the CaWO₄ fraction by under 0.000002 and left Rwp at 8.610%. I’m now auditing the exported CIF geometry and checking that every submitted file agrees with that reopened project.
+
+A compatible tetragonal uniaxial-size test gives a small but reproducible improvement (Rwp 8.610% → 8.537%) with finite, plausible domain sizes of about 0.99 and 0.77 µm. I’m retaining that one extra parameter because it is nested, converged on replay, and removes structured width mismatch without changing the phase split materially (12.10% → 12.08% WO₃).
+
+The final CIF audit passes for both phases with full occupancies and sensible coordination: CaWO₄ has W–O 1.762 Å and Ca–O 2.468–2.472 Å; WO₃ has six-coordinate W–O 1.713–2.157 Å. The remaining low-angle residuals do not form a credible, charge-balanced third-phase family, so I’m leaving them explicitly as unresolved uncertainty rather than assigning a spurious trace phase.
+
+Completed the refinement.
+
+- Scheelite CaWO₄: **87.92 wt%**
+- Monoclinic WO₃: **12.08 wt%**
+- Rwp: **8.537%**, goodness of fit: **3.799**
+
+Fractions are normalized crystalline fractions; realistic systematic uncertainty is approximately ±2–3 wt%. The WO₃ formula is reliable, though its exact polymorphic distortion is less certain. Both final CIFs passed geometry/occupancy checks.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [CaWO4.cif](<ATTEMPT_WORKSPACE>/CaWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+

@@ -1,0 +1,32 @@
+I’ll inspect the diffraction pattern, metadata, and available crystallography tooling first, then identify candidate phases and carry the final structural mixture through a reproducible GSAS-II refinement. I’ll treat phase count as an inference, and I’ll flag any ambiguity rather than forcing unsupported components.
+
+The synthesis context points naturally toward barium tungstate, but the precursor pair and 750 °C treatment leave plausible residual BaCO₃/WO₃ or competing Ba–W–O phases. I’m now extracting the actual peak set and checking the installed reference-search and GSAS-II interfaces before committing to candidates.
+
+The dominant phase is now unambiguous: the full high-angle sequence and relative intensities match scheelite BaWO₄ (space group I4₁/a), not just its strongest line. The 23–25° region contains reflections forbidden for that phase; their three-line WO₃ signature plus carbonate-like shoulders make residual precursor phases the leading hypothesis. I’m testing whether both are independently required and which WO₃ polymorph fits.
+
+The residual phase is not carbonate: its diagnostic 17.76°, 26.28°, 30.82°, and 40.80° lines form the R‑3c Ba₃W₂O₉ pattern. A third, weaker phase is needed for the 23.40/23.88/24.65° triplet, which matches monoclinic WO₃. I’ve started a three-phase whole-pattern refinement and will compare it against phase-omission and alternate-WO₃ models once the profile parameters stabilize.
+
+The ordered scheelite model materially improves the fit over the old COD entry, whose split half-occupied oxygen sites are chemically implausible. An unconstrained oxygen refinement can lower Rwp further but drives W–O to ~2.05 Å, so I’m rejecting that overfit; the final model will keep a chemically reasonable ordered WO₄ tetrahedron and use phase-specific peak widths. This is also the main source of systematic uncertainty in the fractions.
+
+The three-phase model is decisively supported: omitting WO₃ raises Rwp from about 4.9% to 7.0%, omitting Ba₃W₂O₉ to 8.3%, and fitting BaWO₄ alone to 9.45%. A triclinic WO₃ alternative improves Rwp by only ~0.06% while adding three metric parameters and refining back to nearly monoclinic angles, so I’m retaining the room-temperature P2₁/n model and carrying that model into the final project.
+
+The final refinement is converged (maximum shift/esd effectively zero) at Rwp = 4.946% and gives 66.94/16.86/16.20 wt% for BaWO₄/Ba₃W₂O₉/WO₃. I’ve exported the three structures and profile; I’m doing a final consistency check that the CIF formulas, JSON normalization, CSV arithmetic, and saved GPX all reproduce those values.
+
+Completed the three-phase GSAS-II refinement:
+
+- BaWO₄ (I4₁/a): 66.94 wt%
+- Ba₃W₂O₉ (R-3c): 16.86 wt%
+- Monoclinic WO₃ (P2₁/n): 16.20 wt%
+
+Fit: Rwp = 4.946%, Rp = 3.657%, GOF = 1.639. Fractions are normalized over modeled crystalline material; realistic systematic uncertainty is about 2–3 absolute wt%.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [BaWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_1_BaWO4.cif)
+- [Ba₃W₂O₉ CIF](<ATTEMPT_WORKSPACE>/phase_2_Ba3W2O9.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_3_WO3.cif)
+

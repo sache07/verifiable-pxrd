@@ -1,0 +1,174 @@
+I’ll begin by validating the pattern/metadata and surveying the provided analysis tooling. I’ll keep candidate selection tied only to the measured data and chemistry, then build and independently replay a GSAS-II refinement before exporting the requested files.
+
+The context is a CaO + WO₃ reaction fired at 800 °C, so Ca–W–O phases and residual precursors are chemically admissible, but I will not assume CaWO₄ is the only product. The framework instructions require an environment check before analysis; I’m running that now.
+
+That check reports the separate research-controller workshop is not deployed. It does not block this requested single-pattern analysis—the user explicitly excluded running that automated research process—so I’m proceeding with the locally available crystallography stack and read-only structure library.
+
+The strongest peak family already matches scheelite CaWO₄, while two coherent weaker families are visible at the characteristic monoclinic-WO₃ triplet near 23–24.3° and rocksalt-CaO positions near 32.1°, 37.4°, 53.4°, 64.4°, and 67.4°. I’m now testing those assignments against all defensible polymorphs in the public library rather than locking them in from peak names alone.
+
+The library screen found clean, fully occupied parents for scheelite CaWO₄ and the relevant WO₃ polymorphs. A second CaWO₄ entry has a 1.04 Å contact/occupancy pathology and is excluded because a passing scheelite source exists; the Ca–W bronze candidate has strong low-angle lines absent from the measurement. I’m carrying monoclinic, triclinic, and orthorhombic WO₃ parents through the same fixed-coordinate refinement sequence next.
+
+The matched refinements are converging, but the first broadening pass exposes a strong common-profile/phase-size correlation. I’m treating that as a staging issue: the parent comparison remains useful at identical flexibility, while the final model will separate instrumental width from phase broadening through restarts and physical checks rather than interpret either coefficient in isolation.
+
+The roughness/polarization combination gives a large improvement, confirming a real low-angle intensity correction, but fitting all three at once is nearly singular and did not converge cleanly. I’m rerunning the angular comparison with serialization fixed, then I’ll restage roughness and polarization separately before combining only reproducible terms.
+
+The rerun is still working through the three matched angular branches; no new failure has appeared. The key decision will be based on whether zero, specimen displacement, or their joint curve is reproducible with positive profile and roughness parameters—not on a tiny Rwp difference.
+
+The physical restaging holds the Gaussian instrument term fixed at several plausible values, then lets the calculated curve choose the remaining common width, roughness, polarization, and phase-size terms. This directly tests whether the phase fractions and curve are stable despite the uncalibrated instrument profile.
+
+The four restarts are still running; the longer time comes from re-equilibrating background, cells, and scales after each nuisance block. I’m preserving that cumulative refit because otherwise profile terms can falsely look unsupported when the phase scales have not caught up.
+
+At least three restart files have now been created, so the workflow is progressing rather than hung. I’ll compare their physical screens and fraction spread as soon as the final branch closes.
+
+The width/fraction restarts are encouraging: with physically positive profiles, CaWO₄ stays at 82.67–82.79 wt% and WO₃ at 17.21–17.33 wt% across a twentyfold span in fixed instrumental U. The free roughness coefficients follow an unphysical but highly correlated representation of the same correction, so I’m profiling that correction over a physical roughness grid rather than accepting the raw coefficients.
+
+The first roughness grid pass exposed a scripting-order issue: the B refinement flag was being cleared after it was set. That is corrected; the rerun now genuinely refines B at each physical A value.
+
+The cumulative inventory tests are now checking each accepted phase by deletion and offering CaO and the Ca–W bronze the same scale/cell opportunity. This will distinguish a real third-phase line family from residual shape errors in the two accepted phases.
+
+The restrained coordinate comparison is underway for both monoclinic parents and the triclinic parent. Each heavy-atom block and each oxygen site gets its own checkpoint; a block is retained only if it lowers Rwp, moves less than 0.20 Å, and creates no short contact.
+
+The first lineage has passed its base profile and is working through site blocks; runtime is dominated by repeated cumulative re-equilibration, not a stalled process. I’ll use the physical CIF screens after all three branches finish to choose provenance.
+
+The comparison is still active and has produced multiple accepted/rejected checkpoint files, which confirms the block screening is advancing normally. No user input is needed while it completes.
+
+The restrained site-by-site run remains in progress. Because the triclinic parent has twice as many independent oxygen sites as either monoclinic parent, this matched comparison is intentionally slower but avoids giving the lower-symmetry model an unfair all-at-once overfitting advantage.
+
+The process is still consuming refinement time rather than waiting on I/O. I’m letting the current branch finish; interrupting it would discard the matched checkpoint sequence needed to judge parent convergence cleanly.
+
+The long branch is expected at this point: each accepted oxygen site changes the cumulative model, so later sites must be tested against the updated fit. I’m continuing to monitor it at short intervals and will report the lineage ranking once complete.
+
+The run remains healthy but computationally heavy. The matched three-parent comparison is the main remaining model-selection bottleneck; downstream export and replay checks are much faster.
+
+No error or termination signal has appeared. I’m continuing the current matched run rather than launching competing jobs, so the workspace remains deterministic and the resulting checkpoints stay comparable.
+
+The coordinate comparison is taking longer than the preliminary profile fits because it repeatedly rebuilds derivative matrices for restrained, low-symmetry structures. It is still within a reasonable run time for the number of blocks being tested.
+
+The process remains active with no failure output. I’ll continue to let it finish; stopping now would leave an asymmetrical comparison in which later parents received fewer coordinate tests.
+
+Given 33 restrained refinement blocks at up to 14 cycles each, the elapsed time is consistent with the planned workload. The process is not waiting for external resources; it is still computing the matched comparison.
+
+The matched run is still progressing silently because its detailed output is being logged to disk to keep the conversation readable. I’m maintaining the 30-second checks and will inspect the full log if it exits abnormally.
+
+No corrective action is warranted yet: the session is alive, and the job’s cost scales sharply with the triclinic parent’s independent coordinates. I’m preserving the complete comparison.
+
+The first coordinate pass exposed a checkpoint bug: GSAS-II refined into the checkpoint filename, so nominally rejected oxygen trials were still carried forward. I caught this from the inconsistent Rwp sequence and am rerunning with immutable checkpoints; only the CaWO₄ oxygen and WO₃ tungsten blocks were genuinely accepted in that pass.
+
+The corrected rerun uses eight-cycle coordinate blocks and preserves a separate pre-trial GPX before every refinement. This should be materially faster while still giving each parent the same restrained adaptation opportunity.
+
+The corrected run remains active and is advancing through the same block order. I’ll verify that rejected blocks now restore both coordinates and Rwp before trusting the parent ranking.
+
+The job is still computing normally. Because rejected oxygen blocks should now snap back immediately, the final structures will remain close to their defensible parents instead of accumulating unsupported movements.
+
+The corrected matched comparison is still within its expected compute window. No external dependency or user decision is blocking it.
+
+The run remains active. I’m retaining the complete three-lineage comparison because the source choice affects the submitted coordinates, not just a nuisance profile statistic.
+
+No error has surfaced; the corrected checkpoints are being written and tested. I’ll continue the short polling cadence until completion.
+
+The process is still healthy. The remaining work after it finishes is deterministic: physical CIF comparison, final nuisance restart, export, and independent GSAS-II replay.
+
+The triclinic branch is likely the current cost driver; its extra independent sites make each derivative calculation larger even though the same acceptance threshold is used. I’m letting it complete for a fair comparison.
+
+No failure output has appeared. I’m continuing the current job; the result will be checked for exact checkpoint restoration before any model is selected.
+
+The run remains computationally active. I’m not broadening scope or adding new models while it runs; this is the final equal-opportunity coordinate comparison among the credible WO₃ parents.
+
+The corrected comparison is consistent: only the scheelite oxygen block and WO₃ tungsten block are supported; every oxygen-site trial in WO₃ is rejected for excessive movement or no repeatable gain. Final Rwp values are 11.72% and 11.76% for the two monoclinic parents and 11.67% for the triclinic parent—a small spread that now requires physical/source screening rather than choosing the lowest number automatically.
+
+The independent restarts are now testing the monoclinic and triclinic finalists at fixed U = 2 and 20. The decisive evidence will be whether the WO₃ tungsten displacement and phase fractions reproduce, not merely whether one restart has the lowest Rwp.
+
+The restart set remains active and is moving through the four branches. Each branch has only the two coordinate blocks that survived the corrected screen, so this is substantially leaner than the full site-by-site comparison.
+
+The restart comparison is still computing normally. Once it closes, I’ll compare coordinate displacements and full calculated-curve differences across U values before selecting monoclinic versus triclinic WO₃.
+
+No failure output has appeared. The current work is confined to the two finalist lineages and two profile starts; no additional speculative phases are being introduced.
+
+The four restart branches are still running. This is the final repeatability check requested by the model-selection rules; after it, parent choice will be frozen unless a physical screen fails.
+
+The triclinic gain is not yet admissible: all three triclinic restarts end nonconverged with 6–8 σ pending shifts, while the monoclinic restarts converge. Per the stated rules, I’m restaging triclinic WO₃ one tungsten site at a time instead of dropping it or accepting its lower Rwp.
+
+The stable leading model is CaWO₄ (scheelite) plus monoclinic WO₃. I’m finishing the lower-symmetry WO₃ restage and the remaining profile/texture checks before packaging and replaying the final GSAS-II project.
+
+The triclinic WO₃ branch could be stabilized only by sitewise staging; it then matched, but did not materially beat, the simpler monoclinic model (ΔRwp ≈ 0.005 percentage point). I’m retaining monoclinic WO₃ because it is converged, physically cleaner, and lower-complexity; the phase fraction is stable across independent profile starts.
+
+The fully simultaneous profile fit exposed an exact size/common-width singularity, so I’m restaging the same supported terms in alternating blocks. That keeps every retained parameter physical and testable without accepting an underdetermined covariance.
+
+The alternating refinement is behaving as intended; I’m now comparing background basis/order, preferred orientation, anisotropic size/strain, and displacement-factor blocks from the same checkpoint. Unsupported terms will stay out of the submitted project.
+
+The screen is still progressing through matched branches. No user action is needed; once it finishes I’ll retain only mechanisms that converge, stay physical, and improve a coherent residual family rather than merely adding flexibility.
+
+The longer runtime is from independently re-equilibrating each branch against all 8,301 points, not from a stalled process. I’m letting those comparisons complete so the final model-selection record is internally consistent.
+
+A strong, axis-specific WO₃ March–Dollase correction is supported (ratio ≈0.817; Rwp 11.71→10.70%), so texture cannot be dismissed. I’m now repeating the parent comparison and independent profile starts with that mechanism present, then I’ll retest the previously rejected coordinate/broadening blocks in the cumulative model.
+
+The texture-aware lineage comparison is underway across both monoclinic parents, the restaged triclinic parent, and two independent width-profile starts. This is the key guard against letting texture choose the structure by accident.
+
+So far the process remains stable; each branch is being re-fitted from its own physically screened checkpoint. I’ll compare the resulting curves, fractions, and texture ratios—not just the headline Rwp.
+
+The matched restarts are still running normally. The final handoff will include the selected project only; these branch files remain under `analysis/` as the audit trail.
+
+The comparison has passed the four-minute mark because several branches need many Levenberg–Marquardt cycles. It is making progress, and all work remains within the same two-phase hypothesis.
+
+Texture-aware restarts agree tightly: monoclinic WO₃ (the cleaner parent) gives 17.86–17.88 wt% WO₃ and the same ≈0.817 texture ratio across U-profile starts. The triclinic alternative is slightly worse and more complex. I’m now doing the final cumulative retests with this texture fixed in the inventory.
+
+The cumulative model remains a two-phase solution; these tests are probing only profile and restrained structural refinements. I’m also rerunning every previously rejected WO₃ oxygen-site block now that texture is present.
+
+The matched branches are still progressing normally. The accepted texture term is being allowed to co-refine during every trial, so broadening or coordinates cannot claim improvement by undoing the intensity correction.
+
+The final cumulative screen is entering the coordinate-block portion. Once complete, I’ll perform deletion checks, export the CIF/profile/JSON/report, and independently replay the exact submitted project.
+
+The cumulative texture model supports one additional restrained CaWO₄ oxygen adjustment and a repeatable WO₃ tungsten-site adjustment; all WO₃ oxygen moves remain unstable or too large. I’m giving the alternate parents and independent starts the same texture-aware coordinate opportunity before locking the structure.
+
+The texture-aware coordinate comparison is still running and is converging branch by branch. The selected model will require the tungsten-site adjustment to repeat across independent starts without changing the calculated profile or phase fraction materially.
+
+The matched retests are progressing normally. This is the last model-selection loop; after it I’ll move directly to physical screening, final export, deletion tests, and replay.
+
+The final restart comparison is still active and healthy. Its outputs are being saved per lineage so the eventual provenance and uncertainty statement can distinguish formal covariance from model-choice spread.
+
+The tungsten-site update repeats across all three monoclinic starts: Rwp 10.591–10.596%, WO₃ 18.073–18.082 wt%, texture ratio 0.8090–0.8092. I’m doing one final post-coordinate check of the weaker CaWO₄ texture, anisotropic-size, and oxygen-Uiso signals; these are close enough to warrant a stability test but not yet strong enough to retain.
+
+The weaker CaWO₄ mechanisms are being checked across all three independent starts. Their axis identity and effect on the WO₃ fraction must repeat before any is allowed into the final model.
+
+The post-coordinate restart screen remains stable and is still running. If the weak terms stay branch- or axis-dependent, the simpler isotropic/random CaWO₄ model will be retained and that uncertainty noted explicitly.
+
+The weak CaWO₄ signals repeat almost exactly across all starts: [100] texture, [100] size anisotropy, and O Uiso each lower Rwp by about 0.03–0.04 point. Because they can mask one another, I’m testing their combinations now; only independently additive, physical terms will survive.
+
+The combination test is running from each independent checkpoint and includes a second refinement pass, so large first-cycle shifts cannot masquerade as a stable minimum.
+
+All three weak CaWO₄ terms are independently additive and reproduce across starts; the combined model is fully physical and converges on a second pass. I’m accepting [100] texture, [100] size anisotropy, and O Uiso, then performing the final coordinate recheck and packaging from that exact project.
+
+The final project is now being refined and exported from the accepted cumulative model. The remaining work is verification: phase-deletion tests, physical CIF screening, and an independent project replay.
+
+Finalization is still progressing normally through the restrained WO₃ oxygen retests and deletion branches. No extra phase has been introduced; the submitted inventory remains CaWO₄ + WO₃.
+
+Physical screening caught one over-adapted block: the repeated CaWO₄ oxygen shifts shortened tetrahedral W–O to 1.677 Å and overbonded W, so that lower-Rwp coordinate is not defensible. I’m restoring the clean parent oxygen coordinates while retaining the independently supported profile/Uiso terms; the WO₃ octahedra remain plausible.
+
+The physically corrected final project is converging now. This rerun will replace all submitted artifacts, so the CIFs, fractions, fit profile, and project remain generated from one consistent state.
+
+The corrected refinement is still progressing through its final oxygen-site and deletion checks. The restored scheelite geometry is being held fixed; only supported profile, texture, size, strain, and Uiso terms remain active.
+
+One WO₃ oxygen site produced only a 0.0025-point Rwp gain in this single branch and did not repeat earlier; it also worsened W bond valence. I’m rejecting that coordinate move and fixing all WO₃ oxygen sites to the defensible parent, as required by the repeatability/physical-screen rule.
+
+The physically screened final model is now stable: 82.39 wt% CaWO₄ and 17.61 wt% WO₃, Rwp 10.642%, with both phases indispensable in deletion tests. I’m independently replaying `final.gpx` and then writing the concise uncertainty report.
+
+The submitted artifacts are complete. I’m running the last cross-file consistency check now: project phase inventory/fractions/cells versus `result.json`, stored profile versus `fit.csv`, and CIF geometry/formula parsing.
+
+Completed the PXRD analysis.
+
+- Scheelite CaWO₄: 82.39 ± 0.15 wt%
+- Monoclinic WO₃: 17.61 ± 0.15 wt%
+- Rwp: 10.642%; GOF: 4.067
+- Independent GSAS-II replay passed.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v4-coordinate-c7d103ea46bf/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v4-coordinate-c7d103ea46bf/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v4-coordinate-c7d103ea46bf/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v4-coordinate-c7d103ea46bf/workspace/final.gpx)
+- [phase_CaWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v4-coordinate-c7d103ea46bf/workspace/phase_CaWO4.cif)
+- [phase_WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v4-coordinate-c7d103ea46bf/workspace/phase_WO3.cif)
+
+The WO₃ oxygen coordinates were not reliably refinable and remain at defensible parent values; this and the model-dependent fraction uncertainty are documented in the report.
+

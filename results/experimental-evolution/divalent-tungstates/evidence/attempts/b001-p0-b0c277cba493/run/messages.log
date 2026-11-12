@@ -1,0 +1,42 @@
+I’ll inspect the measurement metadata, pattern range/quality, and the available crystallographic tooling first. Then I’ll identify candidate phases, refine a multiphase GSAS-II model, and validate that the exported CIFs, profile, fractions, and statistics all come from the saved `final.gpx`.
+
+The chemical system is ZnO–WO₃ heated at 600 °C, so ZnWO₄ is a strong hypothesis, but I’ll treat residual oxides and polymorphs as candidates rather than assuming a single-phase product. I’m now extracting peak positions and checking the local reference-search and GSAS-II interfaces.
+
+Peak positions already show more complexity than a clean ZnWO₄ trace: the strong group near 23–24.4° and the 30.45/30.69° double maximum need explicit accounting. I found the filtered local COD index and am comparing all Zn–W–O, ZnO, and WO₃ reference structures against the observed pattern before choosing refinement phases.
+
+The reference comparison resolves three crystalline phases: monoclinic wolframite ZnWO₄ (P2/c), monoclinic γ-WO₃ (P2₁/c), and wurtzite ZnO (P6₃mc). Their diagnostic non-overlapping peaks are all present. I’m moving into staged Rietveld refinement now, keeping atomic coordinates tied to validated reference structures while refining scale, background, lattice, and physically limited profile terms.
+
+The first stable cycles give an excellent phase-level match (`Rwp` already ~5.4%) and provisional crystalline fractions near 71% ZnWO₄, 19% WO₃, and 10% ZnO. I also detected an unnecessary global-scale/phase-scale correlation in the initial project setup; after this trial completes I’ll remove that redundant degree of freedom and compare profile/background variants before finalizing uncertainties.
+
+The initial fit’s phase assignment is secure, but its covariance was not: GSAS-II defaulted the overall histogram scale to “refine,” making it mathematically redundant with the three phase scales. I have fixed that scale and am testing reduced profile models; this should preserve the good fit while making the phase-fraction uncertainties meaningful and avoiding highly correlated, nonphysical width terms.
+
+The reduced-model comparison is still running. The first variant is taking longer because each profile choice is being re-refined from a fresh project rather than inheriting parameters from the earlier, singular fit; this is deliberate so the comparison is unbiased.
+
+The comparison converged on the same fractions across every profile choice (spread under 0.1 wt%), which is reassuring. It also exposed that the best reduced fit is effectively Lorentzian: its Gaussian variance was trying to cross below zero and being clipped internally. I’m replacing that boundary-hitting parameter with an explicit zero-Gaussian effective profile, then checking the profile residuals and the sensitivity to background order.
+
+The boundary-free fits are running concurrently. So far the important scientific result is already stable: ZnWO₄ ≈68.7–68.8 wt%, WO₃ ≈20.2 wt%, and ZnO ≈11.0 wt% of the modeled crystalline material. The remaining work is model hygiene—selecting the least correlated profile/background description and ensuring every submitted artifact is regenerated from that exact saved project.
+
+A 20-term smooth Chebyshev background gives the lowest residual without changing the composition materially; its characteristic variation is several degrees wide, so it cannot absorb the narrow Bragg peaks. Across 10, 15, and 20 terms, phase fractions vary by at most 0.07 wt%. I’m now driving the weak ZnO lattice terms to a stable endpoint and will use the model spread—not only the formal covariance—as the practical fraction uncertainty.
+
+The final parameterization is now stable and nonsingular: the saved model converged with no SVD zeros, `Rwp = 3.747%`, `Rexp = 2.765%`, and GOF `= 1.358`. The weak ZnO lattice was optimized separately and then held fixed because its simultaneous cell shifts oscillated against overlapping peaks; the ZnO phase identity and scale remain secure, but its lattice precision is lower than the formal ZnWO₄/WO₃ precision. I’m exporting and cross-validating the requested deliverables from this exact project state.
+
+Completed the three-phase GSAS-II refinement:
+
+- ZnWO₄ (P2/c): 69.10 wt%
+- WO₃ (P2₁/n): 20.11 wt%
+- ZnO (P6₃mc): 10.79 wt%
+
+Fit: Rwp = 3.747%, Rp = 2.796%, GOF = 1.358. Fractions are normalized over crystalline phases; amorphous content cannot be determined. Practical fraction uncertainty is approximately ±0.3 wt%.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [ZnWO4.cif](<ATTEMPT_WORKSPACE>/ZnWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [ZnO.cif](<ATTEMPT_WORKSPACE>/ZnO.cif)
+
+The CIFs parse successfully, the fractions sum to one, and all numerical outputs were verified against the converged `final.gpx`.
+

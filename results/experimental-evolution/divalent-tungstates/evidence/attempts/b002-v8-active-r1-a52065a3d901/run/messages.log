@@ -1,0 +1,65 @@
+I’ll inspect the measurement metadata, pattern, and the reusable analysis scripts first. Then I’ll build a chemically balanced candidate inventory, health-screen every structural model, and refine/test the surviving phases in GSAS-II before freezing and replay-validating the deliverables.
+
+The chemistry is a BaO–WO₃ reaction at 750 °C, so the first inventory must include BaWO₄, residual WO₃/BaCO₃, and charge-balanced non-1:1 barium tungstates if residual peak families demand them. I’m now extracting peak positions and checking what GSAS-II scripting support is available so candidate testing uses the measured profile directly.
+
+The exact COD BaWO₄ record is chemically plausible but flagged for split half-occupied oxygen sites only 1.17 Å apart—a classic average/disorder representation, not a defensible final model without comparison. I’m therefore comparing it against ordered scheelite analogues (with Ba substituted on the divalent site) and multiple passing monoclinic WO₃ records under the same profile assumptions. One older WO₃ record already fails outright because it contains full-occupancy O–O contacts of 0.46 Å.
+
+The peak-family check is internally consistent: the three WO₃ low-angle lines predicted at 23.12°, 23.58°, and 24.38° occur at 23.40°, 23.87°, and 24.66°, and their higher-angle split families recur near 33–34°, 42°, and 50–56°. This supports a two-phase starting model (scheelite BaWO₄ + γ-WO₃), while BaCO₃ and Ba-rich tungstates lack several required companion lines. I’m moving from identification to quantitative refinement, with all default size/strain terms explicitly neutralized before any profile decisions.
+
+Adding Ba₃W₂O₉ resolves the previously coherent “unmodeled” families at 16.5/17.8°, 26.3°, 27.8°, 30.8°, 37.7°, 40.8°, 51.8°, 63.1–63.8°, 70.1°, 71.5°, and 88.6°. The three-phase fit drops Rwp from 9.30% to 6.62% and yields provisional crystalline fractions near 71.8% BaWO₄, 11.9% WO₃, and 16.3% Ba₃W₂O₉. I’m now replay-comparing the disordered exact BaWO₄ record against two passing ordered analogues; the fractions are not final yet.
+
+The model replay is still running because each candidate is being reconverged through the full background/scale/cell/shift/profile sequence, not judged from a single substitution. Early converged files already show that the BaWO₄ oxygen model materially changes Rwp and the inferred minor-phase fractions, so this comparison is necessary before choosing the final structure.
+
+The passing transformed-cell γ-WO₃ model is currently preferred: Rwp 6.068% versus 6.115% for the reviewed conventional record, whose 1.57 Å O–O contact has no compensating fit advantage. Two competing WO₃ polymorphs are still being replayed; after that I’ll test the residual/profile causes required by the gate rather than stopping at the current GOF ≈2.01.
+
+The nuisance-model replays are taking longer than a single cycle because each branch is being reconverged four times. They cover exactly the unresolved alternatives visible in the residuals: polarization, background order, surface roughness, and zero offset versus specimen displacement. I’ll retain a term only if it improves the replay and remains physical/non-bound.
+
+Two clear findings emerged: increasing background order barely helps (Rwp 6.068→6.046%), while roughness gives a large, physical improvement (Rwp 4.252%, GOF 1.41). Free polarization improves further but runs to 1.038, outside its physical 0–1 range, so I will not accept that unbounded result. I’m testing whether realistic fixed polarization and roughness are complementary or merely trading the same angular intensity trend.
+
+The strongest remaining residual family is now identifiable rather than a profile artifact: 24.18°, 28.05°, 34.31/34.86°, 42.26°, 45.20°, and 47.26° are the shifted companion lines of orthorhombic BaCO₃. That is chemically expected unreacted precursor and its CIF passed the health screen. I’m adding it as a fourth phase and reconverging the complete model before deciding whether any phase-specific broadening is still warranted.
+
+The four-phase replay is still converging; adding BaCO₃ introduces its own cell and scale while the existing roughness/profile terms readjust. This is expected to change all fractions, so I’m waiting for full convergence rather than quoting the first cycle.
+
+The BaCO₃ addition is decisive: Rwp falls to 3.494% (Rexp 3.017%, GOF 1.158; Durbin–Watson 1.50), with provisional fractions 68.86% BaWO₄, 11.02% WO₃, 14.23% Ba₃W₂O₉, and 5.89% BaCO₃. A second passing BaCO₃ record, transformed to a compatible setting and replayed, fits worse (Rwp 3.684%), so the modern 25 °C witherite model is preferred. I’m now checking phase-specific widths and the weak-phase watch list against this four-phase baseline.
+
+The quantitative width check shows why a targeted profile test is justified: strong BaWO₄ families are matched closely at 26.70° and 43.19°, but the Ba₃W₂O₉ family near 63.82° is broader in the observation (FWHM 0.243°) than in the calculation (0.167°). I’m comparing one common U term against Ba₃W₂O₉-only size and strain broadening from the same saved baseline.
+
+These branches are computationally heavier because phase broadening derivatives are being refined alongside four cells, four scales, roughness, shift, background, and the common profile. The runs remain active; no additional terms will be accepted until the replayed Rwp and parameter values are stable.
+
+The controlled broadening test favors Ba₃W₂O₉ microstrain: 1404 ppm gives Rwp 3.358% versus 3.423% for a 0.346 µm size model and 3.460% for common-U alone. I’m checking the combination because the strong BaWO₄ high-angle peaks also show a small common width deficit; this determines whether the effects are complementary.
+
+The accepted profile now has a positive common U=4.17, W=17.73, X=2.94 and Ba₃W₂O₉ strain ≈1397 ppm; together they reduce Rwp to 3.339% (GOF 1.107) and are complementary. The watch-list replay is testing a passing small-cell WO₃ polymorph as a replacement and the reviewed Ba₃WO₆ record as a possible weak addition.
+
+The four-phase model is converged and chemically balanced. I’m now doing the required frozen full-range replay, exporting directly from the reopened project, and cross-checking every deliverable against that saved state.
+
+The reopened project replayed stably: Rwp 3.3385%, GOF about 1.107, with phase fractions changing by less than 0.001 wt% between replays. One roughness/scale correlation remains high, so I’ll report that as a systematic uncertainty rather than overstate the formal errors.
+
+All four final exported CIFs pass the required occupancy/contact health check. I’m repeating the numerical line-shape spot checks on the final profile now, including the broadened Ba₃W₂O₉ family that drove the accepted strain term.
+
+A focused residual scan found a low-angle split family near the WO₃ triplet that deserves one more inventory challenge. I’m testing whether it is genuine coexistence of a second WO₃ polymorph or simply unresolved/model-dependent splitting before I freeze the interpretation.
+
+The residual family is explained by phase-specific WO₃ broadening, not a second phase: releasing one WO₃ width term lowers Rwp from 3.3385% to 3.1740% and raises Durbin–Watson from 1.64 to 1.81. Size and strain models are nearly tied; the slightly better, simpler size model gives an effective coherence length of 0.143(5) µm, so that microstructural interpretation will be marked as model-dependent.
+
+The final replay now passes all consistency checks: the four fractions sum exactly to 1, all 8,301 profile rows reproduce the reopened project arrays, every CIF path exists, and CIF cells/formulas agree with the project. I’m writing the concise evidence and uncertainty record next.
+
+Completed and cross-validated against the reopened GSAS-II project.
+
+- BaWO₄: 65.829 wt%
+- Ba₃W₂O₉: 15.695 wt%
+- WO₃: 13.344 wt%
+- BaCO₃: 5.132 wt%
+- Rwp: 3.1740%; GOF: 1.0521
+
+The final CIFs pass the structural health checks. Main uncertainties are a roughly 1–3 wt% model-dependent fraction uncertainty and unresolved size-versus-strain origin of WO₃ broadening.
+
+Files:
+
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [BaWO4.cif](<ATTEMPT_WORKSPACE>/BaWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [Ba3W2O9.cif](<ATTEMPT_WORKSPACE>/Ba3W2O9.cif)
+- [BaCO3.cif](<ATTEMPT_WORKSPACE>/BaCO3.cif)
+

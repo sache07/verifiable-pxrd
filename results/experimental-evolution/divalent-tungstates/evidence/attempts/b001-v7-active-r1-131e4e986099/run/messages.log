@@ -1,0 +1,42 @@
+I’ll start by inventorying the measurement, candidate chemistry, and reusable refinement utilities. I’ll then establish a restrained baseline fit, test chemically plausible alternates under the same nuisance model, and audit representative peak positions and widths before freezing the GSAS-II project and scorer-ready outputs.
+
+The chemistry points first to a strontium tungstate family, but at 650 °C unreacted WO₃/SrCO₃ and non-1:1 intermediates remain credible. I’m treating those as an inventory rather than assuming the nominal 1:1 product, and I’m now extracting the measured peak families and indexing constraints.
+
+The peak inventory resolves into three coherent families once a single ≈−0.58° angular offset is included: scheelite SrWO₄, monoclinic WO₃, and orthorhombic SrCO₃. For example, the SrCO₃ 25.232° line lands at 24.65° and the WO₃ 23.146/23.611/24.369° triplet lands on the measured 22.51/22.94/23.83° family. I’m carrying all three into a quantitative GSAS-II test and keeping the alternate WO₃ polymorph and non-1:1 Sr–W–O candidates as explicit challenges.
+
+The restrained baseline confirms all three phases quantitatively (Rwp 7.36%, Rexp 2.86%), with preliminary fractions near 61.1/22.5/16.4 wt%. A 12-term background barely helps (ΔRwp 0.03%), while surface roughness runs to an unphysical negative parameter with >99.9% correlation, so I’m pruning both. Refining the unknown polarization to a physical 0.712 gives a reproducible improvement to Rwp 7.09%; I’m now testing texture axes and phase-specific broadening from that saved baseline.
+
+The texture tests are strongly diagnostic rather than cosmetic: SrWO₄ favors [110], WO₃ favors [001], and SrCO₃ weakly favors [001], lowering Rwp to 4.44%. Phase-by-phase width tests reject added size terms and unphysical strain for SrWO₄/SrCO₃; WO₃ alone needs real anisotropic microstrain, with a stable [010] uniaxial model reducing Rwp to 3.91% (GOF 1.36). I’m now requiring the high-temperature orthorhombic and tetragonal WO₃ alternates to compete with the same number of texture/strain terms.
+
+The monoclinic WO₃ model decisively survives the source challenge: even with equal texture and two-parameter strain freedom, Pnma bottoms out at Rwp 4.81% and P4/ncc at 7.14%, versus 3.91% for P2₁/n. A free SrWO₄ oxygen-coordinate refinement lowers Rwp further but stretches W–O to 1.93 Å, so I’m not accepting that unrestrained result; I’m rerunning it with a chemically appropriate scheelite W–O distance restraint and will retain the simplest physically screened model.
+
+The final three-phase refinement is in place. I’m finishing the required peak-by-peak profile audit, replacing two high-angle reflections that were too weak or blended for defensible width measurements, then I’ll validate every submitted artifact against the reopened GSAS-II project.
+
+The audit confirms the strong reflections are modeled closely; the two substituted high-angle lines are measurable but noise-limited. I’m also making one final profile challenge: a full monoclinic anisotropic-strain model against the retained two-parameter uniaxial model, to ensure the high-angle WO₃ width pattern is not being hidden by an overly simple broadening term.
+
+The generalized WO₃ model is already showing its main weakness: refinement drives combinations of Stephens coefficients outside the positive-definite region, producing invalid peak widths. I’m allowing the saved/reopened trials to finish so the rejection is based on replay behavior and statistics, not just the warning.
+
+The inventory and profile challenges now converge on the same interpretation: scheelite SrWO₄ plus unreacted monoclinic WO₃ and SrCO₃. The full anisotropic WO₃ strain trial was not replay-stable; its only nominal improvement was 0.008 Rwp with one coefficient statistically consistent with zero, while larger models produced non-positive widths. I’m retaining the simpler physical model and documenting the measured peak audit and limits explicitly.
+
+All scorer-facing files now agree with the reopened project: the three fractions sum to exactly 1.0, every CIF exists and matches its project cell, and every `fit.csv` profile value and reported fit statistic matches `final.gpx` exactly. I’m doing the final artifact check now; no further model changes are pending.
+
+Completed and validated against the reopened GSAS-II project.
+
+| Phase | Structure | Weight fraction |
+|---|---|---:|
+| SrWO₄ | Scheelite, I4₁/a | 60.084(149)% |
+| WO₃ | Monoclinic, P2₁/n | 24.826(121)% |
+| SrCO₃ | Orthorhombic, Pnma | 15.090(148)% |
+
+Final fit: Rwp 3.6480%, Rp 2.8205%, Rexp 2.8612%, goodness-of-fit 1.2750. Trace Sr₃W₂O₉ was not reliably detected and was excluded.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [SrWO₄ CIF](<ATTEMPT_WORKSPACE>/phases/srwo4.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phases/wo3.cif)
+- [SrCO₃ CIF](<ATTEMPT_WORKSPACE>/phases/srco3.cif)
+

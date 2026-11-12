@@ -1,0 +1,54 @@
+I’ll first inspect the metadata, diffraction pattern, and the reusable analysis utilities in `learned/`. Then I’ll build a chemically plausible candidate inventory, refine it in GSAS-II with residual-led phase challenges, and verify that the exported CIFs, profile, fractions, statistics, and `final.gpx` all agree.
+
+The chemistry points first to lead tungstates formed from WO₃/Pb₃O₄ at 500 °C, but I’m treating PbWO₄, lead-rich tungstates, residual WO₃/Pb oxides, and polymorphs as separate hypotheses. I’m now extracting peak families and checking the installed search/refinement interfaces so candidate records are judged by positions and coherent unique reflections before scale factors.
+
+Peak-family matching now strongly supports three phases: scheelite PbWO₄, monoclinic WO₃, and residual tetragonal Pb₃O₄. In particular, the Pb₃O₄-only families near measured 14.66°, 26.81°, 31.22°, 32.55°, and 52.52° move together under the same ~+0.4° angular offset; they are not random residual spikes. I’m fitting the common background/zero/cells first, with phase broadening and texture neutralized, before testing alternates.
+
+The first unconstrained common-profile fit tried to make all phases share one width and drove the Gaussian U term negative, so I’ve rejected that baseline as unphysical despite its low Rwp. The current replay holds U/V/Y/Z at neutral values and compares a common W/X profile with crystallite-size broadening introduced one phase at a time.
+
+The width replay is now stable with nonnegative common W and one isotropic size term per phase; U and X were unsupported and are pruned. A coherent cross-phase intensity trend is real: refining the documented-but-unknown effective polarization improves Rwp from about 7.00% to 5.13% without texture. I’m checking the competing low-angle surface-roughness explanation before accepting that correction.
+
+The residual-led inventory challenge found a fourth crystalline phase: orthorhombic β-PbO (massicot). Its independent family aligns with the unexplained maxima at 15.48°, 29.56°, 30.89°, 38.25°, 45.72°, 49.79°, 53.72°, and 56.73° under the same zero correction. This is chemically credible after heating Pb₃O₄ at 500 °C. I’m rebuilding the common baseline with massicot included before reassessing fractions or nuisance terms.
+
+The four-phase inventory cut Rwp to 3.81% and removed the coherent massicot residual family; its refined crystalline fraction is about 4.8 wt%. I’m now replaying physically credible polymorph/source-record substitutions. This is important because the earlier zero-scale criterion alone would not distinguish a poor database record from a plausible phase.
+
+The source-record challenge improved the WO₃ model substantially: the room-temperature monoclinic Loopstra record fits at Rwp ≈3.19%, better than both the first monoclinic record (3.81%) and triclinic WO₃ (3.28%). Width challenges indicate PbWO₄ is size-dominated, WO₃ and massicot are strain-dominated, and Pb₃O₄ supports complementary size plus strain; negative or bound alternatives are being pruned.
+
+No extra phase has yet been admitted from small Rwp gains alone: March–Dollase trials along axial and diagonal low-index directions either stayed essentially random or were driven by one family, so texture remains off. I’m now re-challenging chemically plausible weak phases—including lead-oxide polymorphs and lead-rich tungstate prototypes—under the cleaned common profile.
+
+The four-phase model is already coherent and gives an excellent fit. I’m completing the required residual-led checks now: challenging plausible polymorphs/weak phases—including justified lead–tungstate analogues—then I’ll replay the accepted model from disk and export every deliverable from that exact project.
+
+The prototype screen is physically sensible enough to test: Mo⁶⁺→W⁶⁺ gives a tetrahedral Pb₂WO₅ model with 1.76–1.78 Å W–O bonds; U⁶⁺→W⁶⁺ gives a much less compelling, highly distorted octahedral Pb₃WO₆ model. I’m testing both alongside raspite, litharge, PbO₂, and reduced tungsten oxide against the same accepted profile.
+
+The watch-list trials are collapsing cleanly: raspite and PbO₂ refine to zero scale; litharge reaches only 0.032 wt% and changes Rwp by 0.0005 percentage point, without a credible set of unique peaks. Those are rejection-level signals, not additional phases.
+
+The isovalent Pb₂MoO₅-derived Pb₂WO₅ prototype also refines to zero scale, despite its reasonable local W–O geometry. The Pb₃UO₆-derived analogue is computationally heavier; it is converging now, and its provisional contribution is already below 0.1 wt%.
+
+The Pb₃WO₆ analogue settles at only 0.18 wt%, with a negligible fit change and unstable cell release; its U-derived octahedral geometry is also a weak chemical analogue. I’m finishing one reduced-WOₓ check after stripping unsupported oxidation labels from the database CIF, then the inventory will be frozen.
+
+The reduced W₁₈O₄₉ model can absorb about 0.47 wt% only after adding a 67-atom, four-cell-parameter model; the Rwp gain is just 0.006 percentage point, its cell release is not fully stable, and the oxidizing Pb₃O₄/WO₃ firing context argues strongly against it. I’m rejecting it as residual overfitting and freezing the defensible four-phase inventory.
+
+The final project has now been reopened and replayed twice over the full range. It converges with no SVD truncation or warnings; the second replay’s maximum shift/e.s.d. is 0.0014. The exported CIFs re-parse to the intended formulas and space groups, `fit.csv` has all 8,284 modeled points, and the four fractions sum exactly to 1.
+
+The refined crystalline composition is:
+
+| Phase | Weight fraction |
+|---|---:|
+| PbWO₄, scheelite-type/stolzite | 57.95 wt% |
+| WO₃, monoclinic P2₁/c | 20.19 wt% |
+| Pb₃O₄, minium | 16.95 wt% |
+| PbO, massicot | 4.91 wt% |
+
+Fractions are normalized over modeled crystalline phases. Final fit: Rwp 2.8471%, Rp 2.1897%, goodness-of-fit 1.1471. PbO is least certain at roughly ±1 wt%; unmodeled phases below approximately 0.5–1 wt% cannot be excluded.
+
+Deliverables:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [PbWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_PbWO4_scheelite.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_monoclinic.cif)
+- [Pb₃O₄ CIF](<ATTEMPT_WORKSPACE>/phase_Pb3O4_minium.cif)
+- [PbO CIF](<ATTEMPT_WORKSPACE>/phase_PbO_massicot.cif)
+

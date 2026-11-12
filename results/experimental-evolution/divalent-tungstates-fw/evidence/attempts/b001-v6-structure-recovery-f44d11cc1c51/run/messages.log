@@ -1,0 +1,90 @@
+I’ll first inspect the metadata, pattern, and the framework’s PXRD/GSAS-II tooling, then build the phase inventory before refining structures and fractions. I’ll keep the final project and exported artifacts mutually consistent and replay-check them.
+
+The chemistry is Ca–W–O, measured with Cu Kα1/Kα2 from about 9.9–100.1° 2θ. I’m now extracting peak families and querying the permitted filtered structure library for Ca/W/O phases and topology-near analogues; early fits will keep atomic coordinates fixed so phase inventory is driven by coherent reflections.
+
+The residual inventory is not just CaWO₄ + WO₃: a coherent family at 19.36, 22.04, 30.66, 32.10, 36.53, and 37.45° matches a monoclinically distorted Ca₃WO₆ ordered-perovskite framework after collapsing several parent cation sites to Ca. I’m carrying multiple P2₁/P2₁/c-type analogue lineages, plus Ca₃W₂O₉ as a competing topology, into matched whole-pattern fits rather than selecting from stick positions alone.
+
+The three-phase model is quantitatively necessary: with Ca₃WO₆ included, preliminary fixed-coordinate refinements place it near 13 wt% and explain the residual family without arbitrary background peaks. The current comparison is testing centrosymmetric and non-centrosymmetric ordered-perovskite parents under identical background, cell, angular, and profile settings; I’m also retaining the two-phase deletion model and Ca₃W₂O₉ competitors as controls.
+
+The fixed-coordinate source comparison rejects Ca₃W₂O₉ (it refines to ~2 wt% and leaves Rwp near the two-phase model) and favors the distorted Ca₃WO₆ perovskite family. Restrained structure recovery is now materially improving the fit: releasing the complete scheelite oxygen orbit and Ca₃WO₆ W–O network lowers Rwp from the moderate-profile ~13–14% range to about 11% without adding phases. I’m continuing cumulative restarts because the last coordinate/profile step has not yet met convergence.
+
+The unrestricted coordinate searches found lower-Rwp but chemically impossible local minima, so I’ve rejected those branches. I’m now using damped, connectivity-restrained coordinate updates with explicit displacement caps, then I’ll require agreement from perturbed starts before accepting any structural motion.
+
+The restrained run is still converging through the staged atom blocks. Its silence is expected—the script only reports after each completed block—and I’m keeping the project under observation rather than treating a numerically lower fit as success.
+
+The connected-block test is behaving conservatively: oxygen motion in CaWO₄ gives only a small improvement, while WO₃ and Ca₃WO₆ coordinate releases worsen the matched fit and show strong parameter correlations. That is evidence to keep those coordinates near their parent geometry unless the final profile re-equilibration reverses the result.
+
+A consistency check caught an important numerical artifact: the earlier 12.38% screen had cached a curve from an out-of-bounds strain step even though the saved strain values were reset to zero. Recalculating the saved parameters gives ~14.95%, so that apparent improvement is invalid and will not be used. I’m rebuilding the final fit with every saved parameter/curve pair replay-consistent.
+
+The replay-consistent fit has started at Rwp 13.118%, already below the honest common-profile result, and the trust-step driver is accepting only post-recalculation improvements. This is slower than a conventional run because every Newton step is independently regenerated and checked, but it prevents the stale-curve artifact from entering `final.gpx`.
+
+The accepted model remains within positive background, scale, width, and crystallite-size limits; no bound hit is being masked. I’m letting the two profile/size alternations finish because those parameters are the main remaining correlation and directly affect the weight fractions.
+
+The honest matched-source comparison now favors the physical P2₁/c Ca₃WO₆ parent: replayed Rwp 13.118% versus 13.205% and 13.206% for the two near-tied P2₁ mapped alternatives before final trust stepping. The selected branch converged to 13.0717% with fractions stable during the final profile/size alternation.
+
+The specimen-displacement branch is also being replayed rather than judged from GSAS-II’s pre-shift residual. Its matched starting fit is marginally better than zero offset (13.098% versus 13.118%), so I’m completing the same trust-stepped profile treatment before choosing the angular model.
+
+The residual is now inventory-closed but still shows systematic intensity mismatches at modeled WO₃ and scheelite reflections, so coordinate testing is warranted. I’m running the physical coordinate recovery from both the parent and a perturbed ligand start; every accepted move must lower a freshly calculated curve, stay within 0.012 fractional coordinates of the parent, and pass contact-distance checks.
+
+Both coordinate starts are still in their connected-block checks. The parent and perturbed runs are isolated projects, so their endpoint agreement can be tested directly rather than inferred from a single least-squares trajectory.
+
+The two starts reached nearly the same fractions (within 0.0001 absolute) and similar coordinates, but several ligand shifts are still moving coherently rather than fully stationary. I’m doing one cumulative restart against the original parent anchors; if the shifts hit the physical displacement cap or the starts diverge, I’ll retain the earlier conservative structure and report the coordinate uncertainty.
+
+The restart remains within the original-parent envelope and the contact screens are still passing. I’m waiting for both endpoints because the decision hinges on whether their coordinate differences contract, not merely on which one produces the lowest Rwp.
+
+The CaWO₄ oxygen orbit continues to improve intensities but reaches my conservative ±0.012 fractional displacement envelope while remaining chemically plausible (shortest W–O ≈1.85 Å). Per the bound rule, I’m treating that endpoint as inconclusive—not automatically accepting the lower Rwp—and will now distinguish true coordinate motion from a simple scheelite preferred-orientation signature.
+
+The preferred-orientation screen is testing five low-index scheelite axes with the coordinates reset to the literature parent. I’ll retain texture only if a physically moderate March–Dollase ratio gives a reproducible gain and its axis-specific reflection pattern explains the residuals.
+
+A real but moderate scheelite texture signature is present: [111] gives the best screened March–Dollase fit (ratio 1.187, Rwp 12.766%) and outperforms the other low-index axes. I’m now repeating the coordinate recovery with that texture fixed; this is the decisive check for whether the earlier large oxygen shift was compensating for orientation.
+
+With [111] texture fixed, the CaWO₄ oxygen refinement reverses direction and is rejected from both the exact parent and perturbed start; the large earlier oxygen shift was therefore nuisance-dependent and is not defensible. I’m retaining the literature scheelite coordinates and applying the same focused check to WO₃.
+
+WO₃ shows a small, reproducible gain from connected oxygen motion (about 0.03 Rwp) with close parent/perturbed endpoints. One restart is checking whether that motion stabilizes before its contact limit; unlike the scheelite case, texture does not remove this gradient.
+
+The final nuisance screen is limited to one category at a time. Asymmetry and polarization are being tested against the textured, parent-coordinate model; neither will be retained merely for a tiny gain, and profile/scale rebalancing is evaluated separately afterward.
+
+Polarization is strongly supported: it converges reproducibly to 0.641 and lowers replayed Rwp from 12.753% to 10.224%, while asymmetry returns to its starting value and has no material effect. Because polarization changes relative intensities, I’m now performing the required coordinate retest before finalizing.
+
+After polarization, CaWO₄ again rejects coordinate motion. WO₃ still gives only a small monotonic gain without reaching a stationary endpoint, so I will not accept that coordinate branch unless the physical restart converges. I’m also checking the mapped Ca₃WO₆ oxygen/Ca block under the finalized intensity model before deciding whether its parent coordinates are recoverable.
+
+One bookkeeping issue surfaced: the texture flag remained active during some screening cycles, so the reported polarization gain was a coupled texture/polarization re-equilibration, not a pure single-parameter step. The values are still physical, but I’m now separating those two parameters in alternating replay-checked blocks and will save `final.gpx` only after all flags are off and the curve is regenerated.
+
+The separated final refinement is running from the parent-coordinate model. It is alternating cells/displacement, common profile, phase sizes, polarization, and [111] texture with each accepted step recalculated; the deliverable will retain only the categories that remain stable when released separately.
+
+No parameter has required a frozen/bound workaround during the final pass. The remaining time is the second independent polarization/texture alternation and the final zero-cycle replay, which is the consistency check that previously exposed the false low-Rwp branch.
+
+The separated alternation lowers replayed Rwp to 7.970% with positive background and no frozen parameters; fractions are now about 71.6% CaWO₄, 15.6% WO₃, and 12.8% Ca₃WO₆. Polarization has moved to 0.815, so I’m doing a cumulative restart specifically to see whether it stabilizes internally or drifts toward its physical bound—if it drifts, that nuisance term will be rejected as compensatory.
+
+The restart is still numerically clean. I’m waiting for the second polarization release; that endpoint determines whether the 7.97% model is structurally interpretable or merely following a correlated intensity correction.
+
+This restart is taking the same full sequence because the scale/background response is coupled to intensity corrections. I’ll compare the final polarization, texture ratio, fractions, and Rwp directly against the prior endpoint rather than using the in-run pre-shift statistics.
+
+The restart answers the key question: polarization drifts from 0.815 to 0.917 while continuing to lower Rwp, so it is not internally stable and is heading toward the physical bound. I’m rejecting that compensatory branch and fixing the standard unpolarized Bragg–Brentano value (0.5); the final project will retain only the independently supported [111] texture and simple profile terms.
+
+The conservative finalization is now re-equilibrating cells, displacement, widths, sizes, and [111] texture with polarization fixed at 0.5. This branch is intentionally expected to have a higher Rwp than the rejected bound-drifting model.
+
+The conservative replay-consistent model is finalized at Rwp 12.740% (Rp 9.710%). Normalized crystalline fractions are 72.35 wt% CaWO₄, 15.25 wt% WO₃, and 12.40 wt% Ca₃WO₆; I’m now validating the exported CIF chemistry/contacts and independently replaying `final.gpx` from saved atomic parameters.
+
+The independent replay passes: it regenerated the full curve with zero optimization, matched `fit.csv` to ~7×10⁻¹² counts maximum difference, reproduced all fractions exactly, left `final.gpx` unchanged, and raised no profile-review flags. I’m doing one final cross-file audit of paths, row counts, CIF formulas, and project/result agreement.
+
+Completed the PXRD analysis and refinement.
+
+Final crystalline fractions:
+
+- CaWO₄ (scheelite): 72.35 wt%
+- WO₃ (monoclinic): 15.25 wt%
+- Ca₃WO₆ (ordered-perovskite-related): 12.40 wt%
+
+Rwp = 12.740%, Rp = 9.710%. Independent GSAS-II replay reproduced the profile and fractions exactly with no review flags. The precise Ca₃WO₆ coordinates/polytype remain less certain.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v6-structure-recovery-f44d11cc1c51/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v6-structure-recovery-f44d11cc1c51/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v6-structure-recovery-f44d11cc1c51/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v6-structure-recovery-f44d11cc1c51/workspace/final.gpx)
+- [CaWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v6-structure-recovery-f44d11cc1c51/workspace/phase_CaWO4.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v6-structure-recovery-f44d11cc1c51/workspace/phase_WO3.cif)
+- [Ca3WO6 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v6-structure-recovery-f44d11cc1c51/workspace/phase_Ca3WO6.cif)
+

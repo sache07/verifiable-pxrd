@@ -1,0 +1,26 @@
+I’ll first inspect the measurement metadata, pattern range, and reusable refinement utilities. Then I’ll build a chemically plausible phase inventory, refine it incrementally in GSAS-II, challenge alternates/weak phases against the residual, and verify that every exported artifact matches the saved final project.
+
+The chemistry points first to calcium tungstate, but I’m treating unreacted CaO/WO₃ and intermediate calcium tungstates as real candidates rather than assuming a single-phase product. I’m now comparing observed peak families with all visible Ca–W–O database records and checking profile shape before any structural refinement.
+
+The first stable profile test already gives a close one-phase fit, but it exposed an important nuisance-model issue: GSAS-II had both the specimen scale and phase scale active, making them exactly redundant. I fixed the specimen scale, repeated the refinement, and found the angle-dependent Gaussian term collapses to zero while the constant-width term remains stable. I’m pruning that unsupported term and will compare only physically distinct common-profile alternatives before testing minor phases.
+
+A multi-start check changed the profile decision: starting the angle term near its physical solution converges reproducibly to positive U ≈ 24 and W ≈ 40, improving Rwp from 4.17% to 3.89%; the earlier zero-U result was a local minimum. I’m retaining U/W and now replaying polarization, Lorentzian width, structural coordinates/ADPs, size/strain, and texture on that improved common baseline so each judgment uses the same profile.
+
+The phase challenge is now clear. Ca₃WO₆ and three physically distinct WO₃ records all drive to zero scale. CaO gives only a marginal 0.18(7) wt% trial scale, supported almost entirely by a single weak 200 residual; its other expected families do not improve coherently, and the two-parameter BIC favors omitting it. I’m keeping CaO as a stated watch-list/upper-limit uncertainty, not as a quantified phase, and I’m doing the final full-range replay and export from the one-phase model.
+
+The final full-range project now reopens and reconverges with a maximum shift/esd below 0.001, with no frozen or bound parameters. I’ve exported the CIF, profile, JSON, and report from that replayed project; I’m doing a final cross-file audit now (CIF chemistry/symmetry, profile equality, row counts, and project/export agreement).
+
+Identified one crystalline phase: scheelite CaWO₄, space group I4₁/a (No. 88), at 100.0 wt% normalized over modeled crystalline phases.
+
+Refined cell: a = 5.248704(33) Å, c = 11.385632(62) Å. Fit: Rwp = 2.3504%, Rp = 1.8170%, GOF = 1.0313.
+
+A marginal CaO trial gave 0.18(7) wt% but lacked support from multiple reflections, so it was not retained; trace CaO below roughly 0.4 wt% remains possible. Amorphous content was not quantified.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [CaWO4_scheelite.cif](<ATTEMPT_WORKSPACE>/CaWO4_scheelite.cif)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+

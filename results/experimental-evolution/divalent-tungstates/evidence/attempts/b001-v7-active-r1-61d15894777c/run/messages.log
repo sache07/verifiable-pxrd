@@ -1,0 +1,68 @@
+I’ll first inspect the measurement metadata, pattern format, and the reusable analysis utilities, then build a candidate-phase inventory and establish a GSAS-II baseline before refining alternatives. I’ll keep the structural and peak-shape evidence tied to the saved project and validate every submitted artifact by reopening it.
+
+The chemistry points first to lead tungstates, but the 500 °C Pb₃O₄/WO₃ route can retain precursors or form non-1:1 lead-rich intermediates. I’m checking the measured peak inventory and the installed indexing/database/refinement interfaces before assigning any phase.
+
+A coherent scheelite PbWO₄ family is already visible: its predicted peaks align after a roughly +0.4° low-angle specimen displacement, including the high-angle sequence. Several strong peaks remain outside that family, so I’m treating them as a real second-phase signal and screening precursor polymorphs and charge-balanced Pb–W–O alternatives under the same angular correction.
+
+The residual inventory is chemically and crystallographically consistent with retained room-temperature monoclinic WO₃, not a lead-rich tungstate: its strongest unique peaks at 23.53, 24.02, 24.84, 33.66, 34.60, and 42.27° all match one common displacement correction. Pb₃O₄ remains on the watch list because several weaker lines coincide, and I’ll test it quantitatively after the two-phase baseline converges.
+
+The Pb₃O₄ watch-list challenge is decisive: adding room-temperature tetragonal minium lowers Rwp from 10.58% to 8.02% and explains its unique 26.81, 31.22, 32.55, 50.38, 52.52, and 58.54° families. The provisional crystalline fractions are about 60% PbWO₄, 26% WO₃, and 14% Pb₃O₄; I’m now comparing physical source/polymorph alternatives and then testing width and intensity corrections one at a time.
+
+The nuisance tests separate cleanly: polarization is strongly supported (Rwp 7.92→6.30%, refined 0.997), while roughness drives a parameter to its bound with 99.99% correlation and is rejected. Extra U or W also hits zero and will be pruned. I’m fixing the effectively full polarization at 1.0, keeping an eight-term smooth background, and replaying size-versus-strain phase by phase from that saved baseline.
+
+The source inventory now converges on scheelite PbWO₄ + residual monoclinic WO₃ + Pb₃O₄. I’m doing the last model-discrimination pass—texture and directional broadening from the saved isotropic baseline—then I’ll freeze, reopen, audit peak widths, and export the scorer-ready files.
+
+The physical challenges are behaving cleanly: axial/diagonal texture changes Rwp by only about 0.00–0.01 percentage point and the March ratios stay near 1, so texture is unsupported. The first uniaxial WO₃ strain model is likewise indistinguishable from isotropic; I’m finishing the other symmetry directions before locking the simpler model.
+
+The watch-list replay found a real fourth phase: orthorhombic massicot PbO. Its nonnegative scale is ~60σ from zero, it accounts for the coherent 29–32° residual family, and Rwp drops from 4.57% to 3.74%; tetragonal litharge and PbO₂ do not. I’ll now reconverge the four-phase model and repeat the nuisance/profile and peak-shape audits, as required after an inventory change.
+
+With massicot included, the clean common profile now supports U+X (W remains at its nonnegative bound). I’m restarting each phase’s size/strain test from that saved U+X baseline; this matters because the X-only WO₃ strain solution went negative and is therefore physically rejected.
+
+The combined, physically preferred PbWO₄/Pb₃O₄ size model is replay-stable at Rwp 3.437% and GOF 1.385; fractions are currently about 59.0/20.8/17.3/2.83 wt% (PbWO₄/WO₃/Pb₃O₄/PbO). I’m now testing whether any additional strain term is complementary, or merely substitutes for U/X or size, before pruning the final model.
+
+The two massicot broadening models are both replay-stable: a ~55 nm size model gives Rwp 3.191%, while an extreme ~1.0% strain model gives 3.117%. Because that strain may be compensating for the average 1961 structure, I’m comparing the later modulated orthorhombic PbO structure under identical nuisance terms before deciding which fraction is defensible.
+
+The modulated PbO record is computationally heavier because of its 32-formula-unit supercell. Its neutral replay is already clearly inferior (Rwp 3.96% versus 3.44% for the average massicot model) and requires an implausible ~2% contraction of the long axis; I’m allowing the matched size-broadening replay to finish so the rejection is source-model rather than profile-model dependent.
+
+The measured-width audit resolves the massicot ambiguity: the 53 nm size model tracks its low/mid/high FWHM (0.258/0.342/0.465° calculated versus 0.263/0.282/0.406° observed) better than the extreme-strain model (0.250/0.409/0.580°), even though the latter lowers global Rwp. I’m retaining the physical size model and now checking directional size and final four-phase texture terms against it.
+
+The four-phase model is now stable. I’m finishing the last directional-broadening and texture challenges, then I’ll replay the watch list against that exact model and freeze the scorer-ready project and exports.
+
+The final challenges found two modest but reproducible effects: a diagonal massicot texture term and directional broadening in Pb₃O₄. I’m testing them together because they affect intensity and width independently; a WO₃ strain trial was rejected after forcing a profile coefficient out of bounds.
+
+The combined replay supports Pb₃O₄ directional size broadening, while its texture term collapses to unity; massicot’s extra size anisotropy is too small and fraction-sensitive to retain. I’m therefore using the lean model (one Pb₃O₄ anisotropy plus one replay-stable massicot texture term) for the final phase watch-list challenge.
+
+A second WO₃ form is the only watch-list candidate with substantial support: triclinic WO₃ refines to about 1.4 wt% and lowers Rwp from 3.110% to 3.082%. Because it is closely related to monoclinic WO₃, I’m checking refined-cell stability and phase-specific widths before deciding whether this is a real polymorph or merely a surrogate for WO₃ line-shape error.
+
+The triclinic component survives the harder test: its literature cell refines only modestly, its fraction becomes 2.61(12) wt%, no parameter is bound, and the scale correlation with monoclinic WO₃ is moderate (−0.65), not singular. Size/strain additions inflate that fraction and correlate strongly, so I’m retaining only the refined cell and now replaying the weak-phase watch list once more against the five-phase model.
+
+The five-phase replay remains numerically well behaved. The second watch-list pass is now testing whether reduced tungsten oxides or another WO₃ polymorph still explain any residual once triclinic WO₃ is present; zero-scale candidates are being discarded automatically.
+
+The final five-phase model is selected. I’m now extending the replay to every measured point (9.903–100.095°), explicitly pruning all rejected terms, and generating the CIFs, profile, JSON, and reopened-project consistency checks from that single saved project.
+
+The full-range fit is visually strong and the export validation passes, but one structured high-angle residual family remains. I’m doing one last compatible anisotropy challenge on the dominant scheelite phase; if it is not replay-stable and materially better, the current lean project remains final.
+
+The scheelite challenge supports a mild [001] size anisotropy (about 61 nm transverse versus 57 nm axial): it is replay-stable, adds one parameter, lowers χ² by ~29, and has no bound or high new correlation. Both anisotropic-strain trials failed at bounds, so I’m accepting only this size term and regenerating the final artifacts once.
+
+The final watch-list replay confirms the stopping point: orthorhombic WO₃ and W₁₈O₄₉ each absorb only ~0.3–0.35 wt% and give similar tiny improvements, so the residual is not phase-specific. I’m leaving that sub-percent signal unassigned and documenting it as an identification limit rather than adding a non-unique sixth phase.
+
+Completed the five-phase refinement:
+
+- PbWO₄ scheelite: 58.50 wt%
+- Monoclinic WO₃: 17.73 wt%
+- Pb₃O₄: 17.03 wt%
+- Massicot PbO: 4.16 wt%
+- Triclinic WO₃: 2.58 wt% (tentative)
+
+Combined WO₃ is 20.31 wt%. The full-range fit gives Rwp = 3.026%, GOF = 1.221. The triclinic/monoclinic split is overlap-limited; a further ~0.3–0.4 wt% residual phase signal was non-unique and not assigned.
+
+Outputs:
+
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [Phase CIFs](<ATTEMPT_WORKSPACE>/phases)
+
+The reopened-project validation passed: 8301 profile rows, fractions sum to 1.0, all CIFs exist, no frozen variables, and exported fractions/profile agree with `final.gpx`.
+

@@ -1,0 +1,48 @@
+I’ll inspect the measurement metadata, pattern, reusable analysis helpers, and candidate index first. I’ll then build a low-dimensional GSAS-II fit, test chemically plausible phase records and analogues with geometry checks, and only export results from the converged saved project.
+
+The chemistry narrows the initial inventory to manganese tungstates plus possible unreacted Mn–O/W–O phases, but I’m treating that only as a hypothesis. I’m now extracting observed peak families and enumerating all indexed Mn–W–O records, including composition, symmetry, data quality flags, and actual occupied structures before any fit test.
+
+The diagnostic peak sequence is already compelling for monoclinic wolframite MnWO₄: the low-angle 010/100 pair and the split 011/110 and \(\bar{1}11/111\) families all occur, while Mn₃WO₆, Mn₃O₄, and monoclinic WO₃ predict strong reflections that are absent. I’m screening alternate wolframite source records and the scheelite polymorph under the same simple profile before committing to the structural parent.
+
+The inventory audit rejected one old scheelite record because its explicit sites plus symmetry create impossible over-occupancy; a later fully occupied scheelite record is being used for the polymorph control instead. For wolframite, the ambient ferberite single-crystal parent is preferable to the spray-film records (the latter carry anomalously large displacement parameters); Fe²⁺→Mn²⁺ is isovalent and gives normal sixfold Mn–O/W–O geometry after substitution.
+
+A first zero-offset trial converged, but it requires about −0.50° zero and contracts the MnWO₄ cell to ~135.6 Å³, well below the accepted ambient wolframite volume. Because the scan is explicitly reflection geometry, I’m now running the otherwise identical specimen-displacement model; this is the key physical discrimination, not just a lower residual contest. The initial GSAS-II HAP defaults were also corrected: microstrain is 0 ppm and crystallite size is at the program’s large/no-broadening limit, both fixed.
+
+The single-phase residual contains a coherent unmatched family—not random noise. Its 22.7°, 26.15°, 32.8–33.7°, and ~41.5° features track the strongest room-temperature WO₃ reflections after the same angular correction, with the 23–24° WO₃ triplet largely overlapping MnWO₄. I’m therefore treating residual WO₃ as missing-phase evidence and will add it only after screening the available WO₃ records for temperature, occupancy/disorder, symmetry, and geometry.
+
+Adding room-temperature γ-WO₃ is decisively supported: Rwp falls from 15.29% to 11.90%, its scale stays positive, and its unique reflection families remove the broad unmatched residuals. The two independent γ-WO₃ records both work; the neutron-derived record fits slightly better without extra compensation and is fully occupied with normal WO₆ geometry. The remaining largest residuals now sit on MnWO₄ reflections, indicating intensity/profile mismatch rather than another obvious phase. I’m using a Le Bail diagnostic next to separate inventory adequacy from structural-coordinate errors.
+
+The Le Bail diagnostic reaches ~8.55% Rwp, confirming that MnWO₄ + γ-WO₃ accounts for the reflection positions; the structural fit gap is mainly intensity/profile error. Refining only the MnWO₄ coordinates lowers Rwp to 10.68% and retains plausible octahedra (Mn–O 1.95–2.27 Å; W–O 1.76–2.16 Å). I’m now testing the missing global Lorentzian width terms one at a time, with nonnegative bounds, before considering any phase-specific broadening or texture.
+
+The global profile test identifies a positive Lorentzian \(X\) term, while \(Y\) tries to cross its nonnegative bound and is rejected. Jointly releasing all Caglioti terms drives the Gaussian width negative over part of the scan, so I’m retaining the stable parameterization: fixed fitted \(U,V\), refined \(W,X\), with \(W\)’s lower bound set from \(W \ge V^2/(4U)\). This guarantees nonnegative Gaussian width over the fitted angular range and removes the earlier U–V correlation from the active variable set.
+
+WO₃ isotropic size broadening is unsupported (it worsens the fit and stalls), while one isotropic WO₃ microstrain term is strongly supported and converges near 6,590 ppm, reducing Rwp from 8.31% to 7.91%. This is sizeable broadening, so I’ll retain it as a model-dependent parameter and check whether refining only the heavy W positions improves the WO₃ structure without distorting its octahedra.
+
+The two-phase model leaves a reproducible signal for a small hausmannite-type Mn₃O₄ fraction. I’m validating that third phase now by fully reconverging it, checking its unique reflections and geometry, and comparing an alternate Mn₃O₄ record under the same profile model before accepting it.
+
+The converged three-phase fit improves several independent Mn₃O₄ families—not just one overlap—including the isolated 103 line near 31.77° and lines near 58.08–59.33°. I’m now rebuilding both hausmannite candidates from the identical two-phase baseline so the source comparison is not biased by the current solution.
+
+The selected hausmannite record is the modern, fully occupied 295 K structure (Rwp 7.7314% versus 7.7603% for the idealized 1926 alternative). Before freezing the model, I’m doing the remaining profile audit: testing MnWO₄ size and strain separately, since the strongest residuals sit on MnWO₄ peaks rather than forming a new unmatched peak family.
+
+The profile audit is clean: MnWO₄ size runs to the 10 µm no-broadening limit and is 98.5% correlated with global X; MnWO₄ strain tries to become negative (unphysical peak narrowing). Both are rejected. The accepted model therefore uses only the strongly supported WO₃ microstrain term, with all unused phase broadening fixed neutral and no frozen variables.
+
+The final coupled refinement is now numerically stable (maximum shift/esd 0.040) with Rwp 7.7313%. I’m exporting all deliverables directly from that saved project and then reloading them for an exact cross-check of fractions, cells, profile arrays, and geometry.
+
+Completed and validated a three-phase refinement:
+
+- MnWO₄ wolframite: 75.20 wt%
+- γ-WO₃: 19.42 wt%
+- Mn₃O₄ hausmannite: 5.38 wt%
+
+Final fit: Rwp = 7.7313%, Rp = 5.0081%, GOF = 3.1118. Fractions are normalized over modeled crystalline phases. The exact WO₃ polymorph remains moderately uncertain because its reflections are broad and overlapping.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MnWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_1_MnWO4.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_2_WO3.cif)
+- [Mn₃O₄ CIF](<ATTEMPT_WORKSPACE>/phase_3_Mn3O4.cif)
+

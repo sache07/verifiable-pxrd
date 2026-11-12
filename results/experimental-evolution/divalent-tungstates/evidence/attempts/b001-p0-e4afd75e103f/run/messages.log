@@ -1,0 +1,30 @@
+I’ll inspect the diffraction data and metadata first, then identify candidate phases, build/refine them in GSAS-II, and validate that the exported CIFs, phase fractions, profile, and project all agree. I’ll flag any ambiguity rather than forcing an over-specific assignment.
+
+The chemistry points first to zinc tungstate, but I’m treating that only as a hypothesis. I’m now extracting the observed peak set and comparing it against the local crystallographic database, including checks for unreacted ZnO/WO₃ and plausible tungsten-oxide polymorphs.
+
+All major observed lines are accounted for by three specific structures: monoclinic wolframite ZnWO₄ (P2/c), monoclinic γ-WO₃ (P2₁/c), and wurtzite ZnO (P6₃mc). I’m moving into quantitative refinement now; the key uncertainty will be separating instrumental broadening from phase-specific crystallite broadening because no calibrated profile was supplied.
+
+The first quantitative pass reaches a low profile residual, but it exposed a GSAS-II scale redundancy and overparameterized two negligible size terms. I’m tightening the model now—removing that redundancy and comparing size versus microstrain broadening for ZnWO₄—so the reported fractions come from a stable covariance matrix rather than merely the lowest residual.
+
+The tightened model is now stable: no dropped parameters or Hessian singularity, full-pattern \(R_{wp}=3.54\%\), and the normalized fractions settle at 72.72% ZnWO₄, 17.48% WO₃, and 9.80% ZnO. I’m doing the final consistency checks now—CIF/project agreement, residual-peak search, JSON sums, and file validation—before writing the uncertainty note.
+
+Completed the GSAS-II refinement and validated all outputs.
+
+| Crystalline phase | Space group | Weight fraction |
+|---|---|---:|
+| ZnWO₄ wolframite | P2/c | 72.72 wt% |
+| γ-WO₃ | P2₁/n | 17.48 wt% |
+| ZnO wurtzite | P6₃mc | 9.80 wt% |
+
+Fit statistics: \(R_{wp}=3.537\%\), \(R_p=2.715\%\), GOF = 1.282. Fractions are normalized over modeled crystalline material; systematic uncertainty from uncalibrated broadening and microabsorption exceeds the formal errors.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [ZnWO4_wolframite.cif](<ATTEMPT_WORKSPACE>/ZnWO4_wolframite.cif)
+- [WO3_gamma.cif](<ATTEMPT_WORKSPACE>/WO3_gamma.cif)
+- [ZnO_wurtzite.cif](<ATTEMPT_WORKSPACE>/ZnO_wurtzite.cif)
+

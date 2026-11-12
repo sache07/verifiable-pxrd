@@ -1,0 +1,45 @@
+I’ll first inspect the measurement metadata, pattern format, and the reusable refinement utilities. Then I’ll build a chemically screened phase inventory, refine it in GSAS-II, and verify that the exported CIFs, fractions, profile, and project all agree.
+
+The chemistry points first to a Sr–W–O reaction product, with unreacted WO₃/SrCO₃ and low-temperature intermediates as credible minorities. I’m now checking the database coverage and the diffraction peak families before accepting any candidate; this is where polymorph choice matters most.
+
+The peak-family screen supports a three-phase watch list: scheelite SrWO₄ is the dominant phase, while the 22–25° families require both a monoclinic WO₃-type precursor and orthorhombic SrCO₃. I’m keeping alternate WO₃ and carbonate records active until they are tested under the same profile and displacement model.
+
+The first common-baseline fit correctly locked the dominant scheelite and monoclinic WO₃ families, but it drove the carbonate scale to zero before its cell could move. Its unique families are consistently about 0.14° lower than the database record under the shared displacement, so I’m re-challenging that physically plausible phase with a modest expanded-cell seed rather than treating the zero scale as rejection.
+
+The shared W/X profile is stable with \(U=0\); releasing \(U\) made it negative and was therefore rejected. The remaining residuals are intensity-family specific rather than a simple width trend, so I’m now comparing the physical WO₃ polymorph records under that same nonnegative profile before testing texture on the accepted inventory.
+
+The alternate-record refinements are still running. Early behavior is consistent with a record-level comparison rather than a phase-count change; I’m letting each model reach the same replay point so the comparison is fair.
+
+The [110] scheelite texture correction is replay-stable and improves several separated SrWO₄ families. The WO₃ residuals likewise form a coherent orientation pattern—its three isolated low-angle axial families have the right positions but strongly unequal observed intensities—and a modest [10−1] March–Dollase term gives the best symmetry-distinct trial. I’m now checking whether the carbonate shows an independent supported texture or should remain neutral.
+
+The phase-width trials are discriminating cleanly: SrWO₄ and SrCO₃ strain terms went nonphysical or gave no gain, while WO₃ supports a finite isotropic size near 0.15 μm. I’m carrying that term forward and repeating the polymorph comparison with equivalent texture/profile freedom so the lower-symmetry WO₃ record does not win merely by having extra cell parameters.
+
+The three-phase inventory is now coherent: scheelite SrWO₄, monoclinic WO₃, and orthorhombic SrCO₃. I’m checking whether the promising SrWO₄ oxygen-coordinate refinement is geometrically defensible, then I’ll freeze the accepted model, replay it from disk, and generate the exact project/export set.
+
+The coordinate-only improvement is not physically acceptable: it lengthens every W–O bond to about 1.97 Å, far outside the expected scheelite tungstate tetrahedron, so I’m rejecting that lower Rwp as an intensity-model surrogate. The final structure will retain physically screened prototype coordinates and report that internal coordinates are not independently reliable from this laboratory pattern.
+
+A physically screened CaWO₄ parent (isovalent Ca→Sr substitution) gives both sensible SrWO₄ geometry and a better fit than the SrMoO₄ and EuWO₄ alternatives. A width challenge also indicates genuine anisotropic broadening in WO₃, so I’m comparing the symmetry-distinct axes before accepting that extra term.
+
+The accepted nuisance model now has one displacement correction, a nonnegative common U/W/X profile, three replay-supported March–Dollase terms, and a low-correlation uniaxial WO₃ size term. I’m doing the final full-range reopen/replay now; the CIFs and fit profile will be exported only from that saved project.
+
+The full-range replay converged cleanly (maximum shift/ESD 0.00015) at Rwp 3.6375%, with fractions 61.71% SrWO₄, 22.97% WO₃, and 15.32% SrCO₃. I’m doing the final cross-file consistency check now—project versus CIF cells, profile rows, JSON normalization, and parseability.
+
+Completed and validated the full-range GSAS-II refinement.
+
+- SrWO₄, I 41/a: 61.71(14) wt%
+- WO₃, P 21/c: 22.97(11) wt%
+- SrCO₃, Pnma: 15.32(15) wt%
+- Rwp: 3.6375%; GOF: 1.2733
+
+Fractions are normalized over modeled crystalline material. SrWO₄ internal coordinates remain prototype-dependent, and the precise low-symmetry WO₃ polymorph is not completely decisive. Amorphous content was not quantified.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [SrWO4 CIF](<ATTEMPT_WORKSPACE>/phase_1_SrWO4.cif)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_2_WO3.cif)
+- [SrCO3 CIF](<ATTEMPT_WORKSPACE>/phase_3_SrCO3.cif)
+

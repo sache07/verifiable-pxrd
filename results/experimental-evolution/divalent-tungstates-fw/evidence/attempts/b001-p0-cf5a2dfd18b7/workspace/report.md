@@ -1,0 +1,11 @@
+# Powder XRD phase analysis
+
+The pattern is described by three crystalline phases: wolframite-type ZnWO4, monoclinic WO3, and wurtzite ZnO. Their refined crystalline weight fractions are 72.04%, 20.50%, and 7.45%, respectively. These values are normalized over the modeled crystalline material; no amorphous fraction was measured.
+
+The assignments are supported by complete line series, not isolated peaks. ZnO accounts for the wurtzite reflections near 32.07, 34.74, 36.58, 47.85, 56.87, 63.16, 68.23, and 69.33 degrees 2theta. Monoclinic WO3 accounts for the diagnostic triplet near 23.45, 23.90, and 24.71 degrees and its associated higher-angle lines. The remaining dominant reflections, including those near 15.78, 19.19, 30.72/30.97, 36.58, and 41.57 degrees, are indexed by wolframite ZnWO4. No coherent unmodeled peak series remains.
+
+The exact ZnWO4 composition was absent from the supplied reference subset, so its starting model was made by Zn-for-Mg substitution in wolframite MgWO4 (COD 9013902), followed by refinement of the cell and heavy-atom coordinates. WO3 was initialized from COD 2311041 and ZnO from COD 9004178. WO3 required a strongly supported [001] March-Dollase preferred-orientation correction (ratio 1.291); the other tested laboratory axes gave substantially poorer fits. All three exported structures pass the supplied contact, occupancy, and density screens.
+
+The final native GSAS-II replay gives Rwp = 2.694%, Rp = 2.068%, Rexp = 2.685%, and goodness-of-fit = 1.003 on all 8,301 points. The weighted residual and Poisson deviance per point are both approximately one, as expected for counting noise, and replay reports no profile-review flags.
+
+Remaining uncertainty is mainly systematic. The WO3 texture correction is correlated with its scale, and the angular zero/specimen displacement partition is highly correlated, so realistic phase-fraction uncertainty is about 1–2 wt% despite smaller covariance-only errors. The refined ZnWO4 framework and heavy-atom positions are well supported, but its oxygen coordinates retain substantial analogue dependence because Cu K-alpha X-ray scattering is dominated by W and Zn. Absolute lattice parameters likewise carry more uncertainty than their formal standard errors. No additional crystalline phase is justified by the residual.

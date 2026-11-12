@@ -1,0 +1,58 @@
+I’ll first inventory the measurement metadata, pattern range, and reusable analysis tools, then identify candidate phases and build a GSAS-II refinement that I can replay and validate before exporting the requested files.
+
+The chemistry points first to calcium tungstate, but I’m treating that only as a hypothesis. I’m now extracting peak positions and screening exact Ca–W–O records plus plausible precursor/intermediate phases; candidate rejection will be based on unique peak families and physical structure checks, not scale alone.
+
+The peak families resolve into scheelite CaWO₄ plus room-temperature monoclinic WO₃: the WO₃ triplet near 22.94/23.42/24.23° and its split families near 33–34° and 41–42° rule out treating the pattern as single-phase. I’m setting up trial refinements against multiple physical WO₃ records (monoclinic, triclinic, and orthorhombic) under one common background/profile model, while keeping CaO and the high-pressure CaWO₄ polymorph as watch-list challenges.
+
+The first two-phase refinement converged reproducibly at about 85.9 wt% CaWO₄ and 14.1 wt% WO₃, with a common zero shift near −0.197°. Its profile terms remain broader than a calibrated instrumental function would be, so I’m not accepting that as final yet; I’m testing whether the breadth belongs to phase size/strain, an alternate WO₃ model, or an incomplete inventory.
+
+The alternate-record sweep is still running cleanly. I’m applying the same six-term smooth background, scales, zero correction, cells, and common U/W/X profile to every candidate so that lower symmetry is not rewarded through a different nuisance model.
+
+Several variants have completed; the remaining trials are the low-symmetry WO₃ and high-pressure CaWO₄ controls. Once they finish I’ll rank them by replayed residuals, cell plausibility, and whether their split reflections match observed families—not by Rwp alone.
+
+The residual map exposed coherent weak families that deserve an inventory re-check before any texture correction: peaks near 17.9, 19.3, 22.0, 29.4, 36–37.5, 43.1, 47.5, and 50.8° are not all explained by the two main phases. I’m now screening calcium-rich intermediates and realistic CaO alteration products (hydroxide/carbonate), while keeping the 11.3 GPa fergusonite record out of the ambient-pressure inventory unless several unique families compel it.
+
+The analogue search produced a decisive third phase: a Ca₃OsO₆ P2₁/n prototype, after isovalent Os⁶⁺→W⁶⁺ substitution, predicts the entire previously unexplained family at 18.7, 19.3, 22.0, 30.6, 31.4, 32.1, 36.5, 37.5, 45.0, and 57.0°. Adding it cuts Rwp from ~12.0% to ~8.63% and gives a stable provisional inventory near 74.7/13.0/12.4 wt% CaWO₄/WO₃/Ca₃WO₆. I’m now separating common instrumental width from phase-specific size/strain before testing texture.
+
+The size/strain branches are proceeding without singularities. I’m watching for two rejection modes in particular: a term collapsing back to the neutral limit, or a nominal Rwp gain that is not replay-stable because it merely trades against U/W/X.
+
+The broadening tests support finite isotropic size for CaWO₄ (~0.09 µm) and a weaker size term for Ca₃WO₆ (~0.24 µm). WO₃ size stayed at the neutral upper limit, while WO₃ strain went negative; both are rejected. SH/L also refined negative and worsened the replay, so asymmetry remains fixed at its neutral minimum. The accepted common U/W/X terms are all positive. Next I’m challenging texture along symmetry-distinct CaWO₄ axes.
+
+The texture branches are nearly complete. Each uses one March–Dollase coefficient only; I’ll accept an axis only if it improves several isolated CaWO₄ families and survives a saved-project replay, since the 101/004 contrast alone is not enough evidence.
+
+A single effective polarization correction is strongly supported: it refines to 0.865 (physically admissible) and lowers replayed Rwp from 4.70% to 3.99%, while roughness remains neutral. Extra strain terms refine negative and size-shape mixing stays pinned at the pure-Lorentzian boundary, so I’m pruning those. The largest remaining coherent mismatch is WO₃’s 020 family relative to its 002/200 split, so I’m testing monoclinic texture axes next.
+
+WO₃ texture gives only a marginal ~0.03 percentage-point Rwp change, with coefficients within about 4% of unity and no uniquely preferred axis; I’m rejecting it as unsupported. The CaWO₄ [110] texture remains compelling (Rwp 7.55→4.70 before polarization) and is supported by low-, mid-, and high-angle families. I’m now repeating the accepted model with the independent neutron-derived monoclinic WO₃ record to make the structure-source choice reversible.
+
+The alternate-source refinement is through inventory/profile reconstruction and is now applying the accepted size, [110] texture, and polarization terms. This comparison keeps the nuisance model identical; only the monoclinic WO₃ coordinate record/setting changes.
+
+The triclinic WO₃ control is in its final replay stage. This is the most permissive plausible alternate because it adds three cell-angle degrees of freedom; it must beat the monoclinic model by more than a cosmetic residual change and retain sensible angles to be accepted.
+
+The low-symmetry control is slower because every cell metric is independent, but it remains numerically stable. I’ll retain monoclinic WO₃ unless the triclinic fit shows a material, replay-stable gain tied to observed peak splitting rather than cell over-parameterization.
+
+The neutron-derived monoclinic WO₃ model is decisively preferred: with the accepted inventory/profile it gives Rwp 3.343%, versus 3.489% for triclinic WO₃ despite the latter’s three extra cell-angle freedoms, and 3.990% for the older room-temperature monoclinic coordinates. I’m now re-challenging residual CaO, portlandite, calcite, the Ca–W bronze, and high-pressure fergusonite under this clean final profile.
+
+The watch-list phases are refining one at a time with scale first and cell only if scale remains meaningful. This prevents a wrong record from manufacturing agreement through an unconstrained cell; the common background, scales, zero, cells, polarization, and profile still reconverge each time.
+
+None of the watch-list additions is defensible as a fourth phase. CaO, Ca(OH)₂, calcite, and the Ca–W bronze each refined below ~0.45 wt% with mixed-sign residuals at their strongest families and only ~0.005 Rwp-point gains; calcite also required implausible anisotropic cell changes and replayed worse. Fergusonite refined below its uncertainty and is excluded independently by its 11.3 GPa source condition. I’m now doing the bounded full-range final replay and exact exports.
+
+The bounded full-range replay is complete and stable: Rwp = 3.3480%, Rp = 2.6382%, Rexp = 2.2469%, GOF = 1.4925, and the last maximum shift/σ is 0.0054. The modeled crystalline fractions are 78.63% CaWO₄, 11.44% WO₃, and 9.93% Ca₃WO₆. Exported structures pass geometry checks, including W–O = 1.922–1.939 Å in the substituted Ca₃WO₆ prototype.
+
+Identified three crystalline phases, normalized over modeled crystalline material:
+
+- CaWO₄: 78.63 wt%
+- Monoclinic WO₃: 11.44 wt%
+- Ca₃WO₆: 9.93 wt%
+
+Final fit: Rwp 3.348%, Rp 2.638%, GOF 1.492. The Ca₃WO₆ atomic coordinates remain a chemically justified P2₁/n prototype assignment; amorphous content was not determined.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [CaWO4 CIF](<ATTEMPT_WORKSPACE>/phase_CaWO4.cif)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [Ca3WO6 CIF](<ATTEMPT_WORKSPACE>/phase_Ca3WO6.cif)
+

@@ -1,0 +1,24 @@
+I’ll first inspect the diffraction data, metadata, and reusable refinement utilities, then build a chemically screened phase inventory before refining the common profile and phase-specific terms. I’ll keep rejected-but-plausible candidates on a watch list and verify the final exports against a reopened `final.gpx`.
+
+The chemistry points first to Ca–W–O compounds, but I’m not assuming a single scheelite phase. I’m extracting an empirical peak list and querying exact-composition records plus precursor/intermediate candidates; this will separate inventory decisions from later profile/texture improvements.
+
+The empirical peaks map coherently to scheelite CaWO₄, including the apparently “extra” 29.03° line: it is the scheelite 103 reflection, not a second phase. I’m still testing CaO, WO₃ polymorphs, Ca₃WO₆, and pressure-induced fergusonite against unique-line evidence before accepting the inventory. Next I’m constructing the GSAS-II project with the actual Cu Kα₁/Kα₂ source model and a restrained common profile.
+
+The first GSAS-II pass gives a strong single-phase fit (`Rwp ≈ 3.83%`), but it also exposed two baseline issues I’m correcting before any phase decision: GSAS-II had both specimen and phase scales active (a redundant singular pair), and unconstrained `X` drifted slightly negative. I’m disabling the redundant scale and replaying with nonnegative `U/W` only; the tiny negative `X` trial will be rejected unless a bounded replay supports it.
+
+The intensity trend is now resolved physically: refining the unknown effective polarization converges to `0.6976(19)`, essentially the standard Cu-laboratory value of 0.70, and improves `Rwp` from 3.83% to 2.36%. Atomic-ADP alternatives tried under the earlier polarization model ran negative, while roughness was highly correlated and texture axes gave only marginal changes; polarization is therefore the accepted correction. I’m now replaying from that common profile with truly neutral sample broadening, then retesting atom coordinates, size/strain, texture, and the weak-phase watch list under the corrected baseline.
+
+The re-challenged inventory supports only scheelite CaWO₄. Ca₃WO₆ and fergusonite scales are essentially zero; four valid WO₃ models are below 0.8σ (one alternate reaches 1.9σ at only ~0.06 wt%). CaO gives a marginal 2.4σ scale corresponding to ~0.16 wt%, so I’m checking whether that signal is carried by its unique 32.2°, 37.3°, and 53.9° families or merely by overlaps before deciding whether it is reportable. One WO₃ database record had malformed atom symbols and was rejected as a record, not as evidence against WO₃; the physical alternates remain the basis of that screen.
+
+The marginal CaO scale is not retained: its three strongest unique peaks add only about 9–22 counts against ~40-count point noise, the global improvement is `ΔRwp ≈ 0.0008%`, and higher-angle CaO lines worsen the residual. I’ll report it as an unresolved watch-list impurity (~0.16(7) wt% trial; roughly <0.3 wt% at 95% confidence), not as a modeled phase. The accepted model is single-phase scheelite with a nonnegative `U/W/X` profile; crystallite size is exactly degenerate with `X`, and strain collapses to zero/negative, so both remain neutral.
+
+The full-range replay is stable and meets the physical baseline: `Rwp = 2.3133%`, `Rexp = 2.2809%`, goodness-of-fit `1.014`; `U`, `W`, and `X` are positive, only zero is used for peak positions, and roughness, texture, size/strain, and asymmetry are inactive. I’m doing the final cross-check now: reopen `final.gpx`, verify CIF/project coordinates and cell, verify every `fit.csv` row against the stored profile, and confirm smooth positive background and low/mid/high-angle peak behavior.
+
+Completed. The modeled crystalline phase is scheelite CaWO₄ (I4₁/a), with normalized weight fraction 1.0000. Final Rwp = 2.3133%, Rexp = 2.2809%, and GOF = 1.0142. Marginal CaO (~0.16(7) wt%) was not retained; its approximate 95% upper bound is 0.3 wt%.
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [CaWO4_scheelite.cif](<ATTEMPT_WORKSPACE>/CaWO4_scheelite.cif)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+

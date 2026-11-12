@@ -1,0 +1,40 @@
+I’ll inspect the measurement metadata and diffraction pattern first, then use the available search/indexing and GSAS-II tools to identify candidate phases, refine them jointly, and validate that the exported CIFs, profile, fractions, and project are internally consistent.
+
+The chemistry strongly suggests a magnesium tungstate system, but I won’t assume a single product: I’m checking peak positions, residual precursor signatures, and whether any secondary magnesium–tungsten oxide is required before building the refinement.
+
+Initial peak matching supports three chemically plausible crystalline components: wolframite-type MgWO₄ (including the very strong 18.88° line), monoclinic/triclinic WO₃ (the 23.1–24.4° multiplet), and residual rocksalt MgO (42.93°, 62.26°, and higher-angle lines). I’m now testing structural variants and quantitative necessity rather than treating those assignments as settled.
+
+The candidate structures reproduce the diagnostic line positions closely, including the small MgO contribution. I’m starting with a restrained three-phase refinement (background, relative phase scales, cells/zero, then peak shape) so phase fractions are not allowed to compensate for incorrect peak positions or widths.
+
+The three-phase model is compositionally complete—unmodeled residuals do not form an extra coherent peak set—but MgWO₄ intensities show pronounced texture: its (100) reflection at 18.88° is much stronger, while the 15.56° line is weaker, than a random powder predicts. I’m testing a single physically interpretable March–Dollase orientation term and phase-specific broadening before changing atomic coordinates.
+
+A stable, physically constrained profile model now reaches \(R_{wp}\approx2.62\%\) without an extra phase. It requires much broader WO₃ peaks (about 0.22 µm coherent-size term and ~0.7% microstrain), while MgO’s size term is not identifiable from its few weak lines; I’m fixing that unconstrained term and testing only structurally meaningful coordinate/displacement refinements.
+
+The final model is now statistically near the counting-noise limit (\(R_{wp}\approx1.65\%\), GOF ≈ 1.08). The MgO assignment is quantitatively necessary: omitting it raises \(R_{wp}\) to 2.51%, while omitting WO₃ raises it to 17.1%. I’m producing the final project and exports from one last converged refinement, then I’ll validate every artifact against that project.
+
+The requested files have been generated from `final.gpx`. I’m doing a final cross-check now: CIF parseability and formulas, project-to-JSON fraction/statistic equality, profile row count and difference arithmetic, and refinement convergence.
+
+All validation checks pass. I’m removing only the reproducible exploratory projects/logs I created, leaving the original inputs, the requested final artifacts, and the pre-existing workspace file untouched.
+
+The sandbox rejected direct deletion, so I’m switching to a recoverable trash operation for those same scratch files; the final deliverables are already complete and unaffected.
+
+Completed and validated. The modeled crystalline fractions are:
+
+- MgWO₄ (wolframite): 50.9 ± 1.5 wt%
+- γ-WO₃ (monoclinic): 42.1 ± 1.5 wt%
+- MgO (periclase): 7.0 ± 0.5 wt%
+
+Final fit: \(R_{wp}=1.646\%\), \(R_p=1.293\%\), GOF = 1.081.
+
+Outputs:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [MgWO4 CIF](<ATTEMPT_WORKSPACE>/phase_MgWO4.cif)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [MgO CIF](<ATTEMPT_WORKSPACE>/phase_MgO.cif)
+
+Fractions are normalized over modeled crystalline material only. Exploratory projects and logs were moved to recoverable trash.
+

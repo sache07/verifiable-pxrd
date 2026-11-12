@@ -1,0 +1,112 @@
+I’ll inspect the measurement metadata, pattern, and reusable analysis utilities first. Then I’ll identify candidate phases, build a reversible inventory, and iterate the GSAS-II profile/refinement branches before exporting the requested project and results.
+
+The chemistry points first to lead tungstate formation, but the pattern must decide whether the product is PbWO₄ alone or includes residual oxides / another lead tungstate. I’m now extracting peak positions and checking exact COD records and indexing utilities before committing any phase to refinement.
+
+Peak families support two phases already: scheelite PbWO₄ (e.g. 27.81°, 33.16°, 45.13°, 55.63°) and monoclinic WO₃ (the resolved 23.53/24.02/24.84° triplet and its matching split families near 33.7–34.6° and 41.9–42.3°). Both share an approximately +0.4° low-angle offset, consistent with specimen displacement, so I’ll compare that model against a zero-only branch rather than absorbing it into cells. Pb₃O₄/PbO remain on the watch list while source records are screened.
+
+The third phase is confirmed as tetragonal minium Pb₃O₄: its otherwise diagnostic 14.66° line and the 26.81°, 31.22°, 52.52°, 63.61°, and 66.40° families all align under the same angular correction. I’ve also found that an unconstrained global profile fit is physically misleading—it broadens the common instrument function to accommodate PbWO₄/Pb₃O₄ and drives Gaussian terms against bounds. I’m therefore anchoring the common profile to the sharper WO₃ families, then testing phase-specific size and strain explicitly as requested.
+
+The geometry branches are still converging through save/reopen replays. The comparison is controlled: identical three-phase inventory, background, common profile, and refined cells/scales; only zero versus specimen displacement differs.
+
+The six single-term branches are running in parallel (size-only and strain-only for each phase). The WO₃ branches have finished first; the broader PbWO₄ and Pb₃O₄ branches need additional cycles, which is consistent with their stronger profile mismatch.
+
+The single-term results are physically distinct: PbWO₄ strongly favors size broadening, while Pb₃O₄ accepts both size and strain descriptions; WO₃ gains are marginal. I’m replaying combined size+strain branches because all single terms remained interior—this checks whether they explain complementary angular trends or merely trade against one another.
+
+Because the first size estimates were sensitive to the assumed Lorentzian/Gaussian split, I’m challenging both size and strain with three interior mixing starts. This is especially important for Pb₃O₄, where a pure-Lorentzian branch implied an implausibly small coherent domain.
+
+The multi-start jobs are computationally heavier than the fixed-mix branches, but one has completed and the rest are progressing. I’ll use convergence agreement—not the best isolated Rwp—to decide whether a mixing parameter is identifiable.
+
+The remaining branches are still in native least-squares cycles; no branch has stalled or hit an error. The extra cost comes from simultaneous profile-value/mixing correlations, which is itself a useful warning about identifiability.
+
+Several multi-start branches have now completed; the slower set is Pb₃O₄, where scale and broadening are most correlated. I’m allowing the native replays to finish so that an apparently good first-cycle fit is not mistaken for a stable model.
+
+All fixed-V profile starts converged to the same failed U-bound branch. I’m now allowing the usual Caglioti V term to vary while keeping U, W, and X nonnegative. This tests whether Gaussian curvature—not absence of U—is what the bound was signaling.
+
+The free-V full-range branch also failed at Gaussian bounds. I’ve switched to a sharper diagnostic subset spanning low, middle, and high-angle WO₃ families, with all scales/cells/sample terms fixed during profile calibration. This directly tests the common line shape instead of letting broad Pb phases dominate it.
+
+The first scripted subset exposed a GSAS-II masked-array issue rather than a scientific result (NaN residuals), so I discarded it. The corrected calibration uses zero statistical weight outside the same diagnostic windows in throwaway branches; the submitted project will retain the untouched full-range data.
+
+Two diagnostic-window starts converged identically with all common terms interior (U≈39.90, W≈10.15, X≈4.34, SH/L≈0.01167); the very broad start failed at U=0 and is rejected. I’m now replaying both angular-correction branches under that fixed physical profile and the accepted phase-size terms.
+
+The clean common-profile replay now favors the zero-correction branch and gives a stable three-phase model. I’m moving through the remaining reversibility checks—source/polymorph alternates, watched Pb–O candidates, shared intensity effects, and phase broadening—before freezing the deliverables.
+
+The retained entries are all exact-composition records, so an analogue substitution is unnecessary. I’m screening the strongest same-composition alternatives first, including room-temperature vs low-temperature/high-pressure provenance and any occupancy or disorder differences, then fitting only physically plausible records under the identical nuisance model.
+
+The source comparisons are still calculating; the first batch exceeded the initial return window. While those finish, I’m keeping their project files separate so no alternate can overwrite the retained branch.
+
+The GSAS-II source branch is CPU-heavy but still advancing normally. The structural screen already rules out raspite PbWO₄ and low-temperature orthorhombic Pb₃O₄ on symmetry/provenance grounds; I’m retaining their quantitative comparisons as rejection evidence rather than treating a poor fit as the sole reason.
+
+The same-composition branch is taking longer because it rebuilds and reconverges all scales, cells, background, zero, and accepted size terms from scratch. That is intentional here: it prevents a source record from being favored merely because it inherited the incumbent’s converged parameters.
+
+All three alternate branches are now in their convergence/replay pass. The room-temperature scheelite and monoclinic WO₃ candidates remain chemically and geometrically credible; the fit comparison will decide between those records using diagnostic intensities under the fixed common profile.
+
+The neutron-derived monoclinic WO₃ model is currently the best exact-composition record (Rwp 6.84% versus 7.01% for the rounded-coordinate room-temperature record) and also removes its implausibly short O–O contact. I’m now checking whether that gain survives the triclinic/orthorhombic challenges and both Pb₃O₄ source alternates.
+
+The inventory/source change required a clean profile pass. Two interior starts again converged to the same common function (U≈24.02, W≈10.82, X≈4.408, SH/L≈0.01280); the high start again hit U=0 and was rejected. I’m replaying zero versus displacement and all phase terms under this updated profile.
+
+The broadening replay confirms PbWO₄ size broadening is essential and clearly beats strain. A one-phase-at-a-time branch also shows why the terms must be replayed sequentially: Pb₃O₄ alone tries to absorb the still-unmodeled PbWO₄ widths and distorts its cell/fraction. I’m now testing Pb₃O₄ from the accepted PbWO₄-size state, then WO₃ from the combined state.
+
+The phase-width hierarchy is now stable: size-only for PbWO₄ and Pb₃O₄; a small but replay-stable WO₃ strain term (about 590±113 µstrain); every size+strain combination drove one term to a bound. Next I’m comparing smooth background order, polarization, and Suortti roughness before allowing any texture term.
+
+The six-term background branch has converged; the remaining shared-intensity branches are still replaying. I’ll retain a nuisance term only if multiple starts meet at an interior, physically sensible value and the improvement is not simply exchanged with background coefficients or phase scales.
+
+Polarization consistently runs to its physical upper bound, so that branch is failed rather than accepted. Roughness gives the same kind of cross-phase angular correction at interior values, but its two parameters are strongly nonlinear; I’m extending two independent starts to see whether they converge to one solution or expose non-identifiability.
+
+The angular intensity trend is real, but its physical parameterization is not unique: polarization wants the upper bound, while roughness gives interior solutions with a very high scale correlation. I’m carrying the best interior roughness branch provisionally, and I’ll report that this dominates the systematic uncertainty in phase fractions rather than treating its formal errors as complete.
+
+The watched-phase replay changed the inventory: orthorhombic PbO (massicot) is not a marginal scale—it refines to about 2.6 wt% and drops Rwp from 4.60% to 3.44%. That is chemically credible at 500 °C, where Pb₃O₄ can yield PbO. I’m treating this as a real fourth phase and restarting the common-profile/intensity checks as required.
+
+With massicot included, the clean common profile again converges from low and middle starts, while the high start fails at U/W bounds. The zero branch remains slightly better than displacement. I’m now replaying size versus strain for all four phases under that exact profile.
+
+Massicot is broad: both size-only and strain-only branches are interior and give similar improvements, with its fraction shifting to roughly 4.7–4.8 wt%. I’m running the required combined branch now; this is the main remaining phase-fraction sensitivity, and it will be called out if the two broadening mechanisms cannot be separated.
+
+The massicot combined size+strain retry also failed at bounds, so the strain-only branch is provisionally retained; its 4.85 wt% fraction should be read with a model uncertainty larger than the formal e.s.d. The four-phase shared-intensity branches are now being replayed from that state.
+
+The four-phase replay reproduces the shared angular trend: polarization again hits its upper bound, while an interior roughness branch reaches essentially the same fit and stable fractions near 58/20/17/5 wt%. I’m using the interior roughness model for the next checks and will retain the polarization-bound result only as evidence of systematic intensity uncertainty.
+
+The source re-challenge is now running on the complete four-phase model, including the same roughness and broadening terms. I’m also retesting PbO₂ as a fifth watched candidate; its earlier sub-percent scale is not being treated as evidence until it survives this final nuisance model.
+
+The final source challenge supports the selected records: older PbWO₄ and WO₃ models are substantially worse, the older Pb₃O₄ model is also worse, and litharge PbO both fits worse and requires implausible cell contraction. PbO₂ remains only 0.04±0.02 wt% with no secure unique evidence, so it stays excluded as an unreliable trace possibility.
+
+Texture tests are now phase-by-phase and axis-specific; each branch changes only one March–Dollase term while keeping the same profile, roughness, background, cells, and scales. This lets isolated reflection families—not a global Rwp shift—decide whether any texture is defensible.
+
+These branches are slower because texture is strongly coupled to phase scale and the shared angular correction; GSAS-II is increasing damping rather than diverging. I’m letting each replay finish so a tempting one-cycle improvement is not mistaken for stable texture.
+
+The four-phase inventory is now coherent: scheelite PbWO₄, monoclinic WO₃, tetragonal Pb₃O₄, and orthorhombic massicot PbO. I’m finishing the texture challenges, then I’ll do the required full-range save/reopen replay and export the exact final project and profiles.
+
+The first texture branches exposed a useful convergence issue: nearly all of their apparent improvement came from extra replay cycles, while PbWO₄ ratios returned essentially to 1. I’m now comparing every axis against an equally replayed no-texture control so texture is judged on a genuinely identical baseline.
+
+The controlled branches are still refining in parallel. So far, the tested PbWO₄ axes are effectively random (March ratios 0.997–1.001); only Pb₃O₄ showed a small possible effect, which I’m treating as provisional until the no-texture control finishes.
+
+The roughness term is physically supported but converges slowly because its two coefficients trade off with phase scales. I’m forcing both independent interior starts through repeated save/reopen cycles; only if they meet at the same solution will I use that profile for the final texture test and quantification.
+
+The save/reopen cycles are computationally slow, but the key diagnostic is now clear: the two roughness starts have not yet converged to one basin. I’m running a single tracked branch serially to avoid cross-branch resource contention and verify each accepted cycle.
+
+The conditioned no-texture model now replays cleanly (maximum shift/e.s.d. 0.017, no covariance warning) at Rwp ≈ 3.03%. I fixed the two roughness coefficients at their jointly fitted values because allowing them to float produced a 99.4% scale correlation; this preserves the observed angular intensity correction without pretending its formal uncertainty is independent of phase fractions.
+
+The texture test is decisive only for Pb₃O₄: a [110] March ratio of 0.9586(73) is reproduced from starts 0.85 and 1.20, with the same endpoint and a small but statistically real fit gain. All other phase/axis ratios are close enough to 1 that I’m retaining no texture for them. Next is the exact full-scan replay that will become `final.gpx`.
+
+The final full-range replay is stable over all 8,301 measured points: Rwp 3.0249%, Rp 2.3146%, GOF 1.2192, with no >0.90 covariance correlations and no active parameter at a bound. The final fractions are 57.735% PbWO₄, 20.443% WO₃, 16.859% Pb₃O₄, and 4.962% massicot PbO. I’m validating the CIF chemistry and the exported profile before writing the report.
+
+Completed the four-phase Rietveld refinement.
+
+| Crystalline phase | Weight fraction |
+|---|---:|
+| Scheelite PbWO₄ | 57.74(10)% |
+| Monoclinic γ-WO₃ | 20.44(8)% |
+| Minium Pb₃O₄ | 16.86(10)% |
+| Massicot PbO | 4.96(7)% |
+
+Full-range fit: Rwp = 3.0249%, Rp = 2.3146%, GOF = 1.2192. Fractions are normalized over modeled crystalline material; amorphous content is undetermined. A possible PbO₂ trace was below reliable detection and excluded.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [PbWO4.cif](<ATTEMPT_WORKSPACE>/PbWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [Pb3O4.cif](<ATTEMPT_WORKSPACE>/Pb3O4.cif)
+- [PbO_massicot.cif](<ATTEMPT_WORKSPACE>/PbO_massicot.cif)
+

@@ -1,0 +1,22 @@
+I’ll inspect the measurement metadata, pattern, and the framework’s analysis tooling first, then identify candidate phases and build a quantitative GSAS-II refinement. I’ll keep the final artifacts internally consistent by regenerating the CIFs, profile, fractions, and statistics from the saved `final.gpx`.
+
+The chemistry points first to calcium tungstate formation, but the raw scan must decide whether residual precursors, another Ca–W–O compound, or a polymorph is present. I’m now extracting the peak inventory and querying the frozen reference library for all plausible Ca–W–O / Ca–O / W–O structures before committing to phases.
+
+Every resolved reflection—including the apparent “extra” line at 29.04°—is accounted for by scheelite CaWO₄ (I4₁/a); the relative intensities closely track the reference, and the diagnostic peaks required for CaO, WO₃, Ca₃WO₆, or monoclinic CaWO₄ are absent. I’m proceeding with a one-phase refinement, while testing whether any second phase produces a statistically meaningful residual improvement.
+
+The one-phase fit is already at \(R_{wp}\approx 3.59\%\), only slightly above the Poisson floor of \(3.55\%\). Fresh scorer-style replay confirms the saved parameters—not cached GSAS arrays—give the same result and no physical/profile warnings. I’m now testing the remaining small systematic residual against coordinate shifts, common displacement parameters, texture, roughness, and anisotropic broadening; this is also the check that a hidden second phase is not being absorbed into profile terms.
+
+The residual-profile omission tests found no supported second phase. CaO, WO₃, Ca₃WO₆, monoclinic CaWO₄, and Ca–W bronze candidates refine to zero or trace-level projections; even the largest apparent improvement (monoclinic CaWO₄, about 0.08 wt%) is not statistically compelling. The submitted crystalline normalization is therefore 1.000 scheelite CaWO₄, with trace/amorphous material explicitly left outside that normalization.
+
+The final deliverables are assembled from a fresh replay of the selected project. I’m doing one last consistency audit now: CIF↔GPX atomic agreement, project-derived fraction, exact observed grid in `fit.csv`, nonnegative calculated profile, and JSON/file references.
+
+Identified a single crystalline phase: scheelite CaWO₄ (*I*4₁/*a*, No. 88), normalized weight fraction 1.0000.
+
+Fresh GSAS-II replay gives Rwp = 3.5697% and goodness of fit = 1.0054. No second crystalline phase was justified; trace or amorphous material cannot be excluded.
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-326f2ee8111c/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-326f2ee8111c/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-326f2ee8111c/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-326f2ee8111c/workspace/fit.csv)
+- [phase_1_CaWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-326f2ee8111c/workspace/phase_1_CaWO4.cif)
+

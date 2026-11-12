@@ -1,0 +1,46 @@
+I’ll inspect the diffraction data and metadata first, then identify candidate phases, refine a multiphase GSAS-II model, and validate that the exported CIFs, fractions, profile, statistics, and `final.gpx` all come from the same final refinement.
+
+The chemistry strongly suggests lead tungstate as the main reaction product, but the precursor set and 500 °C treatment make residual tungsten/lead oxides plausible. I’m now extracting peak positions and checking the installed phase-identification/refinement interfaces before choosing structures.
+
+The peak set separates into two recognizable families: a scheelite-like series led by the very intense 27.81° line, and the characteristic triplet-rich pattern of monoclinic WO₃ near 23–25° and 33–35°. I’m testing these against full CIF simulations, along with all chemically plausible lead oxides, so that minor residual phases are not inferred from chemistry alone.
+
+The simulated peak positions confirm two crystalline phases after a common ≈+0.42° 2θ offset: scheelite PbWO₄ (I4₁/a) accounts for the 27.81°, 30.02°, 33.16°, 45.13°, 47.37°, 51.59°, and high-angle series; monoclinic WO₃ (P2₁/n) accounts for the 23.53/24.02/24.84° triplet and the 33.66/34.05/34.60° cluster. I’m setting up the quantitative refinement now, including the actual Cu Kα₁/Kα₂ wavelengths and ratio from the metadata.
+
+The first quantitative pass has converged to roughly 70 wt% PbWO₄ and 30 wt% WO₃, with Rwp near 9.2%. I’m tightening the profile model now; the unconstrained generic width terms became highly correlated, so I’m checking physically stable alternatives and residual peaks before accepting fractions or uncertainty estimates.
+
+A constrained profile comparison is behaving much better: fixing the overall histogram scale removes the prior singularity, and phase-specific crystallite broadening gives physical sizes (about 30 nm PbWO₄ and 80–90 nm WO₃) with no negative width terms. The phase fraction is stable near 73.5/26.5 wt%; I’m completing polymorph and profile-sensitivity checks before finalizing.
+
+The residual audit found a real third-phase signature, not just profile error: the unexplained 26.812° peak and companion lines at 14.67°, 31.22°, 32.55°, 50.25°, and 52.52° match residual precursor Pb₃O₄ after the same zero offset. I’m adding and quantifying that phase now, then will recheck whether any peaks remain chemically coherent enough to justify another phase.
+
+The three-phase model lowers Rwp from 8.45% to 5.46% and quantifies Pb₃O₄ at about 16 wt%, confirming it decisively. One dominant residual line remains at 29.55°; its full companion series (30.82°, 38.25°, 45.57°, 49.78°, 53.70°) identifies orthorhombic PbO (massicot), consistent with Pb₃O₄ decomposition near 500 °C. I’m testing that fourth phase against the tetragonal PbO alternative.
+
+Orthorhombic PbO is favored over litharge, but its first trial was numerically unstable because cell, scale, and nanoscale broadening were released together. I’m rebuilding the four-phase refinement in a staged sequence so the PbO cell and fraction are not artifacts of a boundary-hit profile parameter.
+
+The four-phase solution is converged. I’m tightening the deliverables now: trimming `fit.csv` to the profile actually evaluated by GSAS-II, adding provenance/cell details and χ² to `result.json`, then documenting the identification evidence and systematic limits in `report.md`.
+
+The report now separates the formal least-squares precision from the more realistic systematic uncertainty. I’m regenerating every submitted CIF, `fit.csv`, and `result.json` directly from the serialized `final.gpx`, so the tabulated outputs cannot drift from the project.
+
+The cross-check passes: all four fractions sum exactly to 1, the profile contains 8,284 evaluated points with `difference = observed − calculated`, and the reopened project reproduces Rwp = 4.3461%. I’m doing one final structural/CIF integrity check and reviewing the metadata wording before handoff.
+
+Completed the four-phase GSAS-II refinement.
+
+| Crystalline phase | Weight fraction |
+|---|---:|
+| PbWO₄, scheelite | 58.40% |
+| WO₃, monoclinic | 20.62% |
+| Pb₃O₄, minium | 16.42% |
+| PbO, massicot | 4.57% |
+
+Final fit: Rwp = 4.346%, Rp = 3.173%, Rexp = 2.486%, χ² = 3.055. Fractions are normalized over modeled crystalline phases. Systematic uncertainty is approximately 1–2 absolute wt%; minor PbO is least secure, and amorphous or strongly overlapping trace phases cannot be excluded.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [PbWO4.cif](<ATTEMPT_WORKSPACE>/PbWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [Pb3O4.cif](<ATTEMPT_WORKSPACE>/Pb3O4.cif)
+- [PbO.cif](<ATTEMPT_WORKSPACE>/PbO.cif)
+

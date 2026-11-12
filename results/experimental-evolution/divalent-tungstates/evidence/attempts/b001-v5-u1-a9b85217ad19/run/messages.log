@@ -1,0 +1,100 @@
+I’ll first inspect the metadata, diffraction range, and reusable refinement utilities, then build a reversible phase inventory before committing to the final GSAS-II model. I’ll keep source/polymorph alternatives under the same nuisance model and report any phase or fraction that remains ambiguous.
+
+The chemistry points first to calcium tungstate, but the scan must decide whether it is the sole crystalline product or coexists with residual oxides/alternate calcium tungstates. I’m now extracting peak positions and querying all exact Ca–W–O records, with special attention to diagnostic reflections rather than database labels alone.
+
+The first inventory is now clear enough to separate three candidates: scheelite CaWO₄ and orthorhombic WO₃ are unambiguous, while several weaker families could be CaO or a second Ca–W–O compound. I’m screening that third component against physically plausible calcium-rich tungstate prototypes; I’m not treating a weak preliminary scale as a rejection.
+
+The Ca₃WO₆ prototype is physically plausible, but the first unconstrained provisional run exposed a refinement degeneracy: GSAS-II was refining both the global histogram scale and phase scales, and the weak prototype cell collapsed. I’m restarting cleanly with the global scale fixed, cells staged after positive scales, and neutral phase broadening—so that this numerical failure is not misread as phase rejection.
+
+Three interior-start clean passes converged to the same nonnegative common profile (approximately U = 39, W = 26, X = 10.93, SH/L = 0.0475) with no frozen or bound-hit variables. The same phase model is stable in all passes. I’m now comparing the required single angular correction branches—zero offset versus reflection-geometry specimen displacement—while allowing all cells, scales, background, and the common profile to reconverge.
+
+The clean profile comparison selected a zero-only correction: it fits slightly better than specimen displacement and keeps the trusted CaWO₄ cell closer to its reference, while the displacement branch requires an uncalibrated 0.272 mm height offset. I’m now re-challenging the inventory—CaO, alternate WO₃/CaWO₄ polymorphs, and the analogue-derived Ca₃WO₆ model—under that same fixed nuisance model before allowing phase-specific broadening.
+
+The first CaO challenge exposed exactly the failure mode the protocol warns about: when scale and cell were released together, the weak candidate drove its cubic cell to a nonphysical collapse. I’m restarting the challenge correctly—candidate scale first with its literature cell fixed; cell refinement will only follow if a reproducible positive contribution survives from both interior starts.
+
+The restarted weak-phase tests are running with the common profile and angular correction frozen, while the background and established phase scales/cells reconverge. This makes any gain attributable to the candidate’s actual reflections rather than profile drift.
+
+Both CaO starts collapse reproducibly to the nonnegative scale bound, so CaO is not retained. The bronze candidate converges to the same tiny scale from two starts, but changes Rwp by only about 0.001 percentage point and predicts a strong 16.1° line that is absent; it remains rejected as a non-diagnostic overfit. The source-polymorph replacements are still refining.
+
+The source challenge changed the inventory: monoclinic/triclinic WO₃ lower Rwp from 12.16% to about 10.53% with the identical fixed profile, whereas high-pressure fergusonite CaWO₄ fails badly (Rwp ≈41.8%). I’m checking the WO₃ records’ temperatures, occupancies, geometry, and diagnostic peak splitting before choosing between the nearly tied low-symmetry models; this is a meaningful correction to the provisional orthorhombic assignment.
+
+The WO₃ comparison now favors the room-temperature monoclinic phase. The 1966 neutron P2₁/c record gives Rwp 10.48%, better than the older room-temperature P2₁/n coordinates (10.54%); the triclinic record is nearly tied (10.53%) but lacks the explicit room-temperature match. I’m repeating the entire multi-start common-profile pass with monoclinic WO₃ in the inventory, as required after an inventory change.
+
+The rebuilt model is using the same safeguards as the first pass: six smooth background terms; fixed V/Y/Z; nonnegative bounded U/W/X and SH/L; neutral size, strain, roughness, and texture; and three widely separated interior profile starts. This pass will establish whether the monoclinic inventory changes the physical width/asymmetry solution rather than merely improving intensities.
+
+All three phases remain on positive scales during the clean restart, and no profile bound failure has appeared so far. I’m letting each branch complete its cell/full-range replay before selecting a start and repeating the zero-versus-displacement comparison.
+
+The unconstrained angular branches coupled strongly to SH/L, so their raw Rwp comparison is not controlled: the displacement branch traded asymmetry against a large 0.330 mm height correction. I’m repeating the comparison with the converged common U/W/X/SH/L held identical in both branches; only zero or displacement, plus the shared scales/background/cells, will move.
+
+With the common profile held fixed, zero-only and displacement-only differ by just 0.010 Rwp point. I’m retaining zero-only because the displacement solution still requires an uncalibrated 0.252 mm offset and expands the 298 K CaWO₄ cell farther from its trusted reference. I’m now doing the required post-change inventory replay against this monoclinic/zero-only base.
+
+The post-change replay is testing candidate scale first at fixed reported cells and comparing source polymorphs with identical fixed profile terms. This also gives the Ca₃WO₆ analogue choice a fair comparison after the WO₃ correction, where the lower-symmetry U-derived prototype must earn any extra fit despite its greater flexibility.
+
+The stable outcomes are now clear: bronze returns to zero scale, orthorhombic WO₃ is decisively worse, and CaO gives only an oscillatory sub-percent-scale contribution with no reproducible Rwp gain, so it stays on the watch list rather than entering the inventory. The U-derived Ca₃WO₆ model improves Rwp by 0.055 point but has lower symmetry and a less size-matched parent; I’ll carry that ambiguity into the post-broadening replay. One triclinic WO₃ test used the wrong cell setting, so I’m correcting and rerunning it rather than treating that failure as evidence.
+
+The inventory is stable as scheelite CaWO₄ + monoclinic WO₃ + an analogue-derived Ca₃WO₆-type phase; triclinic and alternate monoclinic WO₃ records are slightly worse under the controlled replay. I’m now testing isotropic size-only and strain-only broadening for each retained phase, one phase and one mechanism at a time from GSAS-II’s neutral 10 µm/zero-strain limits.
+
+These branches keep the common instrument profile fixed, so a surviving size or strain term must explain phase-specific peak-width behavior across the full angular range. Any phase term that reaches the neutral or physical bound will be retried from another interior start before exclusion.
+
+The six single-mechanism tests are still completing their replay cycles. No broadening term is being combined yet; I’ll only test a size+strain combination for a phase if both independent branches remain interior and improve complementary low-/high-angle residual behavior.
+
+The runtime is dominated by full-range replay rather than additional model complexity. I’m preserving all branch projects so the accepted mechanism can be reopened and reproduced, and so a rejected bound branch is auditable rather than silently discarded.
+
+The branch count is larger than the inventory tests because each phase is evaluated separately for both angular broadening laws and replayed three times. I’m letting the final minor-phase branches finish so the common profile is not biased toward the dominant CaWO₄ alone.
+
+The final replay is still active; the process is making progress and has not stalled. Once it closes I’ll rank each branch by Rwp, interiority, and replay stability, then build only the justified combined model.
+
+This has reached the longest expected branch (low-symmetry Ca₃WO₆ strain derivatives are expensive). I’m keeping the full-range test because shortening the range would make its apparent improvement incomparable to the other phases.
+
+The run remains alive without error output. If the current branch does not close in the next polling interval, I’ll stop that branch and inspect its saved listing rather than let a numerically pathological model consume the refinement budget.
+
+Only one broadening term survives cleanly: CaWO₄ size converges reproducibly to about 0.45 µm and lowers Rwp by roughly 0.07 point. WO₃ and Ca₃WO₆ size terms return to the 10 µm neutral limit, while every strain term hits the zero-strain bound. I’m now retrying each bound case from a second interior start; the transient low Rwp seen just before a strain bound is not being accepted.
+
+The retry branches use 5 µm for size and 5000 µstrain for strain—well inside their allowed ranges—and restart from the same neutral base. A repeated return to 10 µm or zero strain will therefore be treated as a genuine failure of that single-term model.
+
+The second-start checks are still progressing through the two low-symmetry minor phases. Because these are one-replay bound tests, no parameter from them will enter the final project unless it remains interior and survives a later full replay.
+
+The run remains numerically active. The accepted CaWO₄ size branch is already saved independently, so these retries cannot disturb it; they only determine whether any additional phase mechanism deserves combination testing.
+
+The final retry is now the only remaining broadening check. I’ll stop at the single-term decision here unless the residual plot shows a reproducible hkl-dependent width pattern; without that evidence, a uniaxial strain model would be unjustified extra freedom.
+
+This retry set is slower than the accepted branch because bound-seeking derivatives force more damping cycles. It is still making progress; I’m preserving the full comparison rather than interpreting an early, unconverged value.
+
+The branch is near the previous full-test duration but has not errored. If it exceeds that duration materially, I’ll terminate and use the already repeated bound evidence; continuing indefinitely would not add physical support.
+
+The second-start retries repeat the same result: only CaWO₄ size is interior; all other size/strain terms return to their neutral bounds. I’m accepting that single 0.45 µm term. Before texture, I’m now comparing 4/6/8-term smooth backgrounds, polarization, and Suortti surface roughness from this same saved base so a shared low-angle intensity effect cannot be hidden in background curvature.
+
+The shared-intensity comparison is decisive: refining polarization gives a stable, interior value near 0.899 and lowers Rwp from 10.49% to 8.07%. Four background terms are inadequate; eight improve only to 10.24% without the shared correction. Roughness gives a lower transient Rwp but drives both roughness and CaWO₄ size to bounds with 99.93% correlation, so that branch fails physically. I’m replaying the six-term + polarization model, then will test whether any roughness or extra background remains once polarization is fixed.
+
+With polarization already present, an eight-term Chebyshev background remains smooth and gives a further 0.30-point Rwp improvement; roughness again hits its lower bound with 100% A/B correlation. I’m accepting the eight-term background and rejecting roughness. Next I’ll replay this base, then compare no texture against symmetry-distinct March–Dollase axes for each phase.
+
+The no-texture base is stable at Rwp 7.767%. I’m testing tetragonal CaWO₄ along [001], [100], [110], and [101], and both monoclinic phases along three cell axes plus [110]/[101]. Each branch starts at March–Dollase 1.0 and must remain interior with consistent improvement across multiple isolated families.
+
+Texture is strongly phase-specific: CaWO₄ [110] converges to March–Dollase 1.254 and lowers Rwp from 7.77% to 5.61%, outperforming [001], [100], and [101]. Every WO₃ axis changes Rwp by ≤0.003 point and Ca₃WO₆ axes by ≤0.015 point, so minor-phase texture is not retained. I’m replaying the CaWO₄ [110] branch and checking its isolated-family intensity corrections before the final inventory re-challenge.
+
+The accepted [110] texture remains stable (MD ≈1.254) through reopen/replay. The final inventory challenge is now running with that texture, polarization, eight-term smooth background, and CaWO₄ size all preserved; CaO is being retried from two starts, alongside bronze, triclinic WO₃, and the lower-symmetry Ca₃WO₆ analogue.
+
+The final re-challenge leaves the three-phase inventory unchanged. Bronze returns to zero; triclinic WO₃ and the U-derived Ca₃WO₆ model are worse. CaO converges to only 0.13 wt% with a 0.10 wt% least-squares uncertainty, no unique resolved line, and merely ~0.004 Rwp-point gain, so it is below reliable detection and is not quantified as a retained phase. I’m now performing the final saved/reopened replay over the exact measured 9.903–100.095° range and exporting directly from that project.
+
+The final project replay converged over all 8301 points with no frozen variables and maximum shift/esd 0.001. Exported structures have plausible geometry: CaWO₄ W–O 1.763 Å, monoclinic WO₃ distorted W–O 1.71–2.16 Å, and analogue-derived Ca₃WO₆ W–O 1.924–1.939 Å. I’m doing the last profile/export consistency and residual checks before writing the JSON and report.
+
+All requested outputs are now written. The final project and exported profile agree point-for-point, and the JSON fractions sum to one over the retained crystalline phases. I’m running one last machine validation of JSON syntax, CIF readability/cells, phase count, and absence of frozen variables before handing off.
+
+Refinement completed and validated:
+
+- Scheelite CaWO₄: 75.61 wt%
+- Monoclinic WO₃: 12.86 wt%
+- Ca₃WO₆-type phase: 11.53 wt%
+
+Final fit: Rwp 5.621%, Rp 3.847%, GOF 2.502. The Ca₃WO₆ structure is analogue-derived and remains model-dependent. CaO was below reliable detection and was not retained.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_CaWO4.cif](<ATTEMPT_WORKSPACE>/phase_CaWO4.cif)
+- [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [phase_Ca3WO6.cif](<ATTEMPT_WORKSPACE>/phase_Ca3WO6.cif)
+

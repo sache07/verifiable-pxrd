@@ -1,0 +1,28 @@
+I’ll first inspect the measurement metadata, pattern, and reusable refinement helpers, then build and validate the phase inventory before committing to any GSAS‑II model. I’ll keep candidate chemistry, geometry, and profile complexity explicitly constrained as requested.
+
+The chemistry points first to calcium tungstates, but I’m treating that only as a prior. The next pass will extract observed peak families and query exact Ca–W–O/CaO/WO₃ records, while also checking which indexing and GSAS‑II interfaces are available in this environment.
+
+The diagnostic peak list is a one-for-one match to scheelite CaWO₄ (including the otherwise suspicious 29.03° line, which is its allowed 103 reflection). Ambient scheelite records match; the high-pressure fergusonite polymorph and Ca₃WO₆/CaO/WO₃ all predict strong low-angle families that are absent. I’m now moving into staged GSAS‑II refinement and will test zero shift against specimen displacement before choosing one correction.
+
+The correction comparison is essentially tied, but zero shift is marginally better (Rwp 3.86629% versus 3.86642% with specimen displacement) and avoids the extra angular model, so I’m retaining zero only. The global width is physically positive across the full range; adding the Caglioti V term was rejected as non-identifiable (>95% correlations), while one positive constant Lorentzian term is supported and improves the fit without phase-specific broadening.
+
+Minor-phase trials have now been reconverged against the full base model. Fergusonite refines to zero scale; Ca₃WO₆ and ambient WO₃ are <1σ. CaO gives only 0.143(66) wt% (2.15σ), improves Rwp by just 0.0007 percentage point, and lacks a consistent multi-peak residual signature, so I’m treating it as below reliable identification rather than reporting a spurious second phase. I’m rebuilding the selected one-phase project cleanly in the exact staged order used for the final exports.
+
+The clean final project is converged and exports a single scheelite phase at 100% of the modeled crystalline fraction, with Rwp 2.3034% and GOF 1.0111. I’m doing the last consistency audit now: reload/replay, exact CIF–project coordinate agreement, bond geometry, parameter bounds/correlations, and residual-family screening.
+
+All consistency checks passed: the CIF is full-occupancy CaWO₄ with physical W–O/Ca–O geometry; `fit.csv` now round-trips exactly to the arrays in `final.gpx`; no variables are frozen or at bounds; and a replay changes Rwp by only 0.000006 percentage point. I’m removing only the temporary trial projects and diagnostic plots I created, leaving the final deliverables and reproducibility script.
+
+Completed. The crystalline model is single-phase scheelite CaWO₄ (*I* 4₁/*a*), with 100 wt% normalized over modeled crystalline phases.
+
+Refined cell: *a* = 5.24869(3) Å, *c* = 11.38560(6) Å. Fit: Rwp = 2.3034%, GOF = 1.0111.
+
+A possible CaO contribution of 0.143(66) wt% was below reliable identification and excluded. Amorphous content cannot be determined without an internal standard.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_1_CaWO4_scheelite.cif](<ATTEMPT_WORKSPACE>/phase_1_CaWO4_scheelite.cif)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+

@@ -1,0 +1,53 @@
+I’ll inspect the pattern, metadata, and the framework’s analysis/tooling notes first, then build and validate a cumulative GSAS-II model. I’ll keep phase inventory decisions tied to observable residual families and chemistry, and I’ll replay the final project before exporting the requested files.
+
+The public chemistry is CaO + WO₃ fired at 800 °C, so Ca–W–O crystalline products and residual precursors are the only chemically supported inventory. I’m now extracting the peak families and inspecting the supplied COD index/GSAS-II interfaces; the broad generator ranges will not be used as case-specific priors or targets.
+
+The raw line families close cleanly with scheelite CaWO₄ plus monoclinic WO₃: the high-angle sequence at 64.38, 65.46, 67.37, 68.95, 70.29, 71.80, 74.92, 76.04, 79.08, 80.46, 81.96, 85.96, 90.37, 94.82, 95.94, and 98.93° follows CaWO₄, while the 23.02/23.45/24.27°, 26.51°, and 33–34° multiplets identify monoclinic WO₃. I’m starting a two-phase whole-pattern refinement; CaO will be tested by deletion/addition rather than inferred from precursor stoichiometry.
+
+Several residual maxima (notably 22.04, 19.35, 30.65, 32.11, 36.54, and 37.44°) are not explained by the two parent phases, so inventory is not closed. I’m testing Ca₃WO₆ as the chemically balanced missing composition using multiple independent, physically valid P2₁/c double-perovskite parents (Ca₂MgWO₆, Ca₂CoWO₆, Ca₂NiWO₆, and Sr₂CaWO₆), mapping all non-W cation sites to Ca and refining each branch cumulatively. This follows the ordered-site-collapse case without fixing its fraction by stoichiometry.
+
+The first analogue branches exposed a numerical issue: adding the third phase at equal initial scale made one branch collapse before the cell could adapt. Per the requested bounded-retry rule, I’m restaging those branches from low third-phase scale and lower flexibility rather than treating the failed runs as evidence against Ca₃WO₆.
+
+The mechanism trials show that surface roughness and phase-specific WO₃ strain are supported; refining polarization runs to its physical limit, and CaWO₄ strain runs to zero, so those terms are not retained. I’m now screening preferred-orientation axes on this physical profile base, then I’ll re-test the phase inventory and analogue parents against the reduced residual—not against the earlier under-modeled profile.
+
+Indexing the unassigned family gives a self-consistent monoclinic/pseudorthorhombic cell: using the 19.35° (011), 22.04° (110), 31.45° (112), 37.44° (121), and 45.13° (220) residuals yields approximately a = 5.801, b = 5.538, c = 8.000 Å before full refinement; the predicted 121 and 220 positions independently match. That is the ordered-double-perovskite Ca₃WO₆ topology, so I’m restarting all four mapped parents from this indexed cell and a low trace scale.
+
+The indexed restarts are decisive: all four independent P2₁/c parents refine to essentially the same Ca₃WO₆ cell (a ≈ 5.807, b ≈ 5.550, c ≈ 8.001 Å), and Rwp falls from 10.91% to 4.78–5.11%. The branch-dependent Ca₃WO₆ fraction (about 12–17 wt%) shows that parent coordinates still confound framework ranking, so I’m not selecting a parent yet; I’ll first re-equilibrate profile mechanisms and then apply identical coordinate blocks to the credible finalists.
+
+The three-phase deletion tests retain roughness, WO₃ [001] texture, and WO₃ strain; CaWO₄ texture is unsupported after Ca₃WO₆ is added and has been removed. Ca₃WO₆ requires isotropic strain, while anisotropic strain and extra size/texture terms offer little. I also found a major normalization issue across analogue parents—their inherited displacement parameters range from 0 to ~0.10 Å²—so I’m standardizing Ca₃WO₆ Uiso to 0.01 Å² and refining identical W, Ca, then O displacement blocks before comparing parent coordinates.
+
+Individual displacement refinement drove several O Uiso values above 0.20 Å², so those branches are physically rejected. I’m restarting from normalized Uiso = 0.01 Å² (fixed) and refining the same cumulative coordinate blocks—O1, O2, O3, then the general Ca site—for every credible parent. I’ll screen contacts and only retain coordinate motion that remains chemically physical.
+
+The coordinate branches are still converging through the cumulative site blocks. The early stages are already being kept separate by parent so that a failed or contact-forming lineage can be discarded without contaminating the others; I’ll compare only the fully replayable, physically screened endpoints.
+
+The crystalline inventory is now coherent: scheelite CaWO₄, monoclinic WO₃, and an ordered Ca₃WO₆ double-perovskite-type phase. I’m finishing the matched structural-source comparisons and coordinate refinements, then I’ll run deletion/replay checks and export the exact final GSAS-II project and profiles.
+
+The best physically valid Ca₃WO₆ parent is the Ca₂MgWO₆ analogue after Mg→Ca mapping; the competing Sr₂CaWO₆ lineage develops an unphysical 1.78 Å O–O contact even after its one restrained retry. I’m retaining the chemically nearer Mg lineage and now testing only coordinate blocks implicated by residual intensity errors in the known phases.
+
+A physical screen exposed that the initial WO₃ reference has intrinsically rounded coordinates yielding a 1.58 Å O–O contact. Its profile match is useful for indexing, but it cannot be the submitted structural source while passing alternatives exist. I’m therefore carrying the same-composition WO₃ candidates through a matched source swap before accepting any coordinate movement.
+
+The valid monoclinic WO₃ source (COD 2311041) improves the fit over both the provisional rounded model and the triclinic alternative, while preserving a physical octahedral network. Mechanism deletion tests still strongly support WO₃ texture/strain, Ca₃WO₆ strain, and surface roughness; one roughness coefficient is statistically zero, so I have fixed that coefficient to zero to remove an unstable correlation. Transparency refined back to zero and is rejected.
+
+The first aggressive nuisance restarts exposed branch-dependent coordinate drift when all coordinate variables were left active from the first cycle. Per the stability rule, I’m restaging those checks from lower flexibility: first converging the perturbed profile with all atoms fixed, then reopening exactly the accepted coordinate blocks cumulatively. This distinguishes a genuine structural minimum from a refinement-path artifact.
+
+The Ca₃WO₆ ligand refinements fail the geometry test: they shorten O–O separations to about 2.11 Å. The prescribed single coupled soft-restraint retry still converges toward that contact and remains shift-unstable, so I am rejecting those coordinate moves and restoring the physical parent geometry. The phase identity and scale remain well supported; only its detailed ligand coordinates are being treated conservatively.
+
+The final physical model survives independent restarts: the calculated profiles, structures, and fractions converge reproducibly despite the correlated X/Z width subspace. All three phase deletions cause large fit deterioration, while a chemically plausible CaO addition refines to the zero-scale bound and is excluded. I’m now cleaning the comparison-only phase from the project and preparing the exact exports/replay audit.
+
+Completed and independently replay-verified.
+
+- CaWO₄ (scheelite): 69.935 wt%
+- Ca₃WO₆ (double-perovskite-type): 13.929 wt%
+- Monoclinic WO₃: 16.136 wt%
+- Rwp: 3.8215%; GOF: 1.4668
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v8-bounded-retry-a4573c5548af/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v8-bounded-retry-a4573c5548af/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v8-bounded-retry-a4573c5548af/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v8-bounded-retry-a4573c5548af/workspace/fit.csv)
+- [CaWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v8-bounded-retry-a4573c5548af/workspace/phase_CaWO4.cif)
+- [Ca₃WO₆ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v8-bounded-retry-a4573c5548af/workspace/phase_Ca3WO6.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v8-bounded-retry-a4573c5548af/workspace/phase_WO3.cif)
+

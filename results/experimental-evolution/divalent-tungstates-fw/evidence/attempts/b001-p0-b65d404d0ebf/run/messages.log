@@ -1,0 +1,45 @@
+I’ll inspect the pattern, metadata, and the framework’s analysis guidance first, then identify candidate phases, refine them in GSAS-II, and validate every submitted artifact against the final project.
+
+The metadata points to a CaO–WO₃ reaction at 800 °C with Cu Kα₁/Kα₂ data. I’m now separating the dominant Ca–W–O product from any residual precursor or polymorph signatures, using both peak positions and full-profile tests rather than composition alone.
+
+Peak matching now supports a three-component hypothesis: scheelite CaWO₄ is dominant, monoclinic γ-WO₃ explains the 23–24°, 33–34°, and 49–51° multiplets, and I’m testing whether the remaining weak lines require residual CaO. I’ll quantify that by nested GSAS-II refinements and retain CaO only if its scale and profile contribution are stable.
+
+The CaO test is yielding a positive, refinable scale and improves the fit at its 32.1°/37.4° pair, so it is likely real rather than a noise artifact. The remaining mismatch is dominated by phase-specific texture/broadening and the exact WO₃ structural variant; those refinements are still running under physical parameter bounds.
+
+The bounded fit confirms CaO at low abundance, but the broadening parameters are highly correlated and cannot yet support a reliable fraction. I’m therefore cross-checking the residual against every library structure containing only Ca/W/O/H/C, which will distinguish a genuinely missing phase from texture-induced intensity errors in the three proposed phases.
+
+The exhaustive structure screen did not support a fourth plausible phase. The three-phase model gives chemically consistent fractions near 81 % CaWO₄, 16 % WO₃, and 3 % CaO; the current residual is largely a systematic high-angle intensity deficit, so I’m now refining the per-phase displacement parameters and atomic coordinates within the generator’s physically allowed range before final quantification.
+
+The three-phase model is already chemically coherent—scheelite CaWO₄ with residual WO₃ and CaO—but several sharp residual peaks could indicate a minor intermediate. I’m testing plausible Ca–W–O structure analogues against those peaks before locking the final GSAS-II project, so the reported phase count isn’t decided by chemistry alone.
+
+The unexplained peaks form a repeatable fingerprint at roughly 19.34°, 22.04°, 30.65°, 36.54°, 45.12°, and 50.81°. I’m screening 391 oxide structure types after chemically mapping their cation sites to Ca and Mo sites to W, with lattice scaling allowed; this should distinguish a real minor Ca–W–O intermediate from profile-shape residuals.
+
+A fourth crystalline component is real: adding an oxide framework matching the 22.04° series lowers Rwp from about 12% to about 10% and carries roughly 5 wt%. The remaining question is its structure type; I’m comparing cubic/orthorhombic tungsten-bronze models against chemically neutral Ca-rich tungstate intermediates, including their full-cell refinements rather than relying only on peak lookup.
+
+The chemically neutral model now wins decisively: a repaired Ca₃WO₆ double-perovskite analogue fits substantially better than reduced CaWO₃/bronze alternatives, while preserving the Ca:W mass balance. Merging two crystallographically split half-occupied Ca pairs also removes a 0.64 Å pseudo-contact and improves Rwp to 7.60%, so I’m carrying the physically valid 20-site Ca₃WO₆ model forward.
+
+With the full four-phase model in place, the physically bounded nuisance refinement has reached Rwp ≈5.73% (noise floor ≈2.62%). The remaining residual is concentrated at intense overlapping peaks, so I’m now resolving phase-wide thermal factors and small coordinate perturbations; these affect relative intensities and therefore the final weight fractions, but no additional crystalline phase is indicated.
+
+The four-phase refinement is complete. I’m doing the final consistency pass now: validating the JSON, confirming the replayed profile exactly matches `fit.csv`, and checking that every submitted CIF agrees with `final.gpx`.
+
+The submission schema and phase fractions validate cleanly: four atomic models, no invalid records, and the fractions sum to 1 within floating-point precision. The saved profile also matches the independent GSAS-II replay to the CSV rounding limit; I’m checking the final project/CIF correspondence once more before handoff.
+
+Analysis complete. Crystalline-phase fractions are normalized to 100%:
+
+| Phase | Weight fraction |
+|---|---:|
+| Scheelite CaWO₄ | 69.85% |
+| Monoclinic γ-WO₃ | 16.90% |
+| Distorted Ca₃WO₆ intermediate | 12.53% |
+| CaO | 0.72% |
+
+The independently replayed project gives Rwp = 5.261% and Rp = 3.951%. The Ca₃WO₆ atomic model is provisional, and trace CaO is weakly constrained.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-b65d404d0ebf/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-b65d404d0ebf/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-b65d404d0ebf/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-b65d404d0ebf/workspace/final.gpx)
+- CIFs: [CaWO4](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-b65d404d0ebf/workspace/phases/CaWO4.cif), [WO3](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-b65d404d0ebf/workspace/phases/WO3.cif), [Ca3WO6](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-b65d404d0ebf/workspace/phases/Ca3WO6.cif), [CaO](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-b65d404d0ebf/workspace/phases/CaO.cif)
+

@@ -1,0 +1,124 @@
+I’ll first inspect the public pattern, metadata, and the framework’s analysis/tooling guidance. Then I’ll identify candidate phases from the diffraction evidence, build and compare cumulative GSAS-II models, and independently replay the final project before writing the requested artifacts.
+
+The public chemistry is CaCO₃ + WO₃ fired at 650 °C, so I’ll test the expected product and plausible crystalline residues/intermediates, but only retain phases supported by coherent peak families. I’m now extracting the peak inventory and querying the frozen COD index for Ca–W–O, Ca–C–O, and W–O reference structures.
+
+The peak inventory is already decisive for two major phases: scheelite CaWO₄ and monoclinic WO₃. I am now doing matched GSAS-II restarts among the credible room-temperature WO₃ references and testing whether weaker residual families justify calcite or another Ca–W–O phase; no atomic coordinates are being moved at this stage.
+
+A third phase is strongly supported: residual peaks at about 32.26°, 37.42°, 53.88°, and 67.38° form the expected CaO family after the common angular correction. A separate weaker family is also consistent with residual calcite, so I’m testing CaO and CaCO₃ both individually and cumulatively, alongside deletion controls for alternative calcium tungstates.
+
+The cumulative four-phase model currently gives approximately 67% CaWO₄, 23% WO₃, 3.6% CaO, and 6.3% calcite in the low-flexibility comparison; both minor phases improve matched deletion models and have independent peak families. I’m now testing zero offset versus specimen displacement and their joint correlated branch from several starts before allowing phase-specific broadening or texture.
+
+The angular-correction comparison is stable: the joint zero/displacement model converges from all three starts to the same calculated curve, cells, and fractions (about 0.157° zero plus +58 µm shift), with only a small Rwp advantage over zero-only. I’m retaining that reproducible correlated subspace while screening smooth background families and orders.
+
+Background tests favor a 14-term shifted Chebyshev model: it is smooth and keeps fractions stable, whereas 16 terms introduce many extra oscillations and the monotonic power-law family fits materially worse. The common-profile trials now test axial divergence and all defensible U–V–W/X–Y combinations, with explicit positivity checks across 10–100°.
+
+The fully free common profile lowers Rwp but does so with negative Lorentzian or Gaussian coefficients, so I’m rejecting that branch as nonphysical. The positive common profile with axial divergence is the stable base; I’m now screening isotropic size and microstrain separately for every phase, with the shared profile held fixed so unsupported phase broadening cannot hide in instrument terms.
+
+The per-phase broadening matrix is still running; these are deliberately matched two-pass refinements. Once it completes, I’ll retain only positive, reproducible size/strain terms and then retest the minor-phase deletions under that stabilized profile.
+
+The broadening screen is clear: WO₃ requires substantial line broadening (either ~0.052 µm coherent size or ~1.2% isotropic microstrain), while CaWO₄ supports a much smaller positive strain term. CaO and calcite broadening either runs to the no-effect size limit or becomes negative, so those terms are rejected. I’m comparing the supported cumulative size/strain combinations with the common profile re-equilibrated.
+
+The cumulative refinements are still converging through their profile-restart passes. I’m watching for size/strain tradeoff instability; a lower Rwp will not be retained if either broadening term turns negative, hits an artificial limit, or causes materially different fractions across restarts.
+
+The cumulative model prefers both WO₃ size and strain: Rwp falls to 6.13% with positive, interior values (~0.069 µm and ~6200 ppm), and CaWO₄ strain remains positive (~1400 ppm). I’m repeating that correlated broadening branch from widely separated starts; if the partition is not reproducible, I’ll fall back to the simpler stable mechanism.
+
+The WO₃ size/strain partition is reproducible from all starts (size 0.068–0.069 µm, strain 6100–6250 ppm), as are fractions and the calculated curve, so both terms are retained. Residuals are now mostly peak-shape/intensity mismatches rather than unexplained peak families; polarization and surface-roughness branches are running before texture and anisotropy tests.
+
+These intensity-correction trials are computationally slower because every branch rebalances the full four-phase model. I’ll reject any branch that leaves polarization outside [0,1], roughness outside its physical domain, or produces start-dependent fractions even if its nominal Rwp is lower.
+
+The nuisance matrix is still progressing through difficult high-correlation refinements; no user input is needed. The scientific decision remains unchanged: only a reproducible, physical correction will survive into the next model.
+
+The roughness-only fits have a correlated A/B valley: two positive starts give nearly identical physical correction curves and fractions, while one start drifts to negative A and is rejected. I’m checking whether polarization can coexist with the positive roughness branch without forcing that drift; otherwise polarization will remain fixed and only the reproducible roughness correction will be retained.
+
+The two-parameter roughness branch is not predictively stable in its individual coefficients, so I’ve reduced it to the physically meaningful one-parameter limit (A fixed at 0, positive B) and am restarting polarization+B from three widely separated values. This directly addresses the invalid-drift issue rather than freezing an arbitrary two-parameter solution.
+
+The constrained nuisance restarts are still solving the full covariance system. Once they finish, the next comparison is the required matched WO₃ source swap among the triclinic and two monoclinic finalists, all inside the same four-phase model.
+
+The reduced intensity model is stable: three starts converge to polarization 0.724–0.727 and roughness B ≈0.071 (A fixed at the physical one-parameter limit), with fractions agreeing within 0.03 wt%. That model is now being used for matched restarts of triclinic WO₃, two monoclinic references, and the orthorhombic alternative.
+
+The source-swap refinements are in progress; each candidate is reimported from its published CIF and receives the same scales, background, angular correction, roughness/polarization, and isotropic broadening before three restart passes. Coordinates remain fixed, so extra symmetry freedom cannot win through atom movement.
+
+The matched restarts are still running through their final passes. I’ll compare not only Rwp but also whether the candidate preserves positive broadening, stable phase fractions, and a physically sensible refined cell; near-tied monoclinic/triclinic models will be reported as such if the diffraction evidence does not separate them.
+
+The four-phase inventory is now well supported: scheelite CaWO₄, monoclinic WO₃, CaO, and calcite. The stabilized matched-source comparison favors the monoclinic WO₃ parent; I’m now checking that choice from deliberately different starts, then I’ll finish texture/coordinate tests and the independent project replay before exporting the deliverables.
+
+The monoclinic WO₃ restart is deliberately far from the current solution, so it is taking longer than the near-solution refinements. The important check is whether it returns to the same calculated curve and phase fractions—not whether correlated zero/height corrections land on identical individual coefficients.
+
+This restart is still iterating cleanly but with buffered output. While it runs, I’m keeping the acceptance criterion strict: positive, finite broadening and stable phase fractions, with no dropped refinement directions. A numerically lower fit from an invalid branch will not be retained.
+
+The far-start branch is computationally expensive because the full profile, roughness/polarization, four cells, fractions, and phase-specific broadening are all re-equilibrating together. Once this one completes, I’ll use its converged project as the common base for the remaining targeted tests, avoiding needless full restarts.
+
+The extreme restart has crossed the point of useful diagnostic value; it is not converging on a practical timescale, which itself flags that starting branch as poor. I’ll stop it if the current cycle does not finish, then use two moderate but genuinely distinct starts with capped cycles—the appropriate reproducibility test for this nonlinear model.
+
+The monoclinic source itself is stable in the matched cumulative fit; the failed extreme-start experiment destabilized an unrelated calcite cell and is rejected as an invalid branch. I’m moving to the physically targeted question now: whether the residual peak-shape differences require directional size/strain, rather than forcing the source model through an unreasonable global restart.
+
+The directional broadening screen is running in matched batches. Each candidate differs by only one axis choice, so any retained improvement must come with positive axial/equatorial widths and survive a second refinement from the selected branch.
+
+The directional screen found a real WO₃ effect: both size and strain anisotropy are strongly favored along the monoclinic source’s [100] direction, while CaWO₄ directional strain changes Rwp by only about 0.003%. I’m now testing joint WO₃ size/strain combinations, because either effect alone can partially mask the other.
+
+The joint screen confirms that anisotropic size and strain both matter for WO₃, but their preferred axes are not necessarily the same in this nonstandard monoclinic setting. I’m checking diagonal directions before locking the model; this avoids mistaking a convenient crystallographic axis for the actual broadening direction.
+
+The retained WO₃ broadening is physically finite and reproducible: roughly 0.071/0.390 µm size components and 8.2/26.6×10³ microstrain components, with stable fractions. I’m now screening March–Dollase texture for every phase and symmetry-relevant axis; only reproducible, positive orientation ratios will survive.
+
+Texture screening is still running in four matched batches. Because the minor CaO and calcite scales are the most susceptible to intensity-model bias, I’m explicitly checking their axes too, rather than assuming texture only matters for the major phases.
+
+WO₃ [011] texture is a large, stable effect (March–Dollase ratio ≈0.883; Rwp 4.026→3.477%) with no singular directions. I’m re-testing the weaker CaWO₄ and calcite texture candidates on top of it, since the major-phase correction can change apparent minor-phase intensities.
+
+The weak texture terms are statistically detectable despite small Rwp changes: CaWO₄ is about six standard deviations from random and calcite about four. Their axis alternatives are nearly tied, so I’m using the conventional high-symmetry CaWO₄ [001] axis and the best calcite [100] branch, then testing whether the cumulative model remains stable; I’ll report the axis ambiguity as a systematic uncertainty.
+
+I’m re-running the earlier broadening failures after texture stabilization, as required by the cumulative workflow. This specifically checks whether CaO/calcite widths or CaWO₄ size/anisotropic strain were merely hidden by the WO₃ intensity corrections.
+
+The retest rejects CaO broadening again (size is at the 10 µm no-effect limit with a dropped direction; strain turns negative). Calcite broadening has become weakly supported and positive after texture, so I’m testing size+strain jointly from both entry paths; its fraction moved by ~0.4 wt%, making reproducibility—not the small Rwp gain—the deciding criterion.
+
+The new CaWO₄ size term exposed a slow correlated valley with WO₃ size and the minor-phase scales. One start converged to the better branch; the deliberately large-size start is still descending. I’m extending only that branch to see whether the calculated curve and fractions actually reunify before deciding whether CaWO₄ size is defensible.
+
+The broadening retests now converge from both starts to the same curve and fractions. The retained additions are finite CaWO₄ size plus a correlated calcite size/strain subspace; CaO broadening remains invalid. I’m at the last structural stage now: element-block coordinate tests, followed by physical bond/density screening of any apparent improvement.
+
+Coordinate screening gives a clear hierarchy: WO₃ W-site motion and CaWO₄ O-site motion improve the intensity residual while preserving plausible structures; calcite O is negligible. Moving all WO₃ oxygen sites at once lowers Rwp but creates a 1.56 Å contact and large fractional shifts, so that unconstrained block is not acceptable. I’m checking element-pair distances and then testing WO₃ oxygen sites individually on top of the stable W block.
+
+The WO₃ W block is fully reproducible from both nuisance starts: the same six coordinate shifts, Rwp ≈3.328%, and phase fractions within 0.01 wt%. I’m now adding the supported CaWO₄ oxygen block and screening each WO₃ oxygen site separately, which is the safer alternative to the rejected all-oxygen distortion.
+
+Individual-site screening rejects WO₃ O1–O3 because they shorten W–O to 1.59–1.64 Å. O4 and O6 each give smaller but repeatable-looking improvements while keeping the shortest W–O near 1.71 Å; O5 is marginal. I’m combining O4+O6 from both entry orders to test whether those shifts are a stable structural signal or another local valley.
+
+The O4+O6 WO₃ model converges to the same coordinates from both entry orders and gives balanced W bond-valence sums (~6.38 and ~6.34). Adding O5 lowers Rwp slightly but splits those sums to ~7.50/5.55, so O5 is rejected. I’m doing the final displacement-parameter block screen now; any negative or scale-driven Uiso result will be discarded.
+
+The ADP screen rejects WO₃ oxygen motion because four sites become negative. CaWO₄ Ca/W/O and WO₃ W all refine to positive, plausible Uiso values and improve the fit, but their scales move enough that they must be tested jointly. I’m activating those blocks together while preserving the accepted coordinate flags, then checking convergence from different WO₃ Uiso starts.
+
+The joint ADP model is stable from 0.005 and 0.020 Å² WO₃ starts, with the same curve, coordinates, and fractions. All retained Uiso values are positive. I’m now replaying the complete coordinate+ADP sequence from the alternate nuisance/broadening branch; this is the final structural reproducibility check before phase-deletion tests.
+
+The full structural replay has converged to the same result from the alternate branch: Rwp 2.99656%, fractions agree within 0.005 wt%, and both exported structures pass density, distance, and WO₃ bond-valence screens. I’m now deleting CaO and calcite in turn (and together) and allowing the complete remaining model to re-equilibrate, which is the decisive trace-phase inventory test.
+
+The deletion refinements are deliberately allowing all retained profile, texture, ADP, scale, and cell terms to respond. This prevents a trace phase from looking necessary merely because the four-phase model’s nuisance parameters were held fixed.
+
+Deletion is decisive: removing CaO raises Rwp to 4.390%, removing calcite to 4.246%, and removing both to 5.244%, even after full re-equilibration. Both minor phases therefore remain. I’m now writing the independently reproduced branch as `final.gpx`, doing one last convergence pass, and exporting all four CIFs from that exact project.
+
+The final convergence pass exposed two terms that were supported before ADP refinement but have now collapsed toward their null values: CaWO₄ texture is essentially 1.0006, and calcite strain is only ~80 ppm. I’m doing a final simplification audit on the fully refined model; unsupported terms will be switched off and the retained parameters re-equilibrated before the definitive export/replay.
+
+The simplification audit selects a cleaner model: CaWO₄ texture and calcite strain are unsupported after ADP refinement, and the 14th background coefficient is also unnecessary. A 13-term Chebyshev model retains the fit (Rwp 2.99680%) with three fewer variables; dropping to 12 terms causes a clear χ² increase. I’m now running final coordinate-deletion controls on this simplified model.
+
+All retained coordinate blocks survive deletion on the simplified model: resetting CaWO₄ O raises Rwp to 3.042%, resetting WO₃ W to 3.073%, and resetting WO₃ O4/O6 to 3.022%; removing all raises it to 3.160%. I’m replacing the provisional export with this audited 62-variable model and then performing a fresh, zero-optimization GSAS-II replay.
+
+The zero-optimization replay succeeded with no review flags, did not modify the project, and regenerated Rwp = 2.99676% from fresh reflection lists. The replay fractions exactly match the project values. I’m packaging that replay profile into `fit.csv` and running the last CIF/project consistency and physical screens before writing the report.
+
+The requested artifacts are now written. I’m doing the final cross-check: input grid/count identity, fraction normalization, CIF-to-GPX phase correspondence, replay hash, and exact `fit.csv` consistency with the independently regenerated profile.
+
+Completed with four crystalline phases:
+
+- CaWO₄ (scheelite): 62.869 wt%
+- WO₃ (monoclinic): 26.888 wt%
+- CaO: 3.502 wt%
+- Calcite: 6.741 wt%
+
+Independent GSAS-II replay: Rwp 2.9968%, GOF 1.0847, with no review flags. Fractions exclude any amorphous content.
+
+Artifacts:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-afd55ccd2931/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-afd55ccd2931/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-afd55ccd2931/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-afd55ccd2931/workspace/final.gpx)
+- [CaWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-afd55ccd2931/workspace/phase_CaWO4.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-afd55ccd2931/workspace/phase_WO3.cif)
+- [CaO CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-afd55ccd2931/workspace/phase_CaO.cif)
+- [Calcite CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-afd55ccd2931/workspace/phase_calcite.cif)
+

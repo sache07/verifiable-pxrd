@@ -1,0 +1,52 @@
+I’ll first inspect the diffraction range, metadata, and the reusable refinement utilities, then build a chemically screened phase inventory before fitting. I’ll preserve the original observation grid and use residual-led model comparisons, with the final exports regenerated from the exact saved GSAS-II project.
+
+The chemistry strongly suggests a wolframite-type nickel tungstate product, but I’m treating that only as a hypothesis: unreacted NiO/WO₃, alternate WO₃ polymorphs, and minor ternary records all need to be challenged against unique peak families. I’m now extracting peak positions and enumerating exact database records with their symmetry, cells, occupancies, and provenance.
+
+Peak-family matching now supports three crystalline phases: monoclinic NiWO₄, monoclinic room-temperature WO₃, and rocksalt NiO. The key unique families are NiWO₄ near 15.62/19.27/30.85–31.03°, WO₃’s 23.14/23.56/24.38° triplet, and NiO at 37.33/43.43/63.07°. I’m comparing physically valid structure records and transformed WO₃ settings before any scale or cell refinement, because two historical entries match positions similarly but differ in coordinate quality.
+
+The provisional three-phase fit gives positive, stable scales for all phases (roughly 62% NiWO₄, 28% WO₃, 10% NiO before profile optimization), so none is being retained on chemistry alone. Cell refinement also lands directly on the observed families without bounds. I’m now branching from the same saved checkpoint to compare W-only, U/W, U/W/X, and asymmetry-enabled common profiles; this controls the phase-fraction bias before testing phase-specific size/strain.
+
+I found and corrected an important baseline issue before source selection: GSAS-II’s default “fixed” phase broadening is not neutral (1 µm size and 1000 µstrain still broaden peaks). I’ve reset every phase to effectively infinite size and zero strain, with texture/roughness/extinction off, and am rerunning all source comparisons from that clean checkpoint. This will change the provisional fractions and prevents phase broadening from being silently absorbed into the common instrument profile.
+
+With all phase broadening neutralized, the exact NiWO₄ transcription and the MgWO₄-derived wolframite prototype both fit well; the ZnWO₄ parent is decisively poorer. The Mg-derived model is slightly better and has ordinary oxide contacts, while retaining the observed NiWO₄ cell. I’m now holding that model fixed while challenging the two monoclinic WO₃ records and the triclinic polymorph under the identical background/profile/cell recipe.
+
+The WO₃ source comparison is decisive: the Loopstra–Boldrini monoclinic model fits substantially better than the conventional Tanisaki record, and the triclinic alternative is slightly but reproducibly worse despite extra cell freedom. The three-phase inventory is now coherent. I’m branching from the best clean checkpoint to compare neutral/size/strain/combined broadening for NiWO₄, WO₃, and NiO one phase at a time.
+
+The isotropic broadening trials do not support extra phase terms: size changes improve Rwp by less than 0.001 percentage point, WO₃ size runs to its neutral upper bound, and every strain or combined trial becomes negative or highly correlated. I’m pruning those terms. Before testing texture, I’m checking the two remaining global intensity/profile explanations—polarization and axial asymmetry—and quantifying isolated-family widths so texture is not used as a profile surrogate.
+
+The common profile is now physically adequate: isolated low-, mid-, and high-angle families have observed/calculated FWHM ratios mostly within about 3%, with no hkl-dependent broadening trend; anisotropic size/strain is therefore not warranted. Refining the unknown polarization is strongly supported (0.865, Rwp 4.17→3.59%), while SH/L gives only a tiny gain and remains 97% correlated with zero, so I’m leaving asymmetry off. I’m now testing the symmetry-distinct March–Dollase axes one phase at a time.
+
+The preferred-orientation branches are nearly complete. The first NiWO₄ axes give only 0.0004–0.0091 percentage-point Rwp gains with March ratios within 0.8% of unity, so they presently look unsupported; I’m finishing the remaining symmetry-distinct axes before locking the physical baseline.
+
+Texture is rejected: WO₃ axes improved Rwp by at most 0.00175 percentage point, NiWO₄ by 0.0105 with ratios still within 1% of random, and all NiO texture branches were numerically unstable. I’m retaining the neutral texture model and now re-challenging each phase against the clean common profile so the inventory is supported independently of source choice.
+
+All three phases survive the inventory challenge decisively: omitting NiWO₄, WO₃, or NiO raises Rwp from 3.588% to 33.43%, 22.91%, or 7.11%, respectively, after reconvergence. I’m freezing that three-phase inventory, replaying it as `final.gpx`, and then applying the required one-site-at-a-time heavy-atom coordinate challenge.
+
+The coordinate challenge is producing substantial, physical gains for the NiWO₄ metal sites and has moved on to WO₃. Each accepted trial remains below the 0.15 Å displacement guard and is being reopened/replayed before the next site; I’m waiting for the complete acceptance log before adopting it.
+
+The required helper accepted four sites—Ni and W in NiWO₄, and both independent W sites in WO₃—while rejecting NiO’s symmetry-fixed Ni site. Rwp fell reproducibly from 3.5880% to 1.8642%; maximum accepted displacement was 0.060 Å, no frozen variables appeared, and minimum contacts remain 1.786 Å (NiWO₄), 1.701 Å (WO₃), and 2.082 Å (NiO). I’m adopting this checkpoint and continuing reopen/replay to tighter convergence before export.
+
+The adopted model is now converged on all 8,301 original points (maximum shift/ESD 0.024), with Rwp 1.8642% and no frozen variables. The crystalline fractions are 60.3767% NiWO₄, 29.3781% WO₃, and 10.2452% NiO; I’m exporting CIFs and the unrounded full-grid profile directly from this exact project, then validating round-trip consistency.
+
+All requested files have been exported from the exact converged checkpoint, and the fractional sum is exactly 1.0. I’m doing the final integrity pass now: byte-for-byte observation-grid comparison, CIF parsing/composition/contact checks, and a reopened-project comparison of statistics and fractions against `result.json` and `fit.csv`.
+
+Completed the three-phase Rietveld refinement.
+
+- NiWO₄, P2/c: 60.3767 wt%
+- WO₃, P2₁/c: 29.3781 wt%
+- NiO, Fm-3m: 10.2452 wt%
+
+Fit: Rwp 1.8642%, Rp 1.4633%, GOF 1.2903. Fractions are normalized over modeled crystalline phases; amorphous content cannot be quantified without an internal standard.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [NiWO4.cif](<ATTEMPT_WORKSPACE>/NiWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [NiO.cif](<ATTEMPT_WORKSPACE>/NiO.cif)
+
+The exported profile exactly preserves all 8,301 measured grid points, and all CIFs passed composition, symmetry, and contact validation.
+

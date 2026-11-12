@@ -1,0 +1,60 @@
+I’ll inspect the measurement metadata, pattern, candidate inventory, and the reusable refinement helpers first. Then I’ll build the phase model incrementally, checking chemistry, diagnostic reflections, profile behavior, and project/export consistency at each stage.
+
+The chemistry points first toward calcium tungstates plus possible unreacted WO₃/CaO, but I’m treating that only as a hypothesis. I’m now extracting the experimental peak families and locating the local search/refinement interfaces so candidate selection is driven by the full pattern and inventory rather than formula alone.
+
+The peak-position audit supports a nearly constant −0.16° correction, so I’ll use a single refined zero offset and keep specimen displacement fixed. The dominant phase matches ambient scheelite CaWO₄; the coherent residual triplet near 23–24.3° and its higher-angle families match ambient monoclinic WO₃. I’ll now compare the physically credible WO₃ records under the same background/profile model before settling on a source structure.
+
+The first two-phase trial converged to about 87 wt% CaWO₄ and 13 wt% WO₃. Its global width model prefers a constant Gaussian term plus a tan(θ) Lorentzian term; the additional U term collapsed to its zero bound, so I’m removing that unidentifiable term from the comparison/final model and reconverging rather than retaining a frozen parameter.
+
+The polymorph comparison is decisive chemically even though two ambient monoclinic records are statistically tied (ΔRwp < 0.001%). I’m selecting COD 2311041 because it gives the same diagnostic fit with physically sensible WO₆ geometry; COD 1528915 contains an implausible 1.58 Å O–O contact. The triclinic and orthorhombic alternatives fit materially worse and/or require unnecessary cell freedom. Next I’m auditing residual peak families for a missing crystalline phase before any phase-specific broadening or texture is considered.
+
+The residual family is not random: 18.74, 19.29, 22.02, 30.72, 31.40, 32.16, 37.53, 45.15, and 57.02° all map to one P2₁/n Ca₃WO₆ double-perovskite pattern after the same zero correction. The closest safe analogue is ambient Ca₃OsO₆ (COD 1562666); Os⁶⁺→W⁶⁺ is isovalent, its octahedral geometry is sound, and the parent’s diagnostic reflections predict this entire residual family without texture or anisotropic broadening. I’m adding that prototype and reconverging all scales, cells, background, and the common zero/profile.
+
+With the third phase included, Rwp drops from 14.89% to 12.15% and the adapted Ca₃WO₆ scale is strongly positive (about 13 wt%), confirming it is not a compensation artifact. The remaining WO₃ triplet is visibly narrower than the dominant CaWO₄ peaks, so the single global width is averaging unlike phase widths. I’m now testing one isotropic size or strain term at a time—first separately, then only combining terms that are supported.
+
+The width comparison is clear: CaWO₄ crystallite-size broadening is strongly supported (Rwp 12.15→9.76%, refined coherent size ≈58 nm), while CaWO₄ microstrain is inferior and drives a global width term to a bound. Ca₃WO₆ broadening alone is unsupported. I’ll retain only CaWO₄ size, then re-test each minor phase against that narrower global profile.
+
+The minor-phase recheck rejects extra WO₃ broadening and Ca₃WO₆ size broadening: both run to the “no broadening” limit. Ca₃WO₆ microstrain is supported instead, consistent with its observed width increasing with angle. Once that term is present the global Lorentzian term collapses to zero, so I’m removing it and reconverging a clean width model: global W only, CaWO₄ size, and Ca₃WO₆ isotropic strain.
+
+After replay and full convergence, the selected width model gives Rwp 9.48% with no frozen variables. Residuals are now intensity-ratio errors rather than unmatched peak families: CaWO₄ 101 is overpredicted while 004/116 and several high-angle reflections are underpredicted. I’m testing a single March–Dollase parameter along plausible scheelite fiber axes; it will be retained only if the parameter is modest and the diagnostic ratios improve consistently.
+
+A modest [001] texture term is strongly supported (March–Dollase r≈0.871, Rwp 9.48→7.47%); alternative axes are clearly worse. The remaining bias is mainly systematic underprediction at higher angles, so I’m testing the one unresolved global intensity correction—the effective polarization—within physical bounds. The reported Kα wavelengths and 0.5 doublet ratio remain fixed.
+
+The polarization test is both physical and strongly supported: the refined effective value is 0.839 (inside bounds), and Rwp falls from 7.47% to 4.62% without frozen variables or extreme texture. The modeled fractions stabilize near 79.3% CaWO₄, 10.7% WO₃, and 10.0% Ca₃WO₆. I’m doing the final residual, geometry, uncertainty, and replay audit now before exporting directly from the saved project.
+
+The refined polarization removes the high-angle bias and leaves no coherent unmatched reflection family. One low-angle asymmetry remains on the strongest scheelite peaks, so I’m testing the Finger–Cox–Jephcoat axial-divergence term as the last global profile degree of freedom. It will be kept only if it refines away from the 0.002 floor and improves replayed residuals.
+
+The axial-divergence term is unsupported: it returns to its floor, is 96% correlated with zero, and does not improve Rwp, so it is excluded. Before freezing the inventory, I’m running the explicit unreacted-CaO challenge required by the precursor balance; its unique 37.3/53.8° family should either acquire a positive scale after full reconvergence or rule CaO out.
+
+I’ve reached a stable three-phase model and am now doing the last inventory challenge: adding plausible residual CaO and fully reconverging it against the same profile model. After that I’ll finalize and cross-check the project-derived CIFs, fractions, and profile export.
+
+The CaO challenge converged to only 0.13(6) wt% and changed Rwp by 0.0014 percentage point. That is a marginal trace signal, so I’m checking whether it is supported at CaO’s independent reflections (rather than borrowed from overlaps with Ca₃WO₆) and whether it survives fixing the CaO cell to its source value.
+
+The fixed-cell challenge gives the same ~0.14(6) wt% trace estimate, but its strongest independent CaO line at ~37.1° is overpredicted while weaker/overlapped regions drive the scale. I’m therefore treating CaO as a possible sub-0.2 wt% trace, not a reliably identified modeled phase. The retained inventory remains CaWO₄ + WO₃ + Ca₃WO₆.
+
+I’m now rebuilding the deliverables from the selected three-phase branch with the full measured angular range active. The final script explicitly resets every refinement flag, keeps only the supported profile/HAP terms, clears frozen variables, reconverges, reopens `final.gpx`, and exports every requested artifact from that reopened project.
+
+The final full-range refinement converged cleanly: Rwp = 4.617%, no frozen variables, maximum shift/s.u. = 0.005, and all 8,301 measured points are present in `fit.csv`. I’m performing the last independent structural audit now—CIF composition, symmetry, occupancies, nearest-neighbor geometry, and exact agreement with the saved project/results.
+
+The exported structures pass the physical screen: correct occupied formulas and symmetries, full occupancies, CaWO₄ W–O = 1.762 Å, WO₃ W–O = 1.713–2.157 Å, and adapted Ca₃WO₆ W–O = 1.923–1.939 Å. The phase split also gives bulk Ca:W = 1.010, consistent with the CaO/WO₃ chemistry.
+
+All requested files are now present. I’m doing a final schema/path/count check and confirming that the submitted JSON fractions and every `fit.csv` value match the saved `final.gpx` exactly; a replay refinement already changed Rwp by only 0.0000066 percentage point and the largest fraction by 0.0000027 percentage point.
+
+Identified three crystalline phases, normalized over modeled crystalline material:
+
+- CaWO₄ (scheelite): 79.27 ± 0.09 wt%
+- Monoclinic WO₃: 10.75 ± 0.05 wt%
+- Ca₃WO₆: 9.99 ± 0.08 wt%
+
+Final fit: Rwp 4.617%, Rp 3.419%, GOF 2.058. Ca₃WO₆ uses a physically sound Ca₃OsO₆-derived prototype; its detailed structure is less certain. Possible trace CaO below ~0.2 wt% was not reliably supported. Amorphous content cannot be quantified.
+
+Deliverables:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [CaWO4.cif](<ATTEMPT_WORKSPACE>/CaWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [Ca3WO6.cif](<ATTEMPT_WORKSPACE>/Ca3WO6.cif)
+

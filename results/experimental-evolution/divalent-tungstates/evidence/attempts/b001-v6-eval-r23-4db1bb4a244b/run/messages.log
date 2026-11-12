@@ -1,0 +1,70 @@
+I’ll first inspect the measurement metadata, diffraction range, and the reusable refinement package. I’ll build a chemically plausible phase inventory before fitting, then refine and replay the final GSAS-II model so every exported artifact comes from the same project.
+
+The chemistry points to the Pb–W–O system, but that does not uniquely imply PbWO₄: at 500 °C, residual oxides and Pb-rich tungstates remain credible. I’m extracting peak families and background/noise estimates now, then I’ll compare exact database records and physically related polymorphs rather than accepting the first nominal formula match.
+
+The peak-position drift follows \(\cos\theta\), so I’m modeling one Bragg–Brentano specimen-height correction rather than a constant zero offset. The provisional inventory is scheelite PbWO₄ plus ambient monoclinic WO₃; raspite PbWO₄, PbO, Pb₃O₄, and alternate WO₃ polymorphs remain on the challenge list until their scales are tested against a common profile.
+
+The first pass exposed two setup issues rather than a phase-identification problem: GSAS-II’s specimen-height field is in micrometre-scale units (the fitted value is about −0.72 mm), and its overall histogram scale was inadvertently free alongside both phase scales, creating an exact scale redundancy. I’m fixing that redundancy, seeding the height correctly, and imposing nonnegative profile bounds before comparing phase records.
+
+The residual families identify two more chemically expected phases, not a profile defect. Peaks at 14.66/26.81/31.24/32.55/52.52/58.48° track tetragonal Pb₃O₄, while 29.56/38.25/53.56/60.83/63.54° track orthorhombic PbO (massicot). Both are plausible at the reported 500 °C boundary. I’m adding and quantifying them, then I’ll test the competing PbO/Pb₃O₄ records and re-establish the common profile.
+
+The four-phase model is now coherent and replay-stable: PbWO₄, WO₃, Pb₃O₄, and massicot PbO all retain nonzero scales, and separate isotropic-size trials improve the fit without driving the common U/W/X profile to bounds. I’m now checking isolated low/mid/high-angle families, residual peaks, and alternate database records; the provisional fractions are about 59.4/20.6/15.3/4.7 wt%, respectively.
+
+The four-phase inventory is stable under replay, and the two challenged extras are unsupported: raspite collapses to zero scale, while litharge gives only ~0.06 wt% with no convincing unique family. I’m now testing whether the remaining systematic PbWO₄ intensity residuals represent real preferred orientation before locking the final model.
+
+The texture sweep hit a naming mismatch in the GSAS-II project rather than a refinement failure. I’m resolving the actual phase labels in the saved project, then I’ll rerun the same symmetry-distinct tests without changing the baseline.
+
+All five PbWO₄ texture directions converge essentially to random powder (March–Dollase 0.985–1.002) and improve Rwp by at most 0.0011 percentage point. That is not defensible texture, so I’m pruning it. Next I’m checking the broadening choice against strain-only alternatives and the saved-project replay before final export.
+
+The first completed comparison is informative: massicot PbO fits better with isotropic microstrain than with a crystallite-size term, while its fraction stays near 4.8 wt%. The PbWO₄ and Pb₃O₄ strain-only replays are still finishing; I’m waiting for those before deciding which broadening terms survive.
+
+The comparison is now clear for two phases: PbWO₄ strongly requires size-like broadening; its strain-only model degrades Rwp to 5.54% and destabilizes U. Pb₃O₄ strain-only is also worse (4.36%) and runs into the 10,000 ppm bound. I’m testing whether any strain remains complementary to the accepted size terms; unsupported combinations will be removed.
+
+Combined broadening is rejected for PbWO₄ (strain collapses to zero and freezes profile terms) and for PbO (strain hits its bound). Pb₃O₄ shows a small, stable complementary strain component, so I’m re-testing that one on top of the better PbO strain-only model; this is the last broadening decision before final replay.
+
+The replayed mixed model is stable at Rwp 4.173%: PbO is strain-only, Pb₃O₄ retains size plus a modest strain term, and PbWO₄ remains size-only. I’m now auditing peak-shape residuals across low/mid/high angle for repeated asymmetry or hkl-dependent width before deciding whether any anisotropic term is actually warranted.
+
+The peak-shape audit supports the chosen isotropic widths: PbWO₄ stays nearly size-dominated, PbO broadens strongly with angle, and Pb₃O₄ needs both trends. Low-, mid-, and high-angle families do not show repeated axial asymmetry, so SH/L stays neutral. The remaining mismatch is mainly relative intensity, so I’m testing the one physically shared candidate—polarization—before considering any phase-specific anisotropy.
+
+Polarization is a strong intensity surrogate but refines straight to its physical upper bound (1.0) and simultaneously destabilizes the PbO width. Under the stated residual-led rules that correction is not acceptable; I’m returning to the bounded, stable baseline and checking the instrument metadata before fixing the physically appropriate conventional-source value.
+
+The metadata confirms there is no calibrated effective polarization; unpolarized 0.5 destabilizes the fit, while freely refining it demands the 1.0 limit. The source CIFs also omit thermal displacement parameters, a likely cause of the angle-dependent intensity pressure. I’m testing physically bounded atomic displacement terms phase by phase rather than accepting a bound instrument surrogate.
+
+The Uiso trials exposed a second issue: PbWO₄’s shared displacement refines below zero and is correctly rejected, but that trial also escaped the prior least-squares basin and cut Rwp to ~2.95% even after Uiso returned to zero. I’m separating that optimization effect from the rejected displacement term, then will retain only parameters that replay cleanly without frozen variables.
+
+After neutralizing the importer’s artificial Uiso=0.01 defaults, the same four-phase model replays cleanly at Rwp 2.935% with no extra intensity correction; three successive replays agree within 0.003 percentage point. I’m now re-challenging one shared Uiso per phase from that neutral model, retaining only positive, interior, replay-stable values.
+
+The neutral re-challenge rejects Uiso for PbWO₄ and Pb₃O₄ at zero, while WO₃ gives a well-interior shared Uiso ≈0.0091 Å² and improves Rwp to 2.896%. PbO gives only a small positive effect; I’m testing it on top of the accepted WO₃ term and will judge it by its uncertainty and replay gain.
+
+PbO’s shared Uiso remains positive but marginal (0.0048(17) Å², about 2.7σ) and lowers χ² by ~11 for one parameter, so it is provisionally retained with an uncertainty warning. With the artificial ADPs removed, I’m re-testing polarization once; an upper-bound result will be discarded definitively.
+
+With neutral ADPs, polarization now converges to an interior, replay-stable 0.835 rather than a bound and reduces Rwp to 2.610%; this is the physically coherent common intensity correction. I’m rebuilding the final common-profile checks now: texture axes and the raspite/litharge watch list are being re-challenged against this updated baseline.
+
+The rebuilt checks are decisive: all texture axes remain within 0.992–1.002 of random and change Rwp by less than 0.0007 point; litharge again collapses to zero. Raspite now takes a very small positive scale, so I’m quantifying its fraction/error and checking whether any unique reflection family supports it before deciding detection versus rejection.
+
+The updated profile visually matches isolated low-, mid-, and high-angle families without repeated asymmetry or hkl-dependent width, so no SH/L or anisotropic broadening is justified. Raspite is only 0.011(54) wt% and therefore not detected. I’m pruning the last marginal PbO displacement term if it is no longer significant after polarization, then freezing the exact export model.
+
+The final parameter audit is clean: no frozen variables; polarization 0.8350(34), positive U/W/X, and the PbO Uiso is now 5σ after the common correction. I’m creating `final.gpx`, replaying it to convergence, and exporting every deliverable from that exact reopened project.
+
+`final.gpx` has now replayed from disk to max shift/esd 0.075, and all requested exports were generated from that exact reopened project. I’m doing the final cross-check now: CIF geometry/cells, fraction normalization, profile row count, and project/export numerical agreement.
+
+Completed the four-phase refinement:
+
+- PbWO₄ scheelite: 55.230 ± 0.109 wt%
+- Monoclinic WO₃: 22.661 ± 0.101 wt%
+- Pb₃O₄ minium: 16.481 ± 0.089 wt%
+- PbO massicot: 5.628 ± 0.078 wt%
+
+Final fit: Rwp 2.6101%, Rp 1.9955%, GOF 1.0522. Fractions are normalized over modeled crystalline phases; practical systematic uncertainty is roughly 1–2 wt% for major phases. Raspite and litharge were not reliably detected.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [PbWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_1_PbWO4_scheelite.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_2_WO3_monoclinic.cif)
+- [Pb₃O₄ CIF](<ATTEMPT_WORKSPACE>/phase_3_Pb3O4_minium.cif)
+- [PbO CIF](<ATTEMPT_WORKSPACE>/phase_4_PbO_massicot.cif)
+

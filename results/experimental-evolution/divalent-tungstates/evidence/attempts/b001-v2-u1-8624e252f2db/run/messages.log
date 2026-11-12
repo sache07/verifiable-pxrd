@@ -1,0 +1,30 @@
+I’ll inspect the measurement metadata, pattern format, and the reusable refinement utilities first. Then I’ll build and compare chemically valid phase models, refine the selected inventory in GSAS-II, and validate the exported profiles/fractions against a freshly reopened project.
+
+The context is a 600 °C ZnO–WO₃ reaction measured in reflection geometry with Cu Kα₁/Kα₂, so likely inventories include zinc tungstate plus unreacted precursor and potentially polymorphic/stoichiometric alternatives. I’m now locating the indexing, database-search, and GSAS-II interfaces available in this run before assigning any peaks.
+
+The diagnostic reflections establish a three-phase inventory: wolframite ZnWO₄ (15.45, 18.90, the 30.44/30.68 pair), wurtzite ZnO (31.80, 34.47, 36.29, 47.58, 56.60, 62.90°), and room-temperature monoclinic WO₃ (23.15/23.62/24.42° triplet plus 26.63, 28.64, 28.97°). I’ve rejected the Cu-substituted triclinic “ZnWO₄” records and cubic ZnO polymorphs as compositionally or diagnostically incompatible; I’m comparing physically sound WO₃ records before refinement.
+
+The three WO₃ source branches are refining under the same fixed nuisance/profile model. Each branch is being fully reconverged with background, all scales, the common correction state, and all cells before I compare residuals; this avoids judging a source against a biased base fit.
+
+Size-only broadening is decisively supported over strain-only at the current narrow common baseline (Rwp 3.85% versus 5.29%); the fitted provisional coherent-domain scales are about 61 nm for ZnWO₄, 204 nm for ZnO, and 108 nm for WO₃. I’m using the sharp ZnO contribution as the lower-envelope constraint while testing a bounded, low-dimensional common U/W/X baseline, then I’ll replay phase-by-phase size/strain challenges against that stabilized baseline.
+
+The profile model is now disciplined: bounded U and X both collapsed to zero and were removed, leaving a fixed common Gaussian baseline W = 6.603; phase-specific size broadening is retained, strain is zero, and the SH/L branch was rejected because its tiny improvement was coupled 96.7% to sample shift. I’m rebuilding the selected model in the short-cell P2₁/n setting of the vetted WO₃ parent, then doing the required save–reopen full-range replay before export.
+
+The replayed project is stable to better than 10⁻⁶ in phase fraction across reopen cycles. The refined crystalline fractions are 73.86 wt% ZnWO₄, 8.74 wt% ZnO, and 17.40 wt% WO₃, with Rwp = 3.840% and GOF = 1.391. I’m doing the final independent geometry, covariance, profile-array, and file-integrity checks now, then I’ll write the concise evidence/uncertainty report.
+
+Completed the three-phase refinement:
+
+- ZnWO₄: 73.86(19) wt%
+- ZnO: 8.74(18) wt%
+- WO₃: 17.40(12) wt%
+
+Final fit: Rwp 3.840%, Rp 2.989%, GOF 1.391. Fractions are normalized over modeled crystalline phases.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md:1)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [ZnWO4.cif](<ATTEMPT_WORKSPACE>/ZnWO4.cif), [ZnO.cif](<ATTEMPT_WORKSPACE>/ZnO.cif), [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+

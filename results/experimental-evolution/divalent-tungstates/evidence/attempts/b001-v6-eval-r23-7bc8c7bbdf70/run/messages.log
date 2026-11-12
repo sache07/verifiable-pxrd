@@ -1,0 +1,46 @@
+I’ll first inspect the metadata, diffraction pattern, and the reusable refinement utilities in `learned/`. I’ll then build a chemically plausible phase inventory, test alternatives against coherent peak families, and refine the accepted model in GSAS-II with replay/export checks.
+
+The chemistry points first to CaWO₄, but I’m treating that only as a hypothesis: unreacted WO₃/CaO and alternate calcium tungstate records remain candidates until their unique reflections and refined scales are tested. The pattern spans enough angle to judge low-, mid-, and high-angle peak shape, so I’m now extracting peak positions and checking the installed GSAS-II workflow.
+
+Initial peak matching supports a two-phase inventory: scheelite CaWO₄ accounts for the dominant 18.43°, 28.54°, 31.27°, 34.01°, 46.93°, 54.11°, and 57.70° families, while monoclinic γ-WO₃ accounts for the characteristic 22.94°/23.42°/24.23° triplet and its 26.44°, 33.1–33.4°, and 41–42° families. I’m fitting these first with size/strain, texture, roughness, and extra angular terms neutralized; CaO and alternate WO₃/CaWO₄ records remain explicit challenges rather than being silently discarded.
+
+The common-profile fit exposes coherent residual families at about 19.29°, 22.01°, 30.72°, 32.16°, and 37.53° that are not explained by merely adjusting the two accepted scales. I’m therefore expanding the inventory to calcium-rich tungstate prototypes (including Ca₃WO₆/Ca₂WO₅ analogues) and will only retain one if a physically substituted model explains multiple such families with a positive, stable scale.
+
+The Ca₃WO₆ prototype is strongly supported: at fixed parent cell its scale refined positive before cell release, and after cell refinement it accounts coherently for the previously unexplained 19.3°, 22.0°, 30.7°, 31–32°, 36–38°, and 45° families. The Os⁶⁺→W⁶⁺ substitution is isovalent and leaves a plausible W–O octahedron (1.926–1.937 Å). I’m now comparing room-temperature and alternate WO₃ records under the same three-phase nuisance model, while separately testing precursor CaO at its physical cell.
+
+The record comparison is still running in parallel. The fixed-cell CaO challenge has already converged to only ~0.18 ± 0.19 wt%, while freeing its cell forces an implausible ~1% contraction and merely borrows intensity from overlapping Ca₃WO₆/CaWO₄ peaks; I’m treating CaO as below reliable detection unless the remaining model changes reverse that result.
+
+The room-temperature neutron WO₃ record (COD 2311041) gives the best common-model fit, narrowly outperforming the older room-temperature record; orthorhombic and old half-cell alternatives are decisively worse. Releasing the previously unknown effective polarization yields a large, physically plausible improvement (0.50 → 0.882; Rwp 10.23% → 7.81%) across all three phases, so this common intensity correction is supported before invoking texture.
+
+One-at-a-time broadening trials are decisive: only CaWO₄ isotropic size is supported, refining to about 0.094 µm and lowering Rwp from 7.81% to 6.59%. WO₃ and Ca₃WO₆ size terms run to effectively neutral values, while their strain terms become negative; those terms are rejected. I’m replaying the accepted CaWO₄ size model, then testing whether any complementary strain or anisotropy survives.
+
+The accepted [110] March–Dollase correction is replay-stable and is supported by many isolated CaWO₄ families (MD = 1.266; Rwp 6.59% → 3.47%). A common positive U term is also strongly supported (U ≈ 77, with W and X remaining positive), reducing Rwp further to 2.92%; SH/L refines negative and is rejected. I’m rebuilding on that nonnegative U/W/X baseline before deciding whether any additional phase broadening is real.
+
+The updated common profile makes extra CaWO₄ strain and mixed size shape unsupported (negative strain or size-mixing outside its physical range). A tetragonal [001] uniaxial size model is modest but statistically resolved—0.0918(7) µm equatorial versus 0.0851(8) µm axial—and replay checks are next. Ca₃WO₆ size anisotropy and all WO₃/Ca₃WO₆ texture axes refine essentially back to isotropic/random values and are being pruned.
+
+The final inventory challenge is complete. Fixed-cell watch phases refine to ≤0.12 wt% with negligible fit gains and incomplete/misaligned unique families (CaO ~0.12%, alternate WO₃ ≤0.06%, tungsten bronze ~0.05%, high-pressure CaWO₄ effectively zero), so none can be quantified reliably. The retained three-phase model is now being replayed from a fresh save and exported directly from the resulting `final.gpx`.
+
+The requested artifacts have been generated from the reopened final project. I’m doing a final agreement audit now: project fractions/statistics versus `result.json`, project profile arrays versus `fit.csv`, exported CIF cells/compositions versus the GPX phases, geometry checks, and confirmation that exactly three submitted CIFs remain.
+
+Completed and validated the three-phase refinement.
+
+| Crystalline phase | Weight fraction |
+|---|---:|
+| CaWO₄, scheelite, I4₁/a | 78.289% |
+| γ-WO₃, monoclinic, P2₁/c | 11.564% |
+| Ca₃WO₆, P2₁/n prototype model | 10.146% |
+
+Final fit: Rwp 2.848%, Rp 2.217%, Rexp 2.247%, GOF 1.270.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [CaWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_CaWO4_scheelite.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_monoclinic.cif)
+- [Ca₃WO₆ CIF](<ATTEMPT_WORKSPACE>/phase_Ca3WO6_double_perovskite.cif)
+
+The Ca₃WO₆ assignment uses an isovalently substituted double-perovskite prototype and is therefore less structurally certain than CaWO₄ and WO₃. Fractions are normalized over modeled crystalline phases; amorphous content cannot be quantified without an internal standard.
+

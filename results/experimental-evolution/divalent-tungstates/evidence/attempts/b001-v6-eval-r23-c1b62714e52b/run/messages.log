@@ -1,0 +1,33 @@
+I’ll first inventory the measurement, chemistry, reusable refinement utilities, and any candidate databases. Then I’ll build a physically constrained baseline, test plausible phase records and polymorphs against residuals, and only retain phases with reproducible diffraction support.
+
+The chemistry points first to zinc tungstate, but at 600 °C unreacted ZnO/WO₃ and WO₃ polymorphs remain credible. I’m treating those as an initial inventory—not assuming a single product—and will use unique peak families plus refined scale stability to decide what survives.
+
+The peak inventory is now coherent: wolframite ZnWO₄ accounts for the broad 18.9°, 30.4/30.7°, 38.3°, 51.7°, and 64–65° families; monoclinic WO₃ accounts for the distinctive 23.17/23.62/24.40° triplet and its 26.6°, 28.6/29.0°, and 33–34° families; wurtzite ZnO is independently marked by 31.79°, 34.46°, 47.57°, 56.60°, 62.87°, and 69.09°. I’ll now refine this three-phase inventory and challenge the WO₃ record/setting under the same profile model.
+
+The neutral common-width model was inadequate: it forced a single broad instrumental width and biased the fractions. Releasing isotropic crystallite size one phase at a time produced stable, non-bound values (about 64 nm ZnWO₄, 122 nm WO₃, 289 nm ZnO), returned the common Gaussian width close to its starting instrumental value, and reduced Rwp from 5.21% to 4.04%. I’m now testing the alternate physically equivalent/nearby WO₃ records because the 23–25° residual is dominated by WO₃ intensity details, not missing peaks.
+
+Both alternate WO₃ refinements are still running through the same staged sequence and full-range replay. The comparison is controlled: identical background order, scales, zero correction, cell flags, common W profile, and phase-size terms; only the WO₃ structural record changes.
+
+A coherent angle-dependent mismatch was shared across all three phases, and refining the previously unknown effective polarization corrected it decisively: Rwp fell from 3.874% to 3.203% with a physical interior value of 0.837. In contrast, U refined negative and is rejected; X gave no material improvement; phase-strain substitutions were worse than size broadening, and added ZnWO₄/ZnO strains became negative, so those are rejected. I’ll re-evaluate asymmetry and the modest WO₃ broadening terms under the accepted polarization baseline.
+
+The full-profile re-challenge of triclinic WO₃ is taking longer because its lower symmetry adds cell variables and stronger parameter coupling. The monoclinic candidate is already converged with GOF 1.121 and no bound profile terms; this remaining comparison will determine whether the slight triclinic advantage seen in the simpler baseline survives the accepted polarization/strain/asymmetry model.
+
+The full-profile comparison now favors the ambient monoclinic WO₃ model (Rwp 3.097%) over triclinic WO₃ (3.125%), while also using fewer cell degrees of freedom; the monoclinic neutron structure has sensible 1.71–2.16 Å W–O distances. Residual peaks are all at modeled families, so no additional crystalline phase is supported. I’m performing the exact full-range save/reopen replay and exporting every submitted artifact from that on-disk project.
+
+Completed the three-phase refinement.
+
+| Phase | Crystalline weight fraction | CIF |
+|---|---:|---|
+| Wolframite ZnWO₄ | 73.05 ± 0.16 wt% | [ZnWO4_wolframite.cif](<ATTEMPT_WORKSPACE>/ZnWO4_wolframite.cif) |
+| Monoclinic WO₃ | 18.27 ± 0.10 wt% | [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_monoclinic.cif) |
+| Wurtzite ZnO | 8.69 ± 0.14 wt% | [ZnO_wurtzite.cif](<ATTEMPT_WORKSPACE>/ZnO_wurtzite.cif) |
+
+Final fit: Rwp 3.094%, Rp 2.442%, GOF 1.121. Fractions exclude any amorphous material.
+
+Outputs:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+

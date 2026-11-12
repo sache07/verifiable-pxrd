@@ -1,0 +1,108 @@
+I’ll first inspect the measurement metadata, pattern, and reusable analysis scripts, then establish a physically constrained baseline before testing phase candidates. I’ll keep candidate rejection separate from chemistry plausibility and preserve the exact final GSAS-II project behind the exported CIFs and profile.
+
+The chemistry is a Mn–W–O solid-state reaction at 700 °C with Cu Kα1/Kα2 explicitly present and no calibrated profile. I’m now extracting the peak families and querying exact-composition records first; likely phases will remain provisional until each is challenged against unique reflections under one shared profile.
+
+The peak inventory now strongly favors wolframite-type MnWO₄: the split ±hkl families, including 29.58/30.03°, are indexed coherently by monoclinic P2/c. A physically valid but older FeWO₄ prototype creates a strong unobserved 40.42° family; ZnWO₄ and MgWO₄ parents suppress it and reproduce the observed 40.08/40.76° pair, so I’m carrying the Zn-based Mn-substituted model forward and keeping Mn oxides, WO₃, and Mn₃WO₆ on the residual watch list.
+
+The shared-profile replay favors a single specimen-displacement correction over a constant zero, though only marginally by Rwp (13.280% versus 13.291%). More importantly, the accepted baseline now has nonnegative W/X terms and neutral fixed phase size/strain; the earlier negative U was traced to GSAS-II’s nonzero default microstrain, not evidence for an exotic profile. I’m inspecting the residual families next before allowing any structural-coordinate or texture terms.
+
+The watch-list challenge is running each WO₃ polymorph and Mn-bearing alternative from the same saved one-phase baseline. Each candidate gets a scale-only test, then a cell/angular reconvergence and a rebuilt common profile; this prevents a weak candidate from “winning” merely by borrowing background or broadening terms.
+
+The residual inventory identifies unreacted WO₃ decisively. Triclinic WO₃ lowers Rwp from 13.28% to 8.93% and its scale remains positive before any cell/profile release; it explains the independent 22.7°, 26.2°, 28.2°, 32.8/33.7°, 41.5°, and 46.8° families. Orthorhombic and high-pressure WO₃ alternatives fit substantially worse, while Mn₃WO₆ collapses to zero scale and Mn oxides provide only small, incoherent gains. I’m checking one additional physically sound ambient monoclinic WO₃ record before locking the polymorph.
+
+The weak hausmannite phase survives the clean-profile re-challenge and full replay: multiple unique/partly overlapped families improve together, its refined cell remains plausible, and the three-phase fractions give an overall Mn:W ratio very close to 1:1. The provisional quantitative result is about 78.6 wt% MnWO₄, 15.6 wt% WO₃, and 5.75 wt% Mn₃O₄. I’m now testing only replay-stable structural/profile refinements before finalizing those values.
+
+The phase inventory is now coherent: MnWO₄ is dominant, with residual WO₃ and a weak but repeatable Mn₃O₄ contribution. I’m finishing the replay and nuisance-term challenges now, then I’ll export every requested artifact directly from the reopened final GSAS-II project so the CIFs, fractions, and profile remain internally exact.
+
+The structural refinement itself is behaving physically: refining the MnWO₄ oxygen coordinates lowers Rwp materially and regularizes both Mn–O and W–O octahedra, rather than producing short contacts. I’m now stress-testing that model from an independent wolframite coordinate start and testing size, strain, and polarization one at a time; unsupported terms will be pruned before the final replay.
+
+The challenge suite is still running because each trial is being fully reconverged, not evaluated from a single linearized cycle. The independent MgWO₄-start replay has already passed without numerical failure; I’m waiting for the six phase-width trials to complete so I can distinguish genuine broadening from terms that merely run to neutral bounds.
+
+These fits are slower than the baseline because GSAS-II is recalculating the full 10–100° pattern for every challenge. I’m letting them finish because the weak Mn₃O₄ phase is exactly where a one-cycle result could falsely suggest a finite crystallite-size or strain term.
+
+The run is progressing normally but produces no console text because its output is being captured for side-by-side comparison. I’ll keep only a term that reaches a finite, replay-stable value and improves coherent peak families; otherwise the neutral common-profile model remains the submitted baseline.
+
+The first challenge results are decisive in two places: the MnWO₄ coordinates replay from the MgWO₄ analogue to the same minimum, and polarization refines to a plausible 0.912 with a clear fit gain. The dominant phase’s size and strain collapse to neutral bounds. Residual WO₃ is genuinely broader; I’m now discriminating finite-size from strain broadening under the accepted polarization model, because those alternatives change its inferred fraction appreciably.
+
+The broadening comparison is now testing three nested models—size only, strain only, and both—using identical background, polarization, cells, scales, and atomic model. This is the key guard against reporting a precise-looking WO₃ fraction that is actually conditional on an arbitrary peak-width surrogate.
+
+The trial remains stable; it is simply compute-heavy over 8,300 points. Once these three models settle, I’ll use the simpler one unless the combined terms are both independently significant and improve different angular regimes.
+
+No failure or bound warning has appeared. The last nested fit is the slowest because size and strain are correlated through peak breadth; that correlation itself is part of the model-selection evidence rather than something to hide in the final fraction.
+
+Finite-size broadening is the supported WO₃ description: about 46 nm, Rwp 7.766%, versus 1.28% microstrain at Rwp 7.853%. Adding both does not find a better minimum and leaves the strain poorly determined, so strain is being rejected. The resulting fractions are stable between the two physical alternatives to roughly 0.3 percentage point; I’m doing the final profile-shape and minor-phase breadth checks against this cleaner baseline now.
+
+The final profile suite is intentionally conservative: it compares Gaussian, Lorentzian, and refined mixing for the WO₃ size term, then re-tests only MnWO₄ and Mn₃O₄ breadth. No texture or anisotropic-width parameters are being added unless a simple isotropic term first survives this test.
+
+The clean baseline remains numerically stable through the shape variants. The remaining time is in the two weak-phase width trials, where full replay is important because Mn₃O₄ contributes only a few percent and can otherwise trade scale against breadth.
+
+So far there are no GSAS-II constraint or singularity warnings. I’m preserving that as a hard requirement: any apparent fit gain accompanied by a boundary solution or unstable minor-phase scale will be excluded from the submitted project.
+
+The suite is on its final trial. After it completes, the remaining work is deterministic: one save/reopen replay, profile diagnostics at isolated low/mid/high-angle families, export from that reopened project, and consistency checks on every requested file.
+
+The profile-shape test selects a pure Lorentzian WO₃ size term (75 ± 3 nm); allowing the mixing coefficient to refine drives it to that boundary, so I’m fixing it there and pruning the extra parameter. MnWO₄ again has no resolvable phase-specific breadth. Mn₃O₄ shows a possible finite microstrain term, but because it changes that weak phase from about 5.4 to 8.8 wt%, I’m treating it as a potential scale/background surrogate and will accept it only if the gain maps onto its unique peak families under the selected WO₃ profile.
+
+The Mn₃O₄ strain challenge is being rejected. Its optimum implies FWHM values of roughly 0.9° near 32°, 2.5° near 59°, and over 4° above 70°; the gain is concentrated in broad low/mid-angle envelopes and the model worsens several high-angle Mn₃O₄ families. That is a scale/background surrogate, not a defensible crystallite parameter. I’ll submit the neutral-width Mn₃O₄ model and explicitly report its model-dependent fraction range.
+
+The selected final model is now fixed conceptually: P2/c MnWO₄ with refined coordinates, P−1 WO₃ with one Lorentzian size term, and neutral-width I4₁/amd Mn₃O₄. I’m rebuilding it over the exact measured 9.903–100.095° range—the earlier development fits used 10–100°—then saving, reopening, and replaying all active parameters before any exports.
+
+The full-range replay exposed an important structural uncertainty rather than a file problem: the broad WO₃ phase’s triclinic α and γ angles drift toward 90° by several formal standard uncertainties while Rwp changes only 0.002%. That invalidates the earlier “triclinic decisively preferred” conclusion under the cleaner broadening model. I’m re-challenging the simpler monoclinic WO₃ record under the exact same final nuisance model before locking the phase CIF.
+
+The re-challenge changes the phase assignment in a useful way: monoclinic P2₁/c WO₃ (COD 2311041) is both simpler and better than the drifting triclinic model—Rwp 7.712% versus 7.741%—and replays with maximum shift/esd 0.003. A different monoclinic coordinate record gives 7.953%, confirming that the bad record, not monoclinic WO₃ itself, was the earlier rejection. I’m adopting the stable P2₁/c model and will keep its atomic coordinates fixed because their record dependence is not resolvable from these broad powder peaks.
+
+The adopted project now replays cleanly from disk over all 8,301 points: Rwp 7.7118%, Rp 5.1349%, GOF 3.1028, and maximum shift/esd 0.0013. The final crystalline fractions are 74.83% MnWO₄, 19.67% monoclinic WO₃, and 5.50% Mn₃O₄; omitting Mn₃O₄ raises Rwp to 7.8809%, so its presence is supported even though its exact fraction remains model-sensitive.
+
+The exported geometry is physical, but the profile inspection found a remaining baseline issue: several isolated MnWO₄ peaks are slightly narrower at low/mid angle than the current two-term W/X profile, while higher-angle breadth is not correspondingly narrow. I’m challenging one nonnegative U term now. This is the appropriate shared angle-dependent width correction; I won’t compensate it with phase texture or arbitrary phase broadening.
+
+The U challenge collapses exactly to zero, so the W/X baseline is already the supported nonnegative profile. The remaining peak-center offsets form a real angular trend—about +0.04° at 15°, falling toward zero near 80°—and the current displacement is highly correlated with asymmetry. Per the baseline rule, I’m reopening the zero-versus-displacement choice on the final phase inventory before considering any anisotropy or texture.
+
+The zero-correction replay is taking longer because the cells must re-equilibrate after removing the 787 µm displacement. The comparison is otherwise stable; I’m waiting for the cell/angle solution to stop moving so the decision is based on peak trends and geometry, not the first compensating cycle.
+
+The angular-correction challenge is still converging without warnings. This is expected because zero and specimen displacement are strongly covariant with all three phase cells; I’m keeping the shared profile and structures otherwise identical.
+
+This trial is unusually slow relative to the displacement replay, which itself is evidence of a more difficult covariance landscape. I’ll still let the prescribed eight full refinements finish, then check both convergence and the actual low-to-high-angle center residuals.
+
+The process remains active but silent because results are captured atomically. If this zero model does not finish with a stable small shift/esd, it will fail the replay criterion regardless of its nominal Rwp.
+
+The zero model is still consuming CPU rather than failing immediately. I’m allowing one more convergence interval; the existing displacement model is already stable to 0.0013 shift/esd, so the alternative must meet a comparable replay standard to replace it.
+
+The zero alternative has now driven a cell/d-spacing calculation outside the physical arcsine domain after several minutes. That is a genuine replay failure, so I’m terminating this challenge and retaining the converged reflection-geometry displacement model. The remaining small center trend will be reported as an instrumental/systematic limitation, not absorbed into a second angular correction.
+
+The displacement model remains the only replay-stable angular baseline. I’m now completing the required no-texture comparison against five symmetry-distinct MnWO₄ axes. Any accepted March–Dollase term must improve multiple isolated families and remain finite; a single-peak intensity correction will be rejected.
+
+Texture is not being accepted: several inequivalent axes give nearly indistinguishable tiny gains (ΔRwp only 0.013–0.016%) with opposite March–Dollase directions, so there is no unique multi-family texture signal. I’m doing the last width check now—two-parameter uniaxial size and strain along the three monoclinic axes—because the isolated-family widths differ enough to warrant that explicit challenge.
+
+The anisotropic strain trials are collapsing one or both components to zero, producing the expected divide-by-zero warnings in GSAS-II’s uniaxial formula. That already argues against strain; I’m allowing the bounded size trials to finish so the anisotropic-width decision covers both physical mechanisms.
+
+Multiple crystallographic directions are independently reaching the same zero-strain singular limit, rather than a finite anisotropic solution. The size trials are bounded away from zero and will show whether any directional broadening survives without that numerical pathology.
+
+The strain branch has conclusively failed: it repeatedly reaches exact zero components, propagating NaNs into derivatives and shift/esd. I’m stopping that failed suite now and will run the bounded anisotropic-size branch separately so a bad strain parameterization cannot contaminate it.
+
+The isolated size-only suite is running normally with explicit 0.01–10 µm bounds. This will tell us whether the varying apparent widths have a reproducible crystallographic direction or are simply overlap/Kα-doublet effects.
+
+The three directional-size fits remain stable but are compute-heavy because each adds two phase-width derivatives across all MnWO₄ reflections. I’ll reject any solution that parks either component at the 10 µm neutral bound or depends strongly on the chosen axis.
+
+All optional-profile challenges are now resolved. U returns to zero; texture axes are ambiguous with only 0.013–0.016% Rwp gains; uniaxial strain collapses to singular zero values; and uniaxial size is bound-hit or replay-unstable with uncertainties larger than the parameters. The submitted neutral MnWO₄ profile is therefore the defensible model, with the residual low-angle center/shape trend carried into the uncertainty statement.
+
+The requested files have now been generated directly from the reopened accepted project. I’m at the final integrity pass: cross-checking project fractions and cells against `result.json` and all three CIFs, verifying every `fit.csv` row equals the GSAS-II observed/calculated/residual arrays, and confirming no rejected refinement flag remains active.
+
+Completed the phase analysis and full-range GSAS-II refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| MnWO₄, P2/c | 74.83(28)% |
+| WO₃, P2₁/c | 19.67(19)% |
+| Mn₃O₄, I4₁/amd | 5.50(27)% |
+
+Final fit: Rwp 7.7118%, Rp 5.1349%, GOF 3.1028. Fractions are normalized over modeled crystalline phases. Mn₃O₄ is supported, but its systematic fraction uncertainty is approximately 5–9 wt%.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MnWO4 CIF](<ATTEMPT_WORKSPACE>/phase_1_MnWO4.cif)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_2_WO3.cif)
+- [Mn3O4 CIF](<ATTEMPT_WORKSPACE>/phase_3_Mn3O4.cif)
+

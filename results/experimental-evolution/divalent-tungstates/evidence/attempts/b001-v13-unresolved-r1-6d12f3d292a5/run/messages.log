@@ -1,0 +1,294 @@
+I’ll first inventory the measurement, reusable scripts, and candidate-structure index, then establish a reproducible GSAS-II baseline before testing phase/source alternatives. I’ll keep chemistry, peak-family evidence, and fraction stability coupled throughout, and health-screen every CIF that reaches fitting.
+
+The chemistry points first to Sr–W–O products plus possible unreacted SrCO₃/WO₃, but I’m treating those only as an initial inventory. I’m now extracting observed peak families and querying all exact-formula records—including polymorph alternatives—before any analogue construction.
+
+Health screening already eliminates one malformed WO₃ record and one unreadable CaWO₄ record. The exact Sr₃W₂O₉ record is geometrically sound; for SrWO₄, the cleanest analogue is ordered I4₁/a SrMoO₄ with only Mo→W substitution, while a monoclinic CaWO₄ analogue remains as the required structurally distinct challenge. I’m comparing their full peak fingerprints now, not just the strongest line.
+
+The peak inventory supports a three-component starting basis: scheelite SrWO₄, unreacted Pnma SrCO₃, and a WO₃ polymorph. The WO₃ low-angle region is the key ambiguity: tetragonal and lower-symmetry records explain different members of the 22.5–24.7° cluster, so I’ll fit those records competitively and only consider coexistence if each keeps independent families under removal and broadening challenges.
+
+The first neutral profile release exposed a genuine modeling problem: the common width terms drove to imposed bounds, so that branch is invalid and I’m not using its apparent 13.9% Rwp or fractions. I’m reopening the pre-profile checkpoint with all saved flags restored, broader interior seeds, and relaxed physical bounds; only an interior replay-stable solution will be used for source comparisons.
+
+The first valid common-profile branch is replay-stable with only X active (Rwp 10.84%); U and W are literal zero there. The remaining U/W combinations are still running from the same pre-profile checkpoint, which will show whether the simpler X-only width is genuinely sufficient or merely a local solution.
+
+The U-only replay is both worse (Rwp 12.40%) and physically collapsed the SrCO₃ cell, so it is invalid despite having no formal bound hit. I’m stopping the inefficient cold-start sweep and will challenge U and W by adding them from the converged X-only checkpoint; that directly tests incremental support while preserving the common fitted basis.
+
+The coupled common-width result is now clear: W+X is interior and improves Rwp to 10.24%; adding U drives U to zero, so U is rejected and kept literal zero. Fractions remain stable within about 1% absolute across the valid X, U+X, and W+X branches. I’m replaying W+X to convergence, then I’ll use that same nuisance basis for all polymorph/source challenges.
+
+All alternatives are now being rebuilt against the identical W+X/zero/background basis, with mass-normalized scale seeds and a replay pass. I’m comparing six WO₃ records, the second SrCO₃ polymorph, monoclinic SrWO₄, and exact Sr₃W₂O₉; any source with a bound hit or implausible cell collapse will be excluded rather than rewarded for a lower residual.
+
+The source sweep is still progressing without emitting buffered summaries; GSAS-II is spending most of the time on the lower-symmetry cell refinements. I’m letting those converge because premature cycle cuts can artificially favor tetragonal WO₃—the exact rank-reversal case the coupled-basis gate is designed to catch.
+
+A decisive source result has emerged: the clean P2₁/c WO₃ record (COD 2311041) is replay-stable and lowers Rwp from 10.24% to 8.67%, with its cell changing only 0.3% in volume. Tetragonal P4/ncc and orthorhombic Pnma hit width bounds; triclinic is much worse. The alternate small-cell P2₁/c record itself collapses, confirming that a poor record is not evidence against monoclinic WO₃. The remaining chemistry/source challenges are still running.
+
+One required lower-symmetry SrWO₄ challenge was blocked by a CIF setting mismatch introduced during analogue export, not by the structure itself. The original I2/a parent imports correctly in GSAS-II, so I’m regenerating the Sr-substituted analogue in that accepted setting, health-screening it again, and rerunning the comparison.
+
+The cold-start replacements collapsed before becoming valid comparisons, exactly as the gate warns. I’m rerunning them with the required staging—positive scales and smooth background first, then cells, then the shared zero/W/X terms—from the monoclinic-WO₃ checkpoint. This will distinguish “unsupported phase” from “bad simultaneous-cell step.”
+
+The staged sweep is working through four branches. It includes a rebuilt baseline, so the alternative phases will be judged against a like-for-like staged convergence rather than the earlier one-shot result; that also gives a clean checkpoint for later size/strain/texture deletions.
+
+The staged baseline diagnosed the root cause cleanly: I had cross-seeded a −0.626° zero correction while retaining cells seeded for zero ≈ 0, so scale-first refinement correctly rejected the displaced scheelite peaks. I’m resetting the angular correction to literal zero through scale/cell staging and releasing it only afterward; this preserves the “scale before cell” gate and removes the artificial cell/zero correlation.
+
+The staged chemistry exclusions are now robust: monoclinic SrWO₄, Sr₃W₂O₉, and R-3m SrCO₃ all drive their own positive scale to the lower bound before cell refinement, while scheelite/P2₁/c-WO₃/Pnma-SrCO₃ remains positive. The remaining nuisance issue is angular: free zero trades strongly with the scheelite cell. I’m comparing zero fixed at 0 against one sample-displacement correction from the same winning checkpoint.
+
+The sample-displacement branch is strongly favored: it is interior, improves Rwp from 8.67% to 7.08%, and restores physically coherent cells for all three phases. The refined height offset is large (~1.06 mm), so absolute cell accuracy remains limited by uncalibrated specimen geometry, but angular residuals and fractions improve without compensating background/profile bounds. I’m replaying this checkpoint before phasewise width and texture challenges.
+
+The winning shift-corrected baseline is replay-stable at Rwp 7.076%. Its residuals are now mostly phase-family intensity/width errors rather than missing peak positions. I’m starting the mandated phasewise neutral/size/strain/combined pass from that single checkpoint, reopening W/X and the displacement in every branch; unsupported or boundary terms will not be carried forward.
+
+I’ve reached the profile-topology stage on the three-phase model. I’m now running the phase-by-phase size/strain challenges from the replay-stable shifted baseline; their outcome will determine which terms, if any, enter the required collective-width test.
+
+The branch run is still active and has not emitted errors. It is doing full save/reopen replays for each phase and model, so I’m letting those comparisons finish before interpreting any apparent boundary solution.
+
+The refinements remain numerically quiet and are taking longer than the initial source-screen runs. I’ll inspect the saved JSON and every branch’s frozen/bound flags as soon as the process exits; a lower Rwp alone will not qualify a width term.
+
+No branch has failed, but the complete nine-branch replay is still running. This is expected for 25 refinement cycles plus a 15-cycle reopened replay per branch; I’m continuing the same run so every phase is judged on an identical basis.
+
+The phasewise results are decisive for SrWO₄ (both terms collapse) and show real but mutually competing broadening for WO₃: size-only gives Rwp 6.852%, strain-only 6.882%, while the combined single-phase branch collapses one term. SrCO₃ gains are marginal. Per the requested gate, I’m now testing all traded terms together from low physical seeds with W/X reopened; this joint test can rescue a term that hit a one-at-a-time boundary.
+
+The collective run is still evaluating the three independent seed sets. I have deliberately reopened U as well as W/X, as required; any branch that drives U or a phase term to a boundary, or fails to reproduce from a different seed, will be discarded wholesale.
+
+All three collective seeds collapsed the same phase terms, with no replayable interior solution; the nuisance profile also jumped to a different U/W/X trade. I am therefore restoring the neutral-width checkpoint exactly. Next I’m enumerating symmetry-inequivalent low-index axes for texture and uniaxial broadening, rather than selecting a single convenient diagonal.
+
+The exhaustive scan contains 189 branches: 63 symmetry-inequivalent primitive axes (through index 2), each tested for March–Dollase texture, uniaxial size, and uniaxial strain. The first completed branch already shows that SrWO₄ [001] texture is materially supported (Rwp 6.63%, ratio ≈1.107); I’m waiting for all competing axes before retaining it.
+
+The first several texture axes show a clear ranking—SrWO₄ ⟨110⟩ is much better than [001]—but 18 full cycles on every losing axis are unnecessarily expensive once starting from a converged checkpoint. I’m shortening the exhaustive screening pass to six cycles per axis, then I’ll give every leading axis a full reopened save/replay. This preserves the complete inventory while reserving convergence work for physically competitive branches.
+
+The shortened complete scan is running cleanly. Because result collection is ordered, output arrives in batches even though six refinements are active; I’ll judge candidates only after all 15/29/19 axis inventories for the three symmetries have completed.
+
+Early values reproduce the longer runs to the reported precision, confirming that the converged checkpoint makes six screening cycles sufficient. The strongest SrWO₄ texture direction remains a diagonal rather than a principal axis; the full axis set is still in progress.
+
+The diagonal scan is behaving as intended: sign-distinct tetragonal directions are not being conflated, and several unequal-index diagonals have now been tested. None yet beats the SrWO₄ (1 −1 0) branch; every reported candidate remains interior with no frozen parameter.
+
+SrWO₄ texture screening is complete. The best simple axis is (2 −2 −1), Rwp 5.970%, narrowly ahead of (1 −1 0) at 6.005%; this close pair will require full cross-seeded replay before choosing. The scan has now moved into SrWO₄ uniaxial size and strain axes.
+
+The first SrWO₄ uniaxial-size trials hit the imposed physical bounds and are invalid despite apparent residual reductions. I’m keeping the scan running across all axes because a different symmetry direction could still yield two interior, independently supported dimensions.
+
+Every SrWO₄ uniaxial-size direction completed so far has at least one frozen or bound dimension; the occasional lower Rwp is therefore not admissible. This reinforces the earlier collective-width rejection and keeps the neutral 10 μm/zero-strain model favored unless a later axis survives.
+
+All 15 SrWO₄ size axes failed the interior-solution gate. The scan has moved to uniaxial strain; its first [001] branch already froze the isotropic component at zero, so it is likewise invalid even though the axial component reduced Rwp.
+
+SrWO₄ strain anisotropy is also consistently non-interior: one component goes to zero, and several diagonal branches force the other to the 10,000 µstrain ceiling. These are rejected as profile trades, not accepted physical broadening.
+
+SrWO₄ anisotropic widths are fully excluded. The monoclinic WO₃ texture scan has begun; its [001] axis gives a genuine interior improvement to Rwp 6.435%, while [010] and [100] are much weaker. With monoclinic symmetry, the many sign-distinct diagonals still need to compete.
+
+For monoclinic WO₃, sign matters: (1 0 −1) reaches Rwp 6.115%, whereas (1 0 1) gives 6.756%. This validates the full sign-distinct enumeration; the current leader is (1 0 −1), with (0 1 −2)/(0 1 −1) nearby.
+
+No later WO₃ texture axis has yet displaced (1 0 −1), although (2 −1 −1) is also supported. The sign-reversed partners generally fit worse, so this is structured family-level intensity evidence rather than a generic scale/background effect.
+
+WO₃ texture’s final leader is (2 −1 −2), Rwp 6.054%, narrowly ahead of (1 0 −1). The WO₃ size scan now has some interior two-dimension solutions, but their Rwp (~6.83–6.85%) does not improve on the simpler isotropic-size branch (6.852%) enough to justify anisotropy; all axes will still be completed.
+
+A notable WO₃ size candidate has emerged along (1 0 −1): both dimensions are technically interior and Rwp drops to 6.244%, but the axial value is only 0.027 μm, close to the 0.02 μm guard. I’m treating it as provisional until full replay, alternate seeds, and deletion tests establish that it is not a near-bound artifact.
+
+Other WO₃ size axes are either frozen or substantially weaker; (2 0 −1) is an interior secondary candidate but trails at Rwp 6.593%. The near-bound (1 0 −1) direction remains the only serious anisotropic-width challenger.
+
+WO₃ size-axis screening is complete. Only (1 0 −1) gives a substantial interior improvement; the strongest apparent alternative, (2 −1 −2), freezes one dimension. I’m now completing the analogous 29-axis strain scan before replaying the leading texture and size branches together and separately.
+
+WO₃ anisotropic strain has not produced a credible improvement: the attractive (1 0 −1) branch forces one component to the 10,000 µstrain ceiling, while the interior branches are no better than the neutral profile. This favors size-like, not strain-like, directional broadening if any width anisotropy survives replay.
+
+The remaining WO₃ strain axes continue the same pattern: improved branches pin a strain component at the ceiling; admissible interior branches stay around Rwp 6.85–6.89%. No anisotropic strain term currently qualifies for retention.
+
+The full monoclinic strain pattern is now unambiguous: every low-Rwp direction is a boundary solution, while all interior directions are weak. I’ll reject WO₃ strain anisotropy and finish the final SrCO₃ axis inventory before constructing the elaborated texture/size checkpoints.
+
+SrCO₃ texture effects are small (best so far Rwp ~7.04% versus 7.076% neutral) and do not show the large, direction-specific response seen for SrWO₄ or WO₃. I’ll complete all orthorhombic axes, but this phase is unlikely to warrant a texture parameter.
+
+SrCO₃’s best texture axis is currently (1 0 −2) at Rwp 7.035%, only a 0.041-point gain and with many neighboring axes nearly equivalent. That diffuse ranking lacks the family-specific support needed to add texture, but I’m preserving the complete comparison record.
+
+SrCO₃ uniaxial size gives only ~0.01-point gains, with several axes freezing and the interior axes producing widely different dimensions without a clear family-level residual signature. These weak terms will not survive a parsimony/deletion test unless a later axis is substantially stronger.
+
+No SrCO₃ size axis improves by more than about 0.014 Rwp, and many hit the inactive 10 μm side. The complete orthorhombic comparison is confirming that explicit neutral size is the defensible model for this weak phase.
+
+SrCO₃’s size scan is complete and unsupported. Its strain scan is likewise starting at essentially the neutral residual (Rwp 7.074–7.076%); the first axial trial freezes at zero. I expect the neutral-width conclusion to hold, but will finish all 19 axes.
+
+The complete 189-branch axis inventory has finished. It excludes anisotropic strain for all phases and all width anisotropy except a provisional WO₃ size axis; it identifies strong, distinct texture candidates for SrWO₄ and monoclinic WO₃. I’m now ranking the saved branches, then will fully replay the leaders individually and jointly before testing them against the serious tetragonal WO₃ source.
+
+The two SrWO₄ texture axes are fully replay-stable from opposite seeds. (2 −2 −1) remains the winner at Rwp 5.9695%, ratio 0.6913; (1 −1 0) is 6.0053%. Fractions and shared profile values reproduce closely across seeds, so the texture signal is robust.
+
+The remaining replay jobs are still active; no numerical errors have appeared. They include opposite-seed WO₃ texture tests, three independent WO₃ size seeds, and all four combinations of the leading SrWO₄/WO₃ texture axes.
+
+WO₃ texture is also replay-stable from opposite seeds. (2 −1 −2) wins at Rwp 6.0536%, ratio 1.31693, versus 6.11466% for (1 0 −1). The nuisance terms and phase fractions agree across seeds to well below the reporting precision.
+
+The provisional WO₃ size model fails the independent-reseed requirement: two low seeds converge near 0.024 μm, but a higher physical seed drives the axial dimension to the 0.02 μm bound and does not replay. I am rejecting that width term. In contrast, the joint best-texture model is fully interior and drops Rwp to 4.734%.
+
+The joint ranking is stable: the best/best axis pair wins all four combinations (Rwp 4.7337%). I’m now repeating the entire 63-axis texture and 126-axis anisotropic-width inventory from that elaborated checkpoint, preserving both accepted textures while reopening the shared profile and shift. This is the required full-loop survival test.
+
+The elaborated scan is already showing the accepted WO₃ texture remains active while SrWO₄ axes compete. Principal and other diagonal SrWO₄ axes stay well above the 4.734% checkpoint; the previously second-ranked (1 −1 0) remains second at ~4.778%.
+
+SrWO₄’s complete elaborated texture inventory is finished: (2 −2 −1) remains the unique leader at Rwp 4.73372%, and the accepted ratio is unchanged. The scan is now testing every SrWO₄ anisotropic-width axis while both texture terms remain active.
+
+Elaborated SrWO₄ width behavior matches the neutral pass: apparent improvements arise only by pinning a size dimension at 0.02 μm, while other axes freeze at the inactive 10 μm value. Those branches are invalid despite Rwp values below the texture-only checkpoint.
+
+All SrWO₄ size axes have now failed the elaborated gate. The strain pass has begun and its first result likewise pins one component at zero while trading strongly into X; it is invalid even though the raw residual decreases.
+
+Every elaborated SrWO₄ strain axis so far collapses an isotropic component to zero or pushes the axial term to the ceiling, accompanied by a large X trade. The strong raw Rwp reduction is therefore nonphysical under the stated gate and will not be retained.
+
+SrWO₄’s elaborated width inventory is fully rejected. The scan has moved to WO₃ texture while retaining the accepted SrWO₄ axis; early principal-axis results remain far above the 4.734% checkpoint, so the monoclinic diagonal ranking appears intact.
+
+WO₃’s elaborated texture ranking mirrors the neutral result: (1 0 −1) remains a strong runner-up at Rwp 4.799%, while sign-reversed and principal directions are much poorer. The previously winning (2 −1 −2) axis is still pending later in the complete monoclinic list.
+
+The complete monoclinic texture scan continues to preserve the same hierarchy: several unequal-index axes improve the fit, but none approaches the 4.734% joint checkpoint yet. Sign-distinct partners again separate strongly, confirming the directional response.
+
+WO₃’s complete elaborated texture inventory is finished: (2 −1 −2) remains the clear winner at Rwp 4.73370%, with essentially unchanged ratio and nuisance values. The scan is now testing all WO₃ size/strain axes on top of both accepted textures.
+
+Unlike the neutral checkpoint, the elaborated WO₃ size branches now produce several interior solutions near Rwp 4.43–4.45%. Their near-degenerate axes suggest a mostly isotropic size effect rather than robust directional anisotropy. I’ll complete all axes, then repeat neutral/size/strain/combined and the collective-release/deletion sequence from this checkpoint.
+
+WO₃ size anisotropy remains diffuse: many unrelated axes converge to comparably good fits, with no unique directional family signature. That pattern supports adding at most an isotropic size term; a uniaxial model would be an unstable axis choice even though several are interior.
+
+The elaborated WO₃ size scan remains nearly axis-independent, with most interior branches clustered within ~0.03 Rwp. One direction has now frozen at 10 μm, further arguing against selecting a specific anisotropic axis. The isotropic/collective comparison will decide whether any size term remains.
+
+WO₃ size-axis scanning is complete and confirms no unique anisotropy. The strain scan now shows interior solutions too (first branches Rwp 4.38–4.43%), indicating that size and strain may be alternative descriptions of the same residual width. The mandated joint collective release and term-deletion tests will resolve that trade.
+
+Most WO₃ strain axes are interior but also tightly clustered, with one bound exception. The current best [001] branch is only modestly ahead of several unrelated directions; I’m withholding anisotropy until the full axis set and isotropic collective model are compared.
+
+WO₃ strain axes remain broadly degenerate; no direction has produced a sharply superior, family-specific solution. The best values differ by only a few hundredths in Rwp and some candidates touch the 10,000 µstrain guard, so directional strain is not yet justified.
+
+Late WO₃ strain branches confirm the ambiguity: lower residuals often coincide with one component near or at the upper guard, while stable interior axes remain nearly equivalent. This will be treated as a common-width trade unless the isotropic collective model and deletion replay prove otherwise.
+
+WO₃’s elaborated strain-axis inventory is complete; no unique anisotropic direction qualifies. SrCO₃ texture now shows a modest but repeatable [001] improvement (Rwp 4.681% versus 4.734%); because it is small, I’ll require full replay, stable fractions, and a deletion/residual-family check before retaining it.
+
+SrCO₃ [001] remains the best elaborated texture axis; alternatives cluster at Rwp 4.69–4.73%. The gain is real but small, so it remains provisional pending full opposite-seed replay and deletion from an otherwise identical checkpoint.
+
+SrCO₃ texture enumeration is complete with [001] still best. Its elaborated size branches are negligible or bound, confirming that the small texture gain is not a disguised phase-width effect.
+
+No SrCO₃ size axis contributes a meaningful elaborated improvement; most freeze and the interior branches change Rwp by at most a few thousandths. The phase-width model remains neutral.
+
+SrCO₃ strain is also unsupported: improvements are negligible, and several axes collapse one component to zero. Once this final set finishes, the only elaborated topology questions left are isotropic WO₃ size/strain and the weak SrCO₃ [001] texture.
+
+The full elaborated 189-branch loop is complete. It confirms both retained texture axes, rejects all SrWO₄/SrCO₃ widths and directional WO₃ widths, and leaves two focused questions: isotropic WO₃ broadening and SrCO₃ [001] texture. I’m now running the exact neutral/size/strain/combined isotropic pass from the joint-texture checkpoint.
+
+The isotropic elaborated branches are still refining and replaying. As before, I’ll reject any lower residual that freezes a term or fails reopen/replay; only an interior term that survives the later joint U/W/X release can enter the final model.
+
+No errors have appeared; the nine elaborated branches are performing full 25-cycle fits plus 15-cycle replays. This longer pass is deliberate because the six-cycle axis screen showed broadening became competitive only after texture was introduced.
+
+The elaborated isotropic pass finds stable WO₃ size, strain, and combined models; the combined branch is only slightly better (Rwp 4.4397%) and may be over-parameterized. SrWO₄ terms still collapse and SrCO₃ gains are negligible. I’m now repeating the mandated multi-seed collective release with U/W/X reopened; only a reproducible interior joint solution can retain widths.
+
+The collective elaborated test is still running all three independent low-seed sets. It includes the supported WO₃ size and strain terms plus terms that traded against common width, exactly as required; a single frozen component will invalidate that seed branch.
+
+No errors have appeared, but the collective branches are slower because U/W/X and four phase-width terms are moving together. I’m waiting for the saved frozen-term lists and replay results rather than inferring support from the live residual.
+
+All three collective elaborated seeds collapsed the same four width terms and shifted heavily into U/W/X, so the collective model is invalid and the neutral-width checkpoint is restored. No phase size or strain term will be retained. I’m now doing opposite-seed full replay and deletion tests for the only remaining optional term, SrCO₃ [001] texture.
+
+The SrCO₃ texture replay/deletion sequence is still active. It first converges [001] from ratios below and above one, then reopens the same project three times with each phase’s texture removed separately; this gives a clean necessity test for every retained MD term.
+
+SrCO₃ [001] texture is accepted: opposite seeds replay to ratio 0.83796 and Rwp 4.68114% with stable fractions. Deleting it returns Rwp to 4.73370%; deleting SrWO₄ or WO₃ texture raises Rwp to ~6.00% or ~5.94%. All three texture terms are independently necessary. Next I’m challenging this lower-symmetry WO₃ model against the serious tetragonal source on the same shifted/profile basis.
+
+The tetragonal P4/nmm checkpoint is replay-stable at Rwp 9.097%, substantially worse than monoclinic P2₁/c at the neutral checkpoint (7.076%) even with the same shift treatment. I’m nevertheless giving it the same complete 147-branch axis/width scan before excluding it.
+
+The tetragonal source’s first texture branches improve Rwp but remain far above the monoclinic model; its best SrWO₄ direction so far is ⟨110⟩ at ~8.11%. I’m continuing all tetragonal axes and width models rather than extrapolating from that gap.
+
+The tetragonal source’s full SrWO₄ texture set is complete; its best axis is (1 −1 0), Rwp 8.114%, with (2 −2 −1) close at 8.132%. The scan has moved to tetragonal-source width challenges, still far from the monoclinic-source fit.
+
+All tetragonal-source SrWO₄ size axes are bound or frozen, and none approaches the monoclinic fit. The tetragonal scan is proceeding through strain before moving to P4/nmm WO₃’s own axes.
+
+Tetragonal-source SrWO₄ strain is uniformly invalid: each branch collapses a component to zero or the ceiling and trades strongly into X. This mirrors the monoclinic-source gate outcome and does not rescue the higher-symmetry source.
+
+P4/nmm WO₃’s only strong texture response so far is (1 −1 0), but it requires an extreme March ratio of ~4.74 near the upper guard and still yields Rwp 7.89%. This is already worse than neutral monoclinic and far worse than the elaborated monoclinic model; the remaining tetragonal axes are still being completed.
+
+P4/nmm WO₃ width models do not rescue the source: size axes are mostly frozen and the best interior strain result is still Rwp 8.63% with very high strain values. The lower-symmetry source remains decisively ahead.
+
+The tetragonal source’s own WO₃ axis scan is complete: the only large texture gain is extreme and remains poor; width gains require very high/bound strain. SrCO₃ texture is negligible on this source. The final tetragonal neutral-pass width axes are now finishing.
+
+Tetragonal-source SrCO₃ width axes are all inactive or bound and leave Rwp essentially unchanged at 9.10%. The neutral-source complete loop is nearly finished; no hidden width topology has narrowed the source gap.
+
+The tetragonal neutral scan’s remaining SrCO₃ strain branches are collapsing at zero and leave the fit unchanged. This completes the substantive neutral comparison: P4/nmm cannot match the observed peak positions/intensities even with exhaustive texture and width freedom.
+
+The tetragonal neutral complete loop is finished. Its best texture branch still sits around Rwp 7.89% and requires an extreme WO₃ March ratio; all useful width branches are bound or highly strained. I’m now constructing its best two-texture checkpoint and will run the same elaborated-axis and collective-width loop to complete the lower-symmetry comparison.
+
+The nominal best tetragonal two-texture model is invalid: P4/nmm WO₃ drives its March ratio exactly to the upper bound 5.0. I’m restoring the neutral checkpoint and constructing the best interior alternative, using the next-ranked WO₃ axis, before performing the elaborated loop. This bound result cannot be used to claim a source win.
+
+The best interior tetragonal elaborated checkpoint replays at Rwp 7.834% (SrWO₄ ⟨110⟩ plus P4/nmm WO₃ (2 −2 −1)); it remains far poorer than monoclinic 4.681%. I’m now running its full elaborated 147-branch axis/width inventory with both terms preserved.
+
+The tetragonal elaborated scan confirms SrWO₄ ⟨110⟩ remains its best texture axis at Rwp 7.834%; all tested alternatives are worse. The source gap persists under the same complete-axis treatment.
+
+I’m completing the equal-treatment challenge for the tetragonal WO₃ source now, including its full elaborated axis scan and collective-width replay. After that I’ll freeze the winning monoclinic basis and run the remaining background, polarization, roughness, and watch-list checks before exporting the final project and files.
+
+The tetragonal branch remains decisively inferior even after added texture freedom; its apparent width gains are repeatedly hitting size/strain bounds, so they are invalid comparisons under the gate. I’m letting the exhaustive scan finish so the simpler-source decision is documented across every symmetry-inequivalent axis, not just the leading directions.
+
+The nuisance comparison found one clear, physically plausible improvement: polarization converges from a low seed to about 0.747 and cuts the high-/mid-angle weighted residual substantially while changing phase fractions by only a few tenths of a percent. I’m waiting on the opposite-seed and roughness/asymmetry replays before accepting it; if stable, I’ll rerun the coupled phase/texture/width loop from that checkpoint as required.
+
+The opposite polarization seeds agree (0.74690 vs 0.74690). Roughness-only gives essentially the same fit, while combined roughness/polarization trades the two corrections and the two-parameter roughness branches either collapse or worsen low-angle error. I’m therefore retaining the single, physically expected polarization correction and literal zero roughness. A 16-term smooth background is the stable elbow (14→16 changes fractions by <0.02 wt% and Rwp by only 0.0035), and I’m now replaying the full coupled axis/width loop from that accepted checkpoint.
+
+The accepted-intensity rescan is doing useful work: the original SrWO₄ texture axis remains a valid reference, but a distinct ⟨1 −1 −1⟩ direction is currently better and will need full opposite-seed replay plus deletion testing. Width branches that look numerically better are hitting anisotropic size bounds and are being rejected. In parallel, I’m rechecking monoclinic-versus-tetragonal WO₃ with the same polarization/background basis.
+
+The source-ranking replay is now closed: monoclinic WO₃ wins at both checkpoints (neutral Rwp 6.57% vs 8.77%; elaborated 4.03% vs 7.47%) with the accepted intensity model. The new SrWO₄ axis is being challenged from opposite texture seeds and by deleting each phase’s texture term; the exhaustive scan continues independently so no axis is skipped.
+
+The new SrWO₄ texture survives both opposite seeds to four decimal places and each texture deletion worsens Rwp materially (to 5.48%, 5.25%, and 3.96%), so all three texture terms remain supported. This changes the refined polarization and fractions enough that I’m now repeating phasewise and collective width tests from the new checkpoint; no size/strain term will be retained unless it survives that joint test and reseeding.
+
+Phasewise WO₃ broadening is genuinely consequential: isotropic size refines reproducibly to ~0.17 µm and lowers Rwp to 3.59%, but it shifts WO₃ by about 2.4 wt%. I’m treating that as a warning, not an automatic acceptance—the mandated joint U/W/X plus size/strain reseeds and single-term deletions will decide whether the width and resulting fractions are identifiable.
+
+The collective-width gate has now failed reproducibly from all three low seeds: WO₃ size collapses to the 10 µm inactive value while strain trades strongly against U/W/X. Per the requested rule I restored the no-width checkpoint, so the more dramatic 25.8 wt% WO₃ branch is not being used. The conservative crystalline fractions remain near 61.5% SrWO₄, 22.9% WO₃, and 15.7% SrCO₃ pending the final nuisance replay.
+
+The full repeat loop is now stable: the same three texture axes are the unique leaders after rebuilding the intensity/background model, and the collective-width branch collapses identically from all reseeds. Background order 22 is the selected elbow; order 24 improves only the low-angle bin while slightly worsening mid/high-angle agreement, so I’m keeping 22 and finishing roughness/asymmetry replay on that exact checkpoint.
+
+The final watch-list replay found a reproducible ~0.85 wt% tetragonal WO₃ scale, so I’m not dismissing it on scale alone. Because it would be weak same-formula coexistence, I’m applying the stricter gate now: cell release, independent non-overlapping reflection families, complete texture/broadening challenges, and removal/replacement tests. It will only enter the final model if all of those survive.
+
+I’m continuing from the selected background-22 checkpoint. The remaining decision is whether the reproducible ~0.84 wt% tetragonal WO₃ component has genuinely independent diffraction evidence; I’m completing its peak-family, texture, broadening, and same-formula substitution challenges before freezing the project.
+
+The nuisance loop is complete: polarization is seed-stable; roughness lowers the global residual only by trading against polarization and worsens the low-angle region, and SH/L changes are negligible. I’m therefore keeping roughness zero and the instrument asymmetry fixed while testing the weak tetragonal phase on the same checkpoint.
+
+Two independent, non-coincident tetragonal families are visible already: P4/nmm (110) at 23.1266° and (200) at 33.2132° each reduce local weighted residuals when the phase is added, with the nearest material reflections about 0.19–0.21° away. Other predicted tetragonal peaks are overestimated, so the decisive next test is whether a physically simple, symmetry-complete texture model resolves that conflict without collapsing the scale.
+
+The tetragonal texture scan is separating physically meaningful branches from invalid ones. The nominal best diagonal branch has already hit the March-ratio upper bound and will be discarded; an interior [001] branch gives a substantial improvement and remains eligible for opposite-seed replay.
+
+The directional-width branches are not surviving the physical bounds: the apparent gains either freeze a size component at its bound or drive tetragonal microstrain to the 10,000 µstrain ceiling. Those branches are invalid comparisons, consistent with retaining literal inactive widths unless the required collective release finds an interior solution.
+
+The only interior texture candidate is now being replayed from opposite March-ratio seeds together with all three established texture terms. I’m also deleting each texture term from the converged four-phase solution, which tests whether the weak phase’s preferred orientation is actually supported rather than merely compensating for another phase.
+
+The first simultaneous four-texture reseed is invalid: forcing all established textures far from their converged values destabilized the tetragonal cell metric before refinement, so its unchanged residual is not evidence. Per the gate, I’m restoring every accepted value and flag, then replaying only the new tetragonal texture from opposite seeds in a staged, cell-stable refinement; term deletions will start from that interior solution.
+
+Full replay drives the tetragonal [001] March ratio to its upper bound from the low seed and collapses its scale from the high seed. That texture model is therefore rejected, and the neutral tetragonal texture checkpoint is restored. The phase itself remains eligible only if its positive scale survives neutral broadening and the joint width challenge.
+
+The isotropic width branches are still refining from the neutral checkpoint. They are intentionally being replayed with the common W/X profile reopened, so a weak-phase width is retained only if it stays interior and does not borrow intensity or width from the dominant monoclinic WO₃.
+
+All tetragonal isotropic-width trials hit hard limits: size collapses to 0.02 µm and strain to 10,000 µstrain, including the combined branch. They are invalid and will not be retained. I’m now running the mandated collective low-seed release of both WO₃ phases’ size and strain terms with U/W/X reopened; if that also binds, the neutral common-profile model is restored.
+
+The collective test is numerically difficult, as expected for a sub-1% component, but it has not produced an interior replay yet. I’m letting all three independent low seeds finish; a single bound or nonphysical branch is not being used to choose the model.
+
+The collective branches all fail the acceptance rule: one destabilizes the weak cell, one pins both sizes at 10 µm, and the third also collapses the tetragonal scale/strain. I have restored the neutral no-width checkpoint. The ~0.84 wt% P4/nmm scale remains positive there, but it still needs a same-formula replacement test to show that the gain is crystallographically specific rather than a generic extra-WO₃ scale.
+
+The first replacement result is important: a doubled-cell P4/ncc WO₃ record also refines to a stable ~0.77 wt% scale, only ΔRwp ≈ 0.004% worse than P4/nmm. Thus the weak extra WO₃ signal is reproducible, but the exact tetragonal polymorph may not be uniquely resolved; I’m finishing lower-symmetry replacements before deciding whether to report the phase as tentative.
+
+A lower-symmetry triclinic WO₃ replacement has changed the inventory materially: it converges to about 5 wt% and lowers Rwp from 3.805% to 3.423%, far beyond the tetragonal gain. I’m treating this as a new serious same-formula phase, not yet as final—the high-seed replay, complete axes, collective widths, and removal/replacement tests must all survive, and the tetragonal watch-list will be rerun afterward.
+
+The triclinic branch is taking longer because all six lattice parameters are reopened after the scale-only stage. That is intentional: I’m checking whether the improvement remains after a full cell replay rather than accepting a favorable fixed-cell overlap.
+
+The triclinic phase is replay-stable from both scale seeds at 4.981 wt% with identical cells and Rwp. Orthorhombic WO₃ also takes a positive scale, but fits substantially worse; its high-seed replay is the final replacement branch before the triclinic source gets the complete profile/texture loop.
+
+The triclinic complete-axis scan is behaving sensibly so far: texture ratios stay near one and improvements are small, unlike the bound-driven tetragonal branches. Because P-1 has many inequivalent sign-distinct directions, I’m completing the full primitive low-index set rather than sampling one diagonal.
+
+No triclinic texture direction is emerging as strongly supported: the best screened gain is only about 0.0075 Rwp percentage point and all ratios remain close to unity. I’m still completing the unequal-index and sign-distinct directions because that small ranking could otherwise be axis-selection bias.
+
+The best texture candidates remain modest (March ratios roughly 0.88–0.92), with no bound behavior. Once the scan finishes I’ll replay only the leader from opposite seeds and delete it; unless that deletion leaves coherent family-level error, triclinic texture stays inactive.
+
+The first triclinic directional-size branch is interior (about 0.12/0.039 µm) and improves Rwp to 3.391%, so width anisotropy may be real. I’m completing all directions and will only retain a width after opposite-seed replay plus the mandatory collective release/deletion test; this branch alone is not enough.
+
+Several triclinic size axes are interior, but many diagonal branches pin both components at the 0.02 µm lower bound and are being discarded. The current interior leader is [100]; it will still need full replay and must survive the collective size/strain test with the monoclinic WO₃ widths reopened.
+
+The complete directional-size ranking is heterogeneous: [100] and a few axial directions are interior, while many mixed-index directions collapse. This is precisely why the full axis set matters. I will not carry any anisotropy forward unless the winning [100] solution replays from independent seeds and remains necessary after term deletion.
+
+The size scan confirms [100] as the best valid directional model; apparent lower residuals on some other axes are bound solutions and invalid. The remaining sign-distinct directions and all strain directions are still running before any topology decision.
+
+The strain screen is consistently running to the 10,000 µstrain ceiling, including axial and sign-distinct directions. Those lower residuals are invalid. I’m completing the inventory for auditability, but the only width candidate still eligible is the interior [100] size model.
+
+Every triclinic strain direction completed so far is boundary-bound; none is eligible despite nominally better residuals. The scan is now in the final unequal-index directions, after which the profile basis can be narrowed to neutral versus the [100] size candidate.
+
+The strain conclusion is now robust across axial, diagonal, unequal-index, and sign-distinct directions: every branch hits at least one 10,000 µstrain bound. No triclinic strain term will be retained.
+
+The exhaustive strain inventory has now covered the low-index basis without a single interior branch. The remaining few outputs are being recorded only to complete the audit; the model decision is already no triclinic strain.
+
+The complete 147-branch scan is finished: all 49 strain axes fail at bounds; 20 size axes are interior, led by [100]; all 49 texture axes are interior but offer only small gains. I’m now comparing neutral, isotropic size, isotropic strain, and combined size–strain before fully replaying the directional leaders.
+
+The isotropic branches are slower because every successful trial is replayed with all cells, scales, background, W/X, and the angular correction reopened. This is the needed check against a width term that only works in a locally frozen nuisance model.
+
+The phasewise result is clear: triclinic isotropic size is interior and replay-stable at 0.0784 µm (Rwp 3.400%), while strain and combined branches hit limits. The size changes its fraction from 4.98% to 6.72%, so it cannot be accepted casually; I’m now running the required joint release with the monoclinic WO₃ size/strain terms and common U/W/X reopened.
+
+The collective branch is still refining all four WO₃ width terms simultaneously. I’m waiting for each low-seed outcome because a size term that looks stable phasewise can disappear when both polymorphs and the common profile are allowed to share the same family-level width error.
+
+The collective result rejects all width elaborations: every seed pins both WO₃ size terms at the inactive 10 µm boundary while shifting width into strain and U/W/X. Per the stated rule I’m restoring the no-width checkpoint, despite the attractive phasewise size residual. This avoids the 1.7 wt% fraction swing caused by a non-unique profile decomposition.
+
+The triclinic [210] texture leader has fully converged to an interior March ratio of 0.872 from the low seed, with Rwp 3.415%. Its fraction rises to 5.66 wt%, so the high-seed replay and deletion are essential before deciding whether that intensity correction is real.
+
+Opposite texture seeds now converge identically, and deleting the established SrWO₄ texture strongly worsens the fit, so the replay is operating normally. The remaining deletions test monoclinic WO₃, SrCO₃, and the new triclinic term from the same interior checkpoint.
+
+The [210] texture is replay-stable from opposite seeds (ratio 0.8721), and deleting it raises Rwp from 3.4150% to 3.4233%; the established three texture terms also remain supported. I’m provisionally retaining it, then rebuilding the watch list on this four-phase checkpoint—especially P4/nmm and Pnma WO₃—to ensure the triclinic addition has absorbed any signal they previously claimed.
+
+The rebuilt watch list resolves the earlier weak tetragonal signal: once triclinic WO₃ is present, P4/nmm collapses to its scale floor from both low and high seeds. The ~0.84 wt% tetragonal fraction was therefore a surrogate for missing triclinic intensity and will not be reported as a separate phase. Orthorhombic WO₃ is still being challenged the same way.
+

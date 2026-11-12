@@ -1,0 +1,36 @@
+I’ll first inspect the measurement metadata, pattern shape, and the bundled crystallography workflow. Then I’ll identify candidate phases, build/refine them in GSAS-II, and verify that every submitted artifact is reproducible from `final.gpx`.
+
+The scan is a raw Cu Kα Bragg–Brentano pattern (10–100°) from PbCO₃ + WO₃ fired at 550 °C. That chemistry makes PbWO₄, residual precursors/decomposition products, and multiphase overlap all plausible; I’m treating the phase count as genuinely open rather than assuming a single target phase.
+
+Peak positions now support three chemically coherent phases: scheelite-type PbWO₄ (dominant line near 27.90°), monoclinic WO₃ (the 23.64/24.12/24.91° triplet), and cerussite PbCO₃ (20.66/21.48/25.36/26.05°). I’ll test all three jointly; the shared, unusually large low-angle displacement is being modeled as a specimen-height effect, not absorbed into three unrelated cells.
+
+The first GSAS-II pass exposed a numerical setup issue, not a phase-identification failure: the starting HAP scales were several orders too large, so the least-squares step saturated and drove the cerussite scale to its lower bound. I’m resetting the absolute scale from single-phase forward calculations before resuming staged refinement.
+
+The corrected setting now refines cleanly to three phases, with GSAS-II Rwp ≈ 3.58% versus a Poisson-limit estimate of 3.36%. The remaining gap is mainly peak-shape parameter covariance: an unconstrained pass used a negative WO₃ microstrain to trade against the common instrumental width. I’m replacing that mathematically convenient but nonphysical solution with bounded positive size/strain parameters before refining coordinates and intensities.
+
+The three-phase model is now physically consistent: scheelite PbWO₄, monoclinic WO₃, and cerussite PbCO₃, with preliminary fractions near 65/17/18 wt%. I’m doing one final, restrained check for preferred orientation and coordinate shifts before exporting the project and deliverables.
+
+Preferred-orientation refinement is supported by the data, especially for cerussite along [100]; adding the two weaker phase-specific terms lowers Rwp from 3.578% to 3.524% while leaving the fractions stable. I’m checking the remaining low-angle and line-shape residuals for specimen effects, then I’ll freeze and replay the exact final project.
+
+The final model has been frozen and independently replayed from `final.gpx`: all three submitted CIFs and fractions reproduce a positive, full-grid profile with no physical-profile warnings. I’m running the submission-format and cross-file consistency checks now.
+
+Identified three crystalline phases, normalized over the modeled crystalline material:
+
+- Scheelite PbWO₄: 65.24 wt%
+- Monoclinic WO₃: 16.64 wt%
+- Cerussite PbCO₃: 18.11 wt%
+
+Fit: Rwp = 3.5226%, Rp = 2.8052%, GOF = 1.0470. The final project was independently replayed successfully with no profile warnings.
+
+Files:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-1823ec999d12/workspace/final.gpx)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-1823ec999d12/workspace/fit.csv)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-1823ec999d12/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-1823ec999d12/workspace/report.md)
+- [PbWO₄ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-1823ec999d12/workspace/phase_PbWO4_scheelite.cif)
+- [WO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-1823ec999d12/workspace/phase_WO3_monoclinic.cif)
+- [PbCO₃ CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-1823ec999d12/workspace/phase_PbCO3_cerussite.cif)
+
+The fractions do not quantify amorphous material. Light-atom coordinates and absolute fractions retain modest systematic uncertainty, discussed in the report.
+

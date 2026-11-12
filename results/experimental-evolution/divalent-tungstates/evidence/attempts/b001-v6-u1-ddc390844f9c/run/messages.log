@@ -1,0 +1,34 @@
+I’ll inspect the measurement metadata, pattern, and the reusable refinement package first, then build a chemically screened phase inventory before fitting. I’ll keep phase additions residual-led and verify the final exports against a reopened GSAS-II project.
+
+The chemistry is a ZnO–WO₃ reaction at 600 °C with Cu Kα₁/Kα₂ reflection data. The first inventory will therefore include unreacted ZnO and WO₃ alongside all plausible zinc tungstates; I’ll test records by diffraction evidence rather than assuming the nominal ZnWO₄ product is the only phase.
+
+Peak families identify three strong candidates: wolframite ZnWO₄ (including the split 30.4/30.7° pair), wurtzite ZnO (31.8, 34.5, 36.3, 47.6, 56.6, 62.9°), and monoclinic WO₃ (the 23.2/23.6/24.4° triplet plus 26.6, 28.6/29.0, and 33–34° families). Cubic ZnO and the higher-symmetry WO₃ records fail those unique families; I’m now comparing the physical ambient records and setting up the quantitative refinement.
+
+The ambient records are fully occupied and geometrically sound (ZnWO₄ has octahedral W–O 1.80–2.14 Å and Zn–O 2.03–2.23 Å; ZnO is standard wurtzite; WO₃ is the room-temperature monoclinic network). The narrow ZnO families indicate a common profile near U = 0, W ≈ 1.5 and X ≈ 3.8 in GSAS-II units; allowing U to vary drove it negative, so I’m rejecting that trial and keeping U neutral at zero while testing phase broadening one phase at a time.
+
+The alternate-source check is discriminating the WO₃ model rather than merely rejecting the chemistry: the room-temperature monoclinic neutron record gives the best fit so far; an equivalent but coarsely determined monoclinic record is worse, while triclinic WO₃ is close enough that the monoclinic/triclinic distortion will remain a stated structural uncertainty. Higher-temperature polymorph trials are still running under the same profile and broadening model.
+
+The one-at-a-time nuisance tests favor a single low-angle surface-roughness correction (Rwp 3.302→3.169%, B = 0.0437); refining polarization as well adds negligible benefit and creates >95% scale correlations, so I’m pruning polarization. SH/L is 96.8% correlated with zero and is also being pruned. Isotropic strain is unsupported for ZnWO₄ and ZnO; for WO₃ I’m now comparing a clean strain-only model against the accepted size-only model before testing anisotropy and texture.
+
+The three-phase model is now stable: wolframite-type ZnWO₄ is dominant, with residual ZnO and monoclinic WO₃. The accepted common-profile model gives about 72.66/8.58/18.75 wt% and Rwp ≈ 3.04%; I’m doing the final exact-project replay, exports, and cross-checks now.
+
+The final replay reproduced the selected solution to numerical precision. I’m now checking that every exported CIF and profile value is traceable to `final.gpx`, and I’m quantifying the practical uncertainty from alternate structures and weak-phase challenges before writing the report.
+
+Completed. The modeled crystalline phases are:
+
+- ZnWO₄: 72.662 wt%
+- ZnO: 8.584 wt%
+- monoclinic WO₃: 18.754 wt%
+
+Final fit: Rwp 3.0419%, Rp 2.3930%, GOF 1.1020. Fractions exclude any amorphous content; practical uncertainty is approximately 0.5–1 wt% per phase.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [ZnWO4.cif](<ATTEMPT_WORKSPACE>/ZnWO4.cif)
+- [ZnO.cif](<ATTEMPT_WORKSPACE>/ZnO.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+

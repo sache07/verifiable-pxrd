@@ -1,0 +1,55 @@
+I’ll inspect the pattern, metadata, and reusable refinement utilities first, then build a chemically screened phase inventory before fitting. I’ll keep identification decisions residual-led and verify the final exports against a reopened GSAS-II project.
+
+The chemistry points first to CuWO₄, with CuO and WO₃ as plausible residuals, but I’ll treat that only as an initial inventory. The data are raw Cu Kα reflection counts (9.90° onward) with no calibrated profile or supplied uncertainties, so instrument/background choices will need to be inferred conservatively from isolated peaks.
+
+The first pattern comparison overturns the simple CuWO₄ assumption. Two coherent peak families are evident:
+
+- a WO₃-type family at 23.21/23.65/24.46°, 33–34.3°, 41.5–42.0°, and 47–51°;
+- cubic Cu₃WO₆ at 15.76, 20.37, 33.08, 34.31, 36.81, 43.45, 58.19, 63.88, 70.80, and 87.65°.
+
+That assemblage is chemically sensible for a nominal 1:1 CuO/WO₃ reaction: Cu₃WO₆ plus two residual WO₃ preserves the Cu:W ratio. CuWO₄, CuO, and alternate WO₃ polymorphs remain on the watch list until they are challenged under a common refined profile.
+
+The first two-phase Rietveld trial is stable and already gives the expected near-stoichiometric balance. After refining only background, scales, one zero correction, and cells, the modeled crystalline mass fractions are about 40% Cu₃WO₆ / 60% WO₃. Peak positions improve substantially, while the still-high residual is dominated by profile shape and intensity mismatches rather than missing major peaks. I’m now separating common instrumental broadening from phase-specific broadening before judging minor phases.
+
+A symmetry-aware texture challenge resolves the dominant residual physically: WO₃ [001] March–Dollase texture lowers Rwp from 18.89% to 6.92%, far outperforming [100] (16.16%), [010] (18.55%), and diagonal axes (9.89–18.85%). This is supported by multiple isolated 00l families—the underfit peaks near 23.21°, 47.36°, and 76.83° all respond together—so the correction is not a single-peak surrogate. The refined ratio is moderate (0.724), not extreme.
+
+CuO is a genuine third phase, not a noise-level addition. Its scale is strongly positive, its cell refines to a physically normal tenorite cell (a=4.6634, b=3.4241, c=5.1326 Å, β=99.454°), and coherent CuO families at roughly 35.68°, 38.90°, 49.0°, 53.6°, and 66–68° are removed. Rwp falls from 6.92% to 5.71%; provisional crystalline fractions are 33.5% Cu₃WO₆, 58.7% WO₃, and 7.7% CuO. I’ll now rebuild/check the common profile and re-challenge CuWO₄ and alternate WO₃ records.
+
+The WO₃ source-record challenge matters. A better room-temperature monoclinic neutron structure (COD 2311041) improves Rwp from 5.71% to 4.57% under the same three-phase/profile/texture model. A triclinic WO₃ record reaches 4.52% only after its cell moves close to monoclinic metrics; the 0.05-point gain costs two extra metric degrees of freedom and conflicts with the room-temperature phase field, so monoclinic WO₃ is presently the more defensible model. Orthorhombic WO₃ fails badly (Rwp 18.97%).
+
+The common-profile checks are now physically constrained: U and W collapse to zero and are pruned; X remains positive (~14.5), while SH/L collapses to its lower bound and is rejected. A refined polarization of 0.621 is plausible and improves the cross-phase high-angle intensity trend (Rwp 4.57% → 4.15%). Surface roughness can produce a similar correction, but its two parameters fall into different local solutions from different starts, so I’m treating it as an unsupported surrogate and keeping it neutral. A six-term smooth Chebyshev background is justified: four and five terms worsen Rwp to 5.42% and 4.68%, while eight terms gain only 0.006 point.
+
+Phase broadening is phase-specific, not an instrument-profile artifact. Cu₃WO₆ isotropic size broadening is strongly supported and replay-stable from 0.05–1 µm starts, converging near 0.17–0.19 µm; after re-refining the common X term it lowers Rwp from 4.15% to 3.33%. WO₃ size goes to the neutral upper limit, WO₃ strain tries to become negative, and CuO size hits an unphysical lower bound, so those terms are rejected. CuO texture axes change Rwp by at most 0.01 point and are also pruned.
+
+After rebuilding the profile with Cu₃WO₆ size broadening, CuO isotropic strain becomes replay-stable from 500–5000 ppm starts, converging near 5,880 ppm and lowering Rwp from 3.33% to 3.23%. Its breadth is visible across several CuO families; a CuO size model instead hit an unphysical lower bound. I’m accepting the strain term, while rejecting the tiny Cu₃WO₆ strain/anisotropic-size gains because they trade strongly with size and improve Rwp by only ~0.005–0.007 point.
+
+The accepted inventory is now stable under re-challenge: the ambient CuWO₄ prototype refines to only 0.03–0.04 wt% with an uncertainty larger than the value; orthorhombic WO₃ goes to zero; and an added triclinic WO₃ component is ≤0.27 wt%, worsens Rwp, and has an unstable cell. These are not reportable phases. I’m rebuilding a clean three-phase project from scratch, then reopening and replaying it before exporting the final CIFs and profile.
+
+The clean three-phase project is converged and replay-stable. I’m doing the final cross-check now: project/export agreement, CIF validity, profile arithmetic, and a concise uncertainty report—especially the strong WO₃ texture and the rejected trace CuWO₄ alternatives.
+
+The exported profile is byte-for-number identical to the arrays stored in `final.gpx`, the three mass fractions sum to 1.000000, and the last replay converged with maximum shift/esd 0.0027. The retained nuisance model is also clean: one zero correction, smooth six-term background, common X broadening, and no roughness/shift/transparency terms.
+
+The structural screen is physically consistent: all CIFs parse to the intended reduced formulae, densities are plausible, and nearest metal–oxygen distances are chemically reasonable. The modeled crystalline bulk has Cu:W ≈ 1.06:1, independently consistent with the stated CuO/WO₃ precursor context.
+
+The uncertainty report is now explicit about what is and is not determined: the listed covariance errors are much smaller than realistic model uncertainty; amorphous content is unmeasured; and neither a separate triclinic WO₃ fraction nor trace CuWO₄ is defensible. I’m running one last schema/path/parse audit before handing over.
+
+Completed and validated the three-phase GSAS-II refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| Monoclinic WO₃, P2₁/c | 55.27 wt% |
+| Cu₃WO₆, Pa-3 | 36.71 wt% |
+| CuO, C2/c | 8.02 wt% |
+
+Final fit: Rwp = 3.2255%, GOF = 1.3406. Fractions are normalized over crystalline phases; amorphous content is undetermined. Practical model uncertainty is larger than the statistical e.s.d.s, particularly because of strong WO₃ preferred orientation.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [Cu₃WO₆ CIF](<ATTEMPT_WORKSPACE>/phase_Cu3WO6.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_monoclinic.cif)
+- [CuO CIF](<ATTEMPT_WORKSPACE>/phase_CuO.cif)
+

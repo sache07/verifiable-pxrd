@@ -1,0 +1,9 @@
+# Powder XRD phase analysis
+
+The crystalline pattern is adequately described by one phase: scheelite-type calcium tungstate, CaWO₄, space group *I*4₁/*a* (No. 88). Its weight fraction is 1.0000 after normalization over the modeled crystalline phases.
+
+The identification is supported by the complete reflection sequence, including 18.63, 28.72, 29.04, 31.43, 34.18, 39.20, 47.11, 49.11, 54.29, 57.88, and 59.48° 2θ, and by their relative intensities. The 29.04° line is the CaWO₄ 103 reflection rather than an impurity. Diagnostic peaks expected from residual CaO, monoclinic WO₃, Ca₃WO₆, monoclinic CaWO₄, or Ca-rich tungsten bronze are absent. One-at-a-time nonnegative residual tests for those alternatives gave no compelling improvement; their local, model-dependent one-sided 95% abundance limits were approximately 0.1–0.2 wt%.
+
+The starting structural model was COD 7219229 and was refined against the full 10–100° scan. The final cell is tetragonal with *a* = 5.24374 Å and *c* = 11.3784 Å; the refined oxygen site is (0.14995, 0.01107, 0.21127). The fresh atomic replay of `final.gpx` gives Rwp = 3.5697%, Rp = 2.7600%, weighted χ² = 8386.18 for 8301 points, and goodness of fit = 1.0054. This is close to the estimated counting-statistics floor (Rwp ≈ 3.55%). Texture, surface roughness, anisotropic broadening, and a second phase did not give justified improvements.
+
+The phase assignment and scheelite framework are reliable. The oxygen coordinates are less strongly constrained than the W/Ca sublattices by Cu X-ray data, and angular zero, specimen displacement, and cell parameters are correlated. The reported 100 wt% is only the normalization among detected crystalline phases: without an internal standard, amorphous content cannot be measured, and trace or structurally unmodeled crystalline material cannot be ruled out. The CIF, fractions, and `fit.csv` were all regenerated from the submitted `final.gpx`.

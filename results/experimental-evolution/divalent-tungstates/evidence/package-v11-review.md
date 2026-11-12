@@ -1,0 +1,1 @@
+v11 preserves v10's validated source-health, balance, constructed-analogue, weak-phase, coexistence and export gates. It replaces the unsuccessful one-pass profile/source schedule with reversible coordinate descent and equal-loop source comparison. Guidance is 472 words; helpers are byte-identical to v10. See investigations/v11-design.md.

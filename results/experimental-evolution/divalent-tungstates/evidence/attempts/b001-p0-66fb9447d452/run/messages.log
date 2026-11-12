@@ -1,0 +1,52 @@
+I’ll inspect the metadata and diffraction profile first, then identify candidate phases, refine them jointly in GSAS-II, and verify that the exported CIFs, phase fractions, profile, statistics, and final project all agree. I’ll flag any ambiguity rather than overstate the result.
+
+The chemistry points naturally toward zinc tungstate, but the unknown phase count means I’m treating residual precursors and polymorphs as live possibilities. Next I’m extracting peak positions and checking the local crystallographic/search and refinement tooling before committing to a model.
+
+The peak set already separates into three chemically plausible fingerprints: wolframite-type ZnWO₄, monoclinic WO₃, and residual wurtzite ZnO. I’m now matching exact reference structures and lattice metrics, because the strong overlaps near 23–24° and 30–36° make quantitative fractions unreliable until the correct WO₃ polymorph and peak-shape model are fixed.
+
+The reference-pattern check is decisive on phase identity: the observed 23.17/23.62/24.40° WO₃ triplet selects ambient monoclinic γ-WO₃, while the ZnO-only lines at 31.79, 34.46, 47.57, 56.60, and 62.87° confirm a third phase. I’m moving to a joint three-phase Rietveld refinement with Poisson counting weights, then I’ll test whether extra phases or texture are justified by the residuals.
+
+The first refinement gives an internally consistent crystalline split of roughly 68% ZnWO₄, 20% WO₃, and 12% ZnO. I’m now refining lattice and line-shape terms in controlled stages; this is the point where false precision can creep in, so I’m checking parameter correlations and physical bounds after each stage.
+
+The lattice/profile stage has reduced the weighted profile residual from 9.88% to about 4.85% while keeping all three phase scales positive. The refined cells track the observed peaks well; the remaining work is mainly line-shape and intensity modeling, not phase discovery.
+
+The axial-asymmetry trial is disproportionately expensive for this 8,301-point pattern and is not yet yielding a diagnostic update. I’m stopping that over-parameterized trial and will test the Lorentzian terms without the costly asymmetry derivative; the accepted 4.85% model remains intact in the saved project.
+
+The simplified profile trial is improving the fit further (χ² fell from 25,520 to 18,231 after two cycles), with no singularity reported. It is slower because all lattice, scale, background, and profile parameters are being re-evaluated together; I’m letting this bounded trial converge before deciding whether phase-specific broadening is warranted.
+
+The residual is dominated by incorrect relative intensities—not unexplained peak positions—especially the monoclinic WO₃ (020) member near 23.62°. Since the measurement is in reflection geometry, I’m testing simple, crystallographically interpretable March–Dollase texture axes one phase at a time. This is more defensible than absorbing intensity errors into unconstrained profile coefficients.
+
+The first texture control (WO₃ along a) changed Rwp by only 0.0006 percentage points and refined essentially to random orientation, so it is not justified. The more diagnostic b-axis test is running now; if it also collapses toward unity, I’ll retain a random-powder model and report the intensity mismatch as structural/model uncertainty.
+
+Refining the symmetry-allowed ZnWO₄ coordinates gives only a modest first-cycle improvement (χ² 17,978 → 17,355), but the Hessian remains nonsingular. I’m checking whether the coordinate shifts are chemically small and statistically stable; if not, the single-crystal reference coordinates will stay fixed.
+
+The coordinate trial improves Rwp to 3.99%, but its last-step shift/error ratio is too large for me to accept those coordinates uncritically. I’m now rebuilding the final line shape from the earlier positive-definite Caglioti solution and applying nonnegative bounds to Lorentzian width terms; this keeps the structural and quantitative result physically interpretable even if the nominal Rwp is slightly higher.
+
+The bounded model settles on a positive, purely Lorentzian instrumental contribution and converges cleanly at Rwp 4.33% (GOF 1.57), with fractions near 69.2/19.8/11.0 wt%. I’m doing one final joint pass on the lattice parameters and the dominant ZnWO₄ coordinates from that physical line shape so the submitted structure and covariance come from the same final project.
+
+The unrestricted oxygen-coordinate pass kept improving Rwp but drove weakly constrained O positions appreciably, so I’m rejecting it as overfit. A cation-only ZnWO₄ refinement is chemically stable; I’m freezing those cation positions after refinement and performing the final scale/cell/profile pass. Oxygen coordinates and all minor-phase coordinates remain at literature values because this laboratory X-ray pattern cannot determine them reliably.
+
+The final accepted model converges with maximum shift/error 0.68, Rwp 4.40%, and GOF 1.59. It contains three phases at 69.095%, 19.833%, and 11.072% by crystalline weight; I’m now exporting the exact project state, CIFs, and point-by-point profile, then I’ll validate every artifact against the saved GPX.
+
+All requested artifacts are written. I’m performing a final cross-check now: reloading `final.gpx`, recomputing the normalized fractions from its phase scales and cell masses, matching every `fit.csv` point to the GPX arrays, and parsing each exported CIF independently.
+
+Identified three crystalline phases:
+
+- ZnWO₄: 69.10 wt%
+- Monoclinic WO₃: 19.83 wt%
+- ZnO: 11.07 wt%
+
+Fractions are normalized over modeled crystalline phases. Rwp = 4.40%, GOF = 1.59. No fourth crystalline phase was justified; amorphous content cannot be quantified.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [ZnWO4.cif](<ATTEMPT_WORKSPACE>/ZnWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [ZnO.cif](<ATTEMPT_WORKSPACE>/ZnO.cif)
+
+The GPX reloads successfully, all 8,301 fitted points match its profile arrays, and all CIFs parse with the expected compositions and space groups.
+

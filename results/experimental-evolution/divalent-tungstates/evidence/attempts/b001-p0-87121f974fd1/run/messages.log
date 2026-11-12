@@ -1,0 +1,44 @@
+I’ll inspect the measurement metadata and diffraction pattern first, then identify candidate phases and build a quantitative GSAS-II refinement. I’ll keep the submitted CIFs, profile, statistics, report, and the exact final project mutually consistent.
+
+The chemistry points toward manganese tungstate formation, but that alone is not enough: unreacted oxides or multiple Mn–W–O polymorphs could contribute. I’m now extracting the experimental peak positions and checking the supplied structure library against the full pattern, including minor peaks.
+
+The observed peak set is not consistent with Mn₃WO₆ or either precursor oxide as the dominant phase. Its paired strongest reflections near 29.58/30.03° and the lines at 18.06, 35.67, and 53.15° are characteristic of wolframite-type MnWO₄; I’m checking this against every available Mn–W–O structure and testing whether the remaining lines require a second crystalline phase.
+
+A near-pure MnWO₄ starting model is available from a hubnerite structure (3% Fe substitution); I’m converting that site to pure Mn and using the reported Cu Kα₁/Kα₂ doublet explicitly. The next refinement stages will separate lattice/zero-shift effects from profile broadening before I assess any unmatched intensity for minor phases.
+
+The single wolframite phase accounts for essentially every observed line across 10–100°; I see no independent residual peak set that would justify a second phase. I’m now testing the low-angle axial-divergence and specimen-height terms explicitly, since those dominate the residual and otherwise bias the refined cell.
+
+The displacement term is in micrometres in GSAS-II; correcting that unit exposed the expected physically meaningful starting range (hundreds of µm). The constrained profile comparison is still running, but phase identification is unchanged: the remaining discrepancies are line-shape/intensity effects, not unexplained Bragg peaks.
+
+A closer residual check does reveal a weak, broad family near 22.7, 28.2, 32.8–33.7°, so I’m reopening the phase-count question. Those positions could represent residual WO₃ rather than line-shape error; I’ll test each plausible W-oxide and Mn-oxide model quantitatively and retain a second phase only if its full reflection set improves the fit coherently.
+
+The second-phase comparison is taking longer because each candidate is being fully linked and refined against all 8,284 points, not just peak-matched. The decisive test is whether the weak scale remains positive and whether the candidate explains the 22.7/33.7/49.5/55.5° family together without creating absent peaks.
+
+Monoclinic WO₃ is decisively supported: adding it lowers Rwp from about 10.8% to 4.54% and refines to ~15.3 wt%, while orthorhombic/tetragonal WO₃ models fit materially worse. I’m doing one final third-phase check against the precursor/likely by-product oxides; their scales will be constrained nonnegative so a tiny mathematical cancellation cannot masquerade as a real phase.
+
+The third-phase check supports residual tetragonal Mn₃O₄ at about 4 wt%: it improves χ² by ~1,007 with only a small parameter increase and explains independent residuals near 31.8 and 59.3°, not just overlaps. The refined residual WO₃:Mn₃O₄ mass ratio also closely matches the 3:1 molar precursor stoichiometry after accounting for formed MnWO₄, which is a useful chemical cross-check.
+
+The selected three-phase model is now stable. I refined the MnWO₄ cell and atomic coordinates, refined the cells of monoclinic WO₃ and hausmannite Mn₃O₄, and kept minor-phase internal coordinates fixed because their fractions do not support reliable unconstrained coordinate refinement. I’m packaging that exact model into the final GPX/CIF/profile/result/report set now.
+
+The final refinement converged on all 8,301 measured points: 80.93 wt% MnWO₄, 14.69 wt% monoclinic WO₃, and 4.37 wt% Mn₃O₄, with Rwp 4.200% and goodness of fit 1.691. I’m validating that the three exported CIFs re-import correctly and that `fit.csv`, `result.json`, and `final.gpx` reproduce those exact numbers.
+
+Validation passed: all three CIFs re-import with the intended compositions/space groups, the fractions sum to exactly 1.0, `fit.csv` contains all 8,301 points with observed−calculated differences, and reloading `final.gpx` reproduces the reported fractions and statistics. I’m removing only my exploratory root-level files so the submission contains one CIF per modeled phase and an unambiguous final project.
+
+Completed the three-phase refinement:
+
+- MnWO₄, wolframite P2/c: 80.93 wt%
+- WO₃, monoclinic P2₁/n: 14.69 wt%
+- Mn₃O₄, hausmannite I4₁/amd: 4.37 wt%
+
+Final fit: Rp 3.070%, Rwp 4.200%, GOF 1.691. Fractions are normalized over modeled crystalline phases; systematic uncertainty is approximately 1 wt%, especially for Mn₃O₄. Amorphous content was not quantified.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MnWO4.cif](<ATTEMPT_WORKSPACE>/MnWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [Mn3O4.cif](<ATTEMPT_WORKSPACE>/Mn3O4.cif)
+

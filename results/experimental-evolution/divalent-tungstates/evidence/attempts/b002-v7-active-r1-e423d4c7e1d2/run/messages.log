@@ -1,0 +1,44 @@
+I’ll first inventory the measured pattern, metadata, and reusable analysis scripts, then build and challenge candidate phase models before refining the final GSAS-II project. I’ll keep the measured peak-shape audit and output consistency checks tied to the reopened final project.
+
+The chemistry is the MgO–WO₃ system heated at 700 °C, so MgWO₄ is the obvious primary product but cannot be assumed complete or uniquely polymorphic. I’m now extracting the experimental peak inventory and checking exact/analogue database records for MgWO₄, both precursors, and charge-balanced non-1:1 alternatives.
+
+The peak inventory supports three chemically neutral phases: wolframite-type MgWO₄ (diagnostic 18.88°, 30.41/30.75°), monoclinic γ-WO₃ (23.13/23.57/24.38° triplet), and residual periclase MgO (42.93° and 62.26°). I’m fitting all three together now; WO₃ monoclinic source records will be compared under the same profile/background model rather than selected from chemistry alone.
+
+The same-phase WO₃ source comparison is already discriminating: the Loopstra–Boldrini monoclinic model reaches Rwp ≈ 8.51%, while the older Tanisaki monoclinic coordinates reach ≈ 8.87% under identical nuisance terms. I’m continuing the polymorph challenge (triclinic, orthorhombic, and tetragonal) and will then inspect residual families rather than relying on the global Rwp alone.
+
+The broader polymorph screen rejects orthorhombic/tetragonal WO₃ decisively (Rwp ≈ 11.5–20.3%). A triclinic WO₃ record currently fits slightly better than the monoclinic record (≈ 8.36% vs ≈ 8.51%), but its refined angles move strongly toward a pseudomonoclinic metric. I’m treating that as a symmetry/over-parameterization question and auditing individual WO₃ splittings and intensities before selecting the phase model.
+
+The texture challenge is decisive and physically interpretable: a single March–Dollase [010] term for MgWO₄ lowers Rwp from 8.36% to 5.75%; axial [100]/[001] and diagonal [110]/[101]/[011]/[111] alternatives fit worse. Background order, polarization, and surface roughness tests do not explain this effect. The remaining residuals are chiefly alternating peak-shape/position errors, so I’m now replaying isotropic size versus strain one phase at a time from that saved baseline.
+
+The phase-broadening replay identifies WO₃ as the width outlier: allowing either ~0.076 µm isotropic size or ~0.9% isotropic microstrain lowers Rwp to about 2.6%, while analogous MgWO₄/MgO terms are unsupported or become nonphysical. The strain fit is numerically less replay-stable, so I’m completing its convergence audit and comparing angle dependence against the stable size model.
+
+The fair replay with phase broadening reverses the earlier ambiguity: monoclinic γ-WO₃ (COD 2311041) fits better than triclinic WO₃ once both use the same MgWO₄ texture and WO₃ broadening model (Rwp 2.49% vs 2.63%). A [110] uniaxial WO₃ size term plus complementary isotropic strain is stable and lowers Rwp to 2.33% (GOF 1.53). Removing MgO worsens Rwp to 2.99%, so the third phase remains well supported. I’m freezing this restrained model, pruning the bound U term, and replaying the entire measured range from a reopened project.
+
+The structural refinement is complete. I’m finishing the evidence report and doing a final scorer-facing consistency check across the reopened GSAS-II project, CIFs, phase fractions, and profile.
+
+The inventory recheck supports a near-equimolar reacted/unreacted mixture: the modeled crystalline material gives Mg/W = 1.028 on a molar basis. The residual MgO and WO₃ are themselves nearly equimolar, so there is no charge-balance or residual-peak trigger for an additional non-1:1 tungstate.
+
+The report now includes the required numerical peak-shape audit and explicitly flags the residual high-angle mismatches. I’m running the last independent validation now: JSON schema/content, fraction sum, profile length/range, CIF existence, and a fresh GSAS-II reopen of `final.gpx`.
+
+The generic Python interpreter does not include GSAS-II, so that check stopped before touching any output. I’m rerunning the same read-only validation with the project’s scientific Python environment.
+
+Completed the three-phase Rietveld refinement:
+
+- MgWO₄, P2/c: **51.480 wt%**
+- γ-WO₃, P2₁/c: **40.984 wt%**
+- MgO, Fm-3m: **7.536 wt%**
+
+Final fit: Rwp 2.3286%, Rp 1.7767%, goodness-of-fit 1.5276. Fractions sum exactly to 1. The values describe modeled crystalline material only; systematic uncertainty is likely a few wt% and amorphous content cannot be quantified.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [MgWO4 CIF](<ATTEMPT_WORKSPACE>/phase_MgWO4.cif)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [MgO CIF](<ATTEMPT_WORKSPACE>/phase_MgO.cif)
+
+The final project was reopened and validated against all CIFs, fractions, and all 8,301 rows of `fit.csv`.
+

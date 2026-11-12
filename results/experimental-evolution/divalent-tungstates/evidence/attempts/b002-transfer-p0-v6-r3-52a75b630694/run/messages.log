@@ -1,0 +1,42 @@
+I’ll inspect the diffraction data, metadata, and available crystallography tooling first, then identify candidate phases, build/refine the model in GSAS-II, and verify that all exported files are internally consistent. I’ll treat phase count and composition as open questions and report any ambiguity rather than forcing a phase assignment.
+
+The chemistry points to the Mg–W–O system after a 700 °C reaction, but I’m not assuming complete formation of MgWO₄: unreacted WO₃/MgO or another magnesium tungstate must be tested against unmatched peaks. The scan is high-density Cu Kα data with both Kα components reported, so I’ll preserve the doublet in the instrument model rather than preprocessing it away.
+
+Peak-by-peak matching now supports three crystalline phases: wolframite-type MgWO₄ is dominant; the resolved 23.12/23.57/24.38° triplet and its higher-angle companions identify monoclinic WO₃; peaks near 42.94, 62.26, and 78.88° require residual cubic MgO. I’ll now quantify these together and test whether any significant peaks remain unexplained.
+
+The first quantitative trial confirms all three phases, but it also exposed two refinement pathologies I won’t carry into the deliverable: GSAS-II’s default sample-scale flag made the overall scale mathematically redundant, and unconstrained phase-size terms ran to nonphysical limits. I’m fixing the scale gauge and comparing simpler, physically valid profile models before selecting the final fraction set.
+
+The comparison is still running through several constrained profile variants. The key acceptance checks are not just a lower Rwp: I’m rejecting any model with negative Gaussian variance/Lorentzian width, frozen-at-bound parameters, singular covariance, or unstable phase fractions.
+
+A clear, physically interpretable texture effect is present in MgWO₄: a March–Dollase correction along [010] lowers Rwp from 9.09% to 6.68% with no singularity and explains the otherwise severe overprediction of 010 relative to 100. This changes the dominant-phase fraction by only about one percentage point, but it materially improves the structural fit, so I’m retaining it and checking whether the minor phases need analogous corrections.
+
+The WO₃ preferred-orientation correction is only ~4% from random and improves Rwp by just 0.07 percentage point, so it is not compelling. I’m now testing a single WO₃-specific width term and the unknown effective polarization; either will be kept only if it converges away from bounds and leaves the phase fractions stable.
+
+A single WO₃ isotropic microstrain term is strongly supported: it reduces Rwp from 6.68% to 3.82%, converges cleanly, and captures the broad WO₃ peaks that the sharper MgWO₄/MgO profile cannot. Because this shifts the WO₃ fraction upward to about 42%, I’m now explicitly comparing all plausible local WO₃ polymorph models under the same broadening treatment before finalizing the quantitative result.
+
+The polymorph comparison is computationally heavier because each candidate is being re-refined from raw data, including its cell, scale, broadening, and the shared instrument terms. It is still progressing normally; no user input is needed.
+
+The final candidates are still refining. Once complete, I’ll select by peak-position/splitting agreement and fit stability—not merely the lowest residual—then rebuild one clean final project so the GPX, CIFs, fractions, and exported profile all come from exactly the same refinement state.
+
+The polymorph test is decisive. The accurate neutron-derived monoclinic WO₃ model (P2₁/c, COD 2311041) gives Rwp = 2.47% and GOF = 1.62, versus 3.52% for the older rounded monoclinic coordinates and 2.65% for triclinic WO₃; the triclinic refinement also relaxes toward ~90° angles and does not converge fully. The selected three-phase fractions are currently about 51.2% MgWO₄, 41.4% WO₃, and 7.4% MgO.
+
+The clean final refinement has been rebuilt from the raw pattern and converged without frozen parameters or covariance singularities. It reproduces all 8,301 points with Rp = 1.88%, Rwp = 2.47%, and GOF = 1.62; the remaining residuals are structured around strong overlapping peaks rather than unexplained peak positions. I’m now doing file-level consistency checks and documenting the practical uncertainty.
+
+Completed the three-phase Rietveld analysis:
+
+- MgWO₄, P2/c: 51.19 wt%
+- Monoclinic WO₃, P2₁/c: 41.36 wt%
+- MgO, Fm-3m: 7.44 wt%
+
+Final fit: Rp 1.883%, Rwp 2.470%, GOF 1.620. Fractions are normalized over crystalline phases; practical systematic uncertainty is approximately 1–2 wt% for the major phases.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MgWO4.cif](<ATTEMPT_WORKSPACE>/MgWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [MgO.cif](<ATTEMPT_WORKSPACE>/MgO.cif)
+

@@ -1,0 +1,48 @@
+I’ll first inventory the pattern, metadata, and reusable refinement tooling, then identify chemically plausible candidates and test them under a common GSAS-II baseline. I’ll keep rejected-but-plausible phases on a watch list and only report fractions supported by the final replayed project.
+
+The chemical context strongly suggests magnesium tungstate formation, but I’m treating residual MgO/WO₃ and other Mg–W–O stoichiometries/polymorphs as live alternatives. The scan is raw Cu Kα data with no supplied uncertainties or calibrated profile, so the baseline must also solve the instrumental/profile terms conservatively.
+
+The peak inventory now resolves into three coherent families: wolframite-type MgWO₄ is dominant, monoclinic room-temperature WO₃ accounts for the dense 23–56° residual family, and rocksalt MgO is indicated by its sparse 42.93/62.26/74.57/78.88/94.69° sequence. I’m next discriminating the available WO₃ records and checking whether the Cu Kα₂ doublet is actually present before quantifying them.
+
+The first common-profile fit gives approximate crystalline fractions of 57% MgWO₄, 35% WO₃, and 8% MgO, confirming all three phases are material. It also exposed a redundant imported histogram scale and an unconstrained negative profile coefficient; I’ve removed that scale degeneracy and corrected the GSAS-II parameter bounds before comparing WO₃ records, so those preliminary numbers are not yet the submitted result.
+
+Under the corrected common baseline, the modern monoclinic WO₃ model (COD 2311041) clearly outperforms the older standard-setting record, while a triclinic WO₃ alternate improves Rwp from 8.56% to 8.40%. Its refined angles move substantially toward monoclinic metrics, so I’m not accepting the lower symmetry on Rwp alone; I’m now checking whether specific split families support it or whether anisotropic broadening/strain in monoclinic WO₃ explains the same residuals more physically.
+
+Neutralizing GSAS-II’s finite default phase broadening changed the common profile to a fully nonnegative \(U/W/X\) solution and left the phase fractions stable. The dominant MgWO₄ peaks are visibly narrower than much of the WO₃ family, so I’m now testing size and strain phase-by-phase from true neutral values, plus asymmetry and polarization as separate reversible trials.
+
+Phase-by-phase trials show that only WO₃ needs additional broadening: both finite size and microstrain work alone, and their replay-stable combination is modestly better (about 0.22 µm apparent size plus 4300 µstrain). MgWO₄ and MgO broadening terms collapse to neutral bounds and will be pruned. Polarization returns 0.513 (indistinguishable in practical fit quality from the physical 0.5), and SH/L is highly correlated with zero, so both remain fixed. I’m applying the same broadening challenge to triclinic WO₃ before deciding its symmetry.
+
+The texture challenge is decisive: a modest MgWO₄ March–Dollase correction along [010] (r = 1.302) lowers Rwp from 7.09% to 2.28%, while every other symmetry-distinct axial/diagonal direction is substantially worse. It simultaneously corrects the overpredicted 010 family, underpredicted 100 family, and multiple mid/high-angle MgWO₄ families, so it is not a single-peak surrogate. The monoclinic WO₃ model now also beats the triclinic alternate under equivalent size/strain treatment, so monoclinic WO₃ remains the physical choice.
+
+The residual-led anisotropy check supports a simple WO₃ model: uniaxial microstrain along [100] materially improves the fit, and a smaller complementary uniaxial size term along [010] is replay-stable with well-resolved uncertainties. No MgWO₄ or MgO width term survives. I’m now testing whether the dominant MgWO₄ coordinates can be refined without degrading its octahedral geometry; the weaker WO₃ oxygen framework will remain tied to the neutron structure unless the data genuinely constrain it.
+
+The coordinate tests are stable and physically sensible: MgWO₄ retains normal MgO₆ (2.08–2.13 Å) and WO₆ (1.77–2.15 Å) octahedra, while refining only the WO₃ W sublattice keeps sixfold W–O distances in the source-like 1.69–2.17 Å range. Rwp reaches 1.66%, close to the 1.53% counting-statistics floor. I’m doing the final watch-list re-challenge now; candidate reduced/peroxide/off-stoichiometric records must produce a positive, coherent scale under this profile to survive.
+
+The re-challenged watch list did not support an additional crystalline phase: candidate scales were zero or statistically insignificant. I’m now replaying the accepted three-phase model over the exact full range and exporting directly from that final project so the CIFs, fractions, profile, and statistics remain synchronized.
+
+The exact-range replay converged cleanly (maximum shift/σ 0.009) at Rwp 1.662%, with 51.15 wt% MgWO₄, 41.30 wt% WO₃, and 7.55 wt% MgO on the modeled-crystalline basis. I’m checking the exported CIF chemistry/geometry and confirming that `fit.csv` and `result.json` reproduce the reopened `final.gpx` exactly before writing the uncertainty report.
+
+The consistency check found only text-rounding loss in `fit.csv` (about \(2\times10^{-8}\)° in 2θ and \(5\times10^{-6}\) count in the difference column), not a model discrepancy. I’m increasing the CSV export to round-trip floating-point precision, then will perform the final reopen check and document the model limits.
+
+The final export now round-trips exactly: every x, observed, calculated, difference, background, and weight value in `fit.csv` matches the reopened GSAS-II arrays bit-for-bit; the phase fractions and fit statistics likewise match `final.gpx`. The CIFs also parse successfully and have chemically reasonable nearest-neighbor geometry.
+
+Completed the three-phase GSAS-II refinement:
+
+- MgWO₄ (wolframite, P2/c): 51.15 wt%
+- WO₃ (monoclinic, P2₁/c): 41.30 wt%
+- MgO (periclase, Fm-3m): 7.55 wt%
+
+Final fit: Rwp 1.6620%, GOF 1.0911. Fractions are normalized over modeled crystalline phases; amorphous content is not quantified. No additional crystalline phase was supported reliably.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [MgWO4 CIF](<ATTEMPT_WORKSPACE>/phase_1_MgWO4.cif)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_2_WO3.cif)
+- [MgO CIF](<ATTEMPT_WORKSPACE>/phase_3_MgO.cif)
+
+The exported profile, fractions, and statistics were verified against the reopened final project exactly.
+

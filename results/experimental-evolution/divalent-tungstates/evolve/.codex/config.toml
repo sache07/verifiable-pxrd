@@ -1,0 +1,98 @@
+model = "gpt-5.6-sol"
+model_reasoning_effort = "max"
+default_permissions = "pxrd-divalent-tungstates"
+approval_policy = "never"
+web_search = "disabled"
+
+[agents]
+enabled = false
+
+[features]
+apps = false
+enable_mcp_apps = false
+browser_use = false
+browser_use_external = false
+browser_use_full_cdp_access = false
+computer_use = false
+image_generation = false
+in_app_browser = false
+in_app_local_automation = false
+multi_agent = false
+multi_agent_v2 = false
+plugins = false
+remote_plugin = false
+skill_search = false
+workspace_dependencies = false
+memories = false
+external_agent_memory_import = false
+hooks = false
+shell_snapshot = false
+skip_host_skill_discovery = true
+
+[shell_environment_policy]
+inherit = "none"
+
+[shell_environment_policy.set]
+PATH = "<HOME>/.local/share/pxrd-baseline/core/bin:<HOME>/.local/share/characterizagent/backends/dicvol/bin:/usr/local/bin:/usr/bin:/bin"
+TMPDIR = "<RUN>/evolve/.tmp"
+XDG_CACHE_HOME = "<RUN>/evolve/.cache"
+MPLCONFIGDIR = "<RUN>/evolve/.cache/matplotlib"
+PYTHONNOUSERSITE = "1"
+PYTHONDONTWRITEBYTECODE = "1"
+LANG = "C.UTF-8"
+LC_ALL = "C.UTF-8"
+SHELL = "/bin/bash"
+OMP_NUM_THREADS = "2"
+OPENBLAS_NUM_THREADS = "2"
+MKL_NUM_THREADS = "2"
+NUMEXPR_NUM_THREADS = "2"
+GSAS2_PYTHON = "<HOME>/.local/share/characterizagent/backends/gsas2/venv/bin/python"
+
+[permissions.pxrd-divalent-tungstates]
+description = "PXRD curator: own project and assigned inputs; other data and command network blocked."
+extends = ":read-only"
+
+[permissions.pxrd-divalent-tungstates.filesystem]
+":root" = "deny"
+":minimal" = "read"
+":tmpdir" = "write"
+":slash_tmp" = "deny"
+"<RUN>/evolve" = "write"
+"<HOME>/.local/share/pxrd-baseline/core" = "read"
+"<HOME>/.local/share/characterizagent/backends/gsas2/venv" = "read"
+"<HOME>/.local/share/characterizagent/backends/dicvol" = "read"
+"<HOME>/.local/share/uv/python" = "read"
+"<HOME>/.codex/packages/standalone/releases/0.154.0-x86_64-unknown-linux-musl/bin" = "read"
+"<RUN>/runtime" = "read"
+"<RUN>/evolve/.codex" = "read"
+"<RUN>/evolve/.agents" = "read"
+"<RUN>/evolve/.git" = "read"
+"<RUN>/evolve/AGENTS.md" = "read"
+"<RUN>/evolve/PROMPT.md" = "read"
+"<RUN>/evolve/TOOLS.md" = "read"
+"<RUN>/evolve/verify_environment.py" = "read"
+"<HOME>/.local/share/characterizagent/backends/dara/venv/lib/python3.11/site-packages/dara/data/cod_filtered_info_2024.json.gz" = "read"
+"<HOME>/.local/share/characterizagent/backends/dara/cod-filtered-2024/cif" = "read"
+"<HOME>/.local/share/pxrd-baseline/core/lib/python3.11/site-packages/ase/test" = "deny"
+"<HOME>/.local/share/pxrd-baseline/core/lib/python3.11/site-packages/pyocse/data" = "deny"
+"<HOME>/.local/share/pxrd-baseline/core/lib/python3.11/site-packages/pyxtal/database/cifs" = "deny"
+"<HOME>/.local/share/pxrd-baseline/core/lib/python3.11/site-packages/pyxtal/database/bug.json" = "deny"
+"<HOME>/.local/share/pxrd-baseline/core/lib/python3.11/site-packages/pyxtal/database/mech.db" = "deny"
+"<HOME>/.local/share/pxrd-baseline/core/lib/python3.11/site-packages/pyxtal/database/test.db" = "deny"
+
+"<RUN>/cases" = "read"
+"<RUN>/batches" = "read"
+"<RUN>/policies" = "read"
+"<RUN>/evidence" = "read"
+"<RUN>/scorer" = "read"
+"<RUN>/evolve/LAB.md" = "read"
+"<RUN>/evolve/P0.md" = "read"
+"<RUN>/evolve/lab.py" = "read"
+"<RUN>/evolve/resources.json" = "read"
+"<RUN>/evolve/settings.json" = "read"
+"<RUN>/evolve/environment.json" = "read"
+
+"<HOME>/.codex/packages/standalone/releases/0.160.0-x86_64-unknown-linux-musl/bin" = "read"
+
+[permissions.pxrd-divalent-tungstates.network]
+enabled = false

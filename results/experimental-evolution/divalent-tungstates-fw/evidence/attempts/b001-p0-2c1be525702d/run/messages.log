@@ -1,0 +1,64 @@
+I’ll first inspect the pattern, metadata, and the framework’s PXRD/GSAS-II guidance, then identify candidate phases, refine them against the data, and validate every required output from the final project.
+
+The chemistry is CaO + WO₃ fired at 800 °C, so CaWO₄ is the obvious principal candidate, but the workflow deliberately permits residual oxides and off-stoichiometric/intermediate phases. I’m treating the phase count as an inference from unmatched peaks, not assuming a single-phase product.
+
+Peak indexing now strongly supports scheelite CaWO₄ plus monoclinic γ-WO₃: the WO₃ triplet near 23–24.3° and its higher-angle satellites all line up with the P2₁/c references after the same small angular offset seen for CaWO₄. I’m next testing whether weak residuals require CaO or another Ca–W–O phase before committing the phase inventory.
+
+The two-phase fit leaves coherent Bragg residuals, so the inventory is incomplete rather than merely mis-scaled. The strongest unmatched set includes CaO-like lines at about 32.10° and 37.45°, while another subset overlaps weak WO₃/Ca–W–O reflections; I’m comparing candidate third phases quantitatively before refining nuisance parameters further.
+
+Three third-phase refinements are running in parallel: CaO, Ca₄.₂₆W₁₀O₃₀, and monoclinic fergusonite CaWO₄. I’ll rank them by reduction of physically localized residuals and by whether the refined scale remains positive and stable.
+
+The first stable comparison (CaO with its cell held during screening) completes cleanly; the broader oxide candidates are slower because of larger unit cells and many reflections. I’m keeping their cells fixed for this phase-presence test so a weak false candidate cannot distort the lattice or profile terms.
+
+The residual set is not well explained by CaO or the library’s listed Ca–W–O entries. Its chemistry and peak density point instead to a Ca-rich intermediate: Ca₃WO₆ (an ordered double-perovskite), which can coexist with WO₃ while preserving the 1:1 starting Ca:W balance. I’m now testing Ca-substituted Sr/Ba/Pb analogue structures from the same frozen database.
+
+The Ca₃WO₆ analogue is decisively supported: adding it lowers the stable screening Rwp from ~13.3% to 8.87%, and its refined fraction is ~13.4%. The preliminary three-phase fractions are CaWO₄ 73.0%, WO₃ 13.6%, Ca₃WO₆ 13.4%, consistent with a Ca-rich intermediate paired with residual WO₃. I’m now refining the analogue’s cell/coordinates and the phase-specific line shapes without allowing nonphysical width parameters.
+
+The unconstrained trial confirms why bounds matter—the Ca₃WO₆ lattice can diverge once correlated width terms become nonphysical. The bounded refinement is still running through coordinate stages; its starting Ca₃WO₆ cell is about 5.550 × 5.807 × 8.007 Å, β ≈ 90.25°, and remains the chemically/structurally credible model.
+
+The bounded model has reached Rwp ≈ 4.04% (statistical minimum reported by GSAS-II ≈ 2.62%). Its fractions converge near 69.1% CaWO₄, 16.5% WO₃, and 14.4% Ca₃WO₆; the WO₃:Ca₃WO₆ mass ratio also matches the 2 WO₃ + Ca₃WO₆ stoichiometric balance closely. I’m screening texture axes now to address the remaining reflection-intensity residuals.
+
+A physical-validity check caught an important issue: the unconstrained WO₃ coordinate refinement had driven several W–O/O–O contacts below 1 Å. I’m rejecting that lower-Rwp model and rerunning from the last valid stage with coordinate displacements bounded to modest, symmetry-preserving shifts; the submitted structures will not use the unphysical fit.
+
+Because the first γ-WO₃ reference itself contains an implausibly short O–O contact, I’m also comparing modern monoclinic/triclinic WO₃ references with coordinates held near their published models. This separates genuine polymorph selection from a numerically convenient but chemically invalid coordinate distortion.
+
+The decisive issue now is structural validity, not just a lower residual. I’m checking the modern WO₃ candidates and the bounded-coordinate rerun, then I’ll carry the best physically credible model through final refinement and export.
+
+The modern monoclinic and triclinic WO₃ models fit essentially identically at the screening level (Rwp 8.927% vs 8.925%); the monoclinic model is the chemically expected room-temperature form after cooling. The earlier bounded run itself became numerically unstable when too many coordinate variables remained active, so I’m tightening the refinement sequence rather than accepting that false minimum.
+
+The stabilized refinement is still iterating. I’ve limited zero offset and sample displacement to the laboratory’s stated ranges and am refining each phase’s coordinates in isolation; this is specifically guarding against the earlier intensity-only overfit.
+
+The constrained base is now stable at Rwp 6.02% with plausible phase profiles and about 70.1% CaWO₄, 15.8% WO₃, and 14.1% Ca₃WO₆. I’m testing the finite set of physically allowed texture axes next; only a reproducible, meaningful improvement will be retained.
+
+The texture search is taking a little longer because it evaluates all five allowed axes independently for each phase. The current model and files are safe; these are branch trials, so a poor axis cannot contaminate the accepted project.
+
+The physically constrained texture model is strongly supported: WO₃ [001] March–Dollase ratio ≈0.82 lowers Rwp substantially. Re-equilibrating scales, cells, breadths, background, and specimen terms brings Rwp to 3.66%, with fractions stable at roughly 70.0/15.8/14.2 wt%. I’m now checking whether the remaining residual warrants any extra structural freedom.
+
+One conservative coordinate pass improved the fit while preserving sensible bond distances (minimum W–O 1.74 Å in WO₃ and 1.92 Å in Ca₃WO₆; no short O–O contacts). After rebalancing nonstructural terms, Rwp is 3.50% and fractions are 69.5/15.9/14.5 wt%. I’m testing one final coordinate pass as a hold-out check, not automatically accepting it.
+
+The second coordinate pass is not justified overall: CaWO₄ changes negligibly, Ca₃WO₆ worsens, and only WO₃ improves slightly while shortening two W–O bonds. I’m keeping the first-pass geometry and finishing a bounded Uiso sensitivity search; this will also quantify how stable the weight fractions are to thermal-factor assumptions.
+
+The accepted model is converged at Rwp 3.465% (Rexp ≈2.62%). Fractions are 69.52% CaWO₄, 15.96% WO₃, and 14.52% Ca₃WO₆; they were stable through the texture, coordinate, Uiso, and strain sensitivity tests. I’m exporting directly from that frozen project now and then will replay-check the files against it.
+
+Validation is clean: the scorer-style replay reproduces Rwp 3.4651% from fresh GSAS structure factors, all three CIFs match the project exactly within printed precision, fractions sum to 1.000000, and every structure passes the contact/occupancy screen with no flags.
+
+Analysis complete. The modeled crystalline phases are:
+
+- CaWO₄ scheelite: 69.52 wt%
+- Monoclinic γ-WO₃: 15.96 wt%
+- Ca₃WO₆: 14.52 wt%
+
+Final fit: Rwp 3.465%, Rp 2.716%, goodness-of-fit 1.324. Fractions are normalized over crystalline phases.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-2c1be525702d/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-2c1be525702d/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-2c1be525702d/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-2c1be525702d/workspace/final.gpx)
+- [CaWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-2c1be525702d/workspace/phase_CaWO4.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-2c1be525702d/workspace/phase_WO3.cif)
+- [Ca3WO6 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-2c1be525702d/workspace/phase_Ca3WO6.cif)
+
+The project was independently replayed successfully with no physical-screen or CIF/project consistency flags. The principal uncertainty is the exact Ca₃WO₆ atomic arrangement; the WO₃ monoclinic/triclinic distinction is also not fully decisive.
+

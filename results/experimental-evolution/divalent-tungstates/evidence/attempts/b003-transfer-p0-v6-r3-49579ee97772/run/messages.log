@@ -1,0 +1,36 @@
+I’ll first inspect the measurement metadata, pattern range/resolution, and the reusable refinement utilities in `learned/`. Then I’ll build a chemically screened phase inventory, refine it in GSAS-II, and verify that the exported CIFs, fractions, profile, and project all agree.
+
+The chemistry points first to CuWO₄, with residual CuO/WO₃ as realistic secondary candidates, but I’m treating those as hypotheses rather than assumptions. I’m now comparing all visible exact-composition records and physically distinct polymorphs against the peak positions before any scale refinement.
+
+The dominant peak triplet at 23.21/23.65/24.46° and its families through high angle match monoclinic/triclinic WO₃, while both available CuWO₄ records miss several strong non-WO₃ peaks. I’m expanding the inventory to every Cu–W–O composition in the visible database and will keep CuWO₄ and CuO as watch-list phases until their unique reflections are explicitly challenged.
+
+The expanded search identifies Cu₃WO₆ (Pa‑3) as the missing phase: its unique 111, 210, 320, 321, 400, and higher-angle families align coherently at about 15.76, 20.37, 33.08, 34.31, 36.81° and beyond. I’ll now test that phase jointly with each physically plausible WO₃ polymorph using identical background, scale, angular, cell, and common-profile settings; this is the record-level challenge requested in the refinement protocol.
+
+The room-temperature monoclinic WO₃ records and the low-temperature triclinic record fit nearly equivalently at this stage; the high-pressure WO₃ polymorph is decisively rejected. The neutron-derived monoclinic model is marginally best and has the better-determined oxygen geometry. Its remaining dominant residual is not a missing phase: the 23.21° and 47.36° members of one repeated WO₃ family are much stronger than neighboring families at the same angles, which is direct evidence for preferred orientation. I’m pruning the bound common-profile term, testing polarization and zero-vs-displacement first, then testing symmetry-distinct texture axes.
+
+After the physically correct WO₃ texture axis is applied, Rwp drops from 18.92% to 5.17% and the repeated (20‑2)/(40‑4) family is reproduced. The remaining positive residuals at 35.68 and 38.81°, with corroborating higher-angle families, are the tenorite CuO pattern. I’m now challenging both CuO records and the CuWO₄/Cu₂WO₄ watch-list candidates one at a time under this same profile before changing the inventory.
+
+The rebuilt three-phase profile converges over the full 9.903–100.095° range with no frozen variables. Width trials show a supported Cu₃WO₆ coherent-domain term (~0.171 µm); WO₃ size/strain and common asymmetry collapse to neutral bounds and are rejected. CuO supports strain broadening, while its size trial is unstable and rejected. I’m testing whether the accepted Cu₃WO₆ size and CuO strain remain complementary when combined and replayed.
+
+The accepted broadening model is replay-stable: Cu₃WO₆ size is 0.1700(25) µm and CuO microstrain is 5833(283) µstrain; adding Cu₃WO₆ strain gives no further improvement and collapses near neutral. Re-challenging CuWO₄, Cu₂WO₄, and Cu₂O after this rebuild gives ≤1.5σ scales and ΔRwp below 0.0005%, so they are excluded. I’m now doing the final save–reopen–replay, exporting directly from that project, and checking all files against it.
+
+The final replay converged without frozen variables at Rwp 2.9595% and GOF 1.2301. The normalized fractions are 36.234% Cu₃WO₆, 55.382% WO₃, and 8.384% CuO. I’m performing the last consistency checks now: CIF parsing/geometry, fraction sum, profile arithmetic, and equality between the exported files and `final.gpx`.
+
+Identified three crystalline phases, normalized over modeled crystalline material:
+
+- WO₃ (P2₁/c): 55.382 wt%
+- Cu₃WO₆ (Pa-3): 36.234 wt%
+- CuO (C2/c): 8.384 wt%
+
+Final fit: Rwp 2.9595%, Rp 2.3297%, GOF 1.2301. CuWO₄, Cu₂WO₄, and Cu₂O were not statistically supported. Practical fraction uncertainty is approximately 1–3 wt%; the WO₃ monoclinic/triclinic distinction remains somewhat model-dependent.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [Cu3WO6.cif](<ATTEMPT_WORKSPACE>/Cu3WO6.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [CuO.cif](<ATTEMPT_WORKSPACE>/CuO.cif)
+

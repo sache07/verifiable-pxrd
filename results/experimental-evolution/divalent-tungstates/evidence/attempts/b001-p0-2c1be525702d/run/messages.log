@@ -1,0 +1,36 @@
+I’ll inspect the measurement metadata and pattern first, then identify candidate cells/phases, run a multiphase GSAS-II refinement, and validate that every submitted artifact is generated from the final project. I’ll keep ambiguous phase assignments or fractions explicitly qualified.
+
+The chemistry points strongly toward calcium tungstate, but I’m treating that only as a prior: I’m now checking the full peak set for unreacted oxides, polymorphs, and any extra crystalline phase before committing to a model.
+
+The peak clusters at about 22.0–24.3° are diagnostic of room-temperature monoclinic WO₃, while the dominant 18.4/28.5/31.3/34.0° series is scheelite CaWO₄. I’m testing whether the weaker residuals require CaO as a third phase or are simply overlapped WO₃/CaWO₄ reflections.
+
+I’ve narrowed the defensible phase set to two phases: scheelite CaWO₄ and monoclinic γ-WO₃ (P2₁/n). Their predicted reflection positions account for the apparent “extra” weak peaks as well as the dominant peaks; I’m moving into full-profile refinement now, including the reported Cu Kα doublet and Poisson counting weights.
+
+The two-phase fit is stable, and the remaining misfit is concentrated at already-indexed peaks rather than at unexplained peak positions. That supports the phase assignment; I’m now separating phase-specific line broadening from preferred orientation so the weight fractions are not biased by an over-flexible instrumental profile.
+
+The phase search has converged on scheelite CaWO₄ plus monoclinic WO₃; trial third phases either refine to zero or mimic broad background. Most remaining sharp residuals align with Cu Kβ leakage, so I’m keeping them out of the quantitative phase model and am now doing the final controlled refinement and export from one GSAS-II project.
+
+The clean two-phase refinement is numerically stable at 88.36/11.64 wt%. A trial release of the CaWO₄ oxygen coordinates lowers the residual, but the coordinates move substantially; I’m checking bond geometry before deciding whether that apparent improvement is structural information or compensation for intensity artifacts.
+
+The coordinate release produced implausible Ca–O/W–O geometry, so I’m rejecting it. I’m instead testing only physically grouped displacement parameters for the WO₃ model, whose reference CIF reports zero displacement values; this is a more defensible way to check whether high-angle intensity falloff biases the phase fraction.
+
+The physically constrained WO₃ tungsten displacement parameter refines to a plausible \(U_\mathrm{iso}\approx0.0105\ \text{Å}^2\); oxygen displacement assumptions change the WO₃ fraction by under 0.03 percentage point. I’m using that stable model for the final project, with the phase fractions settling near 87.5 wt% CaWO₄ and 12.5 wt% WO₃.
+
+The final refinement has converged with no frozen or singular variables, and all requested deliverables have been generated from `final.gpx`. I’m doing a last consistency check on CIF parsing, fraction normalization, profile rows, and the saved project statistics.
+
+Resolved two crystalline phases:
+
+- Scheelite CaWO₄: **87.49 wt%**
+- Monoclinic WO₃: **12.51 wt%**
+
+Fractions are normalized over modeled crystalline material. Final fit: Rwp 8.625%, Rp 5.341%, GOF 3.845. Exact monoclinic/pseudotriclinic WO₃ symmetry and trace impurities remain uncertain; realistic fraction uncertainty is approximately ±1–2 percentage points.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [CaWO4_scheelite.cif](<ATTEMPT_WORKSPACE>/phases/CaWO4_scheelite.cif)
+- [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/phases/WO3_monoclinic.cif)
+

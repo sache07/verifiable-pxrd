@@ -1,0 +1,34 @@
+I’ll first inspect the diffraction range, chemistry, and the supplied analysis framework, then identify candidate phases and carry the best model through a GSAS-II refinement. I’ll keep phase fractions normalized over the crystalline phases and flag any ambiguity in the final report.
+
+The chemistry is tightly constrained to Zn–W–O (with possible residual ZnO/WO₃), and the scan is high-resolution Cu Kα with both Kα components. I’m now extracting peak positions and checking the frozen structural library for Zn tungstate, precursor, and plausible off-stoichiometric models before refinement.
+
+The peak inventory supports three crystalline phases, not one: wolframite-type ZnWO₄ is dominant, while two independent residual-precursor fingerprints are present—monoclinic WO₃ and wurtzite ZnO. Their weaker lines recur across the full angular range with the same specimen displacement, which rules out explaining them as background or peak-shape artifacts. Next I’m discriminating the WO₃ structural variant and refining the shared instrument/specimen terms before phase-specific cells and scales.
+
+The phase assignment is now internally consistent with reaction mass balance: the independently refined WO₃:ZnO mass ratio is close to the 1:1 residual molar precursor ratio. Among the available WO₃ models, the room-temperature monoclinic P2₁/c structure (COD 2311041 setting) gives the best whole-pattern agreement; tetragonal, orthorhombic, and triclinic alternatives leave systematic unmatched lines. I’m tightening the refinement with normalized displacement parameters and bounded, staged profile terms to avoid the strong zero/height/cell correlations seen in an unconstrained trial.
+
+The best physically valid model now uses monoclinic WO₃ COD 1528915 with a [001] March–Dollase texture term; that drops Rwp to about 4.73% while keeping all interatomic distances plausible. The alternative P2₁/c setting only looked competitive when oxygen coordinates were allowed to collapse nonphysically, so I’ve rejected that solution. I’m now re-optimizing peak positions and anisotropic widths after the correct WO₃ intensity model was selected.
+
+The refinement has converged to 69.9 wt% ZnWO₄, 22.8 wt% monoclinic WO₃, and 7.3 wt% wurtzite ZnO (crystalline-normalized), with Rwp 3.72% versus Rexp 2.69%. I’m doing the independent atomic replay and CIF/project consistency checks now; this is the final safeguard against stale calculated curves or mismatched exported structures.
+
+The replay exactly reproduces the submitted profile and phase fractions. One structural check did uncover an overly short O–O separation in the refined WO₃ coordinates, so I’m correcting that local-coordinate artifact while preserving the phase assignment and profile fit.
+
+The corrected WO₃ model now passes the contact/occupancy screen, and a fresh atomic replay reproduces all 8,301 calculated points exactly. The crystalline fractions settle at 69.88% ZnWO₄, 22.77% WO₃, and 7.35% ZnO with Rwp 3.706%.
+
+Completed the three-phase refinement:
+
+- ZnWO₄ (wolframite): 69.88 wt%
+- Monoclinic WO₃: 22.77 wt%
+- Wurtzite ZnO: 7.35 wt%
+
+Fractions are crystalline-normalized. Final fit: Rwp 3.706%, Rexp 2.692%, Rwp/Rexp 1.377. Independent replay reproduced the profile exactly, and all CIFs passed structural checks.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-c208c56b04fb/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-c208c56b04fb/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-c208c56b04fb/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-c208c56b04fb/workspace/final.gpx)
+- [ZnWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-c208c56b04fb/workspace/ZnWO4.cif)
+- [WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-c208c56b04fb/workspace/WO3.cif)
+- [ZnO.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-c208c56b04fb/workspace/ZnO.cif)
+

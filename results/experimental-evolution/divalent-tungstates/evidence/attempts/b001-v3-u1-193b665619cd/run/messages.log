@@ -1,0 +1,56 @@
+I’ll first inspect the diffraction data, metadata, candidate inventory, and the reusable refinement helpers. I’ll then identify candidates from peak positions and chemistry, refine them in a staged GSAS-II workflow, and validate the final exports against a reopened project.
+
+The chemistry points first to calcium tungstates, but I’m treating that only as a hypothesis: unreacted WO₃/CaO and calcium-rich intermediates remain plausible. I’m now extracting the peak families and checking the candidate records—including symmetry, occupancies, source metadata, and geometry—before any scale-factor trial.
+
+The dominant peak sequence is already consistent with scheelite CaWO₄, while the clustered reflections near 23–24° strongly suggest residual monoclinic WO₃. I’m comparing both available CaWO₄ records and all physically plausible WO₃ polymorph records under the same wavelength before deciding which structures earn a refinement trial.
+
+The record screen rejects the malformed CaWO₄ entry and the WO₃ record with a 0.46 Å contact. The leading working pair is ordered scheelite CaWO₄ (I4₁/a) plus room-temperature monoclinic WO₃ (P2₁/c); its diagnostic triplets align after the same angular offset, and its W–O geometry is more credible than the older coarse monoclinic model. I’m moving that pair into a staged refinement and will replay alternate WO₃ records under the identical schedule.
+
+The first full replay converges reproducibly at Rwp ≈13.29% with 86.49 wt% CaWO₄ and 13.51 wt% WO₃. The common profile stays physical (U, W, X all positive), but the fit still has structured intensity/profile residuals, so these are provisional. I’m now resolving zero shift versus specimen displacement and then replaying the competing WO₃ polymorphs before adding phase-specific broadening or texture.
+
+Specimen displacement gives a marginally better full-range fit than a constant zero correction (Rwp 13.271% vs 13.289%) and follows the expected cosθ angular dependence; I’ll retain it provisionally and keep zero fixed. The phase fractions are essentially unchanged between branches, which is reassuring. I’m now applying that same nuisance schedule to the alternate monoclinic, triclinic, and orthorhombic WO₃ records.
+
+The orthorhombic and alternate monoclinic trials have completed; the triclinic model is slower because all six cell metrics introduce strong correlations, so I’m letting its fresh replay finish rather than judging an underconverged comparison. Afterward I’ll compare diagnostic residual bands, not just the global Rwp.
+
+The candidate comparison is decisive against orthorhombic WO₃ (Rwp 14.62%). Triclinic P-1 improves Rwp by only 0.027 percentage point over monoclinic while using two extra cell freedoms, and its refined angles collapse to a pseudo-monoclinic metric; that is compensation, not identification. I’m retaining the better-geometry room-temperature P2₁/c record and now inspecting residual peak families for missing phases and phase-dependent width/intensity effects.
+
+The residual inspection shows two different issues: hkl-dependent CaWO₄ intensity errors (especially 101 versus 004/116), which justify a texture test, and a genuine unmatched low-angle family near 18.75°, 19.29°, and 22.01°. I’m screening every Ca–W–O and W–O inventory record against that family before treating it as a third phase; the calcium tungsten bronze record is already inconsistent because it predicts strong absent peaks at 16.1° and 30.0°.
+
+The common-intensity tests matter here. SH/L runs negative and is rejected; polarization drives to 0.93 and is likely compensating. A Suortti surface-roughness correction converges stably to finite values and improves Rwp from 13.27% to 11.13%, slightly outperforming texture alone. I’m therefore using roughness as the new common base, then retesting polarization and symmetry-distinct texture axes on top of it so texture is accepted only for residual hkl dependence that remains.
+
+After roughness, polarization becomes pathological (surface parameter A goes negative), so I’m rejecting that combination. Residual hkl dependence remains real: March–Dollase [110] gives the best multi-family fit (Rwp 9.43%, versus 9.71% for [001] and ≥10.17% for other axes) with a moderate ratio of 1.287. I’m retaining [110] texture provisionally and now challenging phase-specific size-only and strain-only branches from neutral values.
+
+The size-only CaWO₄ branch is strongly supported: it converges near 76 nm and drops Rwp to 8.19%. WO₃ size stays at the imposed large-size ceiling, while both strain branches force negative strain or a negative common U, so they are rejected. The accepted branch drives common Lorentzian X essentially to zero and shows slow scale/size convergence, so I’m pruning X and replaying until the native maximum shift is genuinely small.
+
+The unmatched family is now identified: a Ca₃WO₆ double-perovskite prototype. The ranked Ca₃OsO₆ parent predicts, after the same specimen shift, the observed 18.73°, 19.30°, 22.02°, 30.72/31.42/32.16°, 36.60/37.54°, 45.13°, 50.83°, 55.25°, and 57.01° peaks as one coherent family. I’ll preserve that parent record, substitute Os→W on the octahedral site, physical-screen the adapted geometry, then add it with only scale, cell, and one staged width term available.
+
+The three-phase model is now strongly supported: adding the Ca₃WO₆ analogue drops Rwp from 8.19% to 2.88% and explains the coherent residual-peak family. I’m finishing the required profile-term challenge, residual/mass-balance checks, then I’ll replay the final project and export all deliverables from that exact state.
+
+The Ca₃WO₆ width challenge is decisive: crystallite size is unstable and worsens the fit, while one isotropic microstrain term is finite, survives a fresh replay, and lowers Rwp to 2.75%. I’m retaining that single width term provisionally and checking whether it behaves consistently across low-, mid-, and high-angle Ca₃WO₆ reflections before freezing the final model.
+
+The retained strain term improves diagnostic Ca₃WO₆ windows at low, middle, and high angle, with no bound hit and only moderate correlation (0.65) to its scale. I’m also testing the only exact CaO precursor record against the fully reconverged three-phase model; its unique rocksalt peaks make this a clean check for unreacted precursor.
+
+The CaO trial refines to only 0.15(4) wt%, but it does not improve a consistent set of its diagnostic lines—the strongest 200 line is actually overfit, and most gain comes from one overlap near 53.6°. I’m treating that as below reliable identification and returning to the three-phase model; the final replay will explicitly verify that all exported numbers and CIF cells come from the saved `final.gpx`.
+
+The final project replay converged cleanly (maximum shift/e.s.d. 0.0029, no SVD zeros), and the exported CIFs all re-parse with full occupancy and chemically sound coordination. The modeled inventory also gives Ca/W = 1.006, an independent mass-balance check on the three retained phases.
+
+Completed the three-phase refinement:
+
+| Phase | Weight fraction |
+|---|---:|
+| CaWO₄, scheelite | 78.81(5) wt% |
+| WO₃, monoclinic | 11.15(3) wt% |
+| Ca₃WO₆, double-perovskite type | 10.04(5) wt% |
+
+Final fit: Rwp 2.747%, Rp 2.117%, GOF 1.225. Fractions are normalized over modeled crystalline phases. The Ca₃WO₆ atomic model is analogue-derived; trace CaO could not be quantified reliably and was excluded.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [CaWO4.cif](<ATTEMPT_WORKSPACE>/CaWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [Ca3WO6.cif](<ATTEMPT_WORKSPACE>/Ca3WO6.cif)
+

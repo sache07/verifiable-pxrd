@@ -1,0 +1,40 @@
+I’ll inspect the diffraction data, metadata, and available analysis tooling first, then build and refine candidate multiphase models in GSAS‑II. I’ll keep the submitted CIFs, profile, JSON, report, and project mutually consistent.
+
+The chemistry points first to MgWO₄, with unreacted WO₃/MgO or polymorphic impurities still plausible at 700 °C. I’m now extracting the peak set and checking which local reference-search and GSAS‑II interfaces are available, so phase selection is driven by the full pattern rather than precursor assumptions.
+
+The observed pattern already separates into three chemically sensible peak families: wolframite-type MgWO₄ (including the dominant ~18.88° line), monoclinic WO₃ (the 23.1/23.6/24.4° cluster), and rocksalt MgO (notably ~42.93° and ~62.26°). I’m testing reference structures against all reflections and polymorph alternatives before quantitative refinement.
+
+Reference-pattern matching confirms the assignments across the full range, including minor and high-angle lines; no extra peak family is evident at this stage. I’m moving into staged Rietveld refinement (background/scale → cells/zero → profile and phase broadening), using counting-statistics weights because the input has raw counts but no supplied uncertainties.
+
+The three-phase model has converged to roughly 57 wt% MgWO₄, 35 wt% WO₃, and 8 wt% MgO before the final broadening step, with Rwp already below 9%. The first profile pass exposed strong parameter correlations, so I’m checking the phase-specific broadening and will simplify any nonphysical/correlated terms rather than retain them just to lower Rwp.
+
+The simplified model is numerically stable: no singular parameters, all retained profile terms are physical, Rwp = 8.86% and Rp = 5.40%, with fractions 56.76/35.27/7.97 wt%. I’m inspecting the difference curve and reflection-by-reflection misfit now to decide whether the remaining error is structural (coordinates/preferred orientation), phase-specific width, or an unmodeled phase.
+
+The dominant residuals are intensity mismatches within already indexed MgWO₄/WO₃ peaks, not unexplained peaks. A mild MgWO₄ (100) preferred orientation correction is strongly supported and lowers Rwp to 7.72%; I’m testing only heavy-atom coordinates next, while keeping weakly constrained oxygen coordinates fixed to the reference structures.
+
+A neutron-derived monoclinic WO₃ model fits better than the older coarse X‑ray coordinates (Rwp 7.29% after texture, 7.16% with only the MgWO₄ W coordinate refined). I’m checking the closely related triclinic low-temperature WO₃ alternative because its extra peak splitting could mimic broadening; I’ll retain it only if the data materially support the lower symmetry.
+
+The low-temperature triclinic WO₃ model is not supported (Rwp 8.35% versus 7.29% for monoclinic under the same refinement), and the monoclinic model is now expressed in a conventional near-orthogonal P2₁/n cell. The final refinement uses three phases, refined cells/profile/scales, and one mild MgWO₄ (100) texture term; atomic coordinates remain tied to literature structures because the overlapping laboratory pattern does not justify freer coordinate refinement.
+
+The requested artifacts are now generated from the same converged project. I’m doing a final consistency audit—CIF parse/symmetry, fraction normalization, profile row-by-row agreement, and project reload—then I’ll remove only the intermediate trial files I created.
+
+Identified three crystalline phases, normalized over modeled crystalline content:
+
+- MgWO₄: 57.09 wt%
+- Monoclinic WO₃: 34.59 wt%
+- MgO: 8.32 wt%
+
+Final fit: Rp = 4.65%, Rwp = 7.28%, GOF = 4.78. Realistic systematic fraction uncertainty is approximately 2–4 wt%; amorphous content is not quantified.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MgWO4.cif](<ATTEMPT_WORKSPACE>/MgWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [MgO.cif](<ATTEMPT_WORKSPACE>/MgO.cif)
+
+Only generated trial and diagnostic intermediates were removed; input files were untouched.
+

@@ -1,0 +1,52 @@
+I’ll inspect the pattern, metadata, and the reusable analysis scripts first, then build a chemically balanced phase inventory before committing anything to refinement. I’ll keep candidate polymorphs as competitors and validate every retained CIF both before fitting and after the final replay.
+
+The chemistry strongly suggests lead tungstates, but PbO–WO₃ has several charge-balanced products (PbWO₄, Pb₂WO₅, Pb₃WO₆) and unreacted oxides are plausible at 500 °C. I’m now extracting peak families and checking the local COD inventory rather than assuming the nominal 1:1 product.
+
+The peak inventory shows two distinct families already: a scheelite-like PbWO₄ family (including the dominant ≈27.81°, 45.13°, and high-angle sequence) and the characteristic three-line monoclinic WO₃ cluster near 23.5–24.8°. I’m screening exact records and precursor oxides now; the offset and widths will be judged only after a common instrumental model is fitted.
+
+After applying the common ≈+0.42° angular offset, a third family is clear: tetragonal Pb₃O₄ lines map at 26.81°, 31.22°, 32.55°, 50.38°, 52.52°, 58.54°, and 66.40°. PbO remains only a watch-list candidate because its strongest lines overlap and several expected secondary lines are weak or absent. I’ll now test the three-phase inventory and non‑1:1 lead tungstate analogues quantitatively.
+
+The first full three-phase Rietveld baseline converged at Rwp ≈ 7.93% (GOF ≈ 3.19) with approximate crystalline fractions 61.0% PbWO₄, 25.3% WO₃, and 13.7% Pb₃O₄. That is chemically coherent, but not yet an acceptable stopping point: the common profile collapsed to a largely Lorentzian width and the counting-statistics GOF is still high. I’m checking phase-resolved peak widths and structured residuals before testing size/strain and the PbO watch list.
+
+The width check confirms the main residual cause: the common model predicts the two isolated WO₃ peaks at ≈23.53° and 24.02° with FWHM ≈0.25°, while observed FWHM is ≈0.13°; PbWO₄ widths are already close. I’m replaying anchored models where sharp WO₃ defines the common instrument width and only the broader phases receive either crystallite-size or microstrain broadening.
+
+The targeted result is decisive: phase-specific size broadening lowers Rwp from 7.92% to about 6.30%, whereas strain alone only reaches 7.77% and drives the PbWO₄ strain to its zero bound. The replay-stable interpretation is therefore sharp monoclinic WO₃ plus size-broadened PbWO₄/Pb₃O₄; unsupported strain will be pruned. Next I’m challenging that model with polymorph/source alternatives, PbO, and charge-balanced Pb₂WO₅/Pb₃WO₆ analogues.
+
+A fourth phase is now supported: the simple ambient orthorhombic massicot PbO model gives a replay-stable ≈3.0 wt% fraction and lowers Rwp from 6.76% to 5.94%; tetragonal litharge is driven to zero. The long-period incommensurate PbO record also fits, but the simpler passing ambient record fits better, so I’m retaining the latter and re-challenging the non‑1:1 tungstates against this expanded inventory.
+
+The massicot assignment is supported by a sequence of independent positive residuals (not just its strongest overlap), while the Pb₂WO₅/Pb₃WO₆ analogues predict several strong lines where the four-phase baseline is already negative. Their small fitted scales are therefore being treated as residual-fitting artifacts, not additional phases. Background, polarization, and surface-roughness replays are now being compared before any texture term is considered.
+
+The angular-intensity mismatch is explained overwhelmingly by polarization: refining one physically plausible effective-polarization parameter converges reproducibly to ≈0.98 and drops Rwp to 3.61% (GOF ≈1.45). Roughness is not complementary—it pushes both roughness and polarization to bounds—so it will remain neutral. I’m now checking whether the remaining low-angle phase residuals come from zero/borrowed displacement parameters or genuine texture before finalizing.
+
+The remaining texture tests converge essentially to March ratios of 0.994–1.004 and do not materially improve the fit, so texture will be pruned. Restrained phase-wide isotropic displacement parameters are replay-stable and reduce the valid, bound-pruned fit to Rwp ≈3.08% and GOF ≈1.24. I’m doing the required final watch-list challenge under this exact model, then I’ll freeze, reopen, replay, export, and cross-check every deliverable.
+
+The four dominant phases are stable, and the remaining decision is a weak but statistically supported Pb₃WO₆-like phase. I’m refining that analogue as a fifth phase under the same restrained profile model, then I’ll replay the project, re-test the rejected watch-list phases, and freeze only the terms that survive.
+
+The weak phase remains active through the first coupled replays; this refinement is slower because its Pnma analogue has many symmetry-expanded sites tied to one displacement parameter. I’m checking whether that parameter and the phase scale settle away from their bounds before accepting it.
+
+The weak phase’s free displacement parameter ran to its upper bound and inflated the fraction, so I have pruned that unsupported term. With a fixed, conventional \(U_\mathrm{iso}=0.010\ \text{Å}^2\), the phase is 1.35 wt% and still gives a large replay-stable fit improvement; adding its own size term gives no improvement. I’ll retain it provisionally as “Pb₃WO₆-like (Pnma)” and quantify the assignment uncertainty in the report.
+
+The retained model now reopens and replays cleanly over the full 9.90–100.09° range: \(R_\mathrm{wp}=2.9948\%\), GOF \(=1.2079\), with all five fractions stable and summing to one. The alternate PbO, Pb₂WO₅ and cubic Pb₃WO₆ models return zero scale; the reviewed Pb₇W₈O₂₈.₈ model gives only a marginal gain while its strongest line lies on a negative residual, so it is rejected.
+
+Completed and validated the five-phase refinement:
+
+- PbWO₄ scheelite: 54.32 wt%
+- Monoclinic WO₃: 23.29 wt%
+- Tetragonal Pb₃O₄: 17.71 wt%
+- Orthorhombic PbO massicot: 3.33 wt%
+- Pb₃WO₆-like Pnma phase: 1.35 wt% — tentative and semiquantitative
+
+Final fit: Rwp 2.9948%, Rp 2.2931%, GOF 1.2079. The reopened project converged, fractions sum to one, and all final CIFs passed the health check.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [PbWO4_scheelite.cif](<ATTEMPT_WORKSPACE>/PbWO4_scheelite.cif)
+- [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_monoclinic.cif)
+- [Pb3O4_tetragonal.cif](<ATTEMPT_WORKSPACE>/Pb3O4_tetragonal.cif)
+- [PbO_massicot.cif](<ATTEMPT_WORKSPACE>/PbO_massicot.cif)
+- [Pb3WO6_like_Pnma.cif](<ATTEMPT_WORKSPACE>/Pb3WO6_like_Pnma.cif)
+

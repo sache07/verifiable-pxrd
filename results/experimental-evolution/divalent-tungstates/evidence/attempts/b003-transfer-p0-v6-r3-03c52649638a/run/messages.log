@@ -1,0 +1,28 @@
+I’ll inspect the pattern, metadata, and available crystallography tooling first, then identify candidate phases and refine them jointly. I’ll keep the phase count evidence-driven and validate that every reported fraction and profile comes directly from the saved GSAS-II project.
+
+The chemistry points first to wolframite-type NiWO₄, but I’m treating that only as a hypothesis: unreacted NiO/WO₃ or secondary nickel tungstates can leave small, diagnostic peaks. I’m now extracting the experimental peak set and checking it against structure databases before setting up the refinement.
+
+The diagnostic peaks support three crystalline components, not just the reaction product: wolframite NiWO₄, room-temperature monoclinic WO₃, and rocksalt NiO. The WO₃ triplet near 23–24.5° and the NiO sequence near 37.3/43.4/63.1/75.5/79.7° are especially discriminating; I’m now testing whether all three remain justified in a joint Rietveld fit.
+
+The three-phase fit is already quantitatively strong (Rwp ≈ 5.3%; about 61% NiWO₄, 30% WO₃, 9% NiO), but the first unconstrained peak-shape model showed a profile/size correlation. I’m simplifying and cross-checking the broadening model now so the reported fractions are not an artifact of over-parameterized line shapes.
+
+The cross-check with the neutron-refined monoclinic WO₃ model is decisive: it lowers Rwp from about 3.6% to 2.13% without adding a phase, while all three weight fractions remain stable within roughly 0.5 wt% across profile/structure variants. The refined result is converged; I’m now exporting directly from that project and documenting systematic limits from the uncalibrated instrument profile and fixed displacement parameters.
+
+Identified three crystalline phases:
+
+- NiWO₄: 60.32 wt%
+- monoclinic WO₃: 29.80 wt%
+- NiO: 9.88 wt%
+
+Final refinement: Rwp = 2.128%, Rp = 1.712%, GOF = 1.474. Fractions are normalized over crystalline phases; amorphous content is undetermined.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [NiWO4.cif](<ATTEMPT_WORKSPACE>/NiWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [NiO.cif](<ATTEMPT_WORKSPACE>/NiO.cif)
+

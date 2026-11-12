@@ -1,0 +1,50 @@
+I’ll first inventory the data and reusable analysis scripts, then build a chemistry-constrained candidate list. I’ll health-screen every candidate before refinement and keep the final outputs tied to a reopened, replayed GSAS-II project.
+
+The metadata gives no precursor quantities or mixing ratio, so there is no numeric Ca/W closure constraint to enforce; only the Ca–W–O element/charge system is fixed. I’m now extracting peak families and enumerating exact database records for likely Ca tungstates plus unreacted/balance-compatible phases.
+
+The peak-position evidence is already coherent for two phases with a common ≈−0.20° angular offset: scheelite CaWO₄ and room-temperature monoclinic WO₃. The three strong WO₃ lines near 22.94/23.42/24.23° and many independent families through 96° favor the monoclinic record over tetragonal or hexagonal alternatives; I’m moving to matched-nuisance refinements and will explicitly challenge CaO and competing WO₃ polymorphs.
+
+The first refinement exposed two setup issues rather than phase evidence: GSAS-II had silently activated the global histogram scale, and an unconstrained Gaussian \(U\) term ran negative. I’ve fixed the global scale, imposed nonnegative profile bounds, and programmed bound-hit terms to be removed and replayed with the simpler profile. The two-phase estimate at this provisional stage is about 86 wt% CaWO₄ / 14 wt% WO₃.
+
+The matched-profile competitor refinements are running now: triclinic, orthorhombic, a smaller-cell monoclinic record, and the alternate monoclinic record flagged for implausibly short O–O contacts. This tests whether any fit gain could justify a structurally questionable source rather than assuming the first database hit.
+
+The width challenge is decisive: CaWO₄ peaks are broader while the WO₃ triplet is narrower than the common-profile compromise. A CaWO₄ isotropic-size term improves \(R_{wp}\) from 13.73% to 13.15% and refines to ~0.115 μm; the strain alternative tries to go negative and is physically rejected. I’m now testing whether WO₃ also needs a separate positive size term, while keeping the same common profile.
+
+Background order has little effect (6 terms is worse; 10 terms gains only 0.007 \(R_{wp}\) points), while polarization and a one-parameter Suortti roughness correction are individually strong and reproduce the same joint solution in either replay order. I’m retaining the stable one-parameter roughness form (the unconstrained two-parameter form was ~99% correlated) and now testing only low-index, symmetry-distinct March–Dollase axes for each phase.
+
+CaO gives a reproducibly positive ~1.1 wt% scale, but its calculated lines (31.96, 37.10, 53.58, 63.85°…) do not coincide with two independent residual families, so it fails the weak-phase gate and will not be retained. Several residual families at 19.29, 22.01, 30.71 and 32.18° remain, so I’m now checking charge-balanced non-1:1 Ca/W products (the precursor ratio itself was not reported).
+
+The non-1:1 search found a compelling balance-motivated phase: a Ca₃OsO₆ parent (Os⁶⁺→W⁶⁺ is isovalent and size-compatible) predicts independent residual families at 19.29, 21.97/22.08, 30.58–31.43, 32.09, 37.48, 45.02/45.25, 56.96 and 65.84°. That is far stronger than the CaO watch-list evidence. I’m constructing and health-screening this Ca₃WO₆ analogue alongside U-, Sr-, and Ba/Re-derived alternatives before the required scale-first test.
+
+The inventory test found a compelling third phase: a charge-balanced Ca₃WO₆ model derived isovalently from Ca₃OsO₆ explains many independent residual peaks and lowers Rwp from 9.40% to 6.33% with a replay-stable ~9.1 wt% scale. I’m now refining that phase’s cell, reconverging the full three-phase model, and re-testing the nuisance/profile and weak-phase choices before freezing the deliverables.
+
+With the third phase’s cell released, Rwp is now 5.21% and its fraction rises to ~10.5 wt%. The residual peak families are accounted for, but isolated WO₃/Ca₃WO₆ peaks remain broader than the calculated common profile, so I’m testing phase-specific crystallite size against nonnegative strain from the same saved baseline; only stable, physically positive terms will survive.
+
+The three-phase pattern supports a much better common profile than the earlier two-phase trial: nonnegative U+W+X gives Rwp 2.92% (GoF 1.30), with observed/calculated FWHM matching within roughly 0.001–0.02° across low, middle, and high angles. I’m now pruning potentially redundant CaWO₄ size/texture and polarization terms, comparing background complexity, and testing specimen displacement against the selected zero correction.
+
+The common profile is clearly supported and no term is at a bound. The pruning trials are still converging in parallel; their role is to quantify whether the earlier size/texture/polarization gains remain complementary once U and W are present, rather than carrying forward historical flags automatically.
+
+The pruning evidence is decisive: CaWO₄ size, [110] March texture, and polarization remain strongly complementary; roughness lowers Rwp but is 96.6% correlated with the dominant phase scale and is rejected. Eight background terms are retained (ten terms improve Rwp only 0.0014 and fail the BIC/parsimony check). A 340 µm specimen displacement outperforms a constant zero correction (Rwp 2.863% vs 2.916%), so displacement becomes the single angular term. I’m replaying the weak-phase watch list against this updated baseline now.
+
+The texture replay confirms [110] is uniquely supported on the final nuisance model (Rwp 2.863% versus 3.93–5.61% for [001], [100], and [101], and 6.25% without texture). The updated watch list also rejects CaO: its replay-stable 0.21 wt% scale improves only overlapping shoulders, with no two independent non-coincident families; Ca₃W₂O₉ is effectively zero and Ca₂WO₅ pins at zero. I’m now building and reopening the clean final project, then exporting and health-checking its exact CIFs.
+
+All three exported CIFs pass the final occupancy/contact screen. Independent geometry checks are chemically sensible: scheelite W–O 1.763 Å/Ca–O 2.47 Å; monoclinic WO₃ has six-coordinate W–O 1.714–2.158 Å; the adapted Ca₃WO₆ has octahedral W–O 1.924–1.939 Å, Ca–O 2.25–2.60 Å, and no short O–O contacts. I’m doing the final project/profile/JSON consistency audit and documenting the structural-model uncertainty.
+
+Completed. Best-supported crystalline composition:
+
+- Scheelite CaWO₄: **78.60 wt%**
+- Monoclinic WO₃: **11.73 wt%**
+- Monoclinic Ca₃WO₆ analogue: **9.67 wt%**
+
+Final fit: Rwp 2.863%, Rp 2.230%, GoF 1.274. All CIFs passed the final structural-health check. The exact Ca₃WO₆ polymorph remains less certain because its coordinates derive from an isovalent Ca₃OsO₆ analogue.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [CaWO4.cif](<ATTEMPT_WORKSPACE>/CaWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [Ca3WO6.cif](<ATTEMPT_WORKSPACE>/Ca3WO6.cif)
+

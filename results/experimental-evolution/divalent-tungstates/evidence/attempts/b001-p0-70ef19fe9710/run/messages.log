@@ -1,0 +1,30 @@
+I’ll first inspect the measurement metadata and pattern, then identify candidate phases, build a multiphase GSAS-II refinement, and verify that every reported fraction and profile comes from the saved `final.gpx`. I’ll keep uncertainty explicit where the diffraction data do not distinguish models reliably.
+
+The chemical system is Pb–W–O, measured over 9.9–100.1° 2θ with Cu Kα1/Kα2 and no supplied uncertainty or instrument calibration. I’m now extracting peak positions and checking likely lead-tungstate/oxide references before committing to a phase count; the main guardrail is to avoid “explaining” residual peaks by adding weak phases without unique reflections.
+
+Two phases now account for the peak set with a common ~+0.4° 2θ offset: scheelite PbWO₄ explains the broad dominant series (27.81, 33.16, 45.12, 55.63°…), while monoclinic WO₃ explains the sharp 23.53/24.02/24.84° triplet and its subsidiary lines. I find no unique reflections yet requiring residual Pb₃O₄ or PbO. Next I’m refining the shared specimen displacement/zero term, cells, profile, background, and phase scales in GSAS-II, then I’ll test whether any third phase is statistically and chemically defensible.
+
+A third crystalline phase is required: residual tetragonal Pb₃O₄ has a unique strong line at 26.80° and matching lines at 31.25, 32.54, 52.54, 58.51, and 66.48° after the same offset. The initial two-phase refinement left all of those as coherent positive residuals. I’m rebuilding the refinement with Pb₃O₄ included and tightening profile constraints because an unconstrained profile fit can lower Rwp with nonphysical negative width terms.
+
+The physically constrained three-phase model is now stable: the phase fractions are insensitive to the reasonable profile variants at roughly 61% PbWO₄, 23–24% WO₃, and 15–16% Pb₃O₄. Refining the previously unknown effective polarization after removing an arbitrary default PbWO₄ displacement factor gives an interior value (0.81, not a boundary) and Rwp ≈ 4.66%. I’m now testing minor alternative phases and finalizing uncertainties rather than adding parameters solely for a smaller residual.
+
+The final refinement is converged with no frozen or singular variables. The selected crystalline-only fractions are 60.99 wt% PbWO₄, 23.38 wt% WO₃, and 15.64 wt% Pb₃O₄; the formal covariance errors are much smaller than the realistic 1–2 wt% model sensitivity. I’m doing a final cross-check that the CIF cells, `fit.csv`, `result.json`, and saved `final.gpx` all reproduce the same refinement state.
+
+Completed the three-phase GSAS-II refinement:
+
+- PbWO₄ (scheelite): 60.99 wt%
+- WO₃ (monoclinic): 23.38 wt%
+- Pb₃O₄ (minium): 15.64 wt%
+
+Fit: Rwp 4.653%, Rp 3.049%, GOF 1.876. Realistic fraction uncertainty is approximately 1–2 wt% absolute.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [PbWO4_scheelite.cif](<ATTEMPT_WORKSPACE>/PbWO4_scheelite.cif)
+- [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_monoclinic.cif)
+- [Pb3O4_tetragonal.cif](<ATTEMPT_WORKSPACE>/Pb3O4_tetragonal.cif)
+

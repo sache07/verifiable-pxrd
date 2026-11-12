@@ -1,0 +1,50 @@
+I’ll first inventory the measurement, reusable refinement helpers, and any existing workspace artifacts. Then I’ll identify candidate phases from the peak chemistry, refine them under a restrained common profile, and verify that every exported result is replayable from the final GSAS-II project.
+
+The chemistry points first toward lead tungstate formation, but the precursor ratio is not given and the pattern may contain residual oxides or intermediate lead tungstates. I’m now extracting peak positions and enumerating all visible Pb–W–O/Pb–O/W–O structure records before testing any model.
+
+Peak families now support four chemically coherent phases: scheelite PbWO₄, room-temperature monoclinic WO₃, residual tetragonal Pb₃O₄, and orthorhombic PbO (massicot). The low-angle 14.66°/15.48° peaks separately diagnose Pb₃O₄/PbO, while the 23.53–24.85° WO₃ triplet and broad 27.81° PbWO₄ peak are decisive. I’m setting up controlled GSAS-II trials to test these assignments and the competing WO₃/PbWO₄ polymorphs under identical nuisance models.
+
+The first four-phase refinement gives positive, stable scales for all four phases (about 58% PbWO₄, 24% WO₃, 13% Pb₃O₄, 5% PbO), but a freely fitted common width over-broadens the sharp WO₃ peaks. I’m therefore holding the narrow instrumental baseline physical and comparing inventories/polymorphs before allowing phase-specific broadening.
+
+The massicot phase lowers Rwp reproducibly and retains a positive ~4% scale; replacing it with litharge does not converge to a comparable model. Specimen displacement is also being retested cleanly against zero after removing an initialization coupling in the first zero trial.
+
+The valid litharge model was then added in stages with its cell fixed first; its scale hit the zero bound and froze, so tetragonal PbO is absent at the detection level of this pattern. I’m also checking cross-chemistry Pb₂WO₅/Pb₃WO₆ prototypes against the remaining residual families, as required when exact Pb–W–O records are unavailable.
+
+The Pb₂WO₅ analogue fails cleanly—its scale freezes at zero. The isovalent Pb₃UO₆→Pb₃WO₆ prototype is different: it remains positive near 5.5 wt% and improves the fit after cell refinement. I’m now checking whether that gain comes from its own diagnostic peak family or merely diffuse compensation before deciding whether it is identified.
+
+The broad PbWO₄ reflections are decisively size-like: an isotropic crystallite-size term (~48 nm) gives Rwp 7.54%, versus 9.78% for microstrain. This also corrects the scale-area bias, moving PbWO₄ to roughly 72 wt%. I’m now releasing one width term at a time for the two residual Pb oxides and retaining only terms supported by their own peak widths.
+
+After phase-specific size broadening, the common Gaussian baseline refines to W ≈ 30.4 with U at the nonnegative boundary (so U will be fixed at zero). The modeled crystallite sizes are about 53 nm PbWO₄, 34 nm Pb₃O₄, and 52 nm massicot. I’m now repeating the Pb₃WO₆ analogue test against this properly broadened base; this is the decisive guard against a false “phase” created by peak-width mismatch.
+
+The phase inventory is now stable at four crystalline phases. I’m cleaning the best refinement, testing only the remaining physically justified global/profile and displacement-factor choices, then I’ll export every deliverable from the same replay-checked GSAS-II project.
+
+The remaining dominant residual is not a missing peak family: scheelite peaks are progressively under-calculated at high angle while low-angle peaks are slightly over-calculated. I’m testing one common, positive isotropic displacement factor for the scheelite atoms against a no-atomic-refinement control; this is a one-parameter structural correction and avoids unsupported texture terms.
+
+A global intensity correction explains the trend better than the boundary ADP trial: the effective polarization refines to 0.988(5), remains inside physical bounds, and improves all four phases—not only scheelite—while the common ADP ran to zero and froze. I’m retaining the polarization trial as the physical candidate and checking whether one additional global Lorentzian width term is independently supported.
+
+The final profile candidate now uses only supported terms: nonnegative global Gaussian \(U/W\), global Lorentzian \(X\), and isotropic size broadening for the three Pb-bearing phases; removing even the minor massicot size term raises \(R_\mathrm{wp}\) from 3.15% to 3.40%. The effective polarization reached its physical limit and is fixed at 1.0; all frozen-variable markers are cleared before the final replay/export.
+
+All requested files are now generated from the saved final project. Replay checks pass: fractions sum to 1, `fit.csv` round-trips exactly to the GPX arrays, all scales/backgrounds are positive, the global width stays positive, and there are no frozen variables. I’m doing one last deliverable-level consistency check before handoff.
+
+Resolved four crystalline phases, normalized over modeled crystalline material:
+
+- PbWO₄ scheelite: **58.59 wt%**
+- Monoclinic WO₃: **19.77 wt%**
+- Pb₃O₄ minium: **17.04 wt%**
+- PbO massicot: **4.60 wt%**
+
+Final fit: \(R_\mathrm{wp}=3.149\%\), \(R_\mathrm{p}=2.421\%\), GOF = 1.269. Systematic fraction uncertainty is approximately 1–2 wt% for major phases and 0.5 wt% for PbO; amorphous content cannot be assessed.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [PbWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_PbWO4_scheelite.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_monoclinic.cif)
+- [Pb₃O₄ CIF](<ATTEMPT_WORKSPACE>/phase_Pb3O4.cif)
+- [PbO CIF](<ATTEMPT_WORKSPACE>/phase_PbO_massicot.cif)
+
+The final project reloads cleanly with no frozen variables, and the exported fractions and profile exactly match it.
+

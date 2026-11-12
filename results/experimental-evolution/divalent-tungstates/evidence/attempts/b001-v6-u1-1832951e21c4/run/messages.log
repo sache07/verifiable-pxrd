@@ -1,0 +1,74 @@
+I’ll first inspect the measurement metadata, pattern format, reusable refinement utilities, and any prior learned guidance. Then I’ll build a chemically plausible phase inventory and test candidates under a shared, restrained GSAS-II baseline before adding profile complexity.
+
+The chemistry points first to SrWO₄, but the low synthesis temperature makes unreacted WO₃/SrCO₃ and alternative tungsten oxides credible. I’m querying the supplied structural library and extracting the peak families before committing to any record.
+
+The strongest and repeated high-angle families form a single scheelite pattern consistent with SrWO₄ after Sr-for-Ca/Ba or W-for-Mo prototype substitution. The remaining low-angle triplet near 23–25° and its higher-angle companions strongly suggest residual WO₃; I’m now separating those candidates while solving the specimen-position/profile baseline shared by both.
+
+I have three phase classes on the active inventory: scheelite SrWO₄, orthorhombic/monoclinic WO₃ alternatives, and orthorhombic/rhombohedral SrCO₃ alternatives. I’m initializing GSAS-II with the reported Cu Kα doublet, a single specimen-height correction, and neutral phase-specific broadening/texture terms; candidate records will be judged first by replayed scale and peak-family support.
+
+The restrained three-phase baseline gives a replay-stable Rwp of 7.91% with positive scales for all three phases (about 64% SrWO₄, 19% WO₃, 17% SrCO₃ before phase-specific broadening). Its residuals show that inventory is broadly right but that the WO₃ record and phase widths still matter. I’m now challenging each structural record under the same nonnegative common profile, including the exact Sr₃W₂O₉ watch-list phase.
+
+The BaWO₄-derived scheelite parent has completed under the common nuisance model; I’m continuing through the CaWO₄-derived and WO₃ polymorph alternatives before comparing statistics and physically screened geometries.
+
+Both scheelite substitutions converge with nonzero scales, as expected for the same topology. The first monoclinic WO₃ record has also completed; I’m testing the alternate setting/record and carbonate symmetry next, which should distinguish genuine intensity-family support from mere peak-position agreement.
+
+The record comparison is decisive for the minor oxide: monoclinic WO₃ fits coherent low-, mid-, and high-angle families substantially better than orthorhombic WO₃ (Rwp 6.71% versus 7.91%), while rhombohedral SrCO₃ collapses to zero scale and is rejected. I’m rebuilding around that monoclinic baseline now, re-challenging the scheelite parents, phase omissions, triclinic WO₃, and Sr₃W₂O₉.
+
+The CaWO₄- and BaWO₄-derived scheelite models have now been rerun against the better monoclinic WO₃ baseline. I’m finishing the triclinic oxide and omission/watch-list controls, after which I’ll select the physically sound parent rather than relying on the smallest statistical difference alone.
+
+The triclinic WO₃ and Sr₃W₂O₉ watch-list trials are complete. Two omission controls remain; these are important because they test whether the weak-phase fractions are supported by unique peak families rather than absorbed by background or a neighboring phase.
+
+A GSAS-II implementation detail exposed an important baseline issue: phase microstrain contributes even when its refinement flag is off. The nominal default of 1000 µstrain had therefore been broadening every phase and forcing the shared U term negative. I’ve corrected the neutral state to zero microstrain and am rebuilding the inventory/profile comparisons with explicit nonnegative U/W/X bounds.
+
+The corrected neutral-profile baseline converges at the physical U=0 boundary with positive W/X; this confirms the earlier negative U was not an acceptable instrument solution. The alternate scheelite parents are complete under this corrected model, and the WO₃ symmetry trials are now running.
+
+The triclinic WO₃ model has completed; its extra lattice freedom will be weighed against the monoclinic model and physical phase stability. I’m finishing the second monoclinic record, orthorhombic control, and phase-omission checks.
+
+With all phase broadening truly neutral, the inventory is now robust: the selected monoclinic WO₃ record is clearly best; omitting SrCO₃ raises Rwp from 6.48% to 7.60%, and omitting WO₃ raises it to 11.94%. The CaWO₄-derived SrWO₄ prototype is both the best fit and the physically sound W–O geometry parent. I’m now freezing the U=0 boundary and testing asymmetry/polarization before any phase-specific width or texture terms.
+
+The intensity-trend tests favor one low-angle surface-roughness parameter (B = 0.0211(16)); polarization becomes unsupported when roughness is present, and SH/L asymmetry changes Rwp by less than 0.001%, so both are pruned. I’m now comparing isotropic size and strain from neutral values for each phase independently.
+
+Only monoclinic WO₃ shows replay-stable phase broadening: isotropic microstrain refines to about 4360(190) µstrain and lowers Rwp to 6.19%. SrWO₄ and SrCO₃ size/strain terms stay at neutral bounds or are statistically null, so they are rejected. I’m checking the Gaussian/Lorentzian mix for the supported WO₃ strain before testing symmetry-appropriate anisotropy.
+
+The WO₃ strain line shape is stable for pure Gaussian, pure Lorentzian, and a refined mixture; the mixed value is interior and replay-stable. I’m now checking monoclinic-symmetry-compatible axial directions to see whether different hkl families genuinely require anisotropic broadening.
+
+The supported WO₃ anisotropy is directional and physically specific: the [10̄1] reciprocal-axis strain model is strongly preferred over a, b, c, and [101] trials, while anisotropic size collapses to bounds. With that profile replay-stable at Rwp 5.66%, I’m now testing symmetry-distinct SrWO₄ texture axes under the same model.
+
+Texture is clearly supported for SrWO₄ across multiple axis trials, not a marginal scale effect. Basal [110] and diagonal [111] both improve the full profile strongly, with [111] currently best; I’m checking the remaining low-index diagonal families before accepting an axis and then will challenge texture in the minor phases separately.
+
+Minor-phase texture is also coherent: monoclinic WO₃ strongly prefers [10̄1], the same crystallographic direction selected independently by its width anisotropy, while other axes fit distinctly worse. This lowers Rwp to 3.40% and is supported by many oxide families. I’m applying the same axis challenge to SrCO₃ before structural-coordinate tests.
+
+All three accepted texture terms survive axis challenges: SrWO₄ [111], WO₃ [10̄1], and SrCO₃ [001]. Their full-profile improvements are much larger than nearby-axis alternatives, and the dominant/minor phase fractions remain stable. I’m now testing only symmetry-constrained atomic coordinates, one phase at a time, with bond geometry checked after each trial.
+
+The only coordinate refinement that measurably changes the fit—SrWO₄ oxygen—drives W–O from a plausible 1.822 Å to 1.875 Å for only a 0.034% Rwp gain, so it is rejected as texture-correlated and chemically unreliable. I’m retaining source coordinates with refined cells, and now re-challenging Sr₃W₂O₉ against the completed common profile before final replay/export.
+
+The final texture model changes the optimum WO₃ width magnitudes, so I’m pruning once more rather than carrying forward a historical parameter choice. I’m replaying no-strain, isotropic, and symmetry-distinct uniaxial WO₃ widths with all three texture terms active; only a still-distinct, stable term will remain in the final project.
+
+The textured model’s final width challenge is the last model-selection check. I’m inspecting those replayed alternatives now, then I’ll freeze the supported terms and export the exact final project and deliverables.
+
+The recheck materially changed the conclusion: with all accepted textures active, monoclinic WO₃ broadening along its unique \(b\) axis is much better supported than the earlier trial axis (Rwp 3.039% versus 3.313%, and 3.322% isotropic). I’m now replaying that model and re-challenging the texture choices under this cleaner width description, since width and intensity nuisance terms can couple.
+
+The texture choices survive the rebuilt profile: SrWO₄ [111], WO₃ [10−1], and SrCO₃ [001] are each decisively preferred over no texture and the symmetry-distinct alternatives. I’ve selected the replay-stable project at Rwp 3.039%; next I’m checking bounds/geometry and re-testing the weak Sr₃W₂O₉ watch-list phase against this exact final profile before export.
+
+The watch-list Sr₃W₂O₉ phase again refined to the nonnegative zero-scale bound and added no meaningful improvement, so it is excluded rather than assigned a spurious fraction. The submitted three-phase project has now replayed unchanged; I’m doing the final profile/CIF consistency checks and writing the uncertainty report.
+
+Completed with a replay-stable three-phase GSAS-II refinement.
+
+| Phase | Space group | Crystalline weight fraction |
+|---|---|---:|
+| SrWO₄ | I 41/a | 60.51 ± 0.12% |
+| WO₃ | P 21/c | 24.19 ± 0.10% |
+| SrCO₃ | Pnma | 15.30 ± 0.12% |
+
+Rwp = 3.0385%, Rp = 2.3903%, GOF = 1.0622. Fractions are normalized over modeled crystalline material; amorphous content was not determined. Sr₃W₂O₉ refined to zero scale and was excluded.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [SrWO4.cif](<ATTEMPT_WORKSPACE>/SrWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [SrCO3.cif](<ATTEMPT_WORKSPACE>/SrCO3.cif)
+

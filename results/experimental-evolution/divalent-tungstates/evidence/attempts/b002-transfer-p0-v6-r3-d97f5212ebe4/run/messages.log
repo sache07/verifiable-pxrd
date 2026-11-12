@@ -1,0 +1,78 @@
+I’ll inspect the measurement metadata, diffraction range, and the reusable refinement utilities first. Then I’ll build a chemically screened phase inventory, refine it in GSAS-II with residual-led challenges, and verify that the exported CIFs, fractions, profile, and project all agree.
+
+The chemistry points first to Ba–W–O reaction products (especially BaWO₄), but I’m treating unreacted precursors and alternate barium tungstates as active candidates. I’ll now extract peak positions and search the local crystallographic database for physically credible records before any scale or cell refinement.
+
+Peak families now support three phases independently: scheelite BaWO₄, rhombohedral Ba₃W₂O₉, and monoclinic WO₃. The only exact BaWO₄ database record is a half-occupied split-oxygen model with implausible 1.47 Å W–O contacts, so I’m also challenging it against an ordered I4₁/a BaMoO₄ prototype with Mo→W substitution, as required for a physical structural model. BaCO₃, Ba₃WO₆, and a Ba–W bronze remain on the weak-phase watch list.
+
+The first baseline exposed a reversible setup issue rather than a phase rejection: with peaks initially offset by about +0.23°, GSAS-II drove the Ba₃W₂O₉ scale to its zero bound before the angular correction was released. I’m restarting from the directly observed offset, fixing the redundant histogram scale, and then refining the three phase scales, zero, and cells coherently.
+
+The coherent three-phase baseline converged to Rwp ≈ 6.65% with all three scales positive. The shared U term collapsed to zero and SH/L did not improve the replay, so both are being pruned; the supported common width model is W+X. I’m now comparing physical BaWO₄ and WO₃ records under that same nuisance model, then I’ll re-challenge the weak-phase list against the winning profile.
+
+The structural-record trials are running with identical ADPs, background order, zero correction, cell refinement, and W+X profile. This comparison is specifically testing whether intensity agreement survives the physical geometry screen, rather than letting different source displacement parameters decide the winner.
+
+The split-oxygen exact BaWO₄ record is both physically poor and statistically worst (Rwp 6.64%). Ordered scheelite prototypes are decisively better (5.28–5.83%), but their unrelaxed substituted geometries bracket the expected W–O distance. I’m therefore refining the single symmetry-unique oxygen position from BaMoO₄-, CaWO₄-, and SrWO₄-derived starts; convergence from multiple parents will test whether the target geometry is data-supported and replay-stable.
+
+All three unconstrained oxygen refinements converged to the same statistical minimum (Rwp 5.22%), but it gives W–O = 2.11 Å and Ba–O as short as 2.51 Å, so I am rejecting that minimum on geometry. The CaWO₄-derived ordered model is the best physically credible compromise (W–O 1.91 Å, Ba–O 2.66/2.71 Å) and also fits substantially better than the BaMoO₄-derived model. I’m checking whether a restrained oxygen refinement can improve it without leaving credible bond lengths.
+
+The restraint scan confirms the oxygen coordinates are weakly determined by these X-ray data: modest restraint weights still drift unphysically, while strong chemically meaningful restraints trade only about 0.04–0.08 Rwp points for credible tetrahedra. In parallel, I’m comparing the monoclinic and triclinic WO₃ records; their unique 23–25°, 33–34°, and 49–56° families provide the discrimination.
+
+The watch-list challenge found a genuine fourth phase: room-temperature witherite BaCO₃ refines to 6.13(14) wt% and lowers Rwp from 5.35% to 4.89%; its cell remains close to the modern synthetic record, so this is not an overlap-only scale artifact. Ba₃WO₆ instead hits zero scale. I’m rebuilding diagnostics around the four-phase profile and will re-test the remaining bronze candidate there.
+
+With BaCO₃ included, the reduced bronze gives only a 0.53(14) wt% surrogate scale and improves Rwp by 0.004 percentage points; several of its strongest predicted peaks fall in negative residual regions, so it lacks coherent family support and will remain excluded. I’m now testing phase-specific size and strain from neutral values, one phase and one term at a time, with the accepted common profile fixed.
+
+The broadening trials are deliberately conservative: the shared W+X profile is fixed, and each phase gets either one isotropic size term or one isotropic strain term. Any term that returns to the neutral limit, becomes unstable on reopen, or lacks a significant replay improvement will be pruned before the final project.
+
+The one-at-a-time tests separate cleanly: BaWO₄ size returns to the neutral maximum and its strain tries to become negative, so both are rejected. Positive, replay-stable broadening is supported for Ba₃W₂O₉ (size ≈0.33 µm), WO₃ (size ≈0.145 µm), and BaCO₃ (microstrain ≈0.80%). I’m combining only those three terms and re-releasing the common W+X profile to check stability and complementarity.
+
+The combined broadening model is stable (Rwp 4.688%, GOF 1.56) with positive finite terms and no bounds. Residuals are now dominated by angle-dependent BaWO₄ intensity errors, not peak-width errors. Before testing texture, I’m challenging the unknown polarization and a low-angle surface-roughness correction independently; the six-term background is smooth and positive over the fitted range.
+
+Both corrections can mimic the same angle trend, but the two-parameter roughness solution is extreme (A≈0.35, B≈0.70) relative to the source refinements and is acting as a surrogate. A single effective polarization parameter converges to 0.847(4), is physically plausible for incident optics, and gives essentially the same fit (Rwp 3.199%, GOF 1.06), so I’m accepting polarization and rejecting roughness before any texture tests.
+
+BaWO₄ texture trials along [001], [100], [101], and [110] all return March ratios within 1.2% of unity and improve Rwp by only ~0.001 point, so texture is unsupported for the dominant phase. I’m applying the same axial/diagonal challenge to the three minor phases before pruning texture globally.
+
+The minor-phase texture jobs are still replaying; this is expected because each trial reopens and refines the full 10–100° range three times. I’ll retain a texture term only if it is stable, materially improves the fit, and explains several isolated families rather than one overlap.
+
+All texture trials are negligible: every axial/diagonal model changes Rwp by ≤0.002 point and March ratios stay near unity; none has multi-family support, so texture is pruned globally. Because polarization removed the main intensity trend that previously distorted the BaWO₄ oxygen refinement, I’m now re-testing its ordered oxygen position—with and without a W–O restraint—under the accepted final nuisance model.
+
+The oxygen-coordinate test confirms the statistical minimum is only marginally better, so I’m checking whether it preserves credible W–O and Ba–O geometry before accepting it. This is the key structural choice; the phase inventory itself is stable.
+
+I found one additional near-cell BaMoO₄ record in the analogue search, but it is another split-oxygen model with impossible 1.57–1.62 Å Mo–O distances. I’m now replaying the three ordered scheelite parents under the accepted common profile and polarization correction, so the prototype choice is judged on equal footing.
+
+The equal-footing replay is revealing: the best-fitting SrWO₄-derived coordinates produce W–O = 1.97 Å and Ba–O = 2.61 Å, which is not credible for scheelite BaWO₄. The BaMoO₄-derived branch has sensible Ba coordination but too-short W–O. I’m testing a restrained refinement from that branch; it should let the data choose within the physically credible geometry rather than falling into the nonphysical statistical minimum.
+
+The physically credible restrained branch is replay-stable: W–O = 1.839 Å, Ba–O = 2.687/2.775 Å, with Rwp = 3.278% and GOF = 1.088. I’m using this restrained solution rather than the lower-Rwp nonphysical minimum, and I’m auditing all active flags and peak-shape behavior before the final export.
+
+The full-range replay converged cleanly (maximum shift/e.s.d. 0.003). An export guard used the wrong nesting level for GSAS-II’s background record, so it stopped before writing the deliverables; I’m correcting that guard and rerunning the same accepted model.
+
+The final export is internally consistent, but the geometry audit found that the chosen BaCO₃ record carries one unusually long C–O bond (1.406 Å). Because that weak phase is only ~8 wt%, I’m checking exact BaCO₃ alternatives before locking the report; its identity is secure, but I don’t want to submit a questionable coordinate model merely because its scale refines well.
+
+The alternate witherite record is both more physical and slightly better statistically: transformed COD 1011149 gives three C–O bonds of 1.239–1.241 Å, retains a stable 7.93 wt% scale, and lowers Rwp from 3.2768% to 3.2751%. I’m adopting it and rebuilding the final exports from that project.
+
+The final four-phase project is now converged over all 8,301 measured points, with exact project/CIF/profile agreement. I’m writing the evidence and uncertainty summary now, including the rejected sub-percent bronze candidate and the model dependence of the BaWO₄ oxygen coordinate.
+
+All requested artifacts are written. I’m doing one last independent parse of the project, JSON, profile, and all four CIFs to catch any serialization or path mismatch before handing them over.
+
+Completed and validated a four-phase model:
+
+| Phase | Weight fraction |
+|---|---:|
+| BaWO₄ | 62.74(16)% |
+| Ba₃W₂O₉ | 16.53(11)% |
+| WO₃ | 12.79(14)% |
+| BaCO₃ | 7.93(19)% |
+
+Final fit: Rwp 3.2751%, Rp 2.5371%, GOF 1.0873. Fractions are normalized over modeled crystalline phases.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [BaWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_BaWO4.cif)
+- [Ba₃W₂O₉ CIF](<ATTEMPT_WORKSPACE>/phase_Ba3W2O9.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [BaCO₃ CIF](<ATTEMPT_WORKSPACE>/phase_BaCO3.cif)
+
+The main uncertainty is the restraint- and prototype-dependent BaWO₄ oxygen position. A possible sub-percent reduced tungsten-bronze contribution could not be established reliably and was excluded.
+

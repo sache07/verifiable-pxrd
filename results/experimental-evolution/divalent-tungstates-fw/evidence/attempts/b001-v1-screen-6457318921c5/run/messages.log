@@ -1,0 +1,30 @@
+I’ll inspect the measurement metadata, pattern, and the supplied PXRD workflow/tooling first. Then I’ll identify candidate phases, physically screen and compare them under matched models, refine the stable inventory in GSAS-II, and independently replay the final project before writing the requested files.
+
+The chemistry is CaO + WO₃ fired at 850 °C, so Ca–W–O products and residual oxides are the initial search space, but I’ll let the observed peak families determine the inventory. The scan has 8,301 raw-count points from about 9.90–100.09° 2θ and no supplied profile calibration, so calibration/specimen and line-shape terms must be established from the data rather than assumed.
+
+I found the public COD candidates for the relevant chemistry: two scheelite CaWO₄ sources, a monoclinic CaWO₄ source, Ca₃WO₆, Ca₄.₂₆W₁₀O₃₀, CaO, and several WO₃ polymorphs/reduced tungsten oxides. I’m now separating true peak families from the sloping raw background, then I’ll screen and compare only candidates supported by those families.
+
+The observed high-intensity sequence is internally consistent with scheelite CaWO₄—including the 29.04° line, which is CaWO₄ (103), and the higher-angle Kα₂ partners. There are no comparably strong unmatched families at the characteristic CaO or WO₃ positions. I’m preparing normalized versions of the plausible Ca–W–O/CaO/WO₃ references and recording the supplied contact/occupancy screen before any whole-pattern refinement.
+
+All normalized candidates pass the supplied geometry/occupancy screen. The first GSAS-II trial confirms a single scheelite model already reaches about 3.77% Rwp with fixed coordinates, but it exposed an exact scale redundancy in the initial project setup; I’ve removed that redundancy before comparing sources so the source ranking and later uncertainty estimates are not based on a singular refinement.
+
+The source comparison is decisive: the modern published scheelite model gives 3.77% Rwp under the matched 8-term fixed-coordinate model, versus 5.01% for the repaired 1931 scheelite coordinates and about 29% for monoclinic CaWO₄. A 12-term smooth background branch converges reproducibly at 3.594% Rwp, very near the 3.552% Poisson counting limit (χ² ≈ 8,502 for 8,301 points), with no scale singularity. I’m now testing whether any coherent residual family supports another phase or a physically interpretable specimen/structural term.
+
+The nuisance/effect tests are now discriminating cleanly. Polarization is stable and reproducible across 8- and 12-term background restarts (refined to about 0.74–0.75); size and strain are exactly confounded with the common profile, axial divergence is 98% correlated with zero, texture refines to unity, and adding roughness after polarization is >98% correlated with scale/polarization—so those are rejected. Refining only the scheelite oxygen coordinates last gives a reproducible further improvement in both background branches and remains physically passing; the coordinate shifts agree between restarts within their uncertainties.
+
+The final inventory deletion/addition checks remain negative after the structural-model change. CaO, all tested WO₃ polymorphs, Ca₃WO₆, and the Ca–W bronze refine to zero or <0.04 wt% with <0.6σ support; the best decoy, monoclinic CaWO₄, is only 0.094 wt% at 1.81σ and lacks an independent residual family. I’m therefore keeping a one-phase crystalline model and moving to the independent project replay/export checks.
+
+The selected project now replays independently with its hash unchanged, one positive CaWO₄ phase at exactly 1.0 normalized fraction, positive background and peak widths, and no review flags. The replayed Rwp is 3.5615% versus a 3.5515% Poisson limit. I’m doing the final submission-level consistency check now—parsing `result.json`, matching the exported CIF back to the project phase, and recomputing `fit.csv` statistics point-by-point.
+
+Completed the PXRD analysis.
+
+The crystalline phase is scheelite CaWO₄ (*I*4₁/*a*), with normalized crystalline weight fraction 1.0000. Independent GSAS-II replay gives Rwp = 3.5615% and goodness of fit = 1.0043, with no physical or profile review flags. No secondary phase was reliably supported; the fraction does not quantify amorphous material or undetectable traces.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-6457318921c5/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-6457318921c5/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-6457318921c5/workspace/final.gpx)
+- [CaWO4_scheelite.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-6457318921c5/workspace/CaWO4_scheelite.cif)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-6457318921c5/workspace/fit.csv)
+

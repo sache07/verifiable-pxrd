@@ -1,0 +1,67 @@
+I’ll first inventory the measurement, chemistry, reusable scripts, and candidate structure database. Then I’ll health-screen plausible sources before fitting, establish a neutral GSAS-II baseline, and iterate source/profile models from saved checkpoints.
+
+The chemistry points first to manganese–tungsten oxides, but the metadata contains no precursor amounts or ratio to impose as a mass-balance constraint. I’m checking the candidate-index workflow and extracting peak families before choosing records; MnWO₄ is only a hypothesis at this stage.
+
+The supplied index contains one exact ternary record, rhombohedral Mn₃WO₆, plus multiple Mn₃O₄ and WO₃ polymorphs—but no exact MnWO₄ entry. Because divalent Mn²⁺ makes MnWO₄ charge-balanced and chemically likely, I’m explicitly challenging both 3:1 and 1:1 products, using wolframite-type analogues for the latter rather than treating the absent record as evidence against it.
+
+Peak-family positions now strongly support monoclinic wolframite MnWO₄: the independent 100, 110, 11̄1/111, and 020 families align, including the characteristic 29.58/30.03° split. The exact Mn₃WO₆ source predicts intense 19.95/20.49° peaks that are absent, so it is currently disfavored. Several coherent peaks remain unassigned, so I’m preserving a secondary-phase watch list rather than forcing them into MnWO₄ broadening or texture.
+
+A key positional check resolves much of the apparent complexity: the first six wolframite families fit one monoclinic cell with β ≈ 91.13° plus a single ≈ −0.4° angular correction. The broad left shoulders also recur systematically and weaken with angle, which is the signature to test with axial-divergence asymmetry before invoking a second MnWO₄ population. I’m now building health-screened MnWO₄ analogues from three independent P2/c FeWO₄ records and will compare each from the same neutral checkpoint.
+
+The first neutral replay converged to the expected P2/c cell, but two proposed terms failed the physical gate: unconstrained U became negative, and SH/L crossed negative while strongly coupled to zero. I’m discarding those branches and restoring the saved neutral profile. The next comparisons will hold U at zero and test W/X, then phase size/strain alternatives and physical sample displacement as the sole angular correction.
+
+Residual-pattern scoring identifies monoclinic WO₃ decisively (correlation ≈ 0.72); its independent 23°, 33–34°, 40°, 49°, 53°, and 60–65° families account for the coherent broad residuals. Tetragonal Mn₃O₄ scores far lower (≈ 0.10). I have health-screened monoclinic P2₁/c, triclinic P1̄, and orthorhombic Pnma WO₃ competitors and will now fit them as alternative sources—not coexisting WO₃ phases.
+
+The common-profile challenge is stable: X-only is the best physical branch (Rwp 12.63%); W-only is worse, and W+X drives W to its zero bound, so that comparison is rejected. I’m replaying the four neutral/size/strain/combined options for each phase from the X-only checkpoint; the broader trials are still converging.
+
+The phase-broadening gate is clear. MnWO₄ size collapses back to the 10 μm neutral limit and its strain goes to zero, so neither is retained. WO₃ supports a replay-stable isotropic size of about 0.086 μm; strain alone is worse, and the combined trial sends strain to zero. The modeled fractions move to roughly 80 wt% MnWO₄ / 20 wt% WO₃. I’m now reopening the common profile and comparing zero-offset against physical specimen displacement from equivalent checkpoints.
+
+The specimen-displacement model is reproducibly better than constant zero (Rwp 12.262% vs 12.290%) and gives a physically interpretable +799 μm height error; fractions and WO₃ size are unchanged. The remaining residual is dominated by intensity—not missing peak positions—so I’m now giving each screened MnWO₄ coordinate source its own full profile/broadening loop before considering atom or texture refinements.
+
+The MnWO₄ source ranking survives full elaboration: the physically credible 1967 P2/c parent (COD 9008124) gives Rwp 12.26%, versus 13.20% and 14.59% for the two thin-film records. I’m retaining 9008124 and now challenging WO₃ across equivalent P2₁/c, P1̄, and Pnma records; each candidate remains an alternative model, not an extra phase.
+
+All four WO₃ source loops have passed scale/cell/profile stages and are still in the broadened replay under parallel load. No candidate has been accepted yet; I’m waiting for complete replays so lower symmetry is judged on the same nuisance model.
+
+The WO₃ ranking is stable after elaboration. P2₁/c COD 2311041 remains best (Rwp 12.262%); the lower-symmetry P1̄ source reaches 12.287% but does not beat it, while alternate P2₁/c and Pnma sources are worse. I’m retaining the simpler P2₁/c model and now testing smooth background orders, then polarization and surface roughness before any texture.
+
+Background order 6 is the compact stable choice; orders 8–10 improve Rwp by only 0.002–0.007 percentage points and do not move fractions materially. Polarization runs to its upper bound and is rejected. Roughness gives a real global improvement (Rwp 11.43%) but its two parameters are highly correlated, so I’m replaying it from perturbed starts and auditing low/middle/high-angle residual trends before deciding whether it is physical.
+
+The roughness term survives repeated full replays: it converges toward A ≈ 0.25 and B ≈ 0.84, improves every angular third, and leaves fractions near 78.9/21.1 wt%. The initial covariance warning disappears on convergence. I’m retaining it provisionally and now testing only simple low-index March–Dollase axes for each phase from this checkpoint.
+
+Simple texture testing supports only a modest MnWO₄ [001] March term (ratio ≈ 0.932; Rwp 11.07%). Other MnWO₄ axes are weaker, and the apparent WO₃ gains are smaller and entangled with scale/roughness, so no WO₃ texture is retained yet. I’m replaying the MnWO₄ [001] branch, then will re-run broadening and source challenges from that textured checkpoint.
+
+The MnWO₄ [001] texture is replay-stable (ratio 0.9315–0.9319) and the crystalline fractions remain within 0.3 wt%. I’ve reopened the complete profile and am now repeating the phase-width challenge; the WO₃ branches are still converging under the retained texture/roughness model.
+
+I’ve narrowed the inventory to wolframite MnWO₄ plus monoclinic WO₃. I’m now doing the last coupling checks: replaying isotropic versus symmetry-compatible WO₃ broadening to convergence, then testing only the structurally supportable MnWO₄ coordinate refinements before freezing the project and outputs.
+
+The WO₃ [010] size anisotropy survives matched replays: Rwp remains lower by about 0.024 percentage point, its two coherent-size components remain near 0.068 and 0.125 μm, and the phase fraction changes by under 0.1 wt%. I’m retaining it provisionally and checking whether any coordinate refinement is both statistically stable and chemically sane; the weak WO₃ coordinates will remain fixed unless the data clearly support them.
+
+The MnWO₄ coordinate refinement is physically credible and replay-stable: it lowered Rwp from about 11.02% to 7.87%, left octahedral Mn–O and W–O distances sensible, and removed the prior scale/roughness correlation. Because those coordinates materially changed intensities, I’m re-running the complete low-index texture challenge from that new common checkpoint rather than carrying the old texture choice forward.
+
+After coordinate refinement, both prior texture terms fail the stricter angular-trend test: their small global gains are concentrated at low angle and are offset by worse high-angle residuals; the WO₃ axis is also nearly degenerate between [001] and [101]. I’m therefore pruning texture and keeping the replay-stable WO₃ [010] size anisotropy, then rechecking the common profile, background, roughness, polarization, and specimen displacement from that neutral-texture checkpoint.
+
+The recheck changed one profile conclusion: with the refined MnWO₄ coordinates, a positive two-component common width model is now stable (W≈10.6, X≈7.0) and improves Rwp to 7.83% without a bound or singularity. I’m accepting that physical branch provisionally and restarting the phase-width loop from it; roughness and specimen displacement remain clearly required, while polarization is rejected because its tiny gain is tied to >98% scale correlations.
+
+The accepted width model survives the full phase challenge: MnWO₄ size/strain terms either collapse or become singular against the common profile, while WO₃ again requires size broadening and independently selects [010] anisotropy. A 10-term smooth background is the practical elbow (Rwp 7.787%; order 12 gains only 0.004 point and changes WO₃ by 0.07 wt%), so I’m using order 10 and running one replayed loop to confirm the profile and fractions no longer change.
+
+The second complete loop reproduces the same decisions and fraction: W+X stays positive, MnWO₄ broadening stays neutral, and WO₃ again selects [010] size anisotropy at ~20.6 wt%. Repeated texture challenges still trade low-angle gain for high-angle loss and give nearly degenerate WO₃ axes, so texture remains pruned. I’m now replaying the full-range neutral-texture model into `final.gpx`, then I’ll export and cross-check every submitted artifact against that project.
+
+The final replay is converged and unchanged at the reported precision: MnWO₄ 0.79405 and WO₃ 0.20595, with Rwp 7.787%. Both exported CIFs pass the required geometry/occupancy health screen. I’m doing the last consistency audit now—metadata balance, profile/project agreement, path existence, and fraction sum—before writing the short uncertainty report.
+
+Completed the PXRD refinement.
+
+- MnWO₄ (P2/c): 79.405 ± 0.191 wt%
+- WO₃ (P2₁/c): 20.595 ± 0.191 wt%
+- Rwp: 7.787%; Rp: 5.210%; GOF: 3.134
+
+Both final CIFs pass the geometry/occupancy health screen. Fractions sum to one and `fit.csv` exactly matches `final.gpx`. A realistic systematic fraction uncertainty is approximately ±1 wt%; amorphous content cannot be quantified. WO₃ atomic coordinates were not independently reliable and remain fixed to the selected source model.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [MnWO4.cif](<ATTEMPT_WORKSPACE>/MnWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+

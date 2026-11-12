@@ -1,0 +1,60 @@
+I’ll first inventory the measurement, chemistry, and reusable refinement utilities, then build and challenge candidate phase models before committing the final GSAS-II project and exports. I’ll keep the source/model comparisons anchored to the same saved baseline as requested.
+
+The chemistry points first to Ba–W–O products (especially BaWO₄) with possible residual WO₃/BaCO₃, but the reported precursor ratio is absent, so I’ll treat mass balance as qualitative rather than inventing closure. I’m now extracting peak families and checking the local COD/DARA and GSAS-II interfaces for defensible source records and refinements.
+
+Peak-family screening already shows that the unmodeled lines are not explained by a single “residual precursor” assumption. In particular, Ba₃W₂O₉ has a coherent set near 17.50, 26.27, 27.80, 30.82, 37.67, 40.80, 51.84, 63.07, and 63.82°, while the 23–25° cluster still points to WO₃ and/or BaCO₃. I’m carrying all of these as competing inventory hypotheses rather than assigning overlap-driven traces prematurely.
+
+The two-phase anchored fit is already strong (BaWO₄ + Ba₃W₂O₉, \(R_{wp}\approx6.88\%\)), and Ba₃W₂O₉ now has a positive, stable scale once the shared ~0.28° angular offset is initialized from independent peak families. A trial releasing U/W/X drove U negative; per the requested gate, I’m discarding that state wholesale and replaying from the saved pre-trial checkpoint with complementary nonnegative broadening (U fixed at zero, W/X released).
+
+The residual triplet maps exactly onto monoclinic WO₃: the principal source lines become 23.43, 23.89, and 24.65° after the shared correction, and independent lines also land at 28.9, 33.6, 34.5, 42.2, 50.2, and 56.2°. I’m now replaying every healthy exact-WO₃ polymorph against the same two-phase checkpoint; the source jobs are still converging.
+
+The exact-source ranking is decisive: monoclinic γ-WO₃ records 2311041 and 1528915 reduce \(R_{wp}\) from 6.73% to 4.60% and 4.67%, respectively, with stable scales and replayed cells. Triclinic, orthorhombic, tetragonal, and hexagonal competitors remain substantially worse (about 5.11–6.69%). The healthier P2₁/c record 2311041 currently leads; I’m checking residual families and carbonate competitors before locking the inventory.
+
+Witherite BaCO₃ is independently confirmed: COD 9010928 explains the remaining 24.18/24.55, 28.05, 34.31/34.86, 42.26, and 45.20° families and lowers \(R_{wp}\) to 4.07% with a replay-stable positive scale. The alternative orthorhombic record and cubic/hexagonal forms collapse; an R-3m trial gives no global improvement and only a trace-scale split, so it fails the weak-phase retention gate.
+
+The four-phase inventory accounts for all strong non-coincident families; quantitative starting fractions are about 68.4% BaWO₄, 14.9% Ba₃W₂O₉, 10.7% WO₃, and 6.0% BaCO₃. The exact disordered BaWO₄ record is markedly worse (\(R_{wp}\approx4.98\%\)) than the ordered scheelite analogue (4.07%), so the adapted ordered model survives the source challenge. Phase-specific broadening replays are now running from the same four-phase checkpoint.
+
+The four-phase inventory is now coherent: scheelite BaWO₄, Ba₃W₂O₉, monoclinic WO₃, and witherite BaCO₃. I’m completing the reversible convergence loop now—challenging the retained broadening against anisotropy, background, polarization, roughness, and simple texture—before the final replay, CIF export, and health checks.
+
+The combined-strain checkpoint replayed without drift (Rwp 3.8483%; fractions changed by less than 5×10⁻⁷). I’m now branching every comparison from that exact checkpoint, so a bound or collapsed trial cannot contaminate the accepted state.
+
+The broadening removals all reconverged cleanly enough to be compared, and the smooth-background/global-geometry branches are finishing. I’m treating any roughness or axial term that runs to an unphysical boundary as a failed comparison, with the checkpoint restored unchanged.
+
+Three minor-phase strain terms survive removal: dropping any one worsens Rwp by 0.060–0.073 percentage point and shifts that phase’s fraction materially. Uniaxial alternatives improve by at most 0.005 point with competing axes, so isotropic strain remains the defensible low-dimensional model. A common polarization trend is the only large global gain so far; I’m now challenging it jointly against low-index texture axes rather than accepting it on covariance alone.
+
+The polarization correction survives the full intensity challenge: it improves every phase’s R-factor and every middle/high-angle band without creating a compensating high-angle bias; it stays at 0.974–0.977 across background orders and all tested texture axes. Every March–Dollase ratio remains near unity, so texture is being pruned. A 9-term smooth background is the convergence point (the 10th coefficient refines essentially to zero).
+
+The second loop is stable: deleting any accepted minor-phase strain again worsens Rwp by 0.070–0.126 point and shifts fractions strongly; anisotropy still adds only 0.0000–0.0017 point with axis ambiguity. I’m at the source-ranking replay now, cross-seeding the finalized nuisance values while replacing each serious structure rather than allowing same-formula scale splitting.
+
+The retained WO₃ model and the exact-vs-ordered BaWO₄ replacement have completed; the triclinic WO₃ competitor is taking longer because its six independent cell terms are being reopened. That is expected, but I’m checking it for convergence and cell stability before using its nominal Rwp in the ranking.
+
+The source replay confirms the retained monoclinic WO₃ is still best after elaboration: Rwp 3.0834% versus 3.1571% for the other monoclinic record and 3.0872% for triclinic WO₃; the triclinic model also uses two extra cell variables. I’m giving that close triclinic competitor its own low-dimensional anisotropic-width challenge before excluding it.
+
+The final source challenge is decisive: the ordered scheelite BaWO₄ model gives Rwp 3.0834%, while the exact split-site BaWO₄ record gives 4.6742%. For BaCO₃, the retained Pnma record gives 3.0834%; alternate orthorhombic and hexagonal records give 3.6752% and 3.3115%. The close triclinic WO₃ competitor remains worse even after its own anisotropic-width trials. The Ba₃WO₆ watch phase collapses on replay, and the bronze record remains unreadable.
+
+I’m freezing the clean model now: 9-term smooth background, one common zero correction, nonnegative W/X, common polarization, and isotropic strain only for the three broader minor phases. Unsupported atom shifts, texture, roughness, SH/L release, size broadening, and anisotropy are being removed; the project will then be reopened and replayed over the full 9.903–100.095° range before export.
+
+The final replay is stable at Rwp 3.0834% with fractions summing exactly to one, and all four exported CIFs pass the geometry/occupancy health screen. I’m doing the last machine audit now: strict JSON parsing, path existence, project/profile numerical agreement, neutral inactive terms, positive scales, and exact fraction normalization.
+
+Completed the four-phase refinement:
+
+- BaWO₄: 64.21 wt%
+- Ba₃W₂O₉: 15.68 wt%
+- WO₃: 12.26 wt%
+- BaCO₃: 7.85 wt%
+
+Final fit: Rwp 3.0834%, Rp 2.3633%, GoF 1.0239. Fractions sum to 1. All final CIFs passed health screening, and the reopened GSAS-II project reproduced the submitted outputs.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [BaWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_BaWO4.cif)
+- [Ba₃W₂O₉ CIF](<ATTEMPT_WORKSPACE>/phase_Ba3W2O9.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [BaCO₃ CIF](<ATTEMPT_WORKSPACE>/phase_BaCO3.cif)
+
+Fractions are normalized over modeled crystalline material; amorphous content was not measurable. The P2₁/c WO₃ model is preferred, though its advantage over a triclinic competitor is modest.
+

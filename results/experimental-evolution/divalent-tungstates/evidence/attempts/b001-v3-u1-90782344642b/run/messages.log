@@ -1,0 +1,50 @@
+I’ll inspect the measurement metadata, pattern, and the reusable analysis helpers first. Then I’ll build and test candidate phase inventories, refine the defensible model in GSAS-II, and verify that the exported CIFs, fractions, profile, and project agree.
+
+The chemistry points first to zinc tungstate, but I’m treating ZnWO₄, residual ZnO/WO₃, and alternate polymorph/source records as competing hypotheses. I’m now extracting diagnostic peaks and screening the actual occupied CIF compositions, symmetry, provenance flags, and geometry before any refinement trial.
+
+The diagnostic families support three crystalline phases: wolframite ZnWO₄, wurtzite ZnO, and residual room-temperature monoclinic WO₃. In particular, ZnO has its independent sharp series at about 31.79, 34.46, 47.59, 56.59, 62.90, 67.97, and 69.09°, while WO₃ contributes the 23.16/23.62/24.44° and 33.29/33.58/34.19° families. I’m moving from identification to controlled GSAS-II trials, including alternate WO₃ records under a shared refinement schedule.
+
+The common-schedule comparison selects monoclinic WO₃ (P2₁/c, COD 2311041). Its global Rwp is 3.679% versus 3.715% for triclinic P-1 despite the latter’s extra cell freedom, and 5.275% for Pnma. More importantly, the P2₁/c model gives the lowest combined residual over WO₃-specific windows (4.98% versus 5.12% and 9.96%); P-1’s extra parameters do not improve the 33° diagnostic multiplet. I’m retaining the physically sound neutron-derived P2₁/c record and now testing only supported profile/intensity terms.
+
+The three-phase inventory is holding up. I’m now finishing the common-profile tests—specifically whether the strong polarization improvement survives fresh replay and whether adding \(U\), surface roughness, or low-angle asymmetry is independently supported—before allowing any phase-specific broadening.
+
+The common model now has a clear outcome: polarization and a nonnegative \(U/W/X\) width trend are stable and materially improve the fit. Surface roughness sought an unphysical negative coefficient with 99.95% internal correlation, while SH/L remained 97% correlated with zero shift and failed fresh replay, so both are rejected. I’m challenging size-only and strain-only broadening for each phase separately from this accepted common model.
+
+ZnWO₄ alone shows a physically plausible size-broadening solution (~0.13 µm) and a large fit gain; its strain-only alternative is substantially worse. The ZnO and WO₃ trial terms either ran away, worsened the fit, or crossed into negative “microstrain,” so they are not physically admissible. I’m stabilizing the ZnWO₄ size solution and then retesting the other two phases against that reconverged base, as required after an accepted profile change.
+
+After reconvergence, WO₃ supports a strain-only contribution (~3.49×10³ µstrain) more cleanly than its size-only alternative (Rwp 3.034% versus 3.100%). ZnO still seeks either the neutral large-size limit or negative strain. I’m doing the final ZnO challenge against the accepted ZnWO₄-size + WO₃-strain base, then I’ll move to intensity/structure tests.
+
+ZnO broadening is decisively unsupported in the fully reconverged model: size returns to the 10 µm neutral limit and strain goes negative. The accepted profile therefore has only ZnWO₄ size and WO₃ strain terms. Before moving any atoms, I’m checking phase-specific intensity effects—plausible texture axes against multiple separated peak families—because these can otherwise masquerade as coordinate shifts.
+
+The texture tests do not pass the reflection-family check. Their March–Dollase ratios stay close to unity (0.960–1.034), and each apparent winner improves mainly one low-angle family while worsening several independent families; competing axes are nearly degenerate for ZnO. I’m retaining no preferred orientation and now testing whether the major-phase coordinates carry real structural information without damaging bond geometry.
+
+The major ZnWO₄ coordinate refinement is supported: Rwp falls from 3.034% to 2.908%, fresh replay is stable, no coordinate correlations dominate, and the refined octahedra remain chemically sound (W–O 1.810–2.173 Å; Zn–O 1.998–2.165 Å; shortest O–O 2.560 Å). The unconstrained ZnO coordinate trial is singular because it refines an arbitrary origin shift, so I’m replacing it with the identifiable internal O-\(z\) coordinate only.
+
+The identifiable ZnO \(u\) trial is mathematically stable but chemically unconvincing: it only lowers Rwp by 0.0044 percentage point while splitting the normally near-regular ZnO tetrahedron to 1.899/2.004 Å. I’m rejecting that compensating shift and retaining the ambient wurtzite coordinates. As a final pruning audit, I’m removing each accepted nuisance term in turn from the refined ZnWO₄-coordinate model to verify that none has become redundant.
+
+The pruning audit confirms every retained term remains necessary after the structural refinement: removing \(U\), polarization, ZnWO₄ size, or WO₃ strain raises Rwp to 2.927%, 3.076%, 3.296%, and 3.030%, respectively. I’m now building the clean final project, reopening it for native replay, and generating all exports from that exact saved state so the CIFs, fractions, and profile cannot drift apart.
+
+The clean project passed three independent reopen/replay cycles with no SVD zeros or frozen variables; the final maximum shift/ESD is 0.00073. The exact saved-state result is 73.135 wt% ZnWO₄, 8.450 wt% ZnO, and 18.415 wt% WO₃, with Rwp 2.9083% and GOF 1.0540. I’m doing the last cross-file and residual/geometry checks before writing the uncertainty report.
+
+A cross-file check caught one endpoint convention: GSAS-II includes the data point immediately below the nominal 10° lower limit, so the first `fit.csv` export had 8,283 rows while the project refined 8,284. I’m correcting the export to use GSAS-II’s exact index slice; the model and statistics are unchanged.
+
+All deliverables now agree: `fit.csv` contains the exact 8,284-point GSAS-II refinement slice, CIF cells match the project to export precision, and all three exported structures retain the intended compositions, symmetries, and physical bond lengths. I’m running one final read-only audit of the submitted files.
+
+Identified three crystalline phases, normalized over modeled crystalline material:
+
+- ZnWO₄ wolframite: **73.14 wt%**
+- WO₃ monoclinic: **18.42 wt%**
+- ZnO wurtzite: **8.45 wt%**
+
+Final fit: **Rwp 2.9083%**, **Rp 2.2875%**, **GOF 1.0540**. No coherent missing-phase peak family remained. Practical fraction uncertainty is a few absolute wt% despite smaller formal least-squares errors.
+
+Outputs:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [ZnWO4.cif](<ATTEMPT_WORKSPACE>/ZnWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [ZnO.cif](<ATTEMPT_WORKSPACE>/ZnO.cif)
+

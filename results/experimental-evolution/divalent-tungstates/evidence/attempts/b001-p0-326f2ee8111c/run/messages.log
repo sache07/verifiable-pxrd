@@ -1,0 +1,28 @@
+I’ll inspect the measurement metadata, pattern format, and the scientific tooling available in this workspace, then identify candidate phases and refine them jointly in GSAS-II. I’ll keep phase fractions normalized to the modeled crystalline content and flag any ambiguity in the final report.
+
+The chemistry strongly suggests calcium tungstates, but I won’t assume a single scheelite phase: I’m first extracting peak positions and checking whether every reflection can be indexed by CaWO₄ or whether residual/reacted secondary phases are required.
+
+Peak positions and relative intensities match tetragonal scheelite CaWO₄ (space group I4₁/a), including the nearby 28.70° (112) and 29.03° (103) reflections; those are not two phases. No diagnostic WO₃, CaO, or Ca₃WO₆ peaks are evident. I’m now building the quantitative GSAS-II model and testing whether a second crystalline phase improves unsupported residual features.
+
+The initial GSAS-II model uses the reported Cu Kα₁/Kα₂ doublet and reflection geometry. I’m refining in stages—background/scale/cell, profile, specimen shift, then only the symmetry-allowed oxygen coordinates and isotropic displacement factors—to expose instability rather than hide it in a large simultaneous fit.
+
+The first profile refinement already reduced Rwp from 14.7% to 4.4%, confirming the phase assignment. One unconstrained Lorentzian width term moved negative, so I’m tightening the physically allowed profile parameterization before trusting the later structural steps.
+
+The constrained structural fit reaches Rwp ≈3.10% (close to the 2.28% counting-statistics floor), with all Bragg intensity accounted for. Two nuisance/thermal terms hit imposed bounds, so I’m checking those boundary effects now; I will not report boundary values as physically meaningful merely because they lower Rwp.
+
+A deliberately over-complete trial model puts only about 0.15–0.17 wt% into CaO/WO₃ and drives Ca₃WO₆ to zero, but the joint trial became numerically unstable at the nonnegative boundary. I’m rerunning each possible impurity independently and checking whether its diagnostic peaks—not just a tiny R-factor change—are reproducible above counting noise.
+
+The independent impurity tests support a one-phase submission: Ca₃WO₆ refines to zero; CaO changes χ² by only ~6; and a nominal ~0.15 wt% WO₃ term gives a small statistical improvement but fails the strongest three-peak coherence test. I’m treating that as a possible sub-quantification trace, not a reliably identified second phase, and finalizing the physically constrained one-phase project.
+
+The required deliverables are now written. I’m doing a final consistency pass: reopening the GSAS-II project, parsing the exported CIF/JSON, and verifying that every row in `fit.csv` exactly matches the final project’s observed and calculated arrays.
+
+Completed. The pattern is reliably single-phase scheelite CaWO₄ (I4₁/a), 100.00 wt% of modeled crystalline phases. Final fit: Rwp 2.802%, Rp 2.133%, GOF 1.228. A possible sub-0.2 wt% WO₃ trace was below reliable identification/quantification.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [CaWO4_scheelite.cif](<ATTEMPT_WORKSPACE>/CaWO4_scheelite.cif)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+

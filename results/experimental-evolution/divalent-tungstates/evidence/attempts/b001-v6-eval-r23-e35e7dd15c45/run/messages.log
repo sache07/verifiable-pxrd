@@ -1,0 +1,38 @@
+I’ll inspect the measurement metadata, pattern, and the reusable refinement utilities first. I’ll then build a chemically plausible phase inventory, test competing records under a common baseline, and only retain phases supported by reproducible diffraction evidence.
+
+The chemistry points first to calcium tungstate, but I’m treating that as a hypothesis rather than an answer. I’m now extracting the peak families and searching the structure index for exact Ca–W–O records and physically relevant polymorphs; residual CaO/WO₃ and possible calcium-rich tungstates will remain on the watch list.
+
+The peak inventory now resolves into two coherent families: scheelite CaWO₄ is dominant, while the 22.94/23.42/24.23° triplet and its higher-angle companions match room-temperature monoclinic WO₃. I’m comparing the independent WO₃ records and higher-symmetry alternatives under the same angular correction before locking the phase model; CaO is not yet accepted because its strongest unique line is not evident.
+
+The first common-baseline refinement gives about 86.4 wt% CaWO₄ and 13.6 wt% WO₃, but I am not accepting it yet: an unconstrained profile drove \(U\) negative, which is physically inadmissible. I’m rebuilding the comparison with \(U=0\) at its physical boundary and refining only nonnegative \(W/X\), then replaying the source/polymorph tests under that corrected baseline.
+
+The phase-source challenge is running on a strictly physical common profile (\(U=W=0\), refined positive \(X\)). It includes both monoclinic WO₃ records, triclinic/orthorhombic/tetragonal/hexagonal alternatives, high-pressure fergusonite CaWO₄, and three-phase trials with CaO or the calcium tungsten bronze. The earlier orthorhombic trial was already materially worse than monoclinic despite similar peak centroids, because its split-family intensities do not reproduce the data.
+
+The transformed-cell test exposed an important bookkeeping trap: GSAS-II interpreted the alternate monoclinic setting differently even though an external structure matcher considered it equivalent, so I am retaining the original room-temperature neutron record and its native setting. This preserves the verified calculated intensities. I’m now testing phase-specific size/strain, asymmetry, polarization, and roughness one at a time from the converged two-phase baseline.
+
+The nuisance trials are separating cleanly now. A physically stable model uses refined polarization plus CaWO₄ crystallite-size broadening; roughness gives a superficially good fit but becomes 99.99% correlated and destabilizes the independent size term, so it is being rejected as a surrogate. Preferred orientation is real and strongly supported: all tested axes improve the fit, with the tetragonally distinct [110] axis best so far. I’m checking additional low-index axes and whether any anisotropic width term remains justified.
+
+The phase inventory is now stable at scheelite CaWO₄ plus monoclinic WO₃. I’m finishing the last parsimony check on atomic parameters, then I’ll replay the accepted model over the full range and export all deliverables from that exact GSAS-II project.
+
+The last atomic check favors refining only the CaWO₄ oxygen coordinates and W displacement parameter; adding Ca or O displacement parameters gives negligible gain relative to their uncertainty. I’m pruning those extra variables and retaining the simpler, physically stable model.
+
+The saved/reopened full-range replay converged with all 8,301 points, Rwp 9.026%, and fractions 86.38% CaWO₄ / 13.62% WO₃. I’m now checking that both exported CIFs reproduce the project cells and retain physically sensible coordination, and that every submitted file is internally consistent.
+
+Completed. The modeled crystalline phases are:
+
+- Scheelite CaWO₄: **86.38 wt%**
+- Monoclinic WO₃: **13.62 wt%**
+
+Fractions are normalized over modeled crystalline material. Full-range fit: Rwp 9.026%, Rp 5.899%, GOF 4.023. Trace CaO at roughly 1–2 wt% cannot be excluded but was not reliably supported.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [CaWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_CaWO4.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+
+The saved project was reopened and replayed; its fractions and calculated profile exactly match the submitted JSON, CIFs, and CSV.
+

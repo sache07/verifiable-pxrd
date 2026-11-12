@@ -1,0 +1,48 @@
+I’ll inspect the pattern, metadata, and available crystallography utilities first, then identify candidate phases and build a quantitatively refined GSAS-II model. I’ll validate that the exported CIFs, profile, fractions, statistics, and `final.gpx` all come from the same final refinement.
+
+The chemistry points first to strontium tungstate, but the 650 °C reaction may also retain precursor or form secondary Sr–W–O phases. I’m therefore treating the phase count as unconstrained and will test all chemically plausible database structures against the full peak set rather than assuming a single-product model.
+
+Peak matching now supports two crystalline phases: scheelite SrWO₄ accounts for the dominant pattern, while the residual peaks form the characteristic orthorhombic WO₃ triplet and its higher-angle reflections. The large angle-dependent peak shift is consistent with reflection-geometry specimen displacement, so I’ll refine that explicitly; otherwise it would bias both unit cells and phase assignment.
+
+The first quantitative refinement converged to approximately 78 wt% SrWO₄ and 22 wt% orthorhombic WO₃, with \(R_{wp}\approx 8.8\%\). I’m now checking residual structure and alternative WO₃ polymorphs; this is important because several tungsten trioxide phases share the same strongest low-angle peaks, while their weaker reflections distinguish them.
+
+The polymorph test is decisive: the orthorhombic \(Pnma\) WO₃ model gives \(R_{wp}=8.79\%\), versus 10.04% for triclinic WO₃, 12.00% for monoclinic WO₃, and 12.20% for SrWO₄ alone. I’m tightening the refinement now with a staged parameter schedule because the uncalibrated profile terms are strongly correlated; the phase identity itself is no longer ambiguous.
+
+The refined texture corrections are substantial and reproducible—SrWO₄ along [110] and WO₃ along [001]—which is expected for a flat-plate reflection measurement and lowers \(R_{wp}\) to 6.57%. I’m now testing only crystallographically meaningful coordinate adjustments; I’ll retain them only if they improve the fit without producing implausible geometry, since oxygen positions are much less certain than the phase fractions in laboratory X-ray data.
+
+The phase assignment is settled: scheelite SrWO₄ plus orthorhombic Pnma WO₃. I’m doing the final consistency pass now—locking the chosen converged refinement, exporting all requested artifacts from that exact project, and validating the fractions, CIFs, and profile numerically.
+
+The positional polish improved the profile from Rwp 5.83% to about 5.77% while leaving the phase split essentially unchanged at 77.4/22.6 wt%. The refinement is showing the expected strong correlation between specimen displacement and lattice parameters, so I’m checking convergence and will report that correlation explicitly rather than overstate cell precision.
+
+The calculated profile accounts for the low-angle WO₃ triplet and the full high-angle peak sequence without a separate SrCO₃ contribution. I’m checking that “no third crystalline phase” conclusion against the available structure database before freezing the two-phase result.
+
+The database cross-check changed the model materially: orthorhombic SrCO₃ is a real third phase, not just a possible trace. Adding its fixed literature structure drops Rwp from 5.77% to 5.01%, and the residual WO₃ and SrCO₃ amounts are nearly equimolar—exactly what the 1:1 precursor reaction predicts. I’m now re-refining the full three-phase model; the earlier two-phase fractions will not be submitted.
+
+The SrCO₃ contribution is robust at roughly 13–14 wt% and improves the fit independently of preferred-orientation assumptions. Its [001] texture correction is currently the best modest model; I’m rejecting more flexible/nonconvergent alternatives rather than chasing small residual improvements.
+
+The carbonate broadening tests do not support an extra physical term: crystallite size runs to its boundary, while microstrain goes negative. I’m excluding both. That keeps the submitted model parsimonious and avoids turning phase fractions into compensators for an uncalibrated line-shape model.
+
+The three-phase refinement is now converged (maximum shift/e.s.d. < 0.001): 64.56 wt% SrWO₄, 20.13 wt% Pnma WO₃, and 15.30 wt% Pnma SrCO₃, with Rwp 4.63%. I’m exporting from that exact converged project and then checking round-trip readability and profile consistency.
+
+Completed the three-phase GSAS-II refinement.
+
+| Crystalline phase | Weight fraction |
+|---|---:|
+| Scheelite SrWO₄, I4₁/a | 64.56 wt% |
+| Orthorhombic WO₃, Pnma | 20.13 wt% |
+| Strontianite SrCO₃, Pnma | 15.30 wt% |
+
+Final fit: Rwp = 4.632%, Rp = 3.288%, GOF = 1.621. Fractions are normalized over modeled crystalline phases; practical systematic uncertainty is approximately ±3 absolute wt%.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [SrWO4.cif](<ATTEMPT_WORKSPACE>/SrWO4.cif)
+- [WO3_Pnma.cif](<ATTEMPT_WORKSPACE>/WO3_Pnma.cif)
+- [SrCO3_Pnma.cif](<ATTEMPT_WORKSPACE>/SrCO3_Pnma.cif)
+
+The project, profile, fractions, and CIFs were cross-validated and reopen successfully in GSAS-II.
+

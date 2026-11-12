@@ -1,0 +1,48 @@
+I’ll first inventory the public data and the provided analysis tooling, then build and challenge a cumulative GSAS-II model. I’ll keep candidate structures chemistry-grounded, preserve their provenance, and only submit phases that survive matched refinement and deletion tests.
+
+The chemistry is a low-temperature BaCO₃/WO₃ reaction, so the first inventory must distinguish residual precursors from any Ba–W–O product; peak positions and full-pattern residual families, not the synthesis expectation, will decide that. I’m now indexing only the public COD resource and extracting observed peak families before any refinement.
+
+Two families are already strongly supported: monoclinic WO₃ and orthorhombic witherite BaCO₃. I’m now doing matched low-flexibility swaps among the plausible WO₃ parents (plus reduced tungsten oxides as explicit alternatives), with the histogram scale fixed so phase fractions are identifiable.
+
+The first screening exposed an important source-quality issue: COD 1528915 gives the slightly lower early Rwp but contains 1.575 Å O–O contacts, whereas COD 2311041 is the same monoclinic WO₃ framework with sensible W–O geometry and no short-contact trigger. I’m therefore carrying the physically passing parent forward and testing whether its fit survives the full profile model.
+
+The remaining mismatch is intensity-patterned rather than an unexplained peak family, so I’m screening one March–Dollase parameter at a time on physically plausible low-index axes for each accepted phase. This is also a fraction-stability test: a texture model is only useful if it improves the residual without driving size, strain, or abundance to a bound.
+
+The all-at-once size/strain model was unstable (one crystallite size hit its lower limit and one strain went negative), so I’m restarting from the same structural base and isolating broadening by phase. This is a mechanism test, not parameter clipping: any branch that needs a bound or a negative broadening term will be rejected.
+
+A clean restart with the instrument resolution set by the narrowest observed peaks resolved the instability: with only positive isotropic phase sizes, Rwp fell to 2.157% and the refined fractions stabilized near 53.5 wt% WO₃ / 46.5 wt% BaCO₃. I’m using this as the physical base for the remaining nuisance, deletion, and source-swap tests.
+
+The nuisance pass is now essentially complete: background families are near-equivalent, displacement-only is decisively worse, the joint zero/displacement branch changes Rwp by only 0.0007%, roughness requires an unphysical negative coefficient, and texture refines to unity. I’m moving to the final permitted stage—element-block coordinate tests—while screening every resulting structure for short contacts.
+
+The coordinate tests support small WO₃ cation shifts and a physically screened oxygen block; the same structure recurs across zero-only, joint, alternate background, and strain starts, with fractions within about 0.2 wt%. Carbonate C/O motion distorts C–O bonds to 1.23/1.50 Å and is rejected; only the small Ba-site shift remains defensible. I’m now performing the required matched restart against the physically sound triclinic WO₃ finalist.
+
+The monoclinic restart has converged cleanly. The triclinic swap is slower because it carries twice as many independent cell terms/reflections; I’m letting the identical sequence finish, then I’ll compare fit, geometry, fraction stability, and parameter validity—not Rwp alone.
+
+The BaWO₄ addition is reproducible only at 0.13(8) wt%—below 2σ—and freeing its cell causes a large, non-improving drift. Removing it restores the two-phase fit exactly, so it will not be reported as a crystalline phase. I’m finishing independent-start stability checks on the retained two-phase model before exporting the final project.
+
+One simultaneous high-side perturbation found a bad local minimum (a size term hit its lower limit), while the low-side and unchanged starts reproduced the model. I’m rerunning that case in a staged order—nuisance terms first with atoms fixed, then element blocks—so the stability test does not confuse a known coupled local minimum with a distinct physical solution.
+
+I’ve narrowed the pattern to monoclinic WO₃ plus orthorhombic BaCO₃ and completed the matched model/profile tests. I’m now packaging the converged two-phase refinement, then I’ll independently reopen it and verify the exported CIFs, fractions, and profile against the project.
+
+The refinement is converged (maximum shift/σ 0.0038, no singular directions) at Rwp 1.93% over all 8,301 points. Both major-phase deletion tests fail decisively; the only plausible extra phase, BaWO₄, refined to 0.13(8) wt% and was not retained.
+
+The exported CIFs now pass the independent composition, occupancy, density, and short-contact screen: WO₃ is 7.291 g cm⁻³ and BaCO₃ is 4.276 g cm⁻³, with no flagged contacts. I’m doing the final native GSAS-II replay and CIF/project consistency check next.
+
+The native replay is clean: it regenerated the entire profile from the saved atomic models with no fitting, returned Rwp 1.929908%, reproduced fractions 0.535127/0.464873, and found no negative widths/background, invalid displacement tensors, or out-of-range polarization. The submitted CIFs also agree with the full-precision project models under printed-digit tolerances.
+
+Completed. The crystalline mixture is:
+
+- Monoclinic WO₃, P2₁/c: 53.51 ± 0.22 wt%
+- Orthorhombic BaCO₃, Pmcn: 46.49 ± 0.22 wt%
+
+Fractions are normalized over modeled crystalline phases. Native GSAS-II replay gives Rwp = 1.92991% and GoF = 1.05298. A possible BaWO₄ trace was below reliable significance and excluded.
+
+Artifacts:
+
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-b231161adc30/workspace/report.md)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-b231161adc30/workspace/result.json)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-b231161adc30/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-b231161adc30/workspace/final.gpx)
+- [phase_WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-b231161adc30/workspace/phase_WO3.cif)
+- [phase_BaCO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-b231161adc30/workspace/phase_BaCO3.cif)
+

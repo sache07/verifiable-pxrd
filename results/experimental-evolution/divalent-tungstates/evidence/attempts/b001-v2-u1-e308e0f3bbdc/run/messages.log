@@ -1,0 +1,40 @@
+I’ll first inspect the metadata, diffraction range, and the reusable refinement helpers, then build a chemically constrained phase inventory before refining any profile terms. I’ll keep candidate screening and phase-by-phase residual evidence explicit, and only export from a reopened, replay-checked GSAS-II project.
+
+The chemistry points first to Mn–W–O products, but I’m treating MnWO₄, both precursors, polymorphs, and plausible off-stoichiometric oxides as hypotheses rather than assumptions. Next I’m extracting peak families and auditing the local candidate records (composition, symmetry, occupancies, source conditions, and geometry) before any Rietveld fitting.
+
+The diagnostic reflections identify wolframite MnWO₄ decisively: the split 29.58/30.03° pair, 18.06°, 23.29°, 23.80°, 30.91°, and 35.7° family all align with one monoclinic P2/c cell. I rejected two newer FeWO₄ analogue records because they contain impossible 1.31–1.50 Å W–O contacts; the older FeWO₄ parent is ordered, ambient-condition, and geometrically sound. I’m now adapting that parent by Fe→Mn and using residual-only evidence to test WO₃/Mn oxides and Mn₃WO₆.
+
+The first clean refinement confirms a second coherent family that MnWO₄ cannot generate: 22.70°, 26.16°, 28.2–28.5°, 32.83°, 33.74°, 41.47°, and 54–56°. That family is the monoclinic WO₃ precursor, not random residual. I’m comparing all local WO₃ records now; several are unusable because of impossible O–O contacts or high-pressure/source-condition mismatch, so I’m keeping the nuisance model fixed while testing the physically sound ambient polymorphs.
+
+The ambient monoclinic WO₃ record is already strongly supported: adding it drops Rwp from 16.79% to 14.18% and gives a positive ~15.2 wt% fraction before profile/atomic refinement. Its unique 22.70° and 32.83° reflections are present. I’m finishing matched-condition trials of triclinic, orthorhombic, tetragonal, and hexagonal alternatives so the polymorph call does not rest on chemistry alone.
+
+The third phase is residual tetragonal Mn₃O₄, not Mn₂O₃ or Mn₃WO₆. Its unique 17.51°, 28.50°, 31.80°, 43.85°, 50.30°, and 59.64° peaks form a consistent family; its refined cell stays close to the ambient hausmannite record. The provisional fractions also close the precursor balance (Mn:W ≈ 1.03), whereas the two-phase model is strongly W-rich. I also selected sample displacement over zero shift because it gives the better angular trend; zero is now fixed and will not be co-refined. Next I’m establishing the minimal common width baseline before testing phase-specific size/strain.
+
+The phase inventory is now stable at wolframite MnWO₄ + monoclinic WO₃ + hausmannite Mn₃O₄, with the third phase supported by both diagnostic peaks and precursor mass balance. I’m now testing the common instrumental width model and phase-specific broadening branches before the final atomic replay and exports.
+
+The width tests favor a single positive common Lorentzian term (`X`) on the sharp-phase baseline. Adding `W` makes the pair strongly correlated, while models containing `U` drive it negative, so those branches are being pruned. I’m checking only bounded low-angle asymmetry next, then each phase’s size-only and strain-only response from neutral values.
+
+A chemically cleaner cross-check changed the main structural parent: ambient ZnWO₄ and MgWO₄ prototypes fit the MnWO₄ intensities far better than the old FeWO₄ record under the identical nuisance model; ZnWO₄ is slightly best. I’m therefore using the ordered 293 K ZnWO₄ neutron structure with only Zn→Mn substitution, then repeating the broadening challenges from that reconverged branch so the profile decision is not inherited from the poorer parent.
+
+The accepted profile is now low-dimensional and stable: common `X` only, plus isotropic strain for the visibly broader WO₃ and Mn₃O₄ components; neither term is strongly correlated, and size-only branches ran to bounds and were rejected. A disk-reopened atomic replay shows that refining the dominant MnWO₄ coordinates is supported; I’m screening the resulting bond geometry before deciding between cation-only and all-coordinate models.
+
+The final full-range save/reopen replay converged reproducibly at Rwp 9.055% with 8,301 observations. The submitted crystalline fractions are 71.92% MnWO₄, 18.28% WO₃, and 9.80% Mn₃O₄; I’m doing the last consistency checks on the exported CIF geometry, CSV arrays, project flags, and residual peak inventory before writing the report.
+
+Identified three crystalline phases:
+
+| Phase | Weight fraction |
+|---|---:|
+| MnWO₄, wolframite | 71.92 wt% |
+| WO₃, monoclinic | 18.28 wt% |
+| Mn₃O₄, hausmannite | 9.80 wt% |
+
+Final replay: Rwp 9.055%, Rp 6.020%, GOF 3.642. Fractions are normalized over modeled crystalline material. Minor-phase fractions are profile-sensitive; realistic ranges are discussed in the report.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [MnWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_1_MnWO4.cif), [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_2_WO3.cif), [Mn₃O₄ CIF](<ATTEMPT_WORKSPACE>/phase_3_Mn3O4.cif)
+

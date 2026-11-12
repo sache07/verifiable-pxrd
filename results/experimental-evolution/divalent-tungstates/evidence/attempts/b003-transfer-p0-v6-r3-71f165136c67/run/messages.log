@@ -1,0 +1,73 @@
+I’ll first inventory the measurement, chemistry, reusable refinement tools, and candidate databases. Then I’ll identify phases from peak positions/intensities, build a physically screened multiphase model, and iteratively refine and replay it in GSAS-II before exporting the requested files.
+
+The chemistry points to copper tungstate formation with possible residual CuO/WO₃ or competing Cu–W–O stoichiometries, but I’m treating those only as an initial inventory. I’m now extracting the observed peak families and locating the installed search/refinement interfaces so each candidate can be tested on the full profile.
+
+The first broad screening pass was computationally heavier than warranted, so I’m reducing it to fast stick-pattern matching before launching full refinements. The observed 23.21/23.66/24.45° triplet already gives strong evidence for monoclinic WO₃; the remaining families will determine whether copper is present as CuWO₄, CuO, or both.
+
+The inventory is now coherent enough for refinement: ambient monoclinic WO₃ (P2₁/n) explains the characteristic triplet and its higher-angle families, while cubic Cu₃WO₆ (Pa‑3) independently explains the otherwise unmatched 15.75, 20.37, 36.82, 43.46, 58.19, 63.88, 70.80, and 87.62° peaks. CuWO₄ and CuO remain on the watch list and will be re-tested against the converged common profile rather than rejected from chemistry alone.
+
+The first two-phase refinement confirms substantial contributions from both phases (provisional ~63/37 wt%), but it also exposed two baseline defects that I will correct before trusting the fractions: the imported histogram scale was unnecessarily co-refined with phase scales, and an unconstrained W/X trial drove W negative. I’m fixing the overall scale, comparing physically nonnegative common-profile alternatives, and then I’ll revisit candidate phases from the residual.
+
+The texture challenge is decisive: only the WO₃ [001] axis explains multiple independent 00l families, dropping Rwp from 18.87% to 6.65%; the next-best diagonal trial is 9.84%, and unrelated axes remain much worse. This is consistent with plate-like preferred orientation, not a background or polarization trend. I’m now rebuilding the common profile around that accepted inventory/texture, then testing phase-specific size/strain and the CuO/CuWO₄ watch list.
+
+The physical-term trials are pruning cleanly: specimen displacement is slightly worse than a single zero correction; SH/L refines negative and is rejected; roughness is singular and negligible; Cu₃WO₆ isotropic size is replay-stable at about 0.22 μm, while added strain goes negative and is rejected. A free WO₃ coordinate trial improved the numerical fit sharply, but some oxygen shifts are large and correlated, so I’m screening bond geometry before deciding whether any coordinate refinement is defensible.
+
+The clean-profile watch-list challenge found a real third phase: ambient CuO is supported by several coherent residual families and lowers Rwp from 4.63% to about 3.20%. CuWO₄ remains only a marginal ~0.4 wt% scale-only signal, so I’m keeping it on the watch list while I rebuild and replay the full three-phase model.
+
+I’m now comparing the ambient C2/c CuO record against the physical 196 K Cc alternate with the CuO cell released in both cases. This is the source-record check required after a phase change; it also tests whether the stronger ambient result was merely caused by a fixed-cell mismatch.
+
+Releasing the CuO cell removes the apparent advantage of the old ambient record: the ambient C2/c and 196 K Cc models become essentially indistinguishable (Rwp 3.176% vs 3.171%). Because the measurement is not at 196 K and room-temperature CuO is C2/c, I’ll retain the physically matched ambient symmetry unless a better ambient entry is available, and treat the atomic-model distinction as unresolved by this powder pattern.
+
+With CuO accepted, the old two-phase U/X choice is no longer sufficient: adding a positive W term gives a statistically large improvement (Rwp 3.176% → 3.124%) and all U/W/X values remain positive. I’m repeating that comparison from a strictly neutral phase-width baseline before deciding, then I’ll add size or strain back one phase at a time.
+
+The neutral replay cleanly separates the width physics: Cu₃WO₆ requires finite crystallite-size broadening (~0.166 µm; Rwp 3.918% → 3.124%), whereas WO₃ size is singular/bound and WO₃ strain goes negative. CuO size also collapses to its lower bound. I’m checking only the remaining complementary possibilities—strain alongside the accepted Cu₃WO₆ size, especially for the weaker CuO phase.
+
+The CuO strain term is not merely lowering a global statistic: its gain is concentrated in the two strongest CuO families near 35.6° and 38.8–39.2°, with smaller coherent gains near 53.5°, 61.7° and 68°. It is replay-stable and positive (5671 ± 296 µstrain); the CuO size alternative fails. I’m retaining it provisionally, but will challenge anisotropy/texture and re-test CuWO₄ so this broad weak phase cannot masquerade as another phase or background.
+
+The final watch-list replay rejects CuWO₄: its refined fraction is 0.022 ± 0.053 wt% and the fit is unchanged. The small earlier signal was absorbed once CuO and its physically required broadening were modeled, so CuWO₄ will not be reported as a phase.
+
+A cubic-axis challenge finds modest but reproducible Cu₃WO₆ size anisotropy along [110] (0.221 ± 0.013 µm equatorial, 0.148 ± 0.003 µm axial). The gain recurs at several Cu₃WO₆ families near 20.35°, 50–51°, and 63.9°, not just the strongest overlap, so I’m retaining this one additional width parameter. Next I’m checking that no unmodeled texture is distorting the phase scales.
+
+The Cu₃WO₆ [110] texture test is distinct from the width term: MD = 0.745 ± 0.007 and improvements recur across low-, middle-, and high-angle Cu₃WO₆ families; [100] and [111] do not compete. CuO texture is ambiguous—two incompatible axes give nearly tied small gains—so it is not yet defensible. I’m testing the interactions directly before pruning or accepting either term.
+
+The interaction tests keep both Cu₃WO₆ terms and CuO strain: removing either causes a clear replayed loss. CuO [010] texture now has support from several CuO families (notably near 48.9°, 53.5°, 58.5°, and 61.7°) and beats the diagonal alternative, but it shifts CuO by ~0.35 wt%. I’m carrying it provisionally while comparing the alternate CuO structure under the identical nuisance model; that model dependence will set the realistic fraction uncertainty.
+
+The ambient C2/c CuO model remains the better final choice under the full model (Rwp 2.987% vs 2.991% for the 196 K Cc alternate) and matches the measurement conditions. The alternate changes CuO by about 0.6 wt%, which is much larger than the formal least-squares error; I’ll report that as model uncertainty rather than pretending the formal error is the whole story.
+
+A grouped-ADP trial drives Cu and W Uiso negative, even though it lowers Rwp. That is a clear intensity surrogate, so I’m rejecting it and retaining the reference coordinates/ADPs; the report will explicitly state that atomic displacements and fine coordinate shifts are not reliably determined by this pattern.
+
+A final nuisance replay exposed a coherent intensity trend that should be handled before texture: polarization refines to a plausible 0.549 and gives a large gain. The two-parameter roughness model also lowers Rwp but its parameters are 99.93% correlated, so it is not identifiable as fitted. I’m rebuilding the texture tests with polarization included and checking whether roughness retains independent support; the current texture values are therefore not yet final.
+
+With polarization in the baseline, Cu₃WO₆ [110] texture remains independently supported (Rwp 2.922% → 2.889%); the other cubic axes do not. Roughness instead drives polarization back to ~0.494 while its own two parameters remain 99.97% correlated, so I’m pruning roughness as an unidentifiable surrogate and keeping the single physical polarization term.
+
+The rebuilt hierarchy is now coherent: polarization 0.549, then Cu₃WO₆ [110] texture, then CuO [010] texture. The CuO axis is now uniquely preferred over the other monoclinic axes and remains supported by several families. I’m doing the final prune/replay checks, then I’ll export the exact project, CIFs, and profile from that reopened solution.
+
+The residual audit shows no new coherent peak family: the largest residual extrema all coincide with reflections of the three modeled phases. A final CuWO₄ replay gives only 0.109 ± 0.051 wt% and Δχ² ≈ 6, driven mainly by overlaps rather than its isolated lines; I’m treating it as an unconfirmed trace watch-list candidate, not a quantified phase.
+
+The structural exports and final replay are complete. I’m writing the evidence/uncertainty report now, then I’ll run an exact cross-check among `final.gpx`, the CIFs, `fit.csv`, and `result.json`.
+
+The report now records both the accepted model and the rejected alternatives, including the unconfirmed CuWO4 trace. I’m doing the final integrity check now: fraction normalization, profile arithmetic/row count, CIF readability and geometry, and a fresh read of the saved GSAS-II project.
+
+The first verification invocation used the workspace’s plain Python, which does not contain GSAS-II; it did not modify any files. I’m rerunning the same read-only checks with the dedicated diffraction environment used for the refinement.
+
+The project/profile consistency check passed exactly. One generic CIF reader warned about the nonstandard transformed WO3 setting and expanded it with the wrong symmetry setting, so I’m checking that export directly against its explicit symmetry operations before closing out; the GSAS-II model itself remains consistent.
+
+Completed and cross-validated against the saved GSAS-II project.
+
+- WO₃: 55.326 wt%
+- Cu₃WO₆: 35.879 wt%
+- CuO: 8.795 wt%
+- Rwp: 2.8749%; GOF: 1.1952
+
+Fractions are normalized over modeled crystalline phases. A possible trace CuWO₄ contribution could not be established reliably.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [Cu3WO6 CIF](<ATTEMPT_WORKSPACE>/phase_Cu3WO6.cif)
+- [CuO CIF](<ATTEMPT_WORKSPACE>/phase_CuO.cif)
+

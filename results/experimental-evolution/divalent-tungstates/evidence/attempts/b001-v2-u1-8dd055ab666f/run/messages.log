@@ -1,0 +1,56 @@
+I’ll first inspect the metadata, pattern, and the reusable analysis/refinement helpers in `learned/`. Then I’ll establish the peak/instrument characteristics and chemical inventory before testing structural candidates. I’ll keep phase identification and profile complexity separate so the final fractions come from a replay-checked GSAS-II project.
+
+The chemistry points to lead–tungsten oxides, but the precursor ratio is not reported and 500 °C can leave precursor/intermediate phases. I’m treating PbWO₄, other Pb–W–O stoichiometries, and residual WO₃/Pb oxides as an open inventory rather than assuming a single product. Next I’m extracting diagnostic peaks and checking the local structure database records—including composition, disorder flags, symmetry, and geometry—before any refinement trial.
+
+The first physically screened comparison is decisive on the main phase: ambient synthetic scheelite PbWO₄ matches the dominant peak family, while raspite and lead-oxide precursor forms do not. Room-temperature monoclinic WO₃ matches the sharp 23.5–24.9° triplet and is a credible residual precursor. A vacancy-rich Pb₇W₈O₂₈.₈ record is pattern-similar because it is scheelite-related, so I’m retaining it as a challenged alternate rather than identifying it from correlation alone. I’m also searching Pb-rich tungstate prototypes because the exact local database has no Pb₂WO₅/Pb₃WO₆ entries.
+
+The first GSAS-II staging run exposed a numerical pitfall rather than a chemical result: releasing the specimen-height correction before the phase scales were established let the shift run outside the measured range, making the phase scales meaningless. I’m tightening the workflow to hold the physically estimated displacement initially, establish background/scales, then release it within realistic bounds before cell refinement. This failed branch will not be used for comparison or reporting.
+
+The angular comparison is nearly tied in global residual, but the diagnostic peak offsets decline from about +0.44° near 27° to +0.38° near 94°. That is the expected cosine trend for specimen displacement; the displacement branch also keeps the cells closer to the ambient reference values. I’ll therefore retain specimen height (`Shift`) and keep instrument zero fixed. I’m now reconverging equal-complexity branches for the scheelite/vacancy-rich alternatives, WO₃ polymorphs, raspite, and a possible residual Pb₃O₄ addition.
+
+The third phase is supported: ambient tetragonal Pb₃O₄ lowers \(R_{wp}\) from 10.31% to 8.83% and refines to about 7.4 wt%, with its unique 26.8°, 31.2°, and 32.5° families present. The older ambient Pb₃O₄ record gives essentially the same result; the 13.3 GPa polymorph and PbO₂ are much worse, while litharge goes to zero. Massicot and a Pb₂WO₅ analogue absorb smaller residuals but remain inferior single additions, so I’m keeping them as inventory challenges rather than accepted phases. Before deciding whether any fourth phase is real, I’m now refining peak widths phase-by-phase from neutral size/strain values; the current residuals are visibly dominated by the deliberately provisional PbWO₄ width.
+
+The broad PbWO₄ phase clearly favors size broadening: a size-only branch refines to about 0.0468 µm and reaches \(R_{wp}=8.11\%\); the strain-only branch needs an extreme ~9900 µstrain and is much worse at 10.22%. Full-pattern common-width refinements try to widen the instrument baseline (for example \(W\approx40\) or \(X\approx7.4\)), but that exceeds the 0.12–0.16° lower envelope of isolated WO₃/Pb₃O₄ peaks. I’m rejecting those globally better but physically biased baselines and retaining \(U=5,\ W=20,\ X=0\). Next I’m testing whether either sharp minor phase needs its own broadening while keeping the accepted PbWO₄ size term.
+
+The broadened Pb₃O₄ model is strongly supported and chemically coherent: size-only broadening refines to ~0.031 µm and \(R_{wp}=6.96\%\), whereas strain runs to its upper bound and remains worse. Its refined Pb₃O₄ and WO₃ fractions are nearly equal by mass (17.5% and 18.0%), exactly the residual-mass relation expected from an equimolar Pb:W charge reacting toward PbWO₄. One coherent unmatched pair remains at ~29.55°/30.82°, which is diagnostic of orthorhombic PbO (massicot), so I’m now testing it—and the physically valid Pb₂WO₅ analogue—only as fourth-phase additions to this stabilized three-phase model.
+
+The fourth-phase trials are finishing now. I’m comparing them on the same stabilized three-phase profile, with particular attention to whether the unmatched 29.55°/30.82° pair is uniquely explained rather than merely absorbed by extra scale.
+
+Massicot PbO is the only convincing fourth phase: it lowers Rwp from 6.96% to 6.27% at 2.29 wt% and accounts for the diagnostic residual pair. The Pb₂WO₅ analogue gives a weaker, diffuse improvement with poor phase R factors; litharge and PbO₂ collapse to essentially zero scale and unstable cells. I’m accepting massicot provisionally and now testing whether its peaks need independent size or strain broadening, then I’ll prune unsupported terms.
+
+The profile challenges separate cleanly. Massicot is visibly broadened and size-only is the defensible model (about 47 nm); its strain-only branch reaches the imposed bound and freezes. PbWO₄ gains nothing from an added strain term and also freezes at the zero bound. WO₃ gives a small, real improvement with either size or strain, so I’m checking its low/mid/high-angle peak widths before choosing one rather than selecting on Rwp alone.
+
+The combined branches are stable: adding WO₃ broadening after massicot gives 59.1% PbWO₄, 19.7% WO₃, 16.4% Pb₃O₄, and 4.77% massicot. WO₃ strain-only is marginally better than size-only and matches the observed increase in width with angle; I’ll retain strain only, not both. Next I’m testing whether the laboratory data support any atomic-coordinate adjustment; unsupported coordinates will remain at their vetted source values.
+
+The atomic tests confirm why a geometry screen is essential. Refining scheelite oxygen alone lowers Rwp, but drives its x coordinate from 0.232 to about 0.303—far outside the vetted scheelite geometry. WO₃ coordinates are strongly correlated; the minor-phase adjustments are much smaller. I’m calculating bond-distance changes now and will retain only coordinates that improve the fit without chemically implausible geometry or instability.
+
+The geometry screen rejects the scheelite oxygen refinement (W–O expands from 1.775 to 2.063 Å). WO₃’s six-coordinate branch is highly correlated and adds little. Pb₃O₄’s Pb²⁺ shift remains chemically plausible and well determined; massicot’s y coordinate is not significant, so I’m pruning that whole coordinate group and keeping massicot at its source geometry. This leaves one restrained atomic-coordinate group in the model.
+
+The retained Pb₃O₄ coordinate branch has now replay-converged (maximum shift/e.s.d. ≈0.019) with no frozen variables. I’m building the clean final project next: full measured range, one specimen-displacement correction, fixed lower-envelope instrument profile, only the supported phase broadening terms, and the single Pb₃O₄ coordinate group. Exports will be generated only after a save/reopen/native replay check.
+
+The final full-range native replay converged cleanly: Rwp 5.768%, Rp 4.001%, maximum shift/e.s.d. 0.010, no frozen variables, and all 8,301 measured points are represented. Final crystalline fractions are 58.62% scheelite PbWO₄, 19.55% monoclinic WO₃, 17.02% Pb₃O₄, and 4.81% massicot PbO. I’m doing the last independent CIF/profile consistency and residual-peak audit before writing the report.
+
+Completed the four-phase Rietveld refinement:
+
+| Phase | Weight fraction |
+|---|---:|
+| Scheelite PbWO₄ | 58.62% |
+| Monoclinic WO₃ | 19.55% |
+| Pb₃O₄ (minium) | 17.02% |
+| PbO (massicot) | 4.81% |
+
+Final fit: Rwp 5.768%, Rp 4.001%, GOF 2.325. The full-range replay converged with no frozen variables.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [PbWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_PbWO4_scheelite.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_monoclinic.cif)
+- [Pb₃O₄ CIF](<ATTEMPT_WORKSPACE>/phase_Pb3O4_minium.cif)
+- [PbO CIF](<ATTEMPT_WORKSPACE>/phase_PbO_massicot.cif)
+
+Fractions are normalized over modeled crystalline material. Absolute systematic uncertainty cannot be established without an external standard or calibrated instrument profile; the minor massicot fraction is least secure.
+

@@ -1,0 +1,32 @@
+I’ll inspect the metadata, diffraction range, available candidate/refinement helpers, and any prior workspace artifacts first. Then I’ll build the phase inventory conservatively, refine the final model in GSAS‑II, and verify that every exported file agrees with the saved project.
+
+The experiment is a Cu Kα reflection scan of a 600 °C ZnO/WO₃ reaction, with no declared product or phase count. I’m now extracting peak positions/widths and checking the local COD/GSAS‑II interfaces so candidate selection starts from chemistry and diagnostic reflections rather than unconstrained whole-pattern fitting.
+
+The phase fingerprints are already coherent: wolframite ZnWO₄ accounts for the 18.9°, 30.4/30.7°, 38.3°, and 53–54° families; monoclinic WO₃ accounts for the 23.16/23.62/24.43° triplet and its 33–34° family; wurtzite ZnO accounts for 31.79°, 34.47°, 36.30°, 47.59°, 56.59°, and 62.90°. I also rejected the nominal alternate ZnWO₄ database entries because they are actually Cu-substituted/disordered compositions, and rejected one old WO₃ coordinate set as physically suspect due to an O–O contact near 1.58 Å. I’m now testing the physically sound WO₃ records under identical refinement settings.
+
+The common-profile comparison is underway. The physically sound monoclinic P2₁/c WO₃ model has converged cleanly with no frozen variables; the triclinic alternative is already leaving substantially more misfit in the diagnostic 23–24° and 33–34° families. I’m letting all candidates fully reconverge before using the ranking.
+
+The inventory test is decisive: the common-profile fit improves from Rwp 8.09% (ZnWO₄ only) to 4.34% after adding WO₃, then to 3.71% after adding ZnO. Before ZnO is added, its full diagnostic series remains in the residual (31.79°, 34.47°, 36.28°, 47.57°, 56.59°, 62.90°, 67.96°), so it is a genuine third crystalline phase rather than overlap compensation. I’m now testing the one remaining supported nuisance effect—a mild WO₃ orientation term tied to the underfit 020 family—while keeping atom coordinates fixed.
+
+The angular-correction test slightly favors a physical specimen displacement (−47.42 ± 1.14 µm) over a constant zero offset, with the same number of parameters; I will use displacement and keep zero fixed. The final profile remains nonnegative across the full scan, has no frozen variables, and its calculated instrumental FWHM rises smoothly from 0.112° at 10° to 0.186° at 100°. No correlation exceeds 0.90.
+
+All requested artifacts are now exported from the saved final project. I’m performing the last cross-check now: GPX replay, CIF composition/cell/geometry, fraction normalization, profile-array identity, and independent Rwp recalculation from `fit.csv`.
+
+Completed and validated. The crystalline phase fractions are:
+
+- ZnWO₄ (P2/c): 72.915 ± 0.164 wt%
+- WO₃ (P2₁/c): 17.244 ± 0.100 wt%
+- ZnO (P6₃mc): 9.841 ± 0.135 wt%
+
+Final fit: Rwp 3.2737%, Rp 2.5703%, GOF 1.1862. Fractions are normalized over crystalline phases; practical systematic uncertainty is larger than the formal values. A weak triclinic distortion of WO₃ cannot be fully excluded.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [ZnWO4.cif](<ATTEMPT_WORKSPACE>/ZnWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [ZnO.cif](<ATTEMPT_WORKSPACE>/ZnO.cif)
+

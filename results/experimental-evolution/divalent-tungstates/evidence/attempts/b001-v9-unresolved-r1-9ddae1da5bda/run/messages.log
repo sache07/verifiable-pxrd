@@ -1,0 +1,70 @@
+I’ll first inventory the measurement, metadata, and reusable refinement utilities, then establish the chemically constrained candidate set before fitting. I’ll keep source competitors separate, health-screen every candidate, and only retain phases that survive replay-stable GSAS-II refinement and residual-family checks.
+
+The chemistry is a constrained Pb–W–O system made from WO₃ and Pb₃O₄ at 500 °C. Because no precursor amounts are reported, absolute Pb:W closure cannot be fixed numerically; I’ll document that limitation and test the charge-balanced likely products (including non-1:1 lead tungstates and residual oxides) against the full pattern rather than assume PbWO₄ alone.
+
+I found exact COD competitors for scheelite and raspite PbWO₄, multiple WO₃ polymorphs, Pb₃O₄, PbO, and PbO₂. I’m now health-screening those records before any refinement and will use whole-pattern matching to distinguish genuine coexisting phases from alternate records of the same phase.
+
+Peak-family matching already shows two coherent inventories: scheelite PbWO₄ accounts for the 27.81/45.13/55.63/72.36° families, while monoclinic WO₃ accounts independently for the 23.53/24.02/24.84° triplet and its 33–34°, 42°, and 50° families. Both sets share an approximately +0.4° angular offset, so I’ll explicitly compare a single zero correction with Bragg–Brentano sample displacement before refining cells.
+
+The neutral baseline confirms both phases with positive scales. Once cells and the common nonnegative U/W/X profile are refined, PbWO₄ requires real phase-specific broadening (about 0.06 µm coherent size), whereas WO₃ remains effectively instrument-limited at the neutral 10 µm value. The current two-phase fit is ~74.2 wt% PbWO₄ / 25.8 wt% WO₃, but \(R_{wp}\approx8.8\%\) remains well above the counting-statistical expectation, so I’m not treating that as final; I’m now interrogating residual families, source alternatives, angular/profile causes, and intensity corrections.
+
+The residuals contain a third, independent fingerprint rather than a profile artifact: 26.81°, 31.22°, 32.55°, 34.47°, 50.29°, 52.52°, and 58.48° align with tetragonal minium Pb₃O₄ after the same angular correction. That is chemically credible as unreacted precursor and satisfies the “two non-coincident families” gate many times over. I’m adding the passing Pb₃O₄ record first with a neutral 10 µm/zero-strain model and scale-only test, then I’ll reconverge the full nuisance model.
+
+A second residual fingerprint remains after minium: the isolated 29.56° maximum, plus 30.89°, 38.25°, 45.7°, 53.6°, and ~60.9° match orthorhombic massicot PbO under the same correction. This is also charge/thermal-context plausible from Pb₃O₄ at 500 °C. I’m applying the same neutral scale-first test to the passing massicot record; its tetragonal litharge and alternate Pbcm records remain competitors, not extra phases.
+
+The four-phase inventory now has positive, replay-stable scales, but the isolated Pb₃O₄ 26.81° line is much broader than the common profile (observed FWHM ≈0.46°, calculated ≈0.19°), while the sharp WO₃ triplet is slightly overbroadened. I’m therefore comparing Pb₃O₄ crystallite-size and microstrain models from the identical saved baseline; this is the targeted profile-cause test required before considering any further phase.
+
+The matched test favors finite Pb₃O₄ size over strain (\(R_{wp}=4.41\%\) vs 4.50%; ~37 nm size versus an implausibly large ~13,000 ppm strain). I’m retaining the simpler size model. This also sharpens the common profile and raises the physically integrated Pb₃O₄ fraction, as expected for a broadened phase. Next I’m checking whether the weak PbO peaks need their own broadening and whether any coherent unmodeled families remain.
+
+Background-order replay supports six Chebyshev terms: four and five terms materially worsen \(R_{wp}\) (5.07% and 4.26%), while eight terms only reach 4.13% by adding highly correlated, oscillatory coefficients. I’m retaining six terms and will now test polarization and surface roughness before any texture model, as required.
+
+Surface roughness is the physically admissible angular-intensity correction: refining Suortti A/B improves \(R_{wp}\) to about 3.25% with interior, significant values, whereas polarization alone tried to exceed its physical limit and is rejected. I’m checking whether polarization remains identifiable once roughness is present; if it stays bound or correlated, it will be fixed and pruned.
+
+The combined polarization/roughness replay is slow and strongly coupled, which itself is a warning against retaining both. I’m letting the saved refinement finish once so I can judge the covariance and then will revert to the simpler physical model if polarization is non-identifiable.
+
+The physically stable baseline is now \(R_{wp}=3.32\%\) versus \(R_{exp}=2.49\%\), with a single positive roughness parameter and no bound nuisance term. Before freezing it, I’m testing only low-order March–Dollase texture: symmetry-distinct axial [001] and diagonal [110] models for the dominant scheelite phase, then I’ll keep a term only if it is replay-stable and complementary.
+
+The low-order texture challenge is negative: both [001] and [110] scheelite March ratios refine back to ~1.00 with negligible fit gain, so texture is rejected. The alternate angular model also needs an implausible ~−0.73 mm sample displacement for essentially the same fit, so the single refined zero correction is retained. I’m now doing one-at-a-time source substitutions so alternate records/polymorphs cannot masquerade as simultaneous phases.
+
+The stable four-phase model is now clear: scheelite PbWO₄, monoclinic WO₃, minium Pb₃O₄, and massicot PbO. I’m finishing the required alternate-structure challenges and watch-list tests, then I’ll replay the selected model from disk and freeze all requested outputs from that reopened project.
+
+The first matched-nuisance comparison batch is running against the same saved baseline. It includes a second scheelite record, raspite PbWO₄, an alternate monoclinic WO₃ record, and orthorhombic Pb₃O₄; each candidate is being tested scale-first before allowing its cell or phase broadening to move.
+
+These refinements are CPU-bound and still progressing without errors. While they converge, the key discriminant remains whether an alternate reproduces the full peak-family pattern under the identical background, instrument, roughness, and broadening treatment—not simply whether it can absorb one strong line.
+
+The first results strongly favor the retained records. Raspite’s scale collapsed to zero; alternate WO₃ and orthorhombic Pb₃O₄ models leave much larger residuals; even the second scheelite record is materially poorer after matched treatment. I’m now checking the PbO polymorph/source alternatives and the reviewed minium record, whose short O–O contact must be weighed against a healthy equivalent model rather than rejected by label alone.
+
+The reviewed minium entry does fit the same phase family, but it is still worse than the healthy retained entry (Rwp 3.48% versus 3.32%) and contains an implausibly short O–O contact, so there is no chemical reason to retain it. A triclinic WO₃ competitor is closer (3.41%) but remains inferior and less stable; the alternate massicot record is poorer and drives its cell nonphysically. I’m now re-challenging the converged inventory by adding plausible polymorph/redox candidates as genuinely neutral, scale-only watch phases.
+
+The watch-list replay behaves as required: raspite and Pb₇W₈O₂₈.₈ collapse to zero scale. Litharge and PbO₂ settle at tiny positive scales but change Rwp by less than 0.001 percentage point; I’ll verify their implied fractions and residual families, but that is not enough evidence to add either phase. The retained four-phase inventory will now be replayed as the final project with only supported terms active.
+
+The full-range disk replay converged twice with maximum shift/esd 0.004, and the reopened project gives Rwp 3.3193%, GOF 1.338. The normalized crystalline fractions are 58.284% PbWO₄, 19.820% WO₃, 17.034% Pb₃O₄, and 4.862% PbO. I’m now health-screening the exported CIFs and independently validating the JSON/project/profile agreement and geometry.
+
+All four final CIFs pass the occupancy/contact health screen. The two tiny watch scales correspond to only 0.050(25) wt% litharge and 0.028(27) wt% PbO₂; their strongest non-overlapped diagnostic lines have absent or negative residuals, while the small positive residuals coincide with retained-phase families. They therefore fail the two-independent-family gate and are excluded.
+
+The chemistry is also internally consistent, with one important limit: the metadata gives no precursor amounts, so no fixed feed ratio exists to enforce. The crystalline result implies Pb:W = 1.0507 and an equivalent Pb₃O₄:WO₃ ratio of 0.3502 (near the 1:3 reaction ratio), with residual precursors and PbO explained by incomplete conversion/redox. I’ve documented that as a consistency check—not as measured feed closure—and noted that amorphous content cannot be quantified.
+
+Completed the four-phase GSAS-II refinement.
+
+| Crystalline phase | Weight fraction |
+|---|---:|
+| PbWO₄, scheelite | 58.284(117)% |
+| WO₃, monoclinic | 19.820(91)% |
+| Pb₃O₄, minium | 17.034(116)% |
+| PbO, massicot | 4.862(75)% |
+
+Fit: Rwp 3.3193%, Rp 2.5548%, GOF 1.3379. Fractions are normalized over modeled crystalline phases; systematic uncertainty and amorphous content are not included.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [PbWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_PbWO4_scheelite.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_monoclinic.cif)
+- [Pb₃O₄ CIF](<ATTEMPT_WORKSPACE>/phase_Pb3O4_minium.cif)
+- [PbO CIF](<ATTEMPT_WORKSPACE>/phase_PbO_massicot.cif)
+
+All final CIFs passed the required health screen, and the reopened project reproduces the submitted fractions and profile exactly.
+

@@ -1,0 +1,52 @@
+I’ll start by reading the measurement metadata and pattern, then inventory the available reference-search/refinement utilities in `learned/`. I’ll use residual-led phase screening and keep alternate polymorphs in play until the common profile model is stable.
+
+The chemistry points first to Ba–W–O products (especially scheelite BaWO₄), but I’m treating that only as an inventory prior. I’m now extracting peak positions/widths and checking exact Ba–W–O, precursor, and plausible intermediate entries in the local COD index before choosing models.
+
+Peak families confirm a three-phase provisional inventory: scheelite BaWO₄ dominates; the 23–25° triplet and repeated higher-angle families support monoclinic WO₃; orthorhombic witherite BaCO₃ contributes separate peaks near 24.2°, 27.8°, 34–35°, and 42.3°. The sole exact BaWO₄ COD record has split half-occupied oxygen sites, so I’m also screening physical scheelite analogues rather than letting that record’s disorder bias the refinement.
+
+I’ve now fixed the trial protocol so every inventory candidate sees the same six-term smooth background, the same single zero correction, common nonnegative U/W/X profile, refined cells, and neutral phase broadening/texture. This makes zero scale meaningful as a record-level rejection rather than an artifact of unequal nuisance models.
+
+The stable baseline now converges without singularities or bound hits: Rwp ≈ 8.61%, with provisional modeled-crystalline fractions near 81.0% BaWO₄, 12.2% WO₃, and 6.8% BaCO₃. I’m re-challenging the inventory with physically distinct WO₃/BaCO₃ records and with each minor phase omitted; this is the key check that the minor scales are tied to coherent families rather than background/profile compensation.
+
+All four first-pass challenges are still refining; none has failed or collapsed immediately. The comparisons include triclinic, alternate monoclinic, and orthorhombic WO₃ plus the split-oxygen BaWO₄ record.
+
+The first challenge set is informative: the fully occupied scheelite prototype beats the split-oxygen BaWO₄ record, and the alternate neutron monoclinic WO₃ record gives the best WO₃ fit so far (Rwp 8.584% versus 8.608% for the older room-temperature record). Triclinic and orthorhombic WO₃ are worse under the same model. I’m retaining the alternate monoclinic structure and now testing carbonate polymorphs and omission.
+
+The carbonate omission test leaves a substantially worse fit (Rwp 8.835%), while ambient orthorhombic witherite is clearly preferred; high-temperature carbonate polymorphs either fit worse or collapse to zero scale. However, the best three-phase model still leaves coherent peaks at about 26.28°, 30.82°, 37.66°, 40.80°, and 63.07°. I’m treating that as an inventory problem and screening Ba-rich tungstates/intermediates before adding any extra profile or texture terms.
+
+The residual family matches Ba₃W₂O₉ essentially reflection-for-reflection after the common zero shift: predicted/observed pairs include 26.26/26.28°, 30.83/30.82°, 37.66/37.67°, 40.80/40.80°, 43.01/43.02°, 51.86/51.85°, 53.71/53.71°, and 63.09/63.07°. That is much stronger evidence than a single coincident line, so I’m adding Ba₃W₂O₉ as a fourth phase and rebuilding the common profile.
+
+Adding Ba₃W₂O₉ drops Rwp from 8.58% to 5.50% and gives a stable ~15 wt% scale, confirming the fourth phase. A single refined polarization correction then resolves the broad low-to-high-angle intensity trend (Rwp 3.59%, polarization ≈0.96). A roughness-only model is slightly worse, while polarization plus roughness is strongly correlated, so I’m pruning the combined model and retaining polarization alone.
+
+The four-phase inventory is now coherent: scheelite BaWO₄, monoclinic WO₃, witherite BaCO₃, and Ba₃W₂O₉. I’ve established a common polarization-corrected U/W/X profile; I’m now testing phase-specific size and strain one phase at a time, retaining only stable, physically supported improvements.
+
+Isotropic crystallite-size trials either hit bounds or worsened the fit, so they are rejected. Isotropic microstrain is unsupported for BaWO₄ but materially improves each of the three minor phases; I’m combining those terms and checking that the improvement survives a full replay without parameter bounds or scale/profile substitution.
+
+The combined microstrain model is stable and reduces Rwp from 3.566% to 3.258%, with no frozen or bound parameters. An unconstrained BaWO₄ oxygen refinement improves the numerical fit but stretches tetrahedral W–O from 1.83 to 1.97 Å, so I am rejecting it as a nonphysical intensity surrogate; the Ba₃W₂O₉ coordinate trial is statistically negligible. I’m now challenging the remaining intensity residuals with symmetry-distinct texture axes.
+
+Texture challenges across axial and diagonal low-index directions for all four symmetries change Rwp by at most 0.004 percentage points and do not improve the dominant phase’s reflection residual; no axis has coherent multi-family support. I’m therefore keeping the final model texture-free and will now replay the accepted model over the complete measured range before exporting the exact project, CIFs, profile, and statistics.
+
+The complete-range replay converged cleanly (last shift/esd 0.002, no SVD zeros, no bound parameters) at Rwp 3.257%. The crystalline-normalized result is 63.51% BaWO₄, 12.32% WO₃, 8.08% BaCO₃, and 16.09% Ba₃W₂O₉. I’m doing final cross-file and geometry checks now so the CIFs, profile, JSON, and GPX all describe the same state.
+
+A final geometry audit exposed one weak point in the initial witherite record: one C–O distance was 1.41 Å. I re-challenged both exact Pnma BaCO₃ records and a SrCO₃ analogue under the accepted common profile. The best physically screened model keeps the supported Ba sublattice but uses the carbonate geometry from the alternate exact BaCO₃ record, giving three 1.24 Å C–O bonds and a slightly better fit; I’m incorporating that correction and replaying the final project again.
+
+Completed the four-phase Rietveld refinement.
+
+| Phase | Weight fraction | CIF |
+|---|---:|---|
+| BaWO₄ | 63.46 wt% | [phase_BaWO4.cif](<ATTEMPT_WORKSPACE>/phase_BaWO4.cif) |
+| WO₃ | 12.37 wt% | [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif) |
+| BaCO₃ | 8.11 wt% | [phase_BaCO3.cif](<ATTEMPT_WORKSPACE>/phase_BaCO3.cif) |
+| Ba₃W₂O₉ | 16.06 wt% | [phase_Ba3W2O9.cif](<ATTEMPT_WORKSPACE>/phase_Ba3W2O9.cif) |
+
+Final fit: Rwp 3.256%, Rp 2.517%, GOF 1.081. The project converged without frozen parameters and was reopened and replayed over all 8,301 points.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+
+Fractions are normalized over modeled crystalline phases. Amorphous content is not measurable without an internal standard; realistic uncertainty for minor-phase fractions is about 1–3 wt%, despite smaller formal refinement errors.
+

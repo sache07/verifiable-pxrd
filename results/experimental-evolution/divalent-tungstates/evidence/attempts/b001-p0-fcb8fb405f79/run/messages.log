@@ -1,0 +1,46 @@
+I’ll inspect the measurement metadata and diffraction profile first, then identify candidate phases and build a quantitative GSAS-II refinement. I’ll preserve the final project and derive every submitted artifact from that refinement.
+
+The chemistry points first to calcium tungstate, but I’m treating that only as a hypothesis: residual precursor or polymorphic/secondary phases must be tested against the full peak set. I’m now checking the available indexing/database and GSAS-II interfaces, then I’ll compare candidate structures to the observed peaks.
+
+The dominant lines form the expected scheelite-CaWO₄ sequence, with a consistent small angular offset. Several strong unmatched lines around 23–24° and 26.4° indicate at least one additional crystalline phase; monoclinic WO₃ is the leading candidate, while CaO remains a testable minor-phase possibility. I’ll now score the available structural entries and inspect whether every significant line is accounted for before quantitative refinement.
+
+Peak-position checks strongly support scheelite CaWO₄ plus monoclinic WO₃: the WO₃ triplet near 23–24°, lines near 26.4°, 33.1/33.4°, and 41.3/41.8° all match one monoclinic cell under the same ≈−0.16° zero offset as CaWO₄. I’ll use full-profile refinements to discriminate the closely related WO₃ entries and test whether adding CaO gives a statistically and physically meaningful improvement.
+
+The first full-profile discrimination run confirms that a monoclinic WO₃ model fits, but closely related historical structures differ substantially in their triplet intensities. The batch is still evaluating the alternative WO₃ cells; after that I’ll inspect residual peaks and quantify whether a third phase is justified.
+
+The residual is dominated by peak-shape mismatch, not missing chemistry: CaWO₄ peaks are visibly broader than the narrow WO₃ triplet, while the current model forces both phases to share one width. I’m introducing phase-specific crystallite broadening before judging residual peaks; this is important because otherwise broad CaWO₄ shoulders can masquerade as weak extra phases.
+
+A third-phase test is now warranted: the residual has a coherent CaO sequence at approximately 32.16, 37.18, 53.34, 64.38, 67.42, and 79.14° rather than a single stray peak. I’ll add CaO at low scale, refine it independently, and require a stable positive fraction plus improvement across that whole sequence before retaining it.
+
+The CaO test converged to a small but positive, multi-line-supported fraction (about 1–2 wt% with a normal narrow profile). Allowing unrealistically extreme CaO broadening inflated that fraction, so I rejected that overfit. I’m now rerunning the complete three-phase model against the competing monoclinic WO₃ structures; this will set the structural choice and a realistic systematic range for the fractions.
+
+The model selection is settled: scheelite CaWO₄, monoclinic WO₃, and trace CaO. Alternative Ca–W–O polymorphs, tungsten suboxides, WO₂/WO₄, and CaO₂ either refined to zero or gave poor Bragg agreement; no fourth phase was defensible. I’m freezing the conservative three-phase model now, generating the CIF/profile/JSON directly from that same final GSAS-II project, and documenting the few residual unidentified lines and systematic fraction uncertainty.
+
+The structural model is now fixed. I’m exporting the phase CIFs and the exact profile from that saved GSAS-II project, then I’ll validate every requested artifact against the project.
+
+The exports are internally complete: all three CIFs contain refined cells and reference coordinates, and `fit.csv` contains all 8,301 measured points. The final report will distinguish formal least-squares precision from the larger, realistic uncertainty caused by overlap, preferred orientation, and the uncalibrated profile.
+
+One validation check exposed a small convention mismatch: the profile-derived \(R_\mathrm{wp}/R_\mathrm{exp}\) ratio and GSAS-II’s degrees-of-freedom goodness-of-fit differ by about 0.2%. I’m reconciling the labels to the values stored in `final.gpx` so the JSON and report use unambiguous statistics.
+
+The statistics are now reconciled to GSAS-II’s degrees-of-freedom definition: \(R_\mathrm{wp}=9.403\%\), \(R_\mathrm{exp}=2.243\%\), and GOF \(=4.192\). I’m running one last cross-check that the JSON fractions and profile values reproduce those stored in `final.gpx`.
+
+Completed and validated against the saved GSAS-II project.
+
+| Phase | Structure | Crystalline fraction |
+|---|---|---:|
+| CaWO₄ | Scheelite, *I* 41/*a* | 87.50 wt% |
+| WO₃ | Monoclinic, *P* 21/*c* | 11.09 wt% |
+| CaO | Rocksalt, *F m* −3 *m* | 1.41 wt% |
+
+Fit: Rwp 9.403%, Rp 6.514%, Rexp 2.243%, GOF 4.192. Fractions exclude amorphous/unidentified material. The trace CaO fraction is semi-quantitative, and minor residual peaks plus the precise WO₃ polymorph remain uncertain.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [CaWO4.cif](<ATTEMPT_WORKSPACE>/CaWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [CaO.cif](<ATTEMPT_WORKSPACE>/CaO.cif)
+

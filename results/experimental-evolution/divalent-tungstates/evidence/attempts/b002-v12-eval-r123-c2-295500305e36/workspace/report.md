@@ -1,0 +1,23 @@
+# Phase analysis
+
+The crystalline product is a three-phase mixture of wolframite-type MgWO4, monoclinic WO3, and periclase MgO. The refined fractions below are normalized over these modeled crystalline phases.
+
+| Phase | Space group | Refined cell (angstrom, degrees) | Weight fraction |
+|---|---|---|---:|
+| MgWO4 | P 2/c | a = 4.695918, b = 5.682891, c = 4.946732, beta = 90.82490 | 0.51373 (51.37 wt%) |
+| WO3 | P 21/c | a = 7.686179, b = 7.539971, c = 10.517471, beta = 136.04965 | 0.41147 (41.15 wt%) |
+| MgO | F m -3 m | a = 4.209908 | 0.07479 (7.48 wt%) |
+
+The full-range replay used all 8301 measured points from 9.9034 to 100.0946 degrees 2theta. It converged at Rwp = 2.2266%, Rp = 1.6990%, Rexp = 1.5271%, and goodness of fit = 1.4613. Formal one-sigma fraction errors from the covariance matrix are 0.00070, 0.00067, and 0.00089, respectively; these are counting-statistical errors and are smaller than the likely model/systematic uncertainty.
+
+## Evidence and model selection
+
+The phase assignment is chemically anchored by the stated 700 C reaction of WO3 with MgO. MgWO4 accounts for the dominant 18.879-degree line, the 30.408/30.734-degree doublet, and many independent middle/high-angle families. Monoclinic WO3 accounts for the characteristic 23.117/23.573/24.378-degree group and its strongly family-dependent line widths. MgO contributes reproducible narrow components at the independent 200, 220, 222, and 400 families near 42.937, 62.258, 78.612, and 94.162 degrees. Removing MgO and reconverging scales, profile, generalized WO3 broadening, and MgWO4 texture worsened Rwp to 2.976%. Around the first two MgO families, local Rwp changed from 1.94% to 25.88% and from 2.13% to 8.96%, respectively. Its final scale is positive and replay-stable.
+
+The crystalline-phase balance gives Mg/W = 1.022 mol/mol and residual MgO/WO3 = 1.046 mol/mol, consistent with partial formation of MgWO4 from nearly balanced residual reactants. No precursor amounts or quantitative starting ratio were supplied in `metadata.json`, so no feed-ratio constraint was imposed. Searches for non-1:1 Mg-W-O products did not reveal a needed exact-formula model, and no coherent residual families remained to justify constructing an analogue.
+
+Retained starting structures were COD 9013902 (MgWO4), COD 2311041 (WO3), and COD 9000499 (MgO). Each was screened with `learned/cif_health.py` before fitting. Exact-formula WO3 competitors included distinct monoclinic, triclinic, orthorhombic, and tetragonal records. At the common neutral checkpoint, COD 2311041 gave Rwp = 8.584%, compared with 8.962% for the next monoclinic record, 10.719% for the triclinic record, 11.640% for the orthorhombic record, and 15.441% for the tetragonal record. After profile and MgWO4-texture challenges, the selected model reached about 2.23%, while the next monoclinic and triclinic competitors remained at 6.59% and 8.97%. Thus the source ranking survived elaboration rather than relying on a single database record.
+
+The final profile retains a 9-coefficient smooth Chebyshev background; fixed Cu Kalpha1/Kalpha2 wavelengths and 0.5 intensity ratio; one zero correction (-0.01892 degrees); nonnegative common U/W/X terms; and refined polarization (0.5299). MgWO4 has a replay-stable [010] March-Dollase ratio of 1.3008, and WO3 has a small [001] ratio of 1.0134. WO3 requires symmetry-compatible generalized microstrain: at the final checkpoint, neutral, isotropic, uniaxial, and generalized models gave Rwp values of 5.951%, 2.366%, 2.312%, and 2.227%. The generalized broadening polynomial remained positive for all 439 calculated WO3 reflections. Size trials collapsed to the neutral 10-micrometre boundary or became singular, and MgWO4/MgO strain trials went nonphysical; those terms were removed. Roughness and higher background terms were unsupported or highly correlated. No repeated left/right peak asymmetry survived isolated-family checks, so SH/L remained fixed rather than being released.
+
+The exported final CIFs all pass the same health screen, with no invalid occupancies or hard contacts. Atomic coordinates were held at the selected literature values because this multiphase laboratory pattern does not support a reliable independent coordinate refinement; the newly determined structural quantities are principally phase identity and lattice metrics. The normalized crystalline fractions are stable among the accepted replayed models, but absolute fractions including any amorphous material cannot be determined from this analysis. A realistic systematic uncertainty is larger than the formal errors, especially for the partitioning between MgWO4 and the broad WO3 phase.

@@ -1,0 +1,40 @@
+I’ll inspect the measurement metadata and diffraction pattern first, then identify candidate phases and build a quantitative multiphase GSAS-II refinement. I’ll keep the submitted CIFs, profile, JSON, report, and the exact final project mutually consistent.
+
+The chemistry points first toward calcium tungstates, but I’m treating residual oxides and alternate Ca–W–O stoichiometries as real candidates rather than assuming a single CaWO₄ product. I’m now extracting peak positions and checking the supplied structure library/index against that chemical space.
+
+Peak accounting now strongly supports scheelite CaWO₄ plus unreacted low-temperature WO₃: the WO₃ triplet near 22.94/23.42/24.23° and its 26.44, 28.81, and 33.10/33.43° lines are distinct from the CaWO₄ series. I also see weak lines where CaO could occur, so I’ll test whether adding CaO is statistically and chemically justified rather than folding those counts into the background.
+
+The line positions resolve an important ambiguity: the 28.54/28.81° pair belongs to two CaWO₄ reflections, not two phases. Applying the same ≈−0.16° instrument offset to the remaining lines matches monoclinic room-temperature WO₃ (P2₁/n), including the 33.10/33.43° split and the 41.31/41.76° pair. I’m moving from peak matching to full-profile trials now, including alternate WO₃ settings and an explicit CaO inclusion test.
+
+The first two-phase refinement is converging and already drops the weighted profile residual from 35.5% to 18.4% once the cells and zero offset are allowed to adjust. The fitted scheelite cell stays essentially at the literature value; the WO₃ cell moves only modestly, which is a good sign that the phase assignment is not compensating through an unphysical lattice. I’m letting the profile/size stages finish before comparing models.
+
+The initial full-profile result is 87.5 wt% CaWO₄ and 12.5 wt% WO₃, but I’m not accepting it yet: an unconstrained six-parameter profile fit produced nonphysical individual U/V/W terms even though the net peak widths remained valid. The model-comparison runs are in progress; after selecting the phase model I’ll use a restrained, lower-correlation profile parameterization so the reported fraction and uncertainties are defensible.
+
+The alternatives are slower than the first pass because they are running side-by-side and some lower-symmetry models carry many more reflections. No decision is being made from elapsed time; I’m comparing the same objective profile statistics, refined cells, and whether any added phase receives a stable positive scale.
+
+The CaO inclusion is chemically coherent, not just a small numerical improvement. The refined crystalline fractions are about 84.1% CaWO₄, 12.6% WO₃, and 3.2% CaO; the residual precursor mass ratio (WO₃:CaO ≈ 3.94) is essentially the stoichiometric 231.84:56.08 ratio (4.13) expected from unreacted 1:1 precursors. I’m retaining CaO provisionally and checking that its characteristic lines, cell, and scale remain stable under a physically constrained final profile model.
+
+The preferred-orientation test is decisive: a mild [001] March–Dollase correction (coefficient ≈0.88) improves Rwp from 12.0% to 10.6%, while [100], [101], and [112] all fit worse. Refining atomic coordinates gives only a marginal gain and drives oxygen positions implausibly far, so I’m keeping literature coordinates fixed and treating the [001] texture correction as the justified intensity adjustment.
+
+The final texture-corrected model is now numerically stable: repeated refinements converge without singularities (maximum shift/esd ≈0.02), and the minor CaO cell settles at ~4.819 Å, essentially the 4.817 Å reference value. The phase fractions are stable at roughly 84.3/12.4/3.3 wt%; profile-model alternatives shift them by about 1–2 wt%, which I’ll carry into the uncertainty discussion rather than reporting only the smaller covariance errors.
+
+The final all-points refinement is complete and converged cleanly (maximum shift/esd 0.007). It gives 84.30 wt% CaWO₄, 12.40 wt% monoclinic WO₃, and 3.29 wt% CaO, with Rwp 10.59%. I’m doing a final cross-check now that the CIFs parse, the fractions sum to unity, `fit.csv` matches the arrays stored in `final.gpx`, and the JSON statistics reproduce from that project.
+
+Identified three crystalline phases, normalized over crystalline material:
+
+- CaWO₄ scheelite: 84.30 wt%
+- Monoclinic WO₃: 12.40 wt%
+- Cubic CaO: 3.29 wt%
+
+Final fit: Rp 7.424%, Rwp 10.588%, GOF 4.721. Realistic model uncertainties are approximately ±2, ±1, and ±1 absolute wt%, respectively; CaO is least certain.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [CaWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_CaWO4.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [CaO CIF](<ATTEMPT_WORKSPACE>/phase_CaO.cif)
+

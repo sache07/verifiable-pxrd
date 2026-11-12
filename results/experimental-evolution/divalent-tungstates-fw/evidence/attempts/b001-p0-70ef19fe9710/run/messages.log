@@ -1,0 +1,46 @@
+I’ll inspect the pattern, metadata, and the framework’s analysis tooling first, then identify candidate phases and carry the best model through a GSAS-II refinement. I’ll keep the phase fractions tied to the submitted project and exported profiles so the result is reproducible.
+
+The chemistry is PbCO₃ + WO₃ at 550 °C, so PbWO₄ is plausible, but the task deliberately allows residual precursors and Pb–W–O intermediates. I’m now extracting the experimental peak set and querying the frozen structure library rather than assuming a single-phase product.
+
+Peak positions now show three coherent families: scheelite-type PbWO₄ plus both residual precursors, PbCO₃ and monoclinic WO₃. For example, the WO₃ 23.15/23.61/24.37° triplet appears at 23.64/24.12/24.91°, while PbCO₃’s 24.83/25.53° doublet appears at 25.36/26.05° under the same specimen shift. I’m testing whether PbO or another minor phase is also required before fixing the phase count.
+
+The three-phase model already reaches Rwp ≈ 6.9% before detailed line-shape refinement, which strongly supports those assignments. The initial unconstrained cell/zero step exposed a near-perfect zero–height correlation, so I’m separating those terms in the next pass; otherwise the fit can look good while the cell metrics drift unphysically.
+
+With physically bounded instrument and specimen terms, the three-phase fit is now Rwp = 3.486%, only 0.122 percentage point above the Poisson minimum reported by GSAS-II. The provisional crystalline fractions are about 65.4% PbWO₄, 18.5% PbCO₃, and 16.1% WO₃. I’m running the decisive PbO inclusion test; a real fourth phase must retain a positive scale and remove a coherent residual family, not merely shave noise.
+
+PbO refined immediately to zero scale and made its cell/profile parameters singular, so it is rejected; there is no defensible fourth crystalline phase. I’m now refining only structurally meaningful degrees of freedom: the scheelite oxygen site, the heavy W sites in WO₃, and one shared isotropic displacement parameter per phase. This should improve the model without turning weak oxygen coordinates into unconstrained noise-fitting parameters.
+
+The WO₃ structure is the remaining crystallographic ambiguity: monoclinic and triclinic WO₃ have nearly coincident peak positions. I’m comparing them under identical bounded refinements; the winner must improve the split-line intensities and keep heavy-atom shifts modest, not just converge to the same chemical formula.
+
+The unrestricted light-atom refinement reached the numerical noise floor but produced nonphysical WO₃ contacts (O–O ≈ 0.88 Å) and distorted carbonate bonds, so I’m rejecting that overfit. I’m screening two alternative monoclinic WO₃ references with better starting geometry; this will decide whether to keep the best-fitting older model with explicit coordinate uncertainty or adopt a cleaner equivalent structure.
+
+The newer WO₃ model is physically cleaner but fits essentially identically; the older P2₁/c reference is favored by only ~0.002 Rwp point after structural refinement, below a defensible polymorph distinction. I’ll retain monoclinic P2₁/c WO₃, keep its oxygen framework reference-based, and state that detailed oxygen coordinates are not reliably determined. I’m now checking the discrete preferred-orientation models allowed by the measurement geometry.
+
+The texture screen found a real, specific signal: PbCO₃ refines to March–Dollase [100] = 1.14 and lowers Rwp from 3.436% to 3.405%; WO₃ [010] adds a smaller improvement to 3.396%. Surface roughness was non-identifiable and ran to correlated bounds, so it will stay off. I’m doing the last line-shape check for phase-specific uniaxial microstrain.
+
+The physically cleaner P2₁/c WO₃ reference wins after the same texture treatment: Rwp = 3.3735%, essentially at the GSAS-II statistical minimum of 3.3643%, with plausible MD ratios (PbCO₃ [100] ≈ 1.141; WO₃ [010] ≈ 1.073). This resolves the WO₃ model choice and avoids the older reference’s 1.58 Å O–O contact. I’m freezing this model, validating exported CIF geometry/project consistency, and generating the requested files.
+
+All requested deliverables are written. I’m now running an independent no-refinement replay of `final.gpx` against the original pattern, then I’ll cross-check the replayed fractions/profile and the exported CIFs against the submitted files.
+
+The independent replay succeeded: it optimized zero parameters, left the project unchanged, regenerated the profile from atomic structure factors (ignoring saved calculated arrays), and reproduced the three phase fractions exactly with no profile-review flags. I’m checking numerical file consistency and CIF/project agreement now.
+
+One compatibility issue surfaced in the submission-format check: the numerical profile is correct, but the angle header included a unit suffix that the framework’s profile reader does not recognize. I’m changing only that header (`two_theta_deg` → `two_theta`); all 8,301 data rows remain untouched.
+
+Identified three crystalline phases:
+
+- PbWO₄ (stolzite/scheelite): **65.23 wt%**
+- PbCO₃ (cerussite): **18.86 wt%**
+- WO₃ (monoclinic): **15.91 wt%**
+
+Fractions are normalized over crystalline material; estimated systematic uncertainty is about ±2 wt% absolute. Final fit: **Rwp 3.3735%, Rp 2.6650%, χ² 1.0054**. Independent replay reproduced the profile and fractions without refinement.
+
+Deliverables:
+
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-70ef19fe9710/workspace/final.gpx)
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-70ef19fe9710/workspace/result.json)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-70ef19fe9710/workspace/fit.csv)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-70ef19fe9710/workspace/report.md)
+- [PbWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-70ef19fe9710/workspace/phase_1_PbWO4.cif)
+- [PbCO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-70ef19fe9710/workspace/phase_2_PbCO3.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-70ef19fe9710/workspace/phase_3_WO3.cif)
+

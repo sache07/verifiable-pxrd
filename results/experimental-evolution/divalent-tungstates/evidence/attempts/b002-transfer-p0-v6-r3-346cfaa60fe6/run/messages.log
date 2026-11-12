@@ -1,0 +1,115 @@
+I’ll first inspect the measurement metadata, pattern range/resolution, and the reusable workflow files in `learned/`. Then I’ll build a chemically screened phase inventory, fit it in GSAS-II, and validate the exported CIFs, fractions, and profile against the saved project.
+
+The chemistry points first to BaWO₄, but the starting materials and 750 °C synthesis make residual WO₃/BaCO₃ or a polymorph plausible. I’m treating those as hypotheses only: I’ll extract the peak families and screen database records before accepting any phase into the refinement.
+
+Two coherent families are already evident. Scheelite BaWO₄ accounts for the dominant 26.69°, 32.04°, 43.19°, 48.98°, 53.68/53.81°, and higher-angle sequence. A monoclinic WO₃ family independently accounts for the 23.40/23.88/24.65° triplet and the 33.56/33.83/34.45° group. Both show the same roughly +0.25° instrumental/specimen offset, which is a useful cross-check rather than a reason to distort either cell. BaCO₃ remains on the watch list pending a common-profile test.
+
+The sole exact BaWO₄ database record has a correct average composition and scheelite symmetry, but its oxygen sublattice is represented as two half-occupied alternatives; taken literally it gives implausible 1.47 Å/1.80 Å split W–O contacts. I’m therefore invoking the supplied stoichiometric-analogue search to locate an ordered scheelite parent and will compare it against the exact record under the same nuisance/profile model. This is the source-screening step requested in P0, not an automatic substitution.
+
+I’ve set up the first restrained comparison with: six-term smooth Chebyshev background, fixed Cu Kα₁/Kα₂ wavelengths and 0.5 ratio, one specimen-displacement correction, neutral phase size/strain/texture/roughness, fixed atomic coordinates, independently refined phase scales and cells, and only common nonnegative-profile candidates U/W/X. I’m now checking whether this baseline converges before branching across the structural records.
+
+The first valid replay exposed exactly the baseline failure P0 warns about: once U was released, W drove negative while U/X compensated. I’m rejecting that profile even though Rwp improved, because it is physically invalid and collapses the low-angle Gaussian width. I’ll step back to the common baseline, compare W/X versus U/W with nonnegative terms, and only then resume phase-model comparisons.
+
+The physically valid common profile is converging with W fixed at zero, U≈10 and X≈7.2; the Gaussian-only U/W alternative improves Rwp superficially but drives U negative and is rejected. The current batch is comparing the ordered BaMoO₄-derived model, the disordered exact BaWO₄ record, the ordered SrWO₄-derived model, and monoclinic/triclinic WO₃ records under that same accepted U/X profile.
+
+The first source comparison favors an ordered oxygen sublattice, but the best numerical trial so far (SrWO₄ parent) stretches W–O to about 1.97 Å after transfer to the Ba cell, which is too long to accept uncritically. I found two better ordered parents from the analogue inventory: room-temperature PbWO₄ and EuWO₄. After isovalent cation substitution and imposing the refined Ba cell they give fourfold W–O ≈1.84–1.86 Å and eightfold Ba–O ≈2.72–2.74 Å. I’ll compare those before selecting the structural model.
+
+The residual inventory has revealed a third coherent phase that the two-phase fits were forcing into the background/profile: rhombohedral Ba₃W₂O₉. Its independent sequence matches 30.821°, 26.279°, 40.797°, 17.760°, 27.800°, 37.656°, 51.837°, 63.073/63.823°, and 88.576° after the same displacement correction. That is too many unique families to dismiss. I’m adding it to the inventory and rebuilding the common profile before re-testing BaCO₃.
+
+The Ba₃W₂O₉ record passes the physical screen: ordered R‑3c, full occupancies, W in a distorted 3×1.90/3×2.23 Å octahedron, and Ba–O around 2.87–2.92 Å. The three-phase refinements are still converging; once stable, I’ll re-establish the profile and challenge BaCO₃ plus the discarded WO₃ polymorphs against the resulting residual.
+
+The cross-phase angular intensity trend is real. A free polarization term improves the fit but refines to 1.096 (unphysical), while polarization plus roughness is >98% correlated with the BaWO₄ scale and is therefore rejected as a scale surrogate. A single nonnegative Suortti roughness-B term is replay-stable and gives essentially the same improvement without covariance warnings; the two-term roughness model is >99% self-correlated and is rejected. I’m checking the physically expected unpolarized-detector limit before fixing this baseline.
+
+The common-profile fit still leaves phase-dependent width signatures, so I’m testing one physical broadening term at a time. The first completed trial supports modest Ba₃W₂O₉ isotropic microstrain (~850 ± 105 µstrain) with a small replay-stable improvement; the remaining size/strain trials are still running.
+
+A direct zero-offset challenge is slightly better than specimen displacement and, more importantly, yields WO₃ and Ba₃W₂O₉ cells essentially at their literature metrics while matching their low/mid-angle families with a constant ≈0.279° offset. I’m switching to that single zero correction and rebuilding from it. The previous displacement term is discarded; I’m now testing symmetry-distinct BaWO₄ texture axes against the remaining coherent intensity residuals.
+
+BaWO₄ texture trials are essentially null for [001], [100], and [110] (March–Dollase 0.995–1.011). A [112] term moves to 1.118 but only improves Rwp by 0.007 percentage point and conflicts with the higher-order [336]-type residual, so I’m treating it as a dominant-peak surrogate and pruning it. I’m applying the same symmetry-distinct challenge to the two minor phases before freezing texture at neutral.
+
+The texture batch is mostly still converging. One completed Ba₃W₂O₉ [100] trial gives only a 0.003-point Rwp change with MD = 0.955 ± 0.012—too small on its own to justify texture. I’ll wait for the symmetry-distinct alternatives and keep only a replay-stable, multi-family effect.
+
+The apparent WO₃ [110] texture gain is confined to the 23–25° and 32.7–34.9° clusters; it worsens every tested higher-angle WO₃ window. That fails the multi-family consistency check, so all texture terms remain neutral. I’m now challenging the broadened WO₃ phase with uniaxial size/strain along symmetry-distinct directions; this will show whether the two accepted isotropic terms are masking family-dependent widths.
+
+The anisotropy trials are computationally heavier because each one replays the full 10–100° range with all cells, scales, profile, roughness, and background active. No trial has finished yet; I’m waiting for convergence rather than judging intermediate values.
+
+I’ve reached a stable three-phase model—scheelite BaWO₄, monoclinic WO₃, and rhombohedral Ba₃W₂O₉—and am finishing the last anisotropic-broadening and precursor watch-list challenges before locking and replaying the final GSAS-II project. The provisional crystalline fractions are about 67.8%, 16.5%, and 15.7%, respectively.
+
+The precursor re-challenge materially changed the inventory: room-temperature witherite BaCO₃ is strongly supported (about 5.6 wt% in the four-phase crystalline model, ~37σ on its scale) and lowers Rwp from 5.07% to 4.68%. I’m therefore rebuilding the common profile with all phase broadening reset, as required, before reassessing widths, texture, and fractions.
+
+The rebuilt four-phase baseline is physically coherent and replay-stable. A single low-angle roughness term remains strongly warranted (Rwp 5.57% → 4.84%); the common U/X profile stays nonnegative, the zero offset remains ~0.279°, and the BaCO₃ cell refines close to the room-temperature witherite reference. I’m now comparing size and strain independently for each phase under that common baseline.
+
+Independent width trials now support isotropic strain for WO₃, Ba₃W₂O₉, and BaCO₃. Adding crystallite-size terms afterward is not replay-stable or statistically supported (the WO₃ size term falls below 3σ; the others collapse), so those terms will be pruned. The unusually broad carbonate is being challenged with symmetry-appropriate anisotropic strain rather than allowing scale/width compensation to dictate its fraction.
+
+The combined isotropic-strain model replays cleanly at Rwp ≈4.62%. The size-first and strain-first paths agree that extra size terms are unstable or insignificant, so I’m retaining strain alone while the anisotropy batch checks whether that apparent strain is genuinely direction-dependent.
+
+The anisotropic-width alternatives provide only tiny Rwp changes (≤0.0023 percentage point) with directional differences around 2σ or less, so isotropic strain remains the defensible model. The final nuisance check now compares no texture against axial and diagonal March–Dollase directions for all four symmetries; any term must improve several isolated families, not just one cluster.
+
+The texture replay batch is still running through the four phase symmetries; no changes are being applied to the accepted project during these comparisons. Once complete, I’ll prune any one-cluster or bound-driven term, reopen the selected model, and export directly from that exact project.
+
+The nuisance comparison is computationally longer than the scale/cell refinements because each direction is saved, reopened, and replayed over the full 9.9–100.1° range. The exact replay requirement is being preserved; the working four-phase model itself remains stable at Rwp ≈4.62%.
+
+The apparent texture gains fail the family-consistency test: Ba₃W₂O₉’s net improvement is entirely accounted for by the 30.8° cluster, BaWO₄ by the 32° cluster, and the WO₃/BaCO₃ terms are marginal and worsen higher-angle regions. I’m rejecting texture and completing the final W, SH/L, polarization, and two-roughness-parameter checks before export.
+
+One final check exposed a real baseline deficiency: releasing the nonnegative Gaussian constant term W lowers Rwp from 4.62% to 3.31%, while U, W, and X all remain positive. I’m accepting that common-profile correction and restarting the phase-width comparisons from a neutral four-phase U/W/X baseline. SH/L remains strongly tied to zero; free polarization is ~98% correlated with scale/roughness; and the second roughness term is >91% correlated with the first, so those stay pruned.
+
+The neutral four-phase U/W/X baseline itself replays at Rwp 3.636%, confirming W is a common instrumental/profile correction rather than a phase-width surrogate. I’ve reset every phase to neutral size/strain again and am rerunning all eight one-term width trials against this corrected profile.
+
+The corrected-profile width batch is still replaying across all phases. This is the key safeguard against the earlier broadening terms surviving only because the common profile was incomplete; only terms that remain positive, significant, and path-stable here will enter `final.gpx`.
+
+With U/W/X established, the same three isotropic strain terms remain very strong (16–20σ) and the combined model reopens at Rwp 3.3063%. The carbonate fraction is width-sensitive—about 8.7% in the broad-strain model—so I’m explicitly rechecking complementary size terms and will report that systematic limitation even if the formal covariance error is small.
+
+The complementary size terms all collapse or remain below ~1.3σ in the corrected combined model, so strain-only is confirmed. I’m repeating the anisotropy and texture challenges against this exact U/W/X baseline; this avoids carrying over any conclusions from the earlier incomplete common profile.
+
+The corrected-profile anisotropy trials give only 0.001–0.003 Rwp-point changes and do not improve isolated low-, mid-, and high-angle families consistently; their gains are localized and offset by worsened families. I’m retaining isotropic strain and running the final no-texture comparisons now.
+
+The final texture batch is progressing through the orthorhombic carbonate directions. The accepted model remains unchanged during these trials; after this batch, the remaining work is deterministic: exact-project replay, CIF/profile export, validation, and the uncertainty report.
+
+The final texture re-challenge also fails: the best WO₃ term gains almost entirely at 23–25° while worsening 33–35°, and the best BaWO₄ term is dominated by the 32° cluster with net degradation elsewhere. Texture remains off. I’m now auditing the remaining positive residual peaks for any coherent unmodeled phase before freezing the project.
+
+The residual audit finds no coherent unmodeled family: the largest positive residuals coincide with reflections of the four accepted phases, while the low-angle excursions are smooth baseline noise. The exact final project has now replayed at Rwp 3.3063% and exported; I’m validating CIF chemistry, geometry, fraction normalization, and file/project agreement before writing the report.
+
+The exported CIF geometry check flagged the chosen 1960 WO₃ record as having one implausibly long sixth W–O contact (~2.88 Å). Per the physical-screen rule, I’m not accepting that record merely because it fits: I’m replaying the better-resolved 1966 neutron P2₁/c record under the exact same four-phase nuisance model and will use it if the fit remains competitive.
+
+The 1966 neutron WO₃ model is decisively preferable: it is fully octahedral (W–O 1.71–2.16 Å), improves Rwp from 3.3063% to 3.2201%, and replays identically after reconverging background, all scales, zero, cells, U/W/X, roughness, and strains. I’m adopting it and doing the abbreviated width/anisotropy/texture replay required after a source change.
+
+The adopted-source replay is stable; the current three size-complement trials are testing whether the improved WO₃ intensities alter the earlier strain-only conclusion. The submitted files will be regenerated only after these source-specific checks complete.
+
+The physical WO₃ source changes the width conclusion slightly: both isotropic size (0.310 ± 0.054 µm) and strain (1298 ± 285 µstrain) remain significant from independent seeds and converge to the same solution, though correlated at 0.87. I’m retaining both and performing the final source-specific anisotropy/texture family checks.
+
+The source-specific nuisance batch is underway. Its purpose is narrow: verify that no directional broadening or texture term gains support solely because the physically improved WO₃ structure redistributed intensities. The accepted project remains the isotropic, no-texture replay meanwhile.
+
+The batch has completed the anisotropy comparisons and is now replaying texture directions. Each candidate is being reopened over the full angular range; localized gains will again be rejected unless low-, mid-, and high-angle isolated families improve coherently.
+
+The full source-specific replay is still running through the final carbonate texture axes. No candidate has altered the submitted files yet; once the comparisons finish, I’ll inspect the angular distribution of any nominal improvement before locking the model.
+
+The source-specific replay confirms the prior pruning: anisotropic broadening gains are small and angle-localized, and the nominal BaWO₄ texture gain is again dominated by the 32° family while degrading several mid/high-angle regions. I’m keeping isotropic/no-texture. One last geometry audit is checking alternate witherite records because the first BaCO₃ source has an unusually long C–O bond.
+
+A GSAS-compatible transform of the physically regular 1935 witherite model refines cleanly, preserves the ~8.1% carbonate fraction, and slightly improves Rwp to 3.2125%. Its C–O distances are 1.23 Å rather than the implausible 1.41 Å contact, so I’m adopting it and repeating only the carbonate-specific width/direction checks.
+
+The final carbonate-specific batch is replaying. The key fraction is already stable across the two carbonate records (~8.1%); this last pass determines only whether the physically improved model warrants any extra size, anisotropy, or texture parameter.
+
+The physical carbonate model needs no extra term: size collapses, anisotropy changes Rwp by <0.0002 point, and all texture ratios are within 1σ of unity. The final accepted model is now fixed; I’m regenerating every deliverable from its exact reopened project and then doing one last agreement check.
+
+All requested outputs have been regenerated from the adopted physical-source project. The final numbers are 63.63% BaWO₄, 15.67% Ba₃W₂O₉, 12.59% WO₃, and 8.10% BaCO₃; I’m running the last machine check that `final.gpx`, the CIFs, `fit.csv`, and `result.json` agree numerically.
+
+Completed and validated the four-phase refinement.
+
+| Phase | Crystalline weight fraction |
+|---|---:|
+| BaWO₄ | 63.63 ± 0.16% |
+| Ba₃W₂O₉ | 15.67 ± 0.10% |
+| WO₃ | 12.59 ± 0.13% |
+| BaCO₃ | 8.10 ± 0.19% |
+
+Fit statistics: Rwp 3.2125%, Rp 2.4834%, Rexp 3.0170%, goodness-of-fit 1.0667.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- CIFs: [BaWO₄](<ATTEMPT_WORKSPACE>/phase_BaWO4.cif), [Ba₃W₂O₉](<ATTEMPT_WORKSPACE>/phase_Ba3W2O9.cif), [WO₃](<ATTEMPT_WORKSPACE>/phase_WO3.cif), [BaCO₃](<ATTEMPT_WORKSPACE>/phase_BaCO3.cif)
+
+Fractions sum to 1.0 and are normalized over modeled crystalline material; amorphous content cannot be determined without an external standard. The quoted uncertainties are formal covariance errors and exclude structural-model and microabsorption systematics.
+

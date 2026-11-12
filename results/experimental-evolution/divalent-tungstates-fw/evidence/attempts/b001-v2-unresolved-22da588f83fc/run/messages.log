@@ -1,0 +1,62 @@
+I’ll build this as a defensible cumulative Rietveld analysis: first inspect the public pattern/metadata and available refinement tooling, then identify coherent phase candidates, refine the inventory and nuisance model, and finally replay and cross-check the submitted GSAS-II project against the exported CIFs, fractions, and profile. I’ll keep structural coordinates fixed until the phase/profile model is stable and will report any ambiguity rather than forcing an assignment.
+
+The public chemistry points first to Ca–W–O products, but I’m treating CaWO₄, residual CaO/WO₃, and off-stoichiometric calcium tungstates as hypotheses—not conclusions. I’m now extracting the peak families and checking the offline published-structure catalog so candidate selection is based on the measured pattern and chemically valid structures.
+
+The peak families support a three-phase starting inventory: scheelite CaWO₄ dominates; the 23–24.5° triplet and its higher-angle companions require monoclinic WO₃; and the independent rocksalt series near 32.1, 37.4, 53.4, 64.4, and 67.4° supports residual CaO. I’m moving these into matched GSAS-II refinements, while retaining orthorhombic/triclinic WO₃ and alternative CaWO₄ parents as swap tests rather than choosing from stick patterns alone.
+
+The strongest currently unmodeled residuals form a coherent double-perovskite-like series (about 19.35, 22.04, 31–32, 36–37, 45.14, 56–57, and 65.82°). I’m therefore testing Ca₃WO₆ models derived independently from Ca₂MgWO₆, Sr₂MnWO₆, and Ca₃UO₆ parents—preserving their distinct parent sites while mapping them to Ca—alongside CaO deletion/addition models. This is a genuine inventory test: all candidates receive the same low-flexibility background, position, cell, and profile treatment.
+
+The first controlled comparison is decisive enough to keep working on the missing phase: the Sr₂MnWO₆-derived Ca₃WO₆ model lowers Rwp from 16.50% (CaWO₄ + WO₃) and 16.41% (adding CaO) to 13.25%, with a refined abundance near 12 wt%. The independent Mg-parent topology also improves the fit, but less strongly. I’m now checking additional same-topology parents and the four-phase CaO-retention model before accepting or deleting CaO.
+
+The common-profile pass exposes the expected masking problem: freeing all instrumental terms can force W and Y negative, which is not an acceptable model even though it lowers Rwp. I’m rejecting that branch and reallocating the width variation to physically interpretable phase-specific size/strain terms, with the common instrument profile kept positive. The zero-only position branch is retained for now; shift-only and three joint restarts produce essentially the same fractions, but no better fit, and the joint solution is 99.9% correlated.
+
+With physically valid common width terms held fixed, the roughness correction is strongly supported and reproducible: three starts converge to A ≈ 0.358 and B ≈ 0.37, Rwp ≈ 7.61%, and essentially identical fractions (~73.1% CaWO₄, 14.7% WO₃, 12.1% Ca₃WO₆). The remaining residual is now mostly reflection-specific intensity and anisotropic peak-shape structure, so I’m screening phase-by-phase texture and directional broadening before any coordinate refinement.
+
+The three-phase inventory is now well supported: scheelite CaWO₄, monoclinic WO₃, and a Ca₃WO₆-type ordered double perovskite; CaO fails the deletion/significance test. I’m finishing the matched analogue swaps and the mechanism-complete profile pass before allowing any atomic-coordinate refinement.
+
+The broad residual is reproducible across roughness starts, and phase fractions remain stable. I’ve retained the physical zero-only displacement branch, positive profile coefficients, and a modest WO₃ [001] texture term; next I’m comparing smooth background families at equal complexity, then phase-specific anisotropic broadening.
+
+The phase-specific width test found a strong, restart-stable WO₃ anisotropy (about 0.055 µm equatorial versus 0.020 µm along b), plus a smaller symmetry-consistent CaWO₄ [001] effect. I’m now testing whether strain can replace or legitimately complement those size terms; any negative or start-dependent broadening branch will be discarded.
+
+The profile pass now has a physically valid, restart-stable branch: positive instrumental coefficients, roughness, CaWO₄ [001] and WO₃ [010] size anisotropy, and WO₃ [001] texture. Fractions vary by only about 0.2 percentage point across the admissible instrumental-width grid. I’m applying that exact model in fresh restarts to every serious Ca₃WO₆ parent and WO₃ structure source.
+
+The analogue swap changed the structural conclusion in an important way: an exact-composition Ca₃UO₆ parent mapped U→W outperforms the multication Sr₂MnWO₆ mapping by ΔRwp ≈ 0.45% and remains chemically/topologically closer. Both are physically screenable, so I’m retaining both through the final coordinate tests rather than selecting on that early advantage alone.
+
+The repeated profile pass resolved the earlier negative-strain branch without forcing a bound: a small positive instrumental U=2 and a positive CaWO₄ microstrain (~160 ppm) reproduce the same curve and fractions. The Ca₃WO₆ peaks also support a much larger ~0.9% strain term, so I’m checking its start-to-start stability and its effect on fractions before deciding whether that broadening is genuinely determined.
+
+The inventory and profile are now stable with no active bounds or frozen parameters: three positive strain terms, a reproducible roughness/polarization subspace, and only the strongly supported WO₃ texture. Atomic refinement is starting now, one element/site block at a time; Ca₃WO₆ oxygen motion is being screened with broad W–O and B-site Ca–O restraints.
+
+The coordinate tests are separating signal from overfit cleanly. CaWO₄ supports a small oxygen shift; unconstrained WO₃ and Ca₃WO₆ site motions often create large coordinate jumps or short bonds and are being rejected. A one-parameter chemical adaptation of the U-parent oxygen cage toward 1.93 Å W–O bonds is physical and improves monotonically, so I’m comparing that fixed adapted cage against the Sr/Mn-parent finalist under the exact same final profile model.
+
+The phase inventory and nuisance model are now stable. I’m finishing the last selective atomic-coordinate test—whether small tungsten shifts in monoclinic WO₃ survive matched restarts—then I’ll run deletion/physical screens and generate the submission files from the replayed GSAS-II project.
+
+The WO₃ result is decisive enough to retain only the W1 coordinate block: two independent nuisance starts converge to the same coordinates and fractions (Rwp 4.895%), while moving both W sites drives the surface-roughness term negative and is rejected. I’m now checking bond geometry and the necessity of each phase against the fully equilibrated model.
+
+The deletion tests confirm both minor phases are essential: omitting WO₃ raises Rwp to 15.27%, and omitting Ca₃WO₆ raises it to 11.17%. Re-adding CaO gives only 0.084(45) wt% and changes Rwp by 0.0012 percentage point, so it is not retained. The dominant-phase deletion is still equilibrating; I’m letting that diagnostic finish while preparing the final project state.
+
+The roughness/polarization terms form a very flat correlated subspace, but the important quantities are stable: two physically valid starts change phase fractions by at most 0.005 wt% and give essentially identical cells/coordinates and calculated profiles. I’m selecting a positive-coefficient representative of that subspace and replaying it once more; the invalid negative-roughness branches are excluded rather than used to lower Rwp.
+
+A final CIF audit exposed one substantive uncertainty: the historical WO₃ and Ca₃UO₆ parents encode several displacement parameters as zero. Replacing those placeholders with fixed positive Uiso values changes the phase scales by about 1 wt%, confirming that the formal scale e.s.d.’s understate model uncertainty. I’m testing whether that physically normalized branch can retain positive nuisance coefficients; if so I’ll use it and report the ADP-driven systematic explicitly.
+
+The normalized branch succeeds with a cleaner mechanism: fixed positive Uiso = 0.01 Å² for parent sites lacking reported ADPs, roughness refined, and polarization refinement omitted because every free-polarization restart either became nonphysical or added no stable information. Two roughness restarts converge to the same curve and fractions (differences <0.003 wt%). I’m using that model for the final replay and repeating the trace-phase tests against it.
+
+The final normalized project now replays cleanly: fractions change by less than 0.0003 wt% and all refined coefficients remain physical. Final deletion tests give Rwp 15.22% without WO₃ and 11.16% without Ca₃WO₆; CaO remains unsupported at 0.087(43) wt% with only a 0.0009-point Rwp change. I’m writing the result and uncertainty record now, including the analogue provenance and ADP sensitivity.
+
+Resolved three crystalline phases:
+
+- CaWO₄ scheelite: 70.17 wt%
+- Monoclinic WO₃: 16.23 wt%
+- Ca₃WO₆-type phase: 13.60 wt%
+
+Final Rwp = 4.800%, goodness of fit = 1.834. The Ca₃WO₆ topology is supported, but its exact oxygen coordinates remain model-dependent. Estimated systematic fraction uncertainties are approximately 1.1, 0.9, and 0.5 wt%, respectively.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-22da588f83fc/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-22da588f83fc/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-22da588f83fc/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-22da588f83fc/workspace/final.gpx)
+- [CaWO4 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-22da588f83fc/workspace/phase_CaWO4.cif)
+- [WO3 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-22da588f83fc/workspace/phase_WO3.cif)
+- [Ca3WO6 CIF](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v2-unresolved-22da588f83fc/workspace/phase_Ca3WO6.cif)
+

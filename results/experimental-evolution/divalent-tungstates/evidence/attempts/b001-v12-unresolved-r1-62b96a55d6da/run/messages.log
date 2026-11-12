@@ -1,0 +1,70 @@
+I’ll first inventory the pattern, metadata, reusable scripts, and candidate-source index. Then I’ll identify chemically plausible phases, health-screen competing structures, and build a replayable GSAS-II refinement before freezing the CIFs and normalized fractions.
+
+The synthesis context points first to the Sr–W–O balance (SrWO₄, residual WO₃/SrCO₃, and non-1:1 tungstates), but I’ll let the peak families decide among those possibilities. I’m extracting peak positions and querying all exact-formula records, including distinct polymorphs rather than treating the first database hit as definitive.
+
+The database has no exact SrWO₄ record, so the required analogue route is active. I’m comparing a scheelite model derived independently from SrMoO₄/BaWO₄ against monoclinic tungstate parents, while also screening all nine WO₃ polymorph records, both SrCO₃ polymorphs, and the exact Sr₃W₂O₉ record. This separates “wrong record” from “wrong chemistry.”
+
+The observed families already support scheelite strongly: its 101/112/004/200/204/220/312/224 sequence is present from 17.46° through 56.84°. Several independent peaks around 22.5–25.9° remain, so the next pass tests residual WO₃ and SrCO₃ explicitly rather than forcing those peaks into texture or broadening terms.
+
+The residual profile resolves the inventory cleanly: the 22.51/22.94/23.83° triplet tracks low-symmetry WO₃, while 24.65/25.30°, 36.08°, and 43.67° track orthorhombic SrCO₃. Those are independent non-coincident families, so both candidates advance to full scale/cell/profile testing alongside SrWO₄.
+
+The three-phase refinement is still in its cell/geometry stage; all three scales stayed positive at the neutral checkpoint. The preliminary mass balance is dominated by SrWO₄ and WO₃, with SrCO₃ weak enough that its fraction needs the replay/stability tests before retention.
+
+The WO₃ source ranking is decisive so far: the health-passing monoclinic P2₁/c record 2311041 gives Rwp 7.78% before cell elaboration and 7.45% after, while triclinic P-1 is worse at both checkpoints and its cell trial did not converge. I’m now replaying the carbonate and SrWO₄ structural competitors against that same nuisance baseline.
+
+The retained source set is now anchored: scheelite SrWO₄ (ordered SrMoO₄-derived analogue), monoclinic P2₁/c WO₃ record 2311041, and Pnma SrCO₃ record 9008198; all three pass the geometry screen. I’m rebuilding from these seeds and refining each cell separately before reopening the common displacement/profile, which avoids the earlier weak-phase cell crossover.
+
+The source competition now supports scheelite SrWO₄, monoclinic WO₃, and orthorhombic SrCO₃. I’m continuing from the neutral saved checkpoint to challenge broadening, background/intensity terms, texture, and the Sr₃W₂O₉ watch-list phase before freezing the final project.
+
+The common-term challenge is already discriminating cleanly: polarization gives a large physical improvement (refining to about 0.815), while U refines negative and roughness refines to an unphysical negative value, so those two trials are invalid. Background order has only a small effect; I’m now testing each phase’s size and strain independently from the unchanged checkpoint.
+
+The isotropic phase-width trials do not survive the physical-boundary checks: SrWO₄ size returns to the 10 µm neutral limit and strain goes negative; WO₃ size reaches its lower bound while its complementary strain trial is singular; SrCO₃ phase-width variables are likewise unsupported. I’ve restored the common width model and am comparing simple texture axes without carrying any failed width values forward.
+
+The first texture pass shows strong, replay-stable axial signatures, not marginal covariance effects: SrWO₄ favors [110] and WO₃ favors [001]. I’m now cross-seeding those two terms and reopening every low-index competitor axis; SrCO₃’s axes are being tested only after those stronger terms are active so its smaller signal is not misassigned.
+
+The texture-axis ranking survives cross-seeding: [110] SrWO₄ and [001] WO₃ remain decisively best, and SrCO₃ independently favors [001]. With all three active, Rwp falls from 6.60% to 4.17% and the fractions stabilize on replay; I’m repeating the broadening/global loop from that improved checkpoint to ensure the texture terms did not merely absorb a width or background defect.
+
+The repeated loop changes one conclusion: after texture is modeled, WO₃ has a real phase-specific width component. Isotropic microstrain is preferred over size (Rwp 3.79% versus 3.81%), while their combined trial drives size to its lower bound. The retained WO₃ strain is positive, highly significant, and replay-stable; I’m now testing whether the remaining WO₃ family widths justify directional broadening or whether the one-parameter strain model should remain.
+
+The directional-width challenge is running from the saved isotropic-strain checkpoint, with each axis and the full monoclinic generalized model treated as competitors. Any singular variable, non-positive width surface, or bound solution will be discarded and the isotropic checkpoint restored.
+
+The anisotropy ranking is clear: a two-parameter WO₃ [010] width model lowers Rwp to 3.50%, while the nine-term generalized model is singular. Reopening common U/W/X then gives a positive U term, but it also makes a small SrWO₄ size term appear. Because that size is strongly coupled to common X, I’m cross-seeding both parameters and fixing X in complementary trials before deciding whether the SrWO₄ size is physically retained.
+
+The cross-seed test rejects the apparent SrWO₄ size: low seeds converge near 0.56 µm, a high seed remains near the neutral limit, and fixing common X moves the size by a factor of five with negligible global gain. That is profile coupling, so the final model returns SrWO₄ to neutral size. I’m now running explicit term and phase ablations from the accepted checkpoint, including fixed-polarization and leave-one-phase-out fits.
+
+The ablation suite is testing whether each retained term and each phase has independent leverage after all other accepted parameters are reopened. It also reseeds U and polarization from opposite directions; this distinguishes stable refinements from solutions inherited from a favorable starting point.
+
+The accepted model survives ablation: removing any phase raises Rwp to 4.98–22.56%, removing any texture term raises it to 3.57–5.20%, and replacing directional WO₃ strain with isotropic strain raises it to 3.79%. Sr₃W₂O₉ collapses to the scale floor from three seeds. I’m now replaying the strongest alternative structural records with the mature profile/texture model so source ranking is checked both before and after elaboration.
+
+The source replay is using candidate scale before cell, then restoring the full fixed-cell checkpoint whenever a cell trial fails. Only candidates with a positive scale above 3σ proceed to texture/strain elaboration; collapsed records are not allowed to borrow cell or profile freedom.
+
+The mature source replay keeps the selected P2₁/c WO₃ record ahead of both alternatives. The other monoclinic record remains clearly worse (Rwp 3.705%); the triclinic P−1 record comes close at 3.496% but uses two extra variables and is worse by about 25 AIC units. Because that lower-symmetry competitor is close, I’m giving it its own complete low-index texture/strain-axis loop before freezing the simpler WO₃ model.
+
+The close triclinic record is being challenged on all six axial/diagonal March directions and all six uniaxial strain directions; the alternate monoclinic record is receiving the same texture-axis challenge. The comparison uses each source’s own refined cell while sharing the same mature nuisance checkpoint.
+
+The axis loop is still converging normally; no user action is needed. I’m retaining only replay-converged solutions with positive width parameters and a physical March ratio, so a nominally lower Rwp from a bound or divergent axis will not affect source selection.
+
+This source-axis audit is slower than the earlier loops because the triclinic candidate has more cell degrees of freedom and several highly anisotropic width directions. I’m letting the valid trials finish rather than shortening the replay criterion; the final selection still requires the simpler model to win after this elaboration.
+
+The source-axis audit is complete: the best triclinic model remains at Rwp 3.4960% (AIC 3391.0), while the simpler selected P2₁/c model is 3.4916% (AIC 3366.0). No alternate axis reverses that ranking. Peak-shape checks also show mixed, not repeated, left/right asymmetry, so SH/L remains fixed. I’m now pruning failed terms and replaying the exact full-range model that will become `final.gpx` and all submitted outputs.
+
+The final replay converged over all 8,301 points with Rwp 3.4916%, Rp 2.6517%, GOF 1.2226, and max shift/σ 0.005. The normalized crystalline fractions are 60.686% SrWO₄, 24.102% WO₃, and 15.212% SrCO₃. I’m running the mandatory final CIF geometry screen and then validating that the reopened project, CIFs, `fit.csv`, and `result.json` are numerically consistent.
+
+Completed and validated.
+
+- SrWO₄ (I 41/a): 60.686 ± 0.140 wt%
+- WO₃ (P 21/c): 24.102 ± 0.111 wt%
+- SrCO₃ (Pnma): 15.212 ± 0.141 wt%
+
+Fractions are normalized over modeled crystalline phases. Final fit: Rwp 3.4916%, Rp 2.6517%, GOF 1.2226. All CIF health checks pass. The main remaining uncertainty is the detailed WO₃ symmetry; amorphous content cannot be quantified without an internal standard.
+
+Outputs:
+
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [SrWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_1_SrWO4.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_2_WO3.cif)
+- [SrCO₃ CIF](<ATTEMPT_WORKSPACE>/phase_3_SrCO3.cif)
+

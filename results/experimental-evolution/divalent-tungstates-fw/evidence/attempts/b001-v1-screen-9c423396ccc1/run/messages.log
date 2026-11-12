@@ -1,0 +1,39 @@
+I’ll inspect the measurement metadata, pattern, and the framework’s available analysis utilities first. Then I’ll identify candidate phases, screen/compare structures under a common fixed-coordinate model, refine the stable inventory in GSAS-II, and independently replay the final project before writing the deliverables.
+
+The dominant peak family at roughly 23–25°, 33–35°, 42°, 50°, and 55–56° is consistent with tungsten oxide, but several split/extra lines could also contain BaCO₃ or another phase. I’m now separating those possibilities by querying only same-chemistry public COD structures and comparing all candidates with one common profile treatment.
+
+The line-family separation now supports two phases: triclinic/low-symmetry WO₃ accounts for the three intense oxide peaks and their higher-angle splittings, while orthorhombic witherite BaCO₃ independently explains the 19.6°, 24.1°, 28.0°, 39.6°, 43.1°, 44.35°, 45.06°, and 47.0° lines. The distinctive BaWO₄ line near 31.9° is absent. I’m normalizing and physically screening the plausible source structures before quantitative refinement.
+
+The first GSAS-II import exposed a setting mismatch in the normalized witherite CIF: the geometry is valid, but its retained Pmcn operations were labeled as Pnma. I’m correcting normalization to an explicit conventional standard setting, then rerunning the same physical screen before any fit comparison.
+
+The normalized triclinic WO₃ and orthorhombic BaCO₃ sources both pass the supplied contact/occupancy screen. Their first common GSAS-II branch is refining now with coordinates fixed; the shared background, phase scales, cells, angular offset, and profile are being stabilized before any specimen or atomic terms are considered.
+
+The initial two-phase branch reaches Rwp ≈2.2%, close to the Poisson floor (~1.84%), but allowing all common profile coefficients produced nonphysical negative-width behavior. I’ve rejected that branch and am comparing sources with the stable simpler profile (only shared W and X varied), as required for a fair structural choice.
+
+One-at-a-time tests are informative: crystallite size and strain either give negligible improvement or drive fractions by several percentage points; strain even refines negative, so those effects are rejected. Polarization removes much of the high-angle residual, but its unconstrained optimum exceeds the physical [0,1] range, so I’m not accepting it as-is; I’m testing phase-specific intensity mechanisms and a second nuisance branch instead.
+
+The source choice is stable: the monoclinic WO₃ parent slightly outperforms the triclinic model despite fewer cell degrees of freedom, while orthorhombic WO₃ is decisively worse. Texture and selective heavy-atom coordinates give negligible or highly correlated improvements, so both remain at the defensible published parents. Background and angular-calibration restarts are now checking fraction stability.
+
+The nuisance tests are stable: 4/6/8-term backgrounds and zero-versus-displacement branches all keep WO₃ within about 0.14 wt% and nearly identical cells. A simpler positive profile (only W and X varied; U=V=Y=0) improves Rwp and avoids negative-width behavior, so it is the current stable branch. Single-phase deletions worsen Rwp to 5.60% (WO₃ only) and 7.53% (BaCO₃ only).
+
+The added BaWO₄ model refines to only ~0.27 wt% and improves Rwp by just 0.0016 percentage points; its diagnostic line near 31.9° is not independently visible, so overlap alone is insufficient and I’m excluding it. The final inventory will therefore contain only monoclinic WO₃ and orthorhombic BaCO₃, with the WO₃ symmetry choice explicitly caveated because a triclinic relaxation gives a very similar fit.
+
+The selected final branch now refines over the entire observed grid and converges cleanly (maximum shift/esd 0.002). Both exported CIFs independently pass the supplied occupancy/contact screen. I’m performing the final no-refinement atomic replay and checking that its fractions and full calculated curve exactly agree with the submitted files.
+
+Completed and independently replay-verified.
+
+- Monoclinic WO₃ (P2₁/c): 52.17 wt%
+- Orthorhombic BaCO₃ (witherite): 47.83 wt%
+- Rwp: 2.3999%; Rp: 1.8726%; GOF: 1.3069
+
+Both CIFs pass the physical screen. Triclinic WO₃ remains a plausible symmetry alternative; realistic fraction uncertainty is about 1 wt%. BaWO₄ was not reliably supported and was excluded.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-9c423396ccc1/workspace/result.json)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-9c423396ccc1/workspace/report.md)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-9c423396ccc1/workspace/fit.csv)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-9c423396ccc1/workspace/final.gpx)
+- [phase_WO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-9c423396ccc1/workspace/phase_WO3.cif)
+- [phase_BaCO3.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-v1-screen-9c423396ccc1/workspace/phase_BaCO3.cif)
+

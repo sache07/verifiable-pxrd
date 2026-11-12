@@ -1,0 +1,46 @@
+I’ll inspect the metadata, diffraction pattern, and the reusable analysis/refinement utilities first. Then I’ll identify candidate phases, refine them in GSAS-II with staged profile/structure checks, and verify that the exported CIFs, fractions, profile, and project all agree.
+
+The chemistry points first toward lead tungstate formation, but the unknown phase count means I’ll treat residual WO₃/Pb oxides and alternative Pb–W–O compounds as live hypotheses. I’m now extracting peak families and checking which crystallographic databases and GSAS-II interfaces are available locally.
+
+Peak-family matching now supports three phases: broad scheelite PbWO₄, sharper monoclinic WO₃, and residual tetragonal Pb₃O₄. The shared offset is nearly constant in 2θ (about +0.4°), which argues for a common angular zero correction rather than implausibly shrinking every cell. I’m setting up staged GSAS-II trials, including alternate WO₃ and PbWO₄ records and a check for PbO.
+
+The staged profile tests are discriminating cleanly: size broadening fits PbWO₄ and Pb₃O₄ better than strain-only models (about 46 nm and 33 nm apparent coherent-domain sizes). I’m now transferring the narrow WO₃ width into the common instrument profile where appropriate, because a phase-size term and the common Lorentzian \(X/\cos\theta\) term can otherwise be nearly indistinguishable.
+
+The physically screened shortlist is ready. I’m now comparing the viable WO₃ and PbWO₄ records under the same staged refinement schedule, including explicit tests for raspite/defect scheelite and residual PbO, so the phase call does not depend on profile compensation.
+
+The control confirms why fit alone is insufficient: the crude monoclinic WO₃ record reaches \(R_\mathrm{wp}\approx6.88\%\), but its 1.58 Å O–O contact is chemically untenable. The physical orthorhombic model is already distinctly worse; the higher-quality triclinic model is still converging.
+
+The physical triclinic WO₃ record fits better than orthorhombic but still leaves a clear penalty (\(R_\mathrm{wp}\approx7.75\%\)) and drives asymmetry to its lower bound, so I am not accepting it. I’m expanding the exact-WO₃ inventory for a physically valid monoclinic record before deciding whether the tungsten oxide polymorph is identifiable.
+
+A physically sound neutron monoclinic WO₃ model now improves the fit to \(R_\mathrm{wp}=6.74\%\), outperforming both the invalid control and the other valid polymorphs with stable, interior profile terms. Residual PbO collapses to zero scale, while the defect scheelite model is worse and introduces a 97% zero/asymmetry correlation.
+
+The phase inventory is now settled at three phases. I’m doing the final profile challenge on the accepted physical model—common Lorentzian width versus WO₃-specific size or strain—then I’ll replay the pruned model from disk and audit residual peaks, correlations, geometry, and crystalline mass balance before export.
+
+The replay converged cleanly (maximum shift/esd 0.014) with no frozen variables. The formal crystalline fractions are about 62.1% PbWO₄, 21.8% WO₃, and 16.1% Pb₃O₄; I’m extending the final replay to the few edge points outside 10–100° so the submitted profile covers every measured point, then exporting and validating the CIFs.
+
+The CIF audit passes: all three exports reproduce the intended compositions and symmetries, with shortest bonds/contacts physically sensible (PbWO₄ W–O 1.777 Å; WO₃ W–O 1.716 Å and O–O 2.539 Å; Pb₃O₄ Pb–O 2.131 Å). A fixed-ADP sensitivity check changes fractions by under 0.2 wt%, but indicates the arbitrary default \(U_\mathrm{iso}=0.01\) over-damps high-angle intensity; I’m testing one constrained common ADP before freezing the final intensity model.
+
+The final model is now frozen and documented. Bound-seeking polarization, roughness, and common-ADP alternatives were excluded even though they lower the residual; their fraction spread is about 1 wt%, which is recorded as the practical model uncertainty rather than hiding it behind the smaller formal esds. I’m running the final cross-file consistency checks now.
+
+Completed the GSAS-II refinement and validated all outputs.
+
+Identified crystalline phases:
+
+- PbWO₄ scheelite: 62.05 wt%
+- Monoclinic WO₃: 21.83 wt%
+- Pb₃O₄ minium: 16.12 wt%
+
+Final fit: \(R_\mathrm{wp}=6.732\%\), \(R_\mathrm{p}=4.579\%\), GOF = 2.714. Fractions are normalized crystalline values; practical model uncertainty is approximately 1 wt% absolute, and amorphous content is not quantified.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [PbWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_PbWO4_scheelite.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_monoclinic.cif)
+- [Pb₃O₄ CIF](<ATTEMPT_WORKSPACE>/phase_Pb3O4_minium.cif)
+
+The project reopens without frozen variables, `fit.csv` contains all 8,301 measured points, and all CIFs passed composition, symmetry, and geometry checks.
+

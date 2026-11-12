@@ -1,0 +1,24 @@
+I’ll inspect the metadata, diffraction pattern, and the framework’s available analysis workflow first. Then I’ll identify candidate phases, perform quantitative refinement in GSAS-II, and validate that every submitted artifact is internally consistent.
+
+The chemistry points first to calcium tungstate, but I’m treating precursor carryover and secondary Ca–W–O phases as live possibilities. I’m now extracting peak positions and searching the frozen COD library for all compositionally plausible structures before committing to a phase count.
+
+The peak inventory is now decisive: every strong line—including the apparent “double peaks”—matches scheelite CaWO₄. The close pairs at high angle are the resolved Cu Kα₁/Kα₂ components, not an extra phase; no strong unassigned reflections remain. I’m proceeding with a one-phase structural refinement while explicitly testing whether any precursor or alternate Ca–W–O phase improves the residual.
+
+The initial Rietveld model has converged at the counting-statistics limit: Rwp = 3.545%, reduced χ² ≈ 1.000, with 8,301 points and 29 varied parameters. I’m now pruning nuisance flexibility and testing the generator-supported background and specimen-effect families so the saved model predicts the underlying mean rather than merely fitting random count noise.
+
+The first specimen-effect tests are still running; the baseline is already statistically complete, so these branches are being judged by whether they reduce χ² by more than their added degrees of freedom.
+
+The model-selection tests support the simple specimen model: roughness collapses to the no-effect boundary, preferred-orientation ratios stay within about 0.7% of unity, and anisotropic strain either vanishes or runs to a nonphysical boundary. I’m retaining the one-phase, random-powder model and an exact power-law background representation; this is the most parsimonious fit at the noise floor.
+
+All required files are now generated from the same saved project. I’m doing a final consistency audit across the GPX, exported CIF, reported fraction, and replayed fit curve before handing it over.
+
+Identified one crystalline phase: scheelite CaWO₄ (I4₁/a), 100% of modeled crystalline material. Final fit: Rwp 3.5469%, Rp 2.7246%, GOF 0.9995. Trace secondary or amorphous material cannot be quantified.
+
+Files:
+
+- [result.json](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-4af1a2840030/workspace/result.json)
+- [phase_CaWO4.cif](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-4af1a2840030/workspace/phase_CaWO4.cif)
+- [fit.csv](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-4af1a2840030/workspace/fit.csv)
+- [report.md](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-4af1a2840030/workspace/report.md)
+- [final.gpx](<EVOLUTION_SOURCE>/runs/divalent-tungstates-fw/attempts/b001-p0-4af1a2840030/workspace/final.gpx)
+
