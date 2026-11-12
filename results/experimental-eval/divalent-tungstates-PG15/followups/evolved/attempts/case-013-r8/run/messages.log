@@ -1,0 +1,79 @@
+I’ll first inspect the measurement metadata, pattern range, and the reusable refinement utilities in `learned/`. Then I’ll build a chemically plausible phase inventory, test alternates under a common profile model, and only export after replaying the final GSAS-II project.
+
+The chemistry points first to lead tungstate, but Pb–W–O at 500 °C can retain PbO/WO₃ or access alternate PbWO₄ records. I’m treating those as an inventory to test rather than assuming a single product, and I’m now locating the local COD search/indexing and GSAS-II interfaces.
+
+The local COD inventory contains two physically distinct PbWO₄ models: tetragonal scheelite/stolzite (I4₁/a) and monoclinic raspite (P2₁/a), plus the precursor polymorphs. I’m comparing their calculated reflection families against the raw peak positions before any scale or cell refinement; this is the key phase-count decision.
+
+The unmatched reflections separate into two coherent families: the 23.36/23.88/24.65° triplet and related peaks match room-temperature WO₃, while 29.34/30.61/38.11/49.52/53.38/60.55/63.28° match orthorhombic massicot PbO. I’m now testing one-, two-, and three-phase inventories with identical background, angular, and profile treatment; raspite PbWO₄ and litharge PbO remain explicit challengers.
+
+The common three-phase refinement gives a chemically coherent first estimate: about 76 wt% tetragonal PbWO₄, 13 wt% WO₃, and 11 wt% massicot PbO. The residual precursor mole amounts are nearly paired, as expected for incomplete PbO + WO₃ → PbWO₄ conversion. I’m re-challenging that inventory now with raspite, litharge, alternate COD records, and alternate WO₃ polymorphs; the provisional U term reached its nonnegative bound, so it will be pruned rather than used as evidence.
+
+Two weak-phase challengers are nonzero and improve the fit: litharge PbO (~3 wt%) and raspite PbWO₄ (~6 wt%) when tested separately. Their strongest lines are partly overlapped, so neither is accepted yet. I’m testing them together, testing Pb₃O₄ (chemically plausible near 500 °C in air), and swapping the WO₃/primary PbWO₄ records under the same nuisance model to distinguish true families from intensity surrogates.
+
+The challenger batch is still refining six replayable projects in parallel. The decision rule here is stricter than raw Rwp: a candidate must retain positive scale and explain multiple isolated or partly overlapped reflections after the common profile is rebuilt.
+
+One result has resolved cleanly: the ε-WO₃ record is rejected—its scale collapses to the lower bound while the other phases absorb the pattern. The slower monoclinic/triclinic comparisons are still converging; I’m letting them finish because WO₃ cell setting and peak splitting materially affect the minor-phase fractions.
+
+The challenge results now favor four phases: stolzite PbWO₄, triclinic/near-monoclinic WO₃, massicot PbO, and litharge PbO. Litharge is replay-stable at ~3.3 wt% and outperforms raspite or Pb₃O₄; raspite drops to ~1.1 wt% and worsens the combined model, so it remains rejected. I’m inspecting reflection-by-reflection residuals next, then I’ll test physically meaningful width terms one phase at a time.
+
+The baseline tests support a smooth 10-term Chebyshev background and a refined polarization factor (~0.81); both improve coherent residual trends without invoking phase texture. SH/L asymmetry is not supported, and a W-only profile is clearly inadequate, so the clean common profile is fixed at U = V = 0 with refined W and X. I’m rebuilding that accepted baseline before testing phase size/strain.
+
+The phase-width trials are separating cleanly: WO₃ isotropic size changes its scale noticeably, while WO₃ strain is effectively neutral; litharge strain increases its fraction, so I’m checking whether that gain is replay-stable or simply compensating its overlapped weak peaks. The remaining phase trials are still finishing.
+
+The width audit rejects isotropic size/strain for stolzite and WO₃ (they return to neutral bounds). Massicot clearly needs a different line-shape description, but both isotropic size and strain run to extreme bounds and distort its fraction, so I am not accepting them. This triggers the requested return to inventory/baseline: I’m testing the alternate physical massicot record and symmetry-appropriate anisotropic broadening before any quantitative handoff.
+
+The alternate massicot model is an incommensurate α-PbO approximant with a 44.86 Å supercell, so it is physically meaningful rather than an arbitrary database duplicate. Its many split reflections make the refinement slower; I’m retaining it long enough to see whether those splittings replace the bound broadening.
+
+The incommensurate massicot supercell does not solve the problem: it gives a poor fit and drives litharge to zero, so the simpler Pbcm massicot record remains the physical baseline. The orthorhombic axis trials are now running; these test whether only selected hkl families are broadened, which is the appropriate alternative to the rejected isotropic extremes.
+
+The completed axis trials show the same warning pattern for massicot: all axes seek extreme broadening and inflate its fraction, so anisotropy does not rescue a stable physical width model. Litharge’s strain response is modest and similar for all axes rather than axis-selective. One litharge size trial is still converging; the current evidence favors pruning all phase-specific broadening and reporting the resulting fraction uncertainty explicitly.
+
+Lowering the crystallite-size bound resolved the massicot instability: all three axes converge to interior 7–21 nm domain sizes, and [100] is distinctly best and replay-stable. That model lowers Rwp from 15.62% to 14.62% but raises massicot to ~26 wt%, so I’m testing complementary strain and re-challenging litharge under this broadened massicot baseline before trusting the fraction.
+
+The complementary tests are decisive: adding massicot strain forces both strain and one size component to bounds, so it is pruned. Litharge size/strain gives only small, non-axis-specific gains on heavily overlapped peaks and is also pruned. The accepted microstructure model is therefore only anisotropic massicot domain size ([100], ~8 and 21 nm). I’m now comparing no texture against four symmetry-distinct stolzite axes.
+
+Texture is not accepted: all four stolzite axes give similarly small gains with March–Dollase factors close to 1, so the preferred axis is not uniquely supported by multiple families. I’m retaining the no-texture model and now performing the clean inventory re-challenge: first remove litharge, then add raspite and Pb₃O₄ separately while rebuilding background, scales, zero, cells, W/X, and massicot size.
+
+The inventory re-challenge keeps litharge: removing it worsens Rwp from 14.62% to 15.01%. Raspite collapses to zero scale under the accepted broadened-massicot profile. Pb₃O₄, however, remains at 1.5 wt%, refines to a plausible cell, and lowers Rwp to 14.51%; its 26.8°, ~31°, 34.4°, and higher-angle families make it a credible fifth phase. I’m rebuilding once more with Pb₃O₄ and re-testing raspite plus the monoclinic WO₃ record.
+
+The final-condition WO₃ comparison is effectively tied: triclinic gives Rwp = 14.5127%, while the room-temperature monoclinic P2₁/n record gives 14.5176%. Because the triclinic model spends extra cell degrees of freedom for only a 0.005-point gain, I’m checking parameter-count penalties and refined geometry; absent decisive splitting evidence, the physically matched room-temperature monoclinic model should be preferred.
+
+The final model choice is now set: triclinic WO₃ is retained because it lowers χ² by ~96 with a more plausible Pb₃O₄ cell, though monoclinic WO₃ remains a near-degenerate symmetry alternative. The broadening model materially shifts PbWO₄/massicot fractions (roughly 73/10 wt% without it versus 61/25 wt% with it), so I will submit the better physical line-shape model but explicitly mark those fractions as model-dependent rather than overstate the formal errors.
+
+The final replay converged with no bound/frozen variables (maximum shift/esd 0.66). It exports five CIFs and gives Rwp = 14.513%. I’m doing the final consistency audit now: CIF composition/occupancy/geometry, project-to-CIF cell agreement, normalized fractions, and pointwise `observed − calculated = difference`.
+
+The audit found one structural export issue before handoff: the litharge CIF currently expands as Pb₂O, indicating an origin/space-group-setting mismatch inherited from the P4/nmm source record. I’m correcting that model and re-refining; the other four CIFs are full-occupancy, compositionally correct, and have plausible bond ranges.
+
+The corrected litharge model is retained and materially improves the science: Rwp drops to 14.02%, the PbO stoichiometry is now correct, and the fractions become far more balanced (about 67.7% PbWO₄, 10.6% WO₃, 14.3% massicot, 5.2% litharge, 2.2% Pb₃O₄). I’m reconverging and repeating the microstructure/inventory checks from this corrected baseline before regenerating the final deliverables.
+
+With corrected litharge, massicot broadening remains supported but is less extreme: the neutral-size fit is Rwp = 14.32% and ~9.8 wt% massicot, while the broadened fit is ~14.02% and ~14.3 wt%. The current domain sizes relax to ~40–46 nm. I’m comparing isotropic and all orthorhombic axes again; if the axis distinction disappears, I’ll simplify to isotropic size.
+
+The corrected baseline simplifies the microstructure conclusion: an isotropic massicot size of ~46 nm reaches Rwp = 14.025%, essentially the same as all three uniaxial models (14.019–14.024%) whose preferred axes are indistinguishable. I’m pruning anisotropy and testing whether strain adds independent information; otherwise the final model will use one isotropic size term.
+
+The corrected inventory is stable: removing litharge worsens Rwp to 15.08%, removing Pb₃O₄ worsens it to 14.22%, and raspite again collapses to zero. Strain hits its upper bound and is rejected. The accepted model is now the simpler isotropic massicot size (~46 nm), with preliminary fractions 67.8% PbWO₄, 10.6% WO₃, 14.1% massicot, 5.2% litharge, and 2.3% Pb₃O₄.
+
+The corrected texture replay confirms no preferred orientation: all tested axes refine to March–Dollase 0.998–1.005 and change Rwp by only ~0.001. The final specification is therefore five phases, no texture, one isotropic massicot size term, and the corrected PbO litharge setting. I’m regenerating and re-auditing all deliverables from that exact project state.
+
+The refinement and export are complete. I’m doing one final consistency check on the submitted project, profile, CIFs, and report before handing them over.
+
+Completed the GSAS-II refinement with five crystalline phases. Fractions are normalized over modeled crystalline material:
+
+| Phase | Weight fraction |
+|---|---:|
+| [PbWO₄ stolzite](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r8/workspace/phase_1_PbWO4_stolzite.cif>) | 67.81% |
+| [WO₃ triclinic](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r8/workspace/phase_2_WO3_triclinic.cif>) | 10.62% |
+| [PbO massicot](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r8/workspace/phase_3_PbO_massicot.cif>) | 14.06% |
+| [PbO litharge](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r8/workspace/phase_4_PbO_litharge.cif>) | 5.24% |
+| [Pb₃O₄ minium](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r8/workspace/phase_5_Pb3O4_minium.cif>) | 2.27% |
+
+Final fit: Rwp 14.024%, Rp 9.360%, Rexp 3.502%, GOF 4.013.
+
+The main uncertainties are the nearly degenerate triclinic/monoclinic WO₃ assignment and correlation between broadened massicot intensity, background, and PbWO₄ fraction. Litharge and Pb₃O₄ are tentative minor phases due to substantial overlap.
+
+Files:
+
+- [final.gpx](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r8/workspace/final.gpx>)
+- [fit.csv](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r8/workspace/fit.csv>)
+- [result.json](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r8/workspace/result.json>)
+- [report.md](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r8/workspace/report.md>)
+

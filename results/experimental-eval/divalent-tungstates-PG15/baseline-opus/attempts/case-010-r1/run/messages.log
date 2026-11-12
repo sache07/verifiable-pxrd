@@ -1,0 +1,35 @@
+The background run was stopped at its time limit. Restarting the chosen variant with a longer budget.
+
+Done. Analysis complete; all deliverables are in the workspace root.
+
+## Result
+
+The sample is a **largely unreacted precursor mixture** — the 500 °C treatment barely started the reaction:
+
+| Phase | Space group | Weight fraction | R_F |
+|---|---|---|---|
+| γ-WO3 (monoclinic) | P2₁/n | 73.8 % | 2.19 % |
+| α-Mn2O3 (bixbyite) | Ia-3 | 25.4 % | 1.97 % |
+| MnWO4 (hübnerite) | P2/c | 0.74 % | 4.46 % |
+
+**Rwp = 6.66 %, Rp = 4.81 %, Rexp = 2.66 %, GOF = 2.51** over 9.9–100.1° 2θ (8301 points, 39 variables).
+
+A useful cross-check: those fractions give an overall **Mn : W = 1.01 : 1**, exactly the 1:1 charge you'd weigh out to target MnWO4 — so the quantification is internally consistent with the stated precursors, with only ~0.8 mol % of the W converted.
+
+## How the phases were established
+
+- Screened the local COD subset (62 098 CIFs) for all Mn/W/O compositions (73 candidates), cross-correlated simulated patterns against the data over a 2θ shift window. γ-WO3 won by a wide margin.
+- Mn2O3 came out of the WO3-only residual: the largest leftover peak (23 % of max) plus companions index as 222/400/440/622 of a bcc cell with a = 9.4166 Å (literature bixbyite 9.4146 Å).
+- MnWO4 rests on an isolated residual peak at 18.71° (its unique 100 line) plus matching excesses at its 1-11/111 doublet, 021 and 022. Control tests with absent phases (Mn3O4, β-MnO2, Mn3WO6) gave about half the Rwp gain and insignificant fractions.
+
+## Things I'd flag
+
+- **The esds understate the real uncertainty.** Across the model variants I tried, fractions spanned WO3 73.8–76.4 %, Mn2O3 23.5–25.5 %, MnWO4 0.7–1.3 %. I'd quote 75 ± 1.5 / 24.5 ± 1.5 / 1.0 ± 0.4 %. No microabsorption correction was applied.
+- **MnWO4's structure is not determined here** — only its scale factor. The CIF is the literature wolframite model.
+- **WO3 oxygen positions are not determined either.** Released, they drift to implausible values with negative Uiso; they're fixed at published coordinates and only the W positions (which barely move) were refined.
+- Refined β = 90.683° for WO3 sits ~0.21° below the accepted 90.89°, while a/b/c and V agree closely — the least trustworthy refined lattice parameter.
+- Peak positions needed a large specimen displacement (−619 μm). A pure +0.30° zero offset fits the profile equally well but forces all three cells ~1 % too small, so displacement is the right reading.
+- Residuals are serially correlated (DW = 0.36); the leftover misfit sits entirely on already-indexed strong WO3 lines, not on unexplained peaks. Any amorphous content can't be quantified without an internal standard.
+
+Details and the full reasoning are in `report.md`; the project is `final.gpx`.
+

@@ -1,0 +1,53 @@
+I’ll inspect the measurement metadata, pattern, and the supplied divalent-tungstate analysis framework, then identify candidate phases and run a GSAS-II refinement to produce the requested project and exports. I’ll keep phase identification evidence separate from what the refinement can genuinely constrain.
+
+The chemistry points first to Sr–W–O products, with residual SrCO₃ or WO₃ still plausible even at 900 °C. I’m now extracting the peak fingerprint and querying the frozen crystallographic library for all compositionally relevant candidates before committing to a phase count.
+
+The dominant phase is unambiguous tetragonal scheelite SrWO₄: more than twenty reflections track one refined tetragonal cell to about 0.01° RMS. The remaining peaks are real and cannot be explained by Kα₂ or profile tails, so I’m testing residual WO₃/Sr-containing phases by whole-pattern refinements rather than assigning them from one or two coincident lines.
+
+The first comparison confirms Sr₃W₂O₉ is not supported: its scale collapses to zero. Some low-symmetry WO₃ trial refinements are numerically unstable when their scale approaches zero, so I’m tightening the screening workflow and will retain candidates only when their unique reflections lower the full-pattern residual with a positive, stable scale.
+
+The residual now resolves into two chemically sensible components: monoclinic γ-WO₃ accounts for the 23–25° triplet and associated lines, while a separate strong series (29.76, 32.61, 44.67, 48.62, 53.44°…) remains. I’m searching divalent-tungstate structural analogues for that series; it is not consistent with SrO, SrCO₃, Sr₃W₂O₉, or the monoclinic SrWO₄ polymorph.
+
+The phase inventory is now chemically and crystallographically coherent: scheelite SrWO₄ + γ-WO₃ + a P2₁/n Sr₃WO₆ intermediate adapted from the Ca₃WO₆ framework. The provisional 11.9:13.1 wt% WO₃/Sr₃WO₆ ratio is also essentially the 0.854 mass ratio required by the 1:1 Sr:W feed (2 WO₃ per Sr₃WO₆), independently supporting the assignment. I’m moving from identification to a constrained final refinement of cells, coordinates, line broadening, texture, and fractions.
+
+The constrained refinement is running through the three-phase model now. It is computationally heavier than the screening fits because it carries symmetry-aware coordinate and displacement constraints; the current model remains the chemically balanced SrWO₄/WO₃/Sr₃WO₆ inventory, and I’m checking each saved stage before accepting the final project.
+
+The profile diagnostics identify a modest Sr₃WO₆ texture along ⟨110⟩ and strong uniaxial broadening along c; neither SrWO₄ nor WO₃ benefits materially from texture. I’m rebuilding the final refinement from the pre-coordinate checkpoint with those physically allowed effects and strict coordinate-displacement bounds, because the unconstrained trial improved Rwp but moved weak-phase atoms farther than the data can justify.
+
+I’m checking the constrained final refinement now. The key safeguard is that weak-phase atomic shifts stay chemically small while the profile effects—surface roughness, anisotropic strain, and mild texture—carry the peak-shape improvement.
+
+The refinement is still running normally; this pass is slower because each bounded coordinate update is followed by a full profile recalculation. I’ll accept it only if the final coordinates and phase scales survive an independent physical and replay check.
+
+That test exposed an important failure mode: GSAS-II’s temporary coordinate-shift variables were not safely committed when the bound-frozen variables were removed, so the subsequent recalculation degraded sharply. I’m discarding those coordinate-refined stages and retaining the chemically sound pre-coordinate checkpoint (Rwp ≈ 13.21%), then validating its saved parameters independently.
+
+The retained model is internally coherent: 72.9 wt% scheelite SrWO₄, 11.9 wt% γ-WO₃, and 15.2 wt% Sr₃WO₆. The WO₃/Sr₃WO₆ mass ratio is 0.79, close to the 0.854 ratio required by the balanced disproportionation \(3\,\mathrm{SrWO_4}\rightarrow\mathrm{Sr_3WO_6}+2\,\mathrm{WO_3}\), which independently supports the two minor-phase assignments.
+
+Independent native replay passed: it regenerated all reflections and intensities from `final.gpx`, found no profile-review flags, and reproduced Rwp = 13.214% over all 8,282 measured points. I’m now checking that the submitted CIFs numerically match the project exports and that each structure passes the contact/occupancy screen.
+
+One structural check found a real issue: COD 1528915’s historical γ-WO₃ coordinates contain 1.58 Å O–O contacts. An equivalent modern P2₁/c WO₃ model (COD 2311041) passes the physical screen and had only a 0.08 percentage-point worse two-phase screening fit. I’m replacing the problematic WO₃ model and rerunning the three-phase refinement so the submitted structure is chemically defensible.
+
+The replacement WO₃ refinement is progressing without numerical errors. Its starting three-phase model already reached Rwp 14.93%; the remaining staged pass is establishing the common specimen correction and phase-specific cells/widths before I compare it directly with the discarded historical model.
+
+All three final CIFs now pass the physical screen, the fraction vector parses as complete and normalized, and each CIF is byte-identical to the corresponding GSAS-II replay export. The checked `fit.csv` independently reproduces Rwp = 13.259%. I’m doing one final end-to-end project/submission consistency replay before handing off.
+
+The optional bubblewrap wrapper cannot start in this managed kernel because unprivileged namespaces are disabled. That does not affect the scientific check: the same read-only replay worker already completed directly, reported `status: replayed`, left the project hash unchanged, and its CIF exports/fractions match the submission exactly. I’m finishing with static artifact checks.
+
+Completed the three-phase refinement:
+
+- SrWO₄ scheelite: 73.25 wt%
+- γ-WO₃: 11.46 wt%
+- Sr₃WO₆: 15.29 wt%
+- Rwp: 13.259%; Rp: 8.968%
+
+Native GSAS-II replay reproduced the fit with no profile-review flags. The Sr₃WO₆ structure is analogue-derived and therefore less certain; fractions are semiquantitative.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r7/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r7/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r7/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r7/workspace/final.gpx)
+- [phase_SrWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r7/workspace/phase_SrWO4.cif)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r7/workspace/phase_WO3.cif)
+- [phase_Sr3WO6.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r7/workspace/phase_Sr3WO6.cif)
+

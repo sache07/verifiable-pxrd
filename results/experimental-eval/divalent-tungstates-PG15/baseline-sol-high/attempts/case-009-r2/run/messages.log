@@ -1,0 +1,28 @@
+I’ll inspect the diffraction data and metadata first, then use the installed indexing/search and GSAS-II tooling to identify candidate phases, refine them jointly, and export the requested project and artifacts. I’ll keep phase count conservative and report any ambiguity explicitly.
+
+The chemistry strongly suggests manganese tungstate formation, but the unknown phase count means I won’t assume a single product. I’m now extracting peak positions and checking the local crystallographic search/indexing interfaces before refinement.
+
+The principal peak set is consistent with wolframite-type MnWO₄. Several strong reflections do not belong to that phase, so I’m testing plausible residual reactants and the alternative ternary Mn₃WO₆ against the complete peak list rather than assigning them from one line.
+
+A single wolframite MnWO₄ model accounts for all prominent lines across 10–100° 2θ; Mn₃WO₆, Mn₃O₄, and common WO₃ polymorphs predict strong low-/mid-angle peaks that are absent. I’m refining the MnWO₄ cell, profile, background, and symmetry-allowed coordinates now, then I’ll inspect the difference curve for any defensible minor phase.
+
+The first refinement confirms the phase assignment but exposes a profile-model issue: with no calibrated instrument function, unconstrained peak-shape terms become nonphysical and the formal counting-statistical Rwp is inflated. I’m tightening the model to physically meaningful broadening terms and removing a redundant scale parameter before treating the fit as final.
+
+Allowing a constant 2θ offset improves the profile substantially (Rwp ≈ 8.7%), but it is strongly entangled with the unit-cell scale. Because the experiment is in reflection geometry, I’m testing the physically appropriate specimen-height shift instead; this should give a more defensible cell while preserving the phase/fraction conclusion.
+
+The specimen-height model gives essentially the same fit while yielding a chemically/literature-consistent wolframite cell. I’ve also constrained the weakly determined oxygen positions to the reference structure; unconstrained oxygen refinement improved Rwp cosmetically but produced implausible W–O distances, so it is not defensible. The final model will cover the entire measured range and document that limitation.
+
+The final constrained model is complete. I’m doing a last consistency check now: CIF parsability/stoichiometry, project phase and refinement flags, full-profile row count and arithmetic, and JSON paths/statistics against the saved GSAS-II project.
+
+Determined one crystalline phase: wolframite MnWO₄, space group P2/c, with normalized crystalline weight fraction 1.000.
+
+Fit: Rwp 9.592%, Rp 7.083%, GOF 2.772. Trace impurities or amorphous material cannot be quantified reliably.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [phase_MnWO4.cif](<ATTEMPT_WORKSPACE>/phase_MnWO4.cif)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+

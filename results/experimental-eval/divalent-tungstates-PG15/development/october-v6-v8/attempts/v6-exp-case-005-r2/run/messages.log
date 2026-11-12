@@ -1,0 +1,47 @@
+I’ll inspect the diffraction data, metadata, and the provided refinement utilities first. Then I’ll screen phase candidates, audit structural models, refine complete-pattern alternatives in GSAS-II, and only export once the project and cross-file audits agree.
+
+The chemistry points first to cobalt tungstate formation with possible unreacted Co₃O₄/WO₃, but I’ll treat that only as a hypothesis. I’m now extracting the peak metric and reading the supplied search/audit interfaces so that candidate retrieval is driven by the full measured pattern and valid atomistic models.
+
+The observed peak positions form two coherent, uniformly offset fingerprints: monoclinic WO₃ (the 23–25° triplet) and spinel Co₃O₄ (31.6, 37.2, 45.1, 59.7, 65.6°). I’m checking all Co–O–W database structures and reduced tungsten oxides against the full pattern before deciding whether any reacted cobalt tungstate is independently supported.
+
+The structural audit rejects the sole CoWO₄ library record as malformed (duplicated symmetry-equivalent sites and impossible occupancies), and its peak family is not needed by the observed pattern. For WO₃, the clean monoclinic P2₁/c model (COD 2311041) matches substantially better than the clean triclinic alternative in an equal-nuisance whole-pattern screen; I’ll carry both through matched GSAS-II refinements before fixing the phase model.
+
+The CoWO₄ branch converged to only ~0.13 wt% at the scale-only stage, with poor phase-specific agreement, and became unstable as soon as its cell was released—exactly the overlap-only behavior that must be rejected. The two viable WO₃ symmetry branches are still completing their matched cell refinements; I’m preserving the last stable projects while checking those results.
+
+After converging both cells, the triclinic WO₃ model is actually modestly better than P2₁/c (Rwp 5.104% vs 5.272%) and both remain chemically valid. That is close enough to require downstream matched tests, so I’m now running the prescribed zero/displacement/joint angular comparison independently for each complete two-phase model.
+
+Both structures select sample displacement over a constant zero offset, while the joint model is rejected at >99.9% correlation. The triclinic model still improves every angular region, especially above 50°. I’m now screening the smallest Gaussian/Lorentzian profile branches from this stabilized state; retained terms must improve multiple regions and pass the regenerated-width audit.
+
+The width screen selects the two-term W+X model: it is stable and positive across all regenerated reflections. Adding Y changes Rwp by only ~0.005 percentage point and shifts the benefit mainly to the highest-angle region; U/V branches are correlated or fail to settle. I also caught that GSAS-II’s saved profile arrays lagged the last parameter update, so I’m regenerating them before any envelope or phase-specific comparisons.
+
+The two-phase inventory is stable: spinel Co₃O₄ plus WO₃, with triclinic WO₃ currently giving the better complete-pattern fit than the near-tied monoclinic alternative. I’m finishing the nuisance-model tests now—surface roughness, phase-specific broadening, and simple texture—then I’ll rerun the angular check and export/audit the final project and all requested files.
+
+The envelope comparison is decisive enough to keep a one-parameter Suortti surface-roughness correction: it improves the low-, mid-, and 50–70° regions, whereas refined polarization helps less and worsens the high-angle region. Refining both roughness parameters was singular; fixing the redundant parameter leaves a stable positive correction. I’m now testing crystallite-size and microstrain terms independently for each phase from that common baseline.
+
+The phase-broadening screen separated cleanly: Co₃O₄ microstrain refined negative and its size ran to the 10 µm limit, so both are rejected. WO₃ size refined to about 0.188 µm with a stable positive value; WO₃ strain lowered Rwp more but repeatedly oscillated with large shift/esd even under damped one-cycle refinement, so it fails the stability criterion. I’m retaining only the WO₃ size term and retesting the cobalt-oxide terms from that updated baseline.
+
+No preferred-orientation branch survives: WO₃ March–Dollase ratios stayed within 0.4% of unity for all three principal axes with negligible gain, and Co₃O₄ texture branches diverged. A downstream Lorentzian-Y retest did improve Rwp numerically but oscillated with large parameter shifts, so it is rejected. The retained model remains the minimal stable W+X profile with one WO₃ size term; I’m rerunning the required angular branch selection on that mature model now.
+
+The leave-one-out checks confirm every retained optional term is doing real work: removing X raises Rwp from about 3.356% to 3.475%, removing surface roughness to 3.484%, and resetting WO₃ size to the baseline raises it to 3.395%. I’m freezing the helper-selected mature baseline (shift-only; the joint zero/shift branch was 99.98% correlated), regenerating its profile, and then exporting CIFs and the machine-readable outputs.
+
+The final project and exports are now in place. Both CIFs pass the required structural audit with the intended formulas, full occupancies, correct symmetry expansion, and no contact flags. I’m doing the last replay/schema/cross-file checks now; if any export drift appears, I’ll regenerate from `final.gpx` before handing it over.
+
+Completed and audited.
+
+- Co₃O₄, *Fd*‑3*m*: **25.61 wt%**
+- WO₃, *P*‑1: **74.39 wt%**
+- Fit: Rwp 3.356%, Rp 2.395%, GOF 1.952
+
+Formal fraction uncertainty is ±0.20 wt%; realistic model-dependent uncertainty is approximately ±2 wt%. Triclinic WO₃ is preferred, though monoclinic WO₃ remains the principal structural ambiguity. Fractions exclude possible amorphous material.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [Co3O4.cif](<ATTEMPT_WORKSPACE>/Co3O4.cif)
+- [WO3_triclinic.cif](<ATTEMPT_WORKSPACE>/WO3_triclinic.cif)
+
+GSAS-II, CIF, profile-regeneration, fraction-normalization, and submission audits all passed without flags.
+

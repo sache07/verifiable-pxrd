@@ -1,0 +1,42 @@
+I’ll inspect the measurement metadata, pattern format, and the supplied divalent-tungstate guidance first. Then I’ll identify candidate phases, build/refine them in GSAS-II, and verify that every submitted artifact is generated from the final project.
+
+The chemistry points first to CoWO₄ with possible residual Co₃O₄ and WO₃ at 500 °C, but I’ll let the full profile decide. I’m now locating the installed indexing/reference-search and GSAS-II interfaces, and extracting peak positions before committing to a phase inventory.
+
+Peak matching has resolved the inventory provisionally: the dominant triplet and its higher-angle family match monoclinic WO₃, while independent lines at about 19.37, 31.63, 37.20, 45.15, 59.67, and 65.55° match spinel Co₃O₄. I see no compelling CoWO₄-only lines. I’m moving to quantitative co-refinement, including the sizable common specimen/zero shift and phase-specific broadening.
+
+The trial refinements confirm that the angular displacement is specimen-like rather than a different phase: Co₃O₄ lines move coherently, while the WO₃ multiplets require the full monoclinic cell. I’m comparing equivalent published WO₃ models now; this matters because their peak positions are nearly identical but their structure factors—and therefore the quantitative fractions—are not.
+
+The numerically stable model now gives about 74.25 wt% WO₃ and 25.75 wt% Co₃O₄—essentially the 1:1 metal-ratio precursor mixture—and Rwp ≈ 3.27%. The remaining systematic residuals are concentrated in WO₃ structure-factor-sensitive peaks, so I’m refining symmetry-allowed atomic coordinates next, while keeping the phase inventory fixed.
+
+The first unconstrained oxygen refinement tried to move weakly scattering O sites far beyond the reference-mismatch scale, which is not defensible despite a slightly lower residual. I rejected that branch. I’m rerunning coordinate refinement with explicit small-displacement bounds and will retain only a geometrically sound model.
+
+The two-phase assignment is now secure: monoclinic WO₃ accounts for the dominant pattern and spinel Co₃O₄ for every independent minority reflection. I’m finishing the model-selection checks that most affect quantitative fractions—thermal factors and correlated specimen geometry—then I’ll freeze one reproducible GSAS-II refinement and export the requested files.
+
+A useful constraint from the supplied lab description changes one modeling choice: anisotropic microstrain is generated only along [001], [100], or [010]. The [010] model is the best of those permitted directions, so I’m rebuilding the final branch with that axis instead of retaining a slightly lower-Rwp but unsupported [110] profile model. This keeps the refinement physically tied to how the data were produced.
+
+Directly refining one common Uiso per phase drives both to ~0.04 Å², outside the documented synthetic range (0.003–0.020 Å²). That is a classic scale/thermal-factor compensation for residual profile mismatch, so I’m treating those unconstrained values as nonphysical and using the constrained optimum at 0.020 Å² for both phases. The resulting fraction sensitivity will be reported explicitly rather than hidden in a formal least-squares error.
+
+The first constrained-U trial exposed a second boundary: polarization rose to 1.28, while the documented physical range ends at 1.0. These two parameters trade strongly against the high-angle intensity falloff. I’m therefore solving the joint constrained problem with polarization fixed at its physical upper bound; this should locate the WO₃ thermal factor internally while showing whether Co₃O₄ remains boundary-limited.
+
+The physically admissible solution is stable: at polarization 0.80 the refined fraction is 75.23/24.77 wt%, and at the statistically preferred boundary value 1.00 it is 75.39/24.61 wt%. That small change is reassuring; I’ll report a conservative ±1 wt% systematic uncertainty, larger than GSAS-II’s formal ~0.36 wt% standard uncertainty.
+
+The refinement is now frozen at 75.386 wt% WO₃ and 24.614 wt% Co₃O₄, with Rwp = 3.123%. I’m exporting directly from that same in-memory GSAS-II project so the CIFs, profile, fractions, and `final.gpx` cannot drift apart. After export I’ll independently reopen and validate every deliverable.
+
+All requested artifacts are written. Structural validation independently reads the CIFs as WO₃/P2₁/c and Co₃O₄/Fd-3m, with sensible shortest contacts (1.74 and 1.91 Å), and `fit.csv` contains all 8,301 measured points with an exactly consistent observed-minus-calculated column. I’m doing the last cross-file replay check against `final.gpx` now.
+
+Identified two crystalline phases:
+
+- Monoclinic WO₃, P2₁/c: **75.39 wt%**
+- Spinel Co₃O₄, Fd-3m: **24.61 wt%**
+
+Fractions are normalized over crystalline phases. Final fit: Rwp 3.123%, Rp 2.233%, GOF 1.817. Conservative fraction uncertainty is about ±1 wt%; WO₃ oxygen positions remain less reliable than the phase assignment and cell.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-005-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-005-r1/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-005-r1/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-005-r1/workspace/fit.csv)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-005-r1/workspace/phase_WO3.cif)
+- [phase_Co3O4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-005-r1/workspace/phase_Co3O4.cif)
+

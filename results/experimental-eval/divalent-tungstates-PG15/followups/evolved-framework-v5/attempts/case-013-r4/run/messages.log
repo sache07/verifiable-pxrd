@@ -1,0 +1,88 @@
+I’ll inspect the specimen metadata and diffraction pattern first, then identify candidate phases, build/refine a complete multiphase GSAS-II model, and validate that the exported CIFs, profile, fractions, and project all agree. I’ll treat coherent residual peak families as the criterion for adding phases and will keep the most physical checkpoint rather than chasing a marginal Rwp improvement.
+
+The specimen is a PbO–WO₃ reaction fired at 500 °C, so the chemically ordinary starting inventory is PbWO₄ plus possible residual PbO and WO₃. I’m now extracting the peak families and querying the frozen reference index for exact-composition structures before deciding whether all three are actually supported.
+
+The peak-family evidence supports three chemically ordinary phases: scheelite-type PbWO₄ dominates; orthorhombic massicot PbO is clear from its independent 29.34/30.62/38.12/49.49/53.38/60.54/63.28° series; and monoclinic WO₃ is supported by the 23.38/23.88/24.64° triplet and higher-angle companions. I’m testing the close PbWO₄ and WO₃ reference variants in whole-profile refinements now; the key ambiguity is the normal scheelite cell versus a vacancy-ordered scheelite-related model whose principal peaks nearly coincide.
+
+The three-phase model leaves a real, coherent residual family—especially near 25.92, 31.04, 43.42, and related positions—so the inventory is not yet complete. A first raspite branch was numerically unstable during unconstrained cell refinement; I’m treating that as unknown rather than rejection, tightening the refinement sequence, and checking chemically plausible Pb-rich tungstate/intermediate prototypes against the whole residual family.
+
+The residual family matches a Pb₂WO₅ topology derived by the chemically direct Mo→W substitution in published C2/m Pb₂MoO₅: its 25.70/30.89/43.22/51.87° family maps across the pattern after the common calibration shift. Adding this phase lowers Rwp materially, and the accepted working inventory is now PbWO₄ + Pb₂WO₅ + massicot PbO + monoclinic WO₃. The normal I4₁/a PbWO₄ model fits better than the vacancy-ordered alternative; close WO₃ variants were resolved in favor of the physical room-temperature monoclinic model. Coordinate checkpoints are still running.
+
+I rejected the superficially better old WO₃ checkpoint after geometry screening: it contains a 1.58 Å O–O contact and mixed five-coordinate W, while the modern monoclinic reference has normal six-coordinate W and ≥2.54 Å O–O separation. The conservative physical branch is now refining calibration, bounded analogue coordinates, and one phase-profile term at a time; all parameter bounds match the stated laboratory support.
+
+The bounded coordinate test behaved as intended on rerun: Pb₂WO₅ heavy atoms moved only 0.127 Å and improved the fit, while the PbWO₄ oxygen trial wanted a 0.208 Å displacement and was rolled back. I’m finishing the phase-profile accept/reject pass from that physical checkpoint, with worsening branches automatically discarded.
+
+I found one remaining profile correlation: the exploratory starting model had assigned 1000 ppm strain to every phase, which traded directly against instrument U. The current branch starts all phase strains at zero, refines the bounded common instrument profile first, and only accepts phase-specific strain if it independently improves the fit; this should make the submitted broadening terms and fractions more defensible.
+
+The physical no-strain checkpoint is stable at roughly Rwp 12.46% before final bookkeeping. I’m screening only the five March–Dollase axes allowed by the specimen model, one phase at a time; any texture branch must stay within 0.7–1.4 and improve the full pattern before it is retained.
+
+The first texture screen found one supported correction: Pb₂WO₅ with [100] March–Dollase ratio 1.166. After freezing it and stabilizing the other parameters, Rwp improves from 12.55% to 12.43% and the refinement converges cleanly. I’m checking whether any second phase has independent texture support before locking the final model.
+
+The remaining large residuals are not random, so I have not stopped at the four-phase fit. One family at 28.86/32.10/35.99/48.85/54.91/59.38° is consistent with tetragonal litharge PbO in addition to massicot—chemically credible at the reported 500 °C transition region. I’m testing that exact reference at the converged multiphase checkpoint, then I’ll re-test raspite without treating its earlier numerical failure as rejection.
+
+The four-phase physical model is stable at Rwp ≈12.40%. I’m now resolving the remaining coherent reflections by checking the second PbO polymorph and raspite against that checkpoint; I’ll retain them only if they give a stable positive fraction and broad peak-family support.
+
+Litharge is strongly supported: it lowers Rwp from 12.40% to 11.75%, refines to a sensible cell and ~68 nm domain size, and carries a stable positive scale. Its predicted family accounts for the 28.86/32.10/35.99/48.85/54.91° residuals, so I’m retaining it and testing raspite only against this improved five-phase state.
+
+I found and am correcting a reference-import setting issue before accepting litharge: the raw COD symmetry setting was interpreted by GSAS-II with the Pb site multiplicity doubled, giving an impossible 18 g/cm³ density. I’m rebuilding the same published litharge structure in GSAS-II’s standard P4/nmm setting, then I’ll repeat the test so its scale and weight fraction are physically meaningful.
+
+The corrected litharge refinement is running cleanly; this repeat is important because the uncorrected site multiplicity would have biased both intensities and the reported phase fraction. After it converges, raspite is the last inventory test.
+
+The controlled raspite trial drives its scale to the nonnegative bound (effectively 0 wt%) and then becomes singular; its cell failure is therefore not being treated as evidence. I’m repeating a one-parameter, fixed-cell scale test to distinguish true absence from numerical coupling, in line with the requested “failure is unknown” rule.
+
+Raspite is now conclusively excluded: three fixed-cell, one-variable trials from different positive starts all converge to zero scale, while the physical raspite geometry itself is valid. The largest remaining deviations are mostly intensity/profile errors on accepted reflections, but the 27.49°/30.18° pair is not yet assigned; I’m checking the frozen phase index for chemically plausible lead-tungstate intermediates before declaring the inventory complete.
+
+The residual plot shows those deviations are broad shoulders tied to the accepted Pb₂WO₅/product peak regions, not a separate sharp family. With the five-phase inventory fixed, I’m re-screening per-phase size and strain one at a time; the earlier profile tests preceded litharge and are no longer decisive.
+
+A single supported profile term gives a clear improvement: PbWO₄ refines to a 0.18 µm coherent-domain size and lowers Rwp from 10.71% to 10.46%. The other one-at-a-time gains are much smaller. I’m stabilizing this branch first, then will re-screen the remaining phases from it rather than combining correlated broadening terms.
+
+The massicot size term is also reproducible and physical (0.060 µm), giving Rwp 10.42% after stabilization. I’m doing one final profile screen from this checkpoint; only improvements that remain distinct after these accepted size terms will be kept.
+
+The residual family is now identified: 27.48, 32.86, 45.03, 51.48, 55.56 and 56.81° collectively matches the exact Pb₇W₈O₂₈.₈ reference (COD 9016035), not raspite. This is a chemically plausible Pb-deficient/oxygen-deficient lead tungstate; I’m testing it as a sixth phase with nonnegative scale and fixed parent geometry before any cell/profile refinement.
+
+The exact Pb₇W₈O₂₈.₈ reference also refines to zero scale, so its positional resemblance is only overlap with the dominant tungstate family. The remaining broad 27–33° cluster has chemically supported PbO-rich character; I’m making one bounded cross-chemistry test of the published Pb₅MoO₈ topology with Mo→W, whose reflection family spans that cluster.
+
+The Pb₅WO₈ transfer is unsupported: even with its peaks broadened to the physical 0.04 µm limit, a scale-only fit goes to zero. I’m stopping phase search. The accepted Pb₂WO₅ contribution does show anisotropic-looking shoulders, so I’m making the final permitted complexity check: replace its isotropic strain with one uniaxial strain model, screening only the three physically allowed axes.
+
+The uniaxial strain branch yields only a 0.013-point Rwp gain and drifts to an 8:1 anisotropy, so I’m rejecting it as unsupported complexity and keeping the stable isotropic Pb₂WO₅ strain model. Before export I’m repeating the bounded coordinate checks on the complete five-phase model, with rollback for excessive displacement or bad interatomic geometry.
+
+The Pb₂WO₅ heavy-atom check is supported: a 0.192 Å maximum shift improves Rwp by ~0.10 point and preserves a normal tetrahedral W–O range (1.69–1.93 Å). I’m retaining that bounded adaptation, stabilizing the non-coordinate parameters, then testing the dominant PbWO₄ oxygen position with a tighter 0.10 Å step.
+
+The first PbWO₄ oxygen step moved 0.177 Å and lengthened every W–O bond to 1.879 Å, exceeding the intended bound, so it is rolled back despite the lower Rwp. I’m testing one smaller 0.02 damping step; this should keep the displacement in the 0.04 Å range expected for a reference-to-specimen adjustment.
+
+The two bounded PbWO₄ starts behave monotonically; the 0.071 Å oxygen shift lowers Rwp to 10.25% and keeps a regular 1.814 Å WO₄ tetrahedron, so I’m retaining it. I’ll stabilize this checkpoint and make only single-cycle heavy-site checks on the remaining minor phases; any large or nonphysical move will be discarded.
+
+The minor-phase screen supports massicot Pb adjustment (0.113 Å, Rwp gain ~0.063, shortest Pb–O 2.12 Å). The WO₃ move is too large for a negligible gain and is rejected. Litharge remains physically plausible but marginal, so I’m first stabilizing the accepted massicot branch and will retest that single Pb z coordinate there before deciding.
+
+Litharge Pb z remains supported after the massicot update: 0.067 Å displacement, normal 2.35 Å Pb–O contacts, and a reproducible Rwp reduction. I’m retaining it. The inventory and coordinates are now fixed; the remaining work is a final re-optimization of only the already-supported size, strain, and texture parameters, followed by export and replay verification.
+
+The final supported texture re-optimization remains modest and bounded (March–Dollase 1.133 for Pb₂WO₅ and 0.868 for massicot), lowering Rwp to 10.15%. I’m performing one joint convergence pass over only these five already-validated profile/texture parameters, then freezing everything for the submitted replay.
+
+The final model has converged at Rwp 10.150% (GOF 2.905; max shift/esd 0.092) with five phases. I’m now running the final geometry/composition audit and calculating fractions directly from GSAS-II mass×scale values before writing the required CIFs, profile, JSON, report, and project.
+
+All required files are now written. I’m doing the independent read-only GSAS-II replay used by the evaluation framework, then I’ll compare its regenerated curve and phase fractions against `fit.csv`, the CIFs, and `result.json` to catch any stale-array or export mismatch.
+
+Completed and independently replay-verified with no physical/profile flags.
+
+| Phase | Crystalline wt.% |
+|---|---:|
+| PbWO₄, stolzite | 59.79 |
+| Pb₂WO₅ | 15.00 |
+| PbO, massicot | 9.47 |
+| WO₃, monoclinic | 9.22 |
+| PbO, litharge | 6.51 |
+
+Rwp = 10.150%, GOF = 2.905. The analogue-derived Pb₂WO₅ structure and minor-phase fractions remain semiquantitative due to overlap and profile correlations.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r4/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r4/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r4/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r4/workspace/final.gpx)
+- [PbWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r4/workspace/phase_PbWO4_stolzite.cif)
+- [Pb₂WO₅ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r4/workspace/phase_Pb2WO5.cif)
+- [Massicot CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r4/workspace/phase_PbO_massicot.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r4/workspace/phase_WO3_monoclinic.cif)
+- [Litharge CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r4/workspace/phase_PbO_litharge.cif)
+

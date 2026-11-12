@@ -1,0 +1,35 @@
+Both final variants converged. Let me test one with all displacement parameters held at physically sensible fixed values, to avoid the near-zero/negative ADPs.
+
+Final model selected (all ADPs held at physical values; Rwp penalty only 0.016). Now producing the deliverables.
+
+Now the report.
+
+All deliverables are written and verified. Bond distances from the refined CIF (Mn–O 2.12/2.14/2.30 Å, W–O 1.77/1.91/2.14 Å) match published hübnerite within a few thousandths of an Å, confirming the model is chemically sound.
+
+## Result
+
+**One crystalline phase: MnWO₄ (hübnerite, wolframite type, monoclinic *P*2/*c*) — weight fraction 1.000.**
+
+| | |
+|---|---|
+| *a, b, c* | 4.83056(11), 5.75677(14), 4.99611(12) Å |
+| *β*, *V* | 91.2172(10)°, 138.903(9) Å³ |
+| R<sub>wp</sub> / R<sub>p</sub> / GOF | 4.94 % / 3.74 % / 1.43 |
+| R<sub>F</sub> / R<sub>F²</sub> | 1.66 % / 3.30 % (145 reflections) |
+| R<sub>wp</sub> statistical floor | 3.46 % |
+
+**Files:** `MnWO4.cif`, `fit.csv`, `result.json`, `report.md`, `final.gpx` (GSAS-II 5.7.8).
+
+## How I got there
+
+- Simulated all 62 Mn–W–O entries in the local COD subset against the extracted peak list. MnWO₄ was the only real match; every observed peak above 0.8 % relative intensity indexes on its cell.
+- A Le Bail fit with MnWO₄ alone reached R<sub>wp</sub> = 5.77 %, and its difference curve shows no positive feature at any WO₃ / Mn₂O₃ / Mn₃O₄ / MnO / Mn₃WO₆ reflection — the MnWO₄-free windows are pure counting noise.
+- Two corrections mattered. Peak positions are offset by ≈ +0.25° cos θ, which refines to a −425 µm specimen displacement. More importantly, **surface roughness** was essential: without it all U<sub>iso</sub> went to ≈ −0.018 Å² and the oxygen positions distorted; with the Suortti correction R<sub>wp</sub> fell 9.7 → 5.4 % and the refined O coordinates landed within 0.004 of the literature values — an independent check that the structural model is right.
+
+## What I could not determine
+
+- **The weight fraction is 1.000 by construction**, not by measurement. The useful number is the detection limit: each candidate impurity, added to the converged model, refined to ≤ 0.7 wt % for ΔR<sub>wp</sub> ≤ 0.01 — soaking up profile misfit, not real peaks. No second phase can be claimed; ~1 wt % is the practical limit. Amorphous content cannot be quantified at all (no internal standard).
+- **Displacement parameters are not determined** and were held fixed; refining them gains 0.016 % R<sub>wp</sub> and drives W/Mn to ≈ 0 or negative through correlation with roughness. The CIF carries a comment saying so — don't read ADPs from it.
+- Lattice-parameter e.s.d.s are statistical only; correlation with the large displacement makes ±0.002 Å realistic, which covers the 0.15 % offset from the literature cell.
+- The instrument profile is empirical (none was supplied), with a negative Lorentzian Y term, so no crystallite-size or microstrain values were extracted.
+

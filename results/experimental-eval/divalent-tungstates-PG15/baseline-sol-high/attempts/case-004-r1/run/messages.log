@@ -1,0 +1,32 @@
+I’ll inspect the diffraction data and metadata first, then identify candidate phases, build a multiphase GSAS-II refinement, and validate that the exported CIFs, profile, fractions, and project are mutually consistent.
+
+The chemistry strongly points to cobalt tungstate, but I’m treating precursor carryover and polymorph/oxide impurities as open possibilities. I’m now extracting peak positions and querying the local crystallographic database for Co–W–O candidates before committing the refinement model.
+
+Peak matching now supports a two-phase model: monoclinic WO₃ explains the 23.17/23.67/24.41° triplet and most of the pattern, while wolframite CoWO₄ explains the otherwise unaccounted 30.71° maximum and its corroborating peaks near 19.09, 36.44, 54.15, and 65.15°. I’m refining these together, including separate cells and broadening terms, so the phase fraction comes from the full profile rather than a few peak heights.
+
+The staged refinement is converging to roughly one-third CoWO₄ and two-thirds WO₃ by crystalline mass. The remaining work is profile-model stabilization: the uncalibrated instrumental broadening is correlated with sample broadening, so I’m checking parameter stability before reporting precision.
+
+The broadening test exposed two nonphysical sample-broadening values, so I rejected that refinement branch rather than using its slightly lower residual. I’m now comparing the plausible monoclinic WO₃ model against the closely related triclinic alternative using a constrained, physical profile model; this is the key remaining phase-identity uncertainty.
+
+The constrained comparison favors triclinic WO₃ (P-1): Rwp improves from 7.15% for the best monoclinic reference to 6.77% for triclinic WO₃, with only two additional cell parameters. The CoWO₄ fraction stays near 32–33 wt% across these alternatives, so phase identification and quantification are stable even though the exact WO₃ distortion is the main residual uncertainty.
+
+The final model is now internally consistent: the submitted project, CIFs, fractions, and profile all come from the same stabilized refinement. I’m doing a last machine validation of CIF readability, fraction normalization, profile arithmetic, and project/output agreement.
+
+Identified two crystalline phases:
+
+- Triclinic WO₃ (P-1): **67.96 wt%**
+- Wolframite CoWO₄ (P2/c): **32.04 wt%**
+
+Final fit: Rwp = 6.774%, Rp = 5.098%, GOF = 2.067. Fractions are normalized over crystalline phases; practical uncertainty is approximately 1–2 wt%.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3_triclinic.cif](<ATTEMPT_WORKSPACE>/WO3_triclinic.cif)
+- [CoWO4_wolframite.cif](<ATTEMPT_WORKSPACE>/CoWO4_wolframite.cif)
+
+CIF readability, fraction normalization, profile arithmetic, and agreement with the submitted GSAS-II project were validated.
+

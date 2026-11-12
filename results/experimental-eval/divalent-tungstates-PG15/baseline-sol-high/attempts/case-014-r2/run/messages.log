@@ -1,0 +1,30 @@
+I’ll inspect the diffraction pattern and metadata first, then identify candidate phases and build a quantitative GSAS-II refinement. I’ll keep the deliverables internally consistent by exporting the CIFs, profile, fractions, statistics, and final `.gpx` from the same final model.
+
+The chemistry strongly suggests a strontium tungstate reaction product, but I won’t assume phase purity: I’m extracting the peak set and searching the local crystallographic database for Sr–W–O candidates plus plausible unreacted precursors and side products. The Cu Kα doublet and reflection geometry will be modeled explicitly in the refinement.
+
+Peak-position matching confirms scheelite SrWO₄ as the dominant phase. The remaining reflections are not adequately explained by that phase alone; several chemically plausible minority models (residual WO₃, SrO/SrO₂, and Sr₃W₂O₉) overlap heavily, so I’m now comparing them by full-pattern Rietveld refinements rather than assigning peaks one by one.
+
+The model comparison now clearly favors a second strontium tungstate phase: adding monoclinic Sr₃W₂O₉ lowers Rwp from about 19.49% to 17.38% and yields ~14 wt%, whereas SrO₂ and SrCO₃ refine to zero and SrO is below 1 wt%. Residual WO₃ remains a possible few-percent contribution, so I’m testing it only after stabilizing the two-phase model to avoid local-minimum artifacts.
+
+The final phase set is now stable: scheelite SrWO₄, monoclinic Sr₃W₂O₉, and monoclinic WO₃. Alternative WO₃ polymorphs fit slightly worse, while precursor carbonate/oxide models either refined to zero or gave negligible improvement. I’m exporting all requested files from the converged three-phase project now; the report will flag that the minority-phase structures and fractions carry larger systematic uncertainty than the formal least-squares errors suggest.
+
+Completed the three-phase refinement:
+
+- SrWO₄ (scheelite): 76.84 wt%
+- Sr₃W₂O₉ (monoclinic): 12.26 wt%
+- WO₃ (monoclinic): 10.90 wt%
+
+Final fit: Rwp 14.685%, Rp 10.631%, GOF 4.162.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_SrWO4.cif](<ATTEMPT_WORKSPACE>/phase_SrWO4.cif)
+- [phase_Sr3W2O9.cif](<ATTEMPT_WORKSPACE>/phase_Sr3W2O9.cif)
+- [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+
+The report notes the larger systematic uncertainty for the minority phases and the non-unique distinction among closely related WO₃ polymorphs.
+

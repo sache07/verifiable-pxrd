@@ -1,0 +1,28 @@
+I’ll inspect the diffraction data and metadata first, then identify candidate phases and build/refine a multiphase GSAS-II model. I’ll keep the reported fractions normalized to the crystalline phases actually modeled and flag any ambiguity in phase identity or quantification.
+
+The pattern contains several strong, closely spaced peaks around 23–27° plus distinct lines near 33.5°, 42–56°, so it is not adequately described by a single obvious Ba–W–O product without testing. I’m now matching the peak set against likely precursor/product structures and checking for unreacted or decomposed phases before refinement.
+
+The first refinement confirms the two-phase assignment qualitatively and gives an initial crystalline mass split near 65:35 (WO₃:BaO₂), but the oldest triclinic WO₃ reference is numerically unstable when all six cell degrees of freedom are released. I’m comparing higher-symmetry monoclinic WO₃ models and will retain the one that reproduces the peak positions/intensities without unstable cell parameters.
+
+The higher-quality monoclinic WO₃ model (P2₁/c) gives the best stable fit: Rwp ≈ 7.78% with refined crystalline fractions near 64.7 wt% WO₃ and 35.3 wt% BaO₂. A BaWO₄ trial refined to statistically insignificant trace content (~0.13(15) wt%) and lacked its independent diagnostic line, so I’m excluding it from the final two-phase model and recording that limit in the report.
+
+The clean final refinement has converged reproducibly with physically stable cell/profile parameters and the same two-phase fraction result. I’m doing a final integrity check now: CIF parsing, fraction normalization, profile row count/difference consistency, and reloadability of `final.gpx`.
+
+Identified two crystalline phases:
+
+- Monoclinic WO₃, P2₁/c: **64.70 wt%**
+- Tetragonal BaO₂, I4/mmm: **35.30 wt%**
+
+Fractions are normalized over modeled crystalline material. Estimated practical uncertainty is ±2–3 wt% absolute. BaWO₄ was tested but was not statistically significant.
+
+Fit: Rp = 5.849%, Rwp = 7.784%, GOF = 2.140.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [BaO2.cif](<ATTEMPT_WORKSPACE>/BaO2.cif)
+

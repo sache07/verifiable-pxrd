@@ -1,0 +1,32 @@
+I’ll inspect the measurement metadata and pattern first, then use the installed crystallography/indexing stack to identify candidate phases, build and refine a multiphase model, and export the requested GSAS-II project and supporting files. I’ll keep phase fractions limited to what the diffraction data can actually support.
+
+The chemistry points first to lead tungstate, but I’m treating that only as a hypothesis: I’m extracting peak positions and querying the local COD-derived structure library for all Pb–W–O, Pb–O, and W–O candidates. This is important because residual precursor and intermediate lead tungstates can overlap strongly with scheelite PbWO₄.
+
+The first refinement confirms scheelite PbWO₄ but also exposes a setup issue: GSAS-II imported both the specimen scale and phase scale as refinable, making them exactly redundant. I’m correcting that before trusting any phase fraction; the preliminary one-phase residual is also far too structured, so at least one additional crystalline phase is required.
+
+The extra reflections are now clearly incompatible with a simple scheelite/raspite-only model. The strongest diagnostic set at about 23.39°, 23.89°, and 24.64° matches distorted WO₃. I’m standardizing the older database WO₃ entries before refinement because their low-symmetry/zero-displacement CIF encoding caused unstable metric refinements; I’m also testing whether weaker residual peaks justify raspite or PbO as a third phase.
+
+A consistent peak-position trend remains: low-angle scheelite lines are about +0.10–0.14° from the current calculation while higher-angle lines cross to about −0.08°. That is the signature of an uncalibrated constant zero offset coupled to lattice scale, not a different phase. Since the metadata explicitly says no calibrated profile was supplied, I’m adding a refined 2θ zero term before judging phase models or fractions.
+
+The three supported phases are now stable: scheelite PbWO₄, monoclinic WO₃, and orthorhombic massicot PbO. Adding raspite does not improve the fit and its scale collapses toward zero once WO₃ and PbO are present. I’m finalizing the project and exports now; I’ll explicitly flag the remaining unmatched peaks and the fact that formal GSAS-II fraction errors understate the model uncertainty.
+
+Completed the GSAS-II multiphase refinement.
+
+Modeled crystalline composition:
+
+- PbWO₄, scheelite/stolzite: 77.27 wt%
+- Monoclinic WO₃: 11.57 wt%
+- Massicot PbO: 11.15 wt%
+
+Fractions are normalized over modeled crystalline phases. Fit statistics: Rwp 18.33%, Rp 13.43%, GOF 5.24. Residual peaks indicate an unidentified minor crystalline component, so practical fraction uncertainty is several wt%.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [PbWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_PbWO4_scheelite.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_monoclinic.cif)
+- [PbO CIF](<ATTEMPT_WORKSPACE>/phase_PbO_massicot.cif)
+

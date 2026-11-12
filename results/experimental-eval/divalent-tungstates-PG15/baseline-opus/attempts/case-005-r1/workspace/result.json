@@ -1,0 +1,148 @@
+{
+  "caveats": [
+    "Weight fractions are normalised over the two modelled crystalline phases; any amorphous or X-ray-poorly-diffracting fraction is not quantified (no internal standard).",
+    "Quoted esds are refinement statistics only; realistic QPA accuracy for this strongly absorbing, heavily overlapped two-phase mixture is +/- 1-2 wt% (the spread over the physically acceptable model variants tried was 74.4-75.4 wt% WO3; a rejected variant with negative surface roughness gave 76.5 wt%). Microabsorption (Brindley) was not corrected: particle sizes are unknown.",
+    "Atom coordinates were not refined: with laboratory Cu data, a ~2900-count background and extensive WO3/Co3O4 overlap they are not reliably determinable here."
+  ],
+  "derived": {
+    "atomic_ratio_Co_to_W": 0.952,
+    "comment": "close to the 3 WO3 : 1 Co3O4 (Co:W = 1:1) batch expected for an intended CoWO4 synthesis, i.e. the precursors are essentially unreacted",
+    "molar_ratio_WO3_to_Co3O4": 3.15
+  },
+  "experimental_model": {
+    "Ka2_to_Ka1_intensity_ratio": 0.5,
+    "Uiso_fixed": {
+      "Co": 0.005,
+      "O": 0.01,
+      "W": 0.005
+    },
+    "background": "chebyschev-1, 12 terms",
+    "geometry": "Bragg-Brentano (reflection)",
+    "goniometer_radius_mm": 200.0,
+    "polarization": 0.7,
+    "profile_instrument": {
+      "SH/L": 0.05981,
+      "U": 2.0,
+      "V": -2.0,
+      "W": 4.52901,
+      "X": 6.86133,
+      "Y": 0.0
+    },
+    "radiation": "Cu Ka1/Ka2",
+    "sample_displacement_um": -669.0,
+    "wavelengths_angstrom": [
+      1.540598,
+      1.544426
+    ]
+  },
+  "files": {
+    "figure": "fit.png",
+    "profile": "fit.csv",
+    "project": "final.gpx",
+    "report": "report.md"
+  },
+  "fit_statistics": {
+    "GOF": 1.6202,
+    "Rp_percent": 2.1258,
+    "Rwp_percent": 2.7847,
+    "chi_squared_reduced": 2.6251,
+    "n_observations": 8301,
+    "n_varied_parameters": 33,
+    "two_theta_range_deg": [
+      9.9034,
+      100.0949
+    ]
+  },
+  "phases": [
+    {
+      "R_factors": {
+        "RF2_percent": 4.62,
+        "RF_percent": 2.9,
+        "n_reflections": 440
+      },
+      "cif": "WO3.cif",
+      "formula": "WO3",
+      "lattice_parameters": {
+        "angle_alpha": 90.0,
+        "angle_beta": 90.65412,
+        "angle_gamma": 90.0,
+        "length_a": 7.30472,
+        "length_b": 7.53623,
+        "length_c": 7.69332,
+        "volume": 423.49012
+      },
+      "microstrain": [
+        1567.1,
+        1533.8,
+        854.7,
+        -282.7,
+        32002.5,
+        2271.9,
+        936.2,
+        5130.8,
+        -1961.0
+      ],
+      "microstrain_model": "generalized",
+      "name": "WO3",
+      "phase_scale_factor": 1.0,
+      "space_group": "P 21/n",
+      "weight_fraction": 0.752,
+      "weight_fraction_esd": 0.0016,
+      "weight_percent": 75.2
+    },
+    {
+      "R_factors": {
+        "RF2_percent": 5.23,
+        "RF_percent": 3.39,
+        "n_reflections": 22
+      },
+      "cif": "Co3O4.cif",
+      "formula": "Co3O4",
+      "lattice_parameters": {
+        "angle_alpha": 90.0,
+        "angle_beta": 90.0,
+        "angle_gamma": 90.0,
+        "length_a": 8.08378,
+        "length_b": 8.08378,
+        "length_c": 8.08378,
+        "volume": 528.25508
+      },
+      "microstrain": 1090.8,
+      "microstrain_model": "isotropic",
+      "name": "Co3O4",
+      "phase_scale_factor": 0.31751757644955547,
+      "space_group": "F d -3 m",
+      "weight_fraction": 0.248,
+      "weight_fraction_esd": 0.0016,
+      "weight_percent": 24.8
+    }
+  ],
+  "phases_tested_and_rejected": [
+    {
+      "phase": "CoWO4 (wolframite, P2/c, COD 5910316)",
+      "result": "phase fraction refines to zero; no intensity at its strongest line (-111, 2theta ~ 30.9 deg after the displacement correction)",
+      "upper_bound_wt_percent": 1.5
+    },
+    {
+      "phase": "triclinic epsilon/delta-WO3 (P-1, COD 2106293)",
+      "result": "markedly worse fit than monoclinic gamma-WO3 (Rwp 8.3% vs 3.2% in the same protocol); not used"
+    },
+    {
+      "phase": "CoO (rocksalt), WO2, W metal",
+      "result": "no distinct unmodelled peaks at their principal lines (CoO 36.8/42.7, W 40.6/53.1, WO2 26.2/37.3 deg in the displaced frame)"
+    },
+    {
+      "phase": "preferred orientation (March-Dollase on WO3 [100], [010], [001])",
+      "result": "all refine to 1.00; no texture, term dropped"
+    }
+  ],
+  "sample": {
+    "identified_product": "unreacted precursor mixture: gamma-WO3 + Co3O4",
+    "number_of_crystalline_phases_modelled": 2,
+    "precursors": [
+      "Co3O4",
+      "WO3"
+    ],
+    "reported_heating_temperature_C": 500.0
+  }
+}

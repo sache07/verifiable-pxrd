@@ -1,0 +1,90 @@
+I’ll inspect the measurement metadata, pattern, and the supplied PXRD/GSAS-II helpers first. Then I’ll screen candidate phases, audit atomistic models, refine competing complete-pattern branches, and only export the final files after the project and submission audits pass.
+
+The sample is a Cu Kα reflection scan from 9.9–100.1° with Mn₂O₃ and WO₃ precursors heated at 500 °C. Because the product formula and phase count are unspecified, I’m treating precursor remnants and Mn–W–O reaction products as competing hypotheses rather than assuming a single target phase.
+
+The peak inventory strongly favors residual/parent oxides: the dense triplet near 23–25° and multiplets near 33–35°, 50–51°, and 54–56° match low-symmetry WO₃, while the distinct ~33.27°, 38.53°, 45.13°, 49.61°, 66.03°, and 81.83° family is consistent with bixbyite Mn₂O₃. The strongest diagnostic reflections expected for MnWO₄ or Mn₃WO₆ are absent, so I’m carrying the parent oxides and the closest WO₃ polymorphs into matched refinements.
+
+The CIF integrity screen rejects one older P2₁/m WO₃ model because it contains near-duplicate oxygen sites, and flags another P2₁/c entry for implausibly short O–O contacts. I’m excluding those malformed models. The retained comparison set uses audited triclinic P-1 and monoclinic P2₁/c WO₃ structures plus audited cubic Ia-3 Mn₂O₃, with identical nuisance-parameter staging.
+
+The first parallel screen exposed a setup issue rather than a scientific one: each branch was writing the same temporary converted pattern, causing a race and incomplete imports. I’ve isolated the working files per branch; the existing branch projects are being discarded, and the matched comparison will be rerun cleanly.
+
+The clean screen is now stable. Monoclinic WO₃ already reaches about 10% Rwp after only background, phase scales, one angular term, and cells; the orthorhombic alternative remains above 22% at the comparable stage. I’m letting the triclinic and profile stages finish before deciding, since the lower symmetry model must earn its added degrees of freedom on the full pattern.
+
+The angular diagnostic is behaving as expected for Bragg–Brentano data: zero and specimen-displacement corrections are nearly interchangeable, and the joint fit is >99.9% correlated, so it will be rejected. The zero-only branch remains the parsimonious baseline; a displacement-only branch has not shown a compensating full-pattern gain.
+
+The minimal Gaussian screen is physically stable in both structural alternatives. Refining U and W gives only a small gain over W alone (about 0.04 Rwp), with positive widths and no profile-term correlation; I’m carrying that two-term state forward while testing X and Y Lorentzian broadening independently. The phase fractions are already stable near 72–73 wt% WO₃ and 27–28 wt% Mn₂O₃ across these branches.
+
+The full-pattern leave-one-out test confirms WO₃ is indispensable: removing it drives Rwp from ~7.3% to ~34.6% despite reconvergence. I’m finishing the Mn₂O₃ leave-out, reaction-product add-ins, and same-composition Mn₂O₃ symmetry replacements before locking the phase inventory.
+
+The phase inventory is now stable: triclinic WO₃ plus cubic Mn₂O₃ is the only supported two-phase model, while manganese tungstates fail their diagnostic peaks and scale tests. I’m finishing matched profile/envelope/texture checks, then I’ll freeze a converged replay-safe GSAS-II project and audit every exported file.
+
+The remaining intensity mismatch is chiefly an angle-dependent envelope effect, not unexplained peak positions. I’m comparing polarization and a one-parameter Suortti roughness correction from the same frozen baseline; this avoids giving either model credit through drifting cells or peak widths.
+
+Polarization gives a large, stable full-pattern improvement (Rwp 7.307% → 6.884%) without problematic correlations. Surface roughness can lower Rwp further, but its parameter is strongly coupled to the WO₃ scale and depends on an arbitrarily fixed roughness fraction, so I am treating it as non-unique rather than adopting it. I’m now checking whether any simple preferred-orientation axis has reproducible support.
+
+The [001] WO₃ March–Dollase term is weak but reproducible (ratio 1.0084(13)) and improves most angular regions; cubic Mn₂O₃ texture branches diverge or couple to scale and are rejected. A matched deletion test also shows the constant Gaussian W term has negligible practical benefit once polarization is modeled, so I’m simplifying the profile to positive U + X and repeating all per-phase size/strain tests from that updated baseline.
+
+The phase-specific broadening tests are now discriminated: Mn₂O₃ size broadening is positive and stable (~0.36 μm), while strain becomes redundant once size is present; both WO₃ terms give only tiny, angle-localized gains and are excluded. I’m now rerunning the required angular branch selector on this mature model before the final freeze.
+
+The mature angular rerun is behaving as expected: the zero-only alternative degrades the fit, and the displacement branch is being reconverged with the accepted Mn₂O₃ broadening active. I’m retaining a branch only if the helper’s stability and correlation checks pass, not merely because its raw Rwp is lower.
+
+The mature angular comparison retained the existing displacement-only calibration: re-optimizing it changed Rwp by only 0.0011%, the zero model was much worse, and the lower-Rwp joint zero/displacement model was rejected at 99.94% correlation. I’m freezing that vetted model now, then exporting directly from the frozen project and running the three required audits.
+
+Before export I’m doing the mandated mature-baseline retest of every source-supported alternative: both manganese tungstates as additions, both Mn₂O₃ symmetry alternatives, and monoclinic WO₃ as replacements. These branches all inherit the same accepted background, displacement, profile, polarization, texture, and Mn₂O₃ size model.
+
+One retest changed the inventory question: MnWO₄ now refines to 0.61(9) wt% and lowers Rwp by 0.021%, whereas Mn₃WO₆ remains only 0.22(11) wt% with negligible benefit. I’m therefore treating MnWO₄ as a live trace-phase candidate and checking whether its gain comes from several unique peaks—especially the nominal 18.5° and 30° diagnostics—rather than overlap credit.
+
+The trace candidate passes the qualitative peak test: it improves distinct residuals near 15.8°, 18.7°, 30.3°, 30.7°, 41.5°, 53.8°, and 65.2°, with gains across several angular regions. Its cell cannot be refined stably at this abundance, so I’m retaining the audited literature MnWO₄ cell and will report the ~0.6 wt% fraction as less secure than the two major phases. The complete three-phase model now gets the same nuisance and leave-one-out retesting as the major-phase model.
+
+A technical profile check exposed an important GSAS-II default: even “unrefined” HAP size = 1 μm and microstrain = 1000 still broaden peaks. I’m correcting the baseline to physically neutral values (very large size, zero strain), re-optimizing the global profile, and then repeating size/strain tests. This can change the optional broadening terms and their uncertainties, but not the phase identities.
+
+The corrected neutral-broadening baseline is stable. Six matched branches are now running—size and strain independently for WO₃, Mn₂O₃, and trace MnWO₄. They are intentionally slower because each regenerates the complete pattern; no branch will be accepted unless it converges with a positive parameter and improves more than one angular region.
+
+I’ve narrowed the model to triclinic WO₃, cubic Mn₂O₃, and a trace wolframite MnWO₄ component. I’m finishing the matched profile-branch tests now, then I’ll freeze and audit the exact GSAS-II project and exports.
+
+The joint test confirms Mn₂O₃ size and strain are redundant: once strain is present, the fitted crystallite-size broadening collapses to zero within uncertainty. I’m retaining only the smaller, stable isotropic-strain model and checking that its gain is distributed across the pattern.
+
+The staged nuisance terms have reconverged cleanly: polarization 0.662, a very small WO₃ [001] March correction (1.008), positive global U/X widths, and Mn₂O₃ microstrain near 1.0×10³ µstrain. No >0.9 parameter correlations remain. I’m now rerunning the required angular-offset competition from this complete three-phase baseline.
+
+The angular test is behaving as expected so far: forcing a zero-only correction degrades the full-pattern fit sharply, while the existing specimen-displacement model remains near the mature baseline. The helper is still completing the correlated joint branch before it makes the selection.
+
+The angular helper selected the mature displacement-only baseline: refining displacement changes Rwp by only 0.0005 points, while zero-only is much worse and the lower-Rwp joint model is rejected for 99.94% zero/displacement correlation. I’m preserving that stable baseline and running the final leave-one-out/replacement checks from it.
+
+The mature replacement tests are decisive: P‑1 WO₃ and Ia‑3 Mn₂O₃ outperform P2₁/c WO₃ and both I2₁3/Pbca Mn₂O₃ alternatives by large whole-pattern margins. Removing MnWO₄ worsens Rwp from 6.8363% to 6.8552%. A fourth Mn₃WO₆ trial gives only a 0.0036-point gain at ~0.31 wt%, so I’m checking whether that gain has genuinely unique multi-peak support or is overlap fitting.
+
+The matched removals already show the Gaussian U term is essential (Rwp rises to 7.64% even after X is reoptimized). I’m letting the complementary X-removal branch converge before testing polarization, texture, and Mn₂O₃ strain one at a time.
+
+All retained optional terms survive matched removal: polarization (Rwp 7.254%), WO₃ texture (6.853%), Mn₂O₃ strain (6.845%), U (7.640%), and X (10.654%) versus 6.836% baseline. The Mn₃WO₆ gain is overlap-dominated—its strongest predicted peaks often worsen local residuals—so I’m rejecting that fourth phase and doing the final unretained size/strain retest before freezing.
+
+The final retest rejects WO₃ size/strain (effectively zero within uncertainty) and MnWO₄ size (boundary/divergent). MnWO₄ strain finds an extreme ~2% value with >50% relative uncertainty and doubles the trace fraction; I’m giving that branch extra cycles and a range-by-range check before deciding whether it is physically identifiable or just a broad-background surrogate.
+
+The extra cycles make the MnWO₄ strain branch stable, positive, and beneficial in five of six angle regions. Its strain is large and only ~2σ (2.04(1.05)%), with moderate scale correlation (0.76), so I’m retaining it as the smallest supported trace-phase profile term but will flag the resulting MnWO₄ fraction as systematically uncertain. I’m reconverging the full nuisance model around that choice now.
+
+The retained trace-strain model has reconverged at Rwp 6.8291% with Mn₂O₃ strain 1091(211) µstrain and MnWO₄ strain 2.08(1.03)%. I’m rerunning the angular selector once more because this accepted downstream change can shift the offset competition; after that, only final phase leave-outs and export audits remain.
+
+The last inventory pass confirms MnWO₄ is necessary (removal raises Rwp to 6.8554%). Mn₃WO₆ remains below the preset material-improvement margin (6.8291→6.8243%) and still lacks unique-peak support, so it stays excluded. I’m freezing all accepted nuisance terms and refining only background/scales into the submitted `final.gpx`.
+
+`final.gpx` is now replay-safe and passes the numerical/model audit: converged, no dropped variables or warnings, exact regenerated-profile agreement, and positive total widths for all three phases. I’m exporting CIFs directly from this audited project, then I’ll build the cross-checked profile/result/report files and run the submission audit.
+
+Completed and audited.
+
+| Phase | Weight fraction |
+|---|---:|
+| WO₃, P‑1 | 71.46(22)% |
+| Mn₂O₃, Ia‑3 | 27.47(19)% |
+| MnWO₄, P2/c | 1.08(13)% |
+
+Fit: Rwp 6.829%, Rp 4.986%, GOF 2.566. Fractions are normalized over modeled crystalline phases. The trace MnWO₄ fraction has larger model-dependent uncertainty than its formal e.s.d.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_1_WO3.cif)
+- [Mn2O3 CIF](<ATTEMPT_WORKSPACE>/phase_2_Mn2O3.cif)
+- [MnWO4 CIF](<ATTEMPT_WORKSPACE>/phase_3_MnWO4.cif)
+
+CIF, GSAS-II project, profile-regeneration, and submission audits all passed without flags.
+

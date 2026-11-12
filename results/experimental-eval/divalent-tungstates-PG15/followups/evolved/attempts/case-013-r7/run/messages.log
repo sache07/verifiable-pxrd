@@ -1,0 +1,95 @@
+I’ll first inventory the measurement, chemistry, reusable refinement tools, and any candidate-structure databases. Then I’ll identify phases from peak families, build a physically constrained GSAS-II model, re-challenge plausible weak phases, and verify the exported CIFs/profile against the final saved project.
+
+The chemistry points first to lead tungstate, but the precursor pair and 500 °C synthesis make residual PbO/WO₃ and intermediate lead tungstates plausible. I’m treating those as an inventory to test rather than assuming a single product, and I’m now extracting the actual peak positions and checking which search/refinement interfaces are available.
+
+The observed pattern already shows two coherent signatures: the dominant scheelite-like PbWO₄ family (27.69°, 32–33°, 45.02°, 55.54°…) and the characteristic monoclinic WO₃ triplet near 23.38/23.88/24.64°. I’m now comparing every available physical polymorph record—including PbWO₄ raspite and both PbO polymorphs—under the same peak-matching assumptions before any scale is trusted.
+
+The low-angle and unique-family checks add two important watch-list items: orthorhombic PbO is supported by 15.33°, 29.34°, 30.61°, and 38.12°, while tetragonal PbO is independently suggested near 17.97°, 32.10°, 35.98°, 48.85°, and 54.90°. A Pb₃O₄ or raspite-like explanation for the 25.92°/31.04° family remains possible, so I’m carrying both into reversible scale-first tests rather than assigning those peaks by inspection.
+
+The first GSAS-II pass exposed and removed a sample-scale/phase-scale correlation in the project defaults. The corrected screen now keeps the histogram scale fixed, so each candidate’s refined phase scale—and therefore its derived mass fraction—has an identifiable meaning.
+
+The common four-phase baseline gives a chemically sensible first estimate—about 73 wt% scheelite PbWO₄, 13 wt% monoclinic WO₃, 11 wt% orthorhombic PbO, and 3 wt% tetragonal PbO—but Rwp ≈17% and structured residuals show the inventory/profile is not yet adequate. The unconstrained U term collapsed to zero, so I’m pruning that term and using the ongoing alternate-phase screens to decide whether the residual belongs to a missing phase rather than broadening.
+
+The record challenges are becoming decisive: Pb₃O₄ takes a nominal ~3 wt% scale but fits worse than tetragonal PbO under the same nuisance model; raspite is poorer still and its cell refinement runs to a nonphysical metric. Those records are being rejected, while their associated unexplained peaks remain on the watch list for a different phase/prototype.
+
+The five-phase fit confirms that a strong coherent family is still unmodeled, led by 25.92° with companions around 31.04°, 34.44°, 43.42°, 48.45°, and 53.38°. Since no exact Pb₂WO₅ record exists in the local database, I’m following the prototype route now: screening the available Pb₂MoO₅/Pb₂CrO₅ parents (and other charge-balanced lead-rich tungstate stoichiometries), with W substitution checked for geometry and then scale-tested before any cell refinement.
+
+The Pb₂MoO₅-derived C2/m prototype is strongly supported after Mo→W substitution: it drops Rwp from ~17.1% to ~13.9%, refines to a coherent cell near 14.226×5.810×7.366 Å, β≈113.85°, and carries ~15 wt%. Its unique 25.92° family and several mid-angle companions are now explained. I’m comparing the Cr-derived parent and lead-richer prototypes under the identical model before accepting that assignment.
+
+The Pb₂WO₅ prototype has already explained the dominant unassigned peak family and reduced Rwp from about 17.1% to 13.9%. I’m finishing the competing lead–tungstate and Pb₃O₄ challenges now, then I’ll lock the inventory and test only physically motivated profile terms.
+
+The lead-richer Pb₅WO₈ analogue is decisively inferior (Rwp 16.59% versus 13.92%) and required a much larger, less specific contribution. One Pb₃WO₆ import is symmetry-incompatible, but its simulated signature was already poor; the consequential test still running is whether Pb₃O₄ survives once Pb₂WO₅ is present.
+
+Pb₃O₄ remains a small but reproducible candidate: adding it lowers Rwp from 13.92% to 13.75% at about 1.8 wt%. I’ll retain it on the watch list while I neutralize the hidden default size/strain terms and compare the two physically equivalent WO₃ records; only then will I decide whether that weak phase is genuine or acting as a profile surrogate.
+
+The audit found an important GSAS-II default: every phase had been carrying fixed 1 µm size and 1000 ppm strain even though their refinement flags were off. I’m rebuilding the common baseline with size effectively infinite and strain zero, so the subsequent phase and broadening decisions are genuinely residual-led.
+
+With the neutral profile, Pb₃O₄ still lowers Rwp by 0.17 percentage point and refines to 1.78 wt%; its cell remains physically sensible. That persistence argues it is a real weak phase rather than a hidden size/strain correction. The common instrumental profile is now nonnegative W/X with U fixed at zero.
+
+The alternate room-temperature monoclinic WO₃ record gives a small but repeatable improvement (Rwp 13.610% versus 13.675%) with essentially unchanged fractions. It is an equivalent monoclinic setting rather than a new phase, so I’m using it provisionally while I inspect isolated low-, mid-, and high-angle families for asymmetry and phase-specific width.
+
+A coherent cross-phase intensity trend is explained strongly by polarization: refining one physical parameter to 0.817 lowers Rwp from 13.61% to 12.62% without materially destabilizing fractions. This is preferable to phase-by-phase texture. The dominant PbWO₄ size trial ran to the neutral upper bound, so crystallite size is unsupported for that phase and will be pruned.
+
+The orthorhombic PbO size trial illustrates the safeguard: Rwp fell, but size collapsed to the 0.01 µm bound, its fraction inflated from 7.6% to 19%, and the replay remained far from converged. I’m rejecting that nonphysical surrogate and returning to the common baseline, as required.
+
+The one-at-a-time broadening screen is now complete. All size terms hit bounds; WO₃ and Pb₃O₄ strain gains were negligible; orthorhombic PbO demanded an implausible 41,000 ppm strain and doubled its fraction. Only Pb₂WO₅ (~3,100 ppm) and tetragonal PbO (~8,100 ppm) merit a controlled retest under the accepted polarization model.
+
+Under the accepted polarization model, Pb₂WO₅ strain is replay-stable at about 3,200 ppm and improves Rwp modestly (12.619% → 12.558%), but it raises that phase from 15.3% to 16.9%. I’m treating that spread as a systematic fraction uncertainty while checking whether the improvement is supported across several Pb₂WO₅ families.
+
+The global trend is better represented by Bragg–Brentano surface roughness than by an anomalous polarization value: roughness B≈0.133 returns polarization to its expected 0.5 and lowers Rwp further to 12.47%. I’m fixing polarization at the measured-geometry value, retaining roughness plus SH/L, and rebuilding both the five- and six-phase inventories under that exact common baseline.
+
+The final common-profile inventory challenge confirms Pb₃O₄: omitting it worsens Rwp from 12.465% to 12.620%, while the retained phase stays at 1.63 wt% with a sensible cell. The alternate monoclinic WO₃ record also remains superior by 0.11 percentage point, so both choices are now locked unless a later physical term overturns them.
+
+Both plausible strain terms are replay-stable and complementary, but they shift minor-phase fractions substantially; I’m checking their support family-by-family before accepting them. The first texture axis refines essentially to random (March–Dollase 0.992) with only a 0.005-point Rwp change, so texture is not supported on that axis.
+
+The diagnostic script hit an environment split—GSAS-II’s Python lacks plotting libraries. I’m separating the numerical GSAS extraction from plotting; this does not affect the refinements or project state.
+
+Family-level checks reject isotropic Pb₂WO₅ strain: it improves only 73 of 124 families and makes the defining 25.90° family substantially worse. Tetragonal PbO strain has broader support—9 of 14 families, especially independent high-angle peaks—so it remains plausible. The mixed Pb₂WO₅ behavior triggers one symmetry-appropriate anisotropy challenge before I prune its broadening.
+
+The candidate inventory is now stable at six crystalline phases. I’m finishing the last anisotropic-broadening challenge, then I’ll freeze and replay the simplest supported model before exporting the project, CIFs, profile, and report.
+
+The anisotropic Pb₂WO₅ models either inflated its fraction or required many poorly conditioned coefficients for negligible gain, so I’m rejecting them. I’m also checking that the accepted result is insensitive to the low-order background choice before freezing it.
+
+The ten-term background is smooth and positive across the scan and removes a real low-frequency residual without introducing sharp structure, so it is the final baseline. Under that rebuilt baseline, Pb₃O₄ and tetragonal-PbO strain remain supported; texture stays effectively random, and Pb₂WO₅ broadening remains model-dependent and is pruned.
+
+One final geometry check is warranted: the refined constant zero is large enough to also be representable as a plausible specimen-height error in reflection geometry. I’m comparing those two single-correction models and will retain only the one with the cleaner angle-dependent peak positions.
+
+The specimen-height model is slightly better and more physical: a −0.538 mm displacement replaces the 0.297° constant zero, improves Rwp, and reduces the angular/asymmetry correlation. I’m replaying the inventory and nuisance-term challenges once under that geometry before the final export.
+
+The residual-family audit confirms the simpler endpoint: tetragonal PbO strain improves most tested independent families, while Pb₂WO₅ strain improves only about half and severely worsens its defining 25.92° peak. I’m now doing the required save–reopen replay and exporting every deliverable from that exact project state.
+
+The final replay converged cleanly (maximum shift/ESD 0.047) at Rwp 12.080%. The modeled crystalline fractions are 61.59% PbWO₄, 10.40% WO₃, 7.07% orthorhombic PbO, 4.49% tetragonal PbO, 1.26% Pb₃O₄, and 15.20% provisional Pb₂WO₅; I’m now checking file-to-project agreement and CIF geometry.
+
+The export check caught one issue before handoff: GSAS-II’s quick CIF export for tetragonal PbO is being interpreted as Pb₂O/P4/mmm, inconsistent with the project’s intended PbO/P4/nmm model. I’m tracing whether this is an exporter setting artifact or a source-record occupancy problem, and I’ll correct it only if the CIF can remain exactly equivalent to the final project.
+
+The source record itself is valid PbO, but GSAS-II imported its explicit “origin choice 1” setting as the default P4/nmm setting, doubling the Pb multiplicity. That affects both intensities and quantitative fractions, so the submitted model cannot stand. I’m replacing it with a symmetry-equivalent, correctly occupied P4/nmm representation and will reconverge/recheck the inventory from that physical model.
+
+The corrected PbO model is strongly supported and improves the fit substantially; omitting tetragonal PbO now raises Rwp from 10.99% to 13.10%. Its isotropic-strain trial reaches a high ~15,000 ppm and changes its fraction markedly, so I’m treating that nuisance term as provisional until its individual reflection families and a size alternative are challenged.
+
+The corrected-model profile tests resolve cleanly: Pb₂WO₅ size/strain are negligible, tetragonal-PbO size collapses at the bound, and its strain term keeps drifting on save–reopen replay while inflating the fraction from ~5.2% toward 9%. Per the reversible protocol, I’m pruning all phase broadening and retaining the stable neutral common profile, then rechecking the weak phase and alternate records under it.
+
+The corrected neutral model is now the defensible endpoint: every phase has physical stoichiometry/occupancy, the six-phase inventory survives omit/alternate-record tests, and all unsupported size, strain, anisotropy, and texture terms are pruned. I’m replacing the preliminary exports with this corrected project and repeating the exact replay/export checks.
+
+All final consistency checks pass: the six CIFs parse to the intended formulas and space groups with full occupancies and physical nearest-neighbor distances; fractions sum to 1.000000; `fit.csv` has exactly the 8,270 refined points and matches the stored GSAS-II arrays to ~5×10⁻¹¹; and the corrected project replays with maximum shift/ESD 0.066.
+
+Completed the six-phase Rietveld refinement. Fractions are normalized over modeled crystalline phases:
+
+| Phase | wt% |
+|---|---:|
+| PbWO₄ scheelite | 61.84 ± 2.5 |
+| WO₃ monoclinic | 9.94 ± 0.6 |
+| PbO orthorhombic | 7.05 ± 0.8 |
+| PbO tetragonal | 5.20 ± 3.5 |
+| Pb₃O₄ | 1.50 ± 0.5 |
+| Pb₂WO₅ prototype | 14.48 ± 2.0 |
+
+Final fit: Rwp 10.988%, Rp 7.131%, GOF 3.145. Pb₂WO₅ is a provisional C2/m analogue assignment; tetragonal-PbO abundance is profile-sensitive. Amorphous content cannot be quantified without an internal standard.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r7/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r7/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r7/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r7/workspace/final.gpx)
+- [Phase CIFs](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r7/workspace/phases)
+

@@ -1,0 +1,30 @@
+I’ll inspect the diffraction data, metadata, and available refinement tooling first, then identify candidate phases and build a reproducible GSAS-II refinement. I’ll keep phase count conservative and explicitly flag any ambiguity that the pattern cannot resolve.
+
+The pattern is clearly multiphase: the dominant wolframite-type MgWO₄ reflections are present, but several strong peaks cannot belong to that phase alone. I’m now matching the residual peak set against the Mg–W–O chemical space and checking whether it is unreacted precursor or a distinct intermediate/product.
+
+The phase identity is strong—every major observed line indexes to monoclinic MgWO₄ after a roughly +0.3° specimen/instrument offset—but the first refinement exposed two technical issues: duplicate scale parameters and an unstable unconstrained profile fit. I’m rebuilding the refinement with one scale degree of freedom and staged, physically sensible peak-width parameters before deciding whether preferred orientation or atomic-coordinate refinement is justified.
+
+The residuals reveal the second phase cleanly: the unmatched triplets at ~23.44/23.92/24.68° and ~33.57/33.87/34.47° are the diagnostic room-temperature monoclinic WO₃ pattern after applying the same zero offset. I’m adding γ-WO₃ and will then test whether the remaining weak lines justify residual MgO; phase fractions will come from the refined GSAS-II scale factors and crystal densities.
+
+The three-phase model is now supported by distinct peak sets: MgWO₄ is dominant, γ-WO₃ explains the monoclinic low-angle and 33–35° multiplets, and periclase explains the otherwise isolated reflections near 37.3°, 43.2°, and 62.5°. The three-phase refinement reaches Rwp ≈ 13.23%; I’m exporting the refined cells/structures and documenting that the formal scale-factor errors are smaller than the realistic uncertainty because no calibrated instrumental profile or supplied counting uncertainties were available.
+
+Identified three crystalline phases, normalized over the modeled crystalline fraction:
+
+- MgWO₄ (wolframite, P2/c): 77.31 wt%
+- γ-WO₃ (monoclinic, P2₁/n): 13.84 wt%
+- MgO (periclase, Fm-3m): 8.84 wt%
+
+Final fit: Rwp = 13.23%, Rp = 9.30%, GOF = 4.63.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MgWO4_wolframite.cif](<ATTEMPT_WORKSPACE>/MgWO4_wolframite.cif)
+- [WO3_gamma_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_gamma_monoclinic.cif)
+- [MgO_periclase.cif](<ATTEMPT_WORKSPACE>/MgO_periclase.cif)
+
+The report notes that fractions are semi-quantitative because no calibrated instrumental profile or pointwise uncertainties were supplied; amorphous content cannot be determined without an internal standard.
+

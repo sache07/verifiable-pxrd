@@ -1,0 +1,55 @@
+I’ll inspect the measurement metadata and diffraction pattern first, then use the installed crystallography tools to identify candidate phases, refine them jointly, and verify that every submitted artifact is regenerated from the final GSAS-II project.
+
+The chemistry points strongly toward a strontium tungstate product, but I won’t assume it is single-phase. I’m now extracting the peak set and checking the local reference/search and GSAS-II installations so residual precursor or competing Sr–W–O phases remain detectable.
+
+The reference database contains two SrWO₄ polymorph entries plus Sr₃W₂O₉, alongside likely residual SrCO₃ and several WO₃ polymorphs. I’m comparing their calculated line positions against both the dominant reflections and the weaker unmatched peaks before choosing what to carry into quantitative refinement.
+
+The extra crystalline signal is consistent with monoclinic WO₃: its diagnostic 23–25° triplet and the 33–36°, 42°, 48–55°, and 61–68° groups recur in the observed profile. I’m moving to joint GSAS-II refinements now, testing the plausible WO₃ structural variants against a SrWO₄-only baseline rather than selecting one from a single peak.
+
+The single-phase control converges without scale singularities at \(R_{wp}\approx18.7\%\), leaving the WO₃ triplet and related groups in the difference curve. I’m now running the same refinement protocol for the monoclinic, triclinic, and orthorhombic WO₃ models; the comparison uses identical background, peak-shape, specimen-shift, and cell-refinement degrees of freedom.
+
+The first two-phase run is still refining the large monoclinic unit cell (hundreds of reflections). Its starting peak positions align closely after the reflection-geometry specimen-height correction; I’m waiting for the joint cycle to finish before launching the remaining variants.
+
+The monoclinic \(P2_1/c\) model lowers \(R_{wp}\) from 18.71% to 16.79% and refines to about 12.7 wt% WO₃. I’ve finished the alternative reduced-cell monoclinic and triclinic fits as well; next I’m comparing their statistics and checking whether any residual precursor/ternary candidate offers independent improvement.
+
+The alternative tests favor monoclinic WO₃ decisively: orthorhombic WO₃ gives \(R_{wp}=17.25\%\), Sr₃W₂O₉ gives 17.98%, while both SrCO₃ models drive their phase scale to the lower bound (effectively zero). The triclinic and monoclinic WO₃ models are close, so I’m inspecting the two-phase difference profile and chemically meaningful low-angle/superstructure reflections before fixing the final symmetry.
+
+A key residual sequence at roughly 30.2°, 35.3°, 50.6°, 59.6°, 62.5°, and 81.9° is not explained by either tungstate phase. That sequence is characteristic of rocksalt SrO, a plausible intermediate/residue after SrCO₃ decomposition at 900 °C, so I’m adding it as a third-phase test before finalizing the phase count.
+
+The SrO sequence is real but minor: adding rocksalt SrO gives about 1.0 wt% with a formal scale uncertainty near 0.16 wt%; its improvement is localized rather than dominating the global \(R_{wp}\). The remaining largest mismatch is systematic underestimation of high-angle SrWO₄ intensity, traceable to the arbitrary default displacement factors in the reference CIF (which supplied none). I’m constraining those to physical nonnegative values and checking fraction stability.
+
+A trace Sr₃W₂O₉ test is the only plausible fourth phase with a nonzero scale: about 1.5 wt% and a small \(R_{wp}\) decrease. Its strongest lines overlap SrWO₄, so that alone is not enough evidence. I’m allowing only its cell and then the joint cells/background to relax; I’ll retain it only if the unique reflections and lattice remain coherent rather than drifting to absorb residual shape errors.
+
+The Sr₃W₂O₉ audit is computationally heavier than the other traces because its low-symmetry cell generates many reflections. It is still converging; I’m keeping the profile fixed so any apparent gain has to come from a chemically coherent lattice and scale, not extra peak-shape freedom.
+
+The phase search has converged on four crystalline components: scheelite SrWO₄, monoclinic WO₃, trace rocksalt SrO, and a C2/c Sr₃W₂O₉-like phase. I’m now doing the final consistency pass—locking the exact project state, exporting all artifacts from that same state, and validating that the CIFs and profile reproduce the reported fractions and statistics.
+
+The refinement is internally converged (8,270 fitted points; maximum shift/e.s.d. 0.45). The modeled crystalline fractions are currently about 75.3% SrWO₄, 12.5% Sr₃W₂O₉-like, 11.5% WO₃, and 0.7% SrO; I’m preserving formal uncertainty separately from the larger model-selection uncertainty, especially for the Sr₃W₂O₉-like assignment.
+
+The artifact export is complete, but the full-profile visual audit still shows structured residuals around the crowded 29–33° region. I’m checking whether those are merely profile/overlap limitations or evidence that the provisional Sr-rich tungstate model should be weakened or revised before I call the result final.
+
+The final model is now frozen. The Sr₃W₂O₉-like assignment remains deliberately marked provisional: its lattice is strongly supported by multiple extra lines, but the reference structure’s high-pressure provenance and the fitted 2.5% c-axis contraction prevent a reliable claim of exact stoichiometry/atomic structure. I’m completing machine-level cross-checks that the GPX, CIFs, JSON fractions, and CSV profile all encode the same refinement.
+
+Completed and validated the GSAS-II refinement.
+
+Modeled crystalline fractions:
+
+- SrWO₄ (scheelite): 75.35 wt%
+- Sr₃W₂O₉-like (C2/c): 12.43 wt%
+- WO₃ (monoclinic): 11.51 wt%
+- SrO (rocksalt): 0.72 wt%
+
+Fit: Rwp = 13.984%, Rp = 9.697%, GOF = 3.962.
+
+The Sr₃W₂O₉-like structure/fraction is provisional, and SrO is near the detection limit. Details are documented in [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r4/workspace/report.md).
+
+Outputs:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r4/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r4/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r4/workspace/final.gpx)
+- [SrWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r4/workspace/phase_1_SrWO4.cif)
+- [Sr₃W₂O₉-like CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r4/workspace/phase_2_Sr3W2O9_like.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r4/workspace/phase_3_WO3.cif)
+- [SrO CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r4/workspace/phase_4_SrO.cif)
+

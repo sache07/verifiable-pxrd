@@ -1,0 +1,48 @@
+I’ll inspect the specimen metadata, diffraction grid, frozen reference index, and the available GSAS-II workflow. I’ll first establish a chemically ordinary complete phase model, then refine and validate it against coherent residual peak families before writing the replayable project and outputs.
+
+The strongest family is already consistent with scheelite-type SrWO₄. Several additional low-angle triplets and higher-angle partners are coherent rather than noise, so I’m treating this as a multiphase refinement and checking the exact Sr–W–O product and both precursor/decomposition families against the frozen COD index.
+
+I’m setting up the first replayable GSAS-II checkpoint with SrWO₄ alone, using the reported Cu Kα₁/Kα₂ spectrum and Poisson counting weights. The initial peak displacement is about +0.22° at low angle, which corresponds to a physically plausible Bragg–Brentano specimen shift near −0.4 mm at the reported 200 mm radius; I’ll refine that together with the cell rather than misassign displaced peaks.
+
+The exact-composition tests support a second monoclinic WO₃ phase at roughly 11 wt% on the current scale; orthorhombic SrCO₃ and Sr₃W₂O₉ drive to zero scale, while SrO gives only a marginal, poorly selective improvement. Before searching for any non-library product, I’m correcting the clearly under-broadened principal peaks with bounded physical size/profile terms so that peak-shape residuals are not mistaken for extra phases.
+
+The three-phase inventory is chemically self-consistent and indexes the dominant residual family, but unconstrained calibration drifts beyond the experimental prior. I’m now fixing specimen displacement on a physical grid within ±0.8 mm and comparing refinements with zero/cells free; this separates real cell/coordinate changes from the near-singular zero–height tradeoff before any coordinate result is accepted.
+
+The three-phase inventory is now chemically and diffraction-consistent: SrWO₄, monoclinic WO₃, and an ordered Sr₃WO₆-type phase. I’m refining the remaining physically bounded structure/profile terms from that checkpoint, then I’ll freeze and export the full replayable GSAS-II model.
+
+The WO₃ heavy-atom trial moved every coordinate to its imposed 0.04 Å bound and improved true Rwp by only 0.02 percentage point, so it is not data-supported; I’m rolling it back. I’ll make one similarly tight oxygen test, then retain the reference geometry unless the gain is broad and the octahedra remain physical.
+
+The phase-width terms are behaving physically: coherent-domain sizes refine to about 155 nm (SrWO₄), 87 nm (WO₃), and 122(46) nm (Sr₃WO₆), with the main-phase term giving the clear improvement. I’m now testing microstrain and the remaining instrument terms one at a time so correlated broadening cannot drift together.
+
+The surface-roughness correction is strongly supported by the low-angle intensity trend (Rwp 15.78% → 14.70%), though its two coefficients are highly correlated; phase fractions remain stable. A later cell-only pass found a lower basin, so I’m checking convergence and interatomic geometry before accepting it—this is exactly where a numerically better but distorted model must be rejected if it is not physical.
+
+The physical modern WO₃ model gives essentially the same fit as the old rounded model, so I’m retaining it on geometry grounds. One caution remains: several positive residual peaks form a coherent family not produced by the current Sr₃WO₆ analogue. I’m checking alternate A₃WO₆ prototypes against that family before freezing the inventory; the chemistry still strongly favors an Sr-rich tungstate plus WO₃.
+
+The complete three-phase model is in hand. I’m now freezing that physical checkpoint, exporting every deliverable from the same GSAS-II project, and validating the CIF geometry and reported fractions against it.
+
+The frozen project contains exactly the accepted SrWO₄, monoclinic WO₃, and ordered-perovskite-type Sr₃WO₆ phases, with all refinement flags off. I’m also checking a fresh full-grid structure-factor replay—the decisive test that the saved model, rather than cached GSAS arrays, reproduces the submitted curve.
+
+The fresh replay passed with no physical/profile review flags. It reproduces all 8,282 measured points directly from the frozen atomic models at 14.370% full-grid Rwp; the saved refinement interval gives Rwp 14.374%. I’m finishing the uncertainty report and doing the cross-file consistency checks now.
+
+Completed the three-phase Rietveld model:
+
+| Phase | Weight fraction |
+|---|---:|
+| SrWO₄, scheelite | 77.06% |
+| WO₃, monoclinic | 10.17% |
+| Sr₃WO₆, ordered-perovskite type | 12.77% |
+
+Saved-fit statistics: Rwp = 14.374%, Rp = 9.799%, GOF = 4.065. Fresh full-grid replay Rwp = 14.370%.
+
+The Sr₃WO₆ topology and fraction have greater systematic uncertainty; remaining residual features do not support a reliable fourth-phase assignment.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r5/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r5/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r5/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r5/workspace/final.gpx)
+- [SrWO4 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r5/workspace/phase_SrWO4.cif)
+- [WO3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r5/workspace/phase_WO3.cif)
+- [Sr3WO6 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r5/workspace/phase_Sr3WO6.cif)
+

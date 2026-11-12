@@ -1,0 +1,62 @@
+I’ll first inspect the specimen metadata, pattern format, and the frozen analysis tooling/reference index. Then I’ll identify a chemically plausible phase inventory, refine it in GSAS-II, verify residual peak families and physical geometry, and export the replayable project plus requested files.
+
+The chemistry is the SrCO₃ + WO₃ system fired at 900 °C, so SrWO₄ is the ordinary principal product; residual SrCO₃/WO₃ or secondary Sr–W–O phases remain possible. I’m now indexing the measured peak families against the frozen COD subset before committing to that inventory.
+
+The dominant family is unequivocally tetragonal scheelite SrWO₄: its 101, 112, 004, 200, 204, 312, 224 and high-angle families all track the measured peaks with the same specimen-displacement trend. A second family—the 23–25° triplet plus associated 26–35° reflections—is not explained by scheelite, so I’m testing residual WO₃ and Sr-rich tungstate alternatives as separate positive-scale phases.
+
+A bounded one-phase SrWO₄ refinement leaves a large coherent residual (Rwp ≈19.3%), so the sample is not adequately described as single-phase. The unexplained 23–25°, 29.75°, 34–35°, and 42–45° families are now being tested as residual WO₃ and exact-composition Sr–W–O alternatives with the same physical instrument bounds.
+
+The strongest “extra” line at 29.75° is actually an allowed monoclinic WO₃ reflection at the correct refined position; several other residual maxima likewise coincide with WO₃ reflections but have badly predicted structure factors. Following that evidence, I’m screening the ambient WO₃ references and then refining W/O coordinates with geometry checks before adding any further phase.
+
+The coordinate/reference screen is still running because the low-symmetry WO₃ models generate hundreds of reflections. So far the accepted two-phase topology remains chemically ordinary and all major peak positions are accounted for; the unresolved question is which ambient WO₃ coordinate model reproduces the observed intensities without unphysical distortions.
+
+The lowest raw Rwp WO₃ reference was an old rounded model with a 1.58 Å O–O contact, so I rejected it despite its ~0.08 percentage-point advantage. The physically valid ambient monoclinic P2₁/c reference has normal O–O/W–O geometry and nearly identical profile agreement; I’m using that as the coordinate-refinement parent.
+
+The two-phase physical model is established: scheelite SrWO₄ plus ambient monoclinic WO₃. I’ve rejected the slightly better numerical WO₃ reference because it contains an unphysical O–O contact, and bounded coordinate trials on the sound model worsened the fit. I’m now tightening the replayed GSAS-II refinement—especially phase broadening and intensity terms—then I’ll test whether the remaining 29.75°-centered family truly requires another phase before exporting the final deliverables.
+
+The first replay exposed why the raw Rwp plateaued: the instrument width term was pinned at its allowed maximum while both phase-specific crystallite size and microstrain remained fixed. That is a model deficiency, not evidence for another phase. I’m separating those correlated broadening contributions with bounded, phase-specific terms before judging residual reflections.
+
+Both low- and mid-instrument-profile starts are being refined from the same physical checkpoint. This comparison is intentional because instrument broadening and specimen broadening are partly non-identifiable from one scan; I’ll retain the solution that is stable, bounded, and least complex rather than claiming an artificial precision.
+
+The bounded profile fit improves to Rwp ≈17.8%, but it also sharpens the scientific conclusion: the 29.75°, 32.60°, and 44.65° residuals are coherent, not just line-shape error. I’m now treating that family as a possible third phase and indexing it independently, while keeping SrWO₄/WO₃ fixed as the chemically supported base model.
+
+The residual-family test is decisive enough to narrow the branch: exact-composition C2/c Sr₃W₂O₉ takes a stable positive ~6 wt% scale and lowers Rwp from 17.79% to 17.07% even before cell adjustment. The closest ordinary analogue, Sr₃WO₆ derived from Ca₃WO₆, is weaker (Rwp 17.43%); the other topologies refine to near-zero or sub-1% amounts. I’m completing the bounded cell/profile checkpoint and checking whether Sr₃W₂O₉ explains the family beyond its three strongest peaks.
+
+A path-sensitive checkpoint resolved the apparent contradiction. When Sr₃W₂O₉ is initialized on the residual-indexed cell and then allowed a bounded cell refinement, it converges to a distinct, stable solution at ~14 wt% and Rwp 15.44%, while directly starting from the published high-pressure cell falls into an overlap-driven local minimum. I’m checking this better state for full-family coverage and guarding against the phase-size lower-bound branch, which only buys ~0.06 Rwp points and is likely over-complex.
+
+Surface roughness is strongly and reproducibly supported (A ≈0.263, B ≈0.297), lowering the replayed Rwp to 13.29% and correcting the low-angle intensity deficit. The remaining largest errors are now peak-shape/position shoulders and phase-specific structure factors, so I’m moving to the requested accepted-inventory refinement: bounded cells/calibration first, then physical coordinate trials and phase-profile terms.
+
+The three-phase model is now well established: scheelite SrWO₄, monoclinic WO₃, and a residual-indexed C2/c Sr₃W₂O₉ phase. I’m finishing the last bounded-coordinate and profile checks, then I’ll export and independently validate the replayable GSAS-II project and deliverables.
+
+The W-only coordinate test did not stabilize: all three W coordinates ran outside their physical bounds and were frozen. I’m therefore retaining the source topology and coordinates, consistent with the requested physical rollback rule, and will only test low-dimensional specimen/profile terms from that checkpoint.
+
+Profile tests show only isotropic phase size is a supported added term (Rwp 13.232% → 13.180%, with all three sizes stable and interior). Polarization is non-identifiable against scale/roughness (>99% correlation), and axial divergence changes negligibly, so both remain fixed. I’m freezing the supported sizes and checking whether a small physical WO₃ displacement parameter can be adopted without degrading the fit.
+
+The WO₃ displacement-factor check converged cleanly to one common \(U_\mathrm{iso}=0.01019(31)\) Å², an interior physical value, and slightly improved the fit. The accepted final checkpoint is now Rwp 13.169%; I’m extracting exact statistics, phase-fraction uncertainties, profiles, and CIF geometry before writing the requested files.
+
+One endpoint was outside GSAS-II’s nominal 10.01–99.99° limits, leaving its calculated value zero. To satisfy the full-grid requirement, I’m expanding the refinement limits to the exact measured endpoints and re-equilibrating the same accepted parameter set before export.
+
+The exported models pass an independent geometry check (all shortest W–O distances 1.72–1.88 Å; no short O–O contacts), and a fresh replay of `final.gpx` converges to the same Rwp within 0.000001%. I’m recording the model-selection evidence and the conditional nature of the Sr₃W₂O₉ assignment in the report now.
+
+Completed the full-grid GSAS-II refinement.
+
+| Phase | Crystalline weight fraction |
+|---|---:|
+| SrWO₄, I4₁/a | 72.79(33)% |
+| WO₃, P2₁/c | 11.78(31)% |
+| Sr₃W₂O₉, C2/c | 15.43(22)% |
+
+Fit: Rwp 13.167%, Rp 9.141%, GOF 3.729. Fractions are normalized over modeled crystalline phases. The Sr₃W₂O₉ topology and fraction remain provisional and model-dependent, as detailed in the report.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r8/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r8/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r8/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r8/workspace/final.gpx)
+- [SrWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r8/workspace/SrWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r8/workspace/WO3.cif)
+- [Sr3W2O9.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r8/workspace/Sr3W2O9.cif)
+
+The project was independently reloaded and replayed, reproducing the submitted fit.
+

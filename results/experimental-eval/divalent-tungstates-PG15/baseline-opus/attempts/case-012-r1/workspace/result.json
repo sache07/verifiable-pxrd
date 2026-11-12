@@ -1,0 +1,151 @@
+{
+  "fit_statistics": {
+    "Rexp_percent": 3.47,
+    "Rp_percent": 3.384,
+    "Rwp_percent": 4.332,
+    "goodness_of_fit": 1.248,
+    "n_observations": 8282,
+    "n_refined_parameters": 44,
+    "note": "Rwp/Rp include the (dominant at low angle) background; they are not background-subtracted.",
+    "reduced_chi_squared": 1.559,
+    "two_theta_range_deg": [
+      10.0,
+      100.0
+    ],
+    "weighting": "1/sigma^2 with sigma = sqrt(counts) (raw counts, no pointwise esd supplied)"
+  },
+  "phases": [
+    {
+      "cif": "NiWO4.cif",
+      "fixed_structural_parameters": [
+        "O1 x,y,z",
+        "O2 x,y,z",
+        "Uiso(O) = 0.010 A^2",
+        "all site occupancies = 1"
+      ],
+      "formula": "NiWO4",
+      "isotropic_microstrain_1e6": 614,
+      "isotropic_microstrain_esd_1e6": 151,
+      "lattice_parameters": {
+        "a_angstrom": 4.60101,
+        "alpha_deg": 90.0,
+        "b_angstrom": 5.66369,
+        "beta_deg": 89.9796,
+        "c_angstrom": 4.91076,
+        "esd": {
+          "a": 0.00011,
+          "b": 0.00015,
+          "beta": 0.0103,
+          "c": 0.00014,
+          "volume": 0.0084
+        },
+        "gamma_deg": 90.0,
+        "volume_angstrom3": 127.968
+      },
+      "name": "NiWO4",
+      "refined_structural_parameters": [
+        "a",
+        "b",
+        "c",
+        "beta",
+        "Ni1 y",
+        "W1 y",
+        "Uiso(Ni1)",
+        "Uiso(W1)",
+        "phase scale",
+        "microstrain"
+      ],
+      "space_group": "P 2/c",
+      "space_group_number": 13,
+      "structure_type": "wolframite",
+      "weight_fraction": 0.7597,
+      "weight_fraction_esd_percent_statistical": 0.11,
+      "weight_fraction_percent": 75.97,
+      "weight_fraction_percent_realistic_range": [
+        74.0,
+        78.0
+      ]
+    },
+    {
+      "cif": "WO3.cif",
+      "fixed_structural_parameters": [
+        "O1-O6 x,y,z",
+        "Uiso(W) = 0.004 A^2",
+        "Uiso(O) = 0.010 A^2",
+        "all site occupancies = 1"
+      ],
+      "formula": "WO3",
+      "isotropic_microstrain_1e6": 1608,
+      "isotropic_microstrain_esd_1e6": 173,
+      "lattice_parameters": {
+        "a_angstrom": 7.30333,
+        "alpha_deg": 90.0,
+        "b_angstrom": 7.53483,
+        "beta_deg": 90.815,
+        "c_angstrom": 7.6901,
+        "esd": {
+          "a": 0.00028,
+          "b": 0.0003,
+          "beta": 0.0043,
+          "c": 0.0003,
+          "volume": 0.0334
+        },
+        "gamma_deg": 90.0,
+        "volume_angstrom3": 423.139
+      },
+      "name": "WO3",
+      "refined_structural_parameters": [
+        "a",
+        "b",
+        "c",
+        "beta",
+        "W1 x,y,z",
+        "W2 x,y,z",
+        "phase scale",
+        "microstrain"
+      ],
+      "space_group": "P 21/n",
+      "space_group_number": 14,
+      "structure_type": "gamma-WO3 (monoclinic, ReO3-derived)",
+      "weight_fraction": 0.2403,
+      "weight_fraction_esd_percent_statistical": 0.11,
+      "weight_fraction_percent": 24.03,
+      "weight_fraction_percent_realistic_range": [
+        22.0,
+        26.0
+      ]
+    }
+  ],
+  "phases_tested_and_rejected": {
+    "NiO (Fm-3m, bunsenite)": "refined weight fraction 0.08 +/- 0.10 wt% with no change in Rwp (4.7225 vs 4.7227 in the test model); strongest line (200, 43.3 deg) absent -> below detection limit, taken as 0",
+    "W18O49 / W10O29 (reduced tungsten oxides)": "phase scale not determinable (dropped as singular), no Rwp change -> absent",
+    "triclinic delta-WO3 (P-1)": "refines to alpha = 89.89, gamma = 90.08 deg, i.e. metrically monoclinic; adding it as a second WO3 polymorph only redistributes intensity between two near-identical patterns and is not justified"
+  },
+  "refinement_setup": {
+    "background": "14-term Chebyshev polynomial of the 1st kind",
+    "effective_polarization_esd": 0.011,
+    "effective_polarization_refined": 0.706,
+    "peak_shape": "pseudo-Voigt with axial divergence asymmetry (SH/L = 0.0169(17)); instrumental U = 218.5(106), V = -220.5(102), W = 81.9(24), X = 5.97(30), Y fixed at 0 (centidegrees^2 / centidegrees)",
+    "phase_broadening": "isotropic Lorentzian microstrain per phase; crystallite size fixed at 1 um (not separable from the uncalibrated instrumental profile)",
+    "profile": "fit.csv (two_theta_deg, y_obs, y_calc, y_diff, y_background)",
+    "project": "final.gpx",
+    "radiation": "Cu K-alpha1/K-alpha2, 1.540598/1.544426 A, I2/I1 = 0.5 (from metadata)",
+    "sample_displacement_esd_um": 3.5,
+    "sample_displacement_um": 139.5,
+    "software": "GSAS-II (scriptable interface)",
+    "zero_offset_deg": "fixed at 0 (99.99% correlated with sample displacement; only one of the two can be refined)"
+  },
+  "sample": {
+    "identified_product_composition": "NiWO4 + residual WO3 (W-rich of the 1:1 line; no unreacted NiO detected)",
+    "number_of_crystalline_phases_modeled": 2,
+    "precursors": [
+      "NiO",
+      "WO3"
+    ],
+    "reported_heating_temperature_C": 900.0
+  },
+  "weight_fractions_normalized_over_modeled_crystalline_phases": {
+    "NiWO4": 0.7597,
+    "WO3": 0.2403
+  }
+}

@@ -1,0 +1,53 @@
+# NiWO4 (wolframite type), Rietveld-refined against inputs/pattern.csv (Cu Ka, 10-100 deg 2theta)
+# Starting model: wolframite-type NiWO4, space group P2/c, published coordinates
+#   (Wyckoff, Structure of Crystals vol.3 / Weitzel 1976 type; COD 5910277 setting).
+# Refined here: lattice parameters, Ni1 y, W1 y, Uiso(Ni), Uiso(W), phase scale, microstrain.
+# O positions were held at the published values (see report.md): free refinement of O
+#   against this lab Cu-Ka data degrades the Ni-O/W-O bond-valence sums and is not reliable.
+######################################################################
+data_NiWO4
+
+# phase info for NiWO4 follows
+_pd_phase_name  NiWO4
+_cell_length_a  4.60101
+_cell_length_b  5.66369
+_cell_length_c  4.91076
+_cell_angle_alpha  90.0000
+_cell_angle_beta  89.9796
+_cell_angle_gamma  90.0000
+_cell_volume  127.968
+_symmetry_cell_setting  monoclinic
+_symmetry_space_group_name_H-M  "P 2/c"
+loop_
+    _space_group_symop_id
+    _space_group_symop_operation_xyz
+     1  x,y,z
+     2  -x,y,1/2-z
+     3  -x,-y,-z
+     4  x,-y,1/2+z
+
+# ATOMIC COORDINATES AND DISPLACEMENT PARAMETERS
+loop_ 
+   _atom_site_label
+   _atom_site_type_symbol
+   _atom_site_fract_x
+   _atom_site_fract_y
+   _atom_site_fract_z
+   _atom_site_occupancy
+   _atom_site_adp_type
+   _atom_site_U_iso_or_equiv
+   _atom_site_site_symmetry_multiplicity
+Ni1    Ni   0.50000     0.6603(4)   0.25000     1.0000     Uiso 0.0060(7)  2   
+W1     W    0.00000     0.17972(14) 0.25000     1.0000     Uiso 0.0065(5)  2   
+O1     O    0.21710     0.10820     0.94260     1.0000     Uiso 0.0100     4   
+O2     O    0.25960     0.37470     0.39240     1.0000     Uiso 0.0100     4   
+
+loop_  _atom_type_symbol _atom_type_number_in_cell
+  Ni      2
+  O       8
+  W       2
+
+# Note that Z affects _cell_formula_sum and _weight
+_cell_formula_units_Z  2
+_chemical_formula_sum  "Ni O4 W"
+_chemical_formula_weight  306.55

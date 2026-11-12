@@ -1,0 +1,9 @@
+# PXRD phase analysis
+
+The pattern is best described by three modeled crystalline phases: scheelite SrWO4, monoclinic WO3, and a tentative monoclinic Sr3W2O9 contribution. The refined crystalline-phase fractions are 78.49 wt% SrWO4, 11.55 wt% WO3, and 9.96 wt% Sr3W2O9, normalized only over these modeled phases.
+
+The chemical context supports SrWO4 formation from SrCO3 and WO3 at 900 °C. Its I 41/a model accounts for the dominant series, including peaks near 18.33, 27.99, 30.21, 33.39, 45.47, 47.75, 51.98, 56.08, and 57.37° 2theta. Monoclinic WO3 is supported by its characteristic low-angle cluster near 23.47, 23.98, and 24.72°, together with weaker lines around 34–35, 42.16, 48.60, and 50–51°. The Sr3W2O9 model accounts for otherwise correlated residual lines near 29.75, 44.64, 50.2, 57.0, and 61.25°. Starting models were COD 1546036, 1528915, and 2311977, respectively; competing WO3 polymorphs and SrO/SrCO3 residue models gave poorer full-pattern agreement.
+
+The accepted GSAS-II refinement converged with Rwp = 15.24%, Rp = 10.65%, and GOF = 4.32 over all 8,282 points. Refined cells are a = 5.42632, c = 11.97798 Å for SrWO4; a = 7.30955, b = 7.55286, c = 7.70448 Å, beta = 90.7683° for WO3; and a = 9.48140, b = 5.42335, c = 13.57905 Å, beta = 102.9076° for Sr3W2O9.
+
+Uncertainty is dominated by model systematics, not the small least-squares standard uncertainties listed in `result.json`. In particular, the Sr3W2O9 cell volume is about 5.2% below the reference model and the fit retains structured residual intensity, so that phase assignment and its approximately 10 wt% fraction cannot be considered reliable without an independent reference pattern or complementary analysis. The WO3 fraction is more secure but remains correlated with background and overlapping tungstate peaks. No internal standard was supplied, so amorphous material cannot be quantified and the reported fractions must not be interpreted as absolute bulk fractions.

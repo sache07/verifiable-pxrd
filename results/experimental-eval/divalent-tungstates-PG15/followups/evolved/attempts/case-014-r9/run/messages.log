@@ -1,0 +1,68 @@
+I’ll first inspect the measurement metadata, pattern, and reusable crystallography utilities, then build a phase inventory before fitting. I’ll keep candidate rejection residual-led and preserve the exact final GSAS-II project/export agreement.
+
+The chemistry points first to SrWO₄, but I’m treating residual SrCO₃/WO₃ and alternate Sr–W–O stoichiometries as live candidates. The pattern spans 10–100° 2θ at ~0.01087° spacing with raw counts and Cu Kα metadata; next I’m extracting peak positions and locating exact/analogue structures before any refinement.
+
+The dominant phase is already positionally diagnostic for scheelite SrWO₄ (I4₁/a): its 18.33, 27.99, 30.21, 33.39, 45.47, 47.75, 51.98, 56.08, and 57.35° families track one tetragonal cell. Many coherent residual peaks remain, so a single-phase answer would be inadequate. The database’s second SrWO₄ record is an 11 GPa monoclinic form and is physically implausible for the 900 °C ambient synthesis; I’m now identifying the residual lattice independently and testing precursor/other Sr–W–O candidates.
+
+The residual families now separate into two especially plausible hypotheses: exact Sr₃W₂O₉ (whose strong 29/32/44/49/55/57/60/67/70° families align after a monoclinic cell adjustment) and an isovalent Sr₃UO₆→Sr₃WO₆ P2₁/n prototype (strong 29/42/52/61/69/85° families). The former database structure was obtained under high pressure; the latter is a chemically justified prototype but has uncertain W–O geometry. I’m comparing both, plus precursor polymorphs, under the same fixed physical profile and one specimen-displacement correction before allowing any candidate-specific broadening.
+
+The shared-profile challenge is now clarifying the residual: monoclinic WO₃ accounts for the 23–25° triplet and improves Rwp from 22.04% to 20.52%, with its cell staying close to the ambient WO₃ record. A separate family remains (29.75, 32.60, 44.66, 48.62, 53.44, 59.56, 64.93, 67.04, 69.57, 79.20, 88.90, 94.13°). Its relative intensities reject the Sr₃WO₆ prototype and point much more strongly to a tetragonal A₂BO₅ lattice, so I’m now testing the required Sr₂WO₅ cross-chemistry prototypes rather than forcing the high-pressure Sr₃W₂O₉ record.
+
+The inventory now has a strong SrWO₄ host and a credible residual WO₃ contribution. I’m testing the remaining coherent residual families against the chemically allowed Sr–O alternatives, then I’ll rebuild the common profile around the surviving inventory before refining fractions.
+
+The SrO/SrO₂ records do not survive the common-profile test; SrO adds no stable fit gain, and peroxide is both chemically implausible at 900 °C and intensity-incompatible. The unresolved peaks instead point toward the Sr-rich double-perovskite topology, so I’m now checking reduced tungsten oxides and alternate Sr₃WO₆ parents before committing to that model.
+
+The first common-profile pass confirms that the earlier residual was dominated by an inadequate width model, especially above 55°. I’ve neutralized phase size/strain and am fitting only nonnegative common U/W/X terms plus one axial-asymmetry term; this is the baseline needed before judging any weak phase or fraction.
+
+The clean-profile comparison is being run with identical nuisance parameters across four inventories: no Sr-rich phase, and three independently sourced Sr₃WO₆ prototypes (two uranate parents and the exact Ca₃WO₆ tungstate parent). This directly tests whether the phase evidence is topological rather than an artifact of one database record.
+
+The residual-led watch list now includes the exact high-pressure Sr₃W₂O₉ record and an ambient R‑3c Ba₃W₂O₉-derived analogue, because the unexplained 30.9°, 32.6°, 44.7°, 53.4°, and 67.0° families resemble that topology. I’m testing their scales before cells, alongside both carbonate polymorphs and the earlier Sr₂WO₅/SrO alternatives.
+
+A physically bounded Suortti surface-roughness correction explains the cross-phase low/high-angle intensity trend better than polarization: polarization tried to exceed its physical limit, while roughness converged inside its allowed range. I’m retaining roughness provisionally and re-testing atomic displacement factors under that correction so they are not used as intensity surrogates.
+
+The phase inventory is now coherent: SrWO₄, monoclinic WO₃, and Sr₃WO₆ each have multiple unique or partly overlapped families. The remaining watch-list phases either collapse, require implausible source conditions/geometry, or improve Rwp only marginally. I’m alternating displacement and cell blocks to remove their correlation before any phase-specific width or texture terms are judged.
+
+The three-phase inventory is now stable under a common physical profile. Only the SrWO₄ oxygen coordinate refinement is both replay-stable and geometrically sound; the weaker WO₃/Sr₃WO₆ coordinate trials drift or distort coordination, so I’m retaining their source/prototype coordinates and will make that limitation explicit. I’m now consolidating that accepted model into the final replayed GSAS-II project and exact exports.
+
+A second physical check found two additional exact-composition monoclinic WO₃ records in the local crystallographic database. I’m comparing their source conditions and W–O geometry before freezing the final model; this is important because the initially best-matching legacy record has approximate oxygen positions even though its peak positions are excellent.
+
+The high-pressure WO₃ polymorph fails immediately because its metric is incompatible with the observed ambient-pattern peak set. The meaningful comparison is now between the ambient monoclinic settings and the triclinic distortion; those refinements are still converging under the identical three-phase nuisance model.
+
+All three ambient WO₃ comparisons are computationally heavier than the baseline because each starts from a fresh multiphase metric and refines several coupled cells. I’m letting the matched runs finish rather than judging one from a shorter convergence path.
+
+The matched comparison materially favors triclinic WO₃ (P-1): its Rwp is about 0.77 percentage point lower than either monoclinic record, its source geometry has six sensible W–O bonds for every W site, and its refined metric approaches—but does not exactly reach—monoclinic symmetry. I’m now repeating the monoclinic/triclinic choice with the final polarization, profile, and accepted SrWO₄ oxygen model so the phase decision is not tied to the earlier provisional baseline.
+
+Both final-condition branches have reached the common-profile stage. The remaining iterations are the isolated SrWO₄ oxygen refinement and a full save/reopen-style replay of all accepted terms, which is the part that tests whether the apparent WO₃ advantage survives coupling.
+
+The refinements remain numerically active rather than stalled; the triclinic branch simply carries three additional metric variables. I’m keeping the same cycle budget for both so the comparison remains fair.
+
+Under the final physical baseline, the nominal triclinic advantage disappears: monoclinic WO₃ gives Rwp 15.290% versus 15.335%, while the triclinic metric’s extra angles move close to 90°. I’m retaining monoclinic symmetry. One last same-symmetry check is running against the neutron-derived monoclinic coordinates; if its small fit penalty remains, I’ll balance that against its better six-coordinate W geometry and report the coordinate-model uncertainty explicitly.
+
+The neutron-coordinate branch has passed the positional/profile stages without singularities. Its remaining full replay will decide whether the geometrically superior record is statistically indistinguishable or meaningfully worse.
+
+The neutron-derived monoclinic WO₃ record is only 0.055 Rwp percentage point worse than the legacy coordinate set, while restoring physically complete WO₆ octahedra. I’m selecting it as the defensible structural model; the small fit/fraction spread between records will be treated as model uncertainty rather than “improved” away with distorted coordinates. The final project will now be reopened and replayed until shifts stabilize, then all exports will come from that exact saved state.
+
+The final replay is numerically stable in the quantities that matter: across eight reopen cycles, phase fractions vary by at most about 0.02 wt% and cell edges by only a few 10⁻⁴ Å. The remaining shift/sigma oscillation is confined mainly to the dominant-phase metric/profile coupling, so I’m preserving the converged physical model and documenting the systematic—not treating it as evidence for extra broadening or phases.
+
+All requested deliverables are now written from the same final GSAS-II state. I’m doing the last consistency audit: JSON fractions/statistics against the project covariance, CIF cells/compositions against the project phases, and `fit.csv` row-by-row difference arithmetic and observation count.
+
+Completed and validated the three-phase refinement:
+
+- SrWO₄ (scheelite): 80.09 ± 0.30 wt%
+- WO₃ (monoclinic): 10.35 ± 0.20 wt%
+- Sr₃WO₆ (provisional analogue model): 9.56 ± 0.25 wt%
+
+Final fit: Rwp = 15.337%, Rp = 10.484%, GOF = 4.343. Fractions are normalized over modeled crystalline phases.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-014-r9/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-014-r9/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-014-r9/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-014-r9/workspace/final.gpx)
+- [SrWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-014-r9/workspace/phase_SrWO4.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-014-r9/workspace/phase_WO3.cif)
+- [Sr₃WO₆ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-014-r9/workspace/phase_Sr3WO6.cif)
+
+The detailed Sr₃WO₆ oxygen structure and absolute fraction remain provisional, as documented in the report.
+

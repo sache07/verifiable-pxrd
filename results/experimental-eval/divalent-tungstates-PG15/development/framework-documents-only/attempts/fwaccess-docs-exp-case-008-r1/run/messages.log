@@ -1,0 +1,36 @@
+I’ll inspect the pattern, metadata, and the supplied framework notes first, then identify candidate phases and build/refine the final GSAS-II model. I’ll keep the phase count evidence-driven and verify that every reported fraction and profile comes directly from the saved `final.gpx`.
+
+The chemistry narrows the likely crystalline inventory to Mn–W–O phases plus residual MnO/WO₃, but the pattern itself must decide among MnWO₄, manganese tungstate intermediates, and precursor residues. I’m now extracting peak positions/intensities and checking the local reference/indexing resources before committing to structures.
+
+A single wolframite-type MnWO₄ phase accounts for every major peak; no MnO, WO₃, Mn₃O₄, or Mn₃WO₆ signature is evident at their diagnostic positions. The first full refinement reaches Rwp ≈ 5.18%, but that is still above the Poisson floor (≈2.76%), so I’m testing specimen effects and looking for coherent residual peaks before deciding whether the remaining mismatch is a second phase or an incomplete peak-shape/intensity model.
+
+The residual contains a consistent three-line cluster at roughly 23.45°, 23.91°, and 24.68° plus matching weaker lines near 33–35°, which is characteristic of residual monoclinic WO₃. I’m refining the competing WO₃ settings now; this is a real phase-selection test because several WO₃ polymorphs share the same strongest low-angle triplet.
+
+The monoclinic WO₃ model improves Rwp from 5.18% to 4.62%; triclinic WO₃ is distinctly worse (4.71%), while the two equivalent monoclinic settings give essentially the same fit. The remaining mismatch is dominated by MnWO₄ line-shape/intensity systematics, and a [001] uniaxial microstrain model improves Rwp further to 4.53%, strongly favoring anisotropic strain over another major phase.
+
+Surface roughness and polarization are both strongly supported: adding them lowers Rwp to about 4.01% with physically plausible roughness coefficients (~0.16, ~0.17). The refined phase scales correspond to about 97.5 wt% MnWO₄ and 2.5 wt% WO₃; I’m now tightening the model so the reported structures remain physical, especially replacing unconstrained site-by-site ADPs that drifted negative with a shared positive isotropic displacement parameter.
+
+The ADP constraint gives a shared Uiso ≈ 0.0037 Å² and changes Rwp by only ~0.03 percentage points, so the structural model remains essentially as good while becoming physically defensible. I’m also checking reduced tungsten oxide and manganese-oxide alternatives against the trace peaks; those are controls against mislabeling the ~2.5 wt% secondary phase as WO₃.
+
+The reduced-tungsten-oxide control is computationally heavier because its low-symmetry cell contains many sites, but it is still running normally. In parallel with that comparison, the chemically simpler monoclinic WO₃ model remains the leading secondary-phase assignment by both diagnostic peak positions and fit quality.
+
+The physically constrained model is now converged (maximum shift/esd ≈ 0.02): Rwp 4.017%, Rp 3.044%, GOF 1.46, with 97.43 wt% MnWO₄ and 2.57 wt% WO₃. A tetragonal Mn₃O₄ control refined to effectively zero abundance, so I am retaining two phases. I’m doing the final full-grid replay/export now so `fit.csv`, the CIFs, and `final.gpx` all describe exactly the same model.
+
+All requested artifacts are now written from the same final project. I’m performing a last consistency audit: JSON fraction normalization, full-grid profile identity, CIF parse/geometry, project phase names, and recomputed Rwp from `fit.csv`.
+
+Resolved the crystalline mixture as:
+
+- MnWO₄, P2/c: 97.42 wt%
+- WO₃, P2₁/n: 2.58 wt%
+
+Full-grid refinement: Rwp 4.019%, Rp 3.044%, GOF 1.460. The trace WO₃ fraction has an estimated practical uncertainty of about ±0.5 wt%; its detailed oxygen coordinates are not independently reliable.
+
+Artifacts:
+
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-008-r1/workspace/final.gpx)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-008-r1/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-008-r1/workspace/fit.csv)
+- [phase_MnWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-008-r1/workspace/phase_MnWO4.cif)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-008-r1/workspace/phase_WO3.cif)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-008-r1/workspace/report.md)
+

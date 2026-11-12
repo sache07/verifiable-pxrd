@@ -1,0 +1,47 @@
+I’ll inspect the measurement metadata, pattern range/resolution, and the reusable refinement utilities first. Then I’ll screen candidate phases, audit viable structural models, and carry the strongest alternatives through matched GSAS‑II refinements before exporting and auditing the final package.
+
+The chemistry points naturally toward nickel tungstate, but I’m treating that only as a hypothesis: the raw profile may contain unreacted NiO/WO₃ or another nickel–tungsten oxide. I’m now extracting peak positions and locating the indexed structure library and GSAS‑II runtime so the identification is driven by extinction and whole-pattern evidence.
+
+Peak families already separate cleanly: the wolframite NiWO₄ model accounts for the dominant reflections across 15–99°, while the coherent residual triplets near 23–24.3° and 33–34.2° match monoclinic WO₃. The NiO fingerprint is not supported because its strongest 43.4° line is absent. I’m carrying the close monoclinic/triclinic WO₃ alternatives through identical refinements rather than selecting from peak positions alone.
+
+The first full-pattern refinement gives a chemically plausible two-phase solution near 76 wt% NiWO₄ / 24 wt% WO₃ before optional broadening terms. A trial size term became correlated with the global Lorentzian width and was rejected; I’m preserving the pre-size baseline and now comparing the WO₃ symmetry alternatives under the same background, cell, and profile model.
+
+The selected monoclinic WO₃ model is only marginally behind a triclinic model (about 0.03 percentage point in Rwp despite two fewer cell degrees of freedom), so the lower-symmetry assignment is not justified by this dataset. The room-temperature P2₁/c model is retained, with symmetry uncertainty noted. I’m now separating zero error from specimen displacement before testing intensity-envelope and coordinate explanations.
+
+The zero-only solution has now been stabilized by alternating scales, background, cells, and the two minimal width terms; it converges without dropped variables at Rwp ≈ 5.94% and gives 77.9 wt% NiWO₄ / 22.1 wt% WO₃. I’m using that frozen state for matched one-variable tests of polarization, roughness, extra profile terms, and phase-specific broadening.
+
+The phase inventory is now stable: wolframite NiWO₄ is dominant, with monoclinic WO₃ explaining a coherent set of residual peaks; NiO is not supported by its diagnostic reflections. I’m now comparing the remaining profile, preferred-orientation, and structural-coordinate explanations from the same stabilized baseline before freezing fractions and exports.
+
+The envelope comparison is decisive: a one-parameter surface-roughness correction lowers Rwp from 5.94% to 5.05% and improves most angular regions; polarization is physical but weaker (5.33%). Refining Gaussian U or Lorentzian Y alone drives them negative, so those branches are being rejected. I’m carrying the roughness model forward and will now retest phase-specific broadening, coordinates, and texture against it.
+
+The refined roughness term settles near 0.098; adding polarization collapses back to the nominal 0.50 and introduces strong scale correlation, so polarization is excluded. The width screen shows only a modest angle-dependent Gaussian improvement, with the total width remaining positive; I’m treating that as provisional while testing whether phase-specific size or strain explains the same residual more cleanly.
+
+With the common default phase broadening removed, the model becomes cleaner: NiWO₄ size/strain terms either collapse toward zero or hit the 10 μm upper bound, while WO₃ alone supports positive isotropic microstrain (~1.1×10⁻³). Adding WO₃ size on top becomes unstable and runs to the no-broadening bound, so only WO₃ strain is retained. I’m reconverging the small global/profile corrections around that simpler model before testing atomic coordinates and texture.
+
+The coordinate refinements are chemically sound: NiWO₄ gives normal W–O (1.81–2.14 Å) and Ni–O (~2.05–2.08 Å) contacts, and the restrained WO₃ heavy-atom refinement retains plausible W–O distances. Refining WO₃ oxygen coordinates does lower Rwp, but it creates >0.93 parameter correlations and implausibly short ~1.51 Å W–O contacts, so that branch is rejected. Preferred orientation is negligible (<0.6% March–Dollase deviation with <0.001% absolute Rwp gain).
+
+The mature-model exclusions are now quantified: removing WO₃ raises Rwp from 4.21% to 15.93%, removing the roughness correction to 5.61%, and removing WO₃ microstrain to 4.34%. A trace NiO scale refines to only 0.25 wt%, but essentially all improvement comes from one 43.3° window while its other characteristic peaks do not improve, so it fails the required multi-peak test. I’m completing the final monoclinic-versus-triclinic WO₃ replacement check now.
+
+The final replacement test leaves the WO₃ polymorph assignment slightly ambiguous. A triclinic P-1 model reaches Rwp 4.206% versus 4.214% for P2₁/c only after adding eight symmetry-lowering cell/coordinate degrees of freedom; it improves 30–50° but worsens 50–80°, and BIC does not support the added complexity. I’m retaining the simpler room-temperature P2₁/c model and will report the resulting ~0.9 wt% phase-fraction spread as systematic uncertainty.
+
+The selected answer is now frozen and exported. I’m running the final cross-file checks: both submitted CIFs, replay-safe GSAS-II profile regeneration/width audit, normalized fractions and paths in `result.json`, and the submission completeness audit.
+
+Completed.
+
+- NiWO₄ (P2/c wolframite): 76.15 wt%
+- WO₃ (selected P2₁/c model): 23.85 wt%
+- Rwp 4.214%, Rp 3.246%, GOF 1.212
+
+The exact WO₃ symmetry remains somewhat uncertain versus a triclinic P-1 alternative, giving approximately ±1 wt% systematic fraction uncertainty. NiO was not accepted because it lacked multi-peak support.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [NiWO4.cif](<ATTEMPT_WORKSPACE>/NiWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+
+CIF, GPX/profile-width, convergence, and submission audits all passed.
+

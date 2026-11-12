@@ -1,0 +1,42 @@
+I’ll inspect the measurement metadata and diffraction profile first, then identify candidate phases, refine them in GSAS-II, and validate the exported CIFs, fractions, and profile against the saved project. I’ll keep any ambiguous phase assignment explicit in the report.
+
+The chemistry is the PbO–WO₃ system measured with Cu Kα₁/Kα₂ radiation. I’m now extracting peak positions and checking the local crystallographic database for Pb–W–O candidates (including reactants and PbWO₄ polymorphs) before choosing the refinement model.
+
+Three phase families are emerging from peak-by-peak matching: scheelite PbWO₄ is dominant, while orthorhombic massicot PbO and monoclinic WO₃ account for many otherwise unmatched reflections. I’m checking the remaining strong line near 25.92° and testing minor alternatives (raspite PbWO₄ and Pb₃O₄) so a spurious extra phase is not introduced.
+
+The first three-phase Rietveld model converged to roughly 78.1 wt% PbWO₄, 9.5 wt% massicot PbO, and 12.4 wt% monoclinic WO₃, with Rwp ≈ 14.8%. The refined zero shift is about +0.27°, explaining why all raw peak positions looked displaced. I’m now inspecting the residual profile and comparing explicit four-phase alternatives; the current refinement also exposed a redundant overall scale flag that I’ll remove in the final project for valid covariance estimates.
+
+The residual search strongly favors a second PbO polymorph: tetragonal litharge matches independent lines at about 17.97, 32.10, 36.00, 45.92, and 48.86°, all after the same zero correction. The litharge and Pb₃O₄ comparison refinements have finished; the lower-symmetry raspite test is still converging.
+
+The strongest unmatched lines are not an extra crystalline phase: they map to Cu Kβ leakage from the modeled phases—for example WO₃ Kα reflections at 33.51° and 34.43° predict Kβ lines at 30.24° and 31.06°, matching the residual peaks at 30.16° and 31.04°. I also corrected the P4/nmm origin setting for litharge; the corrected stoichiometric model improves Rwp to about 13.6% and gives ~5.1 wt% litharge. I’m doing the final coordinate-stability checks now, without adding chemically implausible “phases” to absorb Kβ artifacts.
+
+I’ve resolved the phase model to four phases and am now running the final, reproducible GSAS-II refinement and validating that the exported CIFs, fractions, profile, and project all agree numerically.
+
+The first final pass is internally consistent, but its last least-squares cycle stopped at a maximum shift/s.u. of 0.41. I’m tightening that convergence criterion before accepting the project, then I’ll independently parse every CIF and cross-check the profile/fractions against the saved GPX.
+
+Validation passed: `final.gpx` reopens cleanly, the four GPX mass fractions sum to 1 and exactly match `result.json`, all 8,282 profile rows match the source and saved project, and the CIFs independently parse as PbWO₄ (I4₁/a), massicot PbO (Pbcm), monoclinic WO₃ (No. 14), and litharge PbO (P4/nmm). Final maximum shift/s.u. is 0.10 with no singular parameters.
+
+The final four-phase Rietveld model is:
+
+| Phase | Weight fraction |
+|---|---:|
+| PbWO₄, scheelite/stolzite | 73.90 wt% |
+| PbO, massicot | 9.31 wt% |
+| WO₃, monoclinic | 11.67 wt% |
+| PbO, litharge | 5.12 wt% |
+
+Fractions are normalized over modeled crystalline material. Final statistics: Rwp 13.60%, Rp 9.12%, GOF 3.89.
+
+Deliverables:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r4/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r4/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r4/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r4/workspace/final.gpx)
+- [PbWO4 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r4/workspace/phase_1_PbWO4_scheelite.cif)
+- [Massicot PbO CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r4/workspace/phase_2_PbO_massicot.cif)
+- [Monoclinic WO3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r4/workspace/phase_3_WO3_monoclinic.cif)
+- [Litharge PbO CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r4/workspace/phase_4_PbO_litharge.cif)
+
+Some residual peaks track Cu Kβ leakage omitted from the supplied Kα-only measurement model. Practical fraction uncertainty is approximately 2–4 wt% for PbWO₄ and 1–2 wt% for each minor phase; phases below roughly 1–2 wt% cannot be established reliably.
+

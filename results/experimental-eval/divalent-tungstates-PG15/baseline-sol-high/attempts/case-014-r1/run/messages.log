@@ -1,0 +1,28 @@
+I’ll inspect the diffraction data and metadata first, then identify candidate phases, build a multiphase GSAS-II refinement, and validate that all submitted files come from the saved final project. I’ll keep uncertainty explicit where peak overlap or model limitations prevent a unique assignment.
+
+The chemistry points first to scheelite-type SrWO₄, but I’m treating that only as a hypothesis: unreacted SrCO₃/WO₃ and alternate Sr–W–O compounds are plausible at 900 °C. I’m now extracting the observed peak set and searching the local crystallographic database within the Sr–W–O chemical envelope before refining candidates.
+
+The initial one-phase model confirms tetragonal SrWO₄ but leaves substantial structured residual intensity. I also found and corrected an exact scale-parameter degeneracy in the first trial; the screening refinements now keep the histogram scale fixed so phase scales—and therefore quantitative phase fractions—are identifiable. Candidate impurity models are running against the same refinement protocol.
+
+The dominant misfit is now clearly positional, not compositional: peak offsets change systematically across 2θ, which is characteristic of reflection-geometry specimen displacement. The metadata provides no calibrated profile or displacement correction, so I’m adding the physically appropriate Bragg–Brentano displacement term and re-refining the cells before judging minor phases. This should prevent the impurity model from compensating for an instrument/sample-geometry error.
+
+The corrected comparison identifies two crystalline phases: scheelite SrWO₄ and room-temperature monoclinic WO₃. The WO₃ assignment is supported by its low-angle multiplet and numerous independent peaks; orthorhombic WO₃ fits slightly worse, while SrCO₃ and Sr₃W₂O₉ either refine to negligible/unstable scales or predict strong absent peaks. I’m now producing the final constrained refinement with physically valid profile terms and fixed literature atomic coordinates, then exporting directly from that saved project.
+
+The final refinement is still converging through its staged cell, displacement, profile, and background passes. The model is intentionally conservative: source atomic coordinates remain fixed, Gaussian width terms are constrained nonnegative, and no preferred orientation or crystallite-size terms are being introduced without evidence.
+
+Identified two crystalline phases:
+
+- Scheelite SrWO₄: **87.83 wt%**
+- Monoclinic WO₃: **12.17 wt%**
+
+Fractions are normalized over modeled crystalline phases. Final fit: Rwp 18.10%, Rp 12.65%, GOF 5.12. Practical fraction uncertainty is a few wt% due to the uncalibrated profile and possible amorphous/background contribution.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [SrWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_1_SrWO4.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_2_WO3.cif)
+

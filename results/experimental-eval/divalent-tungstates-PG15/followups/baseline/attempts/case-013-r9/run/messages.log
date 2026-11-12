@@ -1,0 +1,49 @@
+I’ll inspect the pattern, metadata, and available crystallography utilities first, then identify candidate phases, build/refine a multiphase GSAS-II model, and verify that every submitted file is generated from the final project.
+
+The chemistry points toward lead tungstate, but I won’t assume a single-phase product: I’m now extracting the peak set and checking database candidates and possible residual/secondary Pb–W–O phases before refinement.
+
+The dominant reflections form a very consistent scheelite PbWO₄ series, shifted by about +0.33° 2θ. Several substantial unmatched peaks remain, so I’m testing the monoclinic PbWO₄ polymorph and the actual PbO/WO₃ precursor polymorphs rather than forcing them into the main phase.
+
+Three phase signatures are now evident: scheelite PbWO₄, monoclinic WO₃, and orthorhombic massicot PbO. I’m moving to whole-pattern refinement; the first pass will also show whether the remaining 25–32° features require a fourth phase or are explained by overlapping reflections and anisotropic cells.
+
+The three-phase fit reaches \(R_{wp}\approx14.8\%\), but it leaves a real crystalline contribution centered at 25.91°, with companions near 30.15°, 31.05°, and 32.11°. I’m screening all Pb–W–O/Pb–O/W–O database structures against that residual before accepting any additional phase.
+
+Adding litharge is materially improving the residual, but the refinement is still converging through the secondary-phase lattice/profile parameters. I’m letting that stabilized model finish before evaluating the remaining 25.91° peak.
+
+I found a database-setting issue in the litharge reference: its origin-choice-1 CIF was imported by GSAS-II with the Pb site doubled, giving an impossible Pb₂O composition and suppressing its strongest reflection. I’m correcting that crystallographic origin transformation before judging litharge’s presence or fraction.
+
+With the corrected litharge model, the four-phase fit improves to \(R_{wp}\approx13.66\%\) and gives a reproducible ~5 wt% litharge contribution. The unexplained 25.91° family remains; I’m now doing controlled add-one-phase tests (same baseline, nonnegative scale, refined cell) to distinguish Pb₃O₄/PbO₂ from reduced tungsten oxides and raspite.
+
+The candidate trials are still running; each starts from the identical four-phase project and refines only the added phase’s scale/cell alongside the established parameters. This is taking longer because the low-symmetry tungsten-oxide candidates carry hundreds of reflections.
+
+One important alternative emerged from the unassigned line sequence: the 25.91° peak is close to the first corundum Al₂O₃ reflection after applying the refined zero offset, which could indicate holder contamination. I’m checking that full reflection series (not just the first peak) before attributing it chemically.
+
+The unassigned peaks do index coherently on a tetragonal cell near \(a=9.09,\ c=6.74\) Å and mimic a minium-type pattern, but that cell is ~9% too large in volume for Pb₃O₄. I’m checking the local structure corpus for lead-rich oxy-tungstates with that lattice before labeling it as Pb₃O₄.
+
+I’m finalizing the conservative four-phase model. The fifth contribution is real but not safely identifiable: forcing Pb₃O₄ lowers \(R_{wp}\), yet requires a ~9% volume expansion and gives poor phase-specific agreement, so I will document it as unmodeled rather than report a misleading structure or fraction.
+
+The final refinement is converged (\(\max|\Delta/\sigma|=0.054\)). I’m doing a last consistency audit now: reloading `final.gpx`, matching its profile and fractions byte-for-value to the CSV/JSON, and parsing each exported CIF independently.
+
+The final consistency audit passed: project-derived fractions, exported CIF compositions/cells, and `fit.csv` all agree. I’m cleaning only the exploratory scripts and trial projects now so the submission contains exactly one CIF per reported phase plus the requested deliverables.
+
+Completed the PXRD refinement and saved all requested deliverables.
+
+Modeled crystalline phases, normalized over identified phases:
+
+- PbWO₄, scheelite: **73.93 wt%**
+- WO₃, monoclinic: **11.65 wt%**
+- PbO, massicot: **9.30 wt%**
+- PbO, litharge: **5.12 wt%**
+
+Final fit: **Rwp 13.65%**, **Rp 9.18%**, **GOF 3.91**.
+
+Several residual reflections remain unassigned, notably near 13.93°, 25.91°, 30.14°, and 31.38° 2θ. Candidate structures were not reliable enough to report; unidentified crystalline and amorphous material are excluded from the normalized fractions.
+
+Files:
+
+- [Report](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r9/workspace/report.md>)
+- [Results JSON](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r9/workspace/result.json>)
+- [Fit profile](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r9/workspace/fit.csv>)
+- [Final GSAS-II project](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r9/workspace/final.gpx>)
+- CIFs: [PbWO₄](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r9/workspace/phase_PbWO4_scheelite.cif>), [WO₃](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r9/workspace/phase_WO3_monoclinic.cif>), [massicot PbO](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r9/workspace/phase_PbO_massicot.cif>), [litharge PbO](<<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r9/workspace/phase_PbO_litharge.cif>)
+

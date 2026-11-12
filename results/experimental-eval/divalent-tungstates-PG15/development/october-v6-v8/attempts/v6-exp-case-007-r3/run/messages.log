@@ -1,0 +1,52 @@
+I’ll inspect the pattern, metadata, and the reusable analysis scripts first, then screen candidate phases and build the refinement in staged, rollback-safe branches. I’ll keep the final exports synchronized with the audited GSAS-II project.
+
+The sample is a fired MgO–WO₃ system measured with Cu Kα radiation, so Mg–W oxides and unreacted precursors are the first chemically plausible inventory—but I’ll let the peak positions and extinctions decide. I’m now locating the GSAS-II runtime and extracting the experimental peak set before querying structural candidates.
+
+The peak inventory is now coherent: wolframite-type MgWO₄ explains the dominant family, while independent multi-peak sets match residual cubic MgO and room-temperature WO₃. The WO₃ triplet near 23–25° is especially diagnostic. One database WO₃ model failed the mandated geometry audit (1.57 Å O–O contacts), so I’m excluding it and carrying the physically sound monoclinic/triclinic alternatives into matched refinements.
+
+The first matched three-phase refinement is running. It is intentionally staged through scales/background, displacement, cells, and only then global profile terms; this is slower than a single unconstrained fit but makes candidate comparisons meaningful and catches unstable branches.
+
+The physically sound monoclinic WO₃ model is already outperforming the triclinic alternative under the same cell/profile treatment (Rwp about 10.55% versus 12.98% before the triclinic profile pass). I’m completing the matched triclinic pass before deciding; the refined preliminary fractions are consistently near 79% MgWO₄, 14% WO₃, and 8% MgO.
+
+The unrestricted five-term profile branch is not acceptable: although it lowers Rwp, its Lorentzian width becomes negative within the measured range. The valid minimal screen favors refining only global W and X (positive widths throughout; Rwp ≈12.05%). I’m using that branch for the required angular-correction comparison, then I’ll test physically interpretable phase broadening.
+
+The envelope test is decisive so far: a single refined polarization term gives a stable, physical value (~0.831) and lowers Rwp from 12.05% to 9.71%. Axial divergence improves less and is 96.9% correlated with displacement; the two-parameter surface-roughness branch is highly unstable and >99.9% correlated, so it will be rejected despite its numerical fit gain.
+
+Only WO₃ microstrain is independently supported: it is positive and stable and improves the full pattern (Rwp 9.71% → 9.64%). MgWO₄ broadening is negligible or correlated with the global profile; MgO size runs to the upper bound and MgO strain becomes negative. I’m now doing the mandated retest of those rejected terms from the updated baseline.
+
+The three-phase inventory is stable. I’m now doing the final discrimination and integrity checks: mature monoclinic-vs-triclinic WO₃ comparison, leave-one-phase-out tests, retained-term removals, and a replay/audit pass before exporting the deliverables.
+
+The current mature model passes the GSAS-II numerical/profile audit with positive peak widths and clean convergence. Its main quantitative result is about 77.9 wt% MgWO₄, 14.7 wt% WO₃, and 7.4 wt% MgO; the remaining work is testing whether that result depends materially on the WO₃ polymorph or optional corrections.
+
+The mature polymorph comparison now favors monoclinic WO₃: Rwp 9.274% versus 9.325% for triclinic WO₃, despite the triclinic model having two extra cell degrees of freedom. Refining MgWO₄ coordinates gives a genuine broader-range improvement to 8.655%; I’m auditing that geometry before deciding whether to retain it.
+
+The coordinate refinement passes the geometry screen and improves every broad angular region except one modest tradeoff around 55–70°. The selected MgWO₄ [110] March–Dollase correction remains the best one-parameter texture axis after re-screening; alternate axes are all worse. Microstructure re-screening is in progress.
+
+All retained optional terms survive matched removal: omitting polarization, MgWO₄/WO₃ strain, MgWO₄ texture, or the Lorentzian X term worsens Rwp from 8.655% to 10.007%, 8.692%, 8.761%, 8.794%, and 9.049%, respectively. The intended Kα1-only interpretation is also decisively worse (9.899% and an unphysical negative width term), so the observed scan requires the reported Kα doublet.
+
+The strict leave-one-out tests are now cleanly converged: removing MgWO₄, MgO, or WO₃ raises Rwp from 8.655% to 51.876%, 9.570%, or 19.386%. Each phase therefore has independent full-pattern support; no phase is being credited solely through overlap. I’m freezing and exporting the audited state now.
+
+The frozen project and all three exported CIFs pass their required audits: no occupancy/contact/symmetry flags, no dropped variables, exact profile regeneration, and positive total Gaussian and Lorentzian widths for every reflection. I’m doing the final schema and cross-file readback now.
+
+Identified crystalline phases, normalized over modeled crystalline material:
+
+| Phase | Weight fraction |
+|---|---:|
+| MgWO₄, wolframite-type P2/c | 78.24 wt% |
+| WO₃, monoclinic P2₁/c | 14.53 wt% |
+| MgO, periclase Fm-3m | 7.23 wt% |
+
+Final fit: Rwp 8.655%, Rp 6.332%, GOF 3.030. The exact monoclinic-versus-triclinic distortion of WO₃ remains moderately uncertain, although WO₃ presence and fraction are well supported. No amorphous fraction was determined.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MgWO4 CIF](<ATTEMPT_WORKSPACE>/phase_MgWO4.cif)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_WO3_monoclinic.cif)
+- [MgO CIF](<ATTEMPT_WORKSPACE>/phase_MgO.cif)
+
+All CIF, GSAS-II project, profile-regeneration, schema, fraction, and cross-file consistency audits passed.
+

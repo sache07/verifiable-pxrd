@@ -1,0 +1,12 @@
+I’ll first inspect the measurement metadata, pattern format, and the framework notes, then identify candidate phases and build/refine the final multiphase GSAS-II model. I’ll keep the submitted fractions tied to the saved `final.gpx` and verify that its calculated profile matches `fit.csv`.
+
+The chemistry narrows the likely inventory to Cu–W–O products plus residual CuO/WO₃, but I won’t assume a single CuWO₄ phase: the full-pattern search needs to distinguish product polymorphs and minor precursor/intermediate peaks. I’m now mapping the installed phase-search and GSAS-II interfaces and extracting the experimental peak list.
+
+The observed peak family is consistent with triclinic CuWO₄, but the library’s CuWO₄ cells do not explain the positions without substantial lattice adaptation, and several strong low-angle lines could conceal residual WO₃. I’m treating phase identity and lattice metric separately: first fit the CuWO₄ framework, then test whether CuO/WO₃ or Cu-rich oxides remove coherent residual peaks.
+
+A chemically valid ambient-pressure CuWO₄ metric resolves the apparent mismatch: after an approximately +0.30° specimen/instrument shift, its first 15 strong lines track the observed peaks to about 0.03° or better. That strongly favors one triclinic CuWO₄ phase over Cu-rich tungstates; I’m moving this framework into GSAS-II now and will use residual-only peaks to decide whether any secondary phase is warranted.
+
+The one-phase refinement is already strong (`Rwp ≈ 6.17%`, expected counting-statistics floor ≈2.43%), and no unindexed peak family has appeared. The remaining mismatch is mostly peak-shape and relative-intensity structure, so I’m testing the physically allowed specimen effects—anisotropic strain, texture, surface roughness, polarization, and a common positive displacement factor—before allowing more coordinate freedom.
+
+The tests so far reject meaningful preferred orientation (all refined March factors stay within ~1–2% of unity). Polarization and physically plausible surface roughness help modestly; anisotropic strain is being evaluated now because it is the main remaining explanation for the reflection-dependent widths.
+

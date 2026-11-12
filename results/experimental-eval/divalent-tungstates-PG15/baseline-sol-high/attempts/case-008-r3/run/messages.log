@@ -1,0 +1,33 @@
+I’ll inspect the measurement metadata and pattern first, then use the available phase-search/indexing and GSAS-II tooling to build and refine the smallest defensible multiphase model. I’ll preserve uncertainty explicitly if any phase remains ambiguous.
+
+The chemistry points naturally toward manganese tungstate formation, but I’m treating that only as a hypothesis: the decisive checks will be peak positions, full-profile residuals, and whether any unreacted MnO/WO₃ or secondary manganese–tungsten oxide is required. Next I’m inventorying the installed crystallographic backends and extracting peak information.
+
+The strongest ~30 observed reflections and their intensity hierarchy match wolframite MnWO₄ (monoclinic P2/c) extremely closely; Mn₃WO₆, MnO, and common WO₃ polymorphs fail at their diagnostic strongest peaks. The observed MnWO₄ lines are systematically offset from the database cell, so I’m moving to a full Rietveld refinement rather than relying on a static reference match.
+
+A first whole-pattern fit reaches \(R_{wp}\approx 8.7\%\) with MnWO₄ alone, and the phase Bragg \(R_F\) is about 6.9%, which is already strong evidence for a single dominant crystalline phase. I found two refinement pathologies in that trial—redundant overall/phase scales and over-correlated broadening terms—so I’m tightening the parameterization before accepting the statistics or fractions.
+
+The residual is mostly derivative-shaped around MnWO₄ peaks, characteristic of imperfect peak-position/profile modeling, rather than isolated unmatched reflections. I’m now stress-testing the one-phase conclusion by adding the chemically plausible precursor/oxide phases one at a time and refining their nonnegative scale; this provides a more defensible impurity/detection statement than visual inspection alone.
+
+The impurity stress test found no support for MnO, Mn₃WO₆, MnO₂, or several WO₃ polymorphs, but one ambient monoclinic WO₃ model gives a reproducible fit improvement and refines to roughly 1.8 wt%. That is chemically plausible as residual precursor, so I’m validating its diagnostic peaks and refining its lattice before deciding whether it belongs in the submitted model.
+
+The two-phase refinement is now stable with physically valid peak widths across the full scan. The result is MnWO₄ 98.14 wt% and monoclinic γ-WO₃ 1.86 wt% (normalized crystalline basis); the WO₃ assignment is anchored by its shifted diagnostic triplet near 23.45, 23.91, and 24.70° plus lines near 33.58 and 34.45°, not just by a marginal scale factor. I’m exporting the exact refined project state and documenting the formal versus systematic uncertainty.
+
+All required deliverables are now written from the same converged `final.gpx`. I’m doing a final consistency audit: CIF parseability/compositions, profile arithmetic and finiteness, fraction normalization, and agreement between the JSON and the saved GSAS-II project.
+
+Completed the PXRD phase analysis and GSAS-II refinement.
+
+- MnWO₄, P2/c: 97.95 wt%
+- Monoclinic γ-WO₃, P2₁/n: 2.05 wt%
+- Final fit: Rwp 7.214%, Rp 4.960%, GOF 2.620
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [MnWO4.cif](<ATTEMPT_WORKSPACE>/MnWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+
+The formal fraction uncertainty is about 0.07 wt%, but the report assigns a more realistic model-dependent uncertainty of roughly 0.4 wt% to the minor WO₃ phase.
+

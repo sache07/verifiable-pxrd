@@ -1,0 +1,41 @@
+I’ll inspect the pattern and metadata first, then use phase-search/indexing and GSAS-II refinement to build a reproducible multiphase model. I’ll validate that the final project, CIFs, profile, fractions, and statistics all agree before writing the report.
+
+The chemistry strongly suggests lead tungstate formation, but I’m treating unreacted oxides and PbWO₄ polymorphs as live possibilities. I’m now extracting peak positions and checking the installed crystallographic search/refinement backends so phase assignment rests on the full pattern, not composition alone.
+
+Peak positions now separate into three coherent families: scheelite PbWO₄, monoclinic WO₃, and orthorhombic PbO (massicot). Several strong reflections are uniquely diagnostic—for example the WO₃ triplet near 23–25° and massicot peaks near 29.35/30.62/38.09°—so I’m carrying all three into quantitative refinement and will test whether each remains statistically and physically supported.
+
+The three-phase model is quantitatively supported, but an unconstrained profile-width trial drove a Gaussian width coefficient negative. I’m tightening the refinement strategy and testing alternative WO₃/PbO structure entries; this is important because phase fractions can otherwise absorb profile-model errors.
+
+The four expected equilibrium/metastable phases all refine to sensible cells and nonzero fractions. The difference profile still has a reproducible extra peak family, especially near 25.91° and 31.05°, so I’m searching the allowed Pb–W–O structure database against the residual before deciding whether to report a fifth crystalline phase or leave it explicitly unidentified.
+
+The refinement rejects raspite (its scale collapses to zero), while both PbO polymorphs are independently required: omitting litharge raises Rwp from 14.38% to 14.66%, and omitting massicot raises it to 16.74%. I’m doing the last structure-choice check on the WO₃ polymorph and then will freeze a conservative model; the remaining isolated 25.91° residual does not match any chemically credible candidate without implausible cell distortion.
+
+The phase assignment is stable at four crystalline phases. I’m now generating the full-range final GSAS-II project and exports, then I’ll validate that the CIFs, profile, fractions, and reported statistics all agree with that project.
+
+The full-range refinement converged cleanly (`Rwp = 14.37%`, 37 refined variables). The modeled crystalline fraction is about 74.34% scheelite PbWO₄, 12.71% monoclinic WO₃, 10.37% massicot PbO, and 2.58% litharge PbO; I’m checking the exported files and crystallographic consistency before writing the uncertainty note.
+
+Three CIFs validate directly. The litharge export exposed a crystallographic issue: its asymmetric-unit coordinates were being interpreted with the wrong multiplicity, yielding Pb₂O/P4/mmm instead of PbO/P4/nmm. I’m correcting that phase definition in the GSAS-II project and will rerun the final refinement so the project and CIF remain the same model.
+
+The corrected litharge model now validates as PbO/P4/nmm and improves the fit to `Rwp = 13.58%`; its fraction rises to 5.37%, showing why that check mattered. I’m doing one final convergence pass and re-evaluating the residual peaks so the uncertainty statement is based on the corrected model.
+
+Leave-one-out refinements confirm that every reported phase is supported independently: omitting PbWO₄, WO₃, massicot, or litharge raises `Rwp` from 13.58% to 37.51%, 14.88%, 16.10%, and 14.65%, respectively. I’m making one last fixed-cell screen of plausible minor Pb–W–O candidates against the corrected four-phase base before finalizing the report.
+
+The minor-phase screen does not justify adding a fifth structure: raspite PbWO₄, WO₂, Pb₇W₈O₂₈.₈, and corundum refine to zero; Pb₃O₄, Pb₂O₃, and W₃O₈ give only small improvements with poor phase-specific fits (`Rf² ≈ 64–71%`), and the reduced tungsten oxide conflicts with the oxidizing precursor context. I’m recording that ambiguity explicitly rather than reporting a spurious fraction.
+
+Completed and validated the four-phase refinement:
+
+- PbWO₄ scheelite: 72.45 wt%
+- γ-WO₃ monoclinic: 11.99 wt%
+- PbO massicot: 10.19 wt%
+- PbO litharge: 5.37 wt%
+
+Fit: `Rwp = 13.577%`, `Rp = 9.165%`, GOF `= 3.886`. No fifth phase could be assigned reliably; fractions are normalized over the modeled crystalline phases.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r6/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r6/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r6/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r6/workspace/final.gpx)
+- CIFs: [PbWO₄](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r6/workspace/phase_PbWO4_scheelite.cif), [WO₃](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r6/workspace/phase_WO3_gamma_monoclinic.cif), [massicot](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r6/workspace/phase_PbO_massicot.cif), [litharge](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r6/workspace/phase_PbO_litharge.cif)
+

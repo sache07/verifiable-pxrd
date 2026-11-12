@@ -1,0 +1,31 @@
+I’ll inspect the diffraction data and metadata first, then identify candidate phases, refine them in GSAS-II, and validate that every submitted artifact is generated from the final project. I’ll keep phase-count and composition uncertainty explicit rather than forcing extra phases.
+
+The chemistry strongly suggests Ba–W–O products, but 400 °C also makes unreacted BaCO₃/WO₃ plausible. I’m now extracting peak positions and comparing them against candidate structures from the local crystallographic database before choosing the minimum defensible phase set.
+
+Peak matching supports monoclinic WO₃ as the dominant phase and orthorhombic BaCO₃ as a likely second phase; the expected strongest independent BaWO₄ reflection near 31.9° is not evident. I’m screening alternative WO₃ polymorphs and phase combinations by actual Rietveld residuals, including a BaWO₄ add/drop test.
+
+The first refinement attempt exposed a scale-parameter degeneracy from the GSAS-II CSV importer; I fixed the overall scale and now refine only phase scales. The corrected screen is running cleanly across the polymorph and phase-addition models.
+
+The corrected two-phase refinement is now strong: monoclinic WO₃ plus witherite BaCO₃ gives \(R_{wp}\approx9.1\%\) over 10–90°, with both phases’ cells refining smoothly and an interim split near 45/55 wt%. I’m tightening the profile model, then I’ll test whether BaWO₄ has a statistically meaningful positive fraction.
+
+The BaWO₄ add/drop test refined to only ~0.6 wt% and reduced \(R_{wp}\) by just 0.08 percentage point, while its strongest independent line near 32.2° is not supported (the added phase over-calculates that region). I’m therefore treating BaWO₄ as below reliable detection and retaining the defensible two-phase model. The full-range final refinement is now being regenerated for submission.
+
+The full-range project converged at \(R_{wp}=8.71\%\), yielding 45.17 wt% monoclinic WO₃ and 54.83 wt% witherite BaCO₃. I’m doing the final integrity checks now: reopening the GPX, reparsing both exported CIFs, and verifying that `fit.csv` and `result.json` numerically agree with the saved project.
+
+Completed and validated the GSAS-II refinement.
+
+- Monoclinic WO₃: **45.17 wt%**
+- Witherite BaCO₃: **54.83 wt%**
+- Fit: **Rwp 8.71%, Rp 6.56%, GOF 2.50**
+
+BaWO₄ was tested but not reliably supported; approximately ≤1 wt% cannot be excluded.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phases/wo3_monoclinic.cif)
+- [BaCO₃ CIF](<ATTEMPT_WORKSPACE>/phases/baco3_witherite.cif)
+

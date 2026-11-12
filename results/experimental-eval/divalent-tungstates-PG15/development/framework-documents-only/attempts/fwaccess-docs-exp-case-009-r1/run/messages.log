@@ -1,0 +1,30 @@
+I’ll inspect the measurement metadata, pattern, and the supplied tungstate framework notes first, then identify candidate phases and carry the best model through a GSAS-II refinement. I’ll keep phase identification and quantitative fractions tied to the submitted project/profile so the outputs are reproducible.
+
+The chemistry points first to wolframite-type MnWO₄, but the 900 °C, one-hour/no-regrind synthesis can retain Mn₃O₄ or WO₃ and can support manganese-rich tungstates. I’m now separating the observed peak families and checking the installed reference-search/indexing/refinement interfaces before committing to a phase count.
+
+The strong lines and their systematic absences match monoclinic P2/c MnWO₄; the diagnostic strongest lines of Mn₃WO₆ (20.49°, 28.75°, 35.24°), hausmannite (32.33°), and WO₃ (23.16–24.34° triplet) are absent at meaningful intensity. I’m proceeding with a one-phase MnWO₄ model, while I’ll use the refined residual—not chemistry alone—to set an upper bound on any missed phase.
+
+The roughness correction is decisive: it lowers Rwp from 8.15% to 3.93%, only modestly above the 3.46% counting-statistics minimum reported by GSAS-II. The remaining residual is structured mainly within overlapped high-angle MnWO₄ reflections, so I’m testing the symmetry-allowed coordinate perturbations and directional broadening that the measurement model permits; I’m also constraining the final roughness/profile parameters back to physically admissible values.
+
+A one-phase model remains the defensible inventory. Adding Mn₃WO₆ or WO₃ drives their scales to zero; a forced hausmannite term refines to only ~0.35(14) wt% and does not improve the stable global fit, so it is below a reliable detection/quantification threshold and will not be reported as a phase. I’m retaining “100% of modeled crystalline material” for MnWO₄ and will state the roughly 0.5 wt% trace-phase sensitivity and inability to quantify amorphous content.
+
+The data support a single crystalline wolframite phase, MnWO₄ (P2/c). I’m finishing the final physically constrained refinement and then will package and cross-check the GSAS-II project, CIF, profile, JSON, and uncertainty report.
+
+The refinement sweep is complete. The best stable one-phase model gives \(R_\mathrm{wp}\approx3.75\%\); alternate texture directions, displacement parameters, and extra-phase trials did not improve the fit credibly. I’m now auditing that selected project for convergence and physically sensible geometry before exporting it unchanged.
+
+A final trace-phase check is warranted because the nominal 100 wt% is normalized only over modeled crystalline material. I’m testing unreacted Mn₃O₄/WO₃ and plausible Mn–O/Mn–W–O byproducts against the fixed final profile; this isolates whether any extra phase has statistically supported intensity rather than letting it absorb background flexibility.
+
+The trace tests show only sub-noise trial scales (about 0–0.24 wt%) with no independently resolved diagnostic peaks, so they are not reliable phase identifications. Before export I’m removing one redundant geometric degree of freedom: zero shift and specimen displacement are >99.9% correlated, and fixing one conventionally should preserve the phase result while making the final project better conditioned.
+
+The conditioning test confirms that both the constant zero term and specimen displacement are needed to reproduce the peak positions over the full angular range; forcing either to zero worsens \(R_\mathrm{wp}\) from 3.75% to at least 3.79%. I’m retaining the best project and documenting their strong correlation as a geometric—not phase-composition—uncertainty.
+
+All requested deliverables now exist. I’m doing the final reproducibility audit: reload `final.gpx`, verify `fit.csv` is exactly the stored GSAS-II profile and statistics, parse the CIF independently, and confirm every JSON path/value resolves.
+
+Completed. The modeled crystalline material is wolframite MnWO₄, P2/c (No. 13), at 100 wt% normalized over modeled crystalline phases. Final \(R_{wp}=3.7526\%\), GOF = 1.0878. No secondary crystalline phase was resolved reliably; amorphous content remains undetermined.
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-009-r1/workspace/result.json)
+- [phase_MnWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-009-r1/workspace/phase_MnWO4.cif)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-009-r1/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-009-r1/workspace/final.gpx)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-009-r1/workspace/report.md)
+

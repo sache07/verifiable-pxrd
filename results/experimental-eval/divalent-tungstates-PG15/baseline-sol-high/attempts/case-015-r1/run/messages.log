@@ -1,0 +1,26 @@
+I’ll inspect the measurement metadata and diffraction pattern first, then identify candidate phases, refine them in GSAS-II, and export the exact final project outputs requested. I’ll keep phase-count and composition uncertainty explicit rather than forcing unsupported minor phases.
+
+The chemistry strongly suggests zinc tungstate formation, but I’m testing that against the full peak set and the plausible residual/reduced oxides (ZnO, WO₃, W₁₈O₄₉, etc.). The key decision is whether weak unmatched reflections justify additional crystalline phases.
+
+Initial refinements confirm that ZnWO₄ alone is incomplete: it leaves substantial structured intensity even after lattice and profile optimization. I’m now comparing WO₃ polymorphs and reduced tungsten oxide alternatives under the same weighting/refinement protocol; I also identified and am removing a redundant scale parameter before the final quantitative refinement.
+
+The selected model is now three phases: wolframite ZnWO₄, monoclinic WO₃, and wurtzite ZnO. Adding ZnO lowers Rwp from 10.85% to 10.05% and gives well-matched ZnO intensities; after constraining the unknown polarization correction to its physical upper bound and refining only the major-phase coordinates, the fit reaches Rwp ≈ 6.37%. I’m preserving the minor-phase coordinates from reference structures because the data do not support reliable independent positional refinement for them.
+
+Completed the three-phase Rietveld model:
+
+- ZnWO₄ (P 2/c): 76.22 wt%
+- Monoclinic WO₃ (P 2₁/n): 16.13 wt%
+- Wurtzite ZnO (P 6₃mc): 7.65 wt%
+
+Fractions are normalized over modeled crystalline phases. Final Rwp = 6.37%, Rexp = 3.79%, GOF = 1.68. Practical fraction uncertainty is approximately 1–2 wt%; the exact WO₃ distortion is less certain than its phase assignment.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [ZnWO4 CIF](<ATTEMPT_WORKSPACE>/phase_zinc_tungstate.cif)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_tungsten_oxide.cif)
+- [ZnO CIF](<ATTEMPT_WORKSPACE>/phase_zinc_oxide.cif)
+

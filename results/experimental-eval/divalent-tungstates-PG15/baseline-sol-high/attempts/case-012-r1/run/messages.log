@@ -1,0 +1,31 @@
+I’ll inspect the diffraction data and metadata first, then use the installed crystallography/indexing tools to identify candidate phases, refine a multiphase GSAS-II model, and validate that all exported artifacts come from the saved final project.
+
+The experiment spans 10–100° 2θ with Cu Kα1/Kα2 retained and no supplied uncertainties or calibrated profile. The precursor chemistry makes nickel tungstate the leading hypothesis, but I’ll treat residual oxides or polymorphs as candidates and let unmatched peaks/profile improvement decide the phase count.
+
+Peak positions and relative intensities are consistent with monoclinic wolframite-type NiWO₄ (P2/c), including the distinctive cluster near 23–25° and the dominant line at 30.87°. I found the local COD reference, but it duplicates symmetry-equivalent atoms and is not directly refinable; I’m converting it to the correct independent-site model before testing residual peaks.
+
+The first refinement confirms NiWO₄ but leaves strong, chemically plausible unmatched lines at 23.06, 23.53, 24.28, 26.53, 28.82, 33.20, and 34.09°. That sequence is diagnostic of monoclinic WO₃, so the sample is not single-phase. I’m adding an m-WO₃ reference and will then test whether the weaker NiO line set is statistically warranted.
+
+The two-phase model refines to about 78.5 wt% NiWO₄ and 21.5 wt% WO₃ with Rwp ≈5.2%. A deliberate NiO test gives only 0.08(11) wt% and negligible fit improvement, so NiO is below reliable detection and will not be reported as a crystalline phase. I’m now checking the closely related triclinic WO₃ model to avoid over-assigning the WO₃ symmetry.
+
+The triclinic comparison is computationally heavier because it doubles the independent WO₃ atomic sites and adds two lattice-angle variables. The refinement is still running; I’ll compare the fit gain against that substantial parameter penalty rather than choosing the lower-symmetry model on Rwp alone.
+
+The triclinic WO₃ alternative does not improve the fit (Rwp 5.196% versus 5.194% for monoclinic P2₁/n) despite many extra variables and introduces >95% coordinate correlations. I’m retaining the simpler room-temperature monoclinic WO₃ model; its refined β = 90.823° also agrees closely with the reference structure. The final quantitative refinement is converged with maximum shift/esd 0.012.
+
+Completed the GSAS-II multiphase refinement.
+
+- NiWO₄, P2/c: 78.52 wt%
+- WO₃, P2₁/n: 21.48 wt%
+- Rwp = 5.194%, Rp = 4.052%, GOF = 1.495
+
+NiO was tested but refined to 0.08(11) wt%, so it was not reliably detected. Fractions are normalized over crystalline phases; amorphous content was not determined.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [NiWO4.cif](<ATTEMPT_WORKSPACE>/NiWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+

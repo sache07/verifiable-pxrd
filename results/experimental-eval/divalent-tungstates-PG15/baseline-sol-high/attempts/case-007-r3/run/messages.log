@@ -1,0 +1,28 @@
+I’ll inspect the diffraction data and metadata first, then identify candidate phases, build/refine the model in GSAS-II, and validate that the exported CIFs, profile, fractions, statistics, and final project all agree.
+
+The chemistry strongly points to magnesium tungstate as the main reaction product, with residual precursor or polymorphs still possible. I’m now extracting the peak set and searching the local crystallographic database by composition so that phase selection is driven by both chemistry and the full-pattern match.
+
+The first quantitative trial confirms two strong contributors—MgWO₄ and monoclinic WO₃—but also exposed a GSAS-II setup issue: the default specimen scale was refining simultaneously with phase scales, creating a singular model. MgO refined to zero in that unstable trial, so I’m rebuilding with the global scale fixed and testing MgO separately only after the two-phase fit is stable.
+
+The stable three-phase model now accounts for the distinct residual peaks of MgO as well as the WO₃ triplet and the dominant MgWO₄ pattern. I’m rejecting an attempted axial-divergence parameter because it improved Rwp by only 0.02 percentage point while correlating 97% with zero offset; the final model will use the simpler, better-conditioned profile.
+
+The final project is converged and internally consistent: the CIF cells and compositions reload correctly, the crystalline fractions sum to 1.000000, and the profile difference column exactly equals observed minus calculated. I’m doing one last residual check for evidence of any omitted crystalline phase before handing off the files.
+
+Completed the three-phase Rietveld refinement:
+
+- MgWO₄, P2/c: 78.27 wt%
+- WO₃, P2₁/n: 13.98 wt%
+- MgO, Fm-3m: 7.76 wt%
+
+Fractions are normalized over crystalline phases. Final fit: Rwp 9.871%, Rp 7.023%, GOF 3.453.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MgWO4.cif](<ATTEMPT_WORKSPACE>/MgWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [MgO.cif](<ATTEMPT_WORKSPACE>/MgO.cif)
+

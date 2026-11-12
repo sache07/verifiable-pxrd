@@ -1,0 +1,56 @@
+I’ll inspect the measurement metadata and diffraction profile first, then use the installed indexing/search and GSAS-II tooling to identify candidate phases, refine them jointly, and validate that every submitted artifact comes from the final project.
+
+The chemistry points first to lead tungstate, but I’m treating residual oxides and alternate Pb–W–O compounds as open possibilities. I’m now extracting peak positions and checking the locally available crystallographic search/refinement interfaces before committing to a phase model.
+
+Peak positions already support a dominant scheelite PbWO₄ phase and a monoclinic WO₃ contribution. A strong line near 25.92° and a family of weaker residual lines are not explained by those two; I’m testing the known monoclinic PbWO₄ (raspite) polymorph and PbO polymorphs against the full profile rather than identifying them from isolated peaks.
+
+The first refinements confirm that a one-phase model is inadequate (Rwp about 19%, with structured residuals). I’ve fixed an exact scale-factor correlation in the initial setup and am now comparing each plausible second phase under the same refinement recipe; the important test is the whole-pattern improvement and whether the refined fraction remains positive and stable.
+
+The whole-pattern comparisons now separate the candidates: monoclinic WO₃ and orthorhombic PbO (massicot) both explain distinct residual families, while litharge, PbO₂, and raspite either give much smaller improvements or collapse to zero/unstable scale. I’m testing the combined PbWO₄ + WO₃ + massicot model next and will then inspect its residual peaks for any defensible fourth phase.
+
+The three-phase trial still leaves sharp, repeatable lines at positions characteristic of tetragonal PbO (litharge), and the apparent massicot gain is partly suspect because its crystallite-size parameter ran into the 1 nm lower bound. I’m rerunning phase selection with phase sizes fixed and only the dominant PbWO₄ cell refined; this removes that overfitting route and makes the candidate comparison physically interpretable.
+
+The conservative screens are still running because the five-phase normal equations are much larger. Early fixed-size results already reject raspite and make Pb₃O₄ statistically negligible; WO₃ is about 11 wt% and is robust. I’m waiting for the combined PbO-polymorph comparisons before deciding whether massicot, litharge, or both are justified.
+
+One residual line at 25.91° also coincides with the strongest line of some reduced tungsten oxides, so I’m not treating it as automatically belonging to a lead-oxide impurity. I’m extending the conservative search to WO₂/W₃O₈/W₁₈O₄₉ and Pb₂O₃ models; a phase will only be retained if it explains multiple lines and gives a stable positive fraction, not just that one peak.
+
+The residual indexing does not support any tested WO₂, W₃O₈, Pb₂O₃, Pb₃O₄, PbO₂, or raspite structure. It does suggest an additional orthorhombic line lattice, but there is no defensible atomic model or quantitative scale for it from the available database. I’m now refining the four reproducible identified phases conservatively; the final report will explicitly flag the remaining unassigned reflections rather than inventing a structure or fraction.
+
+The cell refinements are stable and materially improve the model, but allowing independent broadening makes the weak PbO scales strongly size-dependent: massicot converges near 29 nm and litharge runs to the imposed 20 nm floor. I’m comparing that result with a common-profile refinement before choosing the submitted fractions; this is the main quantitative uncertainty, not the identities of the four modeled phases.
+
+I’m submitting the conservative common-profile solution: PbWO₄ 76.0 wt%, monoclinic WO₃ 11.8 wt%, massicot PbO 9.8 wt%, and litharge PbO 2.4 wt%, normalized over those modeled phases. This refinement is fully converged; I’m generating the CIFs, synchronized profile/JSON/report, and the final project now, with the unresolved residual component explicitly marked as non-quantifiable.
+
+The conservative four-phase model is selected; I’m now generating the deliverables from that exact converged GSAS-II project and validating the CIFs, profile, fractions, and project consistency.
+
+The required files have been generated. The selected model is 76.0 wt% scheelite PbWO₄, 11.8 wt% monoclinic WO₃, 9.8 wt% massicot PbO, and 2.4 wt% litharge PbO; I’m checking that these values and the calculated profile reproduce exactly when `final.gpx` is reopened.
+
+A validation check caught an origin-setting inconsistency in the imported litharge reference: its exported stoichiometry was Pb₂O rather than PbO. I’m correcting that structural model and rerunning the refinement so the submitted fraction is chemically and crystallographically valid.
+
+The corrected litharge model imports as stoichiometric PbO (two Pb and two O per unit cell). Re-refinement gives a stable physical common-profile solution near 73.8% PbWO₄, 11.0% WO₃, 9.7% massicot, and 5.4% litharge; I’m quantifying how much the weak-phase fractions shift when phase-specific broadening is allowed.
+
+The sensitivity test confirms the main limitation: phase-specific broadening shifts litharge by roughly 3 absolute wt% and runs into a parameter bound. The submitted project therefore uses the stable common-profile fractions and explicitly reports that systematic uncertainty.
+
+The deliverables now pass consistency checks, including CIF re-import and exact profile/fraction reproduction from `final.gpx`. I’m doing one last chemistry-specific search for Pb–W–O intermediates before closing, because the residual peaks could otherwise be mistaken for an untested lead tungstate.
+
+Completed and validated against the reopened GSAS-II project.
+
+Crystalline-phase fractions:
+
+- PbWO₄ scheelite: 73.83 wt%
+- WO₃ monoclinic: 11.02 wt%
+- PbO massicot: 9.73 wt%
+- PbO litharge: 5.43 wt%
+
+Fit: Rwp 15.07%, Rp 10.82%, GOF 4.31. Unidentified residual reflections near 25.91° and 30–31° could not be modeled or quantified reliably.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r5/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r5/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r5/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r5/workspace/final.gpx)
+- [PbWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r5/workspace/phase_1_PbWO4_scheelite.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r5/workspace/phase_2_WO3_monoclinic.cif)
+- [PbO litharge CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r5/workspace/phase_3_PbO_litharge.cif)
+- [PbO massicot CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-013-r5/workspace/phase_4_PbO_massicot.cif)
+

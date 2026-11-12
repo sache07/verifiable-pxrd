@@ -1,0 +1,86 @@
+I’ll inspect the measurement metadata, pattern, and the supplied refinement utilities first, then establish candidate phases and build the GSAS-II model with branch-safe checkpoints. I’ll keep structural identification and quantitative fractions conditional on full-pattern evidence and the required audits.
+
+The chemical context is CaCO₃ + WO₃ heated at 500 °C, so Ca–W–O reaction products and residual precursors are plausible, but I won’t assume them. The next pass will extract the observed peak inventory and inspect the available indexing/database and GSAS-II interfaces so candidates are tested against the entire pattern.
+
+Peak positions already separate into at least three coherent families: a monoclinic-WO₃-like triplet near 23–25°, a scheelite-like CaWO₄ family, and a calcite-like family including 29.71°, 43.47°, 47.52°, and 48.53°. I’m now testing the relevant polymorphs and alternate Ca–W–O structures rather than assigning those families from one peak apiece.
+
+The candidate audits reject the malformed monoclinic WO₃ entry with 1.57 Å O–O contacts; a valid equivalent-setting P2₁/c model (COD 2311041) is available. Calcite and tetragonal scheelite models pass the occupancy/contact checks. I’m creating the first stable three-phase project now and will compare WO₃ symmetry and alternative Ca–W–O/CaCO₃ structures under the same nuisance model.
+
+The first refinement exposed and fixed an exact scale degeneracy (the global histogram scale had been free alongside all phase scales). With that removed, the three-phase model is stable and already lowers Rwp from 18.93% to 15.12% before profile refinement; cell shifts are modest, and all three scales remain positive. I’m running the matched replacement and leave-one-out branches now, with stricter repeated convergence before judging them.
+
+The converged minimal preferred branch reaches Rwp = 12.80% with positive conditional fractions of roughly 7.6% CaWO₄, 54.7% WO₃, and 37.7% calcite. The largest residuals sit on already modeled peak families, which points to profile/intensity-envelope refinement rather than an obvious missing phase; the alternative-symmetry branches are still running.
+
+The WO₃ discrimination is now clear across the full range: P2₁/c gives 12.80% Rwp, while triclinic P‑1 stalls at 14.48% with poorer low/mid-angle behavior, Pnma gives 26.22%, and the small-cell P2₁/c polymorph gives 44.55%. The valid P2₁/c precursor structure is therefore strongly preferred; Ca–W–O and carbonate replacements are next.
+
+All three phases have matched leave-one-out support: removing CaWO₄ raises Rwp to 16.77%, removing calcite to 18.00%, and removing WO₃ to 48.05%, with degradation across multiple angular regions. Monoclinic CaWO₄, Ca₃WO₆, and aragonite either collapse to zero scale or become unstable. The three-phase inventory is therefore fixed for profile-model selection; I’m now applying the required zero/displacement branch test from the stable baseline.
+
+The angular test selects specimen displacement alone (−494 µm, Rwp = 12.753%); zero-only is slightly worse, while the nominally lower joint fit is rejected because zero and displacement correlate at 0.9997. Visual inspection shows phase-dependent peak widths—especially broader CaWO₄—so I’m screening global width terms and envelope alternatives before allowing phase-specific size/strain.
+
+Global profile screening strongly favors a positive Lorentzian X term: it lowers Rwp from 12.753% to 9.845% with improvement in every angular region and no high parameter correlations. U and Y help less; V is rejected as 95.3% correlated with W. I’m finishing the polarization/roughness/asymmetry comparisons, then I’ll test phase size and strain from the best global branch.
+
+CaWO₄ broadening is independently supported by both models: isotropic size gives the better fit (Rwp = 8.924%, about 46 nm) and isotropic microstrain gives 9.206% (about 10,400 µstrain), each improving multiple regions without correlations. I’ll carry both into a matched joint test only after checking WO₃ and calcite independently, as required.
+
+After accepting CaWO₄ size broadening, both WO₃ size and strain become reproducibly supported; strain is the better single term (Rwp = 8.314%, ~3,900 µstrain), while calcite size runs to the upper bound and calcite strain becomes negative, so both calcite terms are rejected. The CaWO₄ size+strain joint branch also yields negative strain and is rejected. I’m now testing WO₃ size+strain jointly and then rechecking global/envelope terms from that mature state.
+
+The mature envelope comparison now changes the conclusion: positive Suortti roughness B is best (Rwp = 7.828%, improvement in all five regions), outperforming refined polarization (8.045%). Extra U/V/Y terms give only tiny gains with negative coefficients; axial divergence is 98.2% correlated with displacement. I’m retaining only roughness B and screening simple March–Dollase axes phase-by-phase.
+
+The texture branches have finished. I’m checking whether any orientation term improves several independent reflection regions enough to justify the added parameter; then I’ll lock the nuisance model before refining atomic coordinates.
+
+Calcite shows the only defensible orientation effect: a mild [001] March–Dollase term improves the 25–40°, 60–80°, and 80–100° regions (Rwp 7.828→7.744%, coefficient 0.918). The other axes give only marginal or localized gains, so I’m carrying just this one term into structural-coordinate tests.
+
+The first structural test is informative: calcite’s oxygen shift is negligible, and unconstrained WO₃ tungsten coordinates lower Rwp substantially but oscillate with a 98.7% correlation between the two W y-displacements, so that branch is not acceptable. I’m testing the chemically natural antisymmetric W displacement mode that removes that degeneracy, while auditing the small scheelite oxygen shift for geometry.
+
+The antisymmetric WO₃ W mode converged cleanly and passed the geometry audit, lowering Rwp from 7.744% to 7.446% with benefits across 25–100°. I’m now checking whether the weaker scheelite/calcite coordinate adjustments remain supported once that dominant structural correction is present.
+
+The WO₃ oxygen-coordinate branch is nonconvergent, and grouped ADPs refine to an unphysical negative oxygen value with a 96% scale/envelope correlation; both are rejected. Since the source CIF omitted WO₃ displacement factors entirely, I’ll use small fixed positive room-temperature values (W 0.005, O 0.010 Å²) and then re-test the competing envelope/profile terms.
+
+The angular re-test is still running through matched zero-only, displacement-only, and joint branches. This is the expected longer pass because each branch restores cells, scales, background, profile, microstructure, and texture in stages before comparison.
+
+The angular comparison retained displacement-only; the joint correction was rejected at 99.97% Zero/Shift correlation. I’m now repeating the global profile/envelope screen against the updated structures and fixed positive WO₃ ADPs, including Gaussian/Lorentzian alternatives, polarization, axial divergence, and roughness.
+
+The re-screen is confirming that most added profile terms are either negligible or correlated; axial divergence is especially correlated with displacement and is rejected. The remaining question is whether CaWO₄ size and WO₃ strain are each independently supported after the structural update, which the current matched branches are testing.
+
+I found an important modeling detail: GSAS-II’s fixed default size/strain values are not mathematically zero. I rebuilt a true no-microstructure baseline (10 μm size, 1 με strain) and am rerunning all six independent phase/term tests from that common state, so retained broadening will be genuinely evidence-based.
+
+From the corrected blank baseline, CaWO₄ size (about 49 nm) and CaWO₄ strain each independently improve the complete pattern; WO₃ size and calcite terms do not. I’m now adding candidates one at a time after retaining the stronger CaWO₄ size term, as required before considering any joint broadening model.
+
+The clean microstructure sequence now supports a parsimonious model: CaWO₄ size ≈44 nm plus ≈4300 με strain, and WO₃ ≈4265 με strain. WO₃ size collapses to the no-effect limit; calcite broadening is not independently supported. I’m doing the required final profile/envelope and texture pass from this corrected state.
+
+The final profile pass exposed an exact competing explanation: a positive global Lorentzian \(Y\) term gives the same fit as assigning a common strain offset to calcite and shifting the other phase strains. Because calcite strain failed its independent test, I’m carrying the smaller global-\(Y\) model and will explicitly report that absolute microstrain values are instrument-model dependent.
+
+No additional texture term survives: the best WO₃ axis is only 0.75% from random and trades a clear low-angle worsening for mid-angle gains. I’m retaining only the mild calcite [001] term and now performing matched leave-one-out tests on every optional term in the proposed final model.
+
+Every retained optional term degrades the matched fit when removed; the largest penalties are roughness, WO₃ strain, instrument \(X\), and CaWO₄ size. The mature structural-alternative retest is now running—same complete nuisance model, one replacement at a time—so candidate rejection will not depend on the earlier coarse profile.
+
+The replacement pass is taking longer because several incorrect cells require repeated damped cycles before they can be rejected cleanly. The source project remains untouched; each branch started from its own saved mature baseline and will be judged on convergence, positive scale, and full-range residuals.
+
+One WO₃ alternative exposed an importer defect: its CIF uses charged type tokens (`W+`, `O-`), which GSAS-II silently converted to hydrogen. I’m treating that imported branch as malformed, making a charge-neutral token-only copy (`W`, `O`), auditing it, and rerunning the replacement so the cell family gets a fair test.
+
+The only positive fourth-phase scale was trace aragonite (~0.74 wt%, 3.7σ), but all of its strongest lines overlap existing WO₃/calcite reflections and most χ² gain occurs outside those peaks. It fails the required multi-unique-peak test, so I’m not reporting it as a phase; the three-phase fractions remain conditional on modeled crystalline material.
+
+The final angular replay again retains displacement-only; the lower-Rwp joint branch is rejected at 99.97% correlation. The phase/profile model is now frozen. I’m generating the final GPX, CIFs, profile table, normalized fractions, and audit-ready report from that exact saved state.
+
+The required artifacts are written. The final GPX passes convergence, profile regeneration, and positive total-width checks; all three CIFs pass composition/occupancy/contact audits. I’m doing the last cross-file readback now, including recomputing fractions from `final.gpx` and checking every `fit.csv` value.
+
+Completed the three-phase refinement:
+
+| Phase | Weight fraction |
+|---|---:|
+| Monoclinic γ-WO₃, P 21/c | 56.81 ± 0.16 wt% |
+| Calcite CaCO₃, R -3 c | 30.88 ± 0.20 wt% |
+| Scheelite CaWO₄, I 41/a | 12.30 ± 0.11 wt% |
+
+Final fit: Rwp 7.451%, Rp 5.426%, GOF 3.118. Fractions are normalized over modeled crystalline material only. Trace aragonite remains unconfirmed because its possible contribution lacks unique-peak support.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [CaWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_CaWO4_scheelite.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_monoclinic.cif)
+- [CaCO₃ CIF](<ATTEMPT_WORKSPACE>/phase_CaCO3_calcite.cif)
+
+GPX, CIF, profile-regeneration, and submission audits passed.
+

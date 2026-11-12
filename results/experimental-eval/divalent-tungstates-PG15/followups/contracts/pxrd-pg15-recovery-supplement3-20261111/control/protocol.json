@@ -1,0 +1,123 @@
+{
+  "assessment": "Native final.gpx replay with fitted calibration preserved; observed-data Rwp on 10.1-99.9 degrees with weights 1/max(counts,1); hidden-phase structure matches and physical checks. No synthetic score. Outputs stay outside the evolution run.",
+  "attempts": 12,
+  "authorization": "User (2026-11-11): \"run 6 more baseline solves as well\"",
+  "cases": 15,
+  "comparison_limitations": [
+    "Scans chosen after seeing the 15-scan results; not part of any prospective comparison.",
+    "The baseline's r1-r3 ran on 2026-10-19/20 under the same model alias; these r4-r9 run on 2026-11-11, so they also check the baseline's contemporaneity."
+  ],
+  "condition": "P0 baseline; Max reasoning effort",
+  "created_at": "2026-11-11T04:33:44.787913+00:00",
+  "database": "DARA filtered COD 2024; full frozen filtered index, no added masks, no DARA solver, no web or ICSD",
+  "database_sha256": "03599f54f03f04420523dca36cc06927b74ce0070a4a80e6d859faa38a6c5aed",
+  "design": "Outcome-selected supplement on the two hidden-phase scans for the P0 Max baseline, replicates r4-r9. Reported apart from the prospective 15-scan comparisons; per-attempt recovery is the quantity of interest.",
+  "dispatch": {
+    "capacity_note": "Sixteen two-core slots on 32 vCPU; twelve attempts, one round. Valid while the access run's dispatch is paused (since 2026-11-09 02:04 UTC) and no other panel runs on this host.",
+    "capacity_retry_seconds": 60,
+    "max_concurrent_solvers": 16,
+    "minimum_available_ram_gib": 8,
+    "minimum_free_disk_gib": 6,
+    "monitor_seconds": 300,
+    "remote_host": "pxrd-tungstate15-ec2",
+    "service_prefix": "pxrd-pg15-recsup3-1111"
+  },
+  "effort": "max",
+  "experiment": "pxrd-pg15-recovery-supplement3-20261111",
+  "inputs_byte_identical_to_P0": true,
+  "inputs_source": "<SOURCE_ARTIFACT>",
+  "model": "gpt-5.6-sol",
+  "not_supplied": [
+    "prior outcomes",
+    "canonical answers",
+    "paper",
+    "calibrated instrument file",
+    "new xye uncertainties",
+    "output checker",
+    "synthetic truths or scores"
+  ],
+  "package_prompt_sha256": null,
+  "package_source": null,
+  "packages": {
+    "P0": {
+      "helpers": null,
+      "prompt_sha256": "0c5def00a19594c9bbff2c83065a805aecb93822e6304038f02f7dc0d4f11e85",
+      "source": "<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-sol-max-p0-eval15-repeat2-20261019/policies/P0"
+    }
+  },
+  "per_attempt": {
+    "cpu_quota": "200%",
+    "memory_max": "5G",
+    "numeric_threads": 2,
+    "tasks_max": 128
+  },
+  "plan": [
+    {
+      "case": "case-013",
+      "policy": "P0",
+      "replicate": 4
+    },
+    {
+      "case": "case-014",
+      "policy": "P0",
+      "replicate": 4
+    },
+    {
+      "case": "case-013",
+      "policy": "P0",
+      "replicate": 5
+    },
+    {
+      "case": "case-014",
+      "policy": "P0",
+      "replicate": 5
+    },
+    {
+      "case": "case-013",
+      "policy": "P0",
+      "replicate": 6
+    },
+    {
+      "case": "case-014",
+      "policy": "P0",
+      "replicate": 6
+    },
+    {
+      "case": "case-013",
+      "policy": "P0",
+      "replicate": 7
+    },
+    {
+      "case": "case-014",
+      "policy": "P0",
+      "replicate": 7
+    },
+    {
+      "case": "case-013",
+      "policy": "P0",
+      "replicate": 8
+    },
+    {
+      "case": "case-014",
+      "policy": "P0",
+      "replicate": 8
+    },
+    {
+      "case": "case-013",
+      "policy": "P0",
+      "replicate": 9
+    },
+    {
+      "case": "case-014",
+      "policy": "P0",
+      "replicate": 9
+    }
+  ],
+  "repeats": 3,
+  "scientific_package_changes": [],
+  "supplied_inputs": [
+    "inputs/pattern.csv",
+    "inputs/metadata.json"
+  ],
+  "timeout_seconds": null
+}

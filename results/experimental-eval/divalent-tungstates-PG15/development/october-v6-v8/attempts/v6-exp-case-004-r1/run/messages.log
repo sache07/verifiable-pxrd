@@ -1,0 +1,120 @@
+I’ll inspect the measurement metadata, pattern, and the supplied refinement utilities first. Then I’ll screen candidate phases, audit atomistic models, build competing GSAS-II branches, and only export the final files after replay and submission audits pass.
+
+The chemistry is a CoO–WO₃ reaction measured with Cu Kα radiation, but neither stoichiometry nor phase count is given. I’m now extracting peak positions and locating the installed phase-search/refinement helpers; the first discriminator will be whether the pattern supports CoWO₄, Co₂WO₅/CoWO₆-type products, residual oxides, or a mixture.
+
+The strongest peak family is consistent with monoclinic wolframite CoWO₄, but the only masked COD hit is malformed: it explicitly duplicates symmetry-equivalent atoms and fails the required CIF audit. I’m rejecting that file as-is and searching the local structure corpus for an independent, non-duplicated Co–W–O model before any quantitative refinement.
+
+The two validated models account for independent peak families: WO₃ explains the 23.18/23.67/24.42° triplet and the 33–34° multiplet, while CoWO₄ uniquely explains the dominant 30.71° line and several lines near 36.4, 54.2, and 61.8°. I’m starting a two-phase whole-pattern refinement with Poisson counting weights, exact Cu Kα₁/Kα₂ wavelengths, and fixed atom coordinates; phase inventory will be tested before any optional profile complexity.
+
+The initial two-phase model converged without singular variables at Rwp ≈ 10.96%, with provisional crystalline fractions of about 35% CoWO₄ and 65% WO₃. The large alternating residuals sit on modeled peaks rather than at new, coherent peak positions, so I’m testing zero-error versus specimen-displacement explanations before deciding whether any third phase is justified.
+
+Neither source-supported cobalt oxide survives the matched whole-pattern test: Co₃O₄ collapses to zero scale, and CoO refines to only 0.36(30) wt% with a negligible ΔRwp of 0.0009 percentage points and no independent peak support. I’m retaining the two-phase inventory and now screening the smallest global Gaussian/Lorentzian broadening terms, checking full-range widths and regional—not just aggregate—improvement.
+
+The first profile screen is decisive: a constant Gaussian width term gives broad, multi-region improvement (Rwp drops from 10.57% to roughly 7.1%), while the angle-growing Gaussian alternative is less effective and becomes strongly correlated with the low-symmetry WO₃ metric. I stopped the unstable all-at-once branch and am re-running the accepted width term in stages—width alone, then scales/background, cells, and displacement—to obtain a clean, replayable baseline.
+
+The profile refinement exposed a numerical—not chemical—problem: the WO₃ source CIF uses a highly oblique β ≈ 136° setting, and its metric coefficients become >99% correlated once realistic peak widths are introduced. I’m converting that same audited structure to a near-orthogonal conventional P2₁/c setting; this preserves the atomistic topology and diffraction pattern while removing the avoidable cell-conditioning problem before further profile tests.
+
+I found the source of the oscillation: GSAS-II’s default convergence tolerance was permissive enough to accept a slightly uphill step after repeated Marquardt damping. I’m tightening `min dM/M` from 10⁻³ to 10⁻⁵ and restarting from the last lower-Rwp checkpoint; this should make the project genuinely converged rather than merely labeled “converged.”
+
+The two-phase model remains stable as wolframite CoWO₄ plus monoclinic WO₃. I’m finishing the tightly converged profile/cell branch now, then I’ll run the required competing-profile and leave-one-out checks before freezing the GSAS-II project.
+
+The tightened baseline converged at Rwp 7.1344% with provisional crystalline fractions 32.73% CoWO₄ and 67.27% WO₃. The refined cells and global Gaussian width are stable; I’m now rerunning the mandated angular calibration comparison from this mature baseline.
+
+The angular helper rejected zero and joint zero/shift branches: their gains were below the 0.005%-Rwp materiality margin, and the joint branch was 99.99% correlated. I’m retaining the simpler displacement-only calibration and screening independent Gaussian/Lorentzian width terms against it over five angle regions.
+
+The first added-width branch (angle-dependent Gaussian U) does lower the residual modestly, but its coupled refinement is slower and more correlated than the constant-width baseline. I’m letting each branch reach the same convergence criterion before judging it; this avoids selecting a term on a transient Rwp gain.
+
+The independent screen clearly favors a positive Lorentzian Z term (9.745 centidegrees): Rwp falls from 7.134% to 6.931%, with improvement in four of five angle bands and positive widths throughout. X is weaker, Y collapses to its bound, and U/V give smaller or less stable gains. I’m checking whether the remaining low-angle mismatch is true axial asymmetry or merely overlapping-phase structure before allowing an asymmetry term.
+
+The CoWO₄ crystallite-size branch becomes singular once the global Lorentzian width is restored—the size variable is explicitly dropped—so it cannot be retained alongside Z. I’ll treat that as a profile degeneracy, not as particle-size evidence, and continue with independent strain and WO₃-specific tests.
+
+WO₃ shows a stable, positive isotropic size term of 0.188(12) µm and improves Rwp to 6.862%; its strain term is much weaker. CoWO₄ size is singular, while unconstrained CoWO₄ strain runs negative and fails convergence, so neither is physically admissible. I’m carrying only the WO₃ size branch into the required polarization-versus-surface-roughness envelope test.
+
+Both two-parameter envelope branches fail the integrity checks: polarization drives to its upper bound, while the roughness A/B pair is 100% correlated and A freezes at zero. The residual improvement is real, though, so I’m testing the implied simpler one-parameter Suortti model—A fixed at zero, B refined—rather than keeping a boundary-hit two-parameter fit.
+
+The simplified roughness model passes: A fixed at 0, B = 0.13997(12), no frozen variables or singularities, and every angle band improves; Rwp is 5.4135%. This is the first envelope branch that is both materially better and numerically admissible. I’m now repeating phase-specific broadening and global-profile screens from this updated state, as required after an envelope change.
+
+The mature retest confirms CoWO₄ broadening is unsupported: size gives only 0.0004% Rwp improvement with ~99% correlations, and positive-constrained strain hits zero. The WO₃ size+strain branch initially improves more strongly, but it has begun dropping a broadening variable; I’m waiting for the final covariance result before deciding whether the joint model is identifiable.
+
+The “joint” WO₃ branch is not a valid two-term result: GSAS-II repeatedly drops the size variable while retaining strain. I also found that GSAS-II’s nominal defaults (1 µm size and 1000 µstrain) still contribute broadening even when their refine boxes are off. I’m correcting that hidden baseline issue now—10 µm and 0 µstrain fixed as the no-broadening state—then repeating all four phase-broadening tests cleanly.
+
+The corrected independent test is decisive: WO₃ microstrain is 4902(116) µstrain and gives Rwp 5.0825%, versus 5.5014% for the independently supported 0.145(6) µm size model; CoWO₄ prefers the no-broadening limits. Since both WO₃ explanations are independently supported, I’m doing the required joint test from the clean strain model; the earlier joint attempt was invalid because it inherited hidden defaults.
+
+The mature profile retest is now clean: X hits zero; V and Y are statistically insignificant; U changes Rwp by only 0.0014% with mixed regional behavior and a ~2σ negative coefficient. I’m keeping the simpler positive W+Z profile. Next I’m screening low-order March–Dollase axes phase-by-phase to see whether the remaining reflection-family intensity errors are texture rather than a structural mismatch.
+
+The simple texture screen finds weak but reproducible preferred orientation: WO₃ [010] is the strongest single-axis branch (MD 1.0161(18), ΔRwp 0.0241%), while CoWO₄ [010]/[001] are smaller near-ties. I’m reconverging the complete model with WO₃ [010] first and retesting the CoWO₄ alternatives against that updated state; spherical harmonics are not warranted unless these one-axis models fail.
+
+The reciprocal texture comparison remains a close nuisance-model choice: WO₃ [010] plus CoWO₄ [001] is the lowest full-pattern branch (Rwp 5.0497%), while the WO₃ [100] alternative is only 0.0039% higher and shifts which angle bands improve. I’m keeping the simpler best branch provisionally and now testing heavy-atom coordinates one phase at a time; oxygen/ADP freedom will be added only if the heavy-atom tests are stable and chemically sane.
+
+I’m continuing from the mature two-phase baseline. I’m now checking whether limited heavy-atom coordinate refinement gives a reproducible whole-pattern improvement without distorting either wolframite CoWO₄ or monoclinic WO₃.
+
+The Co/W positional degree of freedom in CoWO₄ is supported (Rwp 5.0497% → 4.9847%, clean convergence). The analogous WO₃ heavy-atom branch is strongly correlated (98.2%) and had unstable intermediate cycles, so I’m treating it as suspect while checking both refined geometries.
+
+CoWO₄ oxygen coordinates also give a distributed improvement without singularities (Rwp 4.9847% → 4.9572%); I’ll retain them only if the coordination audit stays plausible. For WO₃, I’m splitting the correlated two-W refinement into matched one-site tests to see whether any simpler, identifiable coordinate change survives.
+
+The CoWO₄ all-atom refinement passes the geometry screen (reasonable Co–O and W–O distances, no audit flags), so that becomes the structural baseline. For WO₃, W1-only and W2-only changes are nearly tied and mutually non-unique; I’m keeping the literature coordinates fixed and carrying that positional ambiguity into the report. Next I’m re-running the angular correction selection from the updated structure.
+
+The updated angular screen now supports one specimen-displacement term (−86.8 µm) and rejects the zero/shift pair as 99.99% correlated. I’m propagating that selected branch and rechecking the previously rejected global width terms against it.
+
+The profile retest rejects U and V as negligible and X/Y at zero boundaries, so the minimal W+Z form remains. I’m now setting up matched leave-one-out checks for every retained optional correction and independent post-structure broadening tests; these are the safeguards against nuisance terms borrowing intensity from phase scales.
+
+The matched removals are still refining concurrently. They include no-W, no-Z, no roughness, no WO₃ strain, no texture for each phase, and no displacement; I’ll keep only terms whose omission causes a stable, multi-region loss.
+
+All retained corrections pass leave-one-out: removing roughness, WO₃ microstrain, displacement, W, or Z causes large whole-range losses; each texture term also worsens multiple regions, though texture materially affects the scale-derived fractions. I’m now checking whether any phase-size or CoWO₄-strain term adds independent support after the structural update.
+
+A new, stable CoWO₄ size term is now supported after coordinate refinement (0.205(16) µm; Rwp 4.9507% → 4.9034%, benefits in three angle regions). CoWO₄ strain still collapses to zero; WO₃ size is inferior to strain and becomes redundant when strain is present. I’m accepting only CoWO₄ size and re-testing texture axes from that updated baseline.
+
+CoWO₄ strain again fails at the zero boundary. The retained CoWO₄ [001] texture remains better than [100]/[010]. WO₃ [100] and [010] are now statistically indistinguishable (ΔRwp ≈0.001%), so I’m keeping the existing [010] axis and marking the texture axis—not the phase identity—as unresolved. I’m rechecking envelope and global-profile competitors after adding CoWO₄ size.
+
+The profile balance changed after adding CoWO₄ size: a single V term is now independently supported and keeps the Gaussian variance positive (Rwp 4.9034% → 4.8802%). U is slightly inferior as an alternative, while X/Y still collapse to zero. I’m checking U+V jointly for correlation and letting the envelope competitors finish before deciding.
+
+The U+V combination is rejected (96.3% correlation; no material gain), so V alone is retained. The two-parameter roughness branch now becomes numerically identifiable after CoWO₄ size (largest |correlation| 0.77, positive parameters, all-range gain), so I’m re-testing just the added roughness-A coefficient from the V baseline before accepting it; polarization remains unstable and scale-correlated.
+
+The roughness-A retest is robust from the V baseline: both coefficients remain positive, all five angle bands improve, convergence is clean, and the largest final correlation is 0.82 (below the rejection threshold). I’m accepting the two-parameter roughness model; polarization was stopped as an isolated unstable branch after repeated divergence and >97% scale correlation. Next I’ll test whether isotropic ADPs are actually identifiable before freezing the structures.
+
+The Co ADP branch is not defensible as a pair: Co Uiso is indistinguishable from zero, while the fit gain is only borderline. The WO₃ W ADPs are positive and improve Rwp by 0.019%, but their separate values are not clearly distinct. I’m testing a single shared W ADP (and, separately, CoWO₄ W-only) to keep the structural model identifiable.
+
+The parsimonious ADP result is clear: CoWO₄ ADPs are not retained, while one shared WO₃ W Uiso = 0.01034(69) Å² gives a stable Rwp reduction to 4.7549%. Its scale correlation (0.87) is substantial but below the rejection limit, so I’m retaining it provisionally and will include the resulting fraction sensitivity in the uncertainty. I’m moving next to mature-model phase replacement/addition tests.
+
+The two-phase model is now tightly converged near 28 wt% CoWO₄ / 72 wt% WO₃. I’m finishing the required adversarial checks—structural replacements, omitted candidate phases, and leave-one-out tests—before freezing and auditing the GSAS-II project and exports.
+
+The monoclinic small-cell WO₃ alternative failed decisively (Rwp ≈19.2%, unstable size term) versus 4.75% for the selected near-orthogonal model. The lower-symmetry P-1 replacement is still refining under the same nuisance freedoms; I’m letting that matched comparison finish rather than rejecting it from cell similarity alone.
+
+The mature-baseline impurity retest is also negative: Co₃O₄ drives to the zero-scale bound, while CoO gives only 0.13(10) wt% and changes Rwp by 0.0006 percentage point—statistically and structurally insufficient for a third phase. I’m now rerunning the angular/profile selection on the fully developed two-phase model.
+
+The angular helper again selects the original shift-only treatment; freeing both zero and displacement lowers Rwp only by 0.006 point but produces a 99.99% correlation and an implausible −790 μm displacement, so that branch is rejected. Initial leave-one-out results confirm that the retained Gaussian V and Lorentzian Z terms each improve the complete pattern.
+
+The matched removals support every retained broadening/envelope term, WO₃ texture, and the shared WO₃ W displacement parameter. One refinement was not justified: CoWO₄ preferred orientation changed Rwp by only 0.0001 point and refined essentially to 1.000, so I have removed that term and am reconverging the smaller model before final replay checks.
+
+The post-simplification pass made no further model changes: CoWO₄ size removal worsens Rwp to 4.816%, WO₃ texture removal to 4.783%, and fixing the shared WO₃ W ADP to its starting value to 4.773%. CoO remains only 0.14(10) wt% with negligible benefit; Co₃O₄ again collapses to zero. I’m freezing the two-phase answer and checking parameter/CIF/export consistency now.
+
+A final matched texture-axis check changed the selected nuisance model: WO₃ [100] is reproducibly better than [010] (Rwp 4.7410% vs 4.7550%) and improves several angle regions, while [001] is worse (4.7797%). I’m carrying [100] forward and repeating the downstream angular/broadening checks, as required after a texture change. The phase fractions remain essentially unchanged at 28.03/71.97 wt%.
+
+The [100] texture model survives the downstream checks: CoWO₄ size remains necessary, the WO₃ W ADP remains supported, added WO₃ size is essentially unconstrained and >99% correlated, and added CoWO₄ strain is only 1.1σ with a negligible Rwp change. Those two extra width terms are rejected. The last matched removals are running now.
+
+The numerical audits passed, but the final chemical contact review caught an important issue: continued unconstrained CoWO₄ oxygen refinement had shortened one W–O pair to 1.64 Å, outside the credible wolframite geometry represented by the stable earlier branch. I’m rolling those coordinates back to the audited, plausible refinement (W–O 1.77–2.13 Å), fixing them, and reconverging the nuisance model before re-export. This may slightly worsen Rwp but avoids submitting an overfit structure.
+
+The chemistry-safe rollback has converged at Rwp ≈ 4.80% with plausible Co–O/W–O geometry. I’m completing the post-rollback impurity retests, then I’ll regenerate and audit every submitted file from that exact project.
+
+The impurity retest confirms the two-phase inventory: CoO refines to only 0.035(96) wt% with negligible fit benefit, while Co₃O₄ collapses to zero. Neither meets the required positive, multi-peak evidence, so both remain excluded.
+
+The replayed final project is clean: converged with no dropped or frozen variables, positive peak widths across the full range, and both exported CIFs pass occupancy/contact/symmetry screening. The final crystalline fractions are 28.08% CoWO₄ and 71.92% monoclinic WO₃.
+
+Identified two crystalline phases:
+
+- CoWO₄ wolframite, P 2/c: **28.08(18) wt%**
+- Monoclinic γ-WO₃, P 2₁/n: **71.92(18) wt%**
+
+Fractions are normalized over modeled crystalline material. Practical uncertainty is approximately ±1–2 wt% absolute; amorphous content was not measurable. Trace CoO below roughly 0.3 wt% cannot be excluded.
+
+Final fit: Rwp 4.7953%, Rp 3.6532%, GOF 1.4647. All CIF, project, and submission audits passed.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_CoWO4.cif](<ATTEMPT_WORKSPACE>/phase_CoWO4.cif)
+- [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+

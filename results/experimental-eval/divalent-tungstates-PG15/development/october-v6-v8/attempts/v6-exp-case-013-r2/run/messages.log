@@ -1,0 +1,193 @@
+I’ll inspect the measurement metadata, pattern, and the reusable refinement utilities first. I’ll then screen candidate phases, audit every retained structure, and keep stable GSAS-II checkpoints while testing the full-pattern model.
+
+The chemistry points toward lead tungstates, but I’m treating that only as a prior. I’m extracting the observed peak families and checking the local COD-backed structure library so that phase selection is driven by extinction, intensities, and complete-pattern behavior.
+
+Screening has a clear major scheelite-type PbWO₄ pattern. Two coherent residual families also match unreacted orthorhombic PbO (massicot) and monoclinic WO₃ across many reflections. I’m now testing whether weaker peaks require raspite PbWO₄ or instead belong to those precursor families/overlaps, and I’m keeping the defect-scheelite superstructure as a near-tied major-phase alternative.
+
+The three-phase inventory is now strongly supported: adding massicot PbO lowers the complete-pattern Rwp from 18.97% to 16.75%, and adding monoclinic WO₃ lowers it further to 15.66%, with positive scales and plausible refined cells. I rejected two alternate WO₃ database models because the structural audit found nonphysical duplicate/short O–O contacts; the retained P2₁/c model passes that audit. Next I’m running leave-one-out and alternative-structure branches from this stable three-phase checkpoint.
+
+Litharge PbO is independently supported as a fourth phase (about 2.9 wt%; Rwp 15.66% → 15.23%). Raspite is decisively rejected: its refined scale collapses to zero and its cell branch becomes invalid. A Pb₃O₄ branch gives only a small improvement and its cell refinement is not stable, so I’m holding it as provisional while checking whether the same residual family is better explained by a reduced tungsten oxide candidate.
+
+The largest unexplained peaks index as a coherent tetragonal family (approximately a = 4.908 Å, c = 3.596 Å), including matches at 25.92°, 31.04°, 59.36°, 62.54°, 64.39°, 76.50°, 80.21°, and 85.97°. That resembles the β-PbO₂ topology but not its literature cell, so I’m testing an evidence-initialized cell rather than allowing a zero-scale candidate to drive an unconstrained cell collapse.
+
+The evidence-initialized tetragonal test is still running. I’m checking whether it converges to a chemically defensible atomistic phase; if it only gains fit through a distorted cell or overlap credit, I’ll leave that residual component unresolved.
+
+That branch improves the profile substantially, but it requires a rutile-like PbO₂ cell about 6.4% longer along c than the literature structure and also pulls litharge’s c parameter upward. I’m treating the fit gain as evidence for a real peak family, not yet as identification, and will now search the measured cell independently and audit the distorted model’s contacts.
+
+The distorted rutile model passes the basic contact/occupancy audit and explains several unique peaks, so it cannot be dismissed on geometry alone. The cell search finds no chemically allowed Pb–W–O structure with this metric; I’m comparing it next against tetragonal WO₃ polymorphs and checking its peak-by-peak support, because a good metric/intensity proxy is not sufficient to label it PbO₂.
+
+Four chemically allowed structure branches are now refining from the same four-phase checkpoint: two tetragonal WO₃ models and both orthorhombic PbO₂ polymorphs. This is the key discrimination test—each must earn a stable positive scale and improve multiple regions without implausible cell motion.
+
+The native tetragonal WO₃ and one orthorhombic PbO₂ model collapse to zero scale. The α-PbO₂ model is different: it converges at about 4.2 wt%, improves Rwp from 15.23% to 14.80%, and keeps its orthorhombic cell within roughly 1.5% of the reference. I’m now comparing that plausible branch against the lower-Rwp but strongly distorted rutile proxy by residual region and unique/absent reflections.
+
+Both PbO₂ models fail the structure-level check despite positive scales: α-PbO₂ improves almost entirely below 30° and predicts several strong absent peaks, while the distorted rutile model overpredicts clear 200 and 112 reflections. I’m rolling both back as identifications. Some high-angle residuals instead follow the fcc-Pb sequence, so I’m testing elemental Pb and the remaining source-allowed oxide models from the mature checkpoint before declaring the component unresolved.
+
+The surviving peak family is fluorite-like, but the only direct library match is PbO₂ measured at 160 kbar, so that identity is chemically impossible here. Following the allowed-element/charge-balance rule, I’m testing three explicit defect-fluorite Pb–W–O models—Pb₃WO₆, Pb₂WO₅, and disordered PbWO₄—with fixed stoichiometric occupancies and the same topology. Their line positions should match; the intensity and mass-fraction behavior will show whether any composition is actually distinguishable.
+
+The three charge-balanced fluorite models are experimentally indistinguishable: Rwp spans only 14.589–14.607%, the refined cubic cell is 5.166–5.167 Å, and the inferred amount shifts from 3.3 to 3.6 wt%. Thus the fluorite topology is supported, but its Pb/W/O stoichiometry and exact fraction are not. I’m carrying nominal Pb₂WO₅ as a transparent representative and retesting the small Pb₃O₄ candidate against this updated complete model.
+
+Pb₃O₄ remains a small but reproducible candidate: with its literature cell fixed it gives ~2.3 wt% and a stable Rwp improvement of 0.085 percentage points; freeing its cell adds little and is unstable, so the cell will stay fixed. Before profile optimization, I’m now running the required same-composition replacement tests for the major scheelite and WO₃ structures against this six-component baseline.
+
+Both replacement branches are computationally heavier because the defect scheelite and triclinic WO₃ models generate many more reflections. They are still converging; I’ll keep the simpler structures unless a replacement shows stable, distributed improvement and no superstructure peaks absent from the data.
+
+The defect scheelite replacement is decisively worse (Rwp 15.15% versus 14.52%) and is rejected. Triclinic WO₃ is nearly tied and slightly better numerically (14.50%), but its six-parameter cell has not reached the required shift/esd threshold; I’m extending that branch before deciding whether the extra symmetry breaking is real or just overfitting.
+
+The triclinic WO₃ branch now converges and improves several 20–70° regions, though only by 0.020 Rwp points; I’ll keep it provisionally and report that polymorph assignment as weak. Because adding the fluorite family materially changed the companion model, I’m performing the required mature-baseline retest of raspite, W₃O₈, and PbO₂ candidates before freezing the inventory.
+
+The mature-baseline retests are still refining because each trial carries the low-symmetry WO₃ reflection set. No branch has failed early; I’m waiting for the strict scale/cell convergence checks rather than judging from partial cycles.
+
+The retest confirms that simple raspite and rutile PbO₂ still collapse, while W₃O₈ and α-PbO₂ can each take positive scale after the fluorite component is modeled. Those two may be competing for overlapping residual intensity, so I’m inspecting their unique reflections and then testing them jointly; I will not split one coherent residual family between weak proxies.
+
+The reflection audit rejects α-PbO₂ as a literal phase: it predicts strong 200, 130, and 041 peaks that are largely absent, and its gain is concentrated in the low-angle region. W₃O₈ has a plausible refined cell and broader support. The joint branches are checking whether α-PbO₂ simply borrows W₃O₈/oxide intensity; they are still converging.
+
+The joint model is chemically conceivable as a coupled Pb(II)→Pb(IV)/W(VI)→W(V) redox pair, but it is numerically unstable and α-PbO₂ retains strong absent predictions. I’m therefore rolling back to the stable six-component inventory, optimizing angular/profile effects, and will retest both phases afterward; this avoids mistaking systematic line-shape residuals for extra phases.
+
+The angular selector is finding the expected pattern: zero and specimen displacement are almost perfectly correlated (~99.8%) when refined together. I’ll keep only the stable single angular term selected by the helper and reject the joint branch regardless of its nominal fit.
+
+The angular helper selected the original zero-offset baseline; displacement-only did not meet the convergence threshold, and the joint branch was 99.8% correlated. I’m now rescreening the minimal Gaussian/Lorentzian profile terms on that unchanged project, then I’ll test phase size/strain one phase at a time.
+
+The profile branches are still converging. They start from identical cells, scales, background and angular state; only the selected Caglioti/Lorentzian terms differ, so any retained gain will be attributable to line shape rather than phase reassignment.
+
+The mature profile screen keeps the two-term W+X model. W-only, X-only and W+Y are worse; W+X+Y drives Y negative, and U+V+W+X is 97.9% correlated and never reaches the shift/esd criterion. Next I’m comparing polarization and surface roughness as alternative intensity-envelope explanations.
+
+A single surface-roughness B term is the best stable envelope correction (Rwp 14.374%); polarization alone gives 14.405%, while the two-parameter roughness model is 99.96% correlated. I’m retaining only roughness B and screening isotropic size and microstrain independently for each active phase.
+
+All twelve size/strain branches are running from the same checkpoint. This is the slowest screen because each branch regenerates the triclinic WO₃ reflection list, but it is necessary to avoid assigning a global width mismatch to whichever phase happens to dominate an overlap.
+
+No phase-specific width term survives: several size branches hit hard bounds, scheelite/triclinic strain goes negative, and the positive minor-phase strains are implausibly large and fail convergence. I’m keeping the global W+X widths only, and will do a limited March–Dollase texture screen for the dominant scheelite before returning to phase-inventory retests.
+
+Scheelite texture ratios refine to essentially unity (0.964–1.002) with no material gain, so no preferred-orientation term is retained. With the nuisance model now fixed, I’m rerunning α-PbO₂ and W₃O₈ from the mature baseline; this is the decisive phase-inventory retest.
+
+Both mature candidate branches remain numerically difficult, which itself weighs against adding them: a genuine isolated phase scale should settle quickly once the angular/profile model is fixed. I’m allowing the prescribed convergence attempts to finish, then will reject any branch that oscillates or needs implausible cell/intensity compensation.
+
+The mature W₃O₈ scale-only branch passes the stated checks: positive scale, fixed literature cell, convergence at shift/esd 0.058, and improvement across several separated angular regions. Freeing its cell is unstable, so the cell remains fixed. α-PbO₂ still fails convergence and absent-reflection checks; I’m doing one final scale-only retest after W₃O₈, then will freeze the inventory.
+
+The mature seven-phase model is assembled. I’m finishing the matched replacement/leave-one-out checks, then I’ll rebuild a clean project containing only active phases and run the required cross-file audits.
+
+The final α‑PbO₂ retest is running against the complete model with only its scale released. This isolates whether its earlier apparent gain survives without allowing cell/profile changes to absorb unrelated residuals.
+
+α‑PbO₂ still claims ~2.1 wt% and lowers Rwp, but the branch oscillates (shift/esd alternating ~0.25 and ~2.5) and predicts several strong peaks where none are observed. I’m rejecting it as an overfit, not treating the lower scalar Rwp as identification. Next is the mandated angular re-screen on the accepted inventory.
+
+The angular helper is still evaluating the zero/specimen-displacement branches; these are full refinements, so the comparison is slower than a parameter toggle. The accepted project remains untouched while those branches run.
+
+The angular branches are revealing why the helper is conservative here: when the full 34-variable model is released, some cycles alternate between nearby minima. I’ll accept a correction only if the helper’s stability/correlation gates pass, not from a marginal Rwp change.
+
+The joint angular branch has the expected ~99.8% zero/shift correlation, so it will be rejected. Once the helper completes, I’ll use its selected copy as the checkpoint for the remaining broadening and leave-one-out tests.
+
+I’m testing W₃O₈ crystallite size and microstrain independently in matched copies. All other phases already failed these tests; this is the only newly accepted structure that still needed the same profile screen.
+
+W₃O₈ broadening is rejected: size ran to its 10 µm bound and strain became negative, with neither branch converging stably. The accepted model therefore keeps only global W/X broadening plus the single roughness-B envelope term.
+
+The retained Gaussian W term passes its deletion check: removing it worsens Rwp from 14.335% to 14.556% after stable reconvergence. The roughness-B and Lorentzian X deletion branches are still settling.
+
+All retained nuisance terms now pass matched deletion: removing roughness-B gives Rwp 14.480%, removing W gives 14.556%, and removing X gives ~14.960%, versus 14.335% for the accepted model. I’m now measuring each phase’s leave-one-out penalty from that same checkpoint.
+
+The first four leave-one-out branches are running in parallel. Each removal is allowed to reconverge the remaining scales, cells, background, and retained profile terms, so the penalty cannot be attributed merely to a frozen neighboring phase.
+
+Massicot is decisively required: its removal raises Rwp to 17.071% even after reconvergence. The other three branches are slower because the remaining model attempts broader compensation around their reflections.
+
+The three first minor phases are all supported by large leave-one-out penalties (litharge ~+0.43, fluorite ~+0.56 Rwp points; major phases much larger). Triclinic WO₃ gives +0.98 points. W₃O₈ is the weakest retained phase: removing it worsens Rwp by ~0.039 points, but the branch converges and the gain was distributed across multiple angular regions.
+
+Pb₃O₄ also survives leave-one-out (best reconverged Rwp about 14.419%, +0.084 points), though its deletion branch becomes unstable later; its cell will remain fixed because direct cell refinement was unstable. I’m doing one final WO₃ polymorph replacement test from the complete model before freezing it.
+
+The complete-model WO₃ replacement remains near-tied: triclinic P‑1 gives Rwp 14.335%, monoclinic P2₁/c 14.353%; both are chemically and geometrically sound. I’ll retain the slightly better triclinic model but mark the polymorph assignment as not reliable from this pattern alone.
+
+The clean seven-phase project reconverged with no dropped variables or messages (Rwp 14.3350%, GOF 4.1031, max shift/esd 0.071). It contains no inactive screening phases. I’m regenerating its saved profile/reflection lists now, then exporting all deliverables directly from that exact project.
+
+One last structural ambiguity needs the same complete-model treatment: the cubic phase’s nine reflections fix a fluorite topology and cell, but Pb/W/O occupancies are highly correlated in X-ray data. I’m rerunning the charge-balanced Pb₃WO₆ and disordered-PbWO₄ variants against the final inventory to quantify that ambiguity and its effect on weight fraction.
+
+Both fluorite occupancy variants are still refining. Their peak positions are identical; only the intensity scale and calculated mass change, so a near-tie would mean the topology is identifiable while the stoichiometry—and therefore its absolute weight fraction—is conditional.
+
+These branches are taking longer because each does a scale-only checkpoint followed by an independently refined cubic cell. The submitted project is not being modified; this is only the final alternative audit required for the uncertainty statement.
+
+The fluorite variants confirm the ambiguity: Pb₂WO₅ gives 3.05 wt%/Rwp 14.335%, Pb₃WO₆ gives 2.95 wt%/14.342% (not fully settled), and disordered PbWO₄ gives 3.24 wt%/14.326%. The ~0.01-point spread is too small to identify stoichiometry; I’m checking whether the tiny PbWO₄ gain is distributed or localized before retaining a representative model.
+
+The exact final project has now produced all seven CIFs and the combined profile. Before writing the machine-readable summary, I’m auditing the exported CIFs themselves—not just their source candidates—because export-time symmetry expansion or occupancy changes can introduce new flags.
+
+The export audit exposed one real problem: the original litharge CIF’s alternate P4/nmm origin was imported by GSAS-II with Pb multiplicity 4 instead of 2, yielding an incorrect Pb₂O model. I’m correcting that candidate to a standard P4/nmm setting and will repeat its refinement, fraction calculation, profile regeneration, and all final exports. The W₃O₈ audit’s Pbam label is an inferred supergroup from rounded coordinates; its declared P2₁2₁2 operations and W₃O₈ stoichiometry remain intact.
+
+The corrected litharge model now imports and re-exports as PbO, P4/nmm with multiplicity 2 for both Pb and O, and its CIF audit is clean. Its full-model replacement refinement is still converging; this will change the fraction because the previous model’s formula mass was wrong.
+
+The replacement is slower than the earlier minor-phase branches because correcting multiplicity changes both its calculated intensities and mass normalization; the neighboring PbO/Pb₃O₄ scales are re-equilibrating. I’m waiting for the cell-refined branch to meet the same shift/esd gate.
+
+Correcting litharge materially improves the complete pattern (Rwp already ~13.25%) and doubles its fraction to about 5.4 wt%, confirming the original import was not merely a labeling issue. The branch still has alternating shifts, so I’m continuing from its saved checkpoint rather than accepting a premature result.
+
+The remaining oscillation is localized to off-diagonal reciprocal-cell terms of triclinic WO₃ (especially A5), not to litharge or the scales. Since monoclinic WO₃ was already near-tied, I’m switching to that simpler symmetry from the corrected baseline; this is the appropriate rollback from an unstable triclinic cell.
+
+The monoclinic WO₃ replacement converged cleanly (max shift/esd 0.094, no dropped variables) at Rwp 13.2473%, only 0.003 points above the unstable triclinic minimum. I’m accepting monoclinic P2₁/c as the replay-safe model and rerunning the mandated angular screen on this corrected inventory.
+
+The corrected inventory is numerically much better behaved: the zero-only branch settles immediately, while shift-only requires large compensation and the joint branch again shows ~99.8% correlation. The helper is finishing its full-model stability checks before selecting.
+
+The angular helper again selects the existing zero-offset baseline: the shift branch is physically invalid and the joint branch is 99.8% correlated. Because two structural models changed, I’m repeating the independent size/strain screen for every active phase from this new baseline.
+
+The eight matched broadening branches are still settling. One litharge-size trial has already emitted a nonphysical profile warning, so that branch will be rejected even if its scalar residual improves.
+
+The corrected model changes the profile conclusion: isotropic microstrain is now positive and stable for massicot (~10,100 µstrain, Rwp 12.944%) and corrected litharge (~16,300 µstrain, 12.993%). Those are broad but plausible for poorly crystalline reaction remnants; I’ll check full-range behavior and then retest each after accepting the stronger term. Negative-strain branches remain rejected.
+
+Corrected litharge also supports an extremely small apparent size (~2.9 nm), but its independent strain branch fits materially better, so size is not retained. Massicot size is invalid; monoclinic WO₃ size hits the upper bound. Positive massicot/litharge strain remain the only viable terms so far.
+
+Pb₃O₄ strain is positive and stable (~13,500 µstrain) but only improves Rwp by 0.017 points from the no-phase-broadening baseline. I’ll treat it as provisional and retest after the much stronger massicot/litharge strain terms are incorporated; overlap credit may remove it.
+
+The fluorite-like phase strongly prefers a very broad positive strain term (~79,000 µstrain, Rwp 12.681%). That magnitude is too large for a precise microstructural interpretation, but it may be an effective description of severe defect/disorder broadening. I’ll compare its independent size branch and angular-region benefit before deciding whether to retain it as a nuisance parameter.
+
+All four positive-strain branches improve multiple angular regions, but fluorite strain has the largest complete-pattern benefit. I’m accepting it first as an effective disorder-broadening term, then retesting massicot, litharge, and Pb₃O₄ strain one at a time with fluorite strain still active.
+
+With fluorite strain active, litharge strain remains strongly supported (Rwp 12.415%) and massicot strain remains supported (12.564%); Pb₃O₄ strain collapses to a negligible 0.002-point gain and is rejected. I’m accepting litharge next, then retesting massicot from that two-term baseline.
+
+Massicot remains supported after fluorite+litharge strain, and Pb₃O₄ now gives a small but reproducible additional improvement (12.3271% → 12.3194%) with positive strain. I’m carrying all four provisionally and doing the final unretained-term pass, including the only justified joint test: litharge size plus strain.
+
+Monoclinic WO₃ strain remains negative in the mature model and is rejected. The other six final-pass branches are still running; retained terms will be frozen only after this pass and matched deletion checks.
+
+The final pass finds one additional supported term: scheelite strain (~208 µstrain) improves Rwp to 12.2885%. Scheelite size also gives a smaller benefit but was initially 95% correlated with global X, so I’m testing size jointly with the accepted scheelite strain; all WO₃/W₃O₈ and litharge-size alternatives fail stability, sign, or bounds.
+
+The joint scheelite size+strain branch drives strain negative, so the joint model is rejected. The selected profile therefore retains scheelite, massicot, litharge, fluorite, and Pb₃O₄ strain only; size is not retained for any phase. Next I’m checking texture and then deleting each retained optional term in matched copies.
+
+Scheelite March–Dollase [001] is the smallest supported texture model: ratio 1.0195, stable, with improvement in six angular regions. I’m retaining it and now performing matched deletions of every strain, texture, roughness, and global-width term from this mature state.
+
+The nine deletion branches are running in parallel. Each remaining model is fully reconverged, so a retained term must worsen the complete pattern after its neighbors are allowed to compensate; this is the final redundancy test.
+
+Every retained optional term passes matched deletion. The weakest is Pb₃O₄ strain (+0.0055 Rwp points); the others degrade Rwp by 0.027–0.422 points. I’m now repeating phase leave-one-out tests from this mature profile/texture state before the final structural-alternative pass.
+
+W₃O₈ remains supported after all profile changes: its removal raises Rwp from 12.2608% to 12.3275% after stable reconvergence. The other six leave-one-out branches are still settling.
+
+The mature leave-one-out checks confirm all completed minors: Pb₃O₄ +0.157 Rwp points, W₃O₈ +0.067, fluorite-like +1.108, and monoclinic WO₃ +1.251. The dominant scheelite/massicot/litharge branches are still reconverging after removal.
+
+All seven phases pass mature leave-one-out. I’m doing the final source-supported replacement pass now: matched fluorite stoichiometries with its broadening copied exactly, triclinic versus monoclinic WO₃, and one last α‑PbO₂ scale-only challenge.
+
+The mature α‑PbO₂ challenge now collapses to zero scale, so it is decisively rejected. The fluorite variants remain genuinely unresolved: matched fits span Rwp 12.246–12.270% and ~11.6–12.7 wt%; no composition can be claimed reliably from these nine broad reflections.
+
+The triclinic WO₃ replacement is the last long-running branch because it includes both scale-only and full six-parameter cell stages. The monoclinic baseline remains the selected stable checkpoint unless that alternative converges cleanly with a material gain.
+
+The final alternative pass makes no model change: monoclinic WO₃ is stable and slightly better; α‑PbO₂ is zero-scale; fluorite stoichiometries remain tied with gains/losses redistributed rather than consistently improved. I’m now stripping inactive screening phases, reconverging the clean project, and regenerating its profile.
+
+The clean final project passes the GSAS-II audit with no warnings: seven active phases, all positive finite widths, no dropped variables, max shift/esd 0.059, and exactly reproducible saved/regenerated profiles. I’m re-exporting CIFs and fit.csv from this final checkpoint, then auditing cross-file agreement.
+
+The final JSON and report now state the conditional assignments explicitly, especially the unresolved fluorite stoichiometry and provisional WO₃/W₃O₈ details. I’m running the required submission audit plus an independent readback check of fractions and profile arrays against final.gpx.
+
+All final checks pass: seven CIF audits have no screen flags, final.gpx has no audit warnings, submission_audit reports pass, fractions sum to exactly 1.0, and fit.csv agrees with the saved project profile to export precision.
+
+Completed and validated.
+
+| Phase | Weight fraction |
+|---|---:|
+| Scheelite PbWO₄ | 58.84% |
+| Fluorite-like Pb–W–O, nominal Pb₂WO₅ | 11.93% |
+| Massicot PbO | 8.77% |
+| Monoclinic WO₃ | 8.59% |
+| Litharge PbO | 7.23% |
+| Minium Pb₃O₄ | 2.37% |
+| W₃O₈ | 2.27% |
+
+Final fit: Rwp 12.261%, Rp 8.192%, GOF 3.510.
+
+The fluorite-like phase composition is unresolved; matched models give 11.56–12.70 wt%. WO₃ polymorph selection and the minor W₃O₈ assignment also retain uncertainty.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+
+All CIF, GPX, profile, fraction, and submission audits passed.
+

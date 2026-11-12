@@ -1,0 +1,54 @@
+I’ll first inspect the pattern metadata, the frozen P0 workflow, and the available GSAS-II/search utilities. Then I’ll build a chemically plausible phase inventory, fit it residual-first, and verify that the exported CIFs, fractions, profile, and `final.gpx` agree exactly.
+
+The context is a 900 °C SrCO₃ + WO₃ reaction, so SrWO₄ is the leading product, but carbonate/oxide carryover and Sr–W–O intermediates remain possible. I’m now extracting peak positions and checking the frozen COD index for all physically plausible Sr–W–O/C–O phases before committing to that assignment.
+
+Peak-family matching already establishes ambient scheelite SrWO₄ as the dominant phase: its isolated peaks track the same angle-dependent displacement from 18° through 95°. A monoclinic WO₃ family explains the 23.45/23.97/24.73° triplet and several weaker high-angle peaks. One strong residual family near 29.75° is not yet assigned, so I’m keeping carbonate, Sr–W–O intermediates, and alternate WO₃ polymorphs on the watch list rather than forcing a two-phase result.
+
+The first two-phase refinement converges to roughly 87.5 wt% SrWO₄ and 12.5 wt% monoclinic WO₃, but its 17.3% Rwp and coherent residuals at 29.75, 32.56, 44.67, 48.57, 53.44, 56.97, and 67.04° prove the inventory is incomplete. I’m screening complete phase models against that entire residual family; I am also rejecting the current unconstrained negative instrumental U as physically inadmissible, not treating its lower Rwp as a valid baseline.
+
+The residual phase is now identified coherently as orthorhombic Sr₂WO₅, for which the frozen COD contains no exact record. The allowed analogue search found Ba₂ReO₅ (Pnma, COD 1529756); after the chemically isovalent Ba→Sr and Re→W substitutions, one adjusted cell predicts not just the 29.75° maximum but the full residual family—including 14.99, 16.61, 20.65, 22.09, 26.23, 30.89, 32.56, 35.32, 44.67, 48.57, 56.97, 61.22, and 66.98°. I’m now physical-screening that substituted model and fitting its cell before any coordinate refinement.
+
+The Sr₂WO₅ substitution is geometrically sound after cell adjustment: W–O = 1.75–2.01 Å, shortest Sr–O = 2.60 Å, and shortest O–O = 2.52 Å, with no occupancy or hard-contact issue. Adding it drops Rwp from 17.3% to 9.15% and gives provisional fractions near 65.3% SrWO₄, 9.2% WO₃, and 25.5% Sr₂WO₅. I’m now separating crystallite-size broadening from strain and the common instrument profile; those fractions are not final until that physically constrained comparison reconverges.
+
+Size-only broadening is stable and positive (about 0.08–0.12 µm), whereas strain-only drives all three microstrains negative; I’m rejecting that strain-only result as a width-cancellation artifact. The inventory and fractions are stable across these trials, but the common U/W/X fit is still pressing outside the physically allowed generator range. I’m therefore comparing the actual WO₃ polymorph records before constraining the shared profile, since the wrong WO₃ coordinates or symmetry can otherwise be absorbed spuriously into profile terms.
+
+The re-challenged watch list is now clean: trigonal SrCO₃ and SrO refine to zero scale; Sr₃W₂O₉ remains below 0.2 wt% without unique support; orthorhombic SrCO₃ only survives by collapsing to an impossible 0.001 µm size and then destabilizing its cell, so it is a background/overlap surrogate. I’m retaining exactly three phases and moving to symmetry-constrained coordinate refinement, one phase at a time.
+
+The three-phase inventory is now stable, and the remaining mismatch is mainly within peak shapes and relative intensities rather than unexplained reflections. I’m continuing with restrained coordinate and common-profile tests, then I’ll replay and export the exact final project so every submitted artifact is numerically consistent.
+
+Coordinate freedom improves the fit substantially, but the first pass exposed strong parameter correlations and frozen variables. I’m screening those refinements geometrically now; any coordinate set that wins only by producing implausible bonds or unstable shifts will be discarded before nuisance terms are considered.
+
+The whole-pattern angular trends support a real low-angle surface deficit plus a refined polarization factor; together they reduce Rwp from 9.43% to 7.67% with physically allowed values. The asymmetry term also settles near 0.016. I’m now testing phase-common displacement factors and texture axes, one phase at a time, because those can otherwise masquerade as coordinate shifts or composition changes.
+
+The displacement-factor scan is behaving sensibly but confirms a strong covariance with polarization and scale. For SrWO₄ the physical lower edge, \(U_\mathrm{iso}=0.003\ \text{Å}^2\), is preferred; I’ll treat that boundary result cautiously and report the corresponding fraction sensitivity rather than implying unrealistically high precision.
+
+No texture model has been accepted yet. The active test compares the permitted crystallographic axes independently for each phase, with the March–Dollase ratio bounded to 0.7–1.4; acceptance will require a stable improvement across several isolated reflection families, not merely a lower global residual.
+
+The bounded-coordinate tests locate chemically sensible directions, but several coordinates press against the deliberately tight trust region; unconstrained minor-phase coordinates overfit and are being rejected. I’m replacing those hard edges with bond-geometry restraints and increasing their statistical weight until the refined models preserve the parent coordination environment.
+
+The retained coordinate model now passes the geometry screen: SrWO₄ has W–O 1.85 Å, WO₃ retains its published distorted octahedra, and the substituted Sr₂WO₅ prototype has W–O ≥1.76 Å and Sr–O ≥2.57 Å. The unconstrained alternatives with 1.4–1.6 Å W–O contacts were rejected. I’m fixing the accepted coordinates, pruning the bound variables, and doing the required full-range reopen/replay before export.
+
+The final project now replays natively with zero evaluator review flags, the three exported CIFs match the project atom-for-atom, and the project-derived fractions match `result.json` exactly. I’m doing one last artifact-level audit of file coverage, normalization, and the observed/calculated grid before handing it over.
+
+Analysis complete. The modeled crystalline phases are:
+
+| Phase | Weight fraction |
+|---|---:|
+| SrWO₄, I4₁/a | 62.38% |
+| WO₃, P2₁/c | 9.72% |
+| Sr₂WO₅, Pnma | 27.90% |
+
+Fit: Rwp 6.863%, Rp 5.254%, goodness-of-fit 1.944. Native GSAS-II replay passed over all 8,282 points with no physical-review flags.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r6/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r6/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r6/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r6/workspace/final.gpx)
+- [SrWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r6/workspace/SrWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r6/workspace/WO3.cif)
+- [Sr2WO5.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r6/workspace/Sr2WO5.cif)
+
+The principal uncertainty is the exact Sr₂WO₅ oxygen arrangement; its phase identity and cell are well supported, but its oxygen coordinates are prototype-derived. Realistic fraction uncertainty is about ±0.02 absolute for SrWO₄/Sr₂WO₅ and ±0.01 for WO₃.
+

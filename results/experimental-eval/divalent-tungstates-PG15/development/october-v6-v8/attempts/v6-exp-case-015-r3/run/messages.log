@@ -1,0 +1,52 @@
+I’ll inspect the diffraction data, metadata, and the supplied refinement utilities first, then screen candidate phases and build a staged GSAS-II refinement with branch-by-branch checks. I’ll keep the final exports tied to the audited `final.gpx`.
+
+The chemistry strongly suggests zinc tungstate as the main reaction product, but I’ll treat residual ZnO/WO₃ and polymorph alternatives as live candidates rather than assuming a single phase. The scan contains 8,301 points and preserves the raw Cu Kα doublet, so the instrument model and Kα₂ handling will matter.
+
+The peak families already point to at least two components: wolframite ZnWO₄ accounts for the dominant pattern, while the coherent extra set near 23.2°, 26.7°, 28.9°, 33.35°, and 34.3° is characteristic of WO₃. I’m now screening all database structures containing only Zn/W/O to distinguish residual WO₃ polymorphs and test whether ZnO has independent multi-peak support.
+
+The structural audit rejected one superficially good WO₃ entry because it contains implausibly short O–O contacts, and another because of near-duplicate oxygen sites. I’m carrying the three best physically valid WO₃ models (monoclinic, triclinic, and orthorhombic) through matched refinements; a second valid monoclinic setting is included as a distinct replacement check.
+
+The matched refinements favor low-symmetry WO₃ over the orthorhombic model. Triclinic WO₃ gives a marginally lower raw Rwp than monoclinic WO₃, but its six cell parameters oscillate with large shift/esd after repeated cycles; the monoclinic branch converges cleanly with nearly the same complete-pattern fit. I’m using the stable monoclinic model as the working baseline while retaining the triclinic result as a polymorph uncertainty check. Next I’m testing residual ZnO explicitly from that mature two-phase model.
+
+The mandated angular test selected a specimen-displacement-only correction: Shift = −169.3 µm, reducing Rwp from 16.56% to 14.79%. The zero-only branch failed the stability criterion, and the joint zero/shift branch was rejected at 99.985% correlation. I’m retaining only the displacement term and will now test global line broadening and per-phase size/strain terms from this saved state.
+
+The profile branches are still running in parallel; each is being judged on both fit improvement and convergence, with negative/unstable widths excluded. I’m testing Gaussian and Lorentzian terms separately so a broadening mechanism cannot earn credit merely by compensating another one.
+
+The stable three-phase model remains ZnWO₄ + monoclinic WO₃ + ZnO. I’m finishing the competing envelope/broadening tests now; the polarization branch already drove its parameter beyond the physical range, so it will not be retained despite its lower numerical Rwp.
+
+The two-parameter roughness correction has now converged to a physically admissible solution (A≈0.165, B≈0.759) with only moderate final A/B correlation and broad, full-range benefit. I’m simplifying the remaining profile terms because the simultaneous V/W pair is more correlated than I want for the final model.
+
+A cleaner envelope/profile model gives essentially the same fit with only V refined (Rwp 5.260% versus 5.246% for correlated V+W), so I’m retaining the smaller V-only model. Next I’m testing crystallite size and microstrain independently for all three phases, as required.
+
+Only WO₃ shows material phase-specific broadening: isotropic microstrain is supported (≈3.7×10³ in GSAS-II units), while joint size+strain runs to the size boundary and is rejected. I’m now repeating the discarded broadening terms against this updated complete model before moving to texture.
+
+The repeat screen confirms the smaller model: added W or axial divergence lowers Rwp only slightly but is strongly correlated with V or sample displacement; X/Z are negligible and Y is similarly correlated. No March–Dollase axis produced a material improvement, so texture is not retained.
+
+The required angular recheck still selects the displacement-only baseline; the lower joint zero/displacement fit is rejected at 99.98% correlation. I’m now giving the triclinic, orthorhombic, and second monoclinic WO₃ alternatives the same mature nuisance model for a fair final structure comparison.
+
+The mature replacement test favors the selected P2₁/c WO₃ model (Rwp 5.008%) over triclinic P-1 (5.044%); the orthorhombic and alternate monoclinic models are substantially worse. The mono/triclinic distinction is real but modest, so I’ll carry that as the main structural uncertainty. Leave-one-out confirmation is in progress.
+
+Leave-one-out fits confirm every phase independently: omitting ZnWO₄, WO₃, or ZnO raises Rwp from 5.008% to 40.30%, 14.62%, or 6.70%, respectively. Removing displacement, V, roughness, or WO₃ microstrain also materially degrades the complete fit, so each retained optional term passes its matched removal test.
+
+The deliverables are now exported from the selected project. I’m doing the final replay audit: regenerating the saved profile, checking every submitted CIF, and verifying that `result.json`, `fit.csv`, and `final.gpx` agree numerically.
+
+Completed the three-phase Rietveld model:
+
+- ZnWO₄ (wolframite, P2/c): 74.72(10) wt%
+- WO₃ (monoclinic, P2₁/c): 18.16(8) wt%
+- ZnO (wurtzite, P6₃mc): 7.12(8) wt%
+
+Final fit: Rwp 5.008%, Rp 3.812%, GOF 1.323. All CIF, GPX, profile-regeneration, and submission audits passed.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_ZnWO4.cif](<ATTEMPT_WORKSPACE>/phase_ZnWO4.cif)
+- [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [phase_ZnO.cif](<ATTEMPT_WORKSPACE>/phase_ZnO.cif)
+
+The main uncertainty is the exact WO₃ polymorph: P2₁/c is preferred, but a triclinic alternative is close (Rwp 5.044%). Fractions are normalized over crystalline phases; amorphous content cannot be quantified without a standard.
+

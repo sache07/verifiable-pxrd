@@ -1,0 +1,88 @@
+{
+  "assessment": "Native final.gpx replay with fitted calibration preserved; observed-data Rwp on 10.1-99.9 degrees with weights 1/max(counts,1); inventories, fractions and physical checks against the deposited models. No synthetic score. Outputs stay outside the evolution run.",
+  "attempts": 90,
+  "authorization": "User: run the 45-case eval with both v6 and v8 (15 scans x 3 attempts x 2 packages); do not stop the evolution controller",
+  "cases": 15,
+  "comparison_limitations": [
+    "Comparators: the Sol-max P0 panel (repeat2) and the matched High P0 panel; noncontemporaneous model alias.",
+    "These experimental scans informed earlier research choices; this is development evaluation.",
+    "Packages were developed on synthetic tungstate cases only; the researcher never saw these scans."
+  ],
+  "condition": "P0 baseline; Max reasoning effort",
+  "created_at": "2026-10-25T20:30:07.309670+00:00",
+  "database": "DARA filtered COD 2024; full frozen filtered index, no added masks, no DARA solver, no web or ICSD",
+  "database_sha256": "03599f54f03f04420523dca36cc06927b74ce0070a4a80e6d859faa38a6c5aed",
+  "dispatch": {
+    "capacity_note": "Eight of sixteen two-core slots; the idle evolution controller keeps up to ten. Lower this if the researcher is resumed.",
+    "capacity_retry_seconds": 60,
+    "max_concurrent_solvers": 8,
+    "minimum_available_ram_gib": 8,
+    "minimum_free_disk_gib": 6,
+    "monitor_seconds": 300,
+    "remote_host": "pxrd-tungstate15-ec2",
+    "service_prefix": "pxrd-eval15-v6v8-oct25"
+  },
+  "effort": "max",
+  "experiment": "pxrd-eval15-v6v8-20261025",
+  "inputs_byte_identical_to_P0": true,
+  "inputs_source": "<SOURCE_ARTIFACT>",
+  "model": "gpt-5.6-sol",
+  "not_supplied": [
+    "prior outcomes",
+    "canonical answers",
+    "paper",
+    "calibrated instrument file",
+    "new xye uncertainties",
+    "output checker",
+    "synthetic truths or scores"
+  ],
+  "package_prompt_sha256": null,
+  "package_source": null,
+  "packages": {
+    "v6": {
+      "files": {
+        "guidance.md": "b29020fc3b2903bdf90e56130fb36de027c1baf8eae70d0b6afe6aab84f34454",
+        "helpers/angular_branch_select.py": "3e4366563b31c822aebb158121be93f3996a98961c6e1e1be3d7085e34a1dbc9",
+        "helpers/cell_search.py": "20762998c68c0596ad7cb079a6fd7f3e02aa4377cd339ad5cfdcba945daad0c1",
+        "helpers/cif_audit.py": "8751fde9a0a59f92ebb5e41bbc8e510dd7218143428ff8194397261cb856cd63",
+        "helpers/gpx_audit.py": "28ec4fd26253f0b1332343faf5075b16631769485a36dcef4dc0aa511a06e486",
+        "helpers/profile_regeneration.py": "b0a78185349a3113a74ad7645913fe0156d24b158e11ac180058141e8a710456",
+        "helpers/submission_audit.py": "7f691f4dbfb624a01719e820947f164a168f46b0289c58d3fdb7faf395cf1ea7",
+        "prompt.md": "cc6d4b268d0ef9eb5154873b89ba3e577f96bfe924a588d2dc8c04903cc3479e",
+        "proposal.json": "96a315b5389197e2516a3fc294c0a3d7eb8d130410859fe481883304e81c46a9"
+      },
+      "guidance_words": 576,
+      "prompt_sha256": "cc6d4b268d0ef9eb5154873b89ba3e577f96bfe924a588d2dc8c04903cc3479e",
+      "source": "<EVOLUTION_SOURCE>/runs/divalent-tungstates/policies/v6"
+    },
+    "v8": {
+      "files": {
+        "guidance.md": "e6df64f4131829f82fb66731987109b2364bb48498ef2802a405260a3fd5a70f",
+        "helpers/angular_branch_select.py": "3e4366563b31c822aebb158121be93f3996a98961c6e1e1be3d7085e34a1dbc9",
+        "helpers/cell_search.py": "20762998c68c0596ad7cb079a6fd7f3e02aa4377cd339ad5cfdcba945daad0c1",
+        "helpers/cif_audit.py": "8751fde9a0a59f92ebb5e41bbc8e510dd7218143428ff8194397261cb856cd63",
+        "helpers/gpx_audit.py": "28ec4fd26253f0b1332343faf5075b16631769485a36dcef4dc0aa511a06e486",
+        "helpers/profile_regeneration.py": "b0a78185349a3113a74ad7645913fe0156d24b158e11ac180058141e8a710456",
+        "helpers/submission_audit.py": "7f691f4dbfb624a01719e820947f164a168f46b0289c58d3fdb7faf395cf1ea7",
+        "prompt.md": "eb14ae1b9ba48ecbe92a9bcf2452bb957bf75fd8bccc771dc5b909f0b83f9347",
+        "proposal.json": "96a315b5389197e2516a3fc294c0a3d7eb8d130410859fe481883304e81c46a9"
+      },
+      "guidance_words": 588,
+      "prompt_sha256": "eb14ae1b9ba48ecbe92a9bcf2452bb957bf75fd8bccc771dc5b909f0b83f9347",
+      "source": "<EVOLUTION_SOURCE>/runs/divalent-tungstates/policies/v8"
+    }
+  },
+  "per_attempt": {
+    "cpu_quota": "200%",
+    "memory_max": "5G",
+    "numeric_threads": 2,
+    "tasks_max": 128
+  },
+  "repeats": 3,
+  "scientific_package_changes": [],
+  "supplied_inputs": [
+    "inputs/pattern.csv",
+    "inputs/metadata.json"
+  ],
+  "timeout_seconds": null
+}

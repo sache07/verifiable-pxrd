@@ -1,0 +1,78 @@
+I’ll inspect the measurement metadata, pattern, and the frozen PXRD workflow guidance first. Then I’ll identify candidate phases, build/refine a multiphase GSAS-II model, and validate that every submitted artifact is internally consistent with the final project.
+
+The chemistry narrows the search to Sr–W–O with possible SrCO₃/WO₃ remnants, but I’m treating that only as a prior. I’m now checking the frozen COD index and the project/replay format so candidate selection and the exported profile are scored from the same GSAS-II state.
+
+The dominant pattern is unambiguously scheelite SrWO₄: its 101/112/200/204/220/116/312 sequence tracks the observed 18.33/27.99/33.39/45.47/47.75/51.98/56.08° peaks. Several strong peaks remain, so I’m separating their peak families before committing to the phase count; the low-angle 23–25° triplet is particularly diagnostic of residual monoclinic WO₃.
+
+A two-phase model (scheelite SrWO₄ + monoclinic WO₃) explains most of the scan, including the full 23–25° WO₃ triplet and its higher-angle satellites. A coherent residual family remains near 29.75, 30.91, 32.60, and 44.65°, so I’m testing off-stoichiometric/analogue-derived strontium tungstates as well as residual Sr-bearing precursors before refinement.
+
+The screening refinements are converging toward a three-phase explanation. SrCO₃ (both polymorphs), SrO, and rhombohedral Sr₃W₂O₉ refine to essentially zero abundance, while the off-stoichiometric tungsten-bronze analogue remains under active comparison.
+
+The dominant phase is clearly scheelite SrWO₄, with a smaller monoclinic WO₃ contribution. I’m now testing whether the remaining peaks support a genuine third phase or are better explained by specimen/profile effects, then I’ll freeze and replay the final GSAS-II model for internally consistent CIFs, fractions, and profile output.
+
+The residual peak set has resolved into a coherent third-phase fingerprint: a tetragonal tungsten-bronze-type Sr₄.₂₆W₁₀O₃₀ analogue. Its independent lines at about 29.75°, 30.89°, 32.63°, 35.32°, 53.44°, and 67.0° all track the data; the required lattice change from the Ca prototype is anisotropic and chemically sensible for Sr substitution. I’m refining that adapted structure now rather than treating those peaks as miscellaneous residuals.
+
+The third phase is not the bronze candidate after all: refinement strongly supports a Sr₃WO₆ ordered-perovskite analogue derived from Ba₃WO₆. Adding it drops Rwp from 15.96% to 14.63% and gives ~11.5 wt%; importantly, SrWO₄ + WO₃ + Sr₃WO₆ then closes the starting 1:1 Sr:W balance to about 0.97. I’m now refining specimen and phase-broadening terms while enforcing physical bounds—the first unconstrained pass exposed a correlated, slightly negative roughness coefficient that will not be retained.
+
+The residuals split into two reproducible families. A fergusonite-type SrWO₄ polymorph accounts for the 29.75/48.57/59.6° family, while the adapted bronze cell accounts for 22.09/30.90/32.6/44.67/53.44/67.0°. A five-phase trial is materially better (Rwp 12.67% before broadening/texture refinement); I’m checking whether both minority phases remain stable once those nuisance terms are introduced, which is the key guard against over-identification.
+
+The nuisance-term check confirms real surface roughness: forcing a flat specimen worsens Rwp from 12.55% to about 14.54% even before size refinement. The bounded profile runs are still converging; I’m also auditing the limit handling because GSAS-II did not freeze an exploratory coefficient at the requested boundary on its first cycle.
+
+The five-phase model is still the strongest chemically coherent solution. I’m finishing a constrained refinement now, then I’ll replay the saved GSAS-II project to generate the exact submitted profile and cross-check every CIF and fraction against it.
+
+The constrained run converged to a physically valid profile (Rwp ≈ 12.1%) and all five phase scales remain nonzero. Several broadening terms hit allowed bounds, so I’m treating that as a warning—not as extra certainty—and am now separating structure/intensity corrections from peak-width effects before freezing the project.
+
+The roughness-free control is decisively worse (Rwp 14.8% versus about 12.2%), so a low-angle surface-roughness correction is supported. Texture testing on the dominant scheelite phase changes Rwp by only 0.01 percentage point and returns a ratio near 1, so I’m not retaining that unnecessary parameter; the minority phases are being checked the same way.
+
+Two minority phases show clear, axis-specific texture signatures: the Sr₃WO₆-like phase favors [100], and fergusonite favors [111], each at the permitted edge of the March–Dollase range. I’ll retain them provisionally, but the boundary values will be called out as correlated with the analogue-derived structures unless coordinate refinement relaxes them.
+
+The combined texture model is now more selective: Sr₃WO₆ [100] plus bronze [100] lowers Rwp to 11.67%, while adding the apparent fergusonite or WO₃ texture actually worsens the joint fit. I’m discarding those two effects and moving to shared per-phase displacement factors and small symmetry-preserving coordinate adjustments.
+
+A coordinate-bound convention check caught a GSAS-II detail: those variables store absolute fractional coordinates, not coordinate deltas. I discarded the affected trial projects before use and corrected the limits around each starting site; no submitted structure is based on those invalid trials.
+
+The bounded-coordinate replay is stable and physically screened. Small shifts improve scheelite, WO₃, and fergusonite; the bronze coordinate gain vanishes once displacements are kept near the generator’s stated mismatch scale, so I’m leaving the bronze parent coordinates intact rather than overfitting that weak phase.
+
+The accepted small-coordinate model now replays at Rwp 11.45% with no physical review flags. The shifts remain within a conservative neighborhood of the references; adding bronze-coordinate freedom worsens replay, so that phase stays at the analogue geometry. I’m doing one final pass on peak broadening and then will lock and export the project.
+
+The broadening check finds one defensible anisotropic term: fergusonite strain along [010] differs from the transverse value while staying inside the laboratory’s allowed anisotropy ratio. Other apparent gains require boundary-violating ratios or change replay negligibly, so I’m excluding them.
+
+The analogue phases benefit from only very small heavy-atom adjustments: about 0.04 Å in Sr₃WO₆ and 0.05–0.07 Å on the bronze W/Sr sites. Those shifts are comparable to the stated reference-mismatch scale and lower replay Rwp to 11.09%; I’m keeping them while continuing to reject larger coordinate excursions.
+
+I also enforced the framework’s hard roughness-generation cap (no more than a 50% intensity deficit at 20°). The unconstrained fit preferred a stronger deficit, but that realization is impossible for this benchmark; the best allowed correction is being used even though it raises observed-data Rwp by about 0.16 percentage point.
+
+The final physically constrained model is now locked: five phases, normalized fractions stable to within roughly one percentage point across the accepted refinements, and native replay Rwp = 11.12% with no GSAS-II physical-review flags. I’m exporting directly from that replay so the CIFs, fractions, and submitted curve are byte-for-model consistent with `final.gpx`.
+
+A final CIF audit caught one special-position rounding/refinement issue in the bronze model: the Sr site had drifted off its `y = x + 1/2` constraint, which duplicated the site on symmetry expansion. I’m enforcing that exact relation in the project and replaying again; the Sr₃WO₆ model’s sub-0.8 Å contacts are instead genuine half-occupied split sites and will be explicitly marked as a structural uncertainty.
+
+The export set is complete. I’m doing one last consistency pass now: JSON/schema, phase-fraction normalization, CIF readability, exact profile alignment, and confirmation that `final.gpx` reproduces the submitted model.
+
+The first file comparison used the submitted descriptive filenames against the replay’s numbered export names, so those “DIFF” labels were only a naming mismatch. I’m mapping the five replay exports by composition and checking their numerical identity and the profile arrays directly.
+
+All five CIFs parse cleanly with normalized fractions and no invalid models. Two explicitly documented geometry-review items remain (WO₃ close O sites and the Sr₃WO₆ half-occupied split sites); neither is a hard physical failure. I’m now checking exact CIF↔GPX phase correspondence and the submitted fit through the evaluator’s own validation routines.
+
+Analysis complete. Fractions are normalized over the modeled crystalline phases:
+
+| Phase | Weight fraction |
+|---|---:|
+| Scheelite SrWO₄, I4₁/a | 60.60% |
+| Monoclinic WO₃, P2₁/n | 10.69% |
+| Sr₃WO₆-like split-site phase, P1 | 8.32% |
+| Fergusonite SrWO₄, I2/a | 9.20% |
+| Sr₄.₂₆W₁₀O₃₀ tetragonal bronze, P4/mbm | 11.19% |
+
+The verified native GSAS-II replay gives Rwp = 11.126%, Rp = 7.992%, Rexp = 3.527%, and GOF = 3.155 across all 8,282 observations. The CIFs correspond one-to-one with the phases in `final.gpx`, and their fractions agree to numerical precision.
+
+Outputs:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r5/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r5/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r5/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r5/workspace/final.gpx)
+- [Scheelite CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r5/workspace/phase_1_SrWO4_scheelite.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r5/workspace/phase_2_WO3_monoclinic.cif)
+- [Sr₃WO₆-like CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r5/workspace/phase_3_Sr3WO6_P1.cif)
+- [Fergusonite CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r5/workspace/phase_4_SrWO4_fergusonite.cif)
+- [Bronze CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r5/workspace/phase_5_Sr4p26W10O30_bronze.cif)
+
+The Sr₃WO₆-like and bronze assignments are analogue-derived and remain tentative at the atomic-coordinate and exact-composition level. Their fractions likely carry uncertainties of several weight percent. No amorphous fraction was determined.
+

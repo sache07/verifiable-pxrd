@@ -1,0 +1,30 @@
+I’ll inspect the diffraction data and metadata first, then use the available indexing/search and GSAS-II tooling to build and refine the smallest defensible multiphase model. I’ll keep phase identification and quantitative uncertainty separate so weakly constrained fractions are not overstated.
+
+The chemistry narrows the plausible crystalline products to copper tungstates plus possible residual CuO/WO₃, but I’m treating that only as a prior. I’m now matching all relevant COD structures against the measured peak positions and checking whether any residual peaks demand an additional phase.
+
+The peak lattice is internally consistent with ambient triclinic CuWO₄ (P‑1): the characteristic low-angle lines and the dense high-angle splitting are all accounted for. The nearest database entry is a high-pressure CuWO₄ determination, so I’m using its atom topology only and replacing/refining the cell against this ambient-pressure pattern; I will not treat its published high-pressure cell as the answer.
+
+The one-phase whole-pattern model already reaches an 8.0% weighted profile residual and leaves no unmatched Bragg family; remaining misfit is concentrated at the strongest CuWO₄ peaks. I’m testing whether that comes from the borrowed high-pressure atom coordinates, specimen texture, or an over-flexible peak-width function before locking the final project.
+
+A scale-only impurity screen rules out residual CuO and gives no meaningful support for Cu₃WO₆, but a small WO₃ contribution lowers Rwp from 7.65% to 7.34% with a positive scale. I’m comparing the known WO₃ polymorphs now; because its strongest lines overlap CuWO₄, the exact minor-phase fraction needs a stricter model-selection check.
+
+The final model is two-phase: triclinic CuWO₄ plus a small monoclinic WO₃ remainder. Across the WO₃ polymorph screen, the room-temperature monoclinic model is clearly preferred; after joint refinement it gives about 97.9/2.1 wt% and Rwp ≈ 7.17%. I’m now exporting the converged project, phase CIFs, profile, and uncertainty notes from that exact refinement state.
+
+Identified crystalline phases:
+
+- Triclinic CuWO₄, P-1: **97.91 wt%**
+- Monoclinic WO₃, P2₁/c: **2.09 wt%**
+
+Fractions are normalized over modeled crystalline phases. Final fit: Rwp 7.166%, Rp 5.217%, GOF 2.953. The WO₃ systematic uncertainty is approximately ±0.5 wt%; amorphous content is not quantified.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [CuWO4.cif](<ATTEMPT_WORKSPACE>/CuWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+
+The generated preliminary-model CIF was removed after validation; it is reproducible from the retained workflow scripts.
+

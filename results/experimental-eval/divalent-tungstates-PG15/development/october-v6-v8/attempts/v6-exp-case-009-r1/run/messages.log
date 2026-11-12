@@ -1,0 +1,36 @@
+I’ll inspect the diffraction data, metadata, and the supplied refinement utilities first. Then I’ll screen candidate phases, audit atomistic models, build/refine competing GSAS-II projects, and only export the final files after the project and submission audits agree.
+
+The chemistry suggests manganese–tungsten oxides are the first family to test, but I’ll let the peak lattice and full-pattern intensities decide. I’m extracting peak positions and checking whether the pattern is single-phase before making any formula-based assignment.
+
+The peak set is already strongly diagnostic of wolframite MnWO₄: the independent low-angle sequence and the dense 30–65° pattern align, while Mn₃WO₆ and residual Mn₃O₄/WO₃ predict several strong peaks that are absent. I’m now moving from stick-pattern screening to matched whole-pattern refinements, including explicit leave-one-out tests for those possible impurities.
+
+The impurity branches all collapse to the nonnegative scale floor and do not improve the complete pattern; their strongest unique reflections are absent. I’m retaining a one-phase crystalline inventory for now, and will retest those phases after the peak-shape model is mature, as requested. Next I’m resolving zero offset versus specimen displacement with the supplied matched-branch helper.
+
+The intensity-envelope test was decisive: unconstrained polarization ran to an unphysical 1.42, while a one-parameter positive surface-roughness correction converged stably and reduced Rwp from 10.24% to 4.72% across every angle region. I’m retaining that physically admissible branch and now testing crystallite size and microstrain independently, one at a time.
+
+Peak broadening resolves to a positive isotropic microstrain term (~1.6×10⁻³). Crystallite size is exactly degenerate with the Lorentzian instrument term, so it cannot be determined reliably and is being left unrefined. March–Dollase tests stayed essentially at unity and gave only marginal gains, so texture is not retained. I’m now refining symmetry-allowed coordinates and will reject any coordinate/ADP branch that damages the bond geometry.
+
+The phase inventory is converging on single-phase wolframite MnWO₄. I’ve rejected precursor/oxide additions that refine to zero and rejected ADP/texture branches that improve Rwp only through nonphysical or negligible parameters; I’m now doing the required mature-model leave-one-out tests, rechecking impurity candidates, and freezing the replay-safe GSAS-II export.
+
+The mature-model tests confirm that axial asymmetry, the Lorentzian X term, microstrain, and surface roughness each have independent whole-pattern support. Two refinable Gaussian terms also show genuine additional benefit, so I’m treating those as competing profile branches and will retain only the physically positive, stable, least-correlated option after the full validation pass.
+
+The broadened profile has now discriminated two effects cleanly: refining Gaussian U is physically valid and materially improves all angle regions, while the previously apparent microstrain collapses through zero once U is allowed to vary. I’ve therefore removed microstrain rather than keeping a numerically better negative value; a 20-term smooth background is the first order after which added terms give no material multi-region gain.
+
+The physical-profile rerun confirms microstrain is not independently supportable after U is refined; it is fixed at zero in the provisional final model. The retained U, X, and axial-asymmetry terms each degrade the fit broadly when removed, so they are not overlap-only improvements. Texture and remaining profile alternatives are still being checked against this exact baseline.
+
+The final angular comparison selects sample displacement over a constant zero offset (Rwp 4.1116% versus 4.1298%) and rejects the joint model because zero and displacement are 99.99% correlated. The remaining trace Mn₂O₃ test improves Rwp by only 0.0053 percentage point at about 0.43 wt%; I’m checking whether that credit is distributed over unique Mn₂O₃ reflections or comes only from overlap before deciding whether it is a reportable phase.
+
+The trace-phase decision is now resolved: Mn₂O₃’s nominal scale is driven by one residual and overlap, while two of its three strongest unique peaks are absent; WO₃ likewise predicts a strongest peak where the residual is negative. Neither passes the required multi-peak test, so the submitted model remains one crystalline phase. I’ve exported the final reconverged project, CIF, and full 8,301-point profile and am running the cross-file submission audit now.
+
+Completed. The crystalline product is wolframite MnWO₄, 100 wt% normalized over modeled crystalline phases. Final Rwp = 4.1116% and GOF = 1.1910. No secondary phase met the required multi-peak evidence threshold; amorphous content and trace impurities remain unquantified.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [MnWO4.cif](<ATTEMPT_WORKSPACE>/MnWO4.cif)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+
+The CIF, GSAS-II project, profile identity, fractions, and submission schema all passed their supplied audits.
+

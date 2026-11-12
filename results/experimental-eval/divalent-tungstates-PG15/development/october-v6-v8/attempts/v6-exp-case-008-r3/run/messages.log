@@ -1,0 +1,69 @@
+I’ll inspect the measurement metadata, diffraction pattern, and the provided refinement utilities first. I’ll then screen candidate phases, audit atomistic models, and only carry supported models into staged GSAS-II refinement and final cross-file audits.
+
+The chemistry suggests manganese–tungsten oxides, but I’m treating that only as a search prior. The raw scan spans enough points for whole-pattern discrimination; next I’m extracting peak positions and checking the installed indexing/search and GSAS-II interfaces before assigning any phase.
+
+Screening now gives a strong, phase-specific result: the wolframite MnWO₄ model accounts for the distinctive low-angle series and the split 30° pair, plus many independent high-angle peaks. Mn₃WO₆, MnO, Mn oxides, and all screened WO₃ polymorphs predict strong absent peaks. I’m moving MnWO₄ into a quantitative fit, while keeping the rejected precursor/product candidates available for leave-one-out/add-one tests against the mature baseline.
+
+The one-phase inventory fit is stable enough to diagnose positions, but its cell is compensating for a clear angle-dependent centroid error and remains slow to settle (Rwp ≈ 35.97% before profile optimization). I’ve saved that state. I’m now applying the required zero/displacement branch comparison from this identical baseline, then I’ll refine line shape and test whether any coherent residual family remains.
+
+The matched angular branches have now converged cleanly. A single specimen-displacement term is retained: it gives Rwp 19.652% versus 19.659% for zero-only, avoids the rejected 99.99%-correlated joint model, and returns a physically credible ambient MnWO₄ cell (about 4.831 × 5.757 × 4.996 Å, β ≈ 91.213°). I’m freezing that branch as the profile-screening baseline and testing the smallest positive line-broadening models next.
+
+Line-shape and envelope screening materially improved the whole pattern. The retained profile has positive width across the measured range; an attempted three-term width model became negative at high angle and was rolled back. Polarization is strongly supported (refined ≈0.939, improving every angular region), while surface roughness became unphysical/highly correlated and axial divergence was 96% correlated with displacement for negligible gain. I’m now testing phase size and strain independently; with one uncalibrated pattern these may prove inseparable from the global width terms.
+
+Coordinate refinement is independently supported and passed the atomistic audit: it lowers Rwp from 8.119% to 7.669%, with plausible Mn–O (2.02–2.20 Å) and W–O (1.89–2.22 Å) octahedral contacts. Re-screening texture after that change selects only a mild March–Dollase [110] term (ratio ≈1.075), improving all six angular regions to Rwp 7.498%. I’m checking whether any displacement-parameter refinement is actually identifiable before freezing the atom model.
+
+The ADP screen supports at most one additional parameter: an isotropic W displacement term (positive Uiso ≈0.0139 Å²). Mn and O additions either give marginal, region-redistributing gains or inflate correlated displacement parameters, so I’m keeping the smaller W-only model provisionally. Next I’m performing the required mature-baseline add-one tests for the precursor oxides and the alternative Mn–W oxide, using audited atomistic models and checking scale significance plus unique-peak support—not just Rwp.
+
+One tooling behavior surfaced during the add-one test: importing a phase auto-saved back into the source project, so later candidates were no longer independent. I caught that from the phase-fraction output; I’m discarding those contaminated comparisons, restoring the saved pre-test baseline, and rerunning each candidate from a separate project copy. The first MnO result alone was independent and already insignificant (~0.14 wt%, 1.4σ), but I’ll reproduce it with the corrected procedure.
+
+The corrected independent add-one pass finds one credible minor component: triclinic WO₃ refines to 1.87(8) wt% and lowers Rwp from 7.435% to 7.194%, with several unique residual matches near 23.45–24.64°, 48.66°, and 55.6–56.3°. MnO and Mn₃O₄ are below significance, Mn₃WO₆ goes negative, and Mn₂O₃/orthorhombic WO₃ give much smaller overlap-driven gains. I’m carrying triclinic WO₃ forward, testing whether its cell is independently stable, then I’ll rerun replacement/addition and nuisance branches on the complete two-phase model.
+
+The six-parameter triclinic-cell branch is taking markedly longer to settle than the fixed-cell model. That itself is a warning for a ~2 wt% phase; I’m letting the bounded convergence test finish, and I’ll roll it back if it shows dropped variables, large uncertainties, or only overlap-driven shifts.
+
+The complete-model angular rerun is behaving as expected: the existing displacement-only state reconverges immediately, while the zero-only route must substantially readjust the structural/nuisance parameters and the joint route is again strongly coupled. I’m waiting for the helper’s formal branch verdict before propagating anything.
+
+The complete-model line-shape screen now favors a simpler, well-behaved Gaussian-plus-Lorentzian pair (W and X); both are required by matched removals, and total widths stay positive over 9.9–100.1°. The former Y term changes Rwp by only 0.011% and redistributes error between regions, so it is dropped. I’m rechecking the competing envelope/asymmetry explanations from this cleaner state before phase-specific broadening tests.
+
+The envelope retest confirms polarization matters, but its free optimum drifts just above the physical range. I therefore fixed it at the physical limit (1.0) and reconverged; Rwp is 6.871%, only 0.003% above the unconstrained solution. Roughness remains negative/99.6%-correlated, axial divergence remains 96.5%-correlated with displacement, and the reported Kα₂/Kα₁ ratio of 0.5 is retained. Next are independent size/strain tests for both phases.
+
+As anticipated, the dominant-phase size branch immediately exposes the exact mathematical redundancy with the global Lorentzian width. The remaining phase-strain/minor-phase branches are slower; I’m letting their fixed call limits complete so any retained term must satisfy the same convergence and positive-value criteria.
+
+The phase-broadening tests do not support a unique microstructure. Main-phase size is 99.8% redundant with the global Lorentzian term; main strain merely redistributes residuals. For WO₃, either ~37 nm size or an extreme ~1.8% strain gives nearly the same tiny gain while shifting its fraction from 1.91% to ~3.2%; the joint fit is 94% correlated and collapses size back toward negligible broadening. I’m therefore retaining the fixed-profile fraction and treating 2–3 wt% as the systematic uncertainty range, while I retest texture alternatives on the complete model.
+
+Matched removals validate the retained main-phase structure terms: fixing the coordinates back to the source model raises Rwp to 7.218%, and removing the W displacement refinement raises it to 7.105% (from 6.871%). The [110] texture term also improves all six angular regions and beats every retested axis. Minor-phase texture is ambiguous between axes and strongly coupled to scale, so it is not retained. I’m now doing the final leave-one-out/replacement/add-one phase pass from this mature state.
+
+The two-phase inventory is stable: wolframite MnWO₄ plus minor triclinic WO₃. I’m finishing the background/model-removal comparisons now, then I’ll replay the selected model into `final.gpx`, export the profiles/CIFs, and run all three required audits.
+
+The background comparison favors the existing 12-term model as a conservative midpoint: 8 terms materially worsens the fit, while 14 terms buys only a small improvement with higher coefficient correlation. I’m checking the exact 10-versus-12 residual distribution and then will freeze the simpler supported choice before the final angular replay.
+
+The exact bin check changes the selection slightly: 10 background coefficients give essentially the same full-pattern behavior as 12 (ΔRwp only 0.014 percentage point), while the extra terms trade improvements between alternating angle regions. I’m therefore freezing the 10-term branch as the smallest supported model and using it for the final angular re-test.
+
+The final angular helper is still replaying each branch through the full refinement sequence. The zero-only branch has already required substantial re-optimization, which is exactly why this late-stage check matters; I’m waiting for the matched shift-only and joint comparisons before accepting anything.
+
+The late angular replay retained the baseline: shift-only reproduces it, zero-only is worse, and the joint zero/shift branch is invalid at 99.99% correlation. I’m now doing the last exact removals of the two retained global width terms; after that the model is fully frozen.
+
+Both retained global width terms pass the matched-removal test decisively: removing W raises Rwp from 6.885% to 7.220%, and removing X raises it to 7.966%. No profile parameter is being kept on a negligible gain. Next I’m saving the replay-stable final project and extracting its exact structural/fraction statistics for the deliverables.
+
+The selected model is now saved as `final.gpx`, its full-grid profile has been regenerated, and the two phase CIFs were exported directly from that project. I’m auditing those structures now; any geometry or export flag will be resolved before I write the machine-readable result.
+
+All structural and project audits are clean: both CIFs have no occupancy/contact/symmetry flags, the final refinement converged with no dropped variables, total widths remain positive for every reflection, and the regenerated profile agrees exactly with the saved one. I’m packaging the exact profile arrays and documenting the minor-phase systematic uncertainty next.
+
+The deliverables are now assembled, and the submission schema audit passes with two positive fractions summing exactly to 1. I’m doing one final cross-file readback—project fractions versus JSON, project arrays versus `fit.csv`, and ensuring exactly the two intended CIFs remain—before handing it over.
+
+Completed the two-phase refinement:
+
+- MnWO₄ wolframite (P2/c): **98.14 wt%**
+- Triclinic WO₃ (P-1): **1.86 wt%**
+- Fit: Rwp 6.885%, Rp 4.838%, GOF 2.500
+
+Fractions are normalized over crystalline phases. The WO₃ fraction has a realistic systematic range of approximately 1.4–3.2 wt%; amorphous content cannot be quantified. All CIF, GPX, profile, and submission audits passed.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_mnwo4.cif](<ATTEMPT_WORKSPACE>/phase_mnwo4.cif)
+- [phase_wo3.cif](<ATTEMPT_WORKSPACE>/phase_wo3.cif)
+

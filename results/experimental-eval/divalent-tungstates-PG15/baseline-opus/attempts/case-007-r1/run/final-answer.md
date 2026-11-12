@@ -1,0 +1,30 @@
+Done. Everything in the deliverables comes from the single saved project `final.gpx`.
+
+## Result
+
+The product of MgO + WO₃ at 900 °C is a **three-phase mixture** — an incomplete reaction, with both precursors still present:
+
+| Phase | Space group | CIF | Weight fraction |
+|---|---|---|---|
+| MgWO₄ (wolframite/huanzalaite) | *P*2/*c* | `phase_MgWO4.cif` | 0.7777 ± 0.005 |
+| γ-WO₃ (monoclinic) | *P*2₁/*n* | `phase_WO3.cif` | 0.1518 ± 0.004 |
+| MgO (periclase) | *Fm-3m* | `phase_MgO.cif` | 0.0705 ± 0.005 |
+
+**R_wp = 7.99 %, R_p = 5.66 %, GOF = 2.77** (8062 points, 45 parameters, 12.5–100.1° 2θ).
+
+## Evidence highlights
+
+- MgWO₄ carries the five strongest lines; its refined cell (4.6897/5.6740/4.9287 Å, β = 90.775°) matches the published wolframite-type cell to 0.3 %, and refined W–O/Mg–O distances (1.78–2.12 / 2.03–2.18 Å) match the single-crystal values.
+- γ-WO₃ is fixed by the 23.43/23.94/24.68° triplet; β-WO₃ (*Pnma*) and δ-WO₃ (*P*-1) were tested with the same protocol and fit worse.
+- MgO is required by a clean, otherwise-unexplained line at 43.21°; removing it raises R_wp from 8.05 % to 9.36 %.
+- A reflection-position-by-reflection-position search of the difference curve found **no unexplained Bragg intensity** — every >1.5σ residual is either on a modelled reflection or in the asymmetric low-2θ tail of one.
+
+## What I flagged as uncertain
+
+1. **A smooth low-angle intensity deficit** (observed/calculated 0.83 at 15.9° rising to ~1.08 at 40–50°) had to be absorbed with GSAS-II's Suortti function, whose refined *A* = −2.29 is outside the physical 0–1 range. It is an empirical correction, not a measured roughness. Weight fractions change by <1 abs% with or without it.
+2. **Microabsorption is uncorrected** (particle sizes unknown). MgO absorbs ~8× less than the tungstates, so 7.1 wt% MgO is more likely an underestimate than an overestimate — which is why I treat the derived bulk Mg:W = 1.31 as suggestive, not as a measured stoichiometry.
+3. **WO₃ oxygen positions and all Uiso values are not determined** by these data and are reported at published values; releasing them gave overfitting (O shifts >0.1 fractional units for ≤0.01 % in R_wp).
+4. The peak shift was modelled as a −544 µm **specimen displacement** rather than a zero error, because that reproduces *a*(MgO) = 4.2122 Å against periclase's 4.2117 Å (zero-error model gives 4.2160 Å). Weight fractions are insensitive to the choice.
+5. GOF = 2.77 rather than ~1 is driven by an unmodelled asymmetric low-2θ tail present on all strong peaks of all three phases — instrumental, not a missing phase. The per-phase size/microstrain values should accordingly be read as profile descriptors, not microstructural measurements.
+
+Files written: `final.gpx`, `fit.csv`, `result.json`, `report.md`, the three CIFs, plus `fit.png` and the scripts in `scripts/`.

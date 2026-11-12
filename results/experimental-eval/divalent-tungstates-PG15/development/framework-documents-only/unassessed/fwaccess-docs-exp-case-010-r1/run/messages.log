@@ -1,0 +1,24 @@
+I’ll inspect the measurement metadata, pattern format, and the supplied diffraction-analysis guidance first. Then I’ll identify candidate phases, build/refine them in GSAS-II, and verify that every submitted file is reproducible from the final project.
+
+The chemistry points to manganese–tungsten oxides, but at 500 °C the scan could contain MnWO₄, unreacted WO₃/Mn₂O₃, or intermediate Mn–W–O phases. I’m treating phase count as an inference problem and will use the full profile—not precursor plausibility alone—to distinguish them.
+
+Peak positions now give a coherent first model: triclinic WO₃ dominates, while the non-WO₃ lines near 33.3, 38.5, 45.1, 49.6, 55.1, and 66.0° are consistent with α‑Mn₂O₃. MnWO₄’s diagnostic 15.5/18.5/30.0° peaks are absent. I’m moving to whole-pattern refinement to test whether those two precursor phases fully explain the scan and to discriminate the closely related WO₃ and Mn₂O₃ reference models.
+
+The first full-profile trial is still refining; the 8,301-point scan and low-symmetry WO₃ model make each profile iteration relatively expensive. I’m retaining intermediate projects so a numerically lower residual can be checked against physically sensible cells, phase scales, and peak-shape terms.
+
+The physical bounds exposed an important issue: the first triclinic reference only reached ~28.6% Rwp when it could no longer compensate with an implausible 7.3 mm specimen displacement. That means its apparent 11% fit was not trustworthy. I’m comparing the alternative low-temperature WO₃ settings under the same constraints before adding Mn₂O₃.
+
+The cubic Mn₂O₃ trial did not converge to a useful mixture (36.8% Rwp), so I’m not accepting its nominal 39% fraction. The orthorhombic α‑Mn₂O₃ and conventional monoclinic WO₃ refinements are still running; those are the structurally better-founded alternatives.
+
+The two-phase model is now chemically and crystallographically coherent: adding orthorhombic α‑Mn₂O₃ drops Rwp from 10.75% to 6.51%, with an initial crystalline fraction near 71.5% WO₃ / 28.5% Mn₂O₃. Remaining residuals are mostly positive/negative peak pairs, indicating that the WO₃ lattice symmetry or anisotropic broadening—not another obvious chemistry—is still imperfect. I’m testing whether the lower-symmetry triclinic WO₃ model resolves those split positions.
+
+The triclinic competition test is computationally heavier because it adds six independent cell metrics and hundreds of overlapping reflections. The key acceptance criterion is whether it takes substantial WO₃ scale while lowering Rwp; a tiny scale or no improvement will rule it out as overfitting.
+
+The lower-symmetry test converged to a nearly monoclinic metric and did not beat the two-phase monoclinic fit, so the apparent extra splitting is not compelling evidence for a separate WO₃ polymorph. I’m now testing the specimen effects that change intensities and widths—preferred orientation, surface roughness, and anisotropic strain—before refining atomic coordinates.
+
+The stable replay model gives 7.80% Rwp and repeats unchanged on rerun. Preferred orientation is negligible (March ratios remain within ~2% of 1). Physically plausible refinements favor polarization ≈0.82, stronger Lorentzian broadening, and phase-dependent strain/size; unconstrained surface roughness and Caglioti terms run to nonphysical values, so I’m excluding those.
+
+I’ve narrowed the pattern to monoclinic WO₃ plus orthorhombic α‑Mn₂O₃, with the crystalline split near 72:28. I’m now completing the coupled refinement and checking that the saved GSAS-II project reproduces the exported CIFs, fractions, and profile exactly.
+
+The combined profile model is stable at Rwp 7.26% and shifts the crystalline fraction to 73.4% WO₃ / 26.6% Mn₂O₃. The remaining strongest mismatch is intensity rather than peak position, so I’m testing only small, symmetry-preserving coordinate adjustments against the literature starting structures; I’ll retain them only if the geometry and replay check remain sound.
+

@@ -1,0 +1,27 @@
+I’ll inspect the pattern, metadata, and available crystallography tooling first, then identify candidate phases and build/refine the final multiphase GSAS-II model. I’ll keep phase fractions normalized over the crystalline phases and explicitly flag any ambiguity in the report.
+
+The chemistry points to BaWO₄ as the likely reaction product, but 400 °C is low enough that unreacted BaCO₃ and/or WO₃ may remain. I’m treating that only as a prior; the measured peak positions and full-pattern fit will decide which phases are retained.
+
+The diagnostic peak set strongly supports two unreacted precursors: monoclinic WO₃ gives the characteristic split cluster near 23–25° and 33–35°, while orthorhombic BaCO₃ accounts for the extra lines near 19.8°, 28.0°, 43.3°, 44.5°, and 47.1°. I do not see the defining BaWO₄ pattern (especially its expected strong ~26.5° and ~31.9° pair), so I’m proceeding with a two-phase WO₃ + BaCO₃ refinement and will test whether adding BaWO₄ is justified.
+
+The first Rietveld pass confirms the two-phase assignment and reaches a good profile match, but it also exposed a scale degeneracy in GSAS-II’s defaults and strong correlation among unconstrained profile terms. I’m rebuilding the refinement with the histogram scale fixed and a reduced, physically interpretable profile model before accepting fractions. I’ll also quantify whether a BaWO₄ third phase gives a meaningful improvement.
+
+The reduced two-phase model is stable. A physically reasonable pseudo-Voigt profile improves the fit to \(R_{wp}=8.81\%\), and a BaWO₄ trial drives its scale to the numerical floor rather than yielding a refinable phase. The refined crystalline fractions are about 46.1 wt% WO₃ and 53.9 wt% BaCO₃; I’m now exporting the exact final project, CIFs, profile, and machine-readable results, with model-choice uncertainty distinguished from the smaller formal least-squares errors.
+
+Completed the two-phase GSAS-II refinement:
+
+- Monoclinic WO₃: 46.1 ± 2 wt%
+- Orthorhombic BaCO₃: 53.9 ± 2 wt%
+- Fit: Rwp 8.81%, Rp 6.72%, GOF 2.53
+
+BaWO₄ was tested but not supported by the pattern.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [BaCO3.cif](<ATTEMPT_WORKSPACE>/BaCO3.cif)
+

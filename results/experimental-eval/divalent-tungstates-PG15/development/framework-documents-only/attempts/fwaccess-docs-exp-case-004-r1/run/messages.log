@@ -1,0 +1,39 @@
+I’ll inspect the pattern, metadata, and the frozen framework guidance first, then identify candidate phases and build a GSAS‑II refinement that reproduces the submitted profiles and fractions. I’ll keep phase identification and quantitative refinement evidence separate so any ambiguity is explicit.
+
+The chemistry points first to cobalt tungstate, but the raw pattern has a high, strongly sloping background and may contain residual or off‑stoichiometric phases. I’m now extracting peak positions and checking the local reference/indexing tools before committing to a phase inventory.
+
+Peak positions now separate into two coherent families: monoclinic WO₃ accounts for the 23–24° triplet and 33–34° cluster, while wolframite‑type CoWO₄ accounts for the strong ~30.7° line and its higher‑angle series. I’m testing residual CoO/Co₃O₄ and alternative WO₃ polymorphs quantitatively; the phase count is not yet fixed.
+
+The two-phase refinement is stable and already gives the right qualitative inventory: roughly 71 wt% monoclinic WO₃ and 29 wt% CoWO₄ at the scale-only stage. Unit-cell refinement markedly improves the fit; I’m now resolving strong calibration correlations and checking whether remaining residual peaks justify a third crystalline phase.
+
+The monoclinic WO₃ model from COD 2311041 outperforms the other room-temperature/triclinic alternatives on the full profile. I’m retaining two phases—there are no independent residual peaks for CoO or Co₃O₄—and replacing the empirical common peak width with physically bounded, phase-specific size/microstrain terms before refining coordinates and texture.
+
+The dominant remaining intensity correction is experimental, not a missing phase: refining polarization drives it to the physically allowed upper end and lowers Rwp from ~6.8% to ~6.1%. A common low Uiso for CoWO₄ is also strongly favored. I’m checking the last specimen effects (surface roughness and anisotropic broadening) before locking the fractions and structural coordinates.
+
+The two-phase model is now well constrained: monoclinic WO₃ plus wolframite CoWO₄, with no convincing independent peaks from CoO or Co₃O₄. I’m doing the final consistency pass now—reconciling peak positions with the bounded physical profile model, then I’ll export the CIFs and verify every submitted file against the saved GSAS-II project.
+
+The peak-position pass lowered \(R_\mathrm{wp}\) from 5.61% to 5.27% while keeping both monoclinic cells chemically sensible. I’m now applying the last physical constraints (nonzero displacement parameters and the stated roughness bounds) and testing only the heavy-atom coordinates that the X-ray data can actually support; oxygen coordinates will remain anchored to the reference structures unless the data justify movement.
+
+The old CoWO₄ entry is a 1951 record with duplicated symmetry-equivalent sites and coarse oxygen coordinates. A modern wolframite analogue (ZnWO₄, COD 1520641; Zn²⁺ and Co²⁺ have nearly identical octahedral radii) gives a slightly better profile and a more defensible oxygen framework. I’m retaining that analogue framework, substituting Co, and refining only the two heavy-site \(y\) coordinates; the improvement is modest but chemically consistent with modern wolframites.
+
+The final two-phase refinement now covers the complete 9.903–100.095° grid and gives \(R_\mathrm{wp}=4.985\%\). Explicit impurity tests returned CoO at only 0.10(9) wt% with a negligible fit change and Co₃O₄ at zero, so neither is defensible as a modeled phase. I’m writing the machine-readable result and the short uncertainty report, then I’ll do an independent replay/consistency check of the project, CIFs, fractions, and profile.
+
+Completed the PXRD analysis.
+
+- CoWO₄ (wolframite): 29.60 wt%
+- Monoclinic WO₃: 70.40 wt%
+- \(R_\mathrm{wp}=4.985\%\), \(R_p=3.802\%\)
+
+Fractions are normalized over crystalline phases. No significant CoO or Co₃O₄ was resolved; approximately 0.3 wt% trace CoO cannot be excluded. Estimated systematic fraction uncertainty is ±1.5 wt%.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-004-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-004-r1/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-004-r1/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-004-r1/workspace/fit.csv)
+- [CoWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-004-r1/workspace/CoWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-004-r1/workspace/WO3.cif)
+
+The saved project independently replays the submitted profile exactly.
+

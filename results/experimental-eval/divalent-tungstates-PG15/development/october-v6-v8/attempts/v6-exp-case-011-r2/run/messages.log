@@ -1,0 +1,52 @@
+I’ll inspect the measurement metadata, pattern range/quality, and the reusable refinement utilities first. Then I’ll screen phase candidates, audit atomistic models, refine competing complete-pattern branches, and only export the requested files from the replay-checked final GSAS-II project.
+
+The experiment is a raw Cu Kα reflection scan (9.90° onward) from MnO₂ + WO₃ heated only to 300 °C, with no declared product or phase count. I’m now extracting peak positions and locating the GSAS-II/COD tooling so candidate screening starts from measured diffraction evidence rather than composition alone.
+
+The dominant triplet at 23.44/23.92/24.69° is highly diagnostic of monoclinic WO₃, while strong unmatched families near 29.01 and 34.48° show that WO₃ alone is insufficient. I’m screening every allowed Mn–W–O / Mn–O / W–O entry in the masked COD set and will require each accepted phase to explain several independent peaks.
+
+Candidate integrity screening changed the WO₃ choice: one database model has implausible 1.57 Å O–O contacts and is rejected; a crystallographically equivalent P2₁/c model (COD 2311041) passes the occupancy/contact audit. Pyrolusite MnO₂ also passes and independently accounts for the 29.01, 37.68, 56.96, 59.66, 67.52, and 72.53° families. I’m setting up matched GSAS-II branches for monoclinic versus triclinic WO₃ and pyrolusite versus tunnel-MnO₂ alternatives.
+
+The first matched fits already separate the alternatives strongly: monoclinic WO₃ + pyrolusite reaches about 7.3% Rwp with ordinary cells, whereas the reduced-cell WO₃ model stalls near 30% and the tunnel-MnO₂ branch is visibly much worse. I’m letting the monoclinic/triclinic and pyrolusite/tunnel branches reach the same convergence criterion before comparing them quantitatively.
+
+Both accepted phases pass matched leave-one-out tests: removing pyrolusite worsens the best WO₃ fit from ≈6.9% to ≈11.9% Rwp, while pyrolusite alone gives ≈38.2%. The remaining misfit is concentrated as derivative/shape residual around already indexed peaks, not as a new coherent peak family. I’m still retesting source-supported reaction and decomposition candidates one at a time from the two-phase baseline before declaring the inventory closed.
+
+The prescribed angular-correction comparison retained the original zero-only model. A displacement-only branch was unstable, and the joint zero/displacement branch—though numerically lower—had 0.9999 parameter correlation and was rejected. I’m now separating genuine line-broadening/envelope effects from phase-specific size or strain, using one-parameter branches and rollback checks.
+
+The global profile comparison has a clear provisional outcome: polarization improves the complete pattern, while the stronger roughness fit is unusable because its two parameters are 99.98% correlated. I’m carrying the polarization branch forward now and testing size/strain independently for both WO₃ and MnO₂, while also rechecking the monoclinic WO₃ alternative under the same envelope model.
+
+The phase-specific broadening screen supports one small but reproducible term: positive isotropic microstrain for WO₃ (about 1320 µε), improving four higher-angle regions. WO₃ size gives only a marginal, mixed-region gain; MnO₂ size has no effect, and MnO₂ strain runs negative, so those are rejected. The triclinic WO₃ model also remains decisively better than monoclinic under matched polarization (Rwp 6.79% versus 7.07%). I’m reconverging the retained scale/polarization/WO₃-strain model before testing texture and coordinates.
+
+A modest pyrolusite texture correction is supported; [001] is the best tested March–Dollase axis (r ≈ 1.10), though several axes are nearly tied, so the exact texture direction is not uniquely determined. WO₃ texture is effectively unity and rejected. Coordinate branches either provide no meaningful gain (pyrolusite O) or become slow/correlated and nonconvergent (WO₃ W/O), so I’m retaining the audited literature coordinates and treating only the lattice metrics as powder-refined structural parameters.
+
+The post-texture repeat screen again rejects MnO₂ broadening (size inactive; strain becomes negative), roughness (100% parameter correlation), and axial divergence. Of the additional global width terms, only a small positive Lorentzian Y contribution is stable enough to retain provisionally; V lowers Rwp but will not reach a low-shift solution, and U is statistically negligible. I’m now re-settling background, cells, and core widths around this minimal retained model, then I’ll rerun the required angular and phase-inventory checks.
+
+The re-settled model is now at Rwp 6.45% with positive WO₃ microstrain, modest MnO₂ [001] texture, and no severe covariance (largest |r| ≈ 0.74). A joint Y/strain test was explicitly rolled back: Y turned strongly negative and correlated 0.90 with strain. I’m doing the mandated downstream repeat tests now, including alternative texture axes and the previously rejected broadening/envelope terms, before freezing anything.
+
+The final repeat screen confirms why complete-model testing matters: isolated Z or Y terms look useful, but when co-refined with WO₃ strain they become strongly anticorrelated. Z remains physically admissible—the audited total Gaussian and Lorentzian widths stay positive—and both Z and strain have independent leave-in benefits, so I’m carrying that higher-fit branch one step further rather than deciding from coefficient sign alone. I’ll now regenerate its profile and run the prescribed angular selector on the exact mature model.
+
+The matched leave-one-out tests support every retained nuisance term: removing Z, WO₃ strain, polarization, or MnO₂ texture raises Rwp to 6.45%, 6.58%, 6.64%, and 6.40%, respectively. A second Lorentzian term (Y) also survives joint refinement without singularity; although Y and Z coefficients are negative, the regenerated physical widths remain positive for every reflection and the project audit passes with no flags. I’m making one final minimality pass from that exact regenerated state, then I’ll retest the phase inventory.
+
+The mature inventory retest leaves no defensible third phase. Mn₂O₃ refines to about 1.1 wt% and lowers Rwp by only 0.03%, almost entirely in 25–40°; it overpredicts strong lines near 23.44° and 66.05° and worsens three angular regions. MnWO₄ and Mn₃WO₆ are nonconvergent, Mn₃O₄ has no material benefit, and W₃O₈ collapses to zero scale. I’m therefore keeping the two-phase inventory while running the last matched triclinic-versus-monoclinic WO₃ replacement test.
+
+The complete model has now reconverged at Rwp ≈ 5.81% (before full-grid regeneration), with the final size/strain repeat producing only ≤0.00035% Rwp changes; roughness remains exactly correlated and is rejected. The refined phase fractions are about 72.8% WO₃ and 27.2% MnO₂ at this stage. I’m running the final angular check and then freezing/exporting the audited project and cross-consistent files.
+
+All required files now exist and the CIF, GPX, and submission schema audits pass. I’m doing one last integrity check that is easy to miss: matched leave-one-term-out refinements from the exact frozen complete model (not an earlier baseline). This verifies that each optional retained term still earns its place after the final background and cell reconvergence.
+
+Completed. The crystalline model is:
+
+- Triclinic WO₃ (P-1): 72.82 wt%
+- Pyrolusite MnO₂ (P4₂/mnm): 27.18 wt%
+
+Final fit: Rwp 5.807%, Rp 4.246%, GOF 2.158. Realistic fraction uncertainty is about ±2 percentage points. No third phase was reliably supported.
+
+All GPX, CIF, and submission audits passed.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_1_WO3_triclinic.cif)
+- [MnO2 CIF](<ATTEMPT_WORKSPACE>/phase_2_MnO2_pyrolusite.cif)
+

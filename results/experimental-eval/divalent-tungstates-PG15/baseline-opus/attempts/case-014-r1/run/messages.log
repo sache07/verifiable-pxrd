@@ -1,0 +1,29 @@
+Let me test whether the third COD Sr–W–O phase (Sr₃W₂O₉) accounts for the unexplained peaks.
+
+Promising lead — I found a candidate cell for the unknown phase. Let me verify it and search the database by cell parameters.
+
+Done. Summary of what I found and delivered.
+
+## Phases
+
+| Phase | Structure | Space group | wt % (over modelled phases) |
+|---|---|---|---|
+| **SrWO₄** | scheelite, *a*=5.41866(16), *c*=11.96043(30) Å | *I*4₁/*a* | **85.7 ± 1.5** |
+| **WO₃** | γ-WO₃, *a*=7.3008, *b*=7.5383, *c*=7.6942 Å, β=90.72° | *P*2₁/*n* | **14.3 ± 1.5** |
+
+Fit: R*wp* = 9.72 %, R*p* = 7.04 %, S = 2.75 (χ² = 7.56), R(*F*) = 3.6 % (SrWO₄) / 15.2 % (WO₃).
+
+## Key steps
+
+- The raw 2θ scale is off by **+0.33·cos θ degrees** (specimen displacement). Calibrating this against twelve isolated peaks was essential — uncorrected d-spacings are biased by up to 1.5 %, which is what made identification ambiguous at first. After correction both refined cells match literature values to <0.1 %.
+- SrWO₄ is the expected product; γ-WO₃ is unreacted precursor, confirmed by its full (002)/(020)/(200) triplet and the 33.9–34.5° group with correct intensity ratios.
+- A **Suortti surface-roughness correction** was needed (strongly absorbing Sr/W powder in reflection); without it the refinement drives U*iso* negative.
+
+## What I could not determine
+
+A **third crystalline phase is definitely present** — a strong, clean, isolated peak at d = 3.035 Å plus ~11 more lines, together ≈ **11 % of the total Bragg intensity** — and I could not identify it. I searched the full local COD-filtered database (61 481 CIFs, also with isotropic cell scaling to catch Sr analogues of Ca/Ba/Pb compounds), ran autoindexing plus a custom indexer, and explicitly tested and rejected SrCO₃, SrO/SrO₂/Sr(OH)₂, all other WO₃ polymorphs, reduced W oxides, crucible/holder materials, and Sr₃WO₆ built from the Ca₃WO₆ and Ba₃WO₆ structure types. Chemically it is most likely Sr₂WO₅ or Sr₃WO₆ (neither is in the database), but that is not established by the data.
+
+I modelled those reflections as 12 independent peaks so they do not bias the two-phase scale factors; the SrWO₄:WO₃ ratio is stable to ±1.5 wt % across modelling choices (85.7/14.3 with them, 87.2/12.8 without). **The absolute fractions apply only to the modelled subset** — if the unknown is a Sr–W–O compound of similar scattering power it would be ~10 wt %, putting true values near SrWO₄ 77 %, WO₃ 13 %, unknown 10 %. That is an order-of-magnitude estimate, flagged as such in `report.md`.
+
+Files in the working directory: `SrWO4.cif`, `WO3.cif`, `fit.csv`, `result.json`, `report.md`, `final.gpx` (plus `scripts/` and `work/` with the full analysis trail).
+

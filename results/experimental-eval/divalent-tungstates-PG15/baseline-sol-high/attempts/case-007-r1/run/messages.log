@@ -1,0 +1,37 @@
+I’ll inspect the diffraction data and metadata first, then identify candidate phases and build/refine a multiphase GSAS-II model. I’ll keep the delivered fractions explicitly normalized over the modeled crystalline content and flag any ambiguity in phase identity or quantitation.
+
+The chemistry points first to monoclinic MgWO₄, with MgO/WO₃ or another Mg–W–O phase possible as residual material. I’m now checking the measured peak positions and database candidates rather than assuming the nominal reaction product.
+
+A first one-phase refinement confirms MgWO₄ but exposes a setup issue: both histogram and phase scale factors were allowed to vary, making the normal equations singular. I’m correcting that and testing whether the remaining mismatch is true extra-phase scattering, preferred orientation, or profile/geometry bias.
+
+The peak-by-peak check now resolves the main ambiguity: several strong lines absent from MgWO₄ coincide with monoclinic WO₃ (notably near 23.4, 24.7, 26.9, 29.0, and 34.5°), and the 43.2/62.5° pair could indicate a small MgO residue. I’m comparing crystallographic WO₃ polymorph models and explicitly testing whether MgO earns a stable positive scale factor.
+
+The two-phase monoclinic P2₁/n WO₃ model improves the fit decisively (weighted profile R from about 19.8% to 11.7%) and gives an initial crystalline split near 85.1 wt% MgWO₄ / 14.9 wt% WO₃. The MgO test is now being started from that converged solution with a near-zero initial scale so its significance is judged cleanly.
+
+MgO is retained: its scale converges strongly positive, its refined cubic cell is physically sensible (~4.214 Å), and adding it lowers Rwp from 11.65% to about 10.88%. The current three-phase fractions are stable near 78.6% MgWO₄, 13.7% WO₃, and 7.7% MgO; I’m finishing the WO₃ setting/structure comparison before freezing the final project.
+
+The best WO₃ description is the triclinic P-1 model: it lowers Rwp to 10.55%, and its refined departure from monoclinic metric symmetry is larger than the formal cell uncertainties. I’ll report the polymorph assignment as supported but not absolute, since the monoclinic alternatives fit nearly as well and the phase is only ~14 wt%.
+
+The intensity residuals support a mild MgWO₄ preferred orientation along [110] (March–Dollase ratio ~1.08); including that single texture parameter lowers Rwp from 10.55% to 10.19%. I’m now performing the final joint refinement and generating the CIFs, profile, JSON, report, and exact project snapshot from the same converged state.
+
+The final joint model has converged at 78.60 wt% MgWO₄, 14.00 wt% WO₃, and 7.40 wt% MgO, with Rwp 10.186%. I’m validating that the three exported CIFs parse correctly and that `fit.csv`, `result.json`, and `final.gpx` all reproduce the same final state.
+
+Completed and validated the three-phase GSAS-II refinement:
+
+- MgWO₄: 78.60 wt%
+- WO₃, triclinic P-1 model: 14.00 wt%
+- MgO: 7.40 wt%
+- Rwp: 10.186%; Rp: 7.390%; GoF: 3.558
+
+The WO₃ polymorph assignment remains somewhat uncertain because monoclinic models fit nearly as well.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MgWO4 CIF](<ATTEMPT_WORKSPACE>/phase_1_MgWO4.cif)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_2_WO3_triclinic.cif)
+- [MgO CIF](<ATTEMPT_WORKSPACE>/phase_3_MgO.cif)
+

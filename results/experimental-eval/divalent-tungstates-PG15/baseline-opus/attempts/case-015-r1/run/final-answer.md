@@ -1,0 +1,27 @@
+All deliverables are in place. Summary of what I found and did:
+
+## Result
+
+The product is a **three-phase mixture** — the reaction between the WO₃ and ZnO precursors went only ≈73 % to completion:
+
+| phase | space group | CIF | weight fraction (normalised over modelled crystalline phases) |
+|---|---|---|---|
+| ZnWO₄ (sanmartinite) | *P*2/*c* | `ZnWO4.cif` | **0.7344(17)** |
+| γ-WO₃ (unreacted) | *P*2₁/*c* | `WO3.cif` | **0.2021(13)** |
+| ZnO (zincite, unreacted) | *P*6₃*mc* | `ZnO.cif` | **0.0635(15)** |
+
+**Fit: R_wp = 4.73 %, R_p = 3.63 %, GOF = 1.25** (8301 points, 44 parameters).
+
+## Evidence chain
+- ZnWO₄ alone → R_wp 14.8 %, with a clean residual peak set at *d* = 3.825/3.747/3.636/3.334/2.681/2.614/1.916/1.879/1.820 Å that indexes one-to-one on γ-WO₃ → adding WO₃ gives R_wp 6.43 %.
+- Two residuals then survive at *d* = 2.814 and 1.625 Å where neither ZnWO₄ nor WO₃ has a reflection; these are ZnO (100) and (110) → adding ZnO gives R_wp 4.73 %, and its cell refines to *a* = 3.2514(4), *c* = 5.2081(5) Å, within 0.05 % of literature zincite.
+- Independent check: the fractions imply a bulk Zn:W ratio of **0.97:1**, exactly what a partially reacted equimolar charge must give.
+- After three phases the difference curve is noise across 10–100°.
+
+## Flagged limitations (detailed in `report.md`)
+- Statistical esds understate reality; across four alternative displacement-parameter/roughness treatments the fractions span ZnWO₄ 73.4–74.3, WO₃ 19.0–20.2, ZnO 6.3–6.7 wt% → realistic **±1 wt%** (ZnO ±0.3).
+- A Suortti surface-roughness correction was essential (R_wp 9.2 → 5.3 %) and is strongly correlated with *U*_iso; ZnWO₄'s *U*_iso had to be fixed at 0.0050 Å² and should not be interpreted.
+- WO₃ and ZnO atomic coordinates are **adopted from the literature, not determined** — a small triclinic δ-WO₃ admixture cannot be excluded. The per-phase "size" terms are fitting parameters only (no calibrated instrument profile was supplied) and must not be read as crystallite sizes.
+- Amorphous content is not quantified (no internal standard), so fractions are crystalline-normalised as requested.
+
+`final.gpx` is the self-contained GSAS-II project that produced the submitted CIFs, fractions and `fit.csv`; `fit.png` plots the fit; scripts are in `work/scripts/`, comparison projects in `work/out/`.

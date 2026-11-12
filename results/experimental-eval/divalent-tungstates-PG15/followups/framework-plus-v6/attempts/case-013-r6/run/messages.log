@@ -1,0 +1,58 @@
+I’ll first inspect the measurement metadata, pattern, and the frozen PXRD workflow, then build a phase inventory before touching refinement parameters. I’ll keep the final exports tied to the exact GSAS-II project and verify them after reopening it.
+
+The chemistry is PbO + WO₃ at 500 °C. That makes PbWO₄ a strong principal candidate, but the workflow explicitly allows residual PbO/WO₃ and Pb–W–O intermediates, so I’m treating those as competing phases rather than assuming a single-product pattern. Next I’m extracting peak families and searching the frozen COD by occupied composition and symmetry.
+
+Peak-family checks now support at least three chemically sensible components: tetragonal stolzite PbWO₄ is dominant; monoclinic WO₃ accounts for the 23–25° triplet; orthorhombic massicot PbO accounts for independent lines near 30.6, 38.1, 53.36, 60.52, and 63.28°. I’m now testing these against raspite PbWO₄ and Pb₃O₄ alternatives under one common profile so overlaps do not decide the inventory prematurely.
+
+The first standardized challenge shows raspite is not supported as an added phase: its constrained scale collapses to zero and its unconstrained cell becomes nonphysical. I’m running the same fixed-baseline test for Pb₃O₄, litharge, alternate WO₃ polymorphs, and the Pb-deficient scheelite superstructure; only models with positive scale and coherent unique reflections will survive.
+
+The common-profile re-challenge rejects raspite once widths are made physically bounded. Pb₃O₄ retains a small positive fraction (~4.7 wt%) and lowers Rwp modestly, but its size also hits the lower bound and its scale is highly correlated with background, so it remains on the watch list rather than accepted. I’m now testing tetragonal litharge and alternate source records under the same model.
+
+The five-phase trial (stolzite + monoclinic WO₃ + both PbO polymorphs + Pb₃O₄) reaches Rwp ≈15.58%, but a strong residual at 25.9° remains, so I’m not treating the lower Rwp as proof of a complete inventory. A fixed-baseline scan across every physically admissible Pb–W–O/Pb–O/W–O COD record is now ranking phases by coherent residual reduction; early candidates improve Rwp by only ~0.1%, suggesting the missing intensity may require a different polymorph/profile treatment rather than simply another broad phase.
+
+The exhaustive screen has found no convincing missing bulk phase. The best “extra” records each claim only trace mass and shave at most ~0.27 Rwp points; WO₂ specifically targets 25.9° but refines to <0.1 wt%, which is below reliable quantification and chemically dubious for a 500 °C air-fired oxide mixture. An alternate long-period PbO record is the strongest challenger, so I’ll compare it as a replacement for—rather than an addition to—the current PbO model to avoid double-counting the same framework.
+
+The long-period PbO model is not a valid replacement for ordinary massicot—it fails badly alone—but it is supported as an additional weak PbO framework. I also found that the oldest monoclinic WO₃ record has an implausibly short 1.575 Å O–O contact, so I’m now challenging it with the physically cleaner monoclinic records before accepting any structural model, even if the older record fits slightly better.
+
+The common angular correction now refines to +0.2946° and the cells reconverge without instability. The long-period PbO phase is supported by several independent families and drops Rwp by ~0.65 points when its cell is revisited, while Pb₃O₄ contributes only ~0.01 at that stage and remains weak. I’m now separating genuine peak-shape/asymmetry effects from texture before allowing any coordinate refinement.
+
+Texture is unsupported for the dominant stolzite and WO₃ (ratios stay within ~6% of random and barely change Rwp). Massicot is different: a [100] March–Dollase model gives a stable interior ratio near 0.8 and improves several independent families; adding isotropic strain gives another clear reduction without hitting a bound. I’m testing the long-period PbO similarly, then I’ll prune any phase that only improves the fit through boundary values.
+
+I’m rebuilding the chosen five-phase model from a clean project now, using the physically cleaner WO₃ record and only replay-stable nuisance terms: one zero correction, bounded common U/W/X, SH/L asymmetry, polarization, two principal-phase sizes, massicot [100] texture, and supported PbO strains. This clean rebuild is important because candidate-challenge projects are deliberately disposable and must not become the submitted project.
+
+The clean rebuild gives Rwp ≈13.61% with the physical WO₃ model. Coordinate trials are not trustworthy: stolzite oxygen runs to imposed displacement limits, and WO₃ tungsten coordinates become highly correlated, so I’m retaining the published coordinates and only refined cells. I’m now doing the decisive phase-pruning test by forcing the weak minium scale to zero and reconverging everything else.
+
+The phase inventory is now coherent: dominant stolzite PbWO₄ plus monoclinic WO₃, massicot PbO, a long-period α-PbO approximant, and weak Pb₃O₄. I’m doing the final exact replay/export now, including physical checks and verifying that the CIFs, fractions, profile, and saved GSAS-II project all agree.
+
+The replay is internally consistent at Rwp 13.61%, but the residuals show family-dependent broadening in the PbO-rich region. Before freezing the deliverables, I’m re-challenging that specifically with symmetry-appropriate anisotropic width models; this is the last substantive adequacy check, and I’ll retain it only if it is stable and physically supported.
+
+The anisotropy trials are computationally heavier than the baseline replay but are progressing. I’m testing only the two PbO models that actually show broadened families, with the allowed [001], [100], and [010] axes and bounded equatorial/axial strain.
+
+The massicot result is decisive enough to pursue: [100] uniaxial strain lowers Rwp from 13.607% to about 13.410%, while [001]/[010] improve only 0.01–0.03%. I’m finishing the long-period PbO controls, then I’ll rebuild the common profile around the supported [100] term and check that it survives reopening.
+
+Neutralizing the minor-phase size terms caused the PbO strains to run directly to their bounds and degraded Rwp to 14.26%, so that baseline is physically inadequate and will not be used. This confirms those broad PbO families cannot be represented by strain alone; I’m reverting to the prior, replay-stable model and testing the supported [100] anisotropy without the now-confounded texture term.
+
+The control confirms the interpretation: without texture, the anisotropic massicot model worsens to Rwp 13.96%; its apparent gain required texture at a hard bound. I’ve rejected that coupled model and retained the stable isotropic-strain + interior [100] texture baseline. I’m now freezing the accepted project and generating every submitted artifact from one read-only forward replay.
+
+All requested artifacts are now written. I’m running the same submission-level checks the evaluator uses: JSON/CIF parsing, normalized fractions, physical screens, fit-grid identity, and project-to-export correspondence.
+
+Completed and verified by a fresh read-only GSAS-II replay.
+
+| Phase | Weight fraction |
+|---|---:|
+| Stolzite PbWO₄ | 60.89 wt% |
+| Monoclinic WO₃ | 12.04 wt% |
+| Massicot PbO | 15.84 wt% |
+| Long-period α-PbO approximant | 7.83 wt% |
+| Minium Pb₃O₄ | 3.40 wt% |
+
+Fit: Rwp 13.607%, Rp 9.398%, GOF 3.890. The α-PbO approximant and Pb₃O₄ quantities have substantial uncertainty; an unassigned residual remains near 25.9° 2θ.
+
+Artifacts:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-013-r6/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-013-r6/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-013-r6/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-013-r6/workspace/final.gpx)
+- [PbWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-013-r6/workspace/phase_1_stolzite_PbWO4.cif), [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-013-r6/workspace/phase_2_monoclinic_WO3.cif), [massicot CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-013-r6/workspace/phase_3_massicot_PbO.cif), [α-PbO CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-013-r6/workspace/phase_4_alpha_PbO_approximant.cif), [Pb₃O₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-013-r6/workspace/phase_5_minium_Pb3O4.cif)
+

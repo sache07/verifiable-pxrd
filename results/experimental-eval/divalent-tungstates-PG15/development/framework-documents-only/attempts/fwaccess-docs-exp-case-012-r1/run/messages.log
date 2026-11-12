@@ -1,0 +1,66 @@
+I’ll inspect the measurement metadata, pattern shape, and the supplied divalent-tungstate guidance first, then identify candidate phases and refine them in GSAS-II. I’ll preserve the final refinement artifacts and cross-check the exported fractions/profile against the project.
+
+The peak set already separates into a dominant wolframite-like NiWO₄ pattern and a conspicuous 23–25° triplet characteristic of monoclinic WO₃; weak rocksalt NiO lines are also plausible. I’m now testing those assignments against the frozen COD library and the full profile, including whether the apparent NiO reflections survive overlap and background modeling.
+
+The weak line near 37.2° is accounted for by NiWO₄ itself, while the strongest NiO line expected near 43.3° is absent; I am therefore carrying a two-phase model forward and treating NiO as a tested-but-rejected candidate. I’m building the initial GSAS-II projects with repaired asymmetric-unit coordinates for the old NiWO₄ COD entry and comparing the plausible room-temperature WO₃ polymorphs on identical refinement schedules.
+
+The first Rietveld pass reaches ~5.8% Rwp after only cells/zero, with about 77.4 wt% NiWO₄ and 22.6 wt% WO₃. An unconstrained profile step tried negative instrumental U/X, exposing a width-correlation problem rather than a phase-assignment problem; I’m tightening the profile refinement to physically allowed ranges and separating common instrument broadening from phase-specific size/strain before judging the WO₃ model.
+
+The remaining misfit is concentrated in relative intensities—not missing peaks—especially NiWO₄ (100)/(011) versus (111), which is the signature expected from mild preferred orientation. I’m screening the five physically permitted March–Dollase axes for each phase; the profile jobs are still running, after which I’ll retain an orientation term only if it is both stable and materially improves Rwp.
+
+Model discrimination favors monoclinic WO₃ COD 2311041: it lowers Rwp from 4.91% to 4.53% and fits as well as the lower-symmetry triclinic alternative without doubling the WO₃ reflections/metric degrees of freedom. I’m adopting that parsimonious model and now re-refining with nonnegative size/strain and physically bounded instrumental terms before adding orientation or coordinate freedom.
+
+A consistency check caught an important GSAS-II detail: when a parameter crosses a bound, GSAS-II clamps and freezes it after calculating the profile, so the displayed Rwp is stale until another refinement. I’m rerunning every bounded stage until the frozen set is stable; this prevents reporting an artificially favorable fit from negative strain or out-of-range width terms.
+
+The bounded refinement is progressing through its repeat-until-consistent cycles. The likely terminal profile has NiWO₄ microstrain at zero (instrument/size already explain its breadth), while WO₃ retains positive strain; I’m allowing GSAS-II to settle that boundary before testing atomic-coordinate and specimen-intensity corrections.
+
+Preferred-orientation screening is negative for both phases: every refined March–Dollase ratio stays within about 1–2% of unity, and the best Rwp gain is only 0.009 percentage point. I’m leaving orientation off and moving to the more defensible remaining sources of intensity mismatch: refined heavy-atom coordinates, common phase Uiso, polarization, and possible low-angle surface roughness.
+
+Common Uiso refinement materially improves the self-consistent fit (Rwp 4.72% → 4.62%) and moves the phase ratio to about 76.0/24.0 wt%. The refined values are small and plausible (NiWO₄ ≈0.0059 Å²; WO₃ ≈0.0025 Å²). Next I’m refining symmetry-allowed NiWO₄ coordinates and only the X-ray-dominant W positions in WO₃, checking that shifts stay within the supplied reference-mismatch scale.
+
+The unrestricted oxygen shifts improved Rwp but moved several O sites by roughly 0.1–0.14 Å—well beyond the expected reference perturbation—so I will not accept that unconstrained model. Parallel tests are now comparing surface roughness, polarization, and heavy-atom-only coordinate refinement; these should explain intensity trends without sacrificing structural plausibility.
+
+The comparison is decisive: surface roughness plus polarization gives plausible parameters (A≈0.192, B≈0.133, polarization≈0.506), lowers Rwp to 4.33%, and yields 75.25/24.75 wt%—very close to a likely 75/25 mixture. Heavy-atom-only shifts also help independently. I’m combining those effects now; the boundary-seeking single-effect fits are being rejected in favor of the joint physical model.
+
+A staged combination is stable and physical: surface roughness A≈0.086/B≈0.101, polarization≈0.498, and all refined Ni/W shifts are ≲0.05 Å. It gives Rwp 4.24% and 75.23/24.77 wt%. I’ll pin polarization to its physical lower limit of 0.5, then test the remaining likely profile effect—uniaxial microstrain—before deciding whether restrained oxygen refinement is warranted.
+
+The current model’s refined Uiso values and phase fraction remain stable after adding heavy-atom shifts. The microstrain screen is still running across six phase/axis combinations; I’ll require both a meaningful Rwp reduction and non-boundary axial/equatorial values before adding anisotropy.
+
+The strain screen finds no meaningful WO₃ anisotropy, but NiWO₄ uniquely favors a [100] uniaxial term (Rwp 4.24% → 4.18%); the other axes do not. Because its unconstrained equatorial component hits zero, I’m repeating that model with the lab-plausible microstrain floor and polarization fixed at ≥0.5, then will keep it only if the self-consistent fit remains better.
+
+The constrained [100] strain/polarization refinement is in its second consistency pass after parameters reached their limits. Once that stabilizes, I’ll inspect bond geometry and residuals; if no unidentified peaks remain, the remaining work is export/validation of the final GSAS-II project and deliverables.
+
+The physically floored strain model collapses to equal 300/300 ppm and worsens Rwp, so the apparent anisotropy was boundary compensation and is rejected. I’m retaining the isotropic zero-strain NiWO₄ model, applying only the polarization floor, and then checking interatomic distances plus unmatched residual peaks.
+
+The selected model has chemically sound octahedra (Ni–O 2.05–2.10 Å; NiWO₄ W–O 1.79–2.19 Å; WO₃ W–O 1.75–2.14 Å), and residual analysis finds no NiO diagnostic peak at 43.38° or coherent unmodeled phase. I’m making one controlled oxygen test, limiting each coordinate to roughly ±0.05 Å from its parent; unconstrained oxygen coordinates remain excluded.
+
+The bounded NiWO₄ oxygen refinement improves Rwp to 4.18% and Bragg R(F²) to 2.19%; shifts follow the same directions as the unconstrained fit but remain ~0.06–0.07 Å total. Two z components reach their ±0.05 Å directional limits, so I’m treating those coordinates as restrained estimates, not uniquely determined. I’ll test whether WO₃ oxygen coordinates provide comparable evidence or merely pile up at bounds.
+
+The WO₃ oxygen test is still iterating after several coordinate limits froze. That behavior itself is a warning sign; I’ll only retain it if the final improvement is substantial and the resulting W–O octahedra remain chemically reasonable.
+
+WO₃ oxygen refinement is rejected: it improves Rwp by only 0.004 point while forcing most oxygen components to limits. The selected model therefore uses restrained NiWO₄ oxygen coordinates and fixed reference WO₃ oxygen sites. I’m now exporting from that exact project and validating that the CIFs, fractions, and profile all replay consistently.
+
+The polished constrained model is stable on replay (maximum shift/esd 0.205): Rwp 4.176%, Rexp 3.479%, with 75.40 wt% NiWO₄ and 24.60 wt% WO₃. I’m exporting all requested files from this exact project, then will reload the saved `final.gpx` and compare every profile column/fraction to the submitted outputs.
+
+All requested artifacts are now written. I’m performing the final consistency audit: zero-cycle GSAS-II replay from `final.gpx`, exact comparison to `fit.csv` and `result.json`, plus independent CIF parsing/composition/geometry checks.
+
+The audit found only a sub-millcount replay difference (maximum 0.002 counts) from floating-point recomputation; CIFs parse correctly with the intended formulas and space groups. The zero-cycle replay omits a covariance matrix by design, so I’m finishing the check by recomputing fractions directly from the unchanged phase scales/masses rather than asking GSAS-II for post-zero-cycle uncertainties.
+
+Identified two crystalline phases:
+
+- NiWO₄ (wolframite, P2/c): 75.40 wt%
+- WO₃ (monoclinic, P2₁/c): 24.60 wt%
+
+Final fit: Rwp 4.176%, Rp 3.216%, GoF 1.200. No crystalline NiO was supported. Realistic fraction uncertainty is approximately ±1 wt%; the WO₃ monoclinic/triclinic distinction remains mildly uncertain.
+
+Files:
+
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-012-r1/workspace/final.gpx)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-012-r1/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-012-r1/workspace/fit.csv)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-012-r1/workspace/report.md)
+- [NiWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-012-r1/workspace/phase_1_NiWO4.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-012-r1/workspace/phase_2_WO3.cif)
+
+The project, profile, fractions, and CIFs passed consistency and independent parsing checks.
+

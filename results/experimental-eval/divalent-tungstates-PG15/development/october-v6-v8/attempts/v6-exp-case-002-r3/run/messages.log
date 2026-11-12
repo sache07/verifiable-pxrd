@@ -1,0 +1,67 @@
+I’ll inspect the measurement metadata, pattern, and the supplied refinement utilities first. Then I’ll screen candidate phases, audit every structural model, and preserve branch-point GSAS-II projects as I refine and compare the complete-pattern fits.
+
+The chemistry points to a Ba–W–O reaction space, but I won’t assume the expected product: at only 200 °C, precursor remnants and low-temperature polymorphs are plausible. I’m extracting peak positions and full-pattern diagnostics now, including the Cu Kα doublet behavior, before querying structures.
+
+Initial peak positions strongly resemble monoclinic WO₃, while a second sequence near 24.7/34.4/43.0/50.2/55.8° could plausibly be unreacted BaO₂. I’m testing those as independent atomistic models—plus BaWO₄ and common air-exposure products—against all observed peaks, because several of the strongest lines overlap.
+
+Both precursor structures explain multiple unique lines across the scan. The BaO₂ audit’s only alert is the expected 1.30 Å peroxide O–O bond; the oldest WO₃ entries contain genuine duplicate/short-contact defects, so I rejected those and retained the chemically sound monoclinic model (plus close structural alternatives for matched testing). I’m now fitting the two-phase baseline with only background, scales, and cells before allowing profile flexibility.
+
+The two-phase model leaves a consistent derivative-shaped residual at nearly every strong line: calculated centroids are systematically low by about 0.2° near the start of the crystalline region. That is an angular-calibration effect, not evidence for another phase, so I’m invoking the supplied matched zero/displacement branch test from the saved minimal baseline before judging phase alternatives or broadening terms.
+
+The angular helper selected specimen displacement (−0.484 mm) over zero offset by a small but reproducible full-range gain; the joint model was rejected at 99.96% correlation. With that correction, the precursor pair reaches Rwp ≈ 9.11%, and no new coherent peak family appears. I’m now doing the required matched replacement pass among the chemically valid WO₃ polymorphs before refining crystallite broadening or intensities.
+
+The matched polymorph pass decisively favors triclinic WO₃ (P‑1): Rwp 8.61% versus 9.11% for monoclinic and 11.74% for orthorhombic under the same nuisance model; tetragonal/hexagonal options fail the pattern badly. I’ve promoted the triclinic structure and am now separating global instrumental width from phase-specific size/strain, with every profile branch saved before refinement.
+
+Global-width screening found positive Lorentzian X/Y terms to be the best stable pair (Rwp 7.33%); W+X drove W negative and was rejected. I’m now comparing the two plausible intensity-envelope corrections allowed by the instructions—effective polarization versus Suortti surface roughness—before testing each phase’s size and microstrain independently.
+
+Surface roughness gave a slightly lower Rwp but its two parameters were 99.38% correlated, so I rejected that branch. Polarization refined to a plausible 0.804 and remains the selected envelope model. The next matched pass is phase-by-phase: isotropic size and isotropic microstrain are each being tested alone for BaO₂ and WO₃.
+
+The phase-specific tests are behaving cleanly so far: BaO₂ microstrain is unsupported, and its size term gives only a marginal Rwp change (about 0.012 percentage point), so I’m treating it cautiously rather than automatically retaining it. The WO₃ branches are still converging.
+
+The joint BaO₂ size+strain branch became unstable: the axial strain crossed negative while χ² oscillated, so it fails the positivity/stability check. I’m rolling that branch back and retaining the simpler uniaxial-size candidate for later leave-one-out validation.
+
+The profile residuals do show mild reflection-family dependence, but the four-parameter size+strain model is nonphysical and highly correlated. A single WO₃ March–Dollase correction along [010] is the strongest simple texture branch (ratio 1.014; Rwp 7.230%), so I’m carrying that forward and retesting the weaker BaO₂ texture alternatives against this updated complete model.
+
+The BaO₂ oxygen coordinate is well supported and chemically improves the model: z shifted from 0.4040 to 0.3932, changing the peroxide O–O distance from an unusually short ~1.30 Å to ~1.46 Å while lowering Rwp to 7.162%. I’m retaining that coordinate; the heavier WO₃ sublattice branch is still being checked for stability.
+
+The phase inventory is now strongly narrowed to BaO₂ plus triclinic WO₃; alternative WO₃ polymorphs and the available BaWO₄ model failed either full-pattern or structural checks. I’m finishing the coupled ADP/profile robustness tests now, then I’ll freeze and audit the replay-safe GSAS-II project and exports.
+
+The constrained ADP branch converged cleanly: common WO₃ \(U_\mathrm{iso}\) values are positive (W ≈ 0.0100, O ≈ 0.0119 Å²), and the complete-pattern fit improved to Rwp ≈ 7.07%. I’m treating the resulting 32.6/67.4 wt% split as provisional until the leave-one-term-out and angular rechecks are complete.
+
+The first deletion test is decisive: removing the global X broadening term worsens Rwp from 7.073% to 7.206% after full reconvergence, so X is supported across the pattern. The corresponding Y-only deletion branch is proving numerically less stable; I’m allowing its matched refinement to finish before deciding whether the correlated X/Y pair should remain.
+
+The envelope term is also material: fixing polarization at the instrument default worsens Rwp to 7.218% and shifts the inferred BaO₂ fraction by about 2.3 wt%, so it cannot be omitted without biasing the quantification. Fully removing the angular correction drives compensating cell/texture parameters nonphysical; the dedicated angular test instead confirms that a single specimen-shift term is the stable choice, while a joint zero/shift model is 99.97% correlated and rejected.
+
+The mature-model replacement test is conclusive: triclinic WO₃ reproduces the selected solution at Rwp 7.073%, monoclinic WO₃ stalls at 7.531%, and orthorhombic WO₃ at 9.422% with poor convergence. All used the same background, angular/profile/envelope terms, BaO₂ companion model, texture parameter count, and grouped ADPs, so the triclinic assignment is not an artifact of the earlier minimal screen.
+
+A downstream profile recheck found one warranted refinement: adding the global Gaussian \(U\tan^2\theta\) term lowers Rwp from 7.073% to 7.055%, gives a positive \(U=229(32)\), reduces the X/Y correlation from 94% to 87%, and passes the total-width audit. Global W is insignificant and slightly worsens the fit. I’m propagating U, reconverging, and rerunning the phase-size/strain deletions from that updated baseline.
+
+The updated phase-broadening tests are behaving as expected: adding BaO₂ microstrain changes Rwp by only 0.0001% and trades directly against crystallite size, so it is redundant and rejected. The WO₃ size branch is unstable/slow near its effectively infinite-size limit; I’m checking its saved state rather than accepting a boundary solution.
+
+The final broadening pass supports the simpler model. WO₃ size destabilizes coordinates/ADPs and is rejected; BaO₂ or WO₃ strain improves Rwp by only ~0.0001% and is ~94% correlated with BaO₂ size; uniaxial BaO₂ size improves only 0.0033% while its axial size is \(3.1\pm6.2\) µm. I’m therefore retaining only positive isotropic BaO₂ size and the new global U term, then repeating the angular and leave-one-out checks from that exact state.
+
+The final leave-one-out profile tests are now clean: removing U, X, Y, or polarization raises Rwp to 7.073%, an unstable ~7.28%, 7.226%, and 7.174%, respectively. The retained U/X/Y terms are positive, total widths remain positive, and their largest correlation is only ~87%, so this is the smallest stable global profile model supported by the full range.
+
+The final structural-model pass is unchanged after the U update: triclinic WO₃ gives Rwp 7.055%, versus 7.530% for monoclinic and 9.294% for orthorhombic (the latter also fails convergence). Every retained local term also survives deletion: BaO₂ size, both weak texture corrections, the BaO₂ peroxide coordinate, and grouped WO₃ ADPs each cause a reproducible whole-pattern degradation when removed. I’m freezing this exact state and generating the cross-checked CIF/profile/JSON deliverables.
+
+The frozen exports are complete and machine-readable. The GSAS-II audit passes with exact profile regeneration, all total peak widths positive, clean convergence, and no dropped variables; the submission audit also passes with two CIFs and fractions summing exactly to 1.0000. The sole CIF review flag is the 1.452 Å O–O peroxide bond in BaO₂, which is chemically intended and documented in the report.
+
+Completed the phase analysis and refinement.
+
+- BaO₂, I4/mmm: 32.62 wt%
+- WO₃, P-1: 67.38 wt%
+- Rwp = 7.0551%, Rp = 5.3003%, GOF = 1.9414
+
+Fractions are normalized over modeled crystalline phases. Realistic systematic uncertainty is approximately 1–2 wt%. No coherent additional crystalline phase was supported.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [BaO2.cif](<ATTEMPT_WORKSPACE>/BaO2.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+
+GSAS-II, cross-file, CIF, and submission audits passed. The BaO₂ CIF’s short O–O audit flag was reviewed and is the expected peroxide bond.
+

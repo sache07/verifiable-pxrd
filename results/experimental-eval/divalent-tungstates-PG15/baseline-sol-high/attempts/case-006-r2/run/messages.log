@@ -1,0 +1,32 @@
+I’ll inspect the measurement metadata and diffraction profile first, then identify candidate phases and build/refine a multiphase GSAS-II model. I’ll keep phase count conservative and validate that the exported CIFs, profile, fractions, and `final.gpx` all come from the same final refinement.
+
+The chemical space is Cu–W–O after an 800 °C reaction, so the principal candidate is copper tungstate, with CuO/WO₃ polymorphs or related copper tungstates as plausible residuals. I’m now extracting peak positions and checking the installed phase-identification/database tooling before committing to a model.
+
+The database provides two CuWO₄ polymorph entries, plus Cu₃WO₆, Cu₂WO₄, tenorite CuO, and several WO₃ polymorphs. I’m comparing complete calculated line sets—not just the strongest peak—because several candidates overlap heavily in the 23–37° region.
+
+The CuWO₄ database entry is a compressed/high-pressure-like cell and is not a good ambient starting point; its strongest calculated line is displaced by about 0.6°. I’m retaining its atomic topology but starting the lattice near the known ambient triclinic cell, then allowing the six cell metrics to refine. This avoids mistaking the cell mismatch for an extra phase.
+
+The first stable lattice refinement confirms triclinic CuWO₄ and drops the profile residual substantially. The remaining fit is dominated by peak-width/intensity mismatch and distinct residual peaks consistent with unreacted WO₃ and CuO. I’m separating lattice and profile refinements now; simultaneously freeing weak-phase cells was numerically unstable and is not defensible.
+
+A full-line check shows that the apparent “CuO” and “WO₃” peaks are all indexed by the refined CuWO₄ cell, including the 38.86°, 48.97°, 53.47°, and 66.82° lines. There are no convincing unique residual peaks for separate precursor phases, so I’m switching to the more parsimonious one-phase model and will only add another phase if it improves unique, non-overlapping reflections.
+
+The single-phase Rietveld fit is now strong (`wR ≈ 8.5%` with conservative profile terms), and every observed peak is indexed. I’m testing only physically plausible preferred-orientation/profile variants now; this is refinement of intensity shape, not a search for additional phases. The absence of a calibrated instrumental profile will remain the main uncertainty in microstructure-related terms.
+
+The final structural refinement is stable and converged: all six triclinic cell parameters and all atomic coordinates refined with modest, chemically plausible shifts. No additional phase has a unique unmatched reflection. I’m now extending the fit to the exact measured limits, exporting the CIF/profile from that same project, and validating the JSON/statistics against the saved `final.gpx`.
+
+All requested deliverables are now written from the same converged one-phase project. I’m doing a final consistency check: reloading `final.gpx`, reparsing the exported CIF, and confirming every `fit.csv` row and statistic matches the saved project.
+
+Completed the phase analysis and refinement.
+
+Result: triclinic CuWO₄, space group P-1, at 100.0 wt% of modeled crystalline phases. Final fit: Rwp 7.354%, Rp 5.269%, RBragg 2.293%, GOF 3.031.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [phase_CuWO4.cif](<ATTEMPT_WORKSPACE>/phase_CuWO4.cif)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+
+The 100 wt% fraction applies only to modeled crystalline material; trace or amorphous content cannot be excluded.
+

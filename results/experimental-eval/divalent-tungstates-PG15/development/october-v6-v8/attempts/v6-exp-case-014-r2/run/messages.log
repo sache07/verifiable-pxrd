@@ -1,0 +1,92 @@
+I’ll inspect the diffraction data, metadata, and the reusable analysis helpers first, then establish an indexed/identified phase inventory before refining any structural model. I’ll preserve stable GSAS-II branches and validate the final project and exports against the supplied audits.
+
+The chemistry is constrained to Sr–W–O from a 900 °C SrCO₃/WO₃ reaction, but both phase count and product stoichiometry remain open. The raw scan uses Cu Kα₁/Kα₂ and has no supplied uncertainties or calibrated profile, so I’ll treat counting-statistical weights and instrument/profile terms cautiously and let complete-pattern evidence decide among likely tungstates and residual reactants.
+
+The peak list already shows that a single scheelite SrWO₄ pattern is unlikely to explain the scan: several strong lines (notably near 33.39°, 45.47°, 51.98°, and 56.08°) form a second coherent family rather than isolated noise. I’m now screening all accessible Sr–W–O and precursor-compatible crystal models by calculated full-pattern fingerprints, including polymorphs as separate hypotheses.
+
+The dominant phase is now securely identified as scheelite SrWO₄ (I4₁/a): its calculated model accounts for the full sequence from 18.33° through 95.38°, not just the strongest peak. A second family—the 23.46/23.97/24.73° triplet plus matching lines near 34.09°, 42.18°, 44.67°, and 48.61°—supports room-temperature distorted WO₃. I rejected one nominal monoclinic WO₃ CIF because its audit exposed 1.57 Å O–O contacts; the chemically sound P2₁/c and P-1 models will be compared on identical refinement settings.
+
+The first screening pass exposed a setup issue rather than a scientific one: GSAS-II’s simulated-histogram constructor left the overall sample scale refinable, making it exactly redundant with phase scale. I’m correcting that before interpreting fractions. Even with that artifact, Sr₃W₂O₉ immediately collapsed to zero scale and destabilized when its cell was released, so it currently fails the required positive-scale/multi-peak test.
+
+The residual is predominantly angular, not a missing phase: SrWO₄ peaks are calculated too low in 2θ at low angle but too high at high angle (for example +0.15° at 28° and −0.14° at 56°). That sign reversal is the fingerprint of specimen-displacement/zero geometry coupled with cell scale. Per the required workflow, I’m branching zero-only, displacement-only, and joint angular models from stable copies before changing widths or adding phases.
+
+Both angular branches are converging slowly because releasing the previously biased cells causes large, coupled corrections, but they are numerically nonsingular. The key result so far is material: correcting angular geometry drops the two-phase fit from about 33.5% Rwp into the low-20% range before any texture, size/strain, or coordinate refinement. I’m letting the prescribed matched branches finish so the selected geometry is reproducible rather than choosing from an intermediate cycle.
+
+The mature residual separates into two coherent components. The 23.46/23.97/24.73° triplet remains consistent with distorted WO₃, while the much stronger 29.76°, 32.62°, 34.50°, 44.67°, 48.61°, 50.22/50.56°, 56.996°, and 61.28° family matches the independent monoclinic SrWO₄ polymorph across the pattern. I’m auditing and adding that atomistic model as a third phase; this avoids incorrectly forcing its intensity into WO₃ or profile broadening.
+
+The proposed monoclinic SrWO₄ candidate failed the full-pattern scale test: at its database cell, its strongest predicted doublet would appear near 28.8–28.9°, where no independent peak exists, so its scale collapsed to zero. The residual instead follows an F-centered cubic sequence (approximately 20.68, 29.76, 35.31/36.72, 42.19, 53.44, 61.28, 70.77, 78.60, 83.91, 93.32°), consistent with a double-perovskite-type cell near 8.5 Å. I’m using that indexed metric only as retrieval evidence to find an atomistic Sr–W–O topology, then I’ll require the complete intensity pattern to pass.
+
+The residual indexing now points to an ordered cubic Sr₃WO₆-type phase rather than the monoclinic SrWO₄ polymorph. I’m building and auditing that charge-balanced atomistic model, then I’ll rerun the complete three-phase comparison—including both near-tied WO₃ structures—from matched refinements.
+
+The cubic model passes the symmetry/occupancy expansion check as Sr₃WO₆ (Fm‑3m). I adjusted its sole oxygen coordinate to give chemically credible W–O and octahedral Sr–O distances before refinement; the phase test will decide whether its scale is supported across the full indexed reflection family.
+
+The third phase retains a positive scale and multi-peak support, but the no-offset baseline forces all three cells away from credible metrics and broadens the global Gaussian term. The P2₁/c WO₃ branch is the only one that converges reproducibly; the triclinic alternative oscillates and distorts its cell, so I’m carrying P2₁/c into the required angular-geometry branch test now.
+
+The required geometry helper is finding a large, real improvement when one angular correction is introduced, but its full-model restoration is still oscillatory. I’m letting all zero-only, displacement-only, and joint branches complete so the selection is based on stability and correlation—not the lower Rwp alone.
+
+With the cells held at their established baseline values, the helper now gives a valid selection: a single specimen-displacement correction of −131 µm. The zero-only branch is worse, and the joint branch is rejected at 99.87% correlation. I’ll now propagate only that selected project and re-establish each cell sequentially before a matched all-cell convergence.
+
+The post-cell rerun again selects displacement, now −244 µm; the zero-only option remains valid but fits the full angular range worse, and the joint option remains unusable. The shift and cells are still moving in a coupled direction, so I’m alternating fixed-shift cell convergence with the mandated helper until that coordinate-descent loop stops changing materially.
+
+At −345 µm the scheelite cell no longer meets the strict 0.05 shift/esd threshold within eight refinement rounds, although every round improves and remains nonsingular. I’m extending that same staged branch—without accepting its intermediate state—until it either converges or is rolled back.
+
+The coupled all-cell test is closer but still unstable once the global width is restored, confirming that simultaneous geometry/cell refinement is over-correlated. I’m retaining the smaller staged model; the helper’s fixed-cell comparisons remain stable and are the appropriate discriminator here.
+
+The latest selected geometry project is stable with displacement −424 µm and a 24.27% Rwp before profile/microstructure optimization. I’m pausing further geometry iteration to perform the required mature-baseline model tests: leave-one-out support for each retained phase, the near-tied triclinic WO₃ replacement, both previously rejected tungstates, and the unreacted SrCO₃ precursor.
+
+I caught and contained a GSAS-II scripting side effect: importing a phase auto-saved into the loaded scratch project, so later candidate tests inherited an earlier replacement. No submitted file was affected. I stopped that run, restored the clean three-phase baseline from the helper’s selected branch, and am rerunning each candidate in an isolated project copy.
+
+The mature model tests are decisive: removing Sr₃WO₆ worsens Rwp by 0.49 points and removing WO₃ by 1.09; both are supported independently. Monoclinic SrWO₄ and SrCO₃ collapse to zero scale. Sr₃W₂O₉ is only 0.33(31) wt% with negligible benefit and its cell branch becomes invalid. Triclinic WO₃ is worse at fixed metric and its nominal 0.02-point gain appears only in a nonconvergent six-cell-parameter branch, so P2₁/c is retained.
+
+The phase inventory is now stable: SrWO₄, monoclinic WO₃, and a minor Fm‑3m Sr₃WO₆ model all have independent multi-peak support, while SrCO₃ and the tested alternative tungstates collapse or add negligible benefit. I’m moving to matched profile/envelope branches from the converged three-phase baseline, with cells and specimen displacement held fixed during each comparison.
+
+The residual map shows two distinct issues to separate: peak centroids still drift slightly (especially around the intense 28° doublet), while the strongest SrWO₄ families have alternating intensity errors across the full range. I’ll first test the smallest angle-dependent Gaussian and Lorentzian width terms independently; intensity-envelope and crystallite terms will be tested only after that baseline is settled.
+
+The constant-width control reconverged unchanged. Allowing an additional Gaussian angle term is already showing unstable back-and-forth steps rather than a reproducible improvement; I’m letting the isolated branches finish so that rejection is based on their full-pattern behavior and covariance, not a single iteration.
+
+The envelope comparison is revealing but not acceptable as a retained correction: polarization drives to its physical upper bound, and the roughness branch is already >95% correlated with the dominant-phase scale. Those are precisely the boundary/correlation failures the requested integrity checks call for; I’ll preserve the branch metrics, then return to the simpler envelope.
+
+A setup issue surfaced in the phase-broadening screen: GSAS-II’s newly linked phases carry nonzero fixed defaults (1 µm size and 1000 µstrain), so “unrefined” was not actually a zero-broadening control. I’m discarding this screen, resetting all phases to effectively infinite size and zero strain, reconverging W, and then repeating each phase term from that true null baseline.
+
+With the true null control, only SrWO₄ crystallite size shows a reproducible positive solution so far (about 0.26 µm, ΔRwp ≈ 0.07 percentage point); WO₃ size is effectively infinite and both tested microstrain terms return to zero. I’m finishing the minor cubic-phase tests before deciding whether the modest SrWO₄ term survives reconvergence and leave-one-term removal.
+
+Both retained broadening terms pass matched removal tests: dropping SrWO₄ size raises Rwp from 21.811% to 21.905%, and dropping Sr₃WO₆ microstrain raises it to 21.941%. No other phase width term survives. I’m now rerunning the required displacement/zero comparison from this updated profile state before any intensity-model tests.
+
+The post-profile angular helper again selects displacement-only (now −528 µm); the joint zero/shift branch is rejected at 99.86% correlation despite its lower numerical Rwp. Cell restaging is converging around that fixed displacement and has already reduced the complete-pattern Rwp to about 20.73%.
+
+The texture screen supports at most a weak SrWO₄ [100] March–Dollase term (Rwp 20.744→20.678, ratio 1.143). Other SrWO₄/WO₃ axes return essentially unity. The cubic [111] branch is numerically divergent, so I’m stopping that failed branch and will test the cubic [100] axis separately before deciding on the weak SrWO₄ correction.
+
+The only usable texture candidate is the weak SrWO₄ [100] term; cubic texture branches fail numerically, and all other ratios are effectively unity. I’m holding [100] provisional while testing the few symmetry-independent coordinates that can materially change intensities—scheelite O, cubic-perovskite O, and the two WO₃ W sites—then I’ll retest texture from the better structural baseline.
+
+I’m finishing the structure-parameter branch checks now. The key decision is whether their apparent fit gains survive chemical-geometry audits; after that I’ll lock the smallest stable model, rerun the angular/profile checks, and export the audited deliverables.
+
+The coordinate branches are now chemically resolved: the tempting SrWO₄ and Sr₃WO₆ gains require W–O distances of about 2.10 Å and 1.39 Å, respectively, and the WO₃ branch gives only a tiny gain with strongly correlated, large W shifts and a 1.55 Å contact. I’m rejecting all three and retaining the audited source geometries. The texture tests were likewise too small or unstable to justify another parameter, so the final model remains deliberately minimal.
+
+The required angular recheck confirms the baseline is the replay-safe choice: zero-only, shift-only, and joint branches all lower the nominal Rwp only by entering nonconverged solutions (maximum shift/σ 4.1–5.7), while zero+shift remains 99.85% correlated. I’m retaining the stable displacement-only solution at −527.9 µm with fixed refined cells (Rwp 20.744%, max shift/σ 0.040).
+
+One retest harness exposed a GSAS-II scripting quirk: adding a phase auto-saved into the loaded project before the branch filename changed. I stopped that run immediately; the stable pre-branch project is preserved in the angular-check copy, and I’m restoring from that copy before continuing. No submitted output has been created yet.
+
+The mature leave-one-out tests remain decisive on the updated model: removing SrWO₄ raises Rwp from 20.744% to 41.442%, removing WO₃ to 22.169%, and removing Sr₃WO₆ to 21.408%. The WO₃ triclinic replacement is being carried through its fixed/free-cell checks; its fixed-cell fit is already worse than the retained monoclinic model.
+
+Both retained broadening terms pass the final matched-removal test. Removing SrWO₄ crystallite size worsens Rwp by 0.105 percentage point; removing Sr₃WO₆ microstrain worsens it by about 0.15 point and destabilizes convergence. I’m now freezing the three-phase baseline, regenerating its profile/reflections, and auditing the exact exported state.
+
+Completed the three-phase refinement.
+
+- SrWO₄ (I4₁/a): 81.64(52) wt%
+- WO₃ (P2₁/c model): 9.84(28) wt%
+- Sr₃WO₆ (tentative Fm-3m model): 8.52(48) wt%
+
+Rwp = 20.744%, Rp = 15.194%, GOF = 5.877. Fractions are normalized over modeled crystalline phases. The Sr₃WO₆ identity/fraction remains semi-quantitative, and the exact WO₃ polymorph is moderately uncertain.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [SrWO4.cif](<ATTEMPT_WORKSPACE>/SrWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [Sr3WO6.cif](<ATTEMPT_WORKSPACE>/Sr3WO6.cif)
+
+The final GPX, regenerated profile, CIF, and submission audits all passed without flags.
+

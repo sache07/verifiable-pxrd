@@ -1,0 +1,31 @@
+I'll start by examining the inputs.
+
+Done. Summary of the analysis:
+
+## Result
+
+**Two crystalline phases — both unreacted precursors; no ternary Ba–W–O product.**
+
+| Phase | Space group | Weight fraction |
+|---|---|---|
+| BaO₂ (barium peroxide) | `I 4/m m m` | **0.330 ± 0.03** |
+| γ-WO₃ (monoclinic) | `P 2₁/n` | **0.670 ± 0.03** |
+
+R_wp = 8.29 %, R_p = 6.06 %, R_wp(exp) = 3.64 %, GOF (χ) = 2.28, R_Bragg = 7.54 %.
+
+## How it was established
+
+- Simulated every COD-filtered entry with elements ⊆ {Ba, W, O, H, C, N}; only BaO₂ and monoclinic WO₃ reproduce the observed reflections, and together they index every peak.
+- A **Le Bail fit** (free intensities, same two cells) reaches R_wp = 6.8 % with a flat high-angle residual — so the leftover Rietveld misfit is peak-shape, not a missing phase.
+- BaWO₄ and BaCO₃ were each added as a third phase: they refine to 0.3 and 0.4 wt % with ΔR_wp ≈ −0.05 %, i.e. not detected (limit ≈1–1.5 wt %). Consistent with 200 °C being far too low for BaO₂ + WO₃ → BaWO₄.
+- Independent validation: refined cells land within 0.2 % of literature for both phases, the refined W positions within 0.008 of published γ-WO₃, and the refined peroxide O–O bond comes out at 1.52 Å (lit. ≈1.49 Å) — none of which was restrained.
+
+## Flagged uncertainties (detailed in `report.md`)
+
+- The pattern carries a **large uncorrected 2θ aberration** (+0.28° at low angle; −495 µm displacement or +0.302° zero offset — both fit equally well and give the same fractions).
+- The covariance esd (±0.0015) is far too optimistic; the BaO₂ fraction spanned 0.313–0.364 across reasonable refinement variants, hence ±0.03. **Microabsorption was not corrected** and biases BaO₂ low, so Ba:W = 0.68 should not be read as a batch stoichiometry.
+- Amorphous content is not quantified; fractions are normalised over the two modelled phases only.
+- Domain sizes/microstrains are fitting parameters, not measurements; WO₃ oxygen positions and all U_iso are fixed (free U_iso went negative), so the CIFs are "correct phase + refined cell and heavy-atom positions", not independent structure determinations.
+
+Deliverables in the workspace root: `final.gpx`, `BaO2.cif`, `WO3.cif`, `fit.csv`, `result.json`, `report.md`, plus `fit.png`.
+

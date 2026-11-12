@@ -1,0 +1,48 @@
+I’ll inspect the specimen metadata, pattern, frozen reference index, and available refinement tooling first. I’ll then build a chemically plausible multiphase model, refine it in GSAS-II, and verify that every submitted output is reproducible from `final.gpx`.
+
+The chemistry points first to SrWO₄ with possible residual SrCO₃ or WO₃, but I’m treating that only as a starting hypothesis. I’m now extracting peak families and querying the frozen COD index for exact-composition candidates before any refinement.
+
+The strongest family is unambiguously scheelite SrWO₄. The remaining low-angle triplet near 23–25° is characteristic of residual WO₃, so I’m testing all chemically plausible WO₃ polymorph references against the complete pattern; this also provides a clean residual map for deciding whether any third phase is warranted.
+
+The WO₃ branches are still refining. I’m keeping the trial profile model deliberately simple and bounded so phase selection is driven by coherent peak families, not by unphysical broadening or extra background flexibility.
+
+The residuals rule out SrO and both SrCO₃ polymorphs as full families: their strongest follow-up lines fall in observed valleys. A chemically balanced alternative is an Sr-rich perovskite-related Sr₃WO₆ intermediate plus residual WO₃, so I’m testing a documented Ca₃WO₆ topology after Ca→Sr substitution and physically reasonable lattice expansion.
+
+A stronger assignment emerged from the full residual sequence: 29.75, 32.63, 44.67, 50.61, 57.00, 61.28, 69.57, 77.49, 81.90, 86.87, and 91.75° follow the C2/c Sr₃W₂O₉ reflection ratios. I’m now testing that exact-composition topology against the provisional Sr₃WO₆ analogue; the required cell contraction is the main physical uncertainty.
+
+All coherent residual families are now indexed by three phases: scheelite SrWO₄, monoclinic WO₃, and C2/c Sr₃W₂O₉. I’ve stopped structure searching and am resolving the strong zero/displacement/cell correlation on a bounded calibration grid before refining coordinates and line shapes.
+
+The line-shape grid is the remaining expensive step. Automatic simultaneous profile refinement ran to boundary values, so I rejected it and am using fixed physical grids for crystallite size and microstrain phase by phase; this avoids trading phase fraction against unphysical broadening.
+
+The accepted physical checkpoint now has all three phases, bounded specimen/profile terms, and no unphysical coordinate refinements. I’m replaying it from the saved GSAS-II parameters—discarding cached calculated intensities—to verify the project/CIF/fraction consistency before writing the final deliverables.
+
+The replay exposed one important physical issue: the initially better-fitting 1960 WO₃ reference contains a 1.58 Å O–O contact already present in the source model. Per the physical-model criterion, I’m replacing it with the later neutron-derived P2₁/c WO₃ structure and will accept the small fit penalty if necessary.
+
+The complete three-phase solution is in hand. I’m checking the final replacement of the WO₃ reference now: the lower-residual legacy model contained an unphysical O–O contact, so the submitted project will use the physically valid neutron-derived P2₁/c model even if its Rwp is slightly higher.
+
+The physical WO₃ substitution is successful: the active three-phase project gives Rwp 12.912%, only 0.049 percentage points above the discarded model. Its refined cell stays close to the neutron reference, so I’m proceeding with an independent full-grid replay and geometry validation before exporting the deliverables.
+
+The bounded heavy-atom trial exposed an important stability issue: four WO₃ coordinates tried to hit their limits and produced a collapsed W–W contact, despite a tiny Rwp gain. I rejected that branch. I’m repeating the test with coordinate-centered bounds to distinguish a real local improvement from parameter-bound artifacts; the source geometry remains the rollback checkpoint.
+
+The replay is clean: all three active phases regenerate from atomic structure factors on all 8,282 measured points, with no profile-review flags. The normalized fractions are 68.594% SrWO₄, 19.652% Sr₃W₂O₉, and 11.754% WO₃; full-grid Rwp is 12.912%. I’m writing those exact replay values into the submission and documenting the larger model uncertainty on Sr₃W₂O₉.
+
+The final replay also confirmed exact fraction/profile consistency. I removed the inactive rejected WO₃ checkpoint from the delivery project, leaving only the three submitted physical phases; a fresh replay of that clean project is numerically identical.
+
+Completed the three-phase GSAS-II refinement:
+
+- SrWO₄, I4₁/a: 68.59 wt%
+- Sr₃W₂O₉, C2/c: 19.65 wt%
+- WO₃, P2₁/c: 11.75 wt%
+
+Full-grid replay: Rwp 12.912%, Rp 9.121% over 8,282 points. All CIFs passed geometry screening. The principal uncertainty is the detailed Sr₃W₂O₉ structure and fraction, as discussed in the report.
+
+Files:
+
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r9/workspace/report.md)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r9/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r9/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r9/workspace/final.gpx)
+- [SrWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r9/workspace/SrWO4.cif)
+- [Sr3W2O9.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r9/workspace/Sr3W2O9.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r9/workspace/WO3.cif)
+

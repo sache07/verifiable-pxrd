@@ -1,0 +1,46 @@
+I’ll inspect the pattern, metadata, and the reusable refinement utilities first, then screen candidate phases and build the GSAS-II model in staged, auditable branches. I’ll keep the final exports synchronized with the selected project and run both project and submission audits before handing it back.
+
+The metadata points to the Cu–W–O system heated at 800 °C, so the chemically likely inventory is copper tungstate plus possible CuO/WO₃ remnants or related oxide polymorphs. I’m now extracting the experimental peak fingerprint and querying the local COD resource by both chemistry and diffraction agreement; I’ll treat composition as a prior, not as identification.
+
+The strongest peaks form a single coherent fingerprint of triclinic wolframite-type CuWO₄; several peaks that superficially resemble CuO or WO₃ are also expected CuWO₄ reflections. I’m testing that structural assignment first against the entire profile, then I’ll add each precursor/polymorph one at a time and require a stable positive scale plus multiple unique residual peaks before retaining it.
+
+The ambient-cell P‑1 model aligns every major line with a smooth angle-dependent offset; once that correction is allowed, the whole-pattern residual drops sharply rather than improving only around overlaps. This is strong evidence that the apparent CuO/WO₃ “matches” are coincidental reflections of CuWO₄, but I’m still running explicit leave-one-in tests for those precursor phases after the single-phase model is mature.
+
+The angular test converged cleanly after extending the helper’s branches: sample displacement alone is slightly better than zero-only (Rwp 15.512% vs 15.554%), while the joint branch is rejected at 0.9999 correlation. For peak shape, an independently refined Lorentzian X term is the only simple global term so far that improves the fit while keeping widths physically positive; W, U, and Y branches run to nonphysical negative-width solutions and are being rolled back.
+
+The phase inventory is now narrowed to dominant triclinic CuWO₄ with a supported trace WO₃ component. I’m continuing with staged coordinate, profile, microstructure, and texture tests, then I’ll replay the winning model into the final GSAS-II project and audit every exported file.
+
+The WO₃ candidate earns its place through several non-overlapping peaks, while CuO refinements collapse to zero scale. I’ve now isolated atomic-coordinate refinements to CuWO₄ only, so the trace phase cannot borrow intensity through an underdetermined coordinate model. First I’m testing Cu/W positions, then oxygen positions from that stable branch.
+
+Coordinate refinement is chemically sound: the Cu–O and W–O contact ranges remain plausible and both CIF audits are clean. Of the newly tested Gaussian terms, refining U is rejected because the total high-angle variance becomes negative; V remains viable and improves the fit across a valid positive-width range. I’m now checking whether that gain is distributed across the pattern and whether simpler width/texture explanations supersede it.
+
+The dominant phase shows real but modest finite-size broadening (~0.54 µm): it helps both the low- and high-angle regions, though it slightly worsens the middle. Microstrain is weaker but independently positive, so I’m running the required joint test; the WO₃ size/strain gains are negligible and will not be retained.
+
+The simultaneous replay exposed an important redundancy: CuWO₄ isotropic size and the global Lorentzian X term correlate at 99.55%, so that branch is not defensible. I’m rolling it back and rebuilding the width model with explicitly neutral phase broadening values before retesting size and strain; this avoids treating GSAS-II’s nonzero defaults as evidence.
+
+With neutral phase broadening, neither size nor microstrain is supported; the earlier apparent size term was entirely entangled with X. The defensible nuisance model is now global X/V, one polarization parameter, and only a very mild CuWO₄ [001] March–Dollase term. Ten background coefficients remain preferable to 12 because the extra pair gives only a marginal gain. I’m rerunning the prescribed angular branch comparison on this mature model now.
+
+The mature angular test selects sample displacement alone (−509.5 µm); the joint zero/displacement branch is rejected at 0.99993 correlation. A fixed-cell CuO retest gives only 0.18 wt% and ΔRwp ≈0.0015, while its apparent larger benefit requires implausible cell drift, so CuO remains excluded. I’m completing the near-tied WO₃ polymorph replay before freezing the phase assignment.
+
+The final-width retest found one additional supported term: Gaussian U. In a simultaneous replay it lowers Rwp from 6.923% to 6.640%, all total widths remain positive, and U/V are significant but correlated at 0.92—high enough to track, below the rejection threshold. I’m comparing the simpler U-only alternative and rechecking the remaining profile terms before rerunning the angular selector.
+
+The U/V/X/polarization/[001]-texture terms all survive matched leave-one-out tests; removing them raises Rwp to 6.923, 7.004, 8.885, 7.978, and 6.680%, respectively. Removing WO₃ raises it to 7.221%. Final size/strain retests again return neutral or negative values, so no phase broadening is retained. The selected model is now converged; I’m auditing residuals, fractions, geometry, and cross-file consistency before export.
+
+Identified crystalline phases:
+
+- CuWO₄, triclinic `P -1`: **97.864 wt%**
+- WO₃, monoclinic `P 21/c`: **2.136 wt%**
+
+Fractions are normalized over modeled crystalline material. Final fit: Rwp = 6.640%, Rp = 4.777%, GOF = 2.736. Trace CuO could not be established reliably; WO₃ polymorph assignment retains some uncertainty.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [CuWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_CuWO4.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+
+The final project, regenerated profile, CIFs, fractions, and schema passed the supplied audits.
+

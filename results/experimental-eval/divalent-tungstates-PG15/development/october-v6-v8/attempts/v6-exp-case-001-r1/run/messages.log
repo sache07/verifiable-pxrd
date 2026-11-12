@@ -1,0 +1,101 @@
+I’ll first inspect the measurement metadata, pattern, and the provided workflow helpers, then screen candidate phases before building and refining the complete GSAS-II model. I’ll keep branch checkpoints and validate both the final project and all exported deliverables.
+
+The chemistry points to a low-temperature Ba–W–O reaction, so residual BaCO₃/WO₃ and one or more barium tungstates are all plausible; I won’t assume completion. I’m now locating the GSAS-II runtime and extracting the observed peak/cell evidence before making structure assignments.
+
+Peak positions already show at least two distinct width families: sharp components near 23–35° and a broader family extending through high angle. That strongly favors a multiphase model rather than one strained structure. I’m comparing all Ba–C–O, W–O, and Ba–W–O candidates in the local diffraction database against the whole pattern, including absent-peak penalties.
+
+The first full-pattern branch is refining now. The candidate audit has already rejected one commonly tabulated WO₃ model because it contains near-duplicate oxygen sites; I’m carrying only geometrically defensible WO₃ alternatives and the clean Pnma BaCO₃ model into matched tests.
+
+The initial two-phase branch has converged through background, scales, and cells; it is now testing the matched global width model. Cell refinement cut the weighted profile residual substantially, confirming that the candidate family explains many independent peaks, but the width branch is numerically slower because the high-angle peaks broaden strongly.
+
+The first viable model is BaCO₃ + monoclinic WO₃, with both phases supported by many separated peaks; the initial conditional fractions are about 57/43 wt%, but the fit is not yet mature. I’m now running identical branches for the triclinic/orthorhombic WO₃ alternatives and reduced tungsten oxides, plus single-phase controls, to test whether that assignment survives whole-pattern and leave-one-out comparisons.
+
+All single-phase controls are decisively worse (Rwp about 29–31% versus about 21.4% for two phases), so both BaCO₃ and WO₃ are required. The close WO₃ contest is now between monoclinic P2₁/c and triclinic P-1; orthorhombic Pnma is weaker across multiple angle regions. The prescribed zero/displacement branch test is running on all three before I choose the structural family.
+
+The angular test is decisive for the leading monoclinic model: a single displacement correction improves Rwp from 21.51% to 11.75% and aligns the full peak series, while a joint zero/displacement model is rejected at 0.99995 correlation. The orthorhombic WO₃ alternative remains materially worse (14.12%); I’m waiting for the lower-symmetry triclinic branch to finish before freezing the phase symmetry.
+
+The width diagnosis is clear: positive Gaussian U and W terms are both supported and reduce Rwp to 8.58%, while remaining stable. A polarization-only explanation helps much less and will be retested only from the selected width state; Lorentzian branches are still being checked for positivity and convergence.
+
+The selected global profile is now U+W+X: all widths remain positive and Rwp falls to 7.49%. Y is redundant, the roughness branch is singular/unphysical, and BaCO₃ size/strain branches fail the stability checks. WO₃ microstrain is independently supported (7.36%); I’m now reconverging it with the modest polarization correction and retesting WO₃ size before moving to texture/structure checks.
+
+The mature replacement test leaves monoclinic P2₁/c WO₃ narrowly but reproducibly ahead of triclinic P-1 (Rwp 7.0018% versus 7.0089%) with fewer lattice degrees of freedom; Pnma is far worse. I’m repeating the near-tie with staged scale/cell fitting and testing the alternate BaCO₃ model before freezing symmetry.
+
+Coordinate tests show a small, stable improvement for BaCO₃ (7.00% → 6.92%); WO₃ coordinates do not converge and both independent-ADP branches generate negative Uiso values, so those are rejected. I’m auditing the refined BaCO₃ geometry before deciding whether that coordinate adjustment is defensible.
+
+The complete-pattern comparison has narrowed the model to BaCO₃ (Pnma) plus monoclinic WO₃, with a triclinic WO₃ model essentially tied but slightly worse and less parsimonious. I’m checking whether the modest BaCO₃ coordinate refinement is chemically credible before freezing the model, then I’ll run matched term-removal checks and regenerate all deliverables from the audited final project.
+
+The coordinate branch passes generic contact checks, but it drives the carbonate group from already imperfect source geometry to a chemically less credible 1.235/1.352 Å split. That small Rwp gain is therefore not structural evidence; I’m rejecting it and retaining fixed literature coordinates with refined unit cells. This also avoids attributing peak-shape mismatch to atom motion.
+
+I’m now retesting size/strain and simple preferred-orientation terms from the mature two-phase baseline. These tests are deliberately one-at-a-time so a weak overlap improvement cannot masquerade as an independently supported phase effect.
+
+The staged retests are still refining; no action is needed from you. Once they finish, I’ll retain only terms that improve multiple angle regions with positive, stable parameters, then run the required angular zero/displacement competition again on that exact model.
+
+The one-term branches are taking longer because each is being reconverged after restoring all mature nuisance parameters. That is expected and protects the comparison from staged-refinement artifacts; the baseline remains untouched and recoverable.
+
+Several branches have completed cleanly, and the remaining WO₃ orientation axes are still running. I’m letting the matched series finish because selecting an axis from only a partial screen would bias the model.
+
+The full axis screen is unusually slow but remains active. All work is isolated in branch projects, so there is no risk to the selected baseline; I’ll compare the completed logs rather than infer anything from runtime.
+
+The retests do not justify extra terms. BaCO₃ size gains only at low angle while worsening the highest-angle region and correlating strongly with WO₃ strain; BaCO₃ strain nearly cancels the global Gaussian term and worsens 30–50°. WO₃ texture changes are tiny (ratio within ~3% of random) and region-inconsistent. I’m keeping the smaller interpretable model.
+
+The final angular comparison is progressing normally. It has reconverged the zero-only branch through all restored parameter groups; the shift-only and joint branches still need to complete before the helper can make its correlation-aware selection.
+
+The required angular rerun confirms the existing shift-only correction: reoptimizing it changes Rwp by only 0.00003%, while the joint zero/shift branch is rejected at 99.994% correlation. I’m freezing that state and performing leave-one-term-out refinements for every retained optional profile, strain, polarization, and texture parameter.
+
+The leave-one-out series is still reconverging. The important check is whether other free terms can absorb a removed effect; only the final full-pattern and regional penalties will be used, not the immediate first-cycle degradation.
+
+The matched removals remain active and isolated. This is slower than a single refinement because removing one width component can force broad re-equilibration among the remaining global profile and phase-strain terms.
+
+Most removal branches should now be through their convergence attempts; the process emits its summaries only after the complete sequence. I’m keeping it running because an unconverged leave-one-out copy is not a valid necessity test.
+
+One or more removals are requiring the maximum retry budget, which itself is evidence of instability, but I’ll allow the scripted limit to finish so the rejection is documented consistently rather than stopped by hand.
+
+The first implementation’s retry ceiling is too expensive for deliberately unstable removals. I’m stopping that batch, preserving any completed branch outputs, and will rerun only unfinished checks with a tighter convergence criterion; this does not alter the selected project.
+
+The leave-one-out checks strongly support U, X, polarization, WO₃ strain, and BaCO₃ [110] texture. Refined W is the exception: fixing W at its nominal value costs only 0.0065 Rwp percentage points and improves three of four angle regions, so I’m removing W refinement for parsimony and rerunning the angular competition on that updated baseline.
+
+The second angular screen is still restoring and reconverging each nuisance group. Its output is being logged compactly; I’ll report the selected branch and correlation result as soon as all three alternatives finish.
+
+The leaner profile gives the same angular decision: shift-only remains selected, and the nominally better joint correction is rejected at 99.994% zero/shift correlation. I’m doing the final “nothing else qualifies” pass now—V/Y, phase size/strain, and the strongest previously screened WO₃ texture axis.
+
+The final optional-term screen is still running. As before, every candidate is first isolated and then tested with the full mature refinement flags restored, so acceptance requires surviving both stages.
+
+The later branches are still reconverging, likely the phase-size tests that previously approached bounds. The selected baseline remains unchanged; boundary-seeking or nonconvergent outcomes will be rejected explicitly.
+
+The final pass leaves the lean baseline unchanged. V is below the numerical threshold; Y and BaCO₃ strain give essentially identical residuals and regional behavior, exposing a non-identifiable broadening tradeoff; BaCO₃ size is strongly correlated with WO₃ strain; and WO₃ texture is only ~2% from random with mixed regional benefit. None is defensible as a unique physical term.
+
+With the nuisance model now fixed, I’m repeating the decisive one-for-one structure tests from this exact baseline: triclinic and orthorhombic WO₃ alternatives, plus the clean alternate BaCO₃ entry. This is the last structural discrimination pass before export.
+
+The replacement refinements are still active. These candidates use different settings and therefore need staged scale/background, then cell, then full-nuisance convergence; direct all-at-once comparison would be unreliable.
+
+At least one lower-quality replacement is consuming its retry limit, which often happens when its scale or cell cannot stabilize. The accepted P2₁/c project is untouched, and each alternative will be judged by the saved final state plus convergence flags.
+
+The exact-baseline replacements confirm the phase choice: P2₁/c WO₃ gives Rwp 7.0083%, triclinic P-1 gives 7.0174% with three extra lattice degrees of freedom, and Pnma gives 11.73%; the alternate BaCO₃ model is unstable and poor. I’m now running the final exact-baseline leave-one-out audit for the retained terms, then I’ll export directly from that project.
+
+The exact-baseline leave-one-out checks are still refining. Their earlier counterparts all showed clear penalties; this repeat is to ensure the decision survives the final removal of W rather than to search for a lower Rwp model.
+
+All retained width, polarization, strain, and texture terms show clear full-pattern penalties when removed. I’m doing the remaining no-displacement control with a bounded retry count; the angular helper already established shift-only as the stable correction, but this explicitly checks the no-correction case.
+
+The no-displacement control fails decisively (Rwp 21.35% versus 7.01%, with large unresolved shifts across every angle region), so the displacement correction is necessary. The model-selection work is complete; I’m reconverging the chosen project under its final filename and will generate CIFs, profile, fractions, statistics, and report from that same saved state.
+
+The final project converged cleanly (no dropped variables; maximum shift/esd 0.029). It yields 53.27 wt% BaCO₃ and 46.73 wt% WO₃, with Rwp 7.0083%. I’m now running the replay, GPX, CIF, and submission consistency audits and checking that the exported CSV reproduces the profile stored in `final.gpx`.
+
+Completed the quantitative Rietveld analysis:
+
+- BaCO₃ (witherite, Pmcn/Pnma No. 62): **53.27 wt%**
+- WO₃ (monoclinic P2₁/c No. 14): **46.73 wt%**
+- Rwp: **7.0083%**, Rp: **5.3339%**, GOF: **2.0165**
+
+The main uncertainty is a near-tied triclinic WO₃ model; practical fraction uncertainty is approximately ±1 wt%. Fractions exclude any unquantified amorphous material.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_BaCO3.cif](<ATTEMPT_WORKSPACE>/phase_BaCO3.cif)
+- [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+
+CIF, GPX, profile-regeneration, and submission audits all pass without flags.
+

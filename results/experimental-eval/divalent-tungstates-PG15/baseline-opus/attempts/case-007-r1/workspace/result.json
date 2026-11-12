@@ -1,0 +1,207 @@
+{
+  "derived_chemistry": {
+    "bulk_Mg_to_W_atomic_ratio": 1.311,
+    "comment": "Both precursors survive, so the 900 C reaction MgO + WO3 -> MgWO4 is incomplete.  The leftover MgO greatly exceeds the leftover WO3 on a molar basis, implying an Mg-rich (Mg:W ~ 1.3) starting mixture and/or under-correction of the MgO amount (see notes).",
+    "fraction_of_Mg_present_as_MgWO4": 0.62,
+    "fraction_of_W_present_as_MgWO4": 0.814,
+    "mole_fractions_of_phases": {
+      "MgO": 0.3324,
+      "MgWO4": 0.5431,
+      "WO3": 0.1245
+    }
+  },
+  "fit_statistics": {
+    "GOF": 2.771,
+    "Rexp_percent": 2.885,
+    "Rp_percent": 5.657,
+    "Rwp_percent": 7.994,
+    "chi2": 61562.9,
+    "n_observations": 8062,
+    "n_variables": 45,
+    "per_phase_RF2_percent": {
+      "MgO": 3.98,
+      "MgWO4": 2.37,
+      "WO3": 6.47
+    },
+    "per_phase_RF_percent": {
+      "MgO": 1.4,
+      "MgWO4": 0.98,
+      "WO3": 1.63
+    },
+    "reduced_chi2": 7.679,
+    "two_theta_range_deg": [
+      12.5,
+      100.1
+    ]
+  },
+  "instrument_model": {
+    "I_Ka2_over_Ka1": 0.5,
+    "SH_over_L": 0.02338,
+    "SuorttiA": -2.2858,
+    "SuorttiB": 0.02751,
+    "background": "Chebyshev (1st kind), 14 terms",
+    "gaussian_W_centideg2": 21.021,
+    "polarization_GSASII": 0.5,
+    "specimen_displacement_um": -543.7,
+    "wavelengths_angstrom": [
+      1.540598,
+      1.544426
+    ],
+    "zero_offset_deg": 0.0
+  },
+  "n_phases_modelled": 3,
+  "notes": [
+    "The 9.90-12.50 deg region was excluded from the refinement: it contains only the steeply rising direct-beam/air-scatter tail and no Bragg peaks.",
+    "All three phases require the same systematic peak shift of about +0.33 deg at 15-30 deg 2theta; without it every refined cell comes out ~1% too small.  It is modelled as a specimen displacement (-544 um, cos-theta dependence) rather than as a constant zero error, because that fits better (Rwp 7.99 vs 8.05%) and reproduces a(MgO) = 4.2122 A against the periclase value 4.2117 A (zero-error model: 4.2160 A).  The unreacted MgO thus acts as an internal standard.  Weight fractions are unchanged by this choice.",
+    "Observed intensities fall off systematically at low 2theta relative to any structural model.  This was absorbed with the GSAS-II Suortti surface-roughness function; the refined A lies outside the physical 0-1 range, so it is used as an empirical low-angle intensity correction (beam overflow / surface roughness) rather than as a measured roughness.  Weight fractions change by <1 abs% whether it is included or not.",
+    "No Brindley microabsorption correction was applied (particle sizes unknown).  MgO (mu ~ 100 /cm) is a much weaker absorber than MgWO4/WO3 (mu ~ 830-990 /cm), so the MgO weight fraction is more likely under- than over-estimated.",
+    "Atomic displacement parameters were held at the published single-crystal values; they cannot be refined meaningfully alongside the empirical low-angle correction.",
+    "WO3 oxygen positions were held at the Loopstra & Boldrup values; releasing them gave no improvement in Rwp (8.513 vs 8.516 in the equivalent test refinement) while moving some O atoms by >0.1 fractional units, i.e. overfitting.",
+    "Alternative WO3 polymorphs were tested with the identical protocol and rejected: orthorhombic beta-WO3 (Pnma) Rwp = 10.99%, triclinic delta-WO3 (P-1) worse than monoclinic at the matched stage with alpha, gamma within 0.17 deg of 90 deg.",
+    "Removing MgO from the model raises Rwp from 7.99% to 9.36% and leaves the 43.21 deg peak unfitted; removing WO3 raises it to 19.07%."
+  ],
+  "phases": [
+    {
+      "cif": "phase_MgWO4.cif",
+      "description": "huanzalaite (wolframite type)",
+      "domain_size_um": 0.1928,
+      "formula": "MgWO4",
+      "lattice": {
+        "angle_alpha": 90.0,
+        "angle_beta": 90.7746,
+        "angle_gamma": 90.0,
+        "length_a": 4.68972,
+        "length_b": 5.67403,
+        "length_c": 4.92867,
+        "volume": 131.13816
+      },
+      "microstrain_1e-6": 1745.8,
+      "phase_name": "MgWO4",
+      "phase_scale": 119.13362375409226,
+      "space_group": "P 2/c",
+      "space_group_number": 13,
+      "structure_source": "COD 9013902 (Macavei & Schulz, Z. Kristallogr. 207, 193, 1993)",
+      "weight_fraction": 0.7777,
+      "weight_fraction_esd_statistical": 0.0016,
+      "weight_fraction_uncertainty_combined": 0.0053
+    },
+    {
+      "cif": "phase_WO3.cif",
+      "description": "gamma-WO3 (monoclinic tungstite type)",
+      "domain_size_um": 10.0,
+      "formula": "WO3",
+      "lattice": {
+        "angle_alpha": 90.0,
+        "angle_beta": 90.80698,
+        "angle_gamma": 90.0,
+        "length_a": 7.3031,
+        "length_b": 7.53398,
+        "length_c": 7.68961,
+        "volume": 423.05176
+      },
+      "microstrain_1e-6": 6711.3,
+      "phase_name": "WO3",
+      "phase_scale": 6.82611351418739,
+      "space_group": "P 2_1/n",
+      "space_group_number": 14,
+      "structure_source": "COD 2311041 (Loopstra & Boldrup, Acta Cryst. 1966), transformed to the P2_1/n setting",
+      "weight_fraction": 0.1518,
+      "weight_fraction_esd_statistical": 0.0009,
+      "weight_fraction_uncertainty_combined": 0.0041
+    },
+    {
+      "cif": "phase_MgO.cif",
+      "description": "periclase",
+      "domain_size_um": 0.2611,
+      "formula": "MgO",
+      "lattice": {
+        "angle_alpha": 90.0,
+        "angle_beta": 90.0,
+        "angle_gamma": 90.0,
+        "length_a": 4.21225,
+        "length_b": 4.21225,
+        "length_c": 4.21225,
+        "volume": 74.7382
+      },
+      "microstrain_1e-6": 868.1,
+      "phase_name": "MgO",
+      "phase_scale": 36.45665291545382,
+      "space_group": "F m -3 m",
+      "space_group_number": 225,
+      "structure_source": "COD 9000499 (Hazen, Am. Mineral. 61, 266, 1976)",
+      "weight_fraction": 0.0705,
+      "weight_fraction_esd_statistical": 0.0016,
+      "weight_fraction_uncertainty_combined": 0.0053
+    }
+  ],
+  "refinement_log": [
+    {
+      "GOF": 11.8184,
+      "Nvars": 17,
+      "Rwp": 34.1534,
+      "stage": "background + phase scales"
+    },
+    {
+      "GOF": 8.5764,
+      "Nvars": 18,
+      "Rwp": 24.7829,
+      "stage": "+ specimen displacement"
+    },
+    {
+      "GOF": 4.5254,
+      "Nvars": 27,
+      "Rwp": 13.0696,
+      "stage": "+ unit cells"
+    },
+    {
+      "GOF": 4.5175,
+      "Nvars": 28,
+      "Rwp": 13.046,
+      "stage": "+ Gaussian W"
+    },
+    {
+      "GOF": 4.1366,
+      "Nvars": 31,
+      "Rwp": 11.9436,
+      "stage": "+ isotropic microstrain"
+    },
+    {
+      "GOF": 4.1357,
+      "Nvars": 34,
+      "Rwp": 11.9388,
+      "stage": "+ isotropic size"
+    },
+    {
+      "GOF": 2.8262,
+      "Nvars": 36,
+      "Rwp": 8.1577,
+      "stage": "+ Suortti low-angle intensity corr."
+    },
+    {
+      "GOF": 2.7877,
+      "Nvars": 37,
+      "Rwp": 8.046,
+      "stage": "+ axial-divergence asymmetry"
+    },
+    {
+      "GOF": 2.7689,
+      "Nvars": 45,
+      "Rwp": 7.9878,
+      "stage": "+ MgWO4 atom coordinates"
+    },
+    {
+      "GOF": 2.7711,
+      "Nvars": 45,
+      "Rwp": 7.9941,
+      "stage": "final cycle"
+    }
+  ],
+  "sample": {
+    "heating_temperature_C": 900.0,
+    "precursors": [
+      "MgO",
+      "WO3"
+    ]
+  },
+  "weight_fraction_basis": "normalised over the three modelled crystalline phases (sums to 1)"
+}

@@ -1,0 +1,184 @@
+I’ll inspect the measurement metadata, pattern, and the reusable PXRD/GSAS-II helpers first. I’ll then screen candidates, audit atomistic models, refine competing phase sets from stable project checkpoints, and finish by cross-auditing the GPX, CIFs, fractions, and exported profile.
+
+The chemistry is a Sr–W–O reaction from SrCO₃ and WO₃ at 900 °C, measured in reflection geometry with Cu Kα₁/Kα₂ over 10–100° 2θ. I’m now separating true peak families from the doublet/background and locating the local structure-search and GSAS-II interfaces so that phase decisions are based on the whole pattern.
+
+Initial screening identifies tetragonal scheelite SrWO₄ as the dominant phase: its independent reflections track the measured pattern from 18.3° through the resolved high-angle doublets. A second coherent family is present near 23.45/23.97/24.73°, 34–35°, 41–42°, and 48–55°; I’m carrying the plausible WO₃ polymorphs, residual carbonate, and the few other Sr–W–O database structures through matched whole-pattern tests rather than assigning those overlaps by peak labels alone.
+
+The first stable one-phase refinement confirms that the apparent peak drift is dominated by specimen displacement, not a wavelength change: the matched shift-only branch lowers Rwp from 34.21% to 21.66%, while the joint zero/shift branch is rejected at 99.85% correlation. I’m using that checkpoint for identical add-one-phase tests; malformed WO₃ and carbonate database entries flagged by the atom/contact audit have been excluded.
+
+The matched branch screen is still running across 13 audited candidates. Each branch first has to earn a positive scale with the established model frozen, then survive a full cell/scale/background/displacement reconvergence; this prevents a low-symmetry phase from receiving credit merely by absorbing one overlap.
+
+Several higher-complexity tungsten-oxide branches are computationally slower, but the process is advancing and remains within the same fixed screening protocol. I’ll report the candidates by positive scale, cell stability, whole-pattern gain, and unique residual-peak support—not by Rwp alone.
+
+The screen is spending most of its time on the 50–80 atom reduced-oxide models. Those are being retained only as controls because their chemistry is less likely at 900 °C in this precursor system; the structurally simpler WO₃ alternatives and residual-carbonate controls are included in the same run.
+
+The two leading WO₃ polymorphs remain effectively tied at the current nuisance level (ΔRwp ≈ 0.02 percentage point), so both are being propagated. The next matched tests separately probe Gaussian width, Lorentzian width, polarization, and surface roughness; branches with nonpositive total widths or unstable correlations will be rolled back.
+
+The width/envelope screen is still converging cleanly enough to continue, but repeated matched refinements over the full 8,282-point range are taking a few minutes. This is deliberate because the strongest remaining mismatch changes with angle, and a local low-angle improvement would otherwise bias the phase fractions.
+
+The run has moved into the surface-roughness branches, which are slower because the correction couples to all reflection intensities. The project checkpoints are intact, so any poorly conditioned envelope branch can be discarded without contaminating the phase-model baseline.
+
+This is slower than expected but not stalled; the expensive branches are repeatedly approaching convergence rather than crashing. I’ll let the current matched set finish once, then use the winning minimal terms for all subsequent tests so the later phase replacements are much faster.
+
+The repeated calls are now past seven minutes, consistent with the worst-case 18 branches × eight full refinements. I’m keeping it because it directly supplies the required rollback evidence for width and envelope terms; no final files are being touched during this screen.
+
+The runtime indicates some rejected branches are burning all allowed reconvergence attempts. If the current cycle does not finish shortly, I’ll stop it and use the completed branch GPXs directly; each candidate is saved after refinement, so the scientific comparisons remain recoverable even without the aggregate JSON.
+
+The global screen produced clear rollback decisions. Refining U, V, or Y drove the total widths negative and is rejected; Z gave no material gain. Polarization alone tried to refine to 1.55, outside its physical 0–1 range. A one-parameter Suortti surface-roughness correction stayed positive and stable (B ≈ 0.280) and achieved essentially the same envelope improvement (Rwp 20.30% → 16.84%), so that is the interpretable envelope branch I’m carrying forward.
+
+The mature two-phase fit still leaves a strong, coherent third family at 29.754°, 30.895°, 32.633°, 44.673°, 48.574°, 53.443°, 61.223°, and 67.037°. These are not explained by either WO₃ polymorph or by profile broadening. The local library lacks Sr₃WO₆ itself, but it contains charge-balanced Ca₃WO₆ and Ba₃WO₆ topology analogues; I’m auditing those and will test Sr-for-Ca/Ba substitutions with symmetry and topology preserved.
+
+The Sr₃WO₆ topology passes the CIF audit and imports cleanly after preserving the original P2₁/n setting. Its strong calculated triplet maps naturally onto the three unmatched peaks near 29.75–32.63°, so I’m now allowing its scale and cell to refine from a modest 3.5% Ca→Sr lattice expansion while the accepted two-phase model remains checkpointed.
+
+A separate residual sequence (29.754°, 50.607°, 59.58°, 72.98°, 81.90°, 83.91°, 94.13°) resembles rocksalt SrO, so I’m testing that audited source as a competing explanation rather than forcing all residual intensity into textured Sr₃WO₆. This is chemically plausible as an incompletely converted Sr-rich precursor product, but the weak observed 200 reflection is an important falsification check.
+
+I’ve narrowed the pattern to dominant scheelite SrWO₄ plus a tungsten-oxide component and a minor Sr-rich tungstate candidate. I’m now resolving the near-tied WO₃ polymorphs and checking whether the remaining weak peaks support a separate phase or only a correlated texture/profile correction.
+
+The two low-symmetry WO₃ models remain statistically indistinguishable at this stage (their matched envelope fits differ by only ~0.003 Rwp points). I’m carrying both forward and will use the complete three-phase pattern, cell stability, and leave-one-out behavior to discriminate them.
+
+A key profile diagnosis emerged: GSAS-II’s imported defaults include 1000 µstrain for every phase even when the value is not being refined. I’m testing crystallite size and microstrain phase-by-phase now; this should separate genuine extra peaks from residuals caused by overly broad calculated reflections.
+
+The broadening screen is still running across both WO₃ alternatives. Early behavior is consistent with the fixed default broadening being consequential, so I’m letting each phase receive an identical independent size/strain test before accepting or rejecting any minor component.
+
+The matched branches are computationally heavier than the initial screening because each one is being reconverged and checked for singularities and parameter correlation. I’m preserving the untextured three-phase states as rollback points; the earlier strong texture gain is not being accepted because its scale correlation was ~99%.
+
+The current run is progressing through all 16 matched branches rather than hanging; each GSAS-II refinement cycle takes a few seconds. Once complete, I’ll retain only positive, stable broadening terms that improve more than one angular region, then repeat the phase-replacement check from that mature baseline.
+
+Several branches are requiring repeated convergence passes, which is expected when phase scales, cells, roughness, and one broadening term are active together. I’ll stop any branch that develops a dropped variable, non-positive width, or unstable covariance rather than carrying a numerically attractive but unsafe model forward.
+
+This pass is near the expected upper runtime for the full branch matrix (roughly 150–170 refinement calls). The stable project snapshots mean no work is at risk; I’m waiting for the complete comparison rather than selecting from partial results.
+
+The run has exceeded the typical timing, so I’m allowing one final interval and will then inspect its completed project snapshots if the summary writer has not returned. That avoids spending more time on a branch that may simply be cycling near a tolerance.
+
+The completed subset is decisive on broadening: only the dominant SrWO₄ microstrain gives a material improvement (~0.40 Rwp point); the minor-phase size/strain terms are negligible, unstable, negative, or hit a boundary. Because GSAS-II’s strain magnitude is sign-degenerate, I’m restarting that branch from a positive value and verifying it remains positive and well-conditioned.
+
+The positive-strain restart is stable so far. I’m also performing matched add-one and leave-one-out checks for SrO, Sr₃W₂O₉, and the Sr₃WO₆ analogue; this directly tests whether each minor phase retains support once the dominant peak widths are corrected.
+
+The minor-phase branches are again slower because the four-phase candidates add many lattice variables, but they are finite and producing snapshots. The decision threshold remains structural: positive scale, multiple unique peaks, and a material leave-one-out loss—not a small numerical Rwp gain alone.
+
+I’m keeping the branch matrix running to completion because the monoclinic WO₃ model has begun to outperform the triclinic alternative only after Sr₃WO₆ is included. That interaction is exactly why the phase replacements must be compared from the same mature baseline.
+
+The run has reached the last expected refinement block. If it does not close shortly, I’ll use the already-saved matched snapshots and inspect them directly, as before, rather than spend time on redundant convergence calls.
+
+The positive restart confirms the fitted negative strain is not a sign-degenerate magnitude—it subtracts width and is therefore unphysical. I’m rejecting it. I’m now replacing GSAS-II’s non-neutral imported defaults with explicit zero microstrain / large-size controls and screening only positive broadening from that physically clean baseline.
+
+The clean-baseline test confirms the issue: removing unsupported default microstrain sharpens the dominant peaks and improves the fit before adding any new parameter. I’m now screening the six global width coefficients from that neutral state, so any retained broadening has an explicit, positive full-pattern basis.
+
+The profile screen is proceeding normally. The low-symmetry WO₃ phases carry many reflections, so each branch is slower than the one-phase tests; I’m applying identical cycle limits and convergence checks to keep the comparison fair.
+
+No singularities have surfaced in the saved branches so far. After this screen I’ll compare the accepted coefficient by angular region and run matched removal tests; a marginal one-region improvement will not be retained.
+
+The clean global screen selects only the Caglioti \(U\) term: it lowers Rwp by ~0.25 points, keeps total Gaussian width positive, and improves the 30–50°, 50–70°, and 70–100° regions (with a small low-angle tradeoff). The monoclinic WO₃ model remains slightly better than triclinic under the identical profile treatment.
+
+The final phase-specific profile screen is underway from the selected clean \(U\)-refined model. Each size and strain term starts inside its physical domain; boundary hits, sign reversals, or negligible gains will be rejected.
+
+The clean screen finds real broadening only for the dominant SrWO₄: size and positive microstrain independently improve Rwp by ~0.15 and ~0.09 points. WO₃ gains are only ~0.01 and the Sr₃WO₆ terms fail or turn negative. I’m converging the two supported SrWO₄ branches and testing them jointly, including covariance and angular-region checks.
+
+The joint broadening model is rejected: it drives strain negative and correlates size/strain at 92%. The size-only gain is confined to the low-angle region, so it is also rejected. Positive SrWO₄ microstrain is the only interpretable phase term with benefit in more than one region; I’m carrying that smaller model into the final phase and structure tests.
+
+The unrestricted SrWO₄ oxygen refinement lowers Rwp but shortens all W–O bonds to 1.725 Å and shifts the oxygen site substantially, so I’m not accepting it as a reliable structural change. A better minor-phase analogue is available: Sr₂CaWO₆ already has the correct Sr/W double-perovskite framework; replacing only Ca by Sr gives Sr₃WO₆ with much less chemical extrapolation than the earlier Ca₃WO₆ template. I’m auditing and testing that model next.
+
+The Sr₂CaWO₆-derived candidate is now in a matched replacement refinement, not being stacked on top of the earlier same-composition phase. Its starting geometry is clean (W–O 1.92–1.95 Å) and its initial cell is within ~0.04% of the prior refined volume, so the comparison should be structurally meaningful.
+
+The improved Sr₃WO₆ analogue is clean and marginally better, but the strongest unexplained family still remains. Its peak spacings also resemble an fcc-like Sr sublattice, so I’m screening the chemically relevant Sr–O candidates and elemental-Sr metric as falsification tests; elemental Sr would require extraordinary chemistry and will not be accepted on peak positions alone.
+
+The closest hexagonal-cell database hit is malformed—it omits the transition-metal/oxygen sublattice and has near-duplicate Sr sites—so it is rejected as a structure. Its metric nevertheless explains several residual spacings, making it valid retrieval evidence only. Following the prescribed workflow, I’m now running a composition-agnostic hexagonal-axis cell search over space groups 143–194 for a complete topology.
+
+The hexagonal search exposes a chemically valid analogue that was not in the initial screen: Ba₃W₂O₉ (R‑3c), which permits a direct charge-balanced Ba→Sr substitution to Sr₃W₂O₉. Its calculated pattern already places distinct lines near 26.2°, 32.6°, 42.2°, 53.4°, and 54.1°. I’m auditing and testing this atomistic model against the complete pattern.
+
+The residual-family comparison is now running with identical nuisance settings for hexagonal Sr₃W₂O₉, SrO, and an fcc-Sr metric control. The metallic control is included only to test whether the apparent lattice match survives full-pattern intensities; the synthesis chemistry strongly disfavors it.
+
+The complete-pattern screen rejects the apparent elemental-Sr interpretation: it gives the weakest gain and predicts an implausible metallic phase. Sr₃WO₆ remains the strongly supported third phase. Hexagonal Sr₃W₂O₉ gives a smaller but coherent add-one benefit and is now being retested as a fourth phase from the mature Sr₃WO₆ baseline, alongside SrO and the known monoclinic Sr₃W₂O₉ form.
+
+The fourth-phase retest is comparing positive scales and cell stability after the Sr₃WO₆ replacement. I’ll require the candidate to retain support at multiple unique reflections; weak overlap credit against the broad WO₃ pattern is insufficient.
+
+The mature retest changes the inventory: exact-composition monoclinic Sr₃W₂O₉ now gives a large, stable full-pattern improvement (Rwp 15.78→15.26) and ~5.2 wt%, while the hexagonal alternative collapses to zero once Sr₃WO₆ is present. I’m checking refined geometry and matched leave-one-out behavior to ensure Sr₃WO₆ and Sr₃W₂O₉ are not splitting one coherent peak family.
+
+Both Sr-rich tungstates have clean refined geometry, but their strongest reflections overlap. The leave-one-out pass is reconverging the remaining phases each time; this will show whether each phase contributes independently or merely divides scale from its companion.
+
+The leave-one-out results support both Sr-rich phases independently: removing Sr₃WO₆ raises Rwp by 0.30 points, removing Sr₃W₂O₉ raises it by 0.52, and removing WO₃ raises it by 1.80. I’m now doing the required full-model replacement pass for triclinic and orthorhombic WO₃ against the selected monoclinic model.
+
+The WO₃ replacements are being refined with the same four-phase inventory, clean widths, roughness, and angular correction. This is the decisive polymorph comparison; the selected model must win without abnormal cell distortion or covariance warnings.
+
+Both replacement projects remain numerically stable so far; the runtime comes from the triclinic reflection count and repeated reconvergence. I’m retaining the same stopping tolerance so a marginal Rwp difference cannot be attributed to unequal refinement depth.
+
+The full-model replacement pass selects monoclinic P2₁/c WO₃ decisively: Rwp 15.261 versus 15.434 for nonconverged triclinic and 15.623 for orthorhombic WO₃, with the selected cell remaining close to its source metric. I’m freezing this four-phase inventory and moving to matched removal/profile/texture validation.
+
+The current \(U\) coefficient became too negative after adding Sr₃W₂O₉, producing non-positive high-angle Gaussian widths; that branch is rejected despite its lower Rwp. I’ve rolled back to a neutral sample-width state and am rerunning the global profile screen on the frozen four-phase inventory, with reflection-level positivity as a hard acceptance condition.
+
+The four-phase inventory is now strongly supported; I’m finishing the physically constrained profile selection and then will freeze, export, and audit the complete GSAS-II result. The key remaining guardrail is rejecting any nominally better fit that produces negative peak widths or highly correlated texture/profile terms.
+
+The clean four-phase baseline is being re-refined with each global width term tested independently. This rerun starts from explicitly positive instrumental widths and zero sample broadening, so the selected branch will be replay-safe rather than inheriting the earlier invalid negative-width solution.
+
+The baseline converged without singular variables. The first two trial branches improve the numerical fit, but acceptance still depends on the full-angle width calculation and matched residual-region checks; those checks are specifically what caught the earlier false optimum.
+
+The independently refined Caglioti \(U\) term is currently the best admissible global branch: it improves four angle regions, has low correlations, converges cleanly, and every regenerated reflection retains positive total width. I’m now testing size and microstrain independently for all four phases from that saved state; any branch that destabilizes those widths will be rolled back.
+
+The dominant SrWO₄ phase shows measurable phase-specific broadening in both isolated tests, but the branches are being judged on convergence, positivity, and where the improvement occurs—not just the lower Rwp. The minor phases are being screened under the identical nuisance model next.
+
+The SrWO₄ size branch converged, while its strain branch is not yet meeting the shift/error threshold despite repeated cycles. I’ll keep only terms that pass that stability criterion; the WO₃ broadening tests so far provide only marginal improvement.
+
+As expected for a weak minor phase, the Sr₃WO₆ size branch became ill-conditioned and dropped a variable, so it is rejected. This is useful negative evidence: its fraction is supported by distinct peaks, but its crystallite-size parameter is not independently estimable from this pattern.
+
+The Sr₃W₂O₉ strain trial gives a visible fit reduction but is converging slowly, so it will only be retained if the final covariance and leave-one-term checks are clean. This distinction matters: phase presence is secure from its multi-peak contribution, while broadening details may remain underdetermined.
+
+No phase-specific size or strain term survives the full-range criterion: the only stable notable branch helps just the low-angle region and worsens the rest. I’ve therefore returned to the smaller global-profile model and am now running matched envelope-removal, polarization, and one-axis March–Dollase tests.
+
+The envelope tests confirm the simple roughness term is material: removing it degrades the complete pattern sharply, while polarization alone trends to an implausible value. Allowing both roughness coefficients converges, but its covariance will determine whether the extra coefficient is redundant. Texture is now being screened phase by phase.
+
+The apparently dramatic Sr₃WO₆ texture gain is not admissible: its scale and March–Dollase coefficient are correlated at about 96.4%, and convergence remains unstable. I’m preserving the untextured phase fraction and completing the same matched check for Sr₃W₂O₉.
+
+The two-parameter surface-roughness branch passes: both parameters are positive, their mutual correlation is moderate (0.74), the gain spans every angle region, and regenerated peak widths remain positive. I’m accepting that envelope refinement provisionally and repeating the global-width screen from this updated state, as required before freezing the model.
+
+The repeat screen is intentionally starting with all instrumental broadening terms reset to a positive neutral profile while retaining the accepted roughness envelope. This provides a matched removal test for the earlier \(U\) term and guards against profile–envelope compensation.
+
+The rerun remains well behaved: no singular variables or negative widths have appeared. The candidate hierarchy is unchanged so far, indicating the roughness terms and global width term are not merely substituting for one another.
+
+The repeated phase-broadening screen is reproducing the earlier behavior under the final envelope: SrWO₄ broadening lowers the low-angle residual but does not settle cleanly as a full-pattern term. The same stability and regional-benefit thresholds are being applied to all minor phases.
+
+The final-envelope repeat confirms WO₃ size/strain changes are numerically tiny relative to the complete fit and do not justify extra variables. The dominant-phase strain term also remains above the convergence threshold, reinforcing the decision to keep all phase broadening fixed.
+
+The Sr₃WO₆ size test is again tending toward a non-identifiable parameter rather than a reproducible width; this repeats independently after the envelope change. No minor-phase broadening term has met the acceptance criteria.
+
+The repeated screen has reached the same boundary/instability outcomes for Sr₃WO₆ and Sr₃W₂O₉. Those terms are being discarded; this leaves a compact model with global width, roughness, background, displacement, cells, and phase scales only.
+
+The final remaining strain branch is still failing to settle despite repeated refinement cycles, so it cannot be used to justify either a lower Rwp or a changed fraction. Once it exits, I’ll run the angular helper on the retained compact branch and perform the final exports/audits.
+
+The angular helper is now comparing zero-only, specimen-shift-only, and joint refinements from the same saved model. The zero-only branch can converge numerically, but selection will also require a physically valid correction and low parameter correlation across the complete pattern.
+
+The angular helper selected the existing displacement-only model: zero-only is worse, and the joint zero/shift branch is 99.8% correlated. Before freezing, I’m doing the final matched ablations of each retained optional profile/envelope term; each must cause a material degradation when removed.
+
+The ablation projects are reconverging from the exact selected model. This is the last model-selection check: if any retained term can be removed without a meaningful whole-pattern penalty, it will be omitted from `final.gpx`.
+
+All three retained optional terms passed matched ablation: removing \(U\) raises Rwp by 0.24 points, removing roughness \(A\) by 0.077, and removing roughness \(B\) destabilizes the remaining envelope and raises Rwp by about 3.72 points. I’m now creating and reconverging the exact `final.gpx`, then regenerating its saved profile before export.
+
+The final project converged cleanly at Rwp 15.246%, Rp 9.919%, with four normalized crystalline fractions: SrWO₄ 80.30%, WO₃ 10.73%, Sr₃WO₆ 3.54%, and Sr₃W₂O₉ 5.43%. I’ve regenerated `final.gpx` and exported all four CIFs plus the profile; structural and cross-file audits are running now.
+
+All exported CIFs pass composition, occupancy, duplicate-site, symmetry-expansion, and contact screening; `final.gpx` also passes exact profile replay and positive total-width checks for every phase. The main caveat is structural—not numerical: the 3.54 wt% Sr₃WO₆ component uses a chemically substituted P2₁/n analogue because no direct database model was available, so its exact polymorph is provisional.
+
+The submission schema audit passes with four distinct CIFs and fractions summing exactly to 1.000000. I’m doing one final direct readback comparison among `result.json`, `final.gpx`, `fit.csv`, and the CIF cells so the delivered files agree numerically, not just individually.
+
+Completed a four-phase refinement:
+
+| Phase | Weight fraction |
+|---|---:|
+| SrWO₄ | 80.30(31)% |
+| WO₃ | 10.73(22)% |
+| Sr₃WO₆ | 3.54(18)% |
+| Sr₃W₂O₉ | 5.43(22)% |
+
+Fit: Rwp 15.246%, Rp 9.919%, GOF 4.322. Fractions are normalized over modeled crystalline material only.
+
+The Sr₃WO₆ P2₁/n structure is a provisional analogue model, so its exact polymorph and fraction are less certain. All CIF, GSAS-II, profile-replay, cross-file, and submission audits passed.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [SrWO4.cif](<ATTEMPT_WORKSPACE>/SrWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [Sr3WO6.cif](<ATTEMPT_WORKSPACE>/Sr3WO6.cif)
+- [Sr3W2O9.cif](<ATTEMPT_WORKSPACE>/Sr3W2O9.cif)
+

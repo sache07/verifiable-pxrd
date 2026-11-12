@@ -1,0 +1,42 @@
+I’ll inspect the measurement metadata and diffraction profile first, then identify candidate phases, refine them jointly in GSAS-II, and verify that the exported CIFs, phase fractions, profile, and project all agree. I’ll report any ambiguity explicitly rather than forcing unsupported phases.
+
+The chemistry strongly suggests a strontium tungstate product, but I’m treating that only as a hypothesis: unreacted SrCO₃/WO₃ or polymorphs could still be present. I’m now extracting the peak set and checking the installed indexing/database/refinement interfaces before committing to a phase model.
+
+The peak set confirms tetragonal scheelite SrWO₄ as the dominant phase. A second set—especially the 23–25° triplet and multiple 33–42° features—is consistent with residual tungsten oxide; I’m testing the room-temperature WO₃ polymorphs and reduced tungsten oxides quantitatively, since those alternatives overlap heavily and peak-list matching alone is not decisive.
+
+The first full two-phase refinement gives a chemically plausible baseline: scheelite SrWO₄ about 87 wt% and monoclinic WO₃ about 13 wt%, with Rwp ≈17.6%. The refined SrWO₄ cell is sensible. I’m now comparing alternate WO₃ settings and reduced tungsten oxides against that same protocol; the current profile coefficients are only screening parameters and will be replaced by a more physically constrained final refinement.
+
+The database screen is still running; several candidates have low-symmetry cells with hundreds of reflections, so their joint cell/profile refinements are slower than the scheelite fit. I’m keeping the comparison uniform so the ranking is based on fit evidence rather than chemistry alone.
+
+A third-phase test now explains the strongest unmatched peak: orthorhombic SrCO₃ fits it only when strong (200) preferred orientation is included, which also explains why the usual carbonate doublet near 25–26° is weak. That lowers Rwp from about 17.6% to 16.3% and yields roughly 79% SrWO₄ / 12% WO₃ / 10% SrCO₃. I’m bounding and refining the texture parameter now, because an unbounded texture fit can become numerically nonphysical.
+
+The texture grid exposes the key uncertainty cleanly: unconstrained carbonate fits can improve the residual by distorting the SrCO₃ cell, so I’m rejecting those as overfit. A physically plausible region near March–Dollase ≈0.4 gives a normal strontianite cell and, independently, nearly the exact WO₃:SrCO₃ mass ratio expected for equal residual precursor moles. I’m checking the same grid with the carbonate cell held to its reference value before fixing the final model.
+
+The three-phase model is now chemically and diffraction-consistent: scheelite SrWO₄, monoclinic WO₃, and textured orthorhombic SrCO₃. I’m testing phase-specific peak broadening next, then I’ll lock the stable model, export the CIFs/profile/results, and validate that the submitted GSAS-II project reproduces them.
+
+The broadening test is informative: carbonate width refinement is unstable and collapses to a parameter bound, confirming that its residuals are dominated by texture/intensity correlations rather than a uniquely determined crystallite size. I’m rejecting that over-parameterized branch; the stable profile model remains the basis for the quantitative result.
+
+The stable refinement reaches \(R_{wp}=13.60\%\), but the carbonate scale remains coupled to a very large apparent microstrain and strong [100] texture. Before I freeze the answer, I’m cross-checking the residual precursor assignment against all plausible Sr–W–O/Sr–C–O entries in the local crystallographic database; this is the main remaining source of phase-fraction uncertainty.
+
+The database cross-check rejects fergusonite SrWO₄ and SrO₂ at zero scale; SrO and a possible Sr₃W₂O₉ component refine below 1 wt% with only trivial fit gains and no unique diagnostic line, so I’m not treating either as a determined fourth phase. I’m now doing the last block-coordinate polish between carbonate texture and phase scales—the correlation that dominates the systematic uncertainty—before exporting.
+
+All requested artifacts are exported. I’m validating them now as a single reproducible set: reopening `final.gpx`, comparing its stored profile point-for-point with `fit.csv`, parsing every CIF independently, and checking the JSON fraction/statistic invariants.
+
+Completed the three-phase GSAS-II refinement.
+
+- Scheelite SrWO₄: 80.05 wt%
+- Monoclinic WO₃: 12.29 wt%
+- Orthorhombic SrCO₃: 7.66 wt%
+
+Fractions are normalized over modeled crystalline phases. Fit: \(R_{wp}=13.52\%\), \(R_p=9.28\%\), GOF = 3.83. The SrCO₃ fraction is strongly texture-dependent and should be regarded as semi-quantitative; no fourth phase was reliably supported.
+
+Outputs:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r5/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r5/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r5/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r5/workspace/fit.csv)
+- [SrWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r5/workspace/phase_1_SrWO4_scheelite.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r5/workspace/phase_2_WO3_monoclinic.cif)
+- [SrCO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r5/workspace/phase_3_SrCO3_orthorhombic.cif)
+

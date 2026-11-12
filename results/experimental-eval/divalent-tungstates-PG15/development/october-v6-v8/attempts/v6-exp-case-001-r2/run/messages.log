@@ -1,0 +1,50 @@
+I’ll inspect the measurement metadata, diffraction pattern, and the supplied refinement helpers first. Then I’ll screen phase candidates, audit any structural models, refine competing complete-pattern models in GSAS-II, and verify all exports against the final project.
+
+The sample is a low-temperature BaCO₃/WO₃ reaction measured with Cu Kα radiation over roughly 10° onward, with no stated product or phase count. I’m now mapping the available databases and GSAS-II environment, then I’ll extract peak positions before making any chemistry-based assignments.
+
+Initial screening strongly supports orthorhombic witherite BaCO₃ and monoclinic WO₃: each independently explains a distinct set of intense peaks, including the four-peak cluster near 23–25° and repeated matches through high angle. BaWO₄ is not yet justified; its strongest nominal line overlaps a WO₃ line, so I’ll test it only after refining the two-phase baseline and examining unique residuals.
+
+The modern BaCO₃ model passes the structural audit. For WO₃, one superficially good database match was rejected because its atom list creates implausibly short O···O contacts; I’m carrying three physically valid WO₃ polymorph/setting alternatives through the same staged refinement instead. The first branch is converging without dropped variables, though its unit cell/zero-offset stage is deliberately being allowed extra cycles before comparison.
+
+The first complete two-phase model reaches Rwp ≈ 8.25% with physically sensible cells and roughly 54/46 wt% BaCO₃/WO₃. The orthorhombic WO₃ alternative is clearly inferior (≈13.39% after cell refinement). The lower-symmetry triclinic WO₃ alternative is genuinely competitive only after its cell is allowed to move, so I’m retaining it through full convergence rather than selecting on an early-stage score.
+
+The angular-correction test rejects the joint zero/displacement model as >99.9% correlated. A specimen-displacement-only correction is modestly but consistently better than zero-only for the monoclinic model (Rwp 7.735% vs 7.780%). I’m waiting for the same matched test on the triclinic contender before comparing the two structures again from their updated states.
+
+The envelope tests favor a refined polarization factor (0.781, physically admissible) over surface roughness; the roughness branch drove one coefficient negative and made the pair essentially perfectly correlated, so it is rejected. Angle-dependent Gaussian and Lorentzian broadening terms each give smaller but real improvements, and I’m retesting them from the selected polarization state to avoid keeping redundant terms.
+
+The retained global profile is now the smaller interpretable set: refined W/X/Y broadening plus polarization and specimen displacement. Adding another Gaussian term became negative and gave no meaningful gain; adding the alternative Gaussian term was unstable. I’m now screening crystallite size and microstrain independently for each phase, as required, before considering texture.
+
+The leading microstructure explanation is a finite WO₃ crystallite size. I’m completing the matched BaCO₃ test, then I’ll retest the remaining profile terms from that updated baseline and challenge the triclinic WO₃ assignment against the monoclinic alternative.
+
+The BaCO₃ size term is singular with the global Lorentzian width, and both strain branches become unstable or nonphysical when paired with WO₃ size, so I’m rejecting them. I’m now screening simple one-axis preferred-orientation terms phase-by-phase; only a stable, whole-pattern improvement will be retained.
+
+Both retained texture corrections are small but statistically resolved and improve several separated angle regions: BaCO₃ [001] gives the main gain, while WO₃ [010] adds a smaller four-region improvement. I’m carrying that minimal pair forward and now repeating the microstructure tests and the monoclinic-vs-triclinic structure comparison under the same nuisance model.
+
+With identical refined nuisance terms, monoclinic WO₃ (P2₁/c) now fits slightly better than triclinic P-1 despite using fewer cell degrees of freedom; it is also the expected room-temperature WO₃ symmetry. The distinction is genuinely close, so I’m treating it as a model-selection uncertainty and repeating every optional profile/microstructure test on the monoclinic baseline before freezing it.
+
+The monoclinic rerun confirms the same simplifications: U and V become nonphysical/unstable, surface roughness is negative and 99.6% correlated, BaCO₃ size is singular, and the apparent strain gain is an exact phase-swapping degeneracy. Those terms are excluded. I’m now rerunning the zero/displacement branch selector on the mature model, then I’ll perform leave-one-out and retained-term removal checks.
+
+The retained terms all pass matched removal tests: removing polarization, Y, WO₃ size, BaCO₃ texture, or WO₃ texture worsens Rwp by 0.05–0.48 percentage points. Dropping either phase worsens Rwp to roughly 25–27%, confirming both inventories independently. The final model remains monoclinic WO₃, but only narrowly over the triclinic alternative; I’ll preserve that caveat in the report.
+
+The exported CIFs and final project pass the structural/contact and replay audits. Before writing the report, I’m doing one last chemistry-specific control: testing a clean scheelite BaWO₄ model, because the first BaWO₄ database record was malformed and the 400 °C precursor context makes this the most important possible third phase to exclude explicitly.
+
+The BaWO₄ control refined to an apparent 0.29 wt% but failed the required structural test: its strongest unique lines at 28.33° and 32.15° make the local fit worse, while the numerical gain comes mainly from overlaps. I have therefore left it out and explicitly marked its trace fraction as indeterminate. The final two-phase files are complete; I’m running the final schema/readback audit now.
+
+Identified crystalline composition:
+
+- BaCO₃ (witherite, Pnma/Pmcn): 52.36 wt%
+- WO₃ (monoclinic P2₁/c): 47.64 wt%
+
+Rwp = 6.980%, Rp = 5.293%, GOF = 2.007. Practical fraction uncertainty is about ±0.6 wt%. Triclinic WO₃ is near-tied; trace BaWO₄ could not be determined reliably and was excluded.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [BaCO3_witherite.cif](<ATTEMPT_WORKSPACE>/BaCO3_witherite.cif)
+- [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_monoclinic.cif)
+
+CIF, GPX, profile-consistency, and submission audits all passed.
+

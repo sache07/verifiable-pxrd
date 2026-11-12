@@ -1,0 +1,32 @@
+I’ll inspect the diffraction data and metadata first, then use the available crystallographic/indexing and refinement tools to identify candidate phases, refine them jointly, and validate that every reported artifact comes from the final GSAS-II project.
+
+The chemistry points to the PbO–WO₃ system, but I’ll let the peak positions and full-pattern fit decide whether the product is PbWO₄, residual oxides, or a multiphase lead tungstate mixture. I’m now characterizing the scan range/peaks and locating the installed indexing, database, and GSAS-II interfaces.
+
+The dominant line set is consistent with tetragonal scheelite PbWO₄. Several clear low-angle peaks at roughly 23.39, 23.89, 24.64, 26.77, and 29–31° are not explained by scheelite alone, so I’m testing residual PbO/WO₃ polymorphs and alternate Pb–W–O structures against those unmatched peaks before choosing the phase count.
+
+A two-phase PbWO₄ + monoclinic WO₃ refinement captures the principal line sets, but the preliminary fit (Rwp ≈ 18%) still has structured residuals and an over-parameterized peak-width model. I’m checking residual peak positions and phase-fraction stability now; this is the point where a trace third phase or inappropriate profile terms should become apparent.
+
+The residual test strongly supports orthorhombic PbO (massicot): adding it lowers Rwp from about 18.30% to 15.67% and gives a stable ∼10 wt% contribution, while litharge and Pb₃O₄ alternatives barely improve the fit. Its diagnostic 29.35°, 30.62°, 32.86°, and 38.12° lines align with the observed residuals. I’m finishing the remaining controls and then will refine the three-phase model with phase-specific broadening and restrained structural parameters.
+
+The residual analysis supports a five-phase crystalline model: scheelite PbWO₄, monoclinic WO₃, orthorhombic PbO, tetragonal PbO, and minor Pb₃O₄. The two PbO polymorphs and Pb₃O₄ each have multiple independent diagnostic lines and statistically significant scales; raspite PbWO₄ and WO₂ controls refine to zero. I’m now separating instrumental from phase-specific broadening and treating the broad 26–31° diffuse intensity conservatively so it does not inflate crystalline phase fractions.
+
+The final model now includes an empirical broad diffuse component centered at 29.89°; this improves Rwp to about 12.98% without pretending that component is a quantified crystalline phase. I’m generating all deliverables directly from the converged project and then cross-checking CIF readability, profile length, fraction normalization, and project consistency.
+
+Analysis complete. The modeled crystalline fractions are:
+
+- PbWO₄ scheelite: 74.07 wt%
+- WO₃ monoclinic: 13.23 wt%
+- PbO massicot: 7.20 wt%
+- PbO litharge: 2.93 wt%
+- Pb₃O₄: 2.57 wt%
+
+Final fit: Rwp 12.98%, Rp 9.02%, GOF 3.71. A broad unidentified/diffuse component was excluded from crystalline normalization.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [Phase CIFs](<ATTEMPT_WORKSPACE>/phases)
+

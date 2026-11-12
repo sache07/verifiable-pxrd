@@ -1,0 +1,57 @@
+I’ll inspect the measurement metadata and diffraction pattern first, then identify candidate phases and build a GSAS-II refinement that keeps the submitted profiles, fractions, CIFs, and project mutually consistent. I’ll report any phase ambiguity explicitly rather than forcing an unsupported assignment.
+
+The chemistry strongly suggests scheelite-type SrWO₄ as the primary product, but precursor remnants or competing Sr–W–O phases remain plausible at 900 °C. I’m now extracting the peak list and checking the installed phase-search/refinement backends so the assignment is based on the full pattern, including weak peaks.
+
+The observed peak set is not single-phase SrWO₄: the strong scheelite reflections are present, but several resolved peaks around 23–25°, 29–30°, 34–35°, and 38° require at least one additional crystalline component. I’m testing chemically admissible Sr–W–O products and the original SrCO₃/WO₃ precursors against those residual peaks before refining quantities.
+
+The phase-position analysis now cleanly separates the scheelite reflections (including the 30.22° and 33.39° peaks) from a persistent second set at 29.75° and 32.63°. Monoclinic WO₃ accounts for the characteristic 23.45/23.97/24.73° triplet but not that second set, so I’m starting quantitative whole-pattern refinements and will compare additional candidate structures by the residual improvement and physically sensible scale factors.
+
+The first two-phase refinement is converging and confirms both SrWO₄ and monoclinic WO₃ at nonzero scale. The current fit still leaves structured residual intensity, as expected; after this baseline finishes I’ll use identical refinement settings for candidate additions so the phase comparison is quantitative rather than visual.
+
+The residual phase has a reproducible hexagonal/trigonal peak lattice near \(a\approx9.6\) Å and \(c\approx3.93\) Å, but one database hit with that lattice is chemically misindexed because its CIF omits non-Sr atoms. I’m screening the full local Sr-containing structure collection for a chemically credible analogue; I will not report that malformed entry as elemental Sr.
+
+The chemically admissible comparison is now decisive: adding Sr₃W₂O₉ lowers \(R_\mathrm{wp}\) from 21.78% to 19.93%, while SrO gives essentially no improvement and monoclinic SrWO₄ drives to an implausible cell. Sr₃W₂O₉ also indexes the independent 29.75°, 32.63°, 44.67°, 50.61°, and 61.28° peaks. I’m retaining it as the third phase, with a caution that the available reference structure was originally high-pressure synthesized and its refined fraction will carry extra model uncertainty.
+
+The phase identities are now constrained to scheelite SrWO₄, monoclinic WO₃, and a provisional Sr₃W₂O₉-type phase. I’m finishing the physically constrained profile/atomic refinement now; the key check is that any improvement does not rely on nonphysical peak-width or texture parameters.
+
+The first profile correction is stable, but free displacement parameters immediately ran negative—clear evidence that they are absorbing unmodeled line-shape/intensity effects. I’m rejecting that branch rather than using its lower numerical residual, and I’m checking the remaining trial output only to diagnose whether texture is similarly unstable.
+
+I’m keeping the last fully physical stage as the baseline (Rwp ≈16.94%). I’ll now test only bounded, interpretable corrections—chiefly modest preferred orientation of the provisional phase—and compare them from the same baseline so the final fractions are not biased by the rejected negative-ADP solution.
+
+The orientation tests are modest rather than pathological. For Sr₃W₂O₉, the best axis changes Rwp only from 16.94% to 16.69% and shifts its fraction by about 0.8 percentage points; that spread is a useful measure of model uncertainty. I’m completing the analogous WO₃ tests before selecting the simplest defensible model.
+
+WO₃ shows no meaningful preferred orientation, so I’m excluding that extra parameter. The Sr₃W₂O₉ [001] correction is moderate (March ratio 0.815) and statistically useful; I’ll retain it provisionally while checking axial asymmetry and phase-specific broadening for physical values.
+
+One important residual remains at 22.09°: it is a real, peak-width-scale crystalline line, not a broad amorphous hump, and the provisional Sr₃W₂O₉ model predicts it only weakly. Before finalizing, I’m treating that as evidence for either an imperfect Sr-rich structural analogue or a trace fourth phase and running a chemistry-aware database check.
+
+The database check rules out a credible extra W–O phase; most large residuals are intensity/line-shape errors on already indexed SrWO₄ and WO₃ peaks. The 22.09° line is compatible with high-temperature SrCO₃, so I’m explicitly testing both ambient and high-temperature SrCO₃ models rather than silently assigning it.
+
+Carbonate scales refined to the lower bound, so neither residual SrCO₃ nor its high-temperature form is supported. The dominant residual around 28° is actually the broadened flank of the main SrWO₄ peak, not a separate line. I’m therefore testing phase-specific size/strain broadening—the physically appropriate correction—before freezing the quantitative model.
+
+The size/strain trials are diagnostic: SrWO₄ microstrain tries to become negative and is rejected, while crystallite size runs to the upper bound with negligible benefit. Those behaviors confirm that the residual is dominated by imperfect empirical profile/intensity modeling, not resolvable physical broadening. I’m checking whether the minor phases behave any better.
+
+The minor-phase size/strain terms are positive but improve Rwp by only ~0.03 percentage points while moving fractions by up to 1.3 points; without an instrument standard they are not independently identifiable. I’m choosing the parsimonious model: positive common widths, fixed reference atomic parameters, and only the statistically meaningful Sr₃W₂O₉ [001] texture term. One final convergence pass will generate the exact project and exports.
+
+The final model has converged (maximum shift/σ 0.12) with Rwp 16.689%. The normalized modeled fractions are 76.18% SrWO₄, 10.24% WO₃, and 13.58% provisional Sr₃W₂O₉-type material. I’m exporting the exact converged project, CIFs, and 8,280-point fitted profile now, then I’ll cross-check all files against the project.
+
+All required deliverables are written. I’m doing the final integrity check now: reopening `final.gpx`, reparsing each exported CIF, confirming the fractions sum to one, and verifying every row of `fit.csv` against the calculated arrays stored in the project.
+
+Completed the multiphase GSAS-II refinement.
+
+- SrWO₄: 76.18 wt%
+- WO₃: 10.24 wt%
+- Sr₃W₂O₉-type: 13.58 wt% — provisional assignment
+- Fit: Rwp 16.689%, Rp 12.482%, GOF 4.730
+
+Fractions are normalized over modeled crystalline phases. The Sr₃W₂O₉-type structure and fraction remain model-dependent, as detailed in the report.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r8/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r8/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r8/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r8/workspace/final.gpx)
+- [SrWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r8/workspace/phase_1_SrWO4.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r8/workspace/phase_2_WO3.cif)
+- [Provisional Sr₃W₂O₉ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r8/workspace/phase_3_Sr3W2O9_provisional.cif)
+

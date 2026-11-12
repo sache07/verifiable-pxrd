@@ -1,0 +1,88 @@
+I’ll inspect the pattern, metadata, and the reusable crystallography helpers first. Then I’ll screen candidate phases, audit atomistic models, refine competing complete-pattern models in GSAS-II, and only export the requested files after the final project and submission audits pass.
+
+The sample is a Cu Kα reflection scan of a 900 °C NiO/WO₃ reaction product, with no stated product stoichiometry or phase count. I’m now extracting peak positions and checking the packaged GSAS-II/DARA/DICVOL interfaces so the search is driven by the measured pattern rather than precursor assumptions alone.
+
+The peak family is already highly diagnostic of wolframite-type NiWO₄: the strong lines near 19.20, 23.06/23.54/23.90/24.29/24.85, 30.87, 36.52, 41.62, 44.70, 52.27, 54.58, 62.27, and 65.78° form one coherent monoclinic pattern. The only Ni–W–O database entry is itself malformed (its atom loop is incomplete), so I’m rejecting it as an import candidate and reconstructing the NiWO₄ topology by a charge-balanced Ni-for-Zn substitution in a well-formed P2/c wolframite analogue, as allowed by the requested protocol. I’ll still test residual NiO and WO₃ explicitly.
+
+The clean NiWO₄ model passes the occupancy, symmetry, and contact audit, while the database NiWO₄ atom loop fails to parse, confirming the need for reconstruction. A first one-phase fit explains the full peak inventory but still has systematic centroid and width residuals (Rwp ≈20.9% before profile work), so I’m now separating angular-offset, instrumental-width, and sample-broadening explanations before deciding whether any weak second phase is real.
+
+The matched profile branches are still converging. I’m testing each global Gaussian/Lorentzian term from the same saved baseline; no phase inventory changes are being mixed into this comparison. The earlier joint zero/displacement branch was rejected because the two corrections were 99.88% correlated, and the nominally better single-correction branches had not met the requested shift/esd stability criterion.
+
+After the supported global broadening terms were in place, the angular test became decisive and stable: zero-only converged at −0.0951° with Rwp 14.4488%; displacement-only was essentially tied (14.4497%), while the joint model was rejected at 99.99% correlation. I’m retaining the smaller zero-only explanation and now rerunning all optional profile, microstructure, texture, and phase-inventory tests from that mature baseline, including matched leave-one-out checks.
+
+The residuals reveal a second coherent family, not random mismatch: the unmodeled 23.06/23.54/24.29° triplet recurs with lines near 26.53, 28.82, 33.20, 34.09, 47.21, 49.01, 49.87, and 55.87°. That is characteristic of room-temperature WO₃. I rejected one historical monoclinic CIF because it creates 1.575 Å O–O contacts; the current matched tests use audited triclinic, modern monoclinic, and orthorhombic atomistic models.
+
+The candidate refinements are taking longer because each is being converged first at fixed cell and then again with its own symmetry-constrained cell, while all mature nuisance parameters remain active. This is deliberate: it prevents a phase from winning on a single overlapped line or an unrelaxed companion model.
+
+No failure has surfaced; the job is computationally heavy because the low-symmetry WO₃ alternatives generate many reflections across the 10–100° range. I’m keeping the comparison running rather than truncating one candidate earlier than the others.
+
+The first low-symmetry candidate reduced Rwp from 14.45% to about 5.6% and gave a positive ∼23 wt% WO₃ fraction, so the second phase is unequivocal. Its unconstrained all-at-once refinement oscillated slightly, however; I’ve restarted it in staged groups with rollback checkpoints so only monotonic, numerically stable steps can survive into the comparison.
+
+The staged run is still evaluating reflection derivatives rather than hanging; triclinic WO₃ adds six independent metric terms and a dense reflection list. I’ll let this candidate finish, then use its convergence behavior to keep the remaining alternatives’ runs proportionate.
+
+The well-formed monoclinic WO₃ model has now converged cleanly at Rwp 5.6521%, with 77.46(9) wt% NiWO₄ and 22.54(9) wt% WO₃ on counting-statistics errors. I’m finishing the symmetry-lowered triclinic counterpart under the identical staged protocol; its preliminary advantage is only a few hundredths of an Rwp point, so stability and physical necessity—not that tiny numerical difference—will decide.
+
+The mature two-phase model leaves no coherent unindexed family. A trace NiO branch is borderline: it refines to 0.60(12) wt% and improves several NiO positions (37.15, 62.77, 79.29°), but it slightly worsens the strongest expected 43.18° region and changes Rwp by only 0.009. I’m therefore withholding it for now and will retest after coordinates, texture, and profile terms have been challenged; this is exactly the kind of overlap-sensitive trace assignment that can otherwise become a false positive.
+
+The complete-pattern optional-profile tests are in progress from the same two-phase checkpoint. Because WO₃ is triclinic, each added width term requires regenerating hundreds of reflections, but the comparison remains controlled: one extra global term at a time, with both structures and all established nuisance terms otherwise identical.
+
+The first profile pass shows that angle dependence is genuinely present: adding a single Lorentzian Y term lowers Rwp from 5.6224% to 5.3642% with positive regenerated total widths across every reflection. The X alternative is rejected at 98.7% correlation with Z. I’m now checking whether a second angle-dependent term remains independently supported or merely duplicates Y.
+
+Refining the eight symmetry-independent NiWO₄ coordinates is strongly supported: Rwp drops from 5.3642% to 4.5063%, converges at max shift/esd 0.018 with no high correlations, and moves the substituted analogue toward a Ni-specific geometry (notably Ni y≈0.6586 and W y≈0.1790). I’m auditing contacts now; if geometry remains sound, this is a material structural refinement and will become the new baseline before trace-phase retesting.
+
+The refined NiWO₄ coordinates are chemically plausible and materially improve the full-pattern fit. I’m now rebuilding the comparison matrix from that mature baseline—profile-term ablations, phase-specific broadening/texture, the close WO₃ polymorph, and trace NiO—before freezing the final project and exports.
+
+The current baseline regenerates exactly (Rwp 4.5063%) with positive total widths and no convergence flags. I’m treating every retained optional term as provisional: each is being removed in a matched copy, while alternative profile terms are tested one at a time from the same saved state.
+
+The matched refinements are still running; GSAS-II is CPU-bound because each branch regenerates roughly a thousand reflections over the full 8,282-point pattern. The branches are isolated copies, so they cannot alter the accepted baseline while they converge.
+
+Early results already show the Gaussian constant width term is essential (removing it raises Rwp from 4.506% to 5.221%). Adding V or X gives only modest gains; their covariance and physical width behavior still need auditing before either can be accepted. The slow branches are precisely the ones struggling to meet the convergence threshold, which is itself evidence against them if that persists.
+
+The expanded screening is now evaluating phase-specific size and strain, polarization, surface roughness, and WO₃ tungsten coordinates. These are deliberately separate branches so an intensity-envelope correction cannot silently substitute for preferred orientation or a structural change.
+
+The envelope tests discriminate cleanly: polarization refines to 0.602(5) and lowers Rwp to 4.3186% with a physical value, while surface roughness drives its amplitude negative and correlates its two parameters at 99.97%, so roughness is rejected. NiWO₄ strain is negative and rejected; WO₃ strain remains a plausible broadening term and will be retested after adopting polarization.
+
+The retained-width ablations and profile alternatives are still converging. This pass is important because polarization substantially changed the fitted Gaussian terms; keeping the old profile decision without this matched retest would overstate certainty in the nuisance model.
+
+Polarization makes the added U term redundant: removing U changes Rwp by only 0.008%, whereas W and Z remain essential. The apparent gains from adding V or X come with strong profile correlations (up to 99.75% for X/Z), so I’m simplifying first and will retest them from the converged reduced model rather than carrying a correlated profile forward.
+
+The reduced model is numerically clean—no ≥0.8 parameter correlations, exact profile regeneration, and positive widths across all reflections. I’m finishing its direct leave-one-out checks now; this is the candidate nuisance model unless a genuinely independent term survives.
+
+Preferred-orientation ratios all refine within about 1.5% of unity, and the largest Rwp benefit is only 0.006%; no March–Dollase term is warranted. The phase-specific broadening and conservative WO₃ coordinate test are nearly complete.
+
+The broadening screen leaves one defensible phase term: WO₃ isotropic microstrain is positive, well determined, uncorrelated, and lowers Rwp by 0.050%. NiWO₄ strain is negative, NiWO₄ size hits an effective upper bound, and WO₃ size gives a smaller gain. The WO₃ coordinate branch also creates an implausibly short 1.64 Å W–O contact, so those coordinates are rejected despite a modest fit gain.
+
+After adding the supported WO₃ strain, all retested global profile additions are negligible (ΔRwp ≤0.008% for U or V), and removing Y costs only 0.006%. I’ll use the simpler strain-aware profile if it remains well conditioned; the remaining size/X branches are being checked for boundaries and covariance.
+
+Trace NiO is no longer materially supported from the mature model: it refines to only 0.24(9) wt% and improves Rwp by 0.002%, so I will not report it as a determined crystalline phase. I’m now giving the close monoclinic WO₃ alternative the same NiWO₄-coordinate, polarization, and phase-broadening treatment before the final polymorph decision.
+
+The updated polymorph comparison changes the phase call: with identical nuisance treatment, monoclinic WO₃ reaches Rwp 4.2723%, versus 4.2827% for triclinic, while using fewer lattice degrees of freedom. The difference is small, so I’m auditing both numerically and chemically before selecting monoclinic and explicitly retaining polymorph uncertainty in the report.
+
+Monoclinic WO₃ passes both CIF geometry and project regeneration audits. The final-model retests are mostly complete; as before, the only long-running branch is crystallite size, which is drifting toward a boundary rather than settling to a finite, independent broadening value.
+
+The final monoclinic model rejects every added profile, size, texture, axial-divergence, roughness, and WO₃-coordinate term: gains are negligible, boundary-limited, or strongly correlated. The angular helper also retains the baseline zero correction; displacement is slightly worse and the joint model is 99.99% correlated. I’m performing the final matched ablations of the terms that remain.
+
+Final phase screening is complete. W, Z, polarization, zero, and WO₃ microstrain each show clear matched leave-one-out degradation; NiO remains only 0.22(9) wt% with ΔRwp 0.002%, so it is excluded. I’m now freezing the two-phase monoclinic-WO₃ project and generating all deliverables from that exact saved state.
+
+The frozen project now regenerates exactly: saved and recomputed Rwp agree to machine precision, all total peak widths are positive, convergence is clean, and no variables were dropped. I’m doing the final cross-file audit of CIF chemistry, normalized fractions, and CSV/project agreement.
+
+Completed refinement and export.
+
+Crystalline phases:
+
+- NiWO₄, wolframite P2/c: 76.61(9) wt%
+- Monoclinic WO₃, P2₁/c: 23.39(9) wt%
+
+Fit: Rwp 4.2723%, Rp 3.2903%, GOF 1.2307. Trace NiO was not reliably supported. The monoclinic/triclinic WO₃ distinction remains slightly uncertain.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_NiWO4.cif](<ATTEMPT_WORKSPACE>/phase_NiWO4.cif)
+- [phase_WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/phase_WO3_monoclinic.cif)
+
+Project regeneration, CIF integrity, positive-width, convergence, and submission audits all pass.
+

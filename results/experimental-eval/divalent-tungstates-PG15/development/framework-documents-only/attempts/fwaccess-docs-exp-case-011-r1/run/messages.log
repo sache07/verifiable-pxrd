@@ -1,0 +1,41 @@
+I’ll inspect the pattern, metadata, and the provided divalent-tungstate framework first, then identify candidate phases and carry the best model through a GSAS-II refinement. I’ll keep the final artifacts tied to that same project so the CIFs, fractions, profile, and statistics remain internally consistent.
+
+The chemistry is a low-temperature MnO₂ + WO₃ reaction (300 °C), so I’m treating residual oxides and manganese tungstates as co-equal possibilities rather than assuming a single MnWO₄ product. The scan also comes from the synthetic lab regime described in the framework, meaning displacement, roughness, size/strain, texture, and a perturbed reference structure may all be present; phase identification must come from the whole peak set, not nominal chemistry alone.
+
+The peak positions resolve the phase inventory cleanly: the sharp triplet near 23.4–24.7° and its higher-angle family match monoclinic γ-WO₃, while the broader lines near 29.0, 37.68, 43.12, 56.96, and 59.66° match tetragonal pyrolusite MnO₂. Both families share an approximately +0.25–0.30° low-angle shift, consistent with a common Bragg–Brentano specimen displacement; I see no diagnostic MnWO₄ peaks (especially its strong 30.0/30.5° doublet or 18.5° line). I’m now building the quantitative two-phase refinement and will test whether any residual peaks justify a third phase.
+
+The first quantitative pass confirms the two-phase inventory but also shows why the exact WO₃ reference matters: the 1528915 model gives the wrong relative intensities within the 23–25° triplet and the 33–35° multiplet. The observed ratios are much closer to COD 2311041’s monoclinic γ-WO₃ coordinates. I’m screening that reference (plus the nearest monoclinic/triclinic alternatives) before adding texture and anisotropic broadening, so those specimen terms do not compensate for a structurally inferior starting model.
+
+The alternative-reference refinements are still running in parallel. The candidate set spans the same chemistry but materially different symmetry/coordinate models; once they finish I’ll choose by whole-profile agreement and residual peak structure, not just the database label.
+
+The reference screen favors monoclinic COD 2311041 scientifically: its refined cell stays within ~0.1% of the parent, whereas the nominally slightly lower-Rwp triclinic model has to collapse two cell angles by about 1°—well beyond the allowed reference perturbation—to mimic the data. I’m retaining the monoclinic phase and separating instrument broadening from phase size/strain in staged refinements; the initial simultaneous fit exposed strong nuisance-parameter correlations, so its unphysical profile values will not be used.
+
+The specimen-effect screen now gives coherent, generator-allowed corrections: no meaningful WO₃ texture, modest pyrolusite [110] texture (March–Dollase ≈0.83), and uniaxial microstrain favored along WO₃ [010] and MnO₂ [001]. These improve the fit without changing the phase inventory. The current crystalline mass estimate is about 73.3% WO₃ / 26.7% MnO₂; I’m next refining the small symmetry-preserving coordinate offsets expected between a database parent and the measured specimen.
+
+The refined structural perturbations are now physically consistent with the framework: W displacements have an RMS of about 0.028 Å and the regularized O displacement field is 0.050 Å, both within the documented parent-to-specimen range. Re-screening shows no WO₃ texture; MnO₂ retains a modest [110] texture. The crystalline fraction has stabilized near 74% WO₃ / 26% MnO₂. I’m doing the final profile/background cleanup and then will export all requested artifacts from that exact project.
+
+The phase model has converged to monoclinic γ-WO₃ plus tetragonal pyrolusite MnO₂. I’m now packaging the exact refined project and deriving every submitted CIF, profile, fraction, and statistic from that single saved GSAS-II state, followed by consistency and structure checks.
+
+The refinement uses the entire measured 2θ range (8,301 points) and converged at Rwp = 5.280%, Rp = 3.881%, with 58 refined parameters. The formal phase-fraction uncertainty is small, but I’m treating it cautiously because raw counts had no supplied uncertainty model and several profile/background terms are correlated.
+
+The submitted structures are chemically valid on parse: γ-WO₃ expands to WO₃ in space group 14 with a shortest contact of 1.71 Å, and pyrolusite expands to MnO₂ in space group 136 with a shortest contact of 1.89 Å. I’m completing a final cross-check that the JSON fractions and every row of `fit.csv` exactly match `final.gpx`.
+
+Completed the two-phase GSAS-II refinement:
+
+- γ-WO₃: 74.083 wt%
+- Pyrolusite MnO₂: 25.917 wt%
+- Rwp = 5.280%, Rp = 3.881%, goodness of fit = 1.967
+
+No crystalline MnWO₄ was detected. Fractions are normalized over modeled crystalline material; amorphous content is undetermined, with practical fraction uncertainty around ±2 percentage points.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-011-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-011-r1/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-011-r1/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-011-r1/workspace/final.gpx)
+- [γ-WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-011-r1/workspace/phase_1_gamma_WO3.cif)
+- [Pyrolusite MnO₂ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-011-r1/workspace/phase_2_pyrolusite_MnO2.cif)
+
+All 8,301 profile rows and reported fractions were cross-checked directly against `final.gpx`; both CIFs also passed structural parsing.
+

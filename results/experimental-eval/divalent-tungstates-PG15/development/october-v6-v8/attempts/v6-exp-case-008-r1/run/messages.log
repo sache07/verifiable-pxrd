@@ -1,0 +1,44 @@
+I’ll inspect the measurement metadata, pattern, and the supplied analysis utilities first, then screen candidate phases and carry the strongest complete-pattern model through staged GSAS-II refinement and audits. I’ll preserve branch projects so competing explanations can be compared and rolled back cleanly.
+
+The precursor chemistry strongly suggests a manganese tungstate product, but I’m treating that only as a hypothesis. I’m now extracting the observed peak inventory and querying the masked structure library for Mn–W–O and precursor-related models so that identification is driven by extinction and whole-pattern agreement, including possible residual MnO/WO₃.
+
+The MnWO₄ wolframite model passes the supplied CIF integrity audit and accounts for every major observed peak across 15–98° 2θ, including the characteristic monoclinic peak pairs. I’m creating the first stable GSAS-II project now with the reported Cu Kα₁/Kα₂ wavelengths and Poisson weights, then I’ll inspect residual peaks before deciding whether any second crystalline phase is warranted.
+
+The mature angular comparison now gives a stable answer: the shift-only Bragg–Brentano correction is retained (about −0.55 mm), while a zero-only model is worse and the joint zero/shift model is rejected at 99.99% correlation. The refined ambient-pressure cell is physically consistent with wolframite MnWO₄. I’m moving to matched profile-width branches and residual-peak analysis next; this is also where any genuinely unmodeled phase should become visible.
+
+The sharpened residuals reveal a coherent weak WO₃ fingerprint: independent peaks at about 23.45°, 33.58°, and 34.47° occur in the expected intensity order, while its other strongest lines overlap MnWO₄. That is stronger evidence than an isolated overlap. I’m auditing several monoclinic WO₃ structure records and will compare them in otherwise identical two-phase refinements before accepting one.
+
+The two-phase inventory is now well constrained: wolframite MnWO₄ dominates, with a small monoclinic WO₃ residue. I’m standardizing the WO₃ setting next, then I’ll retest trace-phase candidates and profile/texture/size–strain alternatives against the complete model before freezing the final project.
+
+The standardized WO₃ cell imports cleanly as P2₁/n and reproduces the same fit and fraction. Its cell refinement gives only a 0.003-point Rwp gain and does not settle cleanly at this low abundance, so I’m keeping the literature WO₃ cell fixed and treating its fraction as model-conditional.
+
+Trace-phase retests do not justify extra phases: MnO’s apparent 0.7 wt% scale comes almost entirely from one overlapped line near 41.2°, while its other strong lines worsen the fit; Mn₃O₄, Mn₂O₃, and Mn₃WO₆ likewise lack multi-peak support. I’m retaining only MnWO₄ + WO₃ and rerunning the required angular-model comparison on that complete inventory.
+
+The full measured range is now included. A four-term background is clearly inadequate; higher smooth orders improve broad, multi-region baseline behavior, but the gain continues in steps, so I’m checking whether that is genuine diffuse/background curvature or whether high-order terms are starting to absorb Bragg residuals before choosing the smallest defensible order.
+
+The envelope comparison is decisive but needs one safeguard: refining polarization gives a stable physical value (~0.960) and lowers Rwp from 10.18% to 7.54% across the range. Surface roughness fits even lower only by driving its amplitude negative with 99.7% parameter correlation, so that branch is rejected. Extra V/X/Y or axial-divergence branches are unstable, correlated, or imply nonphysical widths. I’m carrying polarization provisionally and now testing crystallite size and microstrain phase by phase.
+
+The preferred-orientation screen supports a small but reproducible MnWO₄ March–Dollase correction along the {110} family (ratio 1.092, Rwp 7.54→7.22%). Refining the two oxygen sites—appropriate because the starting CIF was measured at 2.4 GPa—further lowers Rwp to 6.85% and gives chemically sound Mn–O/W–O contacts. I’m checking whether the imported displacement parameters also need refinement before re-screening the profile terms.
+
+The mature model favors the simpler structural refinement: only the two oxygen coordinates are retained; Mn and W coordinate freedom gives <0.005 Rwp benefit and was removed. A 16-term smooth background is the first order after which added terms plateau, and it remains positive across the scan. I’m now doing the required post-change rechecks of phase broadening, trace candidates, and angular correction.
+
+The final rechecks hold: monoclinic WO₃ remains preferred over the near-tied triclinic alternative by ~0.074 Rwp points under identical scale/size treatment; all Mn oxide/tungstate trace candidates still fail the multi-peak test. The final angular helper again retains shift-only—zero plus shift is 99.99% correlated. I’m freezing and auditing the two-phase project now, then exporting all files from that exact project.
+
+Identified crystalline phases:
+
+- Wolframite MnWO₄: **97.33 wt%**
+- Monoclinic WO₃ (P2₁/n): **2.67 wt%**
+
+Final fit: Rwp 6.800%, Rp 4.732%, GOF 2.470. The WO₃ fraction is model-dependent; approximately 2–3 wt% is a realistic range. No amorphous fraction can be quantified without an internal standard.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MnWO4_wolframite.cif](<ATTEMPT_WORKSPACE>/MnWO4_wolframite.cif)
+- [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_monoclinic.cif)
+
+The final GPX, regenerated profile, both CIF audits, cross-file checks, and submission audit all passed.
+

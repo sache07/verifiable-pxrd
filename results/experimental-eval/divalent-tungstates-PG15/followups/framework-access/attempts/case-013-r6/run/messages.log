@@ -1,0 +1,90 @@
+I’ll first inspect the measurement metadata, diffraction profile, and the framework’s available analysis tools. Then I’ll identify candidate phases, refine them in GSAS-II, and verify that every submitted artifact is internally consistent with the final project.
+
+The chemistry is PbO–WO₃ fired at 500 °C, so Pb–W oxides and residual precursors are the relevant search space, but I won’t assume a single PbWO₄ product. I’m now extracting the experimental peak inventory and checking the local COD/DARA and GSAS-II interfaces so phase identification is driven by the full profile.
+
+The dominant reflections form an internally consistent scheelite-type Pb–W–O phase: the 27.69°, 33.05°, 45.02°, 51.48°, 55.54°, 56.81°, 72.29°, 85.98°, and 94.03° peaks all track one cell after a common angular correction. Several weaker peaks remain, so I’m testing residual WO₃/PbO and alternative Pb–W–O structures rather than forcing a one-phase refinement.
+
+The residual peak positions match both monoclinic WO₃ and orthorhombic massicot PbO, including multiple isolated high-angle lines—not just the crowded 23–35° region. A three-phase refinement is running slowly because the low-symmetry WO₃ model introduces many reflections; I’m checking convergence and will compare the close WO₃ references rather than selecting by chemistry alone.
+
+The first add-phase screen exposed a numerical issue: phases started with their peaks offset, so GSAS-II drove new scales to zero before refining their cells. I corrected the initialization to the measured common offset and now hold zero-scale candidate cells fixed. The corrected screen is comparing litharge, Pb₃O₄, and PbO₂ as explanations for the remaining lines.
+
+The corrected comparison supports a small litharge PbO contribution (~2.5 wt%) more strongly than Pb₃O₄; PbO₂ refines to zero. That addition explains isolated 17.97°, 32.10°, 48.85°, 59–60°, and 66.88° lines, but not the largest residual at 25.92°. I’m now testing whether the latter reflects a different WO₃/suboxide framework rather than adding chemically implausible lead oxidation products.
+
+The WO₃ reference family comparison favors the room-temperature monoclinic model already in use; orthorhombic and alternate monoclinic forms fit worse, and replacing WO₃ with W₃O₈ also degrades the profile. Surface roughness improves the fit only modestly. I’m therefore testing a small additional W₃O₈-like contribution and, in parallel, treating the unexplained peak set as a separate indexing problem.
+
+I found a consequential source-model issue: COD 9012700 is in P4/nmm origin choice 1, and GSAS-II’s automatic conversion doubled the Pb multiplicity (producing Pb₂O and extinguishing the nominally strongest 101 line). I converted it explicitly to origin choice 2 and verified the correct PbO cell mass and multiplicities before rerunning the refinement.
+
+With the repaired litharge model, the fit improves materially (Rwp 13.44%) and litharge rises to ~9 wt%, confirming it is a real phase rather than a trace artifact. Four robust phases are now established: scheelite PbWO₄, massicot PbO, monoclinic WO₃, and litharge PbO. The remaining 25.92/30.16/31.04° set is still unmodeled; I’m screening raspite and other Pb-oxide structures against it using corrected phase models.
+
+Pb₂O₃ gives the largest purely numerical improvement among the lead-oxide candidates, but only by distorting its monoclinic cell well beyond the expected reference mismatch, and it still leaves the strongest 25.92° peak. I’m treating that as an overfit warning, not phase proof. The current test asks whether a second tungsten-oxide polymorph/suboxide explains the same lines while restoring a chemically sensible Pb:W balance.
+
+These five-way screens are slower because each low-symmetry candidate adds hundreds of reflections. They are still converging; I’m letting the original jobs finish rather than restarting them, and I’ll retain a candidate only if it improves both isolated-peak coverage and physical plausibility.
+
+A promising structural lead emerged from the analogue search: the local exact-composition library lacks Pb₂WO₅, but it contains isostructural-chemistry candidates Pb₂MoO₅ and Pb₂TeO₅. Mo→W is the most conservative substitution and is chemically plausible as a lead-rich reaction intermediate. I’m comparing those frameworks to the unexplained peak set before building an adapted Pb₂WO₅ model.
+
+The Mo→W analogue test is decisive: Pb₂WO₅ accounts for the entire previously unexplained sequence (including 13.9°, 25.92°, 26.77°, 29.3–31.0°, 34.86°, 39.53°, 43.41°, 51.95°, and 53.9°), lowering Rwp from 13.44% to 10.81% with a ~13 wt% phase fraction. I’m now refining this five-phase model, including texture/coordinates only where the data support them.
+
+The five-phase model is now physically coherent and the global specimen terms converge to plausible values: polarization ≈0.53, displacement ≈−127 µm, and mild surface roughness. A 25-term smooth background plus these effects lowers Rwp to 10.30%. Pb₂WO₅ shows modest [100] preferred orientation (March ratio ≈1.17); I’m screening the other phases for similarly supported texture rather than refining arbitrary directions.
+
+The five-phase model is now well established; the remaining work is refinement discipline—testing only physically defensible texture, coordinate, and line-broadening terms before freezing the GSAS-II project and exporting the deliverables. I’m checking the texture screen that was in progress, then I’ll validate composition, fit replay, and CIF/project consistency.
+
+The product phase does not need a second texture correction—the best apparent improvement is only 0.0005 Rwp with a March–Dollase ratio of 1.005, which is statistically and physically negligible. The Pb₂WO₅-like intermediate’s [100] texture remains meaningful (ratio about 1.13); I’m now separating profile broadening from texture and atomic-coordinate effects so those terms do not absorb one another.
+
+The broadening screen indicates the dominant PbWO₄ is essentially unstrained, while Pb₂WO₅ and massicot show only modest evidence for phase-specific microstrain. Instrumental X refines back to its starting value, so it is already well estimated. Texture evidence is strongest for litharge [110] and massicot [100], with weaker evidence for WO₃; coordinate refinement is the more important next discriminator because every generated reference may differ slightly from the actual phase.
+
+The first unconstrained coordinate solution lowered Rwp, but several atoms moved 0.4–1.5 Å—far outside the stated reference-mismatch envelope—so I am rejecting that numerical minimum. I’m enforcing the generator’s physically documented aggregate displacement limits (≤0.05 Å RMS for O and ≤0.04 Å for Pb/W), freezing those coordinates, and then recomputing the profile; this keeps fit improvement from masquerading as an implausible structure.
+
+The constrained all-phase model is self-consistent at Rwp 10.10%, but the residual is dominated by coherent intensity/shape errors rather than random noise. In particular, the 27–31° and 45–57° regions point back to the Pb₂WO₅-like intermediate and minor-phase texture/profile terms. I’m checking whether a closer isostructural analogue exists locally before accepting coordinate shifts as the explanation.
+
+A broad sixth-phase screen found no phase capable of explaining the large residual sequence. The only positive additions are very small—about 1.1 wt% orthorhombic W₃O₈ and 0.5 wt% Pb₃O₄—with Rwp gains of only 0.03 and 0.02 percentage point; most candidates refine to zero. I’m testing whether those tiny signals survive cell/scale refinement or are merely overlap fitting before deciding whether to include them.
+
+The residual sequence has now yielded a chemically coherent sixth phase: monoclinic Pb₃WO₆ derived by S⁶⁺→W⁶⁺ substitution in the isostructural Pb₃SO₆ framework. At fixed reference cell it refines to about 3.4 wt% and drops Rwp from 10.10% to 9.68%, far beyond every ordinary library candidate. The alternative Pb₅WO₈ and orthorhombic Pb₃WO₆ models refine to zero. I’m refining this monoclinic model and checking whether its cell remains near the analogue, which is the key guard against a false match.
+
+Pb₃WO₆ passes the strongest profile test: a [100] March–Dollase correction refines to 0.734 (inside the allowed 0.7–1.4 range) and lowers Rwp to 8.69%; alternative axes are materially worse. An unconstrained microstrain term instead runs to 15,000 ppm—well beyond the lab envelope—so I’m rejecting that route. This supports genuine [100] texture in a finely crystallized Pb₃WO₆ intermediate.
+
+The texture cross-check is still running across the three minor reference phases. So far the accepted Pb₃WO₆ term is stable; I’m waiting for the full axis comparison before adding any weaker corrections, because minor-phase texture and scale are strongly coupled in the 27–33° overlap region.
+
+The six-phase fractions have stabilized near 55% PbWO₄, 6% massicot, 10% WO₃, 8% litharge, 12% Pb₂WO₅, and 9% Pb₃WO₆ before displacement-parameter correction. I’m now refining one common Uiso per phase—the same physical form used to generate the data—because arbitrary per-atom Uiso would distort both high-angle intensities and quantitative fractions.
+
+The common-Uiso correction improves the fit, but it also exposed nuisance parameters trying to leave the documented laboratory envelope (polarization below 0.5, litharge size below 0.04 μm, and effectively zero roughness). I’m now imposing the actual lab bounds and treating surface roughness as absent; the final model will prioritize a physically replayable profile over a lower but unphysical residual.
+
+The microstrain screen rules out strain in PbWO₄ and WO₃. Pb₃WO₆ only improves by driving strain to the 8,000 ppm ceiling, and its replayed fit is actually worse, so that term is rejected. Pb₂WO₅, litharge, and massicot show only small, physically plausible broadening gains; I’m checking whether those gains have the allowed uniaxial signature before retaining them.
+
+The anisotropic broadening check leaves one defensible extra term: Pb₂WO₅ has 3,804/2,724 ppm microstrain along [010], lowering replayed Rwp to 8.28%. Litharge’s apparent strain vanishes on replay, and massicot requires an impermissibly near-zero equatorial component, so both are rejected. I’m doing one framework-neighbor check on Pb₃WO₆ to ensure the chosen sulfate-derived structure is the closest available analogue before freezing it.
+
+The final omission test finds one additional trace phase that survives: tetragonal Pb₃O₄ contributes about 0.7 wt% and lowers Rwp by 0.066 percentage point. W₃O₈ and Pb₅WO₈ contribute only 0.2–0.3 wt%, while all other candidates refine to zero. Pb₃O₄ is chemically plausible near 500 °C, so I’m checking whether its cell and peak width remain physical; if they do, I’ll report it explicitly as a trace, less-certain phase.
+
+The phase set is now well constrained: PbWO₄, two PbO polymorphs, WO₃, Pb₂WO₅, Pb₃WO₆, plus a tentative sub‑1 wt% Pb₃O₄ trace. I’m checking the last trace-phase displacement refinement, then I’ll export directly from the replay-consistent GSAS-II project and run structural/profile validation on the submitted files.
+
+The trace-phase Uiso test is nonphysical—it drove three atoms to \(U_\mathrm{iso}\approx0.54\ \text{Å}^2\) and inflated Pb₃O₄ to 7.6 wt%. I’m rejecting that branch and retaining the stable replayed model with Pb₃O₄ at 0.77 wt% and fixed literature displacement parameters. Next I’m matching the submission schema and checking all exported interatomic distances.
+
+The independent GSAS-II replay succeeds with no profile warnings and gives \(R_\mathrm{wp}=8.180\%\), \(R_p=5.872\%\) on all 8,282 points. Two exported models trigger only the scorer’s conservative O–O review threshold (not impossible contacts): WO₃ at 1.60 Å and Pb₃O₄ at 1.79 Å. I’m comparing those against their source structures now so the final CIFs do not preserve an avoidable coordinate artifact.
+
+Both flagged short O–O separations are already present in the cited literature CIFs (WO₃: 1.575 Å; Pb₃O₄: 1.793 Å), so they are not refinement-induced artifacts; there are no contacts below the hard 0.8 Å limit. I’m preserving those source-consistent models, documenting the review caveat, and now producing every deliverable from a fresh read-only replay of the final project.
+
+The final files now pass the submission parser: seven readable atomic models, fractions normalized to 1.000000, complete original-grid fit, and a bit-identical replay of `final.gpx`. I’m adding the scientific handoff with explicit caveats: the Pb₃O₄ assignment is only tentative, and the Pb₂WO₅/Pb₃WO₆ oxygen frameworks are analogue-derived rather than uniquely determined by this powder pattern.
+
+Completed the multiphase GSAS-II refinement.
+
+Normalized crystalline fractions:
+
+- PbWO₄: 51.58 wt%
+- Pb₂WO₅: 12.80 wt%
+- WO₃: 10.55 wt%
+- Pb₃WO₆: 10.05 wt%
+- Litharge PbO: 8.15 wt%
+- Massicot PbO: 6.10 wt%
+- Pb₃O₄: 0.77 wt% — tentative trace assignment
+
+Fit: Rwp = 8.180%, Rp = 5.872% across all 8,282 points. Independent replay passed without profile warnings.
+
+Deliverables:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r6/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r6/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r6/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r6/workspace/final.gpx)
+- [Phase CIFs](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r6/workspace/phase_1_pbwo4.cif) (seven files, `phase_1` through `phase_7`)
+
+The report documents that Pb₃O₄ is not reliably determined below 1 wt%, while the detailed Pb₂WO₅ and Pb₃WO₆ oxygen frameworks remain analogue-dependent.
+

@@ -1,0 +1,22 @@
+Done.
+
+## Result
+
+**Two crystalline phases — the unreacted precursors. No ternary Ba–W–O product formed at 400 °C.**
+
+| phase | space group | weight fraction |
+|---|---|---|
+| BaCO₃ (witherite) | *Pmcn* | **0.503 ± 0.002** (stat), ≈ ±0.03 total |
+| γ-WO₃ (monoclinic) | *P*2₁/*n* | **0.497 ± 0.002** (stat), ≈ ±0.03 total |
+
+Two-phase Rietveld fit in GSAS-II over 9.9–100.1° 2θ: **R_wp = 7.30 %, R_p = 5.63 %, GOF = 2.10**, 38 refined parameters, converged. Refined cells land within ~0.05 % of the literature values for both phases, and the difference curve contains no unindexed maximum.
+
+## Key findings along the way
+
+- **A +0.3° position offset** affects every reflection. It scales as cos θ, so it is a sample displacement (−582(8) µm), not a zero error; modelling it that way is what brings both cells onto their literature values.
+- **BaWO₄ is not present.** A three-phase fit returns 2.7(2) wt% scheelite and lowers R_wp to 7.07 %, which looks compelling but is not: 22 % of the χ² gain lies in 35–39°, where scheelite has no reflections, and its one reflection in a clear region (200, 32.2°) is no stronger than peaks fitted at reflection-free control positions. Upper limit ≈ 3 wt%.
+- **Light-atom positions are not determinable.** Releasing C and O drops R_wp to 7.05 % but produces C–O = 1.01/1.44 Å and U_iso = 2.4 Å² — they are held at reference values in the submitted CIFs, and the CIF headers say so. Refined heavy-atom geometry is sound (C–O 1.31 Å, Ba–O 2.68–2.89 Å, W–O 1.76–2.14 Å).
+- **Weight-fraction uncertainty is dominated by the WO₃ structural model** (0.503→0.530 switching to the older Tanisaki γ-WO₃ entry), not by counting statistics. Micro-absorption was not corrected, but here the two phases have nearly identical μ (≈1.0 × 10³ cm⁻¹), so Brindley factors largely cancel.
+- A triclinic δ-WO₃ model fits marginally better but refines to α = 89.89°, γ = 90.05° — the triclinic metric is not supported, so γ-WO₃ is reported; residual misfit at 23.4–24.7° and 26.9° may reflect a small δ admixture or stacking disorder.
+
+Deliverables at the workspace root: `BaCO3.cif`, `WO3.cif`, `fit.csv`, `result.json`, `report.md`, `final.gpx`, plus `fit_overview.png`.

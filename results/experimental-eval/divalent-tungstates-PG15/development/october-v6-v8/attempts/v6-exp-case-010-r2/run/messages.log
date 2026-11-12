@@ -1,0 +1,72 @@
+I’ll inspect the measurement metadata, pattern, and the provided analysis/refinement utilities first. Then I’ll screen candidate phases, audit viable structures, and refine/compare complete-pattern models before exporting the required GSAS-II project and deliverables.
+
+The sample is a Cu Kα reflection scan from 9.9–100.1° 2θ, prepared from Mn₂O₃ and WO₃ at 500 °C. Because neither product stoichiometry nor phase count is supplied, I’m treating precursor persistence and manganese tungstate/oxide products as hypotheses only and will let peak positions, extinctions, and full-pattern intensity agreement decide.
+
+The dominant peak triplets near 23–25° and 33–35° strongly resemble low-symmetry WO₃, while several weaker features align with manganese oxide families. I’m now ranking every Mn–O, W–O, and Mn–W–O structure available in the masked crystallographic library against the entire scan, including penalties for strong predicted peaks that are absent.
+
+The integrity audit rejects two superficially good WO₃ entries because of near-duplicate or implausibly short O–O contacts. The strongest clean candidate is monoclinic P2₁/c WO₃ (COD 2311041); clean orthorhombic Pnma and triclinic P-1 alternatives remain in the comparison. The clean bixbyite Ia-3 Mn₂O₃ model is also being tested because it explains multiple non-overlapping residual families, not just one overlap.
+
+The clean triclinic WO₃ model improves the matched two-phase fit from Rwp 9.34% to 9.05%; Pnma WO₃ is decisively worse (~15.75%). Cubic and orthorhombic Mn₂O₃ are statistically indistinguishable in Rwp, but the orthorhombic cell parameters are >98% correlated and unstable, so the parsimonious Ia-3 model is favored. The remaining large residuals are peak-shape residuals centered on already assigned WO₃ reflections, so I’m testing phase-specific size and strain terms before considering any additional phase.
+
+The profile tests support isotropic crystallite-size broadening for both phases and a small additional WO₃ microstrain term; the corresponding estimates are about 0.088 µm (WO₃), 0.066 µm (Mn₂O₃), and 1.66×10³ microstrain. Optional global U/V/X/Y/Z and axial-divergence terms either produced negative widths, singularities, or >98% correlations, so they are rejected. The mandated angular comparison also retained the zero-correction baseline; displacement-only did not converge stably and the joint model was 99.98% correlated. I’m now applying the same mature profile model to the monoclinic WO₃ alternative before deciding between it and triclinic WO₃.
+
+The surface-roughness branch improves every 10° region and outperforms polarization, while the two-parameter roughness model is unphysical and 99.98% correlated. I’m stabilizing the supported one-parameter correction by alternating small refinement blocks; this isolates it from scale/cell/profile correlations and avoids accepting the oscillatory all-at-once solution. Coordinate and texture branches have been rejected because their gains were unstable or highly correlated.
+
+The phase inventory has converged to triclinic WO₃ plus bixbyite Mn₂O₃. I’m finishing the replay-safe profile simplification now, then I’ll run the required term-removal, alternative-structure, and export audits before packaging the final project.
+
+The simplified model is stable at Rwp 6.537% with 74.70 wt% WO₃ and 25.30 wt% Mn₂O₃. I’ve also confirmed the discarded ternary candidates are chemically well formed, so their rejection will be based on full-pattern evidence rather than malformed CIFs. Next I’m doing matched leave-one-term-out refinements.
+
+The matched removal suite is still running because each omitted term is being allowed a full reoptimization of every retained broadening and envelope term. This is the key check against assigning improvement to a parameter only because its competitors were held rigid.
+
+The first two removal branches show substantial degradation despite reoptimization: eliminating roughness raises χ² from about 50,044 to about 64,149, and eliminating WO₃ size broadening is converging near χ² 53,460. That supports both terms as genuine full-pattern contributions; the strain and Mn₂O₃-size checks are still in progress.
+
+The WO₃ microstrain removal also causes a large full-pattern penalty (χ² remains above 64,000 after compensation), so both size and strain are independently warranted. No removed-term branch has produced a singular variable or negative retained width so far.
+
+The replacement and reaction-product retests are now running from independent copies of the mature baseline. These tests keep the two selected phases untouched and ask whether an alternative can survive on its own scale, which guards against overlap-only credit.
+
+One plausible minor product survived: wolframite MnWO₄ gives a positive ~7σ scale, about 0.6 wt%, and improves distinct residuals near 18.8°, 30.3°, 30.8°, and 53–54° 2θ. I’m carrying it forward as a provisional third phase and now testing whether its apparent broadening and cell parameters are actually determined; Mn₃WO₆ failed unstably and is rejected.
+
+The provisional MnWO₄ broadening test is revealing an important limitation: allowing its crystallite size to vary drives a >99% scale–background correlation. I will not use that unstable broadening merely to lower Rwp; the trace phase will retain only parameters that remain identifiable.
+
+The three-phase model reconverged cleanly at Rwp 6.490% with formal fractions 73.25% WO₃, 25.15% Mn₂O₃, and 1.60% MnWO₄. MnWO₄’s cell could not be refined reproducibly, so its audited reference cell is being retained; its broadening is represented by a stable strain term, while the pathological size solution is rejected. I’m now repeating the angular correction selection and final optional-term checks on this updated model.
+
+The angular helper is evaluating zero offset and specimen-displacement branches against the saved three-phase baseline. The acceptance test includes stability and correlation, so a numerically tiny Rwp gain will not be propagated if it is redundant with the already-settled zero correction.
+
+The final matched-removal suite is reoptimizing all retained competitors for six checks, including removing MnWO₄ itself. This is slower than a fixed-parameter comparison, but it gives the trace phase a fair leave-one-out test and prevents the background from being artificially frozen in its favor.
+
+The first final removal has converged well above the selected model (roughness removed: χ² ≈65,486 versus 49,333). The suite has moved on to the WO₃ and Mn₂O₃ broadening terms; no result from a removal branch will replace the saved selected project.
+
+WO₃ size removal has settled near χ² 52,832, and WO₃ strain removal is substantially worse still. Both remain independently necessary in the updated three-phase model; the audit is proceeding through Mn₂O₃ size and the MnWO₄ strain/phase leave-outs.
+
+The MnWO₄ checks now pass both criteria: suppressing only its strain term leaves χ² near 49,900, and removing the phase entirely leaves χ² above 50,000 after matched reoptimization, versus 49,333 selected. Its fraction is therefore retained, but will be reported with a conservative caveat because the broadening is large and its reference cell—not a refined cell—is used.
+
+The cell retrieval search returns the audited MnWO₄ model as the exact P2/c match; the nearest other cells belong to different chemistries. This supports wolframite topology as the appropriate trace-phase model, while the complete-model replacement runs continue for the WO₃ and Mn₂O₃ alternatives.
+
+All complete-model replacements remain worse after adding MnWO₄: P2₁/c WO₃ gives Rwp 6.621%, Pbca Mn₂O₃ 6.635%, and Pnma WO₃ 13.162%, compared with 6.490% selected. The model inventory is now frozen; I’m creating the renamed final project, regenerating its saved profile, and exporting the three CIFs and fit table.
+
+The final files already pass both structural and project audits. I’m completing one last matched leave-out for Mn₂O₃ so the report can quantify its necessity from the same mature three-phase nuisance model, rather than relying only on the earlier screening comparison.
+
+The final deliverables are written. The structure and GPX audits are clean; I’m now running the submission-level readback to verify JSON schema, local CIF paths, positive normalized fractions, and all required files as a final consistency check.
+
+Completed and audited. Best crystalline model:
+
+| Phase | Weight fraction |
+|---|---:|
+| Triclinic WO₃, P-1 | 73.25 wt% |
+| Bixbyite Mn₂O₃, Ia-3 | 25.15 wt% |
+| Wolframite MnWO₄, P2/c | 1.60 wt% |
+
+Fit: Rwp 6.490%, Rp 4.707%, GOF 2.440. Fractions are normalized over modeled crystalline phases. MnWO₄ is confidently trace-level, but its exact fraction is profile-model dependent and should be treated as roughly order 1 wt%, not precise to the formal e.s.d.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_1_WO3.cif)
+- [Mn₂O₃ CIF](<ATTEMPT_WORKSPACE>/phase_2_Mn2O3.cif)
+- [MnWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_3_MnWO4.cif)
+
+GPX, CIF, profile-regeneration, and submission audits all passed without flags.
+

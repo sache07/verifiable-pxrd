@@ -1,0 +1,84 @@
+I’ll first inspect the measurement metadata, pattern format, and reusable refinement helpers. Then I’ll build a chemically plausible phase inventory, fit it in GSAS‑II, and validate that the exported CIFs, fractions, profile, and project all agree.
+
+The chemistry points first to Pb–W–O products (with PbWO₄ the obvious target), but I’m treating residual PbO/WO₃ and polymorphs as live alternatives. I’m now extracting the experimental peak families and screening the structure database before committing to an inventory.
+
+The peak positions already give a strong internal check: the dominant scheelite PbWO₄ family is reproduced across 27–94° after one common ≈+0.33° angular offset, while a separate monoclinic WO₃ triplet appears near 23–25°. I’m now testing both PbO polymorphs and other Pb–W–O records under that same correction, rather than assigning the remaining lines by eye.
+
+A common-profile four-phase trial gives nonzero, coherent contributions from scheelite PbWO₄, monoclinic WO₃, and both PbO polymorphs; the provisional mass fractions are roughly 75/12/10/3 wt%. That is not yet the answer—the cell shifts and profile are still coupled—so I’m checking whether each weak phase owns multiple distinct line families and whether alternate WO₃/PbWO₄ records improve those residuals.
+
+The first residual challenge is informative: Pb₃O₄ gives only a small improvement, while a mixed-valence Pb₂O₃ record reduces the misfit much more strongly. I’m not accepting it on statistics alone—its oxidation state is chemically questionable at 500 °C—so I’m comparing its unique families against raspite and lead-rich tungstate prototypes before deciding what those peaks actually represent.
+
+The residual families identify a much more plausible solution: a Pb₂MoO₅ parent, after the chemically conservative Mo⁶⁺→W⁶⁺ substitution, predicts the unexplained peaks at about 25.9, 29.3/29.7, 30.6/31.0, 35.4, 38.1, 39.5, 41.9, and 43.4°. I’m building that C2/m Pb₂WO₅ analogue now and will re-fit the entire inventory from scratch; this should reveal whether the apparent extra PbO/Pb₂O₃ contributions were merely surrogates.
+
+The full inventory is now stable and each phase deletion is costly: removing litharge raises Rwp from 12.67% to 13.53%, removing massicot to 15.02%, WO₃ to 14.32%, and Pb₂WO₅ to 15.77%. An incommensurate/long-period α‑PbO record fits the α‑PbO families substantially better than the simple tetragonal litharge cell, so I’m checking that replacement’s geometry and replay stability before selecting the final PbO model.
+
+The phase inventory has converged to five chemically plausible components: scheelite PbWO₄, monoclinic WO₃, massicot PbO, a long-period α-PbO approximant, and a C2/m Pb₂WO₅ model derived by Mo→W substitution from the isostructural Pb₂MoO₅ prototype. I’m now rebuilding that inventory cleanly over the full measured range, then challenging residual phases and profile/size/strain terms before producing the exact final project and exports.
+
+The long-period α-PbO model is not just substituting for massicot: removing either PbO polymorph worsens the fit substantially, so both are presently retained. I’m keeping all phase microstructure and texture neutral during the clean rebuild so phase presence is judged from diffraction families rather than nuisance parameters.
+
+The full-range rebuild is still refining; this is slower because the α-PbO commensurate approximant contains 64 independent atom records. The provisional fractions remain in the same broad ranges, and the key check now is whether the inventory stays stable when the previously excluded edge points are included.
+
+The common profile test is decisive: adding U immediately collapses to its nonnegative lower bound, so it is rejected; releasing axial asymmetry gives only a small but reproducible improvement and a physical SH/L ≈ 0.0107, so I’m carrying SH/L forward. Next I’m challenging isotropic size and strain independently for each phase, with all other phase broadening held neutral.
+
+The width challenges are rejecting crystallite size terms: they either return to the “effectively infinite” 10 µm limit or collapse to a numerical bound. A positive isotropic strain signal appears only for massicot, but I’m replaying every bounded trial after reopening because GSAS-II can leave the calculated profile from the pre-clamp step in memory; only replay-stable terms will be retained.
+
+Physical screening supports both prototype substitutions geometrically: the retained Pb₂WO₅ model has tetrahedral W–O ≈ 1.76–1.78 Å and ordinary Pb–O contacts; the Pb₃WO₆ watch-list prototype also has plausible W–O/Pb–O distances. I’m now re-challenging that prototype, raspite PbWO₄, Pb₃O₄, and Pb₂O₃ against the rebuilt common profile; a candidate must contribute a positive, replay-stable scale at coherent reflections to enter the inventory.
+
+All four candidate challenges are still running concurrently; the long-period α-PbO phase makes each whole-pattern recalculation expensive. In parallel results already available, size terms are unstable or bound-limited, and the apparent α-PbO strain also hits its imposed ceiling, so those terms will be pruned unless a reopened replay reverses that conclusion.
+
+The re-challenge changes the inventory: raspite refines to zero, but Pb₂O₃ and the Pb₃WO₆ prototype each retain ~4–5 wt% when fitted together and explain different residual families; Pb₃O₄ remains a weaker ~1.5 wt% possibility. I’m now testing that weak phase against the combined model and performing phase-deletion checks, because the single-candidate Rwp improvement alone is not sufficient evidence for inclusion.
+
+The eight-phase provisional model reopens and replays reproducibly at Rwp ≈ 9.85% with all scales positive. Deletion tests are now reconverging the background, scales, zero, cells, W/X, and SH/L after removing each phase; this distinguishes phases that merely share a strong peak from phases required by independent families.
+
+The deletion batch is computationally heavy rather than stalled: four independent GSAS-II refinements are contending for CPU, each with hundreds of α-PbO reflections. I’m letting the current batch finish because terminating it would lose the clean common-profile comparisons.
+
+One inventory issue surfaced in the physical screen: the sole exact COD Pb₂O₃ record contains a 1.34 Å Pb–O contact, which is not chemically credible. Its lattice matches a strong residual family, but I will not treat that record as a reliable structure without an alternate physical prototype; I’m searching same-stoichiometry, same-symmetry/cell analogues before deciding whether to retain only a tentative phase assignment.
+
+The Pb₂O₃ geometry has a compelling minimal repair: changing the suspect O y coordinate from 0.964 to 0.164 converts the impossible contact into a sensible mixed-valence coordination set (Pb–O ≈ 2.03–2.28 Å for one site and 2.38 Å upward for the other). Because oxygen scatters weakly beside Pb, I’m rebuilding from source with that coordinate fixed—not refined—and will still label this phase tentative.
+
+The clean eight-phase rebuild is still progressing through the deliberately staged sequence (scales/background → zero → cells → W/X → SH/L). This is the most expensive rebuild, but it is important: it removes all disabled/legacy phases and ensures the final project starts from the physically screened CIFs only.
+
+The corrected Pb₂O₃ model retains essentially the same positive scale (~4.6 wt%), so that phase evidence comes from its lattice/peak families rather than the bad oxygen coordinate. The clean project is now in repeated save–reopen replay to settle the still-moving cell/profile correlations before any texture or microstructure term is judged.
+
+The clean corrected inventory is now replay-stable (Rwp 9.905%, max shift/esd 0.054) with U fixed at zero and positive W/X plus SH/L. I’m repeating the size/strain challenge on this final inventory, including the three newly admitted weak phases, because phase-width conclusions from the earlier five-phase baseline are no longer transferable.
+
+The bounded width batch is still running. Each trial is reopened and replayed after any clamp; this prevents the misleading behavior seen earlier where a parameter had been reset to a bound but the in-memory calculated profile still reflected its pre-clamp value.
+
+The first width batch is CPU-bound but healthy. The final model has eight phases and ~1,600 active reflections, so even a one-parameter test requires a full profile/Hessian recalculation; no additional model terms are being added while these comparisons run.
+
+These trials are slower than the deletion tests because several size refinements initially diverge toward a bound before GSAS-II damps them. That behavior itself is evidence against the terms, but I’m keeping the replay requirement so the rejection is based on a consistent saved state.
+
+The batch remains active after the damping/replay cycles; I’m not treating elapsed time as convergence evidence. Once it returns, any term at 0 strain, 10 µm size, a hard limit, or with a failed replay will be removed from the final project.
+
+The clean width comparison leaves one credible term: massicot isotropic microstrain (~3,000 µε) improves multiple families without hitting a bound. All crystallite-size trials are bound-limited, and α-PbO/Pb₂O₃ strain hits the ceiling; those are rejected. WO₃ and the weak phases show negligible or unstable strain gains. I’m replaying the massicot-only term before accepting it.
+
+The massicot strain term remains stable after five save–reopen passes at ~3,000 µε and lowers Rwp by ~0.05 percentage point, so it is provisionally accepted. Preferred-orientation tests for four symmetry-distinct scheelite directions are now running; acceptance requires a consistent intensity trend across several independent reflections, not merely a lower Rwp.
+
+Texture is rejected cleanly: all four scheelite March–Dollase coefficients refine to 0.992–1.002 with negligible fit changes. Final profile ablations are checking that SH/L is genuinely needed and that U again returns to its nonnegative lower bound; these are the last nuisance-model tests before export.
+
+The final nuisance model is now fixed: smooth 10-term background, one zero correction, nonnegative W/X with U/V/Y fixed at zero, refined SH/L, and massicot-only isotropic strain. All texture, size, roughness, extinction, and other phase strain terms are neutral. I’m producing the CIFs, profile, JSON, and exact replayed `final.gpx` from that state now.
+
+The requested files are written. I’m doing an exact agreement check now: reopening `final.gpx`, comparing its fractions/statistics point-for-point with `result.json` and `fit.csv`, and parsing every exported CIF for composition, symmetry, and short-contact sanity.
+
+Completed the eight-phase crystalline model:
+
+- PbWO₄: 57.90 wt%
+- Pb₂WO₅: 12.22 wt%
+- WO₃: 8.97 wt%
+- Massicot PbO: 7.66 wt%
+- Long-period α-PbO: 4.04 wt%
+- Pb₂O₃, tentative: 4.57 wt%
+- Pb₃WO₆ prototype: 3.22 wt%
+- Pb₃O₄, weak: 1.43 wt%
+
+Final fit: Rwp 9.857%, Rp 6.977%, GOF 2.823. Pb₂O₃, Pb₃WO₆, and the prototype-dependent fractions carry substantial structural uncertainty.
+
+Files:
+
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r5/workspace/final.gpx)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r5/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r5/workspace/fit.csv)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/v6nov-exp-case-013-r5/workspace/report.md)
+
+All eight CIF paths are listed in `result.json` and were validated against the final replayed project.
+

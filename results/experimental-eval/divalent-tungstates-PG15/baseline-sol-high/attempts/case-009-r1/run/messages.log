@@ -1,0 +1,30 @@
+I’ll inspect the diffraction data, metadata, and the installed crystallography toolchain first. Then I’ll identify candidate phases, build/refine a multiphase GSAS-II model, and verify that every submitted artifact is generated from the saved final project.
+
+The chemistry strongly suggests manganese tungstate formation, but I’ll treat that only as a hypothesis: residual Mn₃O₄/WO₃ or polymorphic/byproduct phases must be tested against all observed peaks. I’m now checking peak positions and the local structure-search/indexing utilities before committing to a phase model.
+
+The dominant pattern matches monoclinic wolframite-type MnWO₄ (P2/c): its diagnostic doublets at about 23.8/24.3° and 30.1/30.5°, plus the 15.7°, 18.6°, and 31.3° lines, all coincide. The alternative Mn₃WO₆ structure predicts several strong lines near 20–35° that are absent, so it is not supported. I’m testing whether any weaker peaks require residual precursor phases before doing the quantitative refinement.
+
+No separate precursor signature is evident at this stage: Mn₃O₄ and WO₃ candidates would introduce strong unmatched reflections, while the observed peak set is internally consistent with MnWO₄. I’m proceeding with a one-phase Rietveld model first, using the reported Cu Kα₁/Kα₂ wavelengths and ratio, Poisson counting weights, and an uncalibrated laboratory profile that will be refined conservatively. Residuals will determine whether a second phase is justified.
+
+The first refinement exposed an important modeling issue: the only database CIF available is a 2.4 GPa MnWO₄ structure, so its compressed cell is not a valid ambient starting metric. The refinement moved it to the expected ambient wolframite cell (about 4.83 × 5.76 × 5.00 Å). I also found and am removing a redundant overall-scale refinement that made the first covariance matrix singular. I’m comparing instrument-zero versus Bragg–Brentano specimen-height corrections from clean projects before finalizing the model.
+
+The corrected clean refinements are stable and nonsingular. A constant 2θ zero model and a specimen-height model fit nearly identically (Rwp ≈12.2%), so the uncalibrated geometry does not uniquely separate lattice metric from displacement. The specimen-height model gives a more literature-consistent ambient cell, so I’m favoring it, while treating the absolute cell uncertainty as larger than the formal least-squares error. I’m finishing coordinate/profile sensitivity tests and inspecting residual peaks for any hidden minority phase.
+
+The full five-term peak-shape fit is over-parameterized for an uncalibrated profile: several Caglioti coefficients become strongly correlated or hit bounds. I’m simplifying the final profile to only positive constant Gaussian and Lorentzian width terms, which is more defensible here even if the numerical Rwp is slightly higher. Phase identification and the one-phase fraction are unaffected by this profile-model sensitivity.
+
+The residuals do not support a second crystalline phase. Fixed-scale sensitivity tests gave Mn₃WO₆ ≈0.03 ± 0.22 wt% and drove WO₃ to the nonnegative zero bound; expected standalone Mn₃O₄ lines are also absent. I’ll report MnWO₄ as 100% only on the explicitly requested modeled-crystalline basis—not as a claim of absolute sample purity—and note a practical minor-phase detection limit of roughly 1 wt% because profile/background systematics dominate counting noise.
+
+The final model is now locked: one P2/c MnWO₄ phase, fixed chemically sensible literature coordinates, refined ambient cell, specimen-height correction, and a deliberately simple positive peak-width model. I’m doing a last cross-check that the GPX, CIF, JSON, and every row of the profile agree numerically before handing it over.
+
+Completed the phase analysis and GSAS-II refinement.
+
+Result: monoclinic wolframite MnWO₄, P2/c, at 100 wt% normalized over modeled crystalline phases. Final Rwp = 12.212%, Rp = 8.820%, GOF = 3.534. No secondary crystalline phase was reliably detected; practical detection limit is approximately 1 wt%.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [MnWO4.cif](<ATTEMPT_WORKSPACE>/MnWO4.cif)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+

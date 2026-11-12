@@ -1,0 +1,94 @@
+I’ll first inspect the pattern, metadata, and the supplied PXRD workflow/tooling. Then I’ll identify candidate phases, refine them in GSAS-II, validate the profile and fractions, and export the requested CIF/CSV/JSON/report/project artifacts.
+
+The chemistry points first to Pb–W–O products plus possible residual PbO/WO₃, but I won’t assume the nominal tungstate is the only phase. I’m now mapping the observed peak positions and querying the frozen COD library for every chemically plausible Pb/W/O structure before refinement.
+
+Peak attribution is now strongly three-phase: scheelite PbWO₄ dominates, with residual monoclinic WO₃ and orthorhombic PbO (massicot). Each secondary assignment is supported by several independent lines—for example PbO at ≈29.34, 30.62, 38.12, 53.38, 56.30, 60.54, and 63.28°, and the characteristic WO₃ triplet at ≈23.38/23.88/24.64°. I’m moving from identification to a quantitative three-phase GSAS-II model, including the common specimen shift and phase-specific cell/profile effects.
+
+The first quantitative pass converged near 70 wt% PbWO₄, 20 wt% PbO, and 10 wt% WO₃—an especially coherent result because all three structures independently support those proportions. The initial Rietveld model still has correlated scale/profile terms, so I’m tightening the parameterization and comparing all plausible WO₃ polymorph parents on identical refinement schedules before trusting the fraction uncertainties or atomic model.
+
+The polymorph comparison is still running; two alternatives have completed and the remaining candidates are converging. I’m using the same peak-shape, background, displacement, scale, and cell treatment for each, so the comparison reflects structural fit rather than different nuisance-parameter freedom.
+
+The WO₃ candidates form one closely related distorted perovskite/ReO₃-type family; the triclinic COD model currently gives the lowest identical-schedule Rwp, but only marginally, so oxygen-coordinate certainty will remain lower than phase identity. I’m also testing whether the dominant “scheelite-like” phase is ordinary PbWO₄ or the lead-deficient superstructure, since their major peaks overlap strongly but their chemistry and weight conversion differ.
+
+The three-phase model explains the major lines and recovers a remarkably stable ~0.70/0.20/0.10 split, but the difference curve still contains coherent Bragg features—most notably near 25.92° and several linked higher-angle positions. I’m treating that as evidence for a possible fourth crystalline phase rather than forcing background/profile terms to absorb it, and I’m screening the remaining Pb–O, W–O, and alternate PbWO₄ structures against the residual.
+
+Residual screening confirms a minor tetragonal PbO (litharge) component in addition to orthorhombic massicot: adding it lowers Rwp and takes about 2–3 wt%, while total crystalline PbO remains near 20–22 wt%. The dominant residual at 25.92° is not explained by litharge, so I’m preserving this four-phase improvement and continuing the residual search instead of overstating completeness.
+
+I’m running a controlled fourth-phase comparison across the chemically plausible residual candidates (PbO/Pb₃O₄/PbO₂ variants, reduced tungsten oxides, W₃O₈, and raspite). Candidate cells are held fixed initially so a weak phase cannot spuriously improve the fit by collapsing its lattice; only positive phase scales are accepted.
+
+The comparison is CPU-bound because all candidates are being refined over the full 8,282-point scan, but it is progressing normally. While it runs, the key constraint is already clear: any extra phase must explain multiple linked residual peaks, not just the isolated 25.92° maximum, and must retain a physically plausible cell and positive abundance.
+
+Three candidates have finished; the remainder are close. Early completion by itself is not a scientific signal—the candidates differ greatly in reflection count—so I’ll rank them only by the final full-profile residual and refined positive mass fraction once all identical schedules complete.
+
+The phase inventory is converging on scheelite PbWO₄ with residual massicot PbO, monoclinic WO₃, and a weaker PbO superstructure. I’m now resolving the zero/displacement correlation, then I’ll refine intensity-sensitive terms and validate that the exported CIFs, fractions, profile, and GSAS-II project all replay consistently.
+
+The zero-offset search did not materially improve the fit; the best interior solution is effectively the same as the current calibration, so I’m retaining that stable model for now. The largest remaining mismatch is intensity—not peak indexing—which points to the synthetic sample’s phase-specific displacement parameters and texture before it points to another major crystalline phase.
+
+The thermal-parameter scan is still running across all four phases. This is deliberately testing the generator’s known 0.003–0.020 Å² range while holding peak positions and widths fixed; it should distinguish genuine angular-intensity trends from a spurious extra-phase assignment.
+
+The scan supports physically sensible Uiso values but changes Rwp by only ~0.1 percentage point, so thermal motion is not the main residual source. It does, however, give stable starting values: about 0.008 Å² for PbWO₄, high-end ~0.020 Å² for massicot, and low-end ~0.003 Å² for both WO₃ and the weak PbO superstructure.
+
+A clear texture signal appears in massicot: March–Dollase [100] refines to ~0.80 and lowers Rwp from 13.46% to 13.21%. PbWO₄ stays essentially random (ratios within ~2% of 1), so I’m not adding texture there. I’m testing the two minor phases next and will retain texture only where the improvement is distinct and physically bounded.
+
+The minor-phase texture tests also find a credible WO₃ [110] effect (~0.75). The weak PbO superstructure prefers the allowed upper bound, so I’m treating that texture as provisional rather than conclusive. With peak positions and broadening now stable, the next high-value test is direct coordinate refinement—especially the scheelite oxygen position, which the synthetic generator intentionally perturbs.
+
+The unconstrained coordinate refinements move atoms far beyond the generator’s allowed 0.01–0.05 Å reference mismatch, so I’m rejecting those apparent improvements as overfitting. The current test instead targets the conspicuous massicot broadening at its isotropic limit; the generator permits uniaxial strain up to four times the equatorial value, which is a much more plausible explanation for that behavior.
+
+The massicot width is now physically explained by uniaxial strain: [001] gives ~8000 ppm equatorial and ~2500 ppm axial strain (ratio ≈0.31, inside the generator’s 0.25–4 range) and improves Rwp to 12.93%. Equivalent anisotropic-strain additions for WO₃ and the weak PbO phase do not help, so I’m keeping those isotropic.
+
+The residual screen shows that the largest unmatched features correlate most strongly with the existing scheelite family, not with a chemically convincing fifth phase; WO₂ would explain 25.9° but would require strong 37.3° and 53.6° peaks that are absent. I’m therefore re-equilibrating cells and calibration before accepting any extra phase—the current difference curve still has classic positive/negative lobes from slight peak-position mismatch.
+
+The physically constrained cell/calibration passes do not improve the model, so I’m keeping the earlier peak positions. I’m broadening the phase comparison now: several weak candidates were previously screened only with sharp default peaks, which can unfairly reject a nanocrystalline residual. I’m rerunning the strongest chemically allowed alternatives with independently refined size and strain under the same bounds.
+
+The broad-profile candidate refinements are still running. One trial has wandered into an invalid cell geometry (caught numerically), but the others are continuing; I’ll compare only converged models with positive scale, plausible cells, and profile terms inside the stated laboratory bounds.
+
+The first broad-candidate comparison confirms the PbO superstructure remains the strongest fourth-phase explanation; Pb₂O₃ is the nearest alternative but fits substantially worse. I’m now testing whether any candidate earns a nonzero fifth-phase scale once the four-phase model’s broadening and texture are already present.
+
+The fifth-phase trials are slower because each candidate is being staged through scale, cell, size, and strain refinements. I’m retaining a candidate only if the final improvement survives all stages without a collapsed scale, invalid cell, or boundary-driven profile; this guards against fitting the broad 25.9° residual with a phase whose other required reflections are absent.
+
+Most trials have finished; at least one large-cell candidate is still converging. I’m letting the bounded refinement complete rather than comparing partially optimized projects, then I’ll inspect the candidate fractions and cells together—not Rwp alone.
+
+No fifth candidate passes the full plausibility check. WO₂ scales collapse to zero; Pb₂O₃ requires a >9% cell distortion and boundary broadening; Pb₃O₄ gives only a marginal gain at the strain ceiling. The 25.9° feature is more plausibly a superlattice reflection of the Pbcm PbO phase whose published intensity is cancellation-sensitive, so I’m now refining that phase’s coordinates within the generator’s strict 0.04 Å (Pb) / 0.05 Å (O) displacement envelope.
+
+The all-site Pbcm coordinate refinement is singular because several superstructure coordinates are nearly perfectly correlated. I’ve split it into one-site bounded tests; this keeps each trial identifiable and will show whether any specific Pb/O modulation can account for the superlattice intensity without leaving the allowed displacement range.
+
+The one-site coordinate tests all drive to bounds and do not outperform the physically fixed Pbcm model, so I’m not exporting those overfit coordinates. I’m checking the last common intensity nuisance now—surface roughness from several starts—because it is a generator-supported whole-specimen effect and can bias both low-angle phase scales and apparent texture.
+
+The roughness multi-start is still converging. Because the two Suortti parameters are correlated, I’m requiring independent starts to land at the same interior solution; otherwise the defensible conclusion is that roughness is not identifiable and should remain off.
+
+Surface roughness is not identifiable (starts split between zero and boundary solutions), while polarization converges reproducibly to ~0.797, essentially the existing 0.80. I’m leaving roughness off and making one final bounded profile re-equilibration to see whether the main scheelite residual is from common instrumental width versus phase size.
+
+The final profile alternation converged to essentially the same Rwp (12.93%) with a better unweighted R and interior sizes for PbWO₄, massicot, and WO₃; only the weak PbO superstructure remains at the 0.04 μm lower size bound. I’m doing a short final texture re-equilibration against these updated widths, then I’ll freeze and export the internally consistent deliverables.
+
+The texture ratios re-equilibrated to massicot [100] ≈0.793 and WO₃ [110] ≈0.744; the weak PbO superstructure remains at the allowed 1.4 boundary, which I will explicitly flag as provisional. I’m freezing the no-refinement replay model now and exporting its CIFs, full-grid profile, fractions, and statistics from that same project.
+
+The frozen exports are complete: 64.49 wt% scheelite PbWO₄, 16.37 wt% massicot PbO, 11.13 wt% monoclinic WO₃, and 8.01 wt% provisional Pbcm PbO. The full-grid frozen calculation gives Rwp 12.93% (Poisson-limit Rwp 3.50%). I’m now running the scorer’s independent read-only GSAS replay to verify the project, CIFs, fractions, and profile regenerate consistently.
+
+The independent replay passes with no project/profile review flags, exactly reproducing the submitted fractions and fit.csv (maximum calculated-intensity difference <5×10⁻⁹ counts). One caveat emerged in structural screening: the selected published WO₃ entry has a 1.58 Å O–O contact and is flagged for adjudication, not hard failure. I’m comparing the near-equivalent monoclinic WO₃ references now to avoid exporting an unnecessarily questionable parent model.
+
+The physical-pass WO₃ entry 2311041 degrades Rwp sharply to 13.74%, so it is not an acceptable substitute. I’m checking the only other close physical-pass references that had competitive initial matches; if neither preserves the profile, I’ll retain 1528915 and document its close O–O contact as a genuine structural-model uncertainty rather than hiding it.
+
+The independent checks now all pass: four CIFs are physically readable, their fractions sum to 1, each CIF matches its corresponding project phase under the scorer’s rounding-aware comparison, and replay reproduces fit.csv to <5×10⁻⁹ counts. I found one formatting detail in the diagnostic profile header and am correcting it to the scorer-recognized `two_theta` alias before the final handoff.
+
+Completed the phase analysis and GSAS-II refinement.
+
+Crystalline fractions:
+
+- Scheelite PbWO₄: 64.49 wt%
+- Massicot PbO: 16.37 wt%
+- Monoclinic WO₃: 11.13 wt%
+- Provisional long-period PbO superstructure: 8.01 wt%
+
+Fractions are normalized over modeled crystalline phases. Rwp = 12.93%, Rp = 8.70%. The minor PbO superstructure and detailed WO₃ oxygen coordinates remain uncertain, as discussed in the report. Independent replay verified the project, fractions, CIF consistency, and calculated profile.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r7/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r7/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r7/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r7/workspace/final.gpx)
+- [PbWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r7/workspace/phase_1_PbWO4_scheelite.cif)
+- [Massicot PbO CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r7/workspace/phase_2_PbO_massicot.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r7/workspace/phase_3_WO3_monoclinic.cif)
+- [PbO superstructure CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r7/workspace/phase_4_PbO_Pbcm_superstructure.cif)
+

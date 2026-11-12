@@ -1,0 +1,30 @@
+I’ll inspect the diffraction pattern and metadata first, then identify candidate phases and build/refine a GSAS-II model. I’ll keep the reported fractions explicitly normalized over the crystalline phases included in the final fit.
+
+The synthesis context points first to manganese tungstate (`MnWO₄`), with possible residual MnO or WO₃. I’m now testing that hypothesis against the full peak list and checking the locally available structure/indexing resources before committing to a phase count.
+
+The observed peak sequence is already highly consistent with monoclinic wolframite-type MnWO₄ (space group `P2/c`), including the diagnostic low-angle line near 15.7° and split intense pair near 30.1/30.6°. I’m checking every residual peak against precursor/oxide alternatives so a minor phase is only added if the data require it.
+
+No candidate impurity explains the residual peak positions, while the MnWO₄ model accounts for the strong and weak reflections throughout 10–100°. I’m proceeding with a one-phase Rietveld refinement, using the supplied Cu Kα₁/Kα₂ wavelengths and ratio, Poisson counting weights, and a reflection-geometry profile; I’ll still inspect the refined residuals for any coherent unmodeled phase.
+
+The first pass confirms a good one-phase match (`Rwp ≈ 10.5%`), but it exposed parameter correlations from simultaneously refining redundant scale and broadening terms. I’m tightening the model—removing the redundant histogram scale and over-parameterized size/strain terms—before treating the fit statistics or exported structure as final.
+
+The constrained profile fit improves to `Rwp ≈ 9.34%` with all width terms physically positive. A modest angular-intensity correction is supported by the data; I’m checking whether it is better represented by the instrument polarization term (unspecified in the metadata) or by weak preferred orientation, while avoiding an unjustified texture parameter.
+
+The final constrained refinement is converged (`max shift/esd = 0.054`) with `Rwp = 9.11%`, `Rp = 6.60%`, and no preferred-orientation parameter. I’m doing the final residual/structure validation now, then I’ll write the uncertainty statement and verify that every submitted path and project output is internally consistent.
+
+Validation shows the CIF parses correctly, the profile has all 8,301 measured points with exact observed–calculated differences, and the saved project reloads with the same converged statistics. I’m removing exploratory trial projects so the workspace contains only the requested final deliverables (and the original inputs).
+
+Completed the phase analysis and GSAS-II refinement.
+
+Result: monoclinic MnWO₄ (`P2/c`), 100 wt% of the modeled crystalline phases. No reliable secondary crystalline phase was detected. `Rwp = 9.110%`, `Rp = 6.597%`, and GOF = 3.308.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [phase_1_MnWO4.cif](<ATTEMPT_WORKSPACE>/phase_1_MnWO4.cif)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+
+The 100 wt% value is normalized over identified crystalline phases; amorphous material and trace overlapping phases cannot be quantified from these data.
+

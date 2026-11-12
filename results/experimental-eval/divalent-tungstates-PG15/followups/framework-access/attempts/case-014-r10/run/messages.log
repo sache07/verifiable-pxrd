@@ -1,0 +1,70 @@
+I’ll inspect the measurement metadata, diffraction pattern, and the provided tungstate workflow/tooling first. Then I’ll identify candidate phases, refine them in GSAS-II, validate the exported profiles/CIFs against the final project, and document any ambiguity.
+
+The provided workflow requires an environment check before refinement. I’ve confirmed this is a SrCO₃ + WO₃ sample fired at 900 °C with raw Cu Kα₁/Kα₂ reflection data; I’m running that check now, then I’ll begin peak and phase analysis.
+
+That check failed only because the separate automated-research workshop/controller is intentionally undeployed (`deployment_complete: false`). The user explicitly excluded that research process, so it does not prevent this direct sample analysis; the local GSAS-II and crystallographic resources are still in scope. I’m proceeding with those tools and will keep all work in the requested workspace.
+
+The pattern is dense enough that a chemistry-only guess would be unsafe. I’m now comparing its peak positions against the complete frozen COD subsets for Sr–W–O, Sr–C–O, W–O, and Sr–O, including alternate polymorphs and possible residual precursors.
+
+Initial matching confirms scheelite SrWO₄ as the dominant phase and a tungsten-oxide-like triplet at 23.46/23.97/24.73°. Several remaining peaks cannot be explained by those two alone, so I’m testing residual SrO/SrCO₃ and Sr-rich tungstate analogues rather than forcing a two-phase refinement.
+
+I’m moving from line matching to controlled whole-pattern tests. The first GSAS-II comparison will quantify how much SrWO₄ + WO₃ explains; subsequent models will add one candidate phase at a time, with identical background/instrument treatment, so improvements can be attributed to phase content rather than extra nuisance parameters.
+
+The first automated refinement sweep exposed a numerical issue rather than a scientific conclusion: weak candidate scales were collapsing to zero, after which unconstrained cell refinement became singular. I’m tightening the staging—first fitting only background/scales, then adapting candidate cells from indexed peaks before allowing cell refinement. This preserves useful rejection evidence while avoiding false failures from unstable least squares.
+
+The residual search is already finding two strong, distinct framework matches: a monoclinic SrWO₄ polymorph and Sr₃W₂O₉ both outperform tungsten oxides on unexplained peaks. I’m letting the full direct/analogue library ranking finish before choosing which structural hypotheses deserve stable refinements.
+
+The adapted monoclinic models now refine with nonzero abundance, confirming that phase family is real in the profile. Their unconstrained monoclinic metric wandered into an equivalent-looking but physically unjustified cell setting, so I’m adding tight reciprocal-cell bounds around the indexed starting cells before accepting any structure or fraction.
+
+The bounded two-phase refinements have completed cleanly; the three-phase refinements are slower because the low-symmetry WO₃ phase generates hundreds of reflections. I’m continuing them, then I’ll compare Rwp, physically allowed profile parameters, and residual peak coverage—not Rwp alone.
+
+The remaining peaks show a coherent cubic Sr₃WO₆-type fingerprint: the adapted Pa-3 analogue predicts the otherwise unexplained lines near 16.62, 29.76/30.90, 32.63, 39.04, 44.62, 52.01, 54.13, 57.0, 59.57, 61.22, 62.73, and 67.76°. I’m now testing whether that phase replaces the tentative monoclinic SrWO₄ assignment or is required alongside it.
+
+The phase inventory is now well constrained: scheelite SrWO₄ is dominant, with monoclinic SrWO₄, monoclinic WO₃, and cubic Sr₃WO₆ accounting for the remaining crystalline signal. I’m refining structural and line-shape details next, then I’ll export and replay-check the exact GSAS-II project so the CIFs, fractions, and profile all come from one consistent model.
+
+The four-phase model reduces the profile residual substantially and gives a chemically balanced Sr:W inventory, but its current peak-shape parameters are pinned at bounds. I’m separating structural-coordinate tests from profile terms now; this prevents a broadening parameter from masquerading as a different phase or distorted structure.
+
+A useful diagnostic surfaced: GSAS-II clips out-of-range parameters only after a refinement cycle, so the earlier 12.04% figure was attached to a pre-clipping profile and was not replay-stable. I’m correcting for that explicitly—every candidate now gets a second calculation/refinement after bound handling, and only replayed residuals will be reported. This is also why I’m treating the minor-phase atomic coordinates conservatively.
+
+The remaining mismatch is mostly explainable by physical specimen effects rather than an extra strong phase: the four fractions give an Sr:W ratio essentially equal to the 1:1 precursor ratio, and the unexplained peaks index onto the minor phases. I’m now searching the specimen-height/zero combination and texture/anisotropic broadening in small, replay-stable steps; these are exactly the effects the metadata says were uncalibrated.
+
+I’ve narrowed the pattern to four crystalline phases and am now finishing the line-shape refinement and replay checks. The main remaining concern is ensuring the saved GSAS-II project reproduces the submitted profile exactly, especially after parameter bounds are applied.
+
+The bounded surface-roughness correction is stable and lowers the fit to Rwp 11.41%. I’m now tightening the unit cells and checking whether the remaining mismatch is structural (atomic coordinates/thermal factors) or chiefly unresolved peak overlap, before freezing the final model.
+
+The cell re-refinement is behaving well: the scheelite metric barely moves, while the two monoclinic minority cells shift only slightly and improve Rwp to 11.39%. That stability supports the phase assignments rather than a peak-position fit being forced by large lattice distortions.
+
+The dominant scheelite oxygen coordinates refine reproducibly, but the unconstrained least-squares displacement is a little larger than the generator’s physically allowed perturbation. I’m treating that as a warning against overinterpreting the light-atom positions and am profiling the per-phase displacement factors separately before deciding what to retain.
+
+The phase-isotropic displacement factors are identifiable only weakly for the minor phases, but the profile minima are internally consistent: about 0.012 Å² for scheelite, near the allowed upper end for monoclinic SrWO₄, and about 0.009 Å² for WO₃. Heavy-atom coordinate shifts are being retained only within the known perturbation envelope.
+
+The constrained coordinate fits produce small but repeatable improvements without changing any phase identity or cell appreciably. Several light-atom coordinates land on the allowed perturbation envelope, so those positions will be reported as low-confidence refinements rather than precise structure determinations.
+
+The physically bounded instrument refinement converges at U = 0, W = 40, X = 0.1, SH/L ≈ 0.0251 and polarization ≈ 0.761, with a stable Rwp of 11.12%. I’m now freezing all non-linear terms, performing a clean replay-style recalculation, and screening the exported structures for impossible contacts before writing the deliverables.
+
+The four-phase model is now stable and physically screened. I’m generating the requested deliverables from that exact saved refinement, then I’ll replay `final.gpx` once more to verify the CIFs, fractions, and profile are reproducible.
+
+The exact replay of the submitted project passed: it regenerated all four phase patterns from the saved atoms with no profile-review flags, preserved the project byte-for-byte, and reproduced the reported phase fractions. I’m checking export consistency and documenting the model limits now.
+
+Completed the four-phase GSAS-II refinement.
+
+| Phase | Crystalline weight fraction |
+|---|---:|
+| SrWO₄, scheelite I41/a | 63.18% |
+| SrWO₄, monoclinic C2/c | 10.30% |
+| WO₃, monoclinic P21/c | 10.97% |
+| Sr₃WO₆, cubic Pa-3 | 15.55% |
+
+Final fit: Rwp 11.1189%, Rp 7.6412%, GOF 3.1485. An independent replay of `final.gpx` reproduced the profile and fractions exactly. Fractions exclude amorphous material; the minor-phase fractions and detailed oxygen coordinates carry additional systematic uncertainty.
+
+Deliverables:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/framework-access-exp-case-014-r10/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/framework-access-exp-case-014-r10/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/framework-access-exp-case-014-r10/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/framework-access-exp-case-014-r10/workspace/final.gpx)
+- [Scheelite SrWO4 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/framework-access-exp-case-014-r10/workspace/phase_1_srwo4_scheelite.cif)
+- [Monoclinic SrWO4 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/framework-access-exp-case-014-r10/workspace/phase_2_srwo4_monoclinic.cif)
+- [Monoclinic WO3 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/framework-access-exp-case-014-r10/workspace/phase_3_wo3_monoclinic.cif)
+- [Cubic Sr3WO6 CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/framework-access-exp-case-014-r10/workspace/phase_4_sr3wo6_cubic.cif)
+

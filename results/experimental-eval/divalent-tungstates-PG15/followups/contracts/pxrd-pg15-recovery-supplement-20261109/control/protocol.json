@@ -1,0 +1,81 @@
+{
+  "assessment": "Native final.gpx replay with fitted calibration preserved; observed-data Rwp on 10.1-99.9 degrees with weights 1/max(counts,1); hidden-phase structure matches and physical checks. No synthetic score. Outputs stay outside the evolution run.",
+  "attempts": 36,
+  "authorization": "User (2026-11-09): \"queue 6 more solves for the Sr and Pb cases under the evolved condition (nov v6 that got 2/3), the framework-access condition, and the evolved framework-access condition—the one that produced the v5 one we evaled. I guess point is to get more clear data on the phase recovery gains\"",
+  "cases": 2,
+  "cases_list": [
+    "case-013",
+    "case-014"
+  ],
+  "comparison_limitations": [
+    "Scans chosen after seeing the 15-scan results; not part of any prospective comparison.",
+    "The three conditions run contemporaneously here; their original r1-r3 came from panels of 2026-11-04, 11-05 and 11-09.",
+    "The evaluator and inputs are those of the earlier panels; the P0 Max baseline is not re-run."
+  ],
+  "condition": "P0 baseline; Max reasoning effort",
+  "created_at": "2026-11-09T10:48:57.815112+00:00",
+  "database": "DARA filtered COD 2024; full frozen filtered index, no added masks, no DARA solver, no web or ICSD",
+  "database_sha256": "03599f54f03f04420523dca36cc06927b74ce0070a4a80e6d859faa38a6c5aed",
+  "design": "Outcome-selected supplement on the two hidden-phase scans, replicates r4-r9 per condition. Reported separately from the prospective 15-scan comparisons; the per-attempt recovery rate per condition is the quantity of interest.",
+  "dispatch": {
+    "capacity_note": "Sixteen two-core slots on 32 vCPU as for the earlier panels; dispatch is held until the combined panel has finished and while the access run's dispatch is paused (since 2026-11-09 02:04 UTC).",
+    "capacity_retry_seconds": 60,
+    "max_concurrent_solvers": 16,
+    "minimum_available_ram_gib": 8,
+    "minimum_free_disk_gib": 6,
+    "monitor_seconds": 300,
+    "remote_host": "pxrd-tungstate15-ec2",
+    "service_prefix": "pxrd-pg15-recsup-1109"
+  },
+  "effort": "max",
+  "experiment": "pxrd-pg15-recovery-supplement-20261109",
+  "inputs_byte_identical_to_P0": true,
+  "inputs_source": "<SOURCE_ARTIFACT>",
+  "model": "gpt-5.6-sol",
+  "not_supplied": [
+    "prior outcomes",
+    "canonical answers",
+    "paper",
+    "calibrated instrument file",
+    "new xye uncertainties",
+    "output checker",
+    "synthetic truths or scores"
+  ],
+  "package_prompt_sha256": null,
+  "package_source": null,
+  "packages": {
+    "framework-access": {
+      "prompt_sha256": "258f27e7eb7e8217e16a31d4dc6f97e0da2e57def89355f6d1f2108b192e4ba4",
+      "source": "<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/policies/framework-access"
+    },
+    "fwaccess-v5": {
+      "prompt_sha256": "3ccf43c96f02e1f69bf2ce380d7e8633efbc60344294f3fca77ef3978d079d02",
+      "source": "<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-v5-20261109/policies/fwaccess-v5"
+    },
+    "v6nov": {
+      "prompt_sha256": "06abcffca01d2785a0020887c9fa78db1d851de2bfd9e4c35d5c8f36dfb1b7e6",
+      "source": "<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-eval15-v6nov-20261104/policies/v6nov"
+    }
+  },
+  "per_attempt": {
+    "cpu_quota": "200%",
+    "memory_max": "5G",
+    "numeric_threads": 2,
+    "tasks_max": 128
+  },
+  "repeats": 6,
+  "replicates": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "scientific_package_changes": [],
+  "supplied_inputs": [
+    "inputs/pattern.csv",
+    "inputs/metadata.json"
+  ],
+  "timeout_seconds": null
+}

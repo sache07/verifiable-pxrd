@@ -1,0 +1,38 @@
+I’ll inspect the pattern, metadata, and available diffraction/refinement utilities first. Then I’ll identify candidate phases, build a multiphase GSAS-II refinement, and validate that the exported CIFs, profile, fractions, and project are internally consistent.
+
+The chemistry points toward calcium tungstate formation, but 500 °C may leave precursor or intermediate phases, so I’m treating that only as a constraint. I’m now extracting peak positions and checking the installed phase-search/refinement stack before committing to a model.
+
+Three crystalline phases are now clearly supported by independent peak families: monoclinic WO₃ (the 23–25° triplet), scheelite CaWO₄ (18.9°, ~29.0°, 34.46°, 47.52°), and calcite CaCO₃ (~29.71°, 36.29°, 39.71°, 43.46°). Their consistent positive peak shifts indicate that reference cells and/or specimen displacement need refinement; I’m moving to a quantitative three-phase Rietveld model rather than estimating fractions from isolated peaks.
+
+The first quantitative model is refining now. I’ve fixed the overall histogram scale to avoid a scale-factor degeneracy, while refining the three phase scales, a smooth background, reflection-geometry displacement, lattice parameters, and peak broadening in stages. This should make the reported fractions true Rietveld mass fractions rather than peak-area proxies.
+
+That run exposed a GSAS-II geometry detail and a numerical instability: the correct reflection-mode parameter is indeed `Shift`, but refining it from the outset let it run to an unphysical −2.53 mm and collapse two phase scales. I’m restarting from the physically estimated −0.43 mm, holding it fixed while the background/scales settle, then releasing it within bounded limits before refining cells and widths. The failed project will be overwritten, not submitted.
+
+The bounded restart converged cleanly to a substantially better fit (Rwp ≈ 11.7%) with plausible cells and a −0.50 mm specimen-height correction. Current mass fractions are about 54.1% WO₃, 8.2% CaWO₄, and 37.7% calcite. I’m checking the residual for missing peak families and testing whether phase-specific broadening or preferred orientation is justified before freezing the model.
+
+A lower-symmetry WO₃ test changed the identification: triclinic P‑1 WO₃ fits decisively better than monoclinic P2₁/c (Rwp 9.64% versus 11.70% before extra empirical terms, and still better than 10.62% after texture/coordinate adjustments). Its refined cell is only slightly distorted from monoclinic metrics, which explains why peak matching alone was ambiguous. I’m carrying the triclinic model forward and rechecking the broadened CaWO₄ fraction under that structure.
+
+The selected final model is triclinic WO₃ (P‑1), scheelite CaWO₄ (I4₁/a), and calcite (R‑3c). The final quantitative fit is Rwp = 8.99%, Rp = 6.66%, GOF = 3.76, with refined crystalline fractions 54.12%, 10.10%, and 35.79%, respectively. I’m now freezing that exact converged state into `final.gpx`, exporting its CIFs/profile, and documenting the model-dependence of the broad CaWO₄ fraction.
+
+All requested files are now generated from the same frozen project. I’m doing a final integrity pass: reopening `final.gpx`, parsing each exported CIF independently, confirming the fractions sum to one, and checking every `fit.csv` row against the project’s stored observed/calculated arrays.
+
+Completed the three-phase GSAS-II refinement.
+
+- Triclinic WO₃ (P‑1): 54.12 wt%
+- Scheelite CaWO₄ (I4₁/a): 10.10 wt%
+- Calcite CaCO₃ (R‑3c): 35.79 wt%
+
+Fit: Rp 6.66%, Rwp 8.99%, GOF 3.76.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3_triclinic.cif](<ATTEMPT_WORKSPACE>/WO3_triclinic.cif)
+- [CaWO4_scheelite.cif](<ATTEMPT_WORKSPACE>/CaWO4_scheelite.cif)
+- [CaCO3_calcite.cif](<ATTEMPT_WORKSPACE>/CaCO3_calcite.cif)
+
+The broad CaWO₄ fraction is model-sensitive by roughly 2–3 percentage points, and the nearly monoclinic metric of WO₃ leaves some uncertainty in the subtle P‑1 versus P2₁/c polymorph distinction.
+

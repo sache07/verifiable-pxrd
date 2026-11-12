@@ -1,0 +1,32 @@
+I’ll first inspect the measurement metadata, pattern format, and the supplied tungstate framework notes, then inventory the installed diffraction/refinement tools. I’ll use those constraints to identify candidate phases before building and validating the final GSAS-II refinement.
+
+The context strongly favors a low-temperature, partially reacted BaCO₃–WO₃ mixture, but I’ll treat that only as a chemical prior. The decisive test will be whether reference structures account for every resolved reflection and whether their refined scales remain stable once instrument/background/specimen effects are introduced.
+
+The line positions already separate cleanly into orthorhombic witherite BaCO₃ and low-symmetry WO₃: for example, the strong BaCO₃ lines near 41.99° and 44.86° map to observed 42.29° and 45.17°, while the WO₃ triplets near 23–25° and 33–35° explain the remaining splitting. I’m now testing alternate WO₃ structure settings and possible BaWO₄ as an added phase by full-profile refinement, rather than deciding from peak lists alone.
+
+The first full-profile test confirms that these two precursor phases explain essentially all major intensity, with an initial quantitative estimate near 55 wt% BaCO₃ / 45 wt% WO₃. I’m comparing the low-symmetry WO₃ references now; several are crystallographically equivalent descriptions, but their oxygen coordinates and symmetry constraints differ enough to affect the profile and structural credibility.
+
+No additional crystalline phase is needed to explain the pattern so far. The dominant remaining mismatch is in relative BaCO₃ reflection intensities—especially the 24° versus 42° lines—which is the signature expected from preferred orientation or surface roughness, not a missing phase. I’m screening the physically allowed texture axes before refining atomic coordinates.
+
+The texture test is specific: BaCO₃ prefers a modest [110] March–Dollase correction (ratio about 0.90), while every WO₃ axis refines back to essentially 1.00. That supports a real BaCO₃ specimen effect rather than indiscriminate profile fitting. I’m now separating common instrumental width from phase-specific crystallite size/microstrain and specimen displacement.
+
+The displacement refinement converged to about −0.70 mm with a separate zero of −0.09°, both inside the stated laboratory ranges. This materially improves the cell metrics and avoids forcing the angular shift into the structures. The current scale estimate is about 53 wt% BaCO₃ / 47 wt% WO₃; I’m treating its formal covariance error as optimistic until coordinate and roughness terms are settled.
+
+The coordinate refinement is computationally heavier because each low-symmetry WO₃ site contributes independent symmetry-allowed shifts. It is still progressing; the refinement is staged with W/Ba first, then oxygen, so I can reject any later overfit if it creates implausible interatomic distances.
+
+Unconstrained oxygen refinement lowered Rwp but displaced several O sites by roughly 0.5–1.5 Å and drove WO₃ Uiso negative, so I rejected it as overfitting. The defensible model keeps the published oxygen framework and refines only Ba/W positions; both monoclinic and triclinic WO₃ remain plausible, with the triclinic model retaining a small profile advantage.
+
+I’m also testing BaWO₄ and the plausible Ba-rich/substoichiometric tungstates as explicit third phases. This is an upper-bound check: each candidate is added to the accepted two-phase project with its own scale, and a credible third phase must improve the profile with a positive, stable fraction rather than merely shifting existing parameters.
+
+The bounded-coordinate refinements strengthen the triclinic assignment: with every atomic displacement limited to the framework’s stated 0.04–0.05 Å reference-mismatch scale, triclinic WO₃ gives Rwp 6.10% versus 6.39% for monoclinic WO₃. I’ll carry the triclinic model, while noting that many oxygen shifts reach their bounds and are therefore not independently reliable.
+
+The phase assignment is now robust: orthorhombic BaCO₃ plus low-symmetry triclinic WO₃. I’m finishing the refinement under physically bounded broadening/strain models, then I’ll export every requested artifact from that single final GSAS-II project and cross-check their internal consistency.
+
+The remaining mismatch is concentrated in the split WO₃ peak clusters rather than in unexplained extra reflections. I’m testing anisotropic microstrain and background terms one block at a time; this avoids the unstable all-at-once least-squares step that drove otherwise physical parameters away from the better solution.
+
+Both phases show only modest but reproducible directional broadening: BaCO₃ along [100] and WO₃ along [001]. I’m retaining those terms because they stay within the synthesis framework’s plausible strain range, while rejecting more elaborate effects that are unsupported or unstable.
+
+The first bounded-coordinate attempt exposed a GSAS-II edge case: when a coordinate hits a hard limit, the stored calculated curve can precede the clamped coordinate update. I’ve isolated that and am rerunning the coordinate block iteratively until no new bound crossings occur; only that reproducible, reloadable model will be eligible for the final project.
+
+The bounded coordinate refinement is behaving as expected now: 44 coordinates reached the allowed structural-mismatch envelope on the first pass. A second pass is running with those held fixed; its result—not the pre-clamp profile—is what determines whether the positional refinement is credible.
+

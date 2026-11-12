@@ -1,0 +1,139 @@
+I’ll inspect the pattern, metadata, and the provided PXRD framework first, then identify candidate phases and carry the best model through GSAS-II refinement. I’ll keep the submitted fractions tied to the final saved project and flag any unresolved phase assignment.
+
+The chemistry points first to a strontium tungstate product, but the raw scan can still contain carbonate, oxide, or off-stoichiometric intermediates. I’m now separating true Bragg peaks from the strong low-angle background and checking the frozen reference index for structurally plausible Sr–W–O phases before refining anything.
+
+Peak positions already support scheelite SrWO₄ as the dominant phase and monoclinic WO₃ as a residual precursor. Two coherent weaker peak families remain: one resembles the high-temperature carbonate polymorph, and another resembles the monoclinic SrWO₄ polymorph. I’m testing these as full profile components—especially whether their diagnostic peaks improve the fit consistently, rather than accepting isolated peak coincidences.
+
+The first whole-pattern refinement is running with only scheelite SrWO₄. Its residual will serve as the baseline; candidate secondary phases must lower that residual while taking positive, stable scale factors and accounting for their own diagnostic reflections.
+
+The candidate tests are still converging. I’m comparing nested inventories (one through four phases) under the same calibration/background model; this is important because a spurious phase can otherwise look useful merely by absorbing background or peak-width error.
+
+The carbonate-only addition collapsed to essentially zero scale and then destabilized its cell, so that particular local refinement is not evidence for carbonate. I’m retaining the peak-match hypothesis but will only accept it if a pre-registered, bounded refinement gives a stable positive fraction; the other inventories are still running.
+
+Two secondary components now pass the first stability check independently: monoclinic WO₃ refines to roughly 14 wt% and monoclinic SrWO₄ to roughly 9 wt%, each reducing Rwp. Those numbers are provisional because the exploratory profile parameters are over-correlated; I’m waiting for the joint models, then I’ll re-refine with physical bounds and fewer redundant width terms.
+
+The peak-family comparison now favors Sr₃W₂O₉ over monoclinic SrWO₄ for the strong 29.76/32.61/44.00° family: Sr₃W₂O₉ predicts single/degenerate strong reflections there, while the monoclinic SrWO₄ model predicts an additional comparably strong peak near 29.1° that is not observed. I’m switching the next refinement to the more discriminating Sr₃W₂O₉ hypothesis and keeping the carbonate unaccepted.
+
+The physically bounded two-phase refinement is underway with calibration fixed inside the experiment’s allowed ranges and with nonnegative, bounded profile terms. This should produce a trustworthy residual pattern for testing Sr₃W₂O₉ and any remaining weak phase.
+
+The two-phase bounded model settles at Rwp ≈16.5% with about 86 wt% scheelite SrWO₄ and 14 wt% monoclinic WO₃. That fit is still far above counting noise, confirming at least one additional phase. I’m now screening the competing third-phase models under identical fixed-cell conditions.
+
+Sr₃W₂O₉ is the only tested third phase with a stable positive scale: about 5 wt% in the fixed-cell screen, lowering Rwp by ~0.6 percentage point. Monoclinic SrWO₄ and rhombohedral SrCO₃ both collapse to zero; cubic W₂O₇ contributes only ~0.2 wt% and is not yet defensible. I’m now allowing the Sr₃W₂O₉ lattice and phase broadening to refine.
+
+The three-phase refinement is computationally heavier because Sr₃W₂O₉ has a lower-symmetry cell and anisotropic peak shifts. It is still running; after it finishes I’ll inspect which observed peaks remain unmodeled before deciding whether a fourth phase is warranted.
+
+The unrestricted Sr₃W₂O₉ cell fit is not satisfactory: it explains the 29.76° peak by moving its strong 32° family onto the scheelite peak near 33.4°, leaving the actual 32.61° peak unmodeled. I’m treating that as a false local minimum and will index the remaining peak family directly before accepting the structure.
+
+Direct residual matching now makes the monoclinic SrWO₄ model viable once its reference cell is pre-registered: it refines to ~9 wt% and improves the fixed-cell fit substantially. This reverses the earlier zero-scale result, which was caused by starting its strongest lines about 0.6° away. I’m refining this model fully and will compare its residuals against Sr₃W₂O₉.
+
+The fully refined monoclinic SrWO₄ comparison is still running. The key diagnostic will be whether it simultaneously accounts for the 29.76°, 30.89°, and 32.61° peaks without creating strong calculated peaks where the scan is quiet.
+
+The monoclinic SrWO₄ model is better than Sr₃W₂O₉, but it still underfits the main residual family and leaves the independent 22.10° line. Before adding another phase, I’m testing preferred orientation on the monoclinic SrWO₄ component; texture is part of the specimen model and can strongly alter relative peak intensities without inventing extra phases.
+
+The five texture-axis tests are still converging. Each is constrained to the generator’s physically allowed March–Dollase range, so any improvement will be interpretable rather than an unconstrained intensity correction.
+
+The texture jobs are CPU-bound rather than stalled; I’m letting the same five fixed tests finish so their Rwp values remain directly comparable. No scientific decision has been made from partial output.
+
+The best texture model lowers Rwp to about 12.9% with monoclinic SrWO₄ oriented along [111], but several strong lines remain. I’m screening five plausible fourth phases against that same three-phase basis; acceptance requires a stable nonzero scale and coherent coverage beyond a single peak.
+
+The fourth-phase screens are the next decision point. I’m checking their refined fractions and fit gains now; then I’ll keep only phases that are both statistically useful and crystallographically defensible before the final GSAS-II export.
+
+None of the tested fourth phases earns a clean assignment: orthorhombic WO₃ refines to zero, tetragonal WO₃ stays below 0.4 wt%, and the other candidates gain fit mainly by borrowing unmatched intensity. I’m now testing whether the residual is better explained by anisotropic broadening/texture of the three established phases, while separately indexing the few genuinely unassigned lines.
+
+The residual line family is perovskite-like (about 22.1, 30.9, 44.7, 53.4, 57.0, and 67.0°), so it is not well represented by the tested carbonate or WO₃ polymorphs. I’m comparing Sr–W–O framework relatives—including substituted analogue structures—because an intermediate registered from an analogue is plausible in this benchmark and would explain why a nominal COD match needs an implausibly large cell change.
+
+The analogue check supports the fergusonite family but does not uniquely validate its current cell. I also found a second plausible explanation for the 22° line—rhombohedral SrCO₃—whose strongest line sits beneath the dominant SrWO₄ flank and is therefore easy to reject incorrectly. I’m doing a weighted whole-profile screen of every chemically plausible Sr/O/W/C reference, allowing small lattice rescaling, to separate true multi-line matches from one-peak coincidences.
+
+The weighted screen ranks monoclinic SrWO₄ first and Sr₃W₂O₉ second by a wide margin; SrO/SrO₂, carbonate, and tungsten suboxides are substantially weaker whole-pattern matches. I’m refining the four-phase combination now. The key acceptance check is whether Sr₃W₂O₉ settles near a coherent cell and nonzero fraction without forcing the other phases to unphysical widths.
+
+The four-phase least-squares step is slower than the screens because it is jointly refining four cells and phase-specific broadening across the full 8,282-point range. It is still active; I’m letting that controlled refinement finish rather than judging the phase from the faster fixed-cell proxy.
+
+The Sr₃W₂O₉ trial fails the crystallographic acceptance check: it only survives by driving to a severely distorted cell and the minimum crystallite size, so I am excluding it from the defensible inventory despite the fixed-cell correlation. I’ve returned to the three-phase model and am releasing the coupled zero/height calibration, which was previously pinned at an artificial boundary and can mimic peak-shape errors.
+
+The calibration refinement is still numerically active; GSAS-II is re-solving all retained profile/background variables along with zero and specimen height, so this pass is deliberately slower than a two-parameter fit. I’ll retain it only if it moves off the bounds and produces a reproducible improvement.
+
+W₂O₇ is the strongest residual correlation, but it is chemically suspect and its source model is poor, so I’m treating this as a falsification test rather than an assignment. A valid result would need a stable fraction, a modest cell correction, and physically reasonable broadening; otherwise those lines remain explicitly unassigned in the report.
+
+W₂O₇ survives the numerical test at about 2.1 wt% with reasonable domain size/strain and improves the untextured fit modestly. Its fitted cell is still ~1.7% below the published source and the chemistry remains questionable, so I am checking whether that gain persists after the already-supported fergusonite texture is restored; a disappearing gain would identify it as a profile surrogate.
+
+The sharp-line tests leave a broader, coherent residual component around ~15–17°, 22°, and 36–37°. I’m widening the candidate search to nanocrystalline profiles and anisotropic hexagonal-cell behavior; this is important because a broad minor WO₃ polymorph can be missed by a sharp-reference screen and then spuriously absorbed into W₂O₇ or Sr₃W₂O₉.
+
+A much better structural match has emerged from the broad peaks: orthorhombic SrO₂, expanded by roughly 3–4%, simultaneously predicts the observed families near 16.6, 22.1, 25.9, 29.8, 35–37, 41.8, 44.7, and 52.0°. That is far more coherent than the W₂O₇/Sr₃W₂O₉ surrogates. I’m now testing it directly against—and alongside—the monoclinic SrWO₄ assignment.
+
+The SrO₂ trial is jointly refining its three orthorhombic axes and broadening, not merely matching peak positions. If it is the hidden broad phase, it should replace most of the ~12 wt% fergusonite surrogate and reduce the residual across several angular regions at once; if it only fits the 22° peak, I will reject it.
+
+SrO₂ alone does not replace fergusonite: it fits as an extremely broad ~13 wt% component but leaves the sharper residuals and gives a worse overall Rwp. The decisive model is therefore the combined test now running; I expect a true fourth phase to retain a stable fraction after fergusonite is restored, while a surrogate should collapse or remain pinned at broadening limits.
+
+The combined refinement remains active because the SrO₂ broadening terms are highly coupled to the common instrumental width. I’m requiring the final cell and size/strain to remain interpretable; a lower Rwp by itself will not justify adding this phase.
+
+With fergusonite present, the expanded orthorhombic SrO₂-like phase retains ~6.7 wt% and improves the untextured model, but its domain size reaches the 40 nm lower bound. I’m restoring the independently indicated fergusonite texture now; afterward I’ll inspect whether SrO₂ removes the same multi-angle residuals it was proposed to explain and report its identity as provisional if the lattice expansion remains too large for a reliable published-structure assignment.
+
+The fast texture screen exposed an important consistency issue: when the project is re-evaluated from its saved parameters, its Rwp rises, indicating that some earlier “improvements” were stale/unstable least-squares states rather than reproducible profiles. I’m now using zero-cycle replayed calculations as the acceptance metric—the same behavior the scorer will use—and will rebuild the final model only from states that survive that check.
+
+The replay-stable texture result is now clear: monoclinic SrWO₄ prefers a [010] March–Dollase term (~0.71), lowering reproducible Rwp from 13.83% to 13.32%; the apparent [111] optimum was an unconverged artifact. I’m applying this stable [010] model to the fourth-phase comparison before deciding whether the SrO₂-like component belongs in the submitted inventory.
+
+The replay-stable fourth-phase gains are essentially tied: W₂O₇ gives Rwp 13.10% and the expanded SrO₂ prototype 13.13%, which means neither is uniquely identified. Before declaring that component unresolved, I’m testing the chemically expected residual precursor, orthorhombic SrCO₃, because its 25.9/30–37/42–48° multiplet also overlaps this family and is much more plausible after SrCO₃ firing.
+
+The carbonate test is still refining. Its acceptance criterion is stricter than “nonzero scale”: the characteristic 25.2/25.9° doublet and higher-angle multiplet must improve together while the cell remains close to strontianite. A heavily distorted or maximally broadened carbonate will be treated as another surrogate, not a phase identification.
+
+GSAS-II is taking longer here because carbonate overlaps both WO₃ and the dominant scheelite flank, making its scale/cell strongly correlated. I’m allowing this pass to finish, but any result with boundary broadening or large cell drift will be rejected regardless of nominal Rwp.
+
+Orthorhombic SrCO₃ fails decisively: its cell runs away and the refinement becomes singular, so residual precursor carbonate is not supportable. The remaining broad component is therefore genuinely ambiguous. I’m doing one last chemically guided search for Sr–W–O intermediate prototypes that exist only as Ca/Ba/Pb analogues (for example A₂WO₅ or A₃W₂O₉), which is the framework’s intended route for phases absent from the exact-composition library.
+
+The analogue search found a substantially stronger and chemically coherent candidate: cubic Pa‑3 Sr₃WO₆ obtained by Cu→Sr substitution in the Cu₃WO₆ framework, with the cell expanded as expected for Sr. Its calculated pattern matches the residual better than every exact-composition candidate, and Sr₃WO₆ + 2 WO₃ also preserves the 1:1 Sr:W precursor balance. I’m testing whether it replaces the questionable high-pressure monoclinic SrWO₄ phase.
+
+This is the most consequential inventory test: if cubic Sr₃WO₆ is correct, it should absorb both the broad low-angle family and the sharp 30–67° residuals without boundary broadening, while producing an Sr₃WO₆:WO₃ mass relationship compatible with precursor stoichiometry. The joint cell/profile refinement is still running.
+
+Cubic Sr₃WO₆ refines reproducibly at ~18 wt% with a sensible expanded cell, but alone fits worse than the fergusonite model. I’m testing both together to determine whether they represent distinct peak families or competing descriptions of one unresolved phase; strong anticorrelation or boundary behavior will favor reporting the ambiguity rather than two phases.
+
+The two candidate frameworks are not merely anticorrelated: both retain distinct fractions (~8% fergusonite and ~13% cubic Sr₃WO₆), and the replay-stable [010] fergusonite texture lowers Rwp further to 12.22%. I’m screening texture/broadening of the nanocrystalline cubic phase next; then I’ll refine atomic intensities and calibration only if each change survives replay.
+
+The cubic Sr₃WO₆ phase does not support a stable preferred-orientation refinement, which is expected for a nanocrystalline cubic component. I’m instead testing the generator’s allowed uniaxial microstrain model; this targets the observed anisotropic peak widths without changing phase identity or intensity ratios.
+
+The broadening screen supports anisotropic strain only for the cubic analogue; WO₃ and scheelite drive strain to zero. The current replay-stable Rwp is ~12.14%. I’m now checking preferred orientation of the two dominant published phases, then I’ll refine atomic-coordinate/intensity terms selectively—those are the remaining physically justified sources of systematic intensity mismatch.
+
+Selective oxygen refinement improves Rwp to 11.86%, but the unconstrained scheelite O shift is ~0.15 Å—three times the framework’s maximum reference perturbation—so I will not accept it as-is. I’m using these refinements diagnostically, then projecting coordinate changes back into physically supported displacement bounds before the final replay.
+
+The physically constrained Uiso grid produces a major, replay-stable improvement: scheelite prefers Uiso ≈0.003 Å², exactly the lower edge of the allowed specimen range, reducing Rwp from 12.07% to 11.40% without moving atoms. I’m propagating that model and screening common Uiso for each minor phase; this is safer than accepting the unconstrained coordinate shifts.
+
+The bounded coordinate projection is behaving sensibly: limiting changes to 0.05 Å for O and 0.04 Å for cations lowers replayed Rwp further to 11.18%, with most of the cubic-phase gain coming from Sr/W positions. I’m applying the same diagnostic-and-project procedure to monoclinic WO₃; no unconstrained coordinates will enter the final CIFs.
+
+The bounded calibration refinement is stable and improves Rwp to 11.01%, with zero = +0.184° and specimen displacement ≈−387 μm. These two terms remain highly correlated, so their individual values are uncertain, but the combined angular correction is reproducible. I’m re-settling only the phase cells against that correction, then will test surface roughness/background and stop if gains are not robust.
+
+Surface roughness improves replayed Rwp to 10.69%, but A sits at its lower bound and A/B are 99.9% correlated; I will report only the combined low-angle correction, not precise roughness parameters. I’m re-optimizing the smooth background once with all structural/profile terms fixed, then checking the residual and quantitative fractions.
+
+The effective polarization refines to 0.738 and gives a small stable gain (Rwp 10.44%). I’m performing one final common-profile re-settlement with all phase-specific widths fixed. This will determine whether the earlier U/W boundary values were genuine or merely covariance artifacts.
+
+The refinement has converged at replayed Rwp ≈10.36% with interior profile parameters and stable cells. The model still contains two analogue-derived minor phases; I’m now auditing fractions, mass balance, physical contacts, and residual peaks before export. Any phase that fails physical validation or becomes negligible in the final replay will be removed.
+
+The phase model is now settled: scheelite SrWO₄ is dominant, with monoclinic WO₃ and two weaker Sr–W–O phases. I’m freezing that refinement, exporting the CIF/profile deliverables, and then replaying the saved project to verify that the reported fractions and fit statistics reproduce from `final.gpx`.
+
+The saved refinement is internally consistent and uses the complete original grid. Its four refined mass fractions sum to one and independently recover the nominal 1:1 Sr:W inventory to within about 1%, which is a useful check on the two less-certain minor-phase assignments.
+
+The exported structures pass the hard occupancy/contact checks. The WO₃ template triggers only a review-level O···O proximity (1.58 Å), so I’m checking whether an equivalent monoclinic WO₃ entry avoids that geometry without degrading the diffraction model before I lock the report.
+
+The alternate modern monoclinic WO₃ model gives a worse whole-pattern fit (best tested Rwp 10.51% versus 10.36%), so I retained the older P2₁/c model supported by the data. I’ll flag its short O···O separation as a structural-coordinate uncertainty rather than silently substituting a cleaner but less-supported model.
+
+The required files now reproduce cleanly from `final.gpx`, but the remaining residual is well above counting noise. I’m doing one final model-quality audit against the framework’s exact forward conventions; this is aimed at separating genuine unmodeled phase signal from profile/coordinate mismatch before treating the current provisional assignments as final.
+
+The audit has improved the constrained fit from Rwp 10.36% to about 10.20% by recovering the allowed reference-coordinate perturbations, without adding a fifth phase. A tempting expanded SrO₂ proxy explains several residual positions but refines to under 1 wt% and changes Rwp by only 0.01%, so it is not a defensible additional phase.
+
+The refined coordinate changes remain within the framework’s stated mismatch bounds (0.05 Å for O and 0.04 Å for heavier atoms). Texture/profile rechecks are converging back to the same boundary choices as before, indicating the remaining large residuals are model ambiguity rather than an unstable refinement.
+
+Completed the PXRD analysis. The modeled crystalline fractions are:
+
+- SrWO₄ scheelite (I4₁/a): 62.87 wt%
+- Monoclinic WO₃ (P2₁/c): 11.72 wt%
+- Fergusonite-like SrWO₄ (C2/c): 11.24 wt% — provisional
+- Cubic Sr₃WO₆ analogue (Pa-3): 14.17 wt% — provisional
+
+Fit statistics: Rwp 10.190%, Rp 6.871%, Rexp 3.535%, GOF 2.883. Independent GSAS-II replay exactly reproduced the exported profile and fractions.
+
+Artifacts:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r8/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r8/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r8/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r8/workspace/final.gpx)
+- [Phase CIFs](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r8/workspace/phase_1_SrWO4_scheelite.cif) (four files in the workspace)
+

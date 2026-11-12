@@ -1,0 +1,44 @@
+I’ll first inspect the measurement metadata, diffraction range/format, and the supplied refinement utilities. Then I’ll screen candidate phases, audit viable structures, build and branch-test a GSAS-II model, and verify all exported files against the project.
+
+The metadata points to a cobalt–tungsten oxide reaction, but I’ll keep precursor and product phases open until the peak positions and full-pattern residuals discriminate them. I’m now locating the masked structure library and GSAS-II runtime, while extracting an objective peak list from the raw counts.
+
+Peak positions now give two coherent fingerprints after a common ~+0.35° angular offset: monoclinic room-temperature WO₃ (the 23.5/24.0/24.7° triplet and many higher-angle lines) and spinel Co₃O₄ (31.6, 37.2, 45.1, 59.7, 65.6°). I’m auditing the structurally plausible WO₃ alternatives and Co₃O₄ model before matched refinement tests; the angular offset will be handled as a separate branch, as requested.
+
+Both atomistic WO₃ variants reproduce the same phase family, but the triclinic model currently improves the complete-pattern fit (Rwp 5.73% versus 5.99% under the identical fixed profile/shift model) and converges to a subtly non-monoclinic metric. I’m keeping both exposed while I test the Co₃O₄ leave-one-out case and then rerun the symmetry comparison after angular/profile refinements, where apparent splitting can otherwise be misassigned.
+
+The angular test rejects the joint zero/shift model because the two terms correlate at 0.9998; a displacement-only correction is stable and best among interpretable branches (about −591 µm). Co₃O₄ is decisively supported: removing it raises Rwp from 5.66% to about 7.31% and restores its five independent spinel peaks in the residual. Next I’m screening one-parameter global width branches before assigning any broadening to individual phases.
+
+The width branches now separate cleanly: global \(X\) plus a small positive \(W\) term improves every angular region; extra \(Y\) is marginal, while \(X+Z\) is 99.9% correlated and drives \(Z\) negative. Polarization refines plausibly to ~0.58; surface roughness is unstable and rejected. Of the phase terms, only positive isotropic WO₃ microstrain is materially supported so far; Co₃O₄ strain goes negative and its size hits a boundary. I’m retesting those terms from the updated baseline and then testing simple texture axes.
+
+I’m finishing the matched texture-axis screens now. I’ll keep a texture correction only if it is stable, physically plausible, and improves multiple pattern regions; then I’ll rerun the competing WO₃ structure and phase-inventory tests from that mature baseline.
+
+The mature comparison changed the ranking: after applying the same displacement, profile, polarization, and WO₃ microstrain model, monoclinic WO₃ gives \(R_\mathrm{wp}=3.3030\%\) versus \(3.3248\%\) for triclinic WO₃, despite using fewer cell degrees of freedom. I’m treating them as a near-tied pair and rerunning the angular test plus region-by-region checks before choosing the final structure. Texture was rejected: WO₃ ratios stayed essentially 1 with negligible gain, while Co₃O₄ texture branches were unstable.
+
+Phase inventory is now stable. A chemically valid P2/c wolframite CoWO₄ model (charge-balanced Fe²⁺→Co²⁺ substitution, audited cleanly) refined to the zero-scale boundary and slightly worsened the fit, so CoWO₄ is not supported. Removing Co₃O₄ from the mature model raises \(R_\mathrm{wp}\) from 3.303% to 5.795%, confirming it independently. A Co₃O₄ oxygen-coordinate test changed \(x\) by only 0.002 and improved \(R_\mathrm{wp}\) by 0.0016 percentage point, so I’m not retaining that weak extra parameter.
+
+The final nuisance model has passed matched ablation checks: removing \(X\), resetting \(W\), fixing polarization, or removing the supported WO₃ microstrain worsens \(R_\mathrm{wp}\) to 3.347%, 3.334%, 3.581%, and 3.541%, respectively. The attempted 24-coordinate WO₃ refinement was rejected because it oscillated, produced a 97.5% coordinate correlation, and shortened W–O to 1.575 Å. I’m freezing the simpler audited source geometry with refined cells and scales.
+
+The source WO₃ CIF encoded zero displacement parameters, so I replaced those placeholders with fixed positive room-temperature screening values (W \(U_\mathrm{iso}=0.003\) Å², O \(U_\mathrm{iso}=0.008\) Å²) and reconverged all nuisance terms. This gives a plausible polarization factor (0.822), \(R_\mathrm{wp}=3.293\%\), and 75.41/24.59 wt% WO₃/Co₃O₄. The same treatment leaves triclinic WO₃ worse and less stable, so monoclinic WO₃ remains selected. The ADP sensitivity will be included in the fraction uncertainty.
+
+After the ADP update, Co₃O₄ isotropic microstrain became independently supported: it is positive (~1,930 µstrain), converged without dropped variables, and improves residuals in 10–50° and 70–100° while keeping all total widths positive. Joint size terms either hit a boundary or added only 0.0003 \(R_\mathrm{wp}\), and texture ratios stayed within 0.5% of random or diverged, so those remain excluded. I’m rerunning the angular and phase-inventory checks from this final profile state.
+
+The final replacement pass is complete: the best mature triclinic WO₃ branch remained worse (\(R_\mathrm{wp}\approx3.301\%\)) than monoclinic WO₃ (3.2845%) and used more cell parameters; CoWO₄ again collapsed to zero scale, while removing Co₃O₄ again raised \(R_\mathrm{wp}\) to 5.788%. The final project is now frozen and exported; I’m running the required CIF, project, and submission audits.
+
+Completed. The crystalline model is:
+
+- Monoclinic WO₃ (P2₁/c): **74.9 ± 1.0 wt%**
+- Cubic spinel Co₃O₄ (Fd-3m): **25.1 ± 1.0 wt%**
+
+Fractions are normalized over modeled crystalline phases. Final \(R_\mathrm{wp}=3.2845\%\), \(R_p=2.3524\%\), GOF = 1.9099. CoWO₄ was tested but refined to zero scale.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_monoclinic.cif)
+- [Co3O4_spinel.cif](<ATTEMPT_WORKSPACE>/Co3O4_spinel.cif)
+
+CIF, GSAS-II project, profile-regeneration, and submission audits all passed without flags.
+

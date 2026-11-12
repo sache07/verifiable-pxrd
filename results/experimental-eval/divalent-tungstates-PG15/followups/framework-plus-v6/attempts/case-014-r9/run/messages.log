@@ -1,0 +1,80 @@
+I’ll first inspect the measurement metadata, pattern format, and the frozen PXRD workflow/tooling. Then I’ll build a candidate-phase inventory, refine it in GSAS-II, and verify that the exported CIFs, fractions, profile, and project all agree.
+
+The chemistry points first to Sr–W–O products (especially SrWO₄) with possible SrCO₃/WO₃ residue, but I’m treating that only as a prior. I’m now checking the frozen COD index and extracting the observed peak families so candidate records can be screened by composition, symmetry, geometry, and actual profile agreement.
+
+The dominant phase is unambiguously scheelite SrWO₄: its isolated low-, mid-, and high-angle families track the data with the expected smooth specimen/cell shift. Several coherent residual families remain, so I’m fitting this phase first under a restrained baseline and will use the difference pattern—not raw peak coincidence—to decide among WO₃, SrCO₃/SrO, Sr₃W₂O₉, and possible analogue-derived intermediates.
+
+The first residual challenge is not another catalogued WO₃ or SrWO₄ polymorph: direct Rietveld trials either drive those records to negligible scale or require implausible high-pressure cells. I’m therefore following the requested analogue route for charge-balanced Sr-rich/Sr-poor tungstate intermediates and using the unique residual lines to constrain prototype symmetry and cell before allowing any scale or cell refinement.
+
+The phase inventory now has a coherent three-phase solution: scheelite SrWO₄, monoclinic WO₃, and a weaker Sr₃WO₆-like phase supported by an isovalent Sr₃UO₆ prototype. I’ve rejected the pressure polymorph and several oxide/carbonate alternatives; I’m now reconverging the common baseline before accepting any size, strain, or texture terms.
+
+The replayed baseline is stable in phase amounts (about 79.8/11.4/8.7 wt%) but its common peak-width term remains too large, indicating that at least one phase-specific broadening term is needed. I’m comparing crystallite-size refinements independently for each phase from this same saved baseline.
+
+The WO₃-only size term is reproducible and physically plausible (about 0.12 μm), while the other phase-size trials either worsen the fit or hit bounds. I’m retaining that term and now testing the symmetry-allowed oxygen coordinates of the dominant scheelite phase; this is the highest-information structural refinement because Sr and W occupy fixed special positions.
+
+The initial coordinate and Uiso branches both tried to compensate for unresolved intensity/profile effects and reached physical bounds, so I’ve rejected them. The next baseline check is the common U/W/X width model—U had been fixed—before revisiting coordinates or introducing texture.
+
+Texture on the dominant SrWO₄ is unsupported: all symmetry-distinct axes refine back to essentially 1.000. I’m now checking the two weaker phases, where texture can otherwise masquerade as incorrect site coordinates or phase fractions.
+
+A shared low-angle roughness correction is strongly supported and remains physical (A≈0.079, B≈0.178); it lowers Rwp from 16.75% to 15.26%. Because A and B are intrinsically correlated, I’m keeping both only provisionally and re-testing polarization, texture, and atomic terms under this corrected baseline.
+
+The main-phase coordinate trial and the Sr₃WO₆ heavy-atom trial both run to physical limits, so I’m not accepting those coordinates as observations. I’m inspecting the residual peak families and the three-phase profile directly now, to distinguish an imperfect analogue from a missing/incorrect phase before adding more parameters.
+
+Under the same roughness model, the centrosymmetric Sr₃UO₆ analogue (P2₁/c) now outperforms the earlier polar P2₁ model (Rwp 15.05% versus 15.26%) and has better oxide geometry. I’m treating it as the leading structural model and testing only its symmetry-allowed heavy-site coordinates first.
+
+The refined P2₁/c analogue remains geometrically valid even after a broader A-site adjustment, but oxygen-site trials are unstable; I’ll keep the heavy-site adjustment only if it survives the remaining profile tests. Separately, I’m checking phase-specific size and strain again under the updated inventory and roughness baseline so width errors do not leak into structural parameters.
+
+The isotropic strain term for the weak Sr₃WO₆-like phase is replay-stable at roughly 5,800 ppm and gives a small but consistent improvement. The texture-axis comparison is still running; it is the last nuisance-model screen before I settle the atomic model and export.
+
+The polar and centrosymmetric Sr₃WO₆ prototypes converge to essentially the same profile once the supported strain term is included, so the diffraction data do not reliably distinguish P2₁ from P2₁/c. I’m favoring the later P2₁/c redetermination for its better geometry and explicitly carrying that symmetry ambiguity into the report; weak SrO/SrCO₃/Sr₃W₂O₉ candidates are being re-challenged now.
+
+The Sr₃W₂O₉ record now contributes a coherent, replay-stable family from roughly 30° through 95° and lowers Rwp substantially, so it cannot be dismissed as a single-peak coincidence. Its published high-pressure origin makes the assignment less secure; I’m retaining it provisionally while reducing the correlated roughness model to one refined parameter and checking that the phase survives.
+
+The one-dimensional roughness comparison is taking longer because each branch is being saved, reopened, and replayed three times. This will show whether the four-phase inventory is robust to physically plausible roughness choices rather than depending on a correlated boundary solution.
+
+The four-phase model remains robust when roughness is reduced to a single refined parameter (fixed A=0.05, refined B≈0.17). WO₃’s ~0.13 μm size term and isotropic strain on both weak strontium-rich phases are supported against neutral baselines; unsupported texture and extra size terms have been pruned. I’m checking common per-phase displacement parameters next, then I’ll lock the final model.
+
+I’ve narrowed the pattern to a four-phase model and am now checking the final nuisance/profile choices for replay stability before exporting. The main remaining decision is whether the WO₃ crystallite-size term is genuinely supported on the stable common-profile baseline; after that I’ll re-challenge trace-phase alternatives and produce the exact project-linked deliverables.
+
+The WO₃ size term is replay-stable at about 0.128 µm and was already present in the stable branch; its neutral comparison is measurably worse, so I’m retaining it. I’m now isolating the common instrumental \(U\) term on this one-strain model—this is the last profile simplification test, since earlier instability came from allowing both weak phases to trade strain.
+
+Fixing \(U=0\) is physically adequate and removes the bound-hit cleanly: six reopened refinements return \(R_\mathrm{wp}\approx13.029\%\), the same fractions, no frozen variables, and sub-0.15 shift/esd. I’m testing one restrained common displacement parameter for scheelite SrWO₄ now; all coordinate and weak-phase displacement trials have already proved unstable or boundary-driven and will remain pruned.
+
+The SrWO₄ common-\(U_\mathrm{iso}\) term is not independently identifiable: with roughness free it shifts from 0.008 to 0.0035 Å² and correlates 0.92 with scale and 0.84 with roughness, moving the phase fractions materially. I’m pruning it and retaining the stable source displacement parameters. The final inventory challenge is now under the clean \(U=0\), one-roughness, one-weak-phase-strain profile.
+
+The re-challenge rejects carbonate (≤0.05 wt% before its cell runs away) and also rejects the tempting ~0.7 wt% SrO scale: SrO’s three strongest lines at 30.30°, 35.06°, and 50.25° do not form a coherent positive-residual family and actually worsen the local fit; the gain comes mainly from two heavily overlapped high-angle residuals. I’m therefore keeping the defensible four-phase inventory and moving to exact project/CIF/profile export and physical validation.
+
+The exported SrWO₄, Sr₃WO₆-like, and Sr₃W₂O₉-like models pass the geometry/occupancy screen. The selected WO₃ record exposes a 1.58 Å O–O contact on export, so I’m pausing final sign-off and revisiting the alternate monoclinic WO₃ records under the same fixed nuisance model. That contact is too important to hide behind a slightly better profile statistic.
+
+The physically valid monoclinic alternate (COD 2311041, \(P2_1/c\)) reproduces the full four-phase profile essentially as well as the rejected rounded record: \(R_\mathrm{wp}=13.033\%\) versus 13.029%, with no frozen parameters. The triclinic alternate is materially worse at 13.232%. I’m adopting the valid \(P2_1/c\) model, then doing one last replay/export consistency pass; this choice trades 0.004 percentage point in fit for a chemically valid oxygen framework.
+
+The physical WO₃ branch is profile-stable, but the Sr₃WO₆-like strain drifts from about 11,700 to 12,500 µε while barely changing \(R_\mathrm{wp}\); that violates the replay-stability criterion and exceeds the calibrated synthesis range. I’m pruning that phase-specific strain and checking the simpler model over repeated reopen/refine cycles before final export.
+
+Pruning the drifting strain costs only 0.049 \(R_\mathrm{wp}\) point and yields replay-stable fractions (about 72.93/11.41/5.95/9.71 wt%) with no bound hits. I’m using that simpler baseline. Because the WO₃ source changed, I’m repeating the SrO/carbonate watch-list challenge once under this final common profile, as required, before regenerating all deliverables.
+
+All four submitted CIFs now pass the geometry/occupancy screen, and the result parser confirms four valid normalized models with no fraction or schema issues. The sandboxed evaluator cannot start its namespace here, so I’m running the same read-only GSAS-II replay worker directly to verify fresh structure-factor regeneration, project/CIF correspondence, and that the saved calculated profile is not stale.
+
+The direct read-only replay passes: all four project phases map one-to-one to the submitted CIFs, fractions agree exactly, there are no profile-review flags, and a fresh structure-factor calculation matches `fit.csv` to \(5\times10^{-9}\) counts (replay \(R_\mathrm{wp}=13.082\%\)). I’m doing the final residual review now and then writing the uncertainty-focused report.
+
+Completed the four-phase refinement:
+
+- SrWO₄ (scheelite): 72.93 wt%
+- Monoclinic WO₃: 11.41 wt%
+- Sr₃WO₆-like: 5.95 wt%
+- Sr₃W₂O₉-like: 9.71 wt%
+
+Full-range \(R_\mathrm{wp}=13.082\%\). The two Sr-rich minor phases have moderate structural confidence and roughly 1–2 wt% absolute model uncertainty.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r9/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r9/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r9/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r9/workspace/final.gpx)
+- [SrWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r9/workspace/phase_srwo4.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r9/workspace/phase_wo3.cif)
+- [Sr₃WO₆-like CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r9/workspace/phase_sr3wo6.cif)
+- [Sr₃W₂O₉-like CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r9/workspace/phase_sr3w2o9.cif)
+
+All CIFs pass the geometry/occupancy screen. Fresh GSAS-II replay reproduced the submitted profile and fractions exactly.
+

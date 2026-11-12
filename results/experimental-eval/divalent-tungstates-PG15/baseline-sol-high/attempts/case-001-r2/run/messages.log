@@ -1,0 +1,38 @@
+I’ll inspect the diffraction pattern, metadata, and available crystallography tooling first, then identify candidates and build a reproducible GSAS-II refinement. I’ll validate that the exported CIFs, fractions, profile, statistics, and final project all come from the same final model.
+
+The chemistry points first to BaWO₄ formation, but 400 °C is low enough that residual BaCO₃ and/or WO₃ are plausible. I’m treating those only as hypotheses and will test them against the full peak list and local structure database before refinement.
+
+Peak positions already reject BaWO₄ as the dominant product: its characteristic 26.45°/31.86° pair is absent, while the observed 23–25° WO₃ triplet and many BaCO₃ lines are present. I’m now comparing alternative WO₃ polymorph structures quantitatively, including a trace-BaWO₄ test, so the low-temperature precursor context does not bias the phase call.
+
+The first automated refinement exposed a GSAS-II scale-parameter ambiguity, so I corrected the model to refine phase scales explicitly while keeping the global histogram scale fixed. The corrected run is progressing normally but is computationally slower than the initial screening; I’m keeping the cell/profile stages separate to catch unstable parameters.
+
+The monoclinic/triclinic candidates are being judged on full-pattern Rietveld residuals, not just peak lookup. One older pseudo-orthorhombic WO₃ model became numerically unstable when its cell was released, which itself is evidence against that structural description for this dataset; the modern monoclinic variants remain under refinement.
+
+The best stable two-phase fit so far is monoclinic WO₃ (P2₁/c) plus orthorhombic BaCO₃ (Pnma), at roughly 45.3/54.7 wt%. Closely related monoclinic settings give similar chemistry but a measurably poorer profile, while the smaller-cell WO₃ candidate is decisively rejected. I’m checking the lower-symmetry triclinic alternative and then the trace BaWO₄ contribution.
+
+A trace scheelite BaWO₄ component is supported: adding it lowers Rwp from 8.50% to 8.42% and refines to about 0.6 wt%, with its strongest expected lines accounting for small residual intensity. Because that result is near the practical detection limit and the instrument profile is uncalibrated, I’ll report it as tentative and distinguish formal counting-statistical uncertainty from larger model uncertainty. I have also replaced the over-parameterized width function with a positive, three-parameter profile; it gives a slightly higher but physically defensible Rwp (~8.74%).
+
+The final refinement is converged and internally consistent: Rwp 8.715%, Rp 6.771%, GOF 2.506, with positive profile terms and maximum shift/s.u. 0.007. The normalized result is 44.65 wt% WO₃, 54.73 wt% BaCO₃, and 0.62 wt% tentative BaWO₄. I’m doing the final file-level audit now (GPX reload, CIF parsing, profile arithmetic, and JSON normalization).
+
+Completed the GSAS-II phase analysis and refinement.
+
+Crystalline phase fractions:
+
+- WO₃, monoclinic P2₁/c: 44.65 wt%
+- BaCO₃, orthorhombic Pnma setting: 54.73 wt%
+- BaWO₄, scheelite I4₁/a: 0.62 wt% — tentative near-detection-limit phase
+
+Final fit: Rwp 8.715%, Rp 6.771%, GOF 2.506.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_1_WO3.cif)
+- [BaCO3 CIF](<ATTEMPT_WORKSPACE>/phase_2_BaCO3.cif)
+- [BaWO4 CIF](<ATTEMPT_WORKSPACE>/phase_3_BaWO4.cif)
+
+The GPX was reloaded and verified against every row of `fit.csv`; CIF parsing, fraction normalization, and reported fit statistics also passed validation.
+

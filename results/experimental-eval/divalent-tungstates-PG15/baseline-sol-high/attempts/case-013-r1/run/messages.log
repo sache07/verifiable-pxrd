@@ -1,0 +1,35 @@
+I’ll inspect the measurement metadata and diffraction profile first, then identify candidate phases, build/refine the multiphase model in GSAS-II, and verify that every submitted artifact comes from the final project.
+
+The chemistry points toward lead tungstate formation, but at 500 °C residual oxides or intermediate lead tungstates are plausible. I’m extracting the peak set and checking the available crystallographic search/refinement tooling before committing to a phase count.
+
+The peak positions now support three chemically coherent phases: scheelite PbWO₄ plus unreacted orthorhombic PbO (massicot) and monoclinic WO₃. Their diagnostic lines are distinct—for example, the WO₃ triplet near 23–25° and PbO lines near 29.35°, 38.09°, 53.38°, and 63.28°—so I’m moving to a quantitative three-phase Rietveld refinement rather than treating those lines as background.
+
+The three-phase refinement is converging cleanly in phase identity: after correcting the common angular offset, the preliminary crystalline fractions are about 86% PbWO₄, 5% PbO, and 9% WO₃. I’m still refining cell/profile terms and checking for correlations before treating those values as final.
+
+The first full-profile check exposed a fourth crystalline component that was hidden under the dominant product peaks: monoclinic PbWO₄ (raspite). Its strongest unique line accounts for the previously unmodeled 25.9° peak, with supporting reflections across 30–36° and higher angles. I’m adding that polymorph and rerunning from scratch; I also found and am removing an automatically enabled redundant global scale parameter so the covariance and reported uncertainties are well posed.
+
+Raspite fails a decisive intensity test: if it caused the 25.9° line, its stronger 24.7–24.9° group would be overpredicted, and the refinement drives its scale to zero. I’m rejecting that phase rather than forcing it into the model. The residual pattern also contains a repeated short-wavelength satellite series, so I’m checking oxidized lead phases and radiation artifacts separately before finalizing the physically meaningful phase set.
+
+The oxidized-lead check gives only a marginal statistical improvement and an implausibly distorted Pb₃O₄ cell with very poor Bragg agreement, so I’m treating it as a false match to the satellite series and excluding it. The defensible model remains three phases. I’m now doing the final rerun with a physically constrained common profile (eliminating the highly correlated/unphysical width terms) and will report the instrumental-satellite limitation explicitly.
+
+The final constrained refinement is now stable (maximum shift/esd 0.10, no singularity or reported high-correlation warning). It gives 78.40% scheelite PbWO₄, 10.11% massicot PbO, and 11.49% monoclinic WO₃ among modeled crystalline phases. I’m validating artifact consistency and writing the uncertainty note; the formal errors are much smaller than the realistic systematic uncertainty because the raw pattern contains an unmodeled satellite series.
+
+Completed the three-phase GSAS-II refinement.
+
+- Scheelite PbWO₄: 78.40 wt%
+- Massicot PbO: 10.11 wt%
+- Monoclinic WO₃: 11.48 wt%
+- Fit: Rwp 16.04%, Rp 11.54%, goodness-of-fit 4.58
+
+Fractions are semi-quantitative because an unexplained satellite series and the uncalibrated instrument profile introduce systematic uncertainty beyond the formal errors.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [PbWO4_scheelite.cif](<ATTEMPT_WORKSPACE>/PbWO4_scheelite.cif)
+- [PbO_massicot.cif](<ATTEMPT_WORKSPACE>/PbO_massicot.cif)
+- [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_monoclinic.cif)
+

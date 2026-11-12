@@ -1,0 +1,94 @@
+I’ll inspect the diffraction data, metadata, and the supplied refinement utilities first. Then I’ll screen candidate phases, audit atomistic models, refine competing complete-pattern models in GSAS-II, and export/audit the requested deliverables.
+
+The chemistry points to the Pb–W–O system, but I’m keeping unreacted PbO/WO₃ polymorphs and both common PbWO₄ structure families in play. I’m now extracting the observed peak set and checking what indexing/search and GSAS-II automation are available before committing to a phase inventory.
+
+Three families now have multi-peak support: a scheelite-like lead tungstate dominates, monoclinic WO₃ accounts for the 23–24.6° triplet and many higher-angle lines, and orthorhombic massicot PbO accounts for the 29.35/30.62° pair and a long sequence of minor lines. Two strong lines near 25.91° and 31.05° remain coherent; I’m testing whether they require monoclinic raspite PbWO₄ or another lead tungstate rather than assigning them by overlap.
+
+The constant ≈0.33° displacement of the scheelite peaks across the full angular range favors stoichiometric I4₁/a PbWO₄ over the Pb-deficient supercell; the latter only mimics the pattern after a cell rescaling and predicts unsupported superstructure lines. I’m moving into matched GSAS-II refinements now, beginning with the four independently supported phases and using saved copies to test raspite and other explanations for the remaining peaks.
+
+The four-phase refinement is numerically stable (no singular variables) and confirms positive scales for all four phases, but it leaves strong, repeated residual maxima at 25.91° and 31.05° plus related intensity across the pattern. I’m now running identical add-one-phase branches from that saved baseline; candidates that only improve overlaps, require implausible redox chemistry, or predict absent strong peaks will be rejected even if their Rwp falls slightly.
+
+I’ve narrowed the defensible baseline to scheelite PbWO₄ plus monoclinic WO₃ and both PbO polymorphs. I’m now testing whether the remaining low-angle peaks support a genuine fifth atomistic phase or only a profile/overlap improvement; candidates that gain Rwp but predict absent strong peaks will be excluded.
+
+The four-phase project is internally converged (no dropped variables; maximum shift/esd 0.019). Before introducing phase-specific broadening, I’m running the required zero-versus-specimen-displacement comparison so peak positions are not being “explained” twice.
+
+The constant Lorentzian term \(X\) is clearly supported: Rwp drops from 15.769% to 15.270%, widths remain positive, and weighted residual decreases in every one of six angle bands. The extra Gaussian angle terms offer only small gains, so I’m retesting them from the accepted \(X\) baseline and checking that \(W\) remains independently necessary.
+
+Polarization (0.821) provides the only stable envelope improvement and lowers residuals across five of six angle regions; the competing roughness branch is singular, yields a negative coefficient, and correlates its two terms at 99.99%, so it is rejected. Axial divergence is also rejected because its small gain is coupled 95.6% to specimen displacement. Next I’m screening size and microstrain independently for every accepted phase.
+
+Massicot PbO is decisively broader than the other phases: either a ~20 nm coherent-domain term or ~3.2% isotropic microstrain improves multiple low/mid-angle regions, with microstrain giving the better stable fit (Rwp 14.280%). Because both mechanisms are independently supported, I’m testing them jointly and rescreening the other phases from this updated profile state.
+
+The joint massicot size+strain branch is unstable and drives size to its boundary, so I retain microstrain alone. Scheelite size only improves the crowded 25–40° region while worsening every other band and is rejected. A small, repeatable litharge strain term improves five bands and remains positive; I’m carrying it provisionally while I re-evaluate the unexplained peaks and previously screened phase candidates against this mature profile model.
+
+The three strongest unexplained features (25.918°, 30.156°, 31.047°) still have no reflection from the four-phase model, so the residual is not just peak-width mismatch. The masked Pb–W–O library lacks Pb₂WO₅/Pb₃WO₆ entries, but it does contain an isovalent double-perovskite topology, Pb₂MgWO₆; replacing Mg²⁺ by Pb²⁺ gives charge-balanced Pb₃WO₆ without changing symmetry. I’m auditing and testing that topology as retrieval evidence—not assuming the substitution proves the phase.
+
+The Pb₂WO₅ analogue passes the CIF audit and is strongly supported: with its cell fixed it lowers Rwp from 14.271% to 13.085%, and releasing the monoclinic cell lowers it to 11.562%. The refined cell (a 14.2221, b 5.8041, c 7.3465 Å, β 113.839°) stays close to the Pb₂MoO₅ topology and matches several independent residual peaks, so this is now an accepted fifth phase. I’m reconverging the complete model before retesting all nuisance terms and alternative phases.
+
+After resetting all phase broadening, only the two PbO polymorphs show clear positive broadening terms. Massicot is strongly broadened (strain branch Rwp 11.636%; size branch 11.764%), while litharge gives smaller but repeatable gains with either mechanism. PbWO₄ and WO₃ branches run to negative strain or the size boundary; Pb₂WO₅ gains are below the material threshold. I’m now testing joint size+strain only for the two PbO phases, as both terms were independently supported there.
+
+The two PbO microstrain terms reconverge together without singularities (massicot ≈4.21%, litharge ≈0.89%; Rwp 11.562%, max shift/esd 0.049). Their joint size branches instead hit the size upper boundary and are rejected. I’m now doing the mandated post-model-change angular rerun and matched add/remove tests on every retained profile/envelope term.
+
+The mature matched tests retain only \(X\), \(Y\), polarization, and the two PbO strain terms; fixing \(W\) at its calibrated value changes Rwp by only 0.00008%, so I simplify to that branch. Removing \(Y\) raises Rwp by 0.012%, removing polarization by 0.084%, and removing \(X\) by about 0.68%; roughness remains nonphysical and 99.93% correlated. I’m now retesting every previously plausible phase against this updated five-phase baseline.
+
+Pb₃O₄ gives only a 0.067% Rwp gain concentrated below 40° and overpredicts two of its strongest lines at 32.42° and 52.36°; most other strong lines overlap accepted phases. It therefore fails the “multiple unique peaks without strong absent predictions” test and is excluded. Raspite, WO₂, and Pb₇W₈O₂₈.₈ all refine to the scale lower bound. I’m completing the last nuisance-model check now: one simple March–Dollase axis per phase.
+
+The first texture pass shows why full-pattern diagnostics matter: massicot’s nominal improvement comes almost entirely from 25–40° while worsening three other regions, so I reject it. Pb₂WO₅ texture is numerically negligible. Litharge [001] and WO₃ [010] show small multi-region gains; I’m comparing their crystallographically distinct low-index axes (and the scheelite alternatives) before retaining any texture correction.
+
+The axis comparison selects only two interpretable texture terms: WO₃ [001] (Rwp 11.528%, improvement in four angle bands) and layered litharge PbO [001] (small improvement in four bands). Massicot and Pb₂WO₅ texture gains are dominated by the crowded 25–40° region, while their alternative axes are unstable; those are rejected. I’m combining only the two [001] terms and then performing matched removals.
+
+The matched removals confirm both texture terms are real at the chosen scale: removing WO₃ [001] raises Rwp from 11.503% to 11.538%, and removing litharge [001] raises it to 11.528%. Both corrections remain mild (March parameters 1.091 and 0.903). I’m rerunning the angular selector once more after this texture change, then I’ll freeze/refine the replay-safe final project and export all deliverables.
+
+The complete five-phase project is now converged at Rwp 11.503% with no dropped variables. I’ve exported the profile, machine-readable results, and all five refined CIFs; the remaining work is the required replay/audit pass and cross-file consistency checks.
+
+The refined five-phase model and exports are in place. I’m doing the final independent CIF, project, and cross-file consistency audits now, with particular attention to the analogue-derived Pb₂WO₅ model and the unresolved residual feature.
+
+The audit caught one real export/model issue: the litharge CIF expands as Pb₂O in P4/mmm rather than PbO in P4/nmm. I’m tracing whether this came from the imported setting or CIF export before I certify the result. The WO₃ audit also flags a 1.58 Å O–O contact, so I’m checking that structure against its source coordinates rather than dismissing it.
+
+Correcting the litharge origin setting materially improves the complete pattern (Rwp fell from 11.50% to about 10.77%) and restores the proper PbO stoichiometry. I’m reconverging that corrected branch, then I’ll test the geometry-clean WO₃ alternative under the same mature nuisance model and repeat the optional-profile checks.
+
+The geometry-clean WO₃ model (COD 2311041) fits better than the flagged 1960 model under identical no-texture conditions, so I’m retaining it. With the repaired structures, both previously retained texture terms have become negligible; I’m simplifying them away and now repeating the independent size/strain screen for all five phases from a common no-microstructure baseline.
+
+The common no-broadening baseline is Rwp 11.19%, confirming that phase-specific broadening is genuinely needed somewhere. Ten matched branches are still running in parallel; I’ll retain only positive, stable terms that improve multiple angle regions and then verify each by matched removal.
+
+The broadening screen now favors a 38 nm coherent-domain term for litharge and isotropic microstrain for massicot; joint size+strain models were redundant or unstable. Their combined branch reaches Rwp 10.708%. I’m now running matched removals plus a second-pass search for any overlooked broadening term before accepting that simpler pair.
+
+The second pass is behaving cleanly so far: added WO₃ and Pb₂WO₅ strain terms refine slightly negative and are rejected. The remaining matched branches are still converging; no phase inventory changes are indicated.
+
+The required angular comparison again selects specimen displacement alone; refining zero and displacement together is invalid (99.8% correlation), and zero-only fits worse. The retained displacement is about −451 µm. Next I’m rechecking global peak-shape and envelope terms against this updated structural model.
+
+Global-profile checks retain only X, Y, and polarization: removing them degrades the fit, while U/V/W refinements are negligible. Axial divergence is correlated with displacement, and the roughness branch is nonphysical (negative coefficient, 99.98% internal correlation), so both are rejected. The final texture screen is now running across symmetry-distinct axes.
+
+No texture term survives the full-range criterion: apparent gains are dominated by 25–40° and are offset by worse fits elsewhere; the strongest massicot branch also fails convergence. I’m keeping the no-texture baseline and doing the required mature-baseline retest of previously rejected source-supported phases.
+
+Mature-baseline retesting confirms raspite PbWO₄, WO₂, and Pb₇W₈O₂₈.₈ collapse to zero scale. Pb₃O₄ remains positive but is rejected: it helps residuals near 26.68°, 31.01°, and 46.46° while its strongest lines at 52.44° and 32.48° are already overpredicted, failing the required absent-line test. I’m freezing and reconverging the five-phase answer now.
+
+The final project is reconverged at Rwp 10.708% with five audited phases. Correcting the litharge setting and replacing the flagged WO₃ coordinates were consequential: the final fractions are now 60.54% scheelite, 13.44% Pb₂WO₅, 9.40% WO₃, 8.59% massicot, and 8.03% litharge. I’m completing the project and submission audits and cross-file replay checks.
+
+Completed the five-phase refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| PbWO₄, scheelite | 60.54% |
+| Pb₂WO₅, monoclinic | 13.44% |
+| WO₃, monoclinic | 9.40% |
+| PbO, massicot | 8.59% |
+| PbO, litharge | 8.03% |
+
+Final fit: Rwp 10.708%, Rp 7.130%, GOF 3.065. Fractions sum exactly to 1.0 over modeled crystalline phases.
+
+A strong residual near 30.16° 2θ remains unresolved and is excluded from normalization. Pb₂WO₅ is supported by multiple reflections but uses an isostructural Pb₂MoO₅-derived model, making it the least certain assignment.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [PbWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_PbWO4_scheelite.cif)
+- [Pb₂WO₅ CIF](<ATTEMPT_WORKSPACE>/phase_Pb2WO5_monoclinic.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_WO3_monoclinic.cif)
+- [Massicot CIF](<ATTEMPT_WORKSPACE>/phase_PbO_massicot.cif)
+- [Litharge CIF](<ATTEMPT_WORKSPACE>/phase_PbO_litharge.cif)
+
+All CIF audits, the GSAS-II project audit, profile replay, and submission audit passed.
+

@@ -1,0 +1,73 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "verifiable-pxrd"
+version = "0.1.0a1"
+description = "Source-checkout research package for reproducible pXRD agent experiments"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+dependencies = [
+  "numpy>=2.0",
+  "pymatgen>=2025.1",
+  "requests>=2.32",
+  "scipy>=1.14",
+]
+
+[project.scripts]
+vpbench = "verifiable_pxrd.cli:main"
+
+[dependency-groups]
+dev = [
+  "matplotlib>=3.9",
+  "pytest>=8.4,<10",
+  "ruff>=0.12,<1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/verifiable_pxrd"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/README.md",
+  "/LICENSE",
+  "/NOTICE",
+  "/THIRD_PARTY.md",
+  "/pyproject.toml",
+  "/baselines",
+  "/src",
+  "/tests",
+]
+exclude = [
+  "/baselines/.runs",
+  "/baselines/.upstream",
+  "**/__pycache__",
+  "**/*.pyc",
+]
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers --strict-config -ra"
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = [
+  "pxrd-bench/generation/build_ab_pxrd_solver_targets.py",
+  "pxrd-bench/generation/build_pxrd_100.py",
+  "pxrd-bench/generation/build_pxrd_ood.py",
+  "pxrd-bench/generation/index_pxrd_ood_sources.py",
+  "pxrd-bench/generation/pxrd_structure_matching.py",
+  "pxrd-bench/generation/relax_pxrd_ood.py",
+  "pxrd-bench/generation/target_dataset.py",
+  "pxrd-bench/panels/inference-scaling-20",
+  "experiments/agent-adaptation/curriculum/train-50",
+  "results",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+ignore = ["E501"]

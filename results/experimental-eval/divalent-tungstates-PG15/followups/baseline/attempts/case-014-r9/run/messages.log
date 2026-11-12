@@ -1,0 +1,48 @@
+I’ll inspect the measurement metadata and pattern first, then identify likely phase candidates, refine them against the full profile in GSAS-II, and verify that the exported CIFs, fractions, profile, and project are mutually consistent.
+
+The chemistry points to the SrO–WO₃ system, but I won’t assume a single SrWO₄ product: carbonate/oxide residues or alternative tungstates can be visible. I’m now extracting peak positions and checking the installed reference-search and GSAS-II interfaces so candidate selection is driven by the data.
+
+The dominant line set is already a strong match to tetragonal scheelite SrWO₄. A second line set around 23–25°, 26–27°, 34–35°, 42°, and 48–51° resembles monoclinic WO₃, while the intense ∼29.75° peak is not yet fully explained. I’m testing complete candidate patterns and residual peaks before deciding how many phases to refine.
+
+The first GSAS-II trial is running with the scheelite phase alone. I’ve initialized the large apparent zero offset and lattice expansion from the observed peak shifts; this trial will make the residual line set explicit and give a quantitative baseline for adding candidate phases.
+
+The candidate screen is now comparing five WO₃ polymorph models and rocksalt SrO under identical fixed-profile conditions. This is useful here because several references share the same three strongest low-angle WO₃ lines; the full-pattern residual, not just those lines, must select the correct structure.
+
+The full-pattern screen favors room-temperature monoclinic WO₃ (P2₁/c) over the simpler P2₁/m and triclinic references. Its refined low-angle fit improves materially, but the strong ∼29.75°/34.51° pair remains consistent with a separate rocksalt-like SrO line set, so I’m testing that as a third phase rather than forcing WO₃ lattice parameters to absorb it.
+
+A third-phase test now gives a coherent assignment to monoclinic Sr₃W₂O₉: its calculated lines account simultaneously for the otherwise unexplained peaks near 29.75°, 44.64°, 50.2°, 57.0°, and 61.25°. I’m carrying SrWO₄ + WO₃ + Sr₃W₂O₉ into a full-range refinement, while treating the noticeably contracted Sr₃W₂O₉ cell as a model-quality warning to report rather than hiding it.
+
+The full-range job is in its scale/background stage. The low-symmetry WO₃ and Sr₃W₂O₉ phases make each cycle comparatively expensive, but the refinement is proceeding serially now to avoid project-file races; after this it will release cell/zero and then profile parameters in controlled stages.
+
+No failure has surfaced; the cost is reflection generation to 100° for two monoclinic phases. I’m letting the first stage converge before deciding whether later stages need fewer cycles, since interrupting mid-refinement can leave only the pre-cycle project state.
+
+The first full-range stage is likely using all five allowed cycles rather than converging in two, which explains the runtime. Once it returns, I’ll reduce the subsequent cycle caps if the shifts are already small; the model itself remains unchanged.
+
+The completed full-range scale/background stage reached Rwp 15.33% with approximately 79.2 wt% SrWO₄, 11.6 wt% WO₃, and 9.3 wt% Sr₃W₂O₉ before cell/profile release. The cell/zero stage is still running; those provisional fractions will be recomputed only after the final covariance is available.
+
+Cell/zero refinement has completed at Rwp 15.24% and remained stable: SrWO₄ and WO₃ changed only slightly, while Sr₃W₂O₉ retained its contracted ∼681 Å³ cell. The final profile stage is now active; that persistent contraction confirms the Sr₃W₂O₉ identification is plausible but not fully secure.
+
+The broad profile release was rejected: it slightly worsened Rwp (15.24 → 15.26%) and drove strongly correlated Caglioti terms, so I’m reverting to the better pre-profile solution. This leaves the empirically calibrated profile from the dominant-phase trial fixed and avoids reporting a numerically less stable model.
+
+The accepted pre-profile solution has been restored and all requested deliverables are written. I’m doing a final consistency audit now: CIF parseability, normalized fractions, JSON schema/content, exact fit.csv ↔ final.gpx profile agreement, and project fit statistics.
+
+Completed the phase analysis and GSAS-II refinement.
+
+Refined crystalline fractions:
+
+- Scheelite SrWO₄: 78.49 wt%
+- Monoclinic WO₃: 11.55 wt%
+- Monoclinic Sr₃W₂O₉: 9.96 wt% — tentative
+
+Fit: Rwp 15.24%, Rp 10.65%, GOF 4.32. The Sr₃W₂O₉ assignment and fraction remain uncertain due to its contracted refined cell and structured residuals.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r9/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r9/workspace/report.md)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r9/workspace/final.gpx)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r9/workspace/fit.csv)
+- [SrWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r9/workspace/SrWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r9/workspace/WO3.cif)
+- [Sr3W2O9.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r9/workspace/Sr3W2O9.cif)
+

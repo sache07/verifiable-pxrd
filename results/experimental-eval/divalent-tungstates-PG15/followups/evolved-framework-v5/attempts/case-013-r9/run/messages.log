@@ -1,0 +1,58 @@
+I’ll first inspect the specimen metadata, pattern grid, and the frozen analysis guidance, then build the chemically expected phase inventory and refine it in GSAS-II. I’ll keep the project replayable and only pursue residual-phase searches if coherent unmodeled peak families remain.
+
+The chemistry points first to lead tungstate formation with possible residual PbO/WO₃, but I’m treating that only as a hypothesis. The scan has strong crystalline peaks on a high, decaying background; next I’m extracting peak families and querying the frozen COD index for Pb–W–O and precursor structures before any refinement.
+
+The full three-phase model is now indexing the dominant and secondary families: scheelite PbWO₄, orthorhombic PbO (massicot), and monoclinic WO₃. A first conservative refinement reaches Rwp ≈20%; an unconstrained profile step lowers it to 15.5% but drives profile coefficients nonphysical, so I’m rolling that step back and will refine bounded specimen/profile terms one at a time. I’m also checking the residual for any fourth coherent family before touching atomic coordinates.
+
+The corrected litharge model now has the proper PbO stoichiometry and accounts for its full residual family. The remaining strongest unexplained line is at 25.92°; it is not consistent with raspite PbWO₄ because raspite’s strongest 24.5° line is absent at the required intensity. I’m screening only Pb–O/W–O phases whose other predicted lines can corroborate that feature, using the same four-phase checkpoint and requiring positive scale plus multiple matched lines.
+
+The residual-phase screen rejects WO₂ and raspite as inventory phases: once their strongest line is aligned, their other lines do not improve the full profile. Pb₂O₃ can lower Rwp only by distorting its cell by about 1–1.5% and fitting essentially one line, so it also fails the broad-family criterion. I’m now ranking the remaining exact Pb–O–W references against the signed residual; this is a diagnostic search, not an inventory expansion.
+
+The four chemically supported phases are now established: scheelite PbWO₄, massicot PbO, monoclinic WO₃, and litharge PbO. I’m refining that complete model next—first correcting peak widths, then testing heavy/light coordinates with physical rollback—before reassessing whether any residual family truly warrants another phase.
+
+The heavy-coordinate tests are already informative: massicot Pb gives a small stable improvement, while jointly freeing both WO₃ W sites is highly correlated and pushes one site beyond the intended displacement window. I’m treating that branch cautiously and will retain only coordinate changes that remain bounded and chemically credible.
+
+The bounded coordinate screen confirms that most light-atom shifts run straight to their limits, so they are not reliably determined by this powder pattern. The original physical reference coordinates will be retained for those sites; the stable massicot Pb adjustment is the only clear coordinate candidate so far.
+
+Peak-profile alternatives did not support extra phase-specific broadening: minor-phase size/strain terms ran to their bounds, while the simpler common profile remained the best full-pattern model. I’m therefore keeping the simpler profile and now resolving the remaining zero-offset/sample-displacement correlation before the final joint refinement.
+
+The final joint check exposed one nonphysical tendency: re-freeing the massicot Pb coordinate after texture refinement drove it to its imposed boundary. I’m rolling that step back to the earlier stable interior coordinate, retaining the supported texture terms, and testing only the axial-divergence term from that physical checkpoint.
+
+The residual audit has identified one genuinely plausible fifth phase: tetragonal minium Pb₃O₄ gives a stable positive scale and improves the fixed-cell fit across multiple residual peaks, not just one line. I’m checking its cell/geometry and whether the alternative Pb-oxide structures show comparable broad-family support before accepting it.
+
+The fifth-phase audit is complete: minium Pb₃O₄ and Pb₂O₃ can lower Rwp only by leaning on overlapping peaks or distorting their cells, while their diagnostic strong lines are unsupported. The apparent cubic PbO₂ family corresponds to a 160 kbar fluorite reference and is chemically/physically inadmissible here. I’m keeping the four-phase physical checkpoint and exporting its matched project, CIFs, profile, fractions, and uncertainty report.
+
+CIF validation caught an important structural issue before submission: the current WO₃ reference contains a 1.58 Å O–O contact, which is not physically acceptable. I’m replacing it with a same-composition, room-temperature monoclinic WO₃ reference that preserves the indexed peak family but has valid octahedral geometry, then I’ll re-refine and regenerate every output from that corrected project.
+
+The replacement works: the physical neutron-derived WO₃ model gives a slightly better fit than the bad-geometry reference (Rwp 14.160% versus 14.169%) while keeping normal WO₆ octahedra. Its trial texture parameter refined to essentially unity, so I’m removing that unsupported term and retaining only the massicot texture correction.
+
+The four-phase physical model is complete. I’m doing the final replay/consistency audit now, then I’ll write the concise evidence and uncertainty report around that exact checkpoint.
+
+The saved result is internally normalized and points to the intended four CIFs. I’m recording the distinction between covariance-only fraction errors and the larger practical uncertainty from overlap, texture, and residual profile mismatch—especially important here because no external standard was supplied.
+
+The report now ties each minor phase to multiple observed reflections and explicitly declines a fifth-phase fraction. The final audit will independently reload the GPX, compare every exported profile point to its stored GSAS-II arrays, and re-parse the actual submitted CIFs for composition, symmetry, and interatomic geometry.
+
+The final physical model contains four crystalline phases:
+
+| Phase | Weight fraction |
+|---|---:|
+| PbWO₄, scheelite | 73.88(28)% |
+| PbO, massicot | 10.01(16)% |
+| WO₃, monoclinic | 10.41(25)% |
+| PbO, litharge | 5.70(13)% |
+
+Fractions are normalized over modeled crystalline material. The fit converged with Rwp 14.160%, Rp 9.832%, and GOF 4.051. No fifth phase could be assigned reliably from the remaining residuals.
+
+Deliverables:
+
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r9/workspace/final.gpx)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r9/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r9/workspace/fit.csv)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r9/workspace/report.md)
+- [PbWO4 scheelite CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r9/workspace/phase_1_PbWO4_scheelite.cif)
+- [PbO massicot CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r9/workspace/phase_2_PbO_massicot.cif)
+- [WO3 monoclinic CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r9/workspace/phase_3_WO3_monoclinic.cif)
+- [PbO litharge CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r9/workspace/phase_4_PbO_litharge.cif)
+
+The GPX reloads successfully with no frozen variables; all CIFs independently parse with the expected compositions, symmetries, and physical bond geometry.
+

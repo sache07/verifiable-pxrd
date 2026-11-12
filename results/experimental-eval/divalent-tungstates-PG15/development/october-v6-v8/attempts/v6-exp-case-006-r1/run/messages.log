@@ -1,0 +1,160 @@
+I’ll inspect the measurement metadata, pattern coverage, and the provided refinement utilities first. Then I’ll screen candidate phases, audit atomistic models, and carry the defensible alternatives through matched GSAS-II refinements before exporting and auditing the final package.
+
+The context is a Cu–W–O reaction measured from 9.9–100.1° 2θ with the Cu Kα doublet retained and no calibrated profile. I’m now extracting peak evidence and reading the exact helper/audit interfaces so candidate screening and later exports stay replay-safe.
+
+The candidate library contains two CuWO₄ polymorph records plus Cu₃WO₆, Cu₂WO₄, the Cu oxides, and several WO₃ polymorphs. The observed line-rich pattern is already consistent with low-symmetry CuWO₄, but I’m scoring every chemically allowed record—including unreacted precursors and reduced oxides—against the full peak list before deciding the inventory.
+
+A triclinic reciprocal-metric fit assigns the first 15 major peaks coherently to the P\(\bar1\) CuWO₄ reflection family, yielding an initial cell near \(a=4.664,\ b=5.784,\ c=4.838\) Å, \(\alpha=91.64^\circ,\ \beta=92.50^\circ,\ \gamma=82.82^\circ\). That same cell predicts the higher-angle peak forest, so the apparent “WO₃ triplet” is not independent evidence for WO₃. I’ll now audit the competing atomistic CIFs and test the triclinic and monoclinic CuWO₄ models under the same minimal refinement.
+
+The audited triclinic model wins the matched minimal comparison decisively: \(R_\mathrm{wp}=33.84\%\) versus \(41.23\%\) for monoclinic P2/c, with the latter also unable to generate the intense 28.985° line or the observed triclinic splittings. I’ve preserved both branches. With the phase identity now stable, I’m applying the required zero/displacement branch test before any profile or microstructure terms.
+
+The helper is still completing the joint branch; as expected, its first joint fit shows a 99.86% zero/displacement correlation, which exceeds the rejection threshold. I’m letting it finish and will use only the stable single-correction branch it selects.
+
+The angular test selected specimen displacement only: \(R_\mathrm{wp}=9.305\%\), with a refined shift of \(-508\ \mu\text{m}\). A zero-only model is slightly worse (9.405%), while the numerically lower joint fit is rejected at 99.99% correlation. The refined cell moves to the expected ambient CuWO₄ metric. I’m now checking the difference curve for any coherent unmodeled phase before refining widths or intensities.
+
+The profile screen shows that a compact Gaussian angle-dependence is supported, while every Lorentzian coefficient refines negative and is rejected. A full U–V–W fit lowers \(R_\mathrm{wp}\) further but creates a 97.9% U/V correlation and is therefore not being propagated. I’m carrying the smaller positive-total-width U+V state provisionally and comparing polarization against a Suortti surface-roughness envelope on matched copies.
+
+Axial divergence is strongly supported and lowers \(R_\mathrm{wp}\) to about 6.56%, but it makes the previously positive roughness coefficient collapse through zero; that envelope term is therefore redundant and is being removed. Because the axial term also changes the preferred Gaussian profile, I’m repeating the matched profile screen from this updated state as required.
+
+The repeated screen is taking longer because each branch is being reconverged with the displacement, cell, background, and axial term active. The key acceptance checks are unchanged: positive total widths, no dropped variables, low final shift/esd, and no high-correlation warning.
+
+After axial divergence is included, the stable profile is U+W with both coefficients positive, no dropped variables, and only 70% mutual correlation (\(R_\mathrm{wp}=6.496\%\)); adding V gives only a small gain with a 97.4% correlation and is rejected. Re-screening the envelope favors a plausible refined polarization (0.660) over roughness, whose gain is negligible or singular. Next I’m testing isotropic crystallite size and microstrain independently.
+
+Both size and strain are independently positive and improve multiple angular regions. Their joint fit remains converged and positive (\(\sim0.25\ \mu\text{m}\), \(\sim451\ \mu\varepsilon\)); it improves \(R_\mathrm{wp}\) to 6.272% but carries a 93.2% size/strain correlation, so I’m treating it as provisional and will retest after structural/intensity refinements. I’m now inspecting atom parameters and texture signatures before allowing coordinates or ADPs to move.
+
+Coordinate refinement is strongly supported and keeps chemically sensible Cu–O and W–O distances. Independent oxygen ADPs go negative and are rejected; refining only Cu/W isotropic ADPs is stable and positive, giving \(R_\mathrm{wp}=5.400\%\). I’m preserving that conservative model and screening low-index March–Dollase axes one at a time for any reproducible texture signal.
+
+The texture branches are still reconverging because each candidate axis is tested against the complete refined model, not against isolated peak ratios. I’m retaining only an axis that improves several reflection families with a positive, interior March coefficient and clean covariance.
+
+The best simple texture correction is [110], with March coefficient \(1.0122(12)\) and a small but reproducible improvement to \(R_\mathrm{wp}=5.362\%\); no higher-order texture model is justified. Before freezing it, I’m retesting chemically supported companion phases—CuO, Cu₂O, WO₃ polymorphs, Cu₃WO₆, and Cu₂WO₄—one at a time from this mature baseline, requiring a positive significant scale and unique residual-peak support.
+
+The companion test is still running through the larger low-symmetry WO₃/Cu₂WO₄ models. A candidate will not be accepted merely for a tiny numerical improvement: its scale must remain positive by uncertainty, and its reflections must account for distinct residual features rather than borrowing intensity from CuWO₄ overlaps.
+
+The mature companion screen rejects CuO and Cu₂O at the zero-scale boundary; Cu₂WO₄ cannot be imported reproducibly and is rejected as malformed. Cu₃WO₆ gives only a marginal 0.17 wt% overlap gain. In contrast, audited triclinic WO₃ refines to about 1.95 wt% and lowers \(R_\mathrm{wp}\) from 5.362% to 4.751%. I’m now isolating its calculated partial profile to verify support from several non-overlap residual peaks before accepting it.
+
+The WO₃ partial profile passes the key identity check: it fills strong residuals at 23.48°, 24.66°, and the 33.3–34.8° group where CuWO₄ contributes little, in addition to overlap peaks. I’m testing whether its six-parameter triclinic cell is actually constrained at the ~2 wt% level; if not, I’ll keep the audited database cell fixed.
+
+Refining the accepted WO₃ cell is stable and chemically plausible, improves \(R_\mathrm{wp}\) to 4.490%, and gives 2.247(39) wt% WO₃ before downstream retesting. Since the phase inventory changed, I’m rerunning the required angular branch selection on the complete two-phase model, then I’ll revalidate every retained optional term and earlier trace candidate from that state.
+
+The two-phase angular branches are still reconverging all active cell, profile, microstructure, coordinate, ADP, texture, and scale parameters. The joint branch remains subject to the same 0.98 correlation cutoff; no lower \(R_\mathrm{wp}\) will override that integrity check.
+
+This is the longest integrity pass because the helper deliberately restores parameter groups in stages for each angular hypothesis. It is making progress; I’m keeping the stable pre-branch project untouched in case any branch develops singularities or nonphysical shifts.
+
+The two-phase angular audit retained the existing displacement-only baseline; zero-only is worse, and the joint branch is rejected at 99.99% zero/shift correlation. I’m now doing the promised delete-and-rebuild profile check on the final inventory so no one-phase nuisance choice is carried forward by inertia.
+
+The regenerated profile branches are numerically heavier with two triclinic reflection lists, but remain isolated in matched project copies. The selected branch must still pass total-width regeneration and covariance checks before it can replace the current stable model.
+
+This pass is slower than the one-phase screen because each reset profile forces both refined cells to reconverge. I’m allowing it to finish rather than comparing partially converged \(R_\mathrm{wp}\) values; the original two-phase project remains the rollback point.
+
+The job is still active rather than stalled; the branch driver permits up to ten full reconvergences per profile form. I’ll use its convergence flags to discard any branch that consumes the cycle budget without reaching \(|\Delta/\sigma|<0.05\).
+
+Several reset branches are evidently using the full ten-refinement allowance, which itself is evidence against them as stable alternatives. I’m letting the finite screen terminate; no user-facing file is being modified during this comparison.
+
+The finite screen is still progressing through its last expensive branches. If it does not finish on the next polling interval, I’ll terminate it and use targeted delete-one tests from the stable profile instead; that would provide the same integrity evidence at lower cost.
+
+The two-phase inventory is now stable: triclinic CuWO₄ is the dominant phase, with a small triclinic WO₃ component supported by several otherwise unexplained peaks. I’m finishing matched deletion tests for the optional profile terms, retesting rejected companion phases against this mature model, then I’ll freeze and audit the deliverables.
+
+The current fit is clean but the CuWO₄ size and strain parameters are correlated (|r| ≈ 0.93), so I’m explicitly testing whether either broadening term can be removed while allowing the rest of the model to reconverge. I’m applying the same matched test to axial asymmetry, polarization, texture, heavy-atom displacement factors, and both WO₃ broadening terms.
+
+The matched branches are still refining. The comparison resets only the term under test and keeps all companion structures and nuisance parameters identical, so any retained term must improve the full pattern after reconvergence—not merely inherit credit from an earlier one-phase fit.
+
+The longer branches are the microstructure deletions, because the instrumental U/W terms must readjust after phase broadening is removed. I’m letting those converge rather than comparing partially shifted fits; the saved baseline remains untouched.
+
+Several branches have completed in the background; the remaining jobs are being run with a three-process cap to avoid numerical slowdowns from oversubscription. Once the batch closes I’ll compare both global and low/mid/high-angle residual changes.
+
+The baseline and simpler envelope branches have finished; the jobs still running are those that trigger substantial peak-width redistribution. No project state is being overwritten—each branch is isolated for rollback.
+
+This batch is taking longer than the one-variable refinements, but it is still making progress. I’ll stop any branch that cannot reach a stable covariance after its capped seven passes and classify it as an unstable alternative, as required by the rollback criteria.
+
+The cap is deliberately strict: branches must reach max shift/esd below 0.05 with no singular variables. I’m keeping that convergence standard even where a quick, lower Rwp value appears earlier in the iteration history.
+
+The refinement batch remains active without errors. The expensive cases are exactly the ones most likely to be rejected for instability; after the capped attempts finish, I’ll use the valid minimal branch rather than extending an ill-conditioned model.
+
+Enough of the batch has elapsed that I’ll treat the seven-pass cap as decisive. If the shell does not close shortly, I’ll terminate the unfinished branches and inspect the completed per-branch JSON records rather than spend time on nonconvergent variants.
+
+The comparison resolved the main ambiguity: CuWO₄ microstrain is not independently justified. Removing it gives a simpler, stable fit and slightly improves Rwp (4.468% versus 4.490%), while removing crystallite size worsens every angular region (Rwp 4.686%). Axial divergence and [110] texture are clearly supported; the WO₃ size term is weakly but stably supported, whereas its strain branch failed the convergence criterion. I’m now reconverging these choices together and repeating the deletion tests from that updated state.
+
+The updated-state rerun is underway. One important outcome already visible from the first pass is that instrumental U stays positive when CuWO₄ strain is removed, so the simplification does not force a nonphysical global width.
+
+The remaining comparison is whether the small WO₃ phase needs its own size broadening after the CuWO₄ strain term is removed. Its scale and cell are held in the full two-phase refinement, so this is a direct test of profile shape rather than phase presence.
+
+These branches are converging without singularities so far. I’m still requiring the final max shift/esd threshold before using any numerical improvement; a small apparent gain from a drifting minor-phase width will not be accepted.
+
+The batch is nearing its cap. If the WO₃ strain branch remains above the shift threshold—as it did previously—I’ll reject it and retain only the independently stable size term if its benefit survives.
+
+The comparison remains active but bounded. The saved stage-one CuWO₄ no-strain project is already a valid rollback point, so no unstable minor-phase branch can compromise the selected model.
+
+The cap has now been reached in wall-clock terms. I’m terminating any unfinished branch and reading the completed records; an option that needs more than the bounded passes is not replay-safe enough for the final project.
+
+The combined choice is now clear: fix polarization at the nominal 0.70 (one fewer variable, indistinguishable/slightly better fit) and retain only CuWO₄ size broadening. WO₃ size gives a small stable improvement (about 0.01 Rwp point); WO₃ strain again drifts and fails convergence. I’m composing those decisions into one project before the final leave-one-out pass.
+
+The composed model is stable at Rwp 4.461%, with no correlation above 0.68; the modeled fractions are presently about 97.55% CuWO₄ and 2.45% WO₃. I’m now performing the final leave-one-out checks on every retained optional term (U, W, axial divergence, CuWO₄ texture/size, WO₃ size, and heavy-atom ADPs).
+
+The leave-one-out batch is active. The WO₃-size deletion is especially important because its statistical gain is small; I’ll retain it only if the matched copy shows a reproducible full-pattern degradation rather than a single-cluster effect.
+
+The deletion tests allow all remaining profile and structural variables to adjust, so they are conservative: a term is kept only when the rest of the model cannot absorb its removal without a material, multi-region loss.
+
+The slower copies are the width-term deletions, as expected. Each has only four capped passes in this final audit; a branch that cannot stabilize within them will be rejected rather than used to justify extra complexity.
+
+The batch remains bounded and the selected project is untouched. I’m waiting for the remaining isolated copies to write their convergence records, then I’ll run the complementary “add-back” tests for rejected terms.
+
+The leave-one-out results support retaining all current optional terms: removing CuWO₄ texture worsens all three angular regions; removing U or CuWO₄ size causes large unstable losses; removing W worsens the mid/high-angle fit; and reverting WO₃ size worsens the mid/high-angle fit with a highly significant full-pattern loss despite the small Rwp change. Heavy-atom ADPs principally improve the high-angle region. I’m now checking that previously rejected terms do not become useful in this leaner model.
+
+The add-back screen covers polarization, instrumental V/X/Y/Z, CuWO₄ strain, WO₃ strain, and simple surface roughness. Terms must refine to physically allowed values with stable covariance and improve more than one angular region to re-enter the model.
+
+The width-term branches are still running through their capped passes. Negative Lorentzian widths, near-singular V/U/W tradeoffs, or drifting strain values will be rejected even if their interim Rwp is lower.
+
+The final add-back comparison remains bounded to four passes per term. The accepted project already meets convergence criteria, so only a clean, reproducible improvement can displace it.
+
+The remaining slow cases are candidates for rejection on replay stability. I’m allowing the four-pass cap to finish, then I’ll inspect parameter signs and correlations alongside Rwp rather than accepting a purely numerical gain.
+
+The add-back results reject V (|r|=0.972 with U), X (|r|=0.998 with CuWO₄ size), Y/Z (nonconvergent, with Z negative), both strain terms, and refined polarization (tiny gain coupled at |r|=0.939 to W ADP). A surface-roughness-B branch lowers Rwp but is over-correlated with the major-phase scale (|r|=0.955), so I’m checking the physically defined A/B roughness alternatives before deciding whether that envelope explanation is admissible.
+
+The roughness check confirms why it cannot be retained: the apparent gain is tied almost one-for-one to the CuWO₄ scale (|r|=0.955), so it would make the quantitative fractions envelope-model dependent. I’m keeping the nominal polarization/no-roughness state and doing one last phase-specific texture screen for the minor WO₃ phase before phase-inventory retesting.
+
+The WO₃ March–Dollase axes are being screened independently from the same baseline. Because this phase is only ~2.5 wt%, I’ll reject any axis whose coefficient is poorly determined, boundary-seeking, or whose gain is confined to its strongest overlap cluster.
+
+The minor-phase texture screen is still within its three-pass cap. This is a sensitivity check, not an invitation to add a weakly constrained correction; the default remains no WO₃ texture.
+
+No WO₃ texture axis survives: the few converged branches improve Rwp by at most 0.0007 point, while the apparently larger gains fail the shift criterion. I’m leaving WO₃ untextured and moving to the required mature-model inventory retest—CuO, Cu₂O, Cu₃WO₆, and same-composition structure alternatives—one at a time.
+
+The mature-model phase retests are running in isolated copies. Additions must refine to a positive, significant scale and explain multiple residual peaks; replacement models must compete over the whole pattern with the same nuisance terms and the accepted companion phase retained.
+
+The replacement branches take longer because their cells must re-equilibrate after the accepted phase is disabled. I’m preserving that freedom so a rejected symmetry is rejected by extinction/full-pattern evidence, not by a frozen database cell.
+
+The candidate batch is still within its four-pass cap. Zero/boundary scales or unstable replacement cells will be rolled back to the selected two-phase project.
+
+The final inventory screen is nearing completion. The baseline remains the two atomistic phases only; no third phase will be accepted for an overlap-only or statistically marginal scale.
+
+The replacement models are the remaining slow cases. If they do not meet the convergence threshold at the cap, that failure is itself part of the rejection evidence; I will not extend a poorer symmetry until it overfits.
+
+The four-pass cap has effectively been reached. I’ll terminate any unfinished replacement shortly and inspect the completed candidate scales and fit histories rather than prolonging an unstable branch.
+
+The mature inventory retest rejects CuO and Cu₃WO₆ at zero scale; Cu₂O is only 0.04σ and effectively zero. Orthorhombic WO₃ is much poorer (Rwp 4.891% versus 4.461%). The monoclinic CuWO₄ replacement is computationally slow in the full 49-variable model, so I’m completing its retest with the mature nuisance parameters frozen, then allowing only its scale and cell—the identical minimal comparison needed to test its extinction pattern.
+
+The final phase screen is decisive: monoclinic CuWO₄ remains catastrophic even after scale/cell freedom (Rwp 47.5%), because its extinction/splitting pattern misses the dominant data; orthorhombic WO₃ is also inferior. No CuO, Cu₂O, or Cu₃WO₆ is supported. I’m rerunning the prescribed angular branch selector from the now-final two-phase/profile state, then I’ll freeze and export.
+
+The angular helper is comparing zero, specimen displacement, and their joint branch against the mature model. The earlier joint fit was rejected for ~0.9999 zero/shift correlation; I’m confirming that conclusion after all downstream changes.
+
+The helper is still refining its isolated angular copies. Selection will require stable positive profile widths and acceptable covariance, not just the lowest numerical Rwp.
+
+The final angular selector again chooses the existing displacement-only baseline: zero-only is worse, while joint zero/shift is invalid at |r|=0.99990. The selected model is therefore frozen. I’m reloading it, regenerating reflections/profile, exporting both CIFs and the fit table, then running the GPX/CIF/submission audits and cross-file checks.
+
+The frozen project passes the GSAS-II audit with no flags: converged, no dropped variables, max shift/esd 0.0349, exact profile regeneration, and positive finite widths for every reflection in both phases. I’m exporting the refined structures now and checking their chemistry/contacts before writing the machine-readable summary.
+
+Both exported CIFs pass the structural audit with no occupancy, contact, or symmetry flags. The final profile has 8,301 points and exactly satisfies difference = observed − calculated. I’m writing the normalized fractions and fit statistics now; the report will distinguish the small formal covariance error from the larger profile-model uncertainty.
+
+The submission schema audit passes: two recognized phase records, existing CIF paths, positive fractions summing exactly to 1.000000, and no warnings. I’m doing the final cross-file readback now to verify that `fit.csv`, both CIF cells, `result.json`, and `final.gpx` all describe the same frozen refinement.
+
+Analysis complete.
+
+- CuWO₄, triclinic P -1: 97.5516 wt%
+- WO₃, triclinic P -1: 2.4484 wt%
+- Fit: Rwp 4.461%, Rp 3.431%, GOF 1.839
+
+Formal fraction uncertainty is ±0.056 wt%; realistic systematic uncertainty is a few tenths of a wt%.
+
+Files: [result.json](<ATTEMPT_WORKSPACE>/result.json), [report.md](<ATTEMPT_WORKSPACE>/report.md), [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv), [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx), [CuWO4.cif](<ATTEMPT_WORKSPACE>/CuWO4.cif), and [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif).
+
+All CIF, GPX, submission-schema, and cross-file consistency audits passed.
+

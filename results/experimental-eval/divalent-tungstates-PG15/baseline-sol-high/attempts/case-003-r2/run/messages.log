@@ -1,0 +1,32 @@
+I’ll inspect the measurement metadata and diffraction pattern first, then use the installed crystallographic/indexing tools to identify candidate phases and carry the best model through quantitative refinement. I’ll preserve the final refinement project and export all requested artifacts from that same model.
+
+The chemistry points toward calcium tungstate as the principal reaction product, but 500 °C can leave precursor or intermediate phases, so I’m treating that only as a hypothesis. I’m now extracting peak positions and checking the available reference-search/refinement interfaces before assigning phases.
+
+Peak matching shows a consistent ≈+0.30° 2θ displacement across the strongest lines—an instrumental/specimen-position effect, not a lattice change. After correcting for it, the dominant 23–25° triplet is characteristic of monoclinic WO₃; CaWO₄ and calcite each account for separate secondary line families. I’m comparing alternative polymorph CIFs quantitatively before refinement.
+
+The first staged Rietveld run is underway. I’m releasing scale/background, displacement, cells, and line broadening in separate cycles so the strong instrumental shift does not get absorbed into false lattice changes; the final fractions will be normalized only after convergence.
+
+The three-phase model is now strongly supported and reaches Rwp ≈9.4% before phase-specific broadening. Letting every phase broaden independently lowered Rwp further but produced nonphysical parameters (including a negative microstrain and a 1 nm apparent domain size), so I’m rejecting that overfit and returning to the physically defensible common-profile solution. Next I’m checking whether the remaining residuals reflect texture/atomic intensities or a missing phase.
+
+The residual contains no coherent unmatched peak family: its largest features sit on already indexed WO₃/calcite/CaWO₄ reflections and are line-shape or relative-intensity mismatches. A modest calcite [104] March–Dollase texture term improves Rwp from 9.39% to 9.27% and remains physical; I’m using that model, while treating the difference from the texture-free model as a systematic fraction uncertainty rather than reporting only optimistic least-squares errors.
+
+The final model and exports are now written from the same GSAS-II project. I’m doing a consistency pass: reopening `final.gpx`, recomputing its mass fractions, validating all three exported CIFs, and checking that `fit.csv` exactly matches the project arrays and `result.json` sums to unity.
+
+Identified three crystalline phases:
+
+- Monoclinic WO₃: 55.56 wt%
+- Calcite CaCO₃: 36.23 wt%
+- Scheelite CaWO₄: 8.21 wt%
+
+Fractions are normalized over crystalline phases. Final fit: Rwp 9.274%, Rp 6.727%, GOF 3.882. Realistic systematic fraction uncertainty is approximately ±2–3 percentage points.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_wo3.cif](<ATTEMPT_WORKSPACE>/phase_wo3.cif)
+- [phase_cawo4.cif](<ATTEMPT_WORKSPACE>/phase_cawo4.cif)
+- [phase_calcite.cif](<ATTEMPT_WORKSPACE>/phase_calcite.cif)
+

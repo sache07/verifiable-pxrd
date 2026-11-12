@@ -1,0 +1,88 @@
+I’ll first inspect the pattern, metadata, and the frozen PXRD workflow/scorer, then build a chemically screened phase inventory before refining the final GSAS-II model. I’ll keep phase inclusion residual-led and verify the exported CIFs, fractions, profile, and project agree exactly.
+
+The chemical context narrows the first inventory to Sr–W–O product phases plus possible SrCO₃/WO₃ remnants, but the synthetic lab permits off-stoichiometric intermediates. I’m now extracting the observed peak families and searching the frozen COD index by occupied composition and symmetry before any scale fitting.
+
+The dominant family is a near-exact match to tetragonal scheelite SrWO₄ (COD 1546036), including its 18.1°, 27.8°, 30.0°, 33.2°, 45.4°, 47.7°, 52.0°, 56.1°, and 57.4° reflections. Several strong coherent families remain, so this is not a single-phase sample; I’m fitting the scheelite baseline first so those residual families can be indexed without intensity contamination.
+
+The two-phase model confirms monoclinic WO₃ through three resolved low-angle lines and repeated higher-angle families, but a strong third family remains. Its 29.75°, 34.49°, ~49°, 58.76°, 61.28°, 72.3°, 79.5°, and 92.0° sequence is consistent with rocksalt SrO having an expanded cell near 5.25 Å; I’m challenging that physical alternate directly because the sole COD SrO record (a = 5.161 Å) starts too far from the residual peaks for a fair scale-first test.
+
+The first Sr₃WO₆ prototype test is supported at roughly 8–10 wt% and improves the profile, with the Ca₃WO₆-derived P2₁/n framework outperforming the uranate parent. A separate residual family still persists. Its spacing sequence points to the charge-balanced Sr₂WO₅ stoichiometry; the Pnma Ba₂ReO₅ parent is a chemically apt two-site analogue (Ba→Sr and Re(VI)→W(VI)), so I’m testing that framework with the expected Sr-driven lattice contraction before cell refinement.
+
+Both analogue phases remain positive when fitted together (about 8 wt% each in the provisional model), and the four-phase baseline improves to Rwp ≈16.4%. I’m running a Le Bail position-only challenge now: this separates “correct lattice but imperfect analogue coordinates/intensities” from genuinely missing phase families before I commit to either model.
+
+The current four-lattice model indexes most reflections, but a coherent peak near 22.09° remains unmodeled. I’m testing the high-temperature SrCO₃ polymorph expected at the 900 °C synthesis condition, then I’ll re-challenge the two analogue-derived oxide phases under the same profile model.
+
+The carbonate phase is supported: it stays positive and lowers Rwp from 16.39% to 15.92%, while accounting for the 22.09° family. Its refined hexagonal cell is noticeably distorted from the literature high-temperature record, so I’m treating the exact polymorph/model as provisional rather than accepting it solely from the fit improvement.
+
+All five scales are nonzero (provisional fractions ≈69.0% SrWO₄, 10.3% WO₃, 8.1% Sr₂WO₅, 8.7% Sr₃WO₆, 3.8% carbonate), but the remaining errors are now predominantly intensity and line-shape errors at already indexed positions. I’m checking the generator’s allowed structure-selection and perturbation rules before adding any further phase; this helps distinguish a missing phase from an inadequate structural/profile model.
+
+The residual families at 15.02, 16.62, 20.68, 22.10, 29.75, 30.89, 32.60, 35.30, 44.65, and 53.44° are internally coherent and cannot be explained by ordinary SrCO₃. I’m indexing those families directly to determine whether they belong to one off-stoichiometric lattice or two; that will decide whether the current Sr₂WO₅/Sr₃WO₆ split is real or an overfit.
+
+The indexing evidence supports two different oxide lattices rather than one: the Sr₂WO₅ model uniquely accounts for the 16.62/30.89/32.60° families, while the Sr₃WO₆ model accounts for 29.75/42.17/53.44/61.27°. I’m now running remove-one challenges with identical background, displacement, cell, and profile refinements to quantify whether either phase collapses when the other and carbonate are present.
+
+Both off-stoichiometric phases survive the remove-one tests: omitting Sr₂WO₅ raises Rwp to 16.77%, omitting Sr₃WO₆ raises it to 16.43%, versus 15.92% with both. Their scales increase rather than collapse in the reduced models. I’m retaining both provisionally and now refining the structural intensities and physically generated line-shape terms; this is the decisive test because the remaining residuals mostly sit at already indexed peak positions.
+
+The common displacement-only model is forcing implausibly large cell changes in the weak carbonate phase. I’m comparing the equally simple zero-offset model now; the better choice should align isolated low-, mid-, and high-angle families without using cell parameters as an angular-correction surrogate.
+
+The zero-offset trial is computationally slower because all five cells are reconverging together, but it remains stable. In parallel scientific terms, the key diagnostic is whether the published cells return to their expected perturbation range; I’ll reject the correction even if Rwp improves if it merely transfers distortion into another phase.
+
+The isolated SrWO₄ families show a monotonic intensity trend: the model is too strong near 18° but increasingly too weak from roughly 45–75°. That is the signature of the permitted low-angle surface-roughness deficit, so I’m testing the shared Suortti roughness correction before any preferred-orientation term.
+
+A physical roughness model is strongly supported, lowering Rwp from 15.92% to 14.45%. The two Suortti parameters are nearly collinear, so I fixed \(A=0.20\) and refined \(B=0.214\); this gives a 49% deficit at 20° and avoids the nonphysical negative-\(A\) least-squares solution. I’m now testing polarization and phase-specific broadening against this common baseline.
+
+A free common \(U/W/X\) fit drives \(U\) negative and \(W\) above the physically allowed instrumental range, so I’ve rejected it as a width surrogate. I’m resetting to a nonnegative common profile and releasing crystallite size one phase at a time; only replay-stable positive sizes will be retained.
+
+The sequential size model is still converging through the weak phases. I’m checking each result for the characteristic failure modes—negative/huge domain size, compensation by \(W/X\), or loss on replay—before accepting any added profile term.
+
+The first coordinate tests are informative: SrWO₄ oxygen refinement gives only a modest improvement and moves farther than the generator’s expected reference mismatch, while carbonate oxygen refinement becomes geometrically unstable and is rejected. The weak oxide coordinate trials are taking longer because they have many symmetry-constrained variables; those will be accepted only after bond-distance screening.
+
+Unrestrained coordinate refinement lowers Rwp but drives 0.1–3 Å atomic displacements in every weak phase, so those solutions are rejected as intensity surrogates. I’m holding the published/analogue coordinates and testing March–Dollase texture along symmetry-distinct axes instead; this uses one physically interpretable parameter per phase.
+
+The texture batch is converging without numerical failures. I’m comparing axes by both Rwp and refined ratio: an axis is useful only if the ratio remains in the allowed physical range and several independent reflections—not a single overlap—support the same trend.
+
+The first texture screen found a defensible Sr₂WO₅ [001] correction (\(r=0.712\), Rwp 14.10%). Sr₃WO₆ only improves strongly by demanding \(r\approx0.39\), outside the allowed physical range, so that term is rejected. The remaining phase/axis comparisons are running as a final texture challenge.
+
+Texture is unsupported for SrWO₄, WO₃, SrCO₃, and Sr₃WO₆; their ratios remain near 1 or become unstable. I’m keeping only Sr₂WO₅ [001] texture, then rebuilding the shared background, displacement, cells, and profile around that accepted change before reassessing phase scales.
+
+After rebuilding, the five-phase model is stable at Rwp 13.79% with positive fractions (about 67.8/10.2/10.9/7.3/3.7 wt%). I’m doing a five-lattice Le Bail challenge now: any coherent peak that remains unindexed there is evidence for a missing phase; peaks that disappear point instead to imperfect analogue atomic structures.
+
+The five-lattice Le Bail fit reaches Rwp 7.85% and absorbs the large 29.75/32.63/44.67/53.44/61.22° residual families. The remaining dominant errors are split shoulders on strong SrWO₄ peaks, so they indicate common peak-shape/calibration inadequacy rather than another major phase. I’m optimizing asymmetry and width terms in Le Bail mode, then transferring only physical terms back to the structural model.
+
+The common SH/L asymmetry term is already adequate; releasing it changes neither the fit nor the profile materially. The Le Bail size tests are now checking whether different phases genuinely require distinct Lorentzian widths, with the common instrument profile held fixed.
+
+Le Bail width trials support real phase-specific broadening for WO₃ (~0.08–0.11 µm), Sr₂WO₅ (~0.11 µm), Sr₃WO₆ (~0.14 µm), and carbonate (~0.04–0.07 µm); SrWO₄ does not benefit. I’m combining those terms and alternating them with the shared \(W/X\) profile so the common instrument width no longer absorbs every phase’s crystallite size.
+
+The alternating profile fit is deliberately holding one parameter family fixed while refining the other, which avoids the near-singular size–\(X\) covariance seen earlier. I’ll retain the combined model only if all sizes stay positive and the common \(U/W/X\) terms remain nonnegative on the final replay.
+
+The combined size model gives a small, replay-stable improvement (Rwp 13.72%) with all sizes positive. Polarization refines back to 0.695 and has negligible impact, so I’m pruning it. I’m testing only modest background-order changes next; the background must remain smooth and cannot be allowed to absorb weak diffraction peaks.
+
+A 10-term Chebyshev background remains smooth and lowers Rwp to 13.41%; the 8-term version is only slightly worse. Releasing \(W/X\) afterward yields a negligible gain while pushing \(W\) upward, so I’m keeping the earlier common profile. Before finalizing inventory, I’m completing the required physical alternate check for ordinary orthorhombic SrCO₃.
+
+The final inventory is now stable at five phases. I’m completing the last carbonate-polymorph control, then I’ll freeze the physically constrained refinement and generate the project, CIFs, profile, JSON, and uncertainty report from that same saved state.
+
+The ordinary orthorhombic SrCO₃ control failed decisively: its scale collapsed to zero and the refinement became unstable. That supports retaining the high-temperature rhombohedral carbonate candidate—still as the least certain minor phase—consistent with the 900 °C synthesis history.
+
+The baseline is being frozen with one displacement correction, a nonnegative shared U/W/X profile, fixed physically supported phase sizes, smooth 10-term background, and only the replay-stable Sr₂WO₅ [001] texture term. Unsupported coordinate, strain, asymmetry, polarization, and other texture refinements remain pruned.
+
+The full-range constrained replay converged cleanly at Rwp = 13.365% and Rp = 9.404%. The retained Sr₂WO₅ texture ratio is 0.712—inside the screened 0.70–1.40 range and reproducible after roughness, displacement, and cell reconvergence.
+
+Geometry screening passed three phases outright. The WO₃ source has a short 1.58 Å O···O contact that requires source-level review, while the high-temperature carbonate’s 1.31 Å contacts are between mutually disordered half-occupied oxygen orientations around normal C–O bonds, not simultaneous full-occupancy clashes. I’m checking whether a cleaner WO₃ record preserves the observed triplet before accepting the current model.
+
+A second monoclinic WO₃ record from ambient neutron diffraction (COD 2311041) is geometrically clean and gives essentially the same fit (Rwp difference only 0.02 percentage point) as the older, short-contact X-ray model. I’m selecting the neutron structure on physical grounds and removing one redundant sample-scale flag exposed by that control before the final replay.
+
+The saved project has now passed a fresh, read-only full-grid GSAS-II replay: no parameters were optimized, no profile warnings were raised, the regenerated Rwp is 13.3866%, and every submitted CIF and fraction matches its project phase exactly.
+
+Completed and independently replay-verified over all 8,282 points.
+
+- SrWO₄: 65.09 wt%
+- WO₃: 10.41 wt%
+- Sr₂WO₅: 11.90 wt%
+- Sr₃WO₆: 7.51 wt%
+- High-temperature/disordered SrCO₃: 5.08 wt% (tentative)
+
+Final fit: Rwp 13.3866%, Rp 9.4148%. The Sr₂WO₅ and Sr₃WO₆ structures are analogue-derived; their fractions are semiquantitative. The carbonate polymorph and fraction are not reliably established.
+
+Artifacts: [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r8/workspace/result.json), [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r8/workspace/report.md), [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r8/workspace/fit.csv), and [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r8/workspace/final.gpx).
+
+CIFs: [SrWO₄](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r8/workspace/phase_1_SrWO4.cif), [WO₃](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r8/workspace/phase_2_WO3.cif), [Sr₂WO₅](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r8/workspace/phase_3_Sr2WO5.cif), [Sr₃WO₆](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r8/workspace/phase_4_Sr3WO6.cif), [SrCO₃](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r8/workspace/phase_5_SrCO3_highT.cif).
+

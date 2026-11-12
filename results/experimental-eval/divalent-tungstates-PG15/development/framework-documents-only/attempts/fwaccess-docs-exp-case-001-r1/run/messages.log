@@ -1,0 +1,52 @@
+I’ll first inspect the diffraction data, metadata, and the provided tungstate guidance, then identify candidate phases and build/refine the final GSAS-II model. I’ll keep the phase identification evidence separate from refinement quality so any ambiguity is explicit.
+
+The chemistry strongly suggests a low-temperature Ba–W–O mixture, but I won’t assume BaWO₄ is the only product: at 400 °C residual BaCO₃/WO₃ and intermediate barium tungstates are plausible. I’m now extracting peak positions and locating the installed COD/DARA and GSAS-II interfaces for an evidence-based search.
+
+The strongest cluster at 23.4–24.7° and the accompanying 33–35° reflections are characteristic of monoclinic WO₃, while several peaks (notably near 24.2°, 28.0°, 34.4°, and 42.3°) can also contain witherite BaCO₃. A simple single-phase BaWO₄ assignment is already inconsistent with the observed peak set. I’m screening all chemically plausible COD structures, including barium tungstate intermediates, before choosing the refinement inventory.
+
+I’ve narrowed the baseline model to unreacted monoclinic WO₃ plus orthorhombic BaCO₃; their predicted lines map one-for-one to the major observed peaks after a common ≈+0.27° shift. I’m starting quantitative Rietveld tests now, including explicit checks for whether BaWO₄ or another Ba–W–O phase contributes statistically meaningful intensity.
+
+The first two-phase refinement is stable and gives roughly 44 wt% WO₃ / 56 wt% BaCO₃ before profile optimization. The early Rwp (~20%) is not yet meaningful because cell, instrumental broadening, and specimen broadening are still being introduced; the key result so far is that both phase scales remain strongly positive.
+
+The screening is discriminating clearly: reduced tungsten oxides and the higher-symmetry WO₃ models either fail or leave much larger misfit. The monoclinic room-temperature WO₃ family remains the only viable tungsten-bearing phase; I’m finishing a head-to-head comparison of its nearly equivalent COD settings before testing trace BaWO₄.
+
+A trace-phase test is revealing but not yet conclusive: both BaWO₄ (~0.6 wt%) and an implausible BaO₂ decoy lower the residual by a similar amount because their strongest lines overlap the main phases. I’m treating that as evidence for unresolved intensity mismatch, not automatic proof of either phase; the next step is to refine the main-phase structures/profile and inspect unique-line residuals.
+
+The specimen effects are now identifiable: BaCO₃ shows a clear [110] March–Dollase texture (refined ratio ≈0.905), whereas all WO₃ texture trials stay within about 2% of random. This lowers Rwp to 6.63% without distorting atomic coordinates, so I’ll retain the carbonate texture and treat WO₃ texture as optional unless it survives later structure refinement.
+
+The bounded coordinate trials are numerically stiff—several oxygen shifts hit their allowed limits and one looser trial is diverging. I’m keeping the tighter, physically credible refinements only; a lower Rwp from unrestricted oxygen motion would not be defensible because it produces WO₃ displacements far larger than the reference mismatch and can distort W–O geometry.
+
+The effective +0.36° peak shift can be represented either as instrument zero or as a mix of zero and sample height; those parameters are almost perfectly correlated in this scan. I’m testing physically bounded decompositions so the final project does not encode an implausibly large zero while preserving the fitted profile and cells.
+
+The phase model is now stable: monoclinic WO₃ and orthorhombic BaCO₃ dominate, with only a tentative trace of scheelite BaWO₄. I’m finishing the zero/displacement decomposition, then I’ll export the exact final project, CIFs, profile, and uncertainty report and verify they agree.
+
+The displacement test exposed a unit issue in GSAS-II: its specimen shift is stored in micrometres, not millimetres. The earlier trial therefore constrained the correction to essentially zero and is rejected; I’ve identified the correct conversion and am rerunning the physically equivalent models within ±800 µm.
+
+The corrected specimen model converged cleanly. A zero offset fixed at the allowed +0.250° and a −186.6 µm displacement reproduces the fit (Rwp 6.025%) while keeping both effects physically plausible; phase fractions are insensitive to that decomposition. I’m now auditing every active/refined parameter before freezing the deliverable.
+
+The final full-range refinement is converged over all 8,301 points: Rwp 6.016%, GOF 1.733. The modeled crystalline fractions are 48.003% WO₃, 51.810% BaCO₃, and 0.187% BaWO₄; I’m treating the last value as a detection-level estimate, not a reliable quantitative result.
+
+The structural audit caught an important issue in the sole exact-composition BaWO₄ database entry: its 1970 average model uses two half-occupied oxygen sites, producing unrealistically short alternative-site contacts. Because a trace phase cannot refine oxygen positions, I’m replacing only that oxygen sublattice with the full-occupancy scheelite framework from the modern isostructural BaMoO₄ model (Mo→W), while retaining the observed BaWO₄ cell and fixed Ba/W sites. This keeps the tentative assignment physically defensible.
+
+All submitted structures now pass symmetry, occupancy, composition, and short-contact checks: WO₃ has sensible W–O distances, BaCO₃ has intact carbonate geometry, and the repaired scheelite model has full occupancy and 1.72 Å W–O bonds. I’m doing the final cross-file consistency check against `final.gpx` now.
+
+Completed and cross-validated against the final GSAS-II project.
+
+Crystalline fractions:
+
+- Monoclinic WO₃: 47.99 wt%
+- Orthorhombic BaCO₃: 51.81 wt%
+- Scheelite BaWO₄: 0.20 wt%, tentative and not reliably quantifiable
+
+Fit: Rwp 6.0138%, Rp 4.5341%, GOF 1.7326.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-001-r1/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-001-r1/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-001-r1/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-001-r1/workspace/final.gpx)
+- [phase_WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-001-r1/workspace/phase_WO3.cif)
+- [phase_BaCO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-001-r1/workspace/phase_BaCO3.cif)
+- [phase_BaWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-docs-20261109/attempts/fwaccess-docs-exp-case-001-r1/workspace/phase_BaWO4.cif)
+

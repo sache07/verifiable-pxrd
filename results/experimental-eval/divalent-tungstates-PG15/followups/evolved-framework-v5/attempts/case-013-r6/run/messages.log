@@ -1,0 +1,54 @@
+I’ll inspect the specimen metadata and pattern first, then identify candidate phases from the frozen reference index and refine the smallest chemically plausible multiphase model in GSAS-II. I’ll preserve replayable checkpoints and only add phases when coherent residual peak families support them.
+
+The chemistry points first to PbWO₄ formation with possible residual PbO/WO₃ or lead-rich intermediates. I’m now extracting the observed reflection families and querying only the frozen COD index for exact Pb–W–O and precursor references; phase additions will be judged against residual families, not isolated peaks.
+
+The first reflection-family map supports scheelite PbWO₄, monoclinic WO₃, and both common PbO polymorphs (massicot and litharge); each has multiple diagnostic peaks across the scan. A strong 25.9° family remains unassigned, so I’m fitting that complete four-phase checkpoint before testing any additional topology.
+
+The four-phase checkpoint refines to Rwp ≈14.7% before specimen broadening terms, confirming those phases but leaving a large, internally consistent residual headed by 25.907°, 31.047°, 39.544°, 43.445°, and 46.379°. I’m ranking only chemically permitted Pb/W/O references against that residual, then I’ll test the leading model directly in GSAS-II.
+
+The residual family indexes cleanly to a C2/m Pb₂WO₅ topology: an isovalent Pb₂MoO₅→Pb₂WO₅ model accounts for the 25.9°, 29–31°, 39–43°, 50–55°, 60–64°, and high-angle reflections. Adding it lowers Rwp from 14.7% to 12.1% with a stable positive scale; removing massicot raises Rwp to 14.3%, so all five phases are supported. I’m stopping phase search and moving to calibration, phase-specific broadening, texture, and bounded coordinate refinement.
+
+I found and repaired one important physical-model issue before further refinement: the COD litharge file uses P4/nmm origin choice 1, and GSAS-II’s automatic shift assigned the Pb site the wrong multiplicity (Pb₂O cell contents). The repaired origin-choice-2 model now imports as stoichiometric PbO with the published density; I’m rebuilding the five-phase checkpoint so its scale and weight fraction are physically meaningful.
+
+The origin repair improves the complete physical model to Rwp 11.10%. Phase-specific isotropic broadening lowers it further to 10.65% with all parameters inside the laboratory ranges except two terms pinned at physically allowed boundaries. Direct heavy-atom refinement tried to overfit and produced implausibly short contacts, so those coordinate branches were rolled back; I’m using the unchanged published/analogue coordinates while testing supported texture and anisotropic broadening one phase at a time.
+
+I’m finishing the bounded Pb₂WO₅ coordinate-start comparison now. Then I’ll lock the best physical checkpoint, validate geometry and phase fractions, and export the replayable GSAS-II project plus the requested deliverables.
+
+The parent Pb₂MoO₅-derived coordinates remain the best physical start: midpoint and Pb₂CrO₅-transferred starts both increased Rwp (10.292% and 10.310% versus 10.165%). I’m retaining the chemically closest parent geometry and doing one last bounded thermal-factor check, since several library CIFs carried placeholder zero displacement values that can bias high-angle intensities and quantitative fractions.
+
+The thermal-factor scan confirms the zero-Uiso library placeholders were not neutral. A bounded common-Uiso value around 0.015 Å² for massicot gives the best high-angle intensity balance; I’m applying the same coarse, fixed-grid test to WO₃, then I’ll recompute a clean profile with boundary-hit broadening terms fixed so the reported Rwp is reproducible from the saved project.
+
+The fixed-grid checks are stable and physically sensible: PbWO₄ retains 0.010 Å², Pb₂WO₅ favors 0.015 Å², and WO₃ sits at the conservative 0.003 Å² lower bound. I’m checking the remaining litharge displacement model, then moving to the final joint refinement and independent replay/geometry validation.
+
+The joint run exposed exactly the kind of correlation the physical rollback rule is meant to catch: massicot texture and axial microstrain simultaneously drove to imposed limits, with an axial/equatorial strain ratio beyond the accepted physical range. I’m rolling those two correlated terms back to their independently supported checkpoint values and fixing them while refining the remaining profile, cell, calibration, scale, and background parameters.
+
+The replay checkpoint is now clean: no frozen variables, no short contacts, and an exact repeat refinement gives zero parameter shift with Rwp 10.1233%. The physical massicot profile terms remain fixed at their independently supported values; all submitted fractions and profiles will come from this converged full-grid checkpoint.
+
+The independent CIF check found one issue that GSAS-II’s very-short-contact screen did not flag: the 1960 WO₃ reference has a 1.58 Å O–O contact already present in its published coordinates. I’m keeping the WO₃ phase assignment but comparing the previously indexed exact-composition WO₃ checkpoints for a physically sound coordinate model; this is a same-phase structural repair, not a new phase search.
+
+The physically sound neutron-derived monoclinic WO₃ model fits at least as well as the defective 1960 coordinates (Rwp 10.1188% versus 10.1233%) and has normal W–O/O–O geometry. Its controlled refinement has converged below 0.1 shift/esd with no frozen variables; I’m now freezing structural/profile terms for the final exact replay and export.
+
+All requested scientific artifacts have now been generated from the converged full-range project, including nonzero calculated/background values at every measured point. I’m aligning `result.json` to the local submission schema and then running a final cross-check that the root CIFs, fractions, profile, and `final.gpx` are mutually consistent.
+
+Completed a five-phase physical GSAS-II model:
+
+| Phase | Weight fraction |
+|---|---:|
+| PbWO₄, stolzite | 59.71% |
+| PbO, massicot | 9.84% |
+| PbO, litharge | 6.48% |
+| Monoclinic WO₃ | 9.82% |
+| Pb₂WO₅ | 14.15% |
+
+Full-grid fit: Rwp 10.112%, Rp 6.874%, Rexp 3.502%, GOF 2.888. Independent replay covered all 8,282 points without optimization or physical-review flags.
+
+Pb₂WO₅ uses a physical Pb₂MoO₅-derived analogue model, so its oxygen coordinates and fraction remain more model-dependent. The two PbO fractions are also less certain individually than their combined 16.32%.
+
+Files:
+
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r6/workspace/report.md)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r6/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r6/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r6/workspace/final.gpx)
+- [PbWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r6/workspace/phase_1_PbWO4.cif), [massicot CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r6/workspace/phase_2_PbO_massicot.cif), [litharge CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r6/workspace/phase_3_PbO_litharge.cif), [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r6/workspace/phase_4_WO3_monoclinic.cif), [Pb₂WO₅ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r6/workspace/phase_5_Pb2WO5.cif)
+

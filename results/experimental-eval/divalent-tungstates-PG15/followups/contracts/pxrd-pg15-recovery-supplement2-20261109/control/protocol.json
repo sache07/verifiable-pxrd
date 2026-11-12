@@ -1,0 +1,131 @@
+{
+  "assessment": "Native final.gpx replay with fitted calibration preserved; observed-data Rwp on 10.1-99.9 degrees with weights 1/max(counts,1); hidden-phase structure matches and physical checks. No synthetic score. Outputs stay outside the evolution run.",
+  "attempts": 13,
+  "authorization": "User (2026-11-09): \"run 6 more for both the Pb and Sr case under the combined condition. And send in another framework access to round out the 9\"",
+  "cases": 15,
+  "comparison_limitations": [
+    "Scans chosen after seeing the 15-scan results; not part of any prospective comparison.",
+    "The combined condition's r1-r3 came from the panel of 2026-11-09 (same day)."
+  ],
+  "condition": "P0 baseline; Max reasoning effort",
+  "created_at": "2026-11-09T18:57:37.138727+00:00",
+  "database": "DARA filtered COD 2024; full frozen filtered index, no added masks, no DARA solver, no web or ICSD",
+  "database_sha256": "03599f54f03f04420523dca36cc06927b74ce0070a4a80e6d859faa38a6c5aed",
+  "design": "Outcome-selected supplement on the two hidden-phase scans. Reported apart from the prospective 15-scan comparisons; per-attempt recovery per condition is the quantity of interest. The framework-access r10 replaces the first supplement's r4 (no submission after a provider-side rejection of a mid-run request), so that condition also reaches nine scored attempts.",
+  "dispatch": {
+    "capacity_note": "Sixteen two-core slots on 32 vCPU; thirteen attempts, one round. Valid while the access run's dispatch is paused (since 2026-11-09 02:04 UTC) and no other panel runs on this host (all earlier panels finished by 16:22 UTC).",
+    "capacity_retry_seconds": 60,
+    "max_concurrent_solvers": 16,
+    "minimum_available_ram_gib": 8,
+    "minimum_free_disk_gib": 6,
+    "monitor_seconds": 300,
+    "remote_host": "pxrd-tungstate15-ec2",
+    "service_prefix": "pxrd-pg15-recsup2-1109"
+  },
+  "effort": "max",
+  "experiment": "pxrd-pg15-recovery-supplement2-20261109",
+  "inputs_byte_identical_to_P0": true,
+  "inputs_source": "<SOURCE_ARTIFACT>",
+  "model": "gpt-5.6-sol",
+  "not_supplied": [
+    "prior outcomes",
+    "canonical answers",
+    "paper",
+    "calibrated instrument file",
+    "new xye uncertainties",
+    "output checker",
+    "synthetic truths or scores"
+  ],
+  "package_prompt_sha256": null,
+  "package_source": null,
+  "packages": {
+    "framework-access": {
+      "prompt_sha256": "258f27e7eb7e8217e16a31d4dc6f97e0da2e57def89355f6d1f2108b192e4ba4",
+      "source": "<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-framework-access-20261105/policies/framework-access"
+    },
+    "fwaccess-evolved": {
+      "prompt_sha256": "b909e169422a3c293c8fac223d230cf97e1a8678976f4dd33972af4c5a724c03",
+      "source": "<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-fwaccess-evolved-20261109/policies/fwaccess-evolved"
+    }
+  },
+  "per_attempt": {
+    "cpu_quota": "200%",
+    "memory_max": "5G",
+    "numeric_threads": 2,
+    "tasks_max": 128
+  },
+  "plan": [
+    {
+      "case": "case-013",
+      "policy": "fwaccess-evolved",
+      "replicate": 4
+    },
+    {
+      "case": "case-014",
+      "policy": "fwaccess-evolved",
+      "replicate": 4
+    },
+    {
+      "case": "case-013",
+      "policy": "fwaccess-evolved",
+      "replicate": 5
+    },
+    {
+      "case": "case-014",
+      "policy": "fwaccess-evolved",
+      "replicate": 5
+    },
+    {
+      "case": "case-013",
+      "policy": "fwaccess-evolved",
+      "replicate": 6
+    },
+    {
+      "case": "case-014",
+      "policy": "fwaccess-evolved",
+      "replicate": 6
+    },
+    {
+      "case": "case-013",
+      "policy": "fwaccess-evolved",
+      "replicate": 7
+    },
+    {
+      "case": "case-014",
+      "policy": "fwaccess-evolved",
+      "replicate": 7
+    },
+    {
+      "case": "case-013",
+      "policy": "fwaccess-evolved",
+      "replicate": 8
+    },
+    {
+      "case": "case-014",
+      "policy": "fwaccess-evolved",
+      "replicate": 8
+    },
+    {
+      "case": "case-013",
+      "policy": "fwaccess-evolved",
+      "replicate": 9
+    },
+    {
+      "case": "case-014",
+      "policy": "fwaccess-evolved",
+      "replicate": 9
+    },
+    {
+      "case": "case-014",
+      "policy": "framework-access",
+      "replicate": 10
+    }
+  ],
+  "repeats": 3,
+  "scientific_package_changes": [],
+  "supplied_inputs": [
+    "inputs/pattern.csv",
+    "inputs/metadata.json"
+  ],
+  "timeout_seconds": null
+}

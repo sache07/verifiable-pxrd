@@ -1,0 +1,30 @@
+I’ll inspect the diffraction data, metadata, and the available crystallography backends first. Then I’ll identify candidate phases, build and refine a multiphase GSAS-II model, and verify that the exported CIFs, profile, fractions, statistics, report, and final project are mutually consistent.
+
+The chemical context points to the NiO–WO₃ reaction system, where NiWO₄ is the obvious primary candidate but residual oxides or additional nickel tungstates must be tested rather than assumed. I’m now extracting peak positions and checking the installed search/indexing and GSAS-II interfaces so the phase count is driven by the pattern.
+
+Peak positions from 15.60° through 95.43° index coherently to monoclinic wolframite NiWO₄ (P2/c), including the diagnostic cluster at 23–25° and the dominant 30.87° line. I’ll begin with that structural model and use residual peaks after refinement to decide whether any second crystalline phase is warranted.
+
+The single-phase trial captures the line positions, but the first profile refinement became over-parameterized: sample and phase scales were both active, and crystallite-size terms were perfectly correlated with instrumental broadening. I’m restarting with those degeneracies removed, then I’ll inspect the residual peak list before accepting a one-phase result.
+
+The residuals identify monoclinic WO₃ unambiguously: its 23.06°, 23.53°, 24.28°, 33–34°, and 49.87° families disappear together when the P2₁/n model is added. The preliminary quantitative result is about 78 wt% NiWO₄ and 22 wt% WO₃. I’m now tightening peak-position/profile convergence and testing whether the remaining residuals are only line-shape mismatch or evidence for another phase.
+
+A direct NiO test refines to only 0.00055 ± 0.00102 mass fraction (statistically indistinguishable from zero) and does not improve Rwp, so I am excluding it. The supported crystalline model is two phases. I’m finalizing the refinement with the profile asymmetry fixed at its converged value to remove its near-perfect correlation with zero shift, then exporting all deliverables from that exact final project.
+
+The finalized fit converged without singularities: Rwp 4.932%, Rp 3.730%, goodness-of-fit 1.420. The crystalline fractions are 76.83 wt% NiWO₄ and 23.17 wt% WO₃. I’m doing a final integrity pass now—reloading the GPX, parsing both exported CIFs, and checking profile row counts, normalization, and reported statistics against the saved project.
+
+Identified two crystalline phases:
+
+- NiWO₄ (wolframite, P2/c): **76.83 wt%**
+- WO₃ (monoclinic, P2₁/n): **23.17 wt%**
+
+Final fit: Rwp 4.932%, Rp 3.730%, GOF 1.420. NiO was tested but not detected reliably.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [NiWO4.cif](<ATTEMPT_WORKSPACE>/phases/NiWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/phases/WO3.cif)
+

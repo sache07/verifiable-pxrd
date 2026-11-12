@@ -1,0 +1,80 @@
+I’ll inspect the measurement metadata, diffraction pattern, and the supplied crystallographic helpers first. Then I’ll screen candidate phases, audit atomistic models, and refine competing full-pattern models before exporting and auditing the final package.
+
+The chemistry points to cobalt–tungsten oxides, but the product and phase count are deliberately open. I’m now extracting peak positions and checking the helper interfaces so candidate retrieval is driven by the whole pattern rather than precursor formulas alone.
+
+The strongest-peak series is consistent with a wolframite-type tungstate, but several close low-angle peaks and broad high-angle features make a single-phase assumption unsafe. I’m querying the local COD index for Co–W–O structures and will compare simulated complete patterns, including precursor/secondary-oxide alternatives.
+
+Two independent peak families are now clear: monoclinic/triclinic WO₃ accounts for the 23–24° triplet, while wolframite CoWO₄ accounts for the isolated 30.71° maximum and many higher-angle peaks. I’m carrying alternative WO₃ settings and modern wolframite analogues through matched simulations, and testing Co₃O₄ as a possible third phase rather than assigning its overlapping peaks by eye.
+
+The observed isolated CoWO₄ peaks rule out assigning the 23–24° group to cobalt oxide alone. I’m building audited CoWO₄ models from the malformed database entry and from modern isostructural Fe/Mg/Mn/Zn wolframites via charge-balanced Co²⁺ substitution; this lets the diffraction data select coordinates/topology without accepting the malformed duplicate-site CIF.
+
+The first matched refinements already reach about 8.6% Rwp with only WO₃ + CoWO₄ and give roughly 66:34 wt%. I found and removed an algebraically redundant histogram scale and am tightening the screening protocol by freezing nuisance terms during cell refinement; that avoids false SVD warnings and makes the structural comparisons cleaner.
+
+Matched screening now favors triclinic WO₃ over the monoclinic alternative by about 0.6 Rwp points. Two CoWO₄ coordinate sets are essentially tied (8.27–8.31% Rwp before profile refinement), so I’m retaining both through the mature model. Co₃O₄ and CoO are now being tested explicitly as add-on phases.
+
+The inventory is currently a two-phase WO₃/CoWO₄ model. I’ve retained a physically valid surface-roughness correction and am finishing matched profile tests before testing crystallite broadening, texture, and trace precursor phases against that mature baseline.
+
+The post-envelope profile tests favor refining the Gaussian \(U\) term: Rwp fell from 6.375% to 6.349%, with positive peak widths and no singularity. I’m now checking whether any second global width term earns its complexity; the weaker one-parameter W/X alternatives will not be carried forward unless they add independent full-range benefit.
+
+The extra global terms produced only 0.002–0.003 percentage-point Rwp changes, so the simpler U-only width model remains preferred. The independent size/strain tests are running now; these are deliberately phase-by-phase because shared broadening can otherwise hide which phase actually needs it.
+
+The tempting strain branch was rejected despite its lower numerical Rwp: it drove the CoWO₄ Lorentzian width negative at high angle, exactly the kind of correlated false improvement the audit is meant to catch. A finite WO₃ size term (~0.19 μm) remains physically positive, converged, and improves several separated angle regions; I’m retesting all competing broadening terms from that accepted state.
+
+The accepted size branch passes the total-width audit for both phases. The second-pass strain tests are slower because GSAS-II is negotiating strong profile correlations; any branch that only converges through boundaries, negative broadening, or persistent large shifts will be rolled back.
+
+Neither coordinate branch met the convergence criterion: CoWO₄ stalled just above threshold and the WO₃ metal-sublattice refinement oscillated, despite modest Rwp gains. I’m keeping the source coordinates fixed and moving to the required texture and phase leave-one-out tests from the stable, audited size model.
+
+Texture screening found March–Dollase ratios only 0.976–1.017; the tiny mixed-region gains do not justify a texture parameter. I’m now running matched mature-baseline tests for the near-tied CoWO₄ model, monoclinic WO₃, and possible residual CoO/Co₃O₄.
+
+The mature tests reject monoclinic WO₃ (Rwp 6.379% versus 6.263% for triclinic) and Co₃O₄ (scale collapsed to the lower bound). CoO is a possible trace component at ~0.86 wt% with a small Rwp gain; I’m checking whether several CoO reflections—not just overlaps—carry that signal before deciding whether to include it.
+
+The trace CoO branch is not being accepted: although its scale was positive, only three of six lines improved locally, and its strongest predicted 42.50° line made the fit substantially worse. That is overlap-driven credit rather than coherent multi-peak evidence. The staged CoWO₄ replacement test is still converging.
+
+Applying conservative fixed room-temperature isotropic ADPs (0.005 Å² for Co/W, 0.010 Å² for O) both removes the zero-ADP placeholder in the WO₃ source model and improves Rwp to 6.132%, with stable positive widths. Because this materially changes intensity weighting and fractions, I’m repeating the profile and broadening screens from this updated baseline.
+
+The post-ADP screen again rejects strain and CoWO₄ size because they run to boundaries or fail to settle. Of the valid global width alternatives, W is best (Rwp 6.103%) with positive widths; I’m waiting for the final competing broadening branch before choosing that slightly richer instrument model.
+
+Adding X on top of W changes Rwp by less than 0.001 percentage point, so it is redundant. The remaining matched tests are taking longer because rejected profile directions repeatedly trigger damping; I’m preserving the stable W-only checkpoint while they finish.
+
+The latest checks confirm the simplifications: W+V is 96.7% correlated, polarization plus roughness is 97.6% correlated, and two roughness coefficients are 99.98% correlated. All are rejected. Only one roughness coefficient and the W/U/Y width set remain under consideration.
+
+The direct envelope competition is now testing polarization with roughness fully disabled, alongside a no-envelope control. This is the decisive comparison; the earlier lower Rwp from refining both together was rejected because the parameters were nearly indistinguishable statistically.
+
+The required angular rerun retained the displacement-only baseline (−4.56 μm). Zero alone is worse, while the much lower joint zero/displacement fit is rejected at 99.90% correlation and an implausible −762 μm displacement. I’m now doing explicit matched removals of every retained optional term before freezing the model.
+
+The final texture screen is effectively neutral (March–Dollase ratios remain within about 2.3% of unity), so I’m keeping the simpler untextured model. I’m now doing the required mature-baseline rechecks of the competing phase models before freezing and exporting the project.
+
+All four matched rechecks are still refining from the same stable baseline. I’m carrying the two structural replacements and the two possible cobalt-oxide additions independently so an unstable branch cannot contaminate the accepted model.
+
+The mature checks are confirming the earlier decisions: the alternative monoclinic WO₃ model is worse (Rwp 6.249% versus 6.103%), and Co₃O₄ collapses to zero scale with a failed refinement. CoO again refines to only 0.78 wt% and gives a tiny Rwp change; I’ll recheck its individual reflections before deciding whether that trace assignment is physically supported. The alternate CoWO₄ model is still running.
+
+The alternate CoWO₄ structure is reproducing the earlier failure mode: its fixed-cell stage fits poorly, then freeing the cell causes very large parameter shifts and repeated divergence. I’m letting the prescribed convergence attempts finish, but it is not a defensible replacement for the stable wolframite model.
+
+The sanitized CoWO₄ candidate is chemically plausible and eventually reached a slightly lower Rwp, but its cell-release refinement is not converged (maximum shift/esd 0.275 after repeated divergence). Because that difference could otherwise affect the selected structure, I’m extending this branch from its saved state and will judge it only if it reaches a stable solution with sane profile parameters.
+
+The clean comparison is more informative: with the identical refined starting cell and fixed ADPs, the alternate CoWO₄ coordinates first fit slightly worse at fixed cell, but cell refinement found a substantially better basin (Rwp now about 5.93%). The shifts are still above the acceptance threshold, so I’m withholding the choice until it either converges cleanly or proves unstable.
+
+The alternate CoWO₄ basin never stabilized: across eleven additional cell-refinement attempts its Rwp oscillated between roughly 5.93–5.98% while maximum shift/esd repeatedly jumped from 0.11 up to 5.5. Its fixed-cell solution was stable but worse than the accepted model, so I have rolled that branch back. I’m now checking whether the apparent 0.78 wt% CoO contribution is supported by its individual lines rather than overlap alone.
+
+The CoO trace is not structurally coherent: only three of six lines improve locally, while its strongest predicted reflection at 42.51° makes the weighted residual much worse; two other predicted lines also worsen it. I’m therefore treating CoO as below reliable identification/quantification and retaining the two-phase model. Next I’m freezing that stable branch, regenerating the profile, exporting the CIFs, and running the required cross-file audits.
+
+The accepted project is now frozen and exported. The modeled crystalline fractions are 70.784 wt% triclinic WO₃ and 29.216 wt% wolframite CoWO₄ (formal GSAS-II uncertainty ±0.159 wt% each), with Rwp 6.103% over 10–100° 2θ. I’m running the final CIF, project, schema, and cross-file consistency checks now.
+
+Completed the two-phase refinement:
+
+- Triclinic WO₃, P-1: **70.784 ± 0.159 wt%**
+- Wolframite CoWO₄, P2/c: **29.216 ± 0.159 wt%**
+
+Fit: Rwp 6.103%, Rp 4.615%, GOF 1.861. Fractions are normalized over modeled crystalline phases. A forced ~0.78 wt% CoO contribution was not reliable; a trace near 1 wt% cannot be excluded.
+
+All CIF, GPX, submission, and cross-file audits passed.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_wo3_triclinic.cif)
+- [CoWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_cowo4_wolframite.cif)
+

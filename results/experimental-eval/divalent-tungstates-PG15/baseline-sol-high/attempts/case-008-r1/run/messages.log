@@ -1,0 +1,32 @@
+I’ll inspect the diffraction data, metadata, and available analysis tooling first, then identify candidate phases and refine the best-supported multiphase model. I’ll keep the reported fractions limited to modeled crystalline phases and explicitly flag ambiguity.
+
+The chemistry strongly suggests a manganese tungstate reaction product, but I’ll test that rather than assume it: first by peak positions/extinctions against the local crystallographic database, then by whole-pattern refinement including plausible residual reactants or secondary oxides.
+
+A single monoclinic wolframite-type MnWO₄ phase already explains the full peak set well (initial whole-pattern \(R_{wp}\) about 7.7%). I’m now checking residuals for weak unmodeled peaks and removing parameter degeneracies before deciding whether any secondary phase is justified.
+
+The refinement variants are still running. The main comparison is between a constant zero-offset model and the physically expected reflection-geometry sample-displacement model, followed by a small set of preferred-orientation directions; this guards against attributing systematic profile error to a false trace phase.
+
+No isolated residual peak family has emerged so far; the remaining mismatch is concentrated around MnWO₄ peaks themselves. The orientation tests are therefore aimed at improving relative intensities within that phase, not adding unsupported phases.
+
+A weak but coherent second phase is now supported: monoclinic WO₃ lowers \(R_{wp}\) from 6.923% to 6.732% with a positive scale about 22 standard uncertainties from zero, corresponding initially to roughly 1.3 wt%. Competing Mn oxides are absent or only marginal; I’m refining the two-phase model and will then retest whether any third phase remains justified.
+
+The final two-phase refinement is converged (\(R_{wp}=6.590\%\), maximum shift/s.u. 0.37). The refined crystalline fractions are 98.06 wt% MnWO₄ and 1.94 wt% monoclinic WO₃; I’m doing final cross-checks that the CIFs, profile CSV, JSON, and saved GSAS-II project agree numerically.
+
+Identified and refined two crystalline phases:
+
+- MnWO₄ (wolframite, `P 2/c`): 98.06 wt%
+- Monoclinic WO₃ (`P 2₁/n`): 1.94 wt%
+
+Final fit: \(R_{wp}=6.590\%\), \(R_p=4.640\%\), GOF = 2.394.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_1_MnWO4.cif](<ATTEMPT_WORKSPACE>/phase_1_MnWO4.cif)
+- [phase_2_WO3.cif](<ATTEMPT_WORKSPACE>/phase_2_WO3.cif)
+
+The WO₃ fraction is well supported, though its formal 0.07 wt% uncertainty understates profile-model systematics. A marginal ∼0.3 wt% Mn₂O₃ trial was not retained because it lacked unique resolved reflections.
+

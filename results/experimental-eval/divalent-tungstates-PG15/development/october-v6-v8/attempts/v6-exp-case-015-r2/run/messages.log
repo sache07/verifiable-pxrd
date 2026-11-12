@@ -1,0 +1,66 @@
+I’ll inspect the measurement metadata, pattern, and the reusable refinement utilities first. Then I’ll screen candidate phases, audit structural models, and refine competing complete-pattern models with stable checkpoints before exporting the required files.
+
+The metadata points to a Zn–W–O reaction measured with Cu Kα1/Kα2 from 9.9–100.1° 2θ. I’m now extracting peak positions and querying the masked structure library for source-supported Zn/W/O candidates (including possible unreacted oxides), rather than assuming the nominal reaction product.
+
+The audited ZnWO₄ wolframite model is chemically sound and its calculated reflections match the observed peak family across the full range, including the distinctive 18.98°, 23.87/24.62°, 30.69°, 41.39°, 51.86°, 61.90°, and 64.93° features. ZnO and WO₃ remain plausible minor-phase tests because several of their strongest lines overlap; I’ll establish a converged ZnWO₄ baseline first, then test each addition from an identical saved state.
+
+The first refinement exposed and removed an exact scale redundancy (histogram and phase scales had both been free). With the histogram scale fixed, the single-phase model is converging cleanly; the current broadening terms are strongly correlated, so I will simplify them before accepting any profile branch.
+
+Matched profile branches reject the negative-Lorentzian solutions and the over-parameterized U/V/W model. A two-term Gaussian model (U+W) is the smallest stable choice with positive calculated widths; adding Lorentzian X improves Rwp by only 0.0035 percentage point, below the branch-selection margin. I’m now testing crystallite size and microstrain independently against that selected baseline.
+
+The phase tests show two real residual components, not just profile mismatch: wurtzite ZnO gives a positive ~8 wt% contribution, while room-temperature monoclinic WO₃ drops Rwp from 18.82% to 13.41% and accounts for ~17 wt%. A triclinic WO₃ entry reaches a slightly lower Rwp only by collapsing its literature metric toward monoclinic symmetry, so I’m treating that as an over-flexible alternative and retesting all WO₃ polymorphs from the updated ZnWO₄+ZnO baseline.
+
+The three-phase inventory is stable at roughly 77% ZnWO₄, 16% monoclinic WO₃, and 8% ZnO. Re-running the angular and global-profile comparisons keeps the displacement-only angular model and U+W Gaussian broadening; the more complex Lorentzian branch develops negative total widths. I’m now performing the required phase-by-phase size and strain tests.
+
+Only isotropic size broadening for ZnWO₄ survives removal testing (about 0.68 μm); all strain terms go negative or add less than the 0.005-point margin, and size terms for ZnO/WO₃ are unsupported. I’m screening simple March–Dollase axes one phase at a time next, because the remaining mismatch is chiefly relative peak intensity rather than centroid or width error.
+
+The phase inventory is now strongly narrowed to ZnWO₄ + ZnO + monoclinic WO₃. I’m finishing the required mature-model retests now: texture/envelope competition, coordinate stability, leave-one-out support, and replay-safe export/audits.
+
+The added texture tests are already showing a useful distinction: weak preferred orientation in ZnWO₄ is real, while extra orientation terms for the minor phases offer only small gains. I’m letting the remaining matched branches finish before deciding whether any survive the parsimony check.
+
+The envelope comparison uncovered a large but physically problematic intensity trend: unconstrained polarization drives to 1.37 (outside its physical 0–1 range), and surface roughness produces a dropped crystallite-size parameter. I’m rejecting those unconstrained solutions and testing physical boundary/simple variants so the low Rwp cannot masquerade as a valid model.
+
+The physical surface-roughness branch is stable and cuts Rwp from 12.50% to 5.97%; the competing polarization branch reaches only 7.10% at its physical limit and wants to run beyond it. After introducing roughness, the minor-phase texture terms collapse to unity and are removed; only a weak ZnWO₄ [100] March–Dollase term remains supported. Next I’m testing whether atomic coordinates are actually determined by the powder data.
+
+The replay audit now passes after extending the refinement to all 8,301 measured points; saved and freshly regenerated profiles agree to 1.4×10⁻⁸ Rwp. ZnWO₄ coordinates and the two W positions in WO₃ are stable and geometrically plausible; ZnO’s oxygen coordinate gives no material gain, while WO₃ oxygen refinement oscillates and is being kept fixed.
+
+A Lorentzian X term is clearly supported (Rwp 5.81% → 5.57%, positive width across the range, maximum correlation 0.854). Adding Gaussian V is rejected for 0.981 U–V correlation; Y is inferior to X. I’m now rechecking phase-specific size/strain and any second profile term from the X-refined baseline.
+
+The mature model keeps only physically supported broadening: ZnWO₄ size ≈0.42 µm and WO₃ microstrain ≈4.05×10⁻³. Other phase-size trials are unstable or negligible, and extra microstrain terms go negative. I’m repeating structural alternatives and leave-one-out tests from a matched no-size checkpoint to prevent that marginal size term from biasing phase rejection.
+
+The phase replacements are now decisively separated on the same no-size nuisance model: monoclinic WO₃ gives Rwp 5.20%, versus 5.36% for the near-metric triclinic candidate, 8.14% orthorhombic, and 13.32% tetragonal. Leave-one-out Rwp rises to 6.70% without ZnO and 15.04% without WO₃; removing ZnWO₄ destroys the fit. I’m freezing and exporting the selected model now.
+
+One final structural check remains: the WO₃ source did not report displacement parameters, so GSAS-II imported zeros. I’m testing two constrained, chemically sensible WO₃ ADPs (one common W and one common O value); I’ll keep them only if they refine positive and stably without degrading the mature model.
+
+The constrained WO₃ ADP trial stayed positive but coupled at 96–99% to the W coordinates and did not fully settle, so those ADPs are not independently measurable. I’m checking a fixed nominal W/O ADP model instead; this avoids exporting physically meaningless zero placeholders while keeping the limitation explicit.
+
+The fixed nominal WO₃ ADPs are stable and slightly improve the fit, while the previously marginal ZnWO₄ size term loses support (ΔRwp only 0.0017%) and is removed. The cleaner model has no >0.95 correlation. I’m doing the required post-ADP nuisance and phase-replacement pass before re-exporting.
+
+The final model is now frozen at 73.8 wt% ZnWO₄, 7.0 wt% ZnO, and 19.2 wt% monoclinic WO₃, with Rwp 5.151%. I’m running the last replay, CIF, schema, and cross-file consistency checks on the re-exported files.
+
+The model and deliverables are assembled. I’m rerunning the final replay, CIF, and cross-file audits in a compact form so the submitted files are verified against the exact saved project.
+
+The saved GSAS-II project replays to the exported profile within \(1.3\times10^{-8}\) Rwp percentage points, converges without dropped variables, and all three CIF geometry/occupancy screens pass. I’m doing the last numerical consistency check across `final.gpx`, `result.json`, and `fit.csv`.
+
+Completed the PXRD phase analysis and GSAS-II refinement.
+
+| Phase | Weight fraction |
+|---|---:|
+| ZnWO₄, wolframite P2/c | 73.8 wt% |
+| ZnO, wurtzite P6₃mc | 7.0 wt% |
+| WO₃, monoclinic P2₁/c | 19.2 wt% |
+
+Fractions are normalized over modeled crystalline phases. Final fit: Rwp 5.151%, Rp 4.018%, GOF 1.362. The project converged without dropped variables; replay, CIF, and submission audits passed.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [ZnWO4 CIF](<ATTEMPT_WORKSPACE>/phase_ZnWO4.cif)
+- [ZnO CIF](<ATTEMPT_WORKSPACE>/phase_ZnO.cif)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+
+The main remaining uncertainty is in detailed WO₃ oxygen geometry/ADPs and systematic uncertainty on the fractions; amorphous content cannot be quantified without an internal standard.
+

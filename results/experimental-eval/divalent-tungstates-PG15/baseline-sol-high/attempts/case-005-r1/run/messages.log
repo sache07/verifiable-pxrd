@@ -1,0 +1,38 @@
+I’ll inspect the diffraction data, metadata, and available crystallography tooling first, then build and refine candidate phase models. I’ll keep the reported fractions normalized to the crystalline phases actually supported by the pattern and preserve the final refinement project.
+
+The chemistry points toward cobalt tungstate formation with possible residual cobalt oxide or tungsten oxide, but I’ll let the peak positions and full-pattern fit decide. I’m now checking the scan range/peak set and the installed indexing, structure-search, and GSAS-II interfaces.
+
+The peak pattern already shows a strong, coherent clue: the low-angle triplet and many weaker lines match monoclinic WO₃, while the lines near 31.6, 37.2, 45.1, 59.7, and 65.6° match spinel Co₃O₄. Both sets share an approximately +0.34° specimen/instrument zero shift. I’m testing all locally available Co–W–O, WO₃, and cobalt-oxide structures quantitatively before refinement.
+
+The candidate screening selects room-temperature monoclinic WO₃ (P2₁/n) and cubic Co₃O₄ (Fd-3m). The cobalt tungstate model predicts a strong peak in a region where the observed pattern has no corresponding intensity, so it is not supported at a quantifiable level. I’m moving these two supported structures into a staged GSAS-II Rietveld refinement (background/scale, specimen shift, cells, profile broadening, then restrained structural parameters if justified).
+
+The initial two-phase refinement is stable and already gives a whole-pattern \(R_{wp}\) near 7.7% before cell/profile optimization. The refined offset is +0.303°, consistent with the independent peak-position check. I’m watching the later stages for parameter correlations and will simplify the model if any profile terms become nonphysical.
+
+A trial phase-size refinement was over-parameterized and drove size/profile terms to bounds, so I’m discarding that trial rather than reporting it. The final model will retain the physically stable common instrumental profile (positive broadening terms), fixed structural coordinates, refined unit cells, zero offset, background, and phase scales; the redundant overall sample-scale refinement is also being disabled.
+
+The clean final two-phase model converged without singularities at \(R_{wp}=4.526\%\), giving 71.14(23) wt% WO₃ and 28.86(23) wt% Co₃O₄ (statistical e.s.d.’s only). I’m doing one final exclusion test by adding CoWO₄ to a copy of the project; this will show whether its scale refines positively or is driven to zero/negative by the missing 30.6° line.
+
+The remaining largest residuals sit on WO₃ reflections (especially the 34–35° cluster), indicating imperfect relative intensities/profile overlap rather than extra unmatched peaks. To make sure this is not a structure-choice artifact, I’m comparing the selected monoclinic model against the best alternative monoclinic/triclinic/orthorhombic WO₃ database entries under the same refinement protocol.
+
+The alternative monoclinic WO₃ model based on Loopstra and Boldrini’s neutron coordinates improves \(R_{wp}\) from 4.526% to about 4.20% with nearly unchanged fractions (~71.5/28.5). I’m adopting those better-constrained coordinates, transforming their unconventional 136° cell to the equivalent near-orthogonal P2₁/c setting before the final refinement so the cell parameters remain interpretable and less correlated.
+
+The adopted neutron-coordinate WO₃ model converged cleanly at \(R_{wp}=4.198\%\) and 71.55/28.45 wt%. A scale-only CoWO₄ test refined to the lower bound; its unconstrained optimum was negative, with a formal 1σ mass-fraction sensitivity of ~0.10 wt%. I’ll report a conservative practical limit of roughly 1 wt% and note that amorphous material cannot be quantified without an internal standard.
+
+All requested deliverables are now generated. I’m running consistency checks that the CIF cells/formulas, JSON fractions, exported profile, and the saved `final.gpx` all agree numerically with the same final refinement.
+
+Identified two crystalline phases:
+
+- Monoclinic WO₃ (P2₁/n): 71.55(22) wt%
+- Cubic Co₃O₄ (Fd-3m): 28.45(22) wt%
+
+Final fit: \(R_{wp}=4.198\%\), \(R_p=2.937\%\), GOF = 2.438. CoWO₄ was tested but refined to zero; its practical detection limit is approximately 1 wt%.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [phase_Co3O4.cif](<ATTEMPT_WORKSPACE>/phase_Co3O4.cif)
+

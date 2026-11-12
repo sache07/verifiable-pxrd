@@ -1,0 +1,32 @@
+I’ll inspect the diffraction data, metadata, and installed crystallography tooling first, then index/search candidate phases and carry the best model through a GSAS-II refinement. I’ll keep the deliverables tied to that final project so the CIFs, fractions, profile, and statistics are internally consistent.
+
+The chemistry strongly suggests scheelite-type SrWO₄ as the target, but I’m treating that only as a hypothesis: residual SrCO₃/WO₃ or an alternate strontium tungstate would materially affect the phase fractions. I’m now extracting the peak list and checking the local structure-search/database interfaces before building the refinement.
+
+The peak-position residuals identify monoclinic/low-symmetry WO₃ much more convincingly than unreacted SrCO₃: the three weak features near 23.46°, 23.97°, and 24.73° and their higher-angle partners are diagnostic. An initial one-phase refinement also leaves those features unmodeled. I found and corrected a GSAS-II setup issue before phase screening—the imported dataset had its sample scale and phase scale both free, which creates an exact singularity—so the candidate comparison will use only phase scales and a restrained, physically interpretable profile model.
+
+The two-phase model confirms scheelite SrWO₄ plus monoclinic WO₃, but it also exposes a separate set of reproducible residual peaks—most notably 29.75°, 32.60°, 44.66°, and 48.62°—so a two-phase answer would be incomplete. I’m screening all locally available Sr/W/O/C structures against that residual rather than assigning those peaks from one coincidence; SrCO₃ and SrO already fail because their strongest companion reflections are absent or misplaced.
+
+The residual search gives a clear third match: monoclinic fergusonite-type SrWO₄. Adding it lowers Rwp from 19.00% to 15.69% and accounts for the distinctive 29.75°/32.60°/44.66°/48.62° family. I tested preferred orientation, crystallite-size broadening, and free oxygen-coordinate refinement; the first two did not improve the fit, while the unconstrained oxygen shift produced an implausibly long W–O bond, so I’m retaining literature atomic coordinates and only refined lattice/profile/scale terms. This is the more defensible structural model even though its numerical Rwp is about 0.18 percentage point higher.
+
+The defensible three-phase refinement is now complete and converged. The normalized crystalline fractions are 77.07 wt% scheelite SrWO₄, 11.08 wt% monoclinic WO₃, and 11.85 wt% fergusonite-type SrWO₄; final Rwp is 15.688% with maximum shift/esd 0.050. I’m doing a final integrity pass now—reopening the GPX, parsing every exported CIF independently, checking fraction normalization, and verifying the profile columns against the stored GSAS-II arrays.
+
+Completed the three-phase GSAS-II refinement:
+
+| Phase | Weight fraction |
+|---|---:|
+| Scheelite SrWO₄ | 77.07 wt% |
+| Monoclinic WO₃ | 11.08 wt% |
+| Fergusonite-type SrWO₄ | 11.85 wt% |
+
+Final fit: Rwp 15.688%, Rp 11.786%, GOF 4.444. The fergusonite assignment remains less certain because it is normally pressure-stabilized; details are in the report.
+
+Files:
+
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [Scheelite SrWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_srwo4_scheelite.cif)
+- [Monoclinic WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_wo3_monoclinic.cif)
+- [Fergusonite SrWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_srwo4_fergusonite.cif)
+

@@ -1,0 +1,56 @@
+I’ll inspect the pattern, metadata, and the supplied tungstate framework first, then identify candidate phases and build/refine them in GSAS-II. I’ll keep the final artifacts internally consistent by deriving the CIFs, fractions, profile, statistics, and `final.gpx` from the same refinement.
+
+The chemistry is a low-temperature BaO₂ + WO₃ reaction, so the first hypotheses are residual precursors plus Ba–W–O product/intermediate phases—not automatically a single BaWO₄ product. I’m now extracting peak positions and querying the frozen crystallographic library against the observed pattern.
+
+The first refinement confirms the two dominant phases: tetragonal BaO₂ and distorted WO₃ account for the strong lines, with a preliminary crystalline split near 35:65 wt%. The initial GSAS-II setup exposed an avoidable scale-factor degeneracy, so I’m correcting that before comparing WO₃ polymorphs and testing whether any BaWO₄ is actually required.
+
+The refined BaO₂ lattice tracks its independent reflections cleanly. The unresolved part is the WO₃ reference setting: one old COD entry is metrically higher-symmetry than its declared triclinic setting, so I’m treating that as a model-quality issue and will compare cleaner monoclinic/triclinic references rather than forcing an unstable cell refinement.
+
+The residual profile rules out the higher-symmetry historical WO₃ model: it severely underpredicts the broad ∼29° feature and several higher-angle WO₃ groups. Those are characteristic of the lower-symmetry ambient WO₃ references, so I’m screening those next; this is evidence for a polymorph choice, not yet evidence for a third phase.
+
+The triclinic candidate is taking longer because it has six independent cell terms, but the refinement is still progressing. Once it completes I’ll use its residual distribution—not just Rwp—to decide whether the extra symmetry breaking is warranted.
+
+The triclinic WO₃ model improves the fit dramatically to about 7.2% Rwp and returns ~35/65 wt% BaO₂/WO₃, strongly suggesting the phase inventory is correct. I’m checking the closely related monoclinic setting now; the remaining mismatch is mostly peak-shape/anisotropy and small intensity redistribution, so this comparison matters for the submitted atomic model.
+
+The lower-symmetry model is decisively better than the monoclinic alternative (about 7.2% versus 8.7% Rwp under identical treatment). I’m now refining the physically motivated remaining degrees of freedom in order: common phase Uiso, W coordinates, then O coordinates, while retaining the published connectivity as the starting point.
+
+The refinement remains numerically stable; the slow step is the full triclinic derivative calculation over 8,301 points. I’m letting that finish because prematurely truncating it would bias the cell/coordinate comparison and the quantitative fractions.
+
+This stage is slower than the earlier screening because previously frozen profile terms were reactivated together with all triclinic cell terms. It is still within the expected cost for GSAS-II’s numerical derivatives; I’m monitoring it and will stop/reseed only if it fails to make progress.
+
+A trial unconstrained coordinate release was informative but not acceptable: it drove Uiso negative and distorted the WO₃ network, worsening the fit. I’m discarding that branch. The next pass fixes calibration/profile/cells, bounds coordinate shifts to the framework’s documented perturbation scale, and constrains Uiso to positive phase-common values.
+
+The bounded structural pass is running with profile and calibration held fixed, so any improvement can be attributed to the atomic model. I’ll reject it if the bounded variables pile up at their limits or the WO₆ geometry degrades, even if Rwp decreases.
+
+The first bounded W-only step reduced Rwp slightly and kept W displacements below 0.09 Å. My initial geometry check omitted inversion-generated oxygen mates in P-1; that check has been corrected, and the stepwise pass is now evaluating the complete WO₆ coordination.
+
+The W framework refinement converged reproducibly, improved Rwp to 7.07%, and kept all W shifts ≤0.063 Å with sensible 1.71–2.25 Å W–O distances. Oxygen-coordinate release remains underdetermined, so I’m keeping the reference O framework and now testing the discrete preferred-orientation axes allowed by the measurement model.
+
+The orientation screen is still running across ten phase/axis combinations. Each trial changes only one March–Dollase parameter plus the two scales, so any meaningful Rwp decrease will be a clean diagnostic rather than compensation by cell or profile terms.
+
+Preferred orientation is not supported: all ten March–Dollase trials stayed near 1.00 and changed Rwp by at most 0.02%. I’m leaving texture off and screening uniaxial microstrain instead, which directly addresses the remaining reflection-dependent width residuals.
+
+The strain-axis screen is still in progress. It is deliberately holding the instrument terms fixed so a winning axis must improve relative widths within a phase, rather than simply broadening the whole pattern.
+
+Neither texture nor surface roughness is supported; roughness refined to essentially zero. The best width correction is a weak [100] uniaxial strain term, but its gain is small. I’m doing one guarded O-framework step now; it will be retained only if all O shifts remain modest and every WO₆ octahedron stays physical.
+
+The guarded O step pointed in a plausible direction but overshot the documented perturbation scale. I retained only 23% of that shift (maximum ≈0.044 Å), which improves the fit while preserving the reference WO₆ framework. I’m now performing the joint final refinement with positive Uiso, physical calibration bounds, and the weakly supported [100] strain model.
+
+The joint refinement is in the expensive cell/calibration stage. The key acceptance checks afterward are: no negative ADPs, no coordinate drift, calibration within the stated ranges, sensible phase fractions, and a residual improvement that is broad rather than concentrated in a few peaks.
+
+The calculation is still progressing normally; this pass has more constrained dependent variables than the screening fits, so each derivative cycle is slower. I’m preserving it because these are the parameters that determine whether the reported fraction is closer to 1/3–2/3 or 0.35–0.65.
+
+The all-at-once release was rejected: profile/cell correlations drove the triclinic cell and ADPs outside physical ranges and worsened Rwp to 24.8%. I’m reverting to the last stable model and applying only the independently validated terms—positive phase-common Uiso and weak uniaxial strain—with cells and calibration held fixed.
+
+The stable model converged at Rwp 6.98% with positive ADPs, physical cells/coordinates, and 33.1/66.9 wt% BaO₂/WO₃. Before finalizing, I’m checking the residual peak list for any coherent third-phase signature; a minor phase will be added only if it explains multiple independent reflections and refines to a stable positive fraction.
+
+The two-phase solution is stable: tetragonal BaO₂ plus triclinic WO₃, with no independent residual pattern supporting a third crystalline phase. I’m now locking the physically conservative refinement, exporting directly from that project, and checking that every submitted artifact reproduces the same cells, coordinates, fractions, and profile statistics.
+
+The conservative project is internally coherent at 33.10 wt% BaO₂ and 66.90 wt% WO₃ (crystalline-phase normalized), with \(R_{wp}=6.97\%\). I rejected the marginally lower-\(R_{wp}\) profile branch because it drove instrumental broadening outside its allowed range and froze a bound-hit parameter; the retained branch keeps the disclosed instrumental limits and avoids that overfit.
+
+The refined cells and chemistry also pass the first sanity checks: BaO₂ remains the peroxide-type I4/mmm structure, while WO₃ requires the low-symmetry P‑1 distortion that explains the split 23–25° group. Before export I’m checking bond geometry and the exact GSAS-II profile arrays; these are the two places where an apparently good numerical fit can still conceal an invalid model.
+
+The residual is dominated by paired positive/negative lobes at already assigned strong lines, not by extra peaks. That supports the two-phase inventory, but it also shows that the limiting error is anisotropic line shape rather than phase identity. I’m doing one last constrained broadening check so the reported fraction is not biased by peak-shape mismatch; any gain must stay within the synthesis generator’s disclosed physical ranges.
+
+One physical inconsistency surfaced in the provisional project: a constrained WO₃ displacement parameter slipped below the generator’s positive lower bound when GSAS-II froze one member of an equality constraint. I’m correcting that explicitly and testing the disclosed ±0.25° zero-offset limit (the exploratory branch had stopped at +0.30°). These checks may move the fraction slightly, but they prevent a formally better fit from relying on impossible nuisance parameters.
+

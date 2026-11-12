@@ -1,0 +1,20 @@
+I’ll inspect the pattern, metadata, and the supplied divalent-tungstate notes first, then identify candidate phases and build/refine the final model in GSAS-II. I’ll keep the exported CIFs, profile, fractions, and statistics tied to the submitted `final.gpx`.
+
+The chemical inventory is Pb–W–O at 500 °C, so the main hypotheses are PbWO₄ plus residual PbO/WO₃ or a lead–tungsten oxide intermediate. I’m now extracting peak positions and checking which crystallographic/reference tools are actually available before committing to a phase set.
+
+The peak assignments now strongly support three crystalline phases: scheelite PbWO₄, orthorhombic massicot PbO, and a room-temperature WO₃ polymorph. Several PbO peaks (29.35, 30.62, 38.12, 49.49, 53.38, 56.29°) form an especially specific match. I’m screening the competing WO₃ and PbWO₄ references by whole-pattern GSAS-II refinements next.
+
+The first whole-pattern fits confirm the three-phase base model at roughly 0.79 PbWO₄ / 0.10 PbO / 0.11 WO₃ by mass, but they leave a real crystalline peak near 25.91° and a correlated set near 27.9, 31.0, 36, and 44.8°. I’m testing whether this is a minor monoclinic PbWO₄ polymorph (raspite) rather than forcing those peaks into background or broadening terms.
+
+The raspite test is not supporting a fourth PbWO₄ polymorph: its scale collapses toward zero when the main phases are allowed to settle. I’m instead correlating the unexplained reflections against the full Pb–W–O/Pb–O/W–O reference subset, which should distinguish a genuine minor phase from preferred-orientation and profile residuals.
+
+The residual search identifies a second PbO polymorph—tetragonal litharge—as the only chemically plausible addition with a broad, multi-peak improvement; it refines to about 2–3 wt%. Tests of raspite and WO₂ collapse to zero unless artificially shifted, while reduced W oxides only trade against existing WO₃ peaks. I’m now refining the four-phase model with bounded instrumental, size, strain, and specimen terms so phase selection is judged against a physically stable profile.
+
+The bounded profile refinement shows why unconstrained fits were misleading: massicot broadening ran to limits and absorbed neighboring peaks, inflating its fraction. I’m keeping phase selection separate from broadening and testing the one remaining alternative—strongly textured raspite—because that is the only model that could jointly explain the 25.91° and 31.05° reflections without invoking chemically implausible reduction products.
+
+The dominant scheelite PbWO₄, massicot PbO, monoclinic WO₃, and minor litharge PbO model is well supported, but one residual cluster near 25.9–31.1° still needs checking. I’m screening plausible lead carbonate/hydrate structures now, then I’ll lock the phase set and refine a constrained, physically stable GSAS-II model for the deliverables.
+
+The carbonate references do not naturally explain the residual: cerussite would require a stronger unobserved peak near 25.1°, and the basic carbonates predict conspicuous low-angle lines that are absent. A broader one-at-a-time GSAS-II phase screen is running; preliminary improvements from some Pb–O entries appear to be profile proxies, so I’m checking whether they add a coherent full-pattern fingerprint before accepting any phase.
+
+Le Bail intensity extraction confirms that the 25.9° and 31.0° features are not merely wrong atomic intensities in the four-phase model; they require an additional reflection set. Raspite PbWO₄ remains chemically attractive because its strongest line overlaps WO₃ near 24.6° while its next lines land near those residuals, so I’m retesting it with the broad nanocrystalline profile that the data demand, alongside reduced tungsten oxides.
+

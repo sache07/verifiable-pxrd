@@ -1,0 +1,48 @@
+I’ll first inspect the pattern, metadata, and available diffraction tooling, then identify candidate phases and carry the best model through a GSAS-II refinement. I’ll keep phase identification and quantitative uncertainty separate so weak or correlated components aren’t overstated.
+
+The chemistry points naturally to Sr–W–O phases, but I’m treating SrWO₄ as only a hypothesis. I’m now checking the peak inventory and the installed search/indexing/refinement backends so minor precursor or competing strontium tungstate phases can be tested explicitly.
+
+The peak positions and intensities now support two clear components: scheelite SrWO₄ and monoclinic WO₃. The three diagnostic WO₃ peaks near 23.5–24.7° are resolved and recur in its higher-angle groups; I’m testing whether the remaining weak lines require SrCO₃ or another Sr–W–O phase before fixing the phase count. A sizable reflection-geometry angle offset is also evident, so the refinement must include specimen displacement/zero terms rather than forcing lattice constants to absorb it.
+
+The first scripted refinement hit a tooling mismatch—the isolated GSAS-II environment lacks pandas—so I’m removing that nonessential dependency and rerunning with NumPy/standard-library I/O. No scientific settings or data have changed.
+
+The two-phase Rietveld trial converged to about 87 wt% SrWO₄ / 13 wt% WO₃ and substantially reduced the profile residual. I also found a redundant global scale flag and over-parameterized width model in that trial; I’ll remove both for the final refinement. Next I’m using the residual peak map to decide whether a third crystalline phase is statistically and chemically warranted.
+
+The candidate-phase tests reject residual SrCO₃, SrO/SrO₂, quartz, corundum, and alternate WO₃ polymorphs; Sr₃W₂O₉ gives only a marginal improvement while requiring a badly distorted cell. The remaining unmatched lines form a suspicious secondary wavelength-like sequence, so I’m checking Cu Kβ contamination and duplicate-wavelength effects before interpreting them as a chemically implausible third phase.
+
+The defensible phase set is currently scheelite SrWO₄ plus monoclinic WO₃; chemically plausible impurity candidates either refine to zero or distort unrealistically. I’m now tightening the intensity model—especially preferred orientation—because that is the main source of uncertainty in the weight fractions, then I’ll export the exact final project and deliverables.
+
+Preferred-orientation refinements did not produce a meaningful improvement: the best one-phase corrections changed Rwp by less than 0.01 percentage point, while a two-phase correction became strongly correlated and shifted the fraction by ~0.7 wt%. I’m therefore treating texture as an uncertainty source rather than adding an unsupported correction to the final model.
+
+The stable no-texture solution remains near 88 wt% SrWO₄ / 12 wt% WO₃. I’m comparing constrained peak-width models now; this takes longer because each candidate is being converged several times, but it is important to avoid reporting a deceptively good fit produced by negative or nonphysical broadening terms.
+
+The broader search is not finding a credible third phase. Alternative tungsten oxides either refine to zero, worsen the fit, or fail because their reference chemistry is incompatible with the scattering-factor model; none explains the residuals coherently. I’ve also included “wrong-chemistry” tungstates as controls, so a coincidental peak match will not be mistaken for a real phase.
+
+One useful outcome from the reference audit is that the initial WO₃ CIF is a 1960 room-temperature model with zero displacement parameters. I found a later neutron-derived monoclinic WO₃ model in the local crystallographic database and am testing it as a full replacement (not as an extra phase); this is the most scientifically plausible way to improve the impurity intensities without inventing a third composition.
+
+The later WO₃ reference fits worse, and unconstrained atom-coordinate refinements move by chemically unreasonable amounts, confirming that the residuals should not be “explained” by distorting the structures. I’m retaining the literature coordinates and have found a converged, positive-width Caglioti profile that improves Rwp to about 18.7% while moving the composition only to roughly 87.8/12.2 wt%.
+
+The final model will therefore contain exactly two reported crystalline phases, with literature atom coordinates fixed and only lattice/profile/scale/background terms refined. Any additional minor phase is below reliable identification from this pattern: several residual lines remain, but no chemically plausible structure explains them as a consistent set, so I will document them rather than assign a spurious CIF or fraction.
+
+The numerical fit is stable in composition, but the two Caglioti coefficients U and V are 98% correlated because no calibrated instrument profile was supplied. I’m fixing one coefficient at its screened optimum for the submitted project and reconverging the remaining parameters; this removes an avoidable numerical ambiguity without changing the phase assignment or fraction materially.
+
+The submitted refinement is now converged (maximum shift/ESD 0.081) with positive profile widths. The final normalized result is 87.70 wt% SrWO₄ and 12.30 wt% monoclinic WO₃; I’m performing a last cross-check that the JSON, CSV, CIFs, and saved GSAS-II project all reproduce those same values.
+
+The cross-check found one export-only issue: GSAS-II stores zero in its internal difference array for the 12 points just outside the refined 10.05–99.90° range. I’m correcting `fit.csv` so its difference column is explicitly observed minus calculated at every exported point; the project, fractions, and fit statistics themselves are unchanged.
+
+Completed and validated. The best-supported crystalline model is:
+
+- SrWO₄, scheelite (I4₁/a): 87.70 wt%
+- Monoclinic WO₃ (P2₁/n): 12.30 wt%
+
+Fractions are normalized over modeled crystalline phases. Formal uncertainty is ±0.28 wt%, but ±1.5 wt% is more realistic. Rwp = 18.67%, Rp = 13.29%, GOF = 5.29. Residual peaks near 29.76° and 32.61° could not support a reliable third-phase assignment.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r7/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r7/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r7/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r7/workspace/final.gpx)
+- [SrWO4_scheelite.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r7/workspace/SrWO4_scheelite.cif)
+- [WO3_monoclinic.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r7/workspace/WO3_monoclinic.cif)
+

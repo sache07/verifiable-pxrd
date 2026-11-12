@@ -1,0 +1,116 @@
+I’ll inspect the measured pattern, metadata, and the supplied refinement helpers first. I’ll then screen candidate phases, audit structures, build and compare GSAS-II branches, and only export after the final project passes the project and submission audits.
+
+The chemistry points first to MgWO₄ formation, with residual MgO and/or WO₃ as realistic companions, but I’m treating that only as a hypothesis. I’m now extracting the peak lattice, checking the local structure database, and verifying the GSAS-II scripting environment before importing any model.
+
+Peak positions show three coherent families rather than one: MgWO₄ accounts for the dominant 15.93/19.24/24.21/30.81–31.11° sequence; a WO₃-type triplet appears at 23.43/23.93/24.67° and again near 33–34.5°; and the cubic MgO sequence is supported near 43.21/62.54/75.00/94.23°. I’m auditing candidate atomistic models now and will compare the WO₃ polymorphs under the same nuisance model.
+
+The single-phase MgWO₄ baseline converged cleanly but leaves a high low-angle residual (Rwp 20.91%, and 26.07% below 35°), confirming that it is incomplete. I’ve saved that state as the common branch point; the viable WO₃ structures will now be refined in matched copies so their extinction/splitting and whole-pattern behavior are compared fairly.
+
+The WO₃ comparison is already decisive at fixed nuisance terms: the physically valid monoclinic P2₁/c model gives Rwp 12.79%, versus 15.25% for triclinic and ≥18.25% for the other polymorphs. The malformed historical models were rejected by the geometry audit. Cell refinement for the large monoclinic setting is computationally slower, so I’m letting that matched branch finish before testing MgO and profile terms.
+
+The angular test selected sample displacement alone (−504 µm) over zero shift; the joint branch was rejected at 99.99% correlation. The three-phase fractions remain stable at roughly 78% MgWO₄, 14% monoclinic WO₃, and 8% MgO. I’m now separating instrumental width terms from phase-specific size/strain before touching texture or atomic coordinates.
+
+The global profile tests favor the smallest stable model with W, U, and X; added Y became negative and X+Z was 98.9% correlated, so those branches are rejected. The current Rwp is 9.94%. Six matched phase-broadening branches are still running because the WO₃ reflection list is large; I’m checking size and microstrain independently for all three phases as required.
+
+One texture branch produced non-finite statistics and was rejected; that also interrupted the batch result parser. The branch projects themselves were saved, so I’m reading each back directly and will retain only converged, finite, positive March-Dollase solutions with broad pattern benefit.
+
+The broadening screen retained only positive WO₃ isotropic microstrain (~1760 µstrain); MgWO₄ and MgO strain went negative, MgO size dropped from the normal equations, and all size gains were negligible. A mild MgWO₄ March-Dollase correction along [110] is clearly supported (r ≈ 1.098, Rwp 9.43%). Coordinate/ADP branches are now being stress-tested; these are the highest-risk refinements for geometry and parameter correlation.
+
+A GSAS-II default required correction: “fixed” size/microstrain values still contribute to the calculated widths. I reset every phase to effectively infinite size and zero strain, then reconverged (Rwp 8.53%, still stable). The six size/strain tests are being repeated from that physically clean baseline so the retained broadening is not an artifact of defaults.
+
+From the corrected zero-broadening baseline, only WO₃ strain is robust (1266 µstrain). WO₃ size looked weakly positive alone but became singular and hit the 10 µm boundary when combined with strain, so size is rejected. I’m now running matched omission and envelope tests: remove U or X, add V/Y/Z, and compare polarization, roughness, and axial asymmetry.
+
+The three-phase model is now narrowed to MgWO₄ + monoclinic WO₃ + MgO. I’m finishing the matched omission/replacement tests, then I’ll freeze and audit the replay-safe GSAS-II project before exporting the requested files.
+
+The preferred-orientation check is decisive enough to retain a mild MgWO₄ [110] March–Dollase term: removing it worsens Rwp from 8.465% to 8.589%, while the closest alternate axis gives 8.471%. I’m now retesting every chemically plausible WO₃ structure and phase omission from this mature baseline, with the same phase-broadening freedom for a fair comparison.
+
+Both omission tests support the inventory across the full pattern: dropping WO₃ raises Rwp to 18.73%, and dropping MgO raises it to 9.37% (from 8.47%). The MgO benefit is strongest in the middle-angle region where its independent reflections occur; the structural replacement branches are still converging.
+
+The alternative WO₃ refinements are slower because each must re-establish its cell and strain against the complete three-phase profile. No branch has displaced the selected model yet; I’m allowing the matched comparisons to finish rather than judging from partially converged values.
+
+All replacement structures have now been tested under the same mature nuisance model. The selected monoclinic P2₁/c WO₃ remains best (8.465%); the only close alternative is triclinic P-1 at 8.504%, while orthorhombic and tetragonal models are substantially worse and require excessive strain. I’ll carry that small WO₃ polymorph ambiguity into the uncertainty statement and now test whether any additional atomic freedom is actually supported.
+
+The coordinate/ADP branches are still iterating. These are deliberately stringent tests: I will only keep extra atomic parameters if they converge cleanly, preserve plausible geometry and improve more than one angular region without strong covariance.
+
+The first atomic branches confirm why restraint is needed. WO₃ ADPs and joint coordinate/ADP refinement lower the nominal residual but do not converge and introduce strong parameter correlations, so they are rejected. MgO ADPs produce only a tiny gain while shifting its scale-derived fraction markedly; I’m checking the resulting displacement factors before deciding, but that instability argues against retaining them.
+
+The atomic screening is complete. WO₃ coordinate refinement also fails the convergence/correlation criteria; its ADPs include negative or implausibly large values. MgO refines to very large, weakly determined Uiso values (~0.045–0.050 Å²) and changes its fraction from 7.5% to 11.5% for only 0.02% Rwp gain, so those terms are rejected. The only refined atomic model retained is the chemically plausible, independently audited MgWO₄ model. Next is the required final angular branch selection.
+
+The angular helper is evaluating zero, specimen displacement and the coupled branch against the complete refined model. The key acceptance test here is not a marginal residual drop: the retained branch must converge without the near-unit zero/shift correlation seen when both terms are allowed together.
+
+The angular branches are still converging; this is expected because all phase cells and scale-linked quantities are being reconverged in each copy. I’m keeping the current stable model untouched until the helper selects a valid branch.
+
+The final angular comparison keeps the existing displacement-only baseline: a zero-only model is worse, while a joint zero/displacement fit is rejected at 0.9999 correlation. Matched source-model resets also validate the refined MgWO₄ structure: restoring its coordinates raises Rwp to 9.070%, restoring its ADPs raises it to 8.519%, and restoring both raises it to 9.231%. All retained MgWO₄ ADPs remain positive and its contact audit is chemically sound.
+
+The final project has converged cleanly at Rwp 8.465% with no dropped variables; after full-grid profile regeneration, the independent project audit reports no flags, exact replay of the saved profile, and positive finite widths for all 585 generated reflections. I’m exporting the CIFs/profile now, then I’ll run the structure and submission cross-checks.
+
+The exported CIF audits are clean for composition, occupancy, symmetry expansion and contacts. One conservative issue remains: the source WO₃ model contains zero fixed Uiso values. Individual ADPs were demonstrably unstable, so I’m making one last matched test with only two constrained, element-grouped WO₃ displacement parameters (all W tied; all O tied). This will determine whether a positive physical ADP model is supportable without over-parameterization.
+
+The two-parameter element-grouped ADP model is rejected because the oxygen group refines negative. A stricter one-parameter common WO₃ Uiso model does pass: Uiso = 0.00917(10) Å², scale correlation 0.62, clean convergence, and Rwp 8.416%. I’m retaining this physically positive minimal term provisionally and repeating the required broadening/profile/texture checks from that updated baseline.
+
+The repeated broadening screen still selects only positive WO₃ microstrain (~992 µstrain): it lowers Rwp from 8.454% to 8.416%. MgWO₄ and MgO strain refine negative and are rejected; WO₃ size alone gives a smaller gain and will be checked jointly, while the remaining size branches are still finishing.
+
+The two unresolved size branches are taking the full retry allowance, which usually indicates boundary-seeking behavior rather than a stable crystallite-size estimate. I’ll inspect their terminal values and convergence flags before rejecting them.
+
+The size results confirm the earlier screen: MgO size is dropped as singular, MgWO₄ size runs to the 10 µm ceiling without full convergence, and neither is retained. The joint WO₃ size/strain branch is now testing whether the small size-only gain survives once the supported strain term is present.
+
+The joint WO₃ size/strain test repeatedly drops the size variable, so the final broadening model remains strain-only. I’m now running the last global-profile and envelope pass; this checks that the new common WO₃ ADP has not made previously rejected correlated terms appear necessary.
+
+The global pass rejects all added terms: V and Z are nearly redundant with existing widths, Y refines negative, axial asymmetry is 0.968-correlated with displacement, surface roughness is unphysical and 0.9999-correlated, and polarization refines beyond its physical range (1.47) while strongly covarying with scale/ADPs. One small issue appeared in the provisional ADP model—one MgWO₄ oxygen Uiso drifted just below zero—so I’m reducing that freedom by tying the two MgWO₄ oxygen Uiso values and will retain it only if all ADPs remain positive.
+
+The physically constrained ADP model passes: MgWO₄ Uiso values are Mg 0.00189, W 0.00354 and O 0.00623 Å²; WO₃ has a common 0.00866 Å². The repeated strain and texture removals confirm WO₃ strain and MgWO₄ [110] orientation remain required. I’m finishing matched removals of the retained profile/ADP terms and giving the close triclinic WO₃ alternative the same common-ADP treatment.
+
+The close WO₃ alternative remains genuinely competitive after equal ADP treatment: triclinic P-1 reaches Rwp 8.402% before enforcing the same positive MgWO₄ oxygen constraint. I’m applying that identical constraint now; the final WO₃ symmetry choice will be based on the fully matched physical models, not the earlier screening rank.
+
+After enforcing identical positive ADP constraints, triclinic P-1 WO₃ remains slightly better than P2₁/c (Rwp 8.417% vs 8.430%; Δχ² ≈ 223 for two extra cell variables), with clean geometry and no >0.8 parameter correlations. Its gains occur in several independent peak regions, so I’m provisionally selecting P-1 while retaining the P2₁/c assignment as the principal symmetry uncertainty. The full nuisance screen is now being repeated around P-1.
+
+The triclinic zero-broadening baseline is Rwp 8.442%, so its positive strain term provides a measurable gain. All six phase-specific size/strain branches are being compared from that exact baseline; any boundary, negative, singular or one-region term will be rolled back.
+
+The triclinic screen again supports WO₃ strain (~815 µstrain) over size (1.03 µm); MgWO₄ and MgO strain refine negative. The two remaining size fits are again boundary-seeking, and I’ll reject them if they terminate at the ceiling or with dropped variables.
+
+Those size refinements have exhausted several cycles without a stable small-shift solution, consistent with the earlier ceiling behavior. I’m allowing the scripted retry limit to finish so the rejection is documented by the terminal flags rather than inferred mid-run.
+
+WO₃ size alone is positive but weak; because it improves two higher-angle regions, I’m testing it jointly with strain as required. MgWO₄ and MgO size were both dropped/singular and are definitively excluded.
+
+The joint size/strain branch is behaving like the monoclinic counterpart—slow convergence at the retry limit—so it is likely trying to send size to the negligible-broadening boundary. I’ll use its final parameter/drop status, not the nominal residual, for selection.
+
+The joint branch is unusually persistent, but the active process is still progressing through its fixed retry count. I’m letting it complete because accepting or rejecting a second broadening term materially affects whether the final model is over-parameterized.
+
+The joint WO₃ size/strain branch drops size in every cycle, confirming strain-only. I’m now checking the triclinic model against the same global width and envelope alternatives; this is the last model-selection pass before the angular helper and final exports.
+
+These branches are still iterating, with the stable triclinic baseline preserved separately. I’ll retain only terms that are positive/physical and free of strong covariance; raw Rwp reductions from envelope terms are not sufficient.
+
+The final profile/envelope pass is unchanged: U and X are essential; V/Y/Z, polarization, roughness and axial asymmetry all fail physicality or covariance tests. Removing MgWO₄ texture raises Rwp to 8.617%, so the mild [110] term remains strongly supported.
+
+The P-1 model has now passed the matched profile, microstructure and texture screens. The angular helper is performing the final zero/displacement/joint comparison; after that I’ll rerun phase omissions and freeze the audited project.
+
+The angular alternatives are still reconverging all phase cells. As before, a joint branch will only be accepted if it avoids near-unit zero/displacement correlation; the selected triclinic baseline remains untouched meanwhile.
+
+The helper is taking longer with the six triclinic metric variables, but it is still within the prescribed branch sequence. I’m waiting for its validity flags rather than short-circuiting on intermediate residuals.
+
+The angular helper keeps the displacement-only baseline and rejects the joint zero/displacement branch at 0.9999 correlation. Final omission tests again strongly support all three phases: removing WO₃ raises Rwp to 18.88%, and removing MgO raises it to 9.33%. I’m doing the required last P2₁/c replacement from this updated triclinic baseline, then the model can be frozen.
+
+The final replacement pass confirms triclinic WO₃: under identical positive-ADP and strain treatment, P-1 gives Rwp 8.417% versus 8.430% for P2₁/c. The regenerated final P-1 project now passes the replay audit with no flags, no dropped variables, and positive finite widths for all 1,022 generated reflections. I’m updating the deliverables and final report with the remaining symmetry caveat.
+
+All final audits pass: each CIF has the expected reduced formula and symmetry with no occupancy/geometry flags; `final.gpx` replays exactly with no convergence or width flags; and the submission audit reads three positive fractions summing exactly to 1.000. I’m doing one final cross-file numerical consistency check before handing over.
+
+Identified three crystalline phases:
+
+- MgWO₄, P2/c: 76.70(18) wt%
+- WO₃, P-1: 15.93(13) wt%
+- MgO, Fm-3m: 7.37(16) wt%
+
+Final fit: Rwp 8.417%, Rp 6.074%, goodness-of-fit 2.946. All CIF, GPX, profile-replay, and submission audits passed.
+
+The WO₃ identity is secure, but its exact symmetry remains uncertain: triclinic P-1 is preferred slightly over monoclinic P2₁/c.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [MgWO₄ CIF](<ATTEMPT_WORKSPACE>/phase_mgwo4.cif)
+- [WO₃ CIF](<ATTEMPT_WORKSPACE>/phase_wo3.cif)
+- [MgO CIF](<ATTEMPT_WORKSPACE>/phase_mgo.cif)
+

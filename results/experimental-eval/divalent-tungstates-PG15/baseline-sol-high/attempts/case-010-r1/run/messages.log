@@ -1,0 +1,28 @@
+I’ll inspect the metadata and diffraction pattern, then use the installed phase-search/indexing and GSAS-II tooling to identify candidate structures, refine them jointly, and export the requested project and evidence files. I’ll treat phase count as an inferred quantity and keep any ambiguous assignment explicit.
+
+The chemical space is constrained to Mn–W–O, but the possible products include manganese tungstates plus unreacted oxides. I’m now extracting peak positions and querying the local crystallographic database by elemental composition so the phase count is driven by the diffraction evidence.
+
+The database screen gives a decisive primary match: monoclinic WO₃ (space group P2₁/n, COD 2311041/1528915) reproduces the diagnostic 23–25° triplet and the higher-angle sequence; MnWO₄ and Mn₃WO₆ are poor matches. I’m moving to whole-pattern refinement and residual inspection to test whether any manganese oxide is present above the detection limit.
+
+The first Rietveld passes confirm monoclinic WO₃ but expose strong scale/background and profile correlations, so I’m tightening the parameterization before interpreting minor residuals. The preliminary cell has contracted from the database reference to about 420.3 Å³, consistent with the systematic peak shift seen in the screen.
+
+Residual indexing now identifies a real second phase: every hallmark bixbyite Mn₂O₃ line is present at the same refined +0.30° zero offset (notably 33.25, 38.53, 45.45, 49.60, 55.49, and 66.03°). I’m re-running the refinement in a staged order that first locks the WO₃ calibration, then introduces Mn₂O₃; this prevents the weak phase’s cell from being pulled toward unrelated major-phase peaks.
+
+The staged two-phase refinement is stable: 72.52 wt% monoclinic WO₃ and 27.48 wt% bixbyite Mn₂O₃, with Rwp 8.47%. The Mn₂O₃ lattice independently refined to 9.4178 Å, and its full line series is accounted for. I’m doing final consistency checks on the CIFs/project/profile and documenting that the formal fraction errors do not include systematic uncertainty or any amorphous content.
+
+Identified two crystalline phases:
+
+- Monoclinic WO₃ (P2₁/c): 72.52 wt%
+- Bixbyite Mn₂O₃ (Ia-3): 27.48 wt%
+
+No crystalline manganese tungstate was detected. Final refinement: Rwp = 8.47%, Rp = 5.97%, GOF = 3.19. Fractions are normalized over crystalline phases; practical uncertainty is approximately 1–3 wt% absolute.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_monoclinic.cif)
+- [Mn2O3_bixbyite.cif](<ATTEMPT_WORKSPACE>/Mn2O3_bixbyite.cif)
+

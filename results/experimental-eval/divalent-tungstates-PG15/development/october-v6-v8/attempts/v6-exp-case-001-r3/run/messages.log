@@ -1,0 +1,111 @@
+I’ll inspect the diffraction data, metadata, and the provided refinement helpers first. Then I’ll screen candidate phases, audit atomistic models, and build the GSAS-II refinement through stable comparison branches before exporting and auditing the final package.
+
+The chemistry is a BaCO₃–WO₃ reaction measured with Cu Kα over 9.9–100.1° 2θ. I’m now extracting the peak inventory and checking the supplied databases/tooling; at 400 °C, product plus unreacted precursor polymorphs are all plausible, so I’ll let the full-pattern evidence decide rather than assume a single reaction product.
+
+The peak inventory resolves into two coherent families with a common ≈+0.3° angular offset: orthorhombic witherite BaCO₃ and monoclinic γ-WO₃. Their combined calculated peak positions account for the four-line 23–25° cluster and independent higher-angle lines through 98°. Scheelite BaWO₄’s diagnostic strongest line near 26.45° and its 31.85° companion are not supported. I’m auditing near-equivalent structural entries now, then I’ll test them under identical minimal refinements.
+
+The structural audit rejected two tempting WO₃ entries because one contains 1.57 Å O–O contacts and another has near-duplicate O sites. I retained chemically sound monoclinic, triclinic, and orthorhombic WO₃ alternatives for matched testing, plus a second sound BaCO₃ entry whose calculated intensities differ substantially. The first viable two-phase refinement gives roughly 53 wt% BaCO₃ / 47 wt% WO₃ before profile-model selection.
+
+The matched refinements are still converging in parallel; the full 10–100° range makes each branch slower than a peak-list comparison. I’m using identical backgrounds, angular correction, cell freedom, and global widths so the structural ranking is not biased by different nuisance models.
+
+The matched structural test favors triclinic WO₃ (P\(\bar{1}\)) over monoclinic P2₁/c by 0.28 percentage points in Rwp; orthorhombic and alternative-cell models are much worse. A chemically sound scheelite BaWO₄ model refines to only 0.34 wt% and improves Rwp by just 0.018 points, while its independent 31.9° diagnostic line is absent, so I’m treating that as overlap credit rather than a supported third phase. I’m now selecting the angular correction and then the smallest stable width model.
+
+The baseline is numerically converged (maximum shift/esd 0.046). The angular helper is evaluating zero-offset, sample-displacement, and joint branches while preserving the same phase inventory and refinement flags; I’ll retain only a stable branch with a real full-pattern gain.
+
+The angular comparison is computationally heavy because each branch is being reconverged in stages, including cells, scales, background, and profile terms. It is still progressing normally; no refinement error has appeared.
+
+The sample-displacement branch was selected: −515 µm with zero fixed, improving Rwp from 9.321% to 9.296%; the joint correction was rejected at 99.99% correlation. I also found that GSAS-II’s nominal “fixed” defaults still contribute 1,000 µstrain, so I neutralized those before screening global widths. The true global-only baseline is Rwp 9.600%, and the competing Gaussian/Lorentzian branches are now finishing.
+
+All width branches except the deliberately under-parameterized U-only model have finished. That last branch is slow because it has no low-angle constant width term; I’m letting it converge so the term-removal check is complete rather than inferring its failure from instability alone.
+
+The selected global profile uses U, W, and one constant Lorentzian Z term (Rwp 8.244%). Removing U or W raises Rwp to 12.27% or 10.11%; removing Z raises it to 9.60%. A V branch was highly correlated, and a Y branch produced negative Gaussian variance, so both were rejected. I’m now comparing phase-specific size versus microstrain one phase at a time.
+
+For WO₃, size and strain each give only modest gains; the joint model adds just 0.002 Rwp points and couples the terms at 0.82, so I’m retaining the smaller strain-only model (1,099 ± 121 µstrain). BaCO₃’s first-pass size ran to a boundary and its strain became negative; I’m repeating those tests after the WO₃ term is fixed, as required after a downstream profile change.
+
+The BaCO₃ retest confirms rejection: size again hit the 10 µm bound without improvement, and microstrain refined to an unphysical −6,500 µstrain. The retained model remains WO₃ strain-only. I’m now comparing polarization and Suortti surface-roughness corrections as competing intensity envelopes; these branches are being reconverged with all accepted profile terms.
+
+A one-parameter surface-roughness correction is clearly preferred (Rwp 6.614%, \(B=0.1033\)); polarization alone stops at 7.305%. Refining both roughness parameters was rejected because one became negative and the pair was 100% correlated. I’m rerunning the mandated angular comparison from this improved envelope state.
+
+The second angular pass is still reconverging the three branches with the roughness and WO₃ microstrain terms active. No branch has failed; the extra time reflects the stricter staged replay in the supplied helper.
+
+The post-envelope angular rerun keeps the existing displacement model; zero-only is worse and the joint branch remains 99.99% correlated. I’m now doing the required microstructure replay: remove WO₃ strain, replace it with size, add both, and retest BaCO₃ size/strain from the same mature state.
+
+These replay branches are still running without errors. The slow convergence is concentrated in rejected-style terms that head toward weak sensitivity or boundaries; I’m allowing the configured iterations to finish so the rollback decisions are backed by matched end states.
+
+The remove-strain and size-only WO₃ branches have completed; the remaining long-running cases are the joint-width and BaCO₃ size branches, consistent with their weaker identifiability. I’m waiting for their final covariance states before comparing them.
+
+After roughness is included, WO₃ strain is decisively retained: removing it raises Rwp to 6.848%, and replacing it with size gives 6.783%. BaCO₃ broadening now interacts with that improved envelope, so I’m extending the two positive Ba branches to true convergence; the size branch has just finished, while the lower-Rwp strain branch is still settling.
+
+The extended replay changed the decision cleanly: BaCO₃ isotropic size is now stable and supported at 0.1451 µm, lowering Rwp from 6.614% to 6.499%. The competing BaCO₃ strain branch drifted continuously, drove global U and Z negative, and never converged, so it is rolled back. Fresh width regeneration passes for both retained phases. Next I’m screening simple one-axis texture terms and then will replay the structural alternatives from this mature baseline.
+
+The principal-axis March–Dollase screens are still reconverging. Each phase is tested separately along \(a\), \(b\), and \(c\) from the same stable model; any term must remain interior, improve multiple pattern regions, and survive later removal.
+
+All six texture branches remain numerically active but error-free. Their slow progress indicates substantial coupling with phase scales and the roughness envelope, so I’m waiting for covariance convergence rather than ranking partially settled Rwp values.
+
+Five of six texture branches have now completed; the last is the WO₃ \(b\)-axis case. The lengthy branches are finishing within the planned iteration cap, so I’ll compare their stability and parameter bounds once this final case exits.
+
+Texture screening found a stable modest BaCO₃ \(c\)-axis March–Dollase term (1.04884), improving Rwp to 6.359%. The nominally better \(a\)-axis branch alternates between two refinement states with shift/esd up to 2.73 and is rejected as unstable. WO₃ principal-axis terms were near unity and gave only small gains; I’ll retest the best one after the BaCO₃ term, then perform mature-model leave-one-out and structure replacement checks.
+
+After accepting BaCO₃ \(c\)-axis texture, the best WO₃ \(b\)-axis term is stable at 0.98903 ± 0.00168 and lowers Rwp by another 0.020 points; I’m retaining it provisionally. The angular helper is now replaying all three correction branches after these texture changes, as required.
+
+The post-texture angular replay is still progressing normally, with the same complete phase/profile model restored inside each branch. No numerical failure has been reported.
+
+The angular helper is taking longer here because it also restores both March–Dollase parameters and the phase-specific width terms in stages. It remains active and error-free.
+
+The staged angular replay is still running; this is the final mandated angular pass unless later structural testing changes the accepted phase model. I’m continuing to let it finish rather than shortcut the branch comparison.
+
+The helper remains active without errors; this model has enough optional terms that each of the three angular branches needs several full refinements to restore all groups. I’m monitoring it and will inspect correlations and width positivity immediately when it exits.
+
+The helper has reached the final joint branch. Its current log confirms the same 99.99% Zero/Shift correlation; it is completing the last staged restoration now.
+
+The final angular pass again keeps sample displacement only; zero-only is worse and the joint model remains 99.99% correlated. I’m now running matched leave-one-out copies for every retained optional term: U, W, Z, roughness, both phase-broadening terms, and both texture terms.
+
+The leave-one-out suite is still converging across all eight copies without errors. These removals substantially reshape the shared profile, so I’m waiting for stable re-optimization rather than comparing their first-cycle penalties.
+
+Only the WO₃ texture-removal copy has completed so far; the other seven are still within their fixed iteration limits. The parallel load is slowing wall time, but each branch continues normally.
+
+The remaining leave-one-out branches are taking the full iteration cap because removal causes slow redistribution among global and phase widths. They remain error-free; I’m preserving the matched protocol so each retained term gets a fair removal test.
+
+Three removal copies have completed; five remain. The active cases are the more strongly coupled global/profile and envelope removals, which is expected and itself supports checking their final covariance rather than stopping early.
+
+All retained optional terms pass matched removal checks. The smallest penalties are still reproducible for W (+0.021 Rwp) and WO₃ texture (+0.019); U, Z, roughness, BaCO₃ size/texture, and WO₃ strain have larger effects. I’m now rebuilding the near-tied monoclinic WO₃ alternative with the exact mature background, angular, width, roughness, size, and texture model for a fair replacement test.
+
+The mature structure replacement remains close but favors triclinic WO₃: Rwp 6.340% versus 6.360% for the sound monoclinic P2₁/c model. The triclinic gain is concentrated in both 50–75° and 75–100° regions, so it is not single-peak credit, but the symmetry assignment remains a genuine minor uncertainty. I’m now repeating the BaWO₄ addition test from this mature state.
+
+The mature BaWO₄ branch is still reconverging after its scale-only test. The candidate cell and profile are held fixed, so any accepted scale must be supported by the existing scheelite peak set rather than by cell drift.
+
+The mature BaWO₄ scale remains positive at 0.37 wt%, but its gain is overwhelmingly at 26.2–27.2°, where scheelite’s strongest line overlaps WO₃; the independent 31.9° line gives essentially no benefit and the 42.9° region worsens. I’m therefore rejecting it as overlap-only. I’m also screening minimal heavy-atom coordinate refinements; the Ba site branch has finished, while WO₃ W sites are still converging.
+
+Refining the Ba coordinate gives only a small 0.009-point Rwp gain and will be left fixed unless the stronger WO₃ test is accepted. Refining the four W positions lowers Rwp by about 0.067 points with chemically modest shifts, but its shift/esd is still cycling above the acceptance threshold; I’m extending that branch to determine whether it truly stabilizes.
+
+The W-coordinate branch remains active without singularities or dropped variables. I’m waiting for the repeat-to-repeat shifts to settle; if they continue oscillating through the cap, the coordinate change will be rejected despite its lower Rwp.
+
+The W-coordinate branch eventually converged and improved Rwp to 6.272%, but it shortened a W–O contact from ~1.71 Å to 1.606 Å, which is chemically implausible for this WO₃ framework; I am rolling it back. The isolated Ba-coordinate gain is only 0.009 points and is also not retained. The final structural coordinates therefore remain the audited literature models, with refined cells and supported nuisance terms.
+
+The selected project is now fixed: audited literature coordinates, refined unit cells, displacement-only angular correction, positive U/W/Z widths, one-parameter roughness, BaCO₃ size, WO₃ strain, and weak supported texture terms. I’m exporting `final.gpx`, both CIFs, and the regenerated full-grid profile now, then I’ll run all three supplied audits and reconcile the machine-readable result.
+
+The refinement and model-selection work is complete. I’m now validating the exported project, CIFs, and profile, then I’ll write the machine-readable result and concise evidence report and run the final submission audit.
+
+The export is internally consistent so far: both phase CIFs, the regenerated full profile, and `final.gpx` exist, and the saved project reports a converged 32-variable refinement with Rwp 6.340%. I’m checking chemistry/contacts, replay safety, and profile arithmetic independently before finalizing the report.
+
+Both exported structures pass the occupancy, symmetry-expansion, duplicate-site, and contact screens with no flags; the final project also reproduces its saved profile exactly and has positive peak widths throughout. The only substantive model ambiguity is the fine distortion/symmetry of WO₃, so I’ll expose that uncertainty rather than overstate the nominal scale-factor precision.
+
+Final validation passed: `result.json` reads back with two positive fractions summing exactly to 1.0, `fit.csv` has all 8,301 measured points with exact observed − calculated = difference arithmetic, and the submission audit reports no errors or warnings.
+
+Completed the PXRD analysis.
+
+- BaCO₃ (Pnma): **52.16 wt%**
+- WO₃ (P-1): **47.84 wt%**
+- Rwp: **6.340%**, GOF: **1.823**
+
+All CIF, GPX, profile-regeneration, and submission audits passed. WO₃ symmetry has minor model uncertainty; trace BaWO₄ could not be supported independently of overlap.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [BaCO3 CIF](<ATTEMPT_WORKSPACE>/phase_1_BaCO3.cif)
+- [WO3 CIF](<ATTEMPT_WORKSPACE>/phase_2_WO3.cif)
+

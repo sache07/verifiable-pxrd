@@ -1,0 +1,68 @@
+I’ll inspect the measurement metadata, pattern, and the provided divalent-tungstate workflow guidance first. Then I’ll identify candidate phases, refine them in GSAS-II, and verify that the exported CIFs, profile, fractions, statistics, and final project are mutually consistent.
+
+The chemistry points first to Sr–W–O products (with possible unreacted SrCO₃/WO₃), but I’m treating that only as a prior. I’m now extracting the peak positions and checking the frozen structure library and simulator conventions so phase identification is driven by the full diffraction pattern.
+
+The strongest and high-angle lines index consistently as tetragonal scheelite SrWO₄. The residual low-angle triplet near 23–25° is characteristic of monoclinic WO₃, and weaker carbonate-sensitive lines are also present. I’m moving to quantitative whole-pattern tests of the plausible WO₃ and SrCO₃ polymorphs, including the same CIF normalization used by the supplied simulator.
+
+The initial three-phase refinement is converging from a deliberately broad starting model. Its first pass already assigns the dominant intensity to scheelite SrWO₄; I’m refining cell/offset/profile parameters before judging whether the weak carbonate and WO₃ assignments are genuine or merely absorbing overlap.
+
+The residual peak series near 29.75, 34.50, 50.3–50.6, 59.56, 62.52, 83.90, and 94.14° suggests a crystalline Sr-rich secondary phase; SrO is a plausible index but its intensities imply texture if present. I’m testing that explicitly against carbonate, peroxide, and Sr–W–O alternatives rather than assigning it from one peak.
+
+A decisive fingerprint emerged: the unmodeled peaks match a Pa‑3 A₃WO₆ framework (29.75, 30.91, 44.66, 53.44, and 56.99°) after replacing Cu²⁺ in the published Cu₃WO₆ parent with larger Sr²⁺ and expanding the lattice. That gives a chemically plausible Sr₃WO₆ intermediate, so I’m now refining this analogue-derived structure explicitly alongside SrWO₄ and WO₃.
+
+The Sr₃WO₆ analogue is physically reasonable after expansion (Pa‑3, a≈11.14 Å; shortest Sr–O≈2.19 Å and W–O≈2.04 Å). Its 80-atom conventional cell makes the full-profile refinement slower, but it is now being tested as an atomic—not merely indexed—phase.
+
+The three-phase atomic model lowers Rwp from about 15.95% to 13.91% before texture/coordinate work, and gives provisional crystalline fractions near 75% SrWO₄, 11% WO₃, and 14% Sr₃WO₆. I’m now separating angular zero, specimen displacement, and phase broadening; that distinction matters because it controls whether the candidate’s peak offsets are structurally meaningful.
+
+The first Sr₃WO₆ model is not unique: Sr₃WO₆ is more commonly an ordered, monoclinically distorted double perovskite. I’m therefore testing the chemically closer Ca₃WO₆ P2₁/c parent with Ca→Sr substitution and lattice expansion. Its lower symmetry can account for the unmatched 32.60, 44.65, 48.62, and 67.03° lines that the cubic Pa‑3 model cannot shift independently.
+
+A constrained whole-pattern test finds that Sr₃W₂O₉ can also index the residual, but only after a notably anisotropic cell change (especially c shortened by about 2.3% from the high-pressure reference). I’m refining that model in GSAS-II now; the comparison with Sr₃WO₆ will decide whether the extra lines represent one adapted phase or require both.
+
+I’ve narrowed the unresolved impurity to two Sr–W–O structural hypotheses. I’m comparing their full-profile refinements now; the key test is whether the lower-symmetry model gives a real, stable improvement rather than merely absorbing residual intensity through distorted cell/profile parameters.
+
+The lower-symmetry Sr₃W₂O₉ model lowers Rwp modestly, but it requires a substantially altered high-pressure cell and produces a chemically imbalanced Sr:W inventory. The cubic Sr₃WO₆ analogue both explains its diagnostic peak pair and, with the fitted fractions, nearly closes the 1:1 precursor metal balance. I’m therefore retaining cubic Sr₃WO₆ as the chemically defensible model and now refining its coordinates and physically bounded line-shape/specimen terms.
+
+The cubic phase is genuinely present: its residual peaks index consistently on one cubic cell from low through high angle. The remaining mismatch is mainly intensity and breadth, so I’m constraining crystallite size, strain, and instrument terms to the generator’s physical ranges before judging coordinate changes.
+
+The bounded profile refinement is still running; GSAS-II’s numerical derivatives are the slow part here. So far there is no failure output, and I’m keeping this pass isolated from the working project so an unstable parameter cannot contaminate the final model.
+
+The raw coordinate refinements improve Rwp only by creating impossible Sr–O contacts or destroying W–O coordination, so I’m rejecting them. I’m keeping the chemically valid parent framework and testing the physically allowed effects that can change relative peak intensities—especially phase-specific broadening and March–Dollase texture.
+
+The texture grid is converging toward a modest [110] preferred orientation, not an extreme correction. That supports keeping the cubic framework while confirming that texture alone cannot explain all residual intensity; the phase’s broadening remains the larger uncertainty.
+
+A fourth crystalline contribution is now evident. After subtracting the three-phase model, the remaining broad maxima follow a simple cubic perovskite/tungsten-bronze sequence (approximately 100, 110, 111, 200, 210, 211, 220, 400). I’m testing Sr-substituted cubic WO₃ bronzes next; this explains why forcing those humps into the Pa₃ phase drove its fraction and strain to their bounds.
+
+The residual series does not require a fourth phase after all: every broad maximum lands on an allowed Pa₃ Sr₃WO₆ reflection. A constrained cation-only refinement improves the intensity fit while preserving sensible Sr–O and W–O distances; oxygen refinements that move farther are being rejected as chemically invalid.
+
+The physically constrained profile grid prefers a crystallite size near 0.3 µm and strong, anisotropic microstrain for Sr₃WO₆. This is a stable broadening solution rather than the earlier unconstrained collapse to zero size; I’m finishing the strain grid and then will lock the profile before the final consistency replay.
+
+The three-phase model is now selected: scheelite SrWO₄, monoclinic WO₃, and a cubic Pa‑3 Sr₃WO₆-type phase. I’m doing the final project/profile/CIF consistency checks now, then I’ll replay the saved GSAS-II project to ensure every submitted artifact comes from that exact model.
+
+The independent forward replay succeeds with no profile or displacement warnings, reproducing Rwp = 12.884% and the same 68.56/11.37/20.07 wt% split. The replayed calculated profile stays positive over the full 10–100° scan; I’m now checking interatomic geometry and the stored-versus-replayed arrays before freezing the deliverables.
+
+The saved model replays cleanly with no parameter optimization: 8,282 points, Rwp 12.884%, Rp 8.572%, positive background/profile everywhere, and phase fractions 0.68555/0.11375/0.20070. The calculated profile regenerated from the atomic models agrees with GSAS-II’s saved curve to about \(1.6\times10^{-12}\) counts, so I’m exporting directly from this verified project.
+
+One validation flag remains: the historic monoclinic WO₃ reference has four symmetry-related O–O contacts near 1.58 Å. This does not invalidate the phase indexing or W sublattice, but it makes the oxygen substructure physically questionable. I’m checking whether a modern, physically valid WO₃ setting can replace or repair those oxygen sites without degrading the diffraction evidence; otherwise I’ll explicitly mark those coordinates as unreliable.
+
+The physical cross-check confirms that the SrWO₄ and Sr₃WO₆-type models pass the geometry screen. For WO₃, the data favor the historic reference slightly, while the oxygen-site repair is not uniquely supported; I’ve retained the better diffraction-matching model and documented the 1.58 Å O–O issue explicitly rather than presenting those oxygen coordinates as reliable.
+
+Completed the three-phase PXRD analysis:
+
+- SrWO₄ (I 41/a): 68.56 wt%
+- WO₃ (P 21/c): 11.37 wt%
+- Sr₃WO₆-type (P a -3): 20.07 wt%
+
+Final fit: Rwp 12.884%, Rp 8.572%, GOF 3.648. The saved project passed independent atomic-profile replay.
+
+Artifacts:
+
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r9/workspace/report.md)
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r9/workspace/result.json)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r9/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r9/workspace/final.gpx)
+- [SrWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r9/workspace/phase_SrWO4.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r9/workspace/phase_WO3.cif)
+- [Sr₃WO₆ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-014-r9/workspace/phase_Sr3WO6_Pa3.cif)
+
+The report flags the WO₃ oxygen geometry and analogue-derived Sr₃WO₆ atomic coordinates as uncertain.
+

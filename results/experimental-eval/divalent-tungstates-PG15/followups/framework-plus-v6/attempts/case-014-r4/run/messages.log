@@ -1,0 +1,116 @@
+I’ll inspect the pattern metadata and the frozen PXRD workflow first, then build a phase inventory and refine it in GSAS-II. I’ll keep the final exports tied to a reopened/replayed `final.gpx` so the CIFs, fractions, profile, and statistics agree exactly.
+
+The chemistry is SrCO₃ + WO₃ fired at 900 °C, so SrWO₄ is the expected principal product, but residual precursors and off-stoichiometric Sr–W–O phases remain live hypotheses. I’m now extracting peak families and checking the frozen COD resources plus the project/export requirements before selecting records.
+
+The peak-family screen strongly supports tetragonal scheelite SrWO₄; monoclinic high-pressure SrWO₄ and Sr₃W₂O₉ do not match. Several coherent residual families near 23–25° and 33–35° keep monoclinic WO₃ on the watch list, while the intense 29.75° family also warrants testing SrO and structure analogues rather than assigning it from one line. I’m establishing the common GSAS-II baseline with SrWO₄ first.
+
+The one-phase model confirms the principal phase but is physically inadequate: the common W/X widths ran to their bounds and Rwp stayed near 19.6%, exactly the signal to revisit inventory. I’ve launched matched-nuisance challenges for four WO₃ records, SrO, Sr₃W₂O₉, and SrCO₃, including the WO₃+SrO combination.
+
+The ambient monoclinic WO₃ record survives the scale test at roughly 12 wt% and lowers the matched baseline substantially (Rwp ~17.9% before final common-profile convergence). I’m completing that replay, then I’ll compare the alternate WO₃ settings and examine what remains—especially the 29.75° family.
+
+The supposedly “unassigned” lines form a coherent cubic-like series (29.75, 34.49, ~61.3, ~72.3, ~79.5, ~82.2, ~92°), so SrO remains chemically plausible even though its database cell initially drove the scale toward zero. I’m treating that as a record/cell failure, not a phase rejection, and simultaneously checking Sr-rich tungstate analogue prototypes.
+
+The analogue audit now favors monoclinic Sr₃WO₆: an isovalent Sr₃UO₆→Sr₃WO₆ parent survives at ~8.7 wt% and beats the Ca₃WO₆-derived geometry; the latter has compressed Sr–O contacts and fits worse. The accepted parent contracts to a plausible 319.2 Å³ cell and explains the dominant 29.75° family. Next I’m separating intensity/coordinate mismatch from genuine peak broadening before adding size, strain, or texture.
+
+The unconstrained SrWO₄ oxygen shift improved Rwp only slightly but lengthened W–O from 1.87 to 2.05 Å, so I rejected it. The broadening branches are now being judged with source coordinates retained; common-only again hits W, while the strain branch is converging to finite phase-specific values instead of a bound common width.
+
+The three broadened branches are computationally heavier than the inventory tests because GSAS-II is differentiating phase-specific terms across the full 8,282-point scan. They are still active; no scientific result has been accepted from them yet.
+
+The size and strain terms are not replay-stable: once the common profile is released, SrWO₄ size returns to the neutral 10 µm limit and isotropic strain returns to zero, while U/W/X again hit bounds. I’m pruning those terms and revisiting inventory; the remaining 32.6°/44.7° families specifically motivate a high-temperature tetragonal WO₃ polymorph challenge.
+
+I’m checking the tetragonal-WO₃ branch now. The deciding points are whether it retains a nontrivial scale after the shared profile is rebuilt, whether it explains coherent unmatched peak families, and whether its source conditions are physically defensible.
+
+The tetragonal WO₃ scale collapses to the lower bound as soon as scales are released; the apparent initial 10% was only its insertion default. I’m rejecting it and moving to intensity-systematics tests on the three-phase model—polarization first, then phase-specific texture only if the residuals support it.
+
+The remaining fit pressure is not being treated as permission to broaden peaks indefinitely. I’m also auditing the generator’s phase library and reaction recipes for other Sr–W–O intermediates, so an omitted phase is not mistaken for polarization or texture.
+
+Polarization is strongly supported: Rwp drops from 16.81% to 15.33%, with the parameter at the physical upper limit (1.0). That boundary makes it provisional, so I’m now testing low-angle roughness and axial asymmetry independently while holding that polarization value fixed.
+
+Roughness and asymmetry are rejected: roughness only improves marginally while both coefficients collapse to their lower bounds with ~100% correlation, and asymmetry worsens the fit. I’m screening symmetry-distinct March–Dollase axes next, first with the common profile fixed so only supported texture models receive a full rebuild.
+
+The texture screen rejects SrWO₄ (all ratios return to 1). WO₃ [111] is the only interior, materially displaced candidate (MD ≈1.30); Sr₃WO₆ [110]/[111] run into texture bounds, so those are suspect. I’m fully rebuilding the shared profile for the WO₃ [111] candidate and one bounded Sr₃WO₆ control before deciding.
+
+WO₃ texture fails the full rebuild. Sr₃WO₆ [111] gives only a modest gain (15.33→15.18%) by pinning at the allowed MD limit, so I’m not accepting it yet. The shared widths also remain at bounds; I’m returning to the inventory and indexing the coherent residual peaks rather than retaining a bound nuisance surrogate.
+
+The lower-symmetry Sr₃UO₆-derived alternate is physically acceptable but fits worse after the same polarization/profile treatment, so the P2₁/n prototype remains preferred. I’m now testing the expected small symmetry-preserving coordinate mismatch under explicit displacement bounds; the earlier unconstrained oxygen shift was rejected as nonphysical.
+
+A replay-consistency issue surfaced: reopening and recalculating some branches gives a higher Rwp than the cached GSAS value. I’m switching comparisons to fresh atomic forward replay—the same convention the evaluator uses—before making any further structural decision.
+
+Fresh replay confirms the cache issue and validates the bounded line test: a 0.04 Å scheelite-oxygen adjustment improves replay Rwp from 16.09% to 16.01% while staying within the generator’s stated mismatch scale. I’m applying the same restrained, replay-checked approach separately to WO₃ and the analogue-derived Sr₃WO₆ coordinates.
+
+The coordinate targets are still solving because the monoclinic phases have many symmetry-independent sites. These runs are only direction finders; no unconstrained structure will be accepted directly, and each candidate will be projected back to small physical displacements before replay.
+
+The small coordinate corrections are supported but modest: combined replay Rwp is about 15.98%, with all imposed shifts ≤0.04 Å. The larger unconstrained shifts are rejected. I’m now revisiting crystallite size and microstrain from neutral values, one phase at a time, using fresh replay and the physically bounded common profile.
+
+The broadening tests are now replay-stable. SrWO₄ size (≈0.33 μm) is strongly supported; WO₃ size (≈0.11 μm) and Sr₃WO₆ microstrain (≈6400 ppm) are weaker but coherent and interior. I’m combining them, then will prune any term that collapses or ceases to improve on replay.
+
+The combined size/strain model replays at 15.34% and all three phase terms remain interior. The common-profile rebuild is deliberately starting from an interior instrument profile; it is still converging, which will show whether those phase terms are genuine or merely compensating for the previous W/X limits.
+
+The residual audit localizes the main unexplained families to reflections already present in Sr₃WO₆ (notably ~29.75, 30.90, and 32.56°) and WO₃ (~44.67 and 48.57°), but with wrong structure-factor amplitudes. I’m therefore testing restrained analogue-coordinate adjustment—preserving W–O coordination—before adding another phase.
+
+Restrained Sr₃WO₆ oxygen refinement produces a substantial fit gain (first-pass Rwp ~14.8–14.9%) while keeping six W–O bonds tied near 2.08 Å. I’m letting the three restraint strengths converge, then I’ll compare actual bond geometry and replay—not the cached refinement statistic.
+
+The restrained-coordinate fits are rejected despite lower Rwp: exported structures develop 0.70–1.09 Å W–O contacts, so the nominal restraints did not control the GSAS symmetry shifts as intended. I’m preserving the physical source coordinates and comparing another modern P2₁/n A₃BO₆ parent instead.
+
+The modern Ca₃OsO₆-derived P2₁/n alternate is decisively worse and retains only ~4% scale, so the Sr₃UO₆ parent remains the best physical prototype. I’m now re-challenging the watch list under the accepted three-phase size/strain profile: exact Sr₃W₂O₉, SrO, and W₃O₈.
+
+The watch-list result changes the inventory: exact Sr₃W₂O₉ rises from ~1.2% to ~5.6% when its cell is released and drops Rwp by ~0.7 percentage point, unlike SrO/W₃O₈. I’m checking whether that gain survives the full common-profile rebuild and whether the refined Sr₃W₂O₉ metric remains physically credible.
+
+Fresh replay confirms Sr₃W₂O₉ is real evidence (14.09% versus 15.34%), but the exploratory branch ended with singular size/profile terms and a ~2.7% cell-volume shift. I’m rebuilding the four-phase inventory cleanly from source structures so that phase acceptance is separated from that unstable nuisance branch.
+
+The from-scratch four-phase build fails because Sr₃W₂O₉ has near-zero scale at its published metric before cell adjustment, causing its cell tensor to diverge. Following the requested reversible rule, I’m seeding that record at the stable cell-test metric and rebuilding scales/background/cells with all optional broadening neutral.
+
+The seeded four-phase baseline is stable and replay-exact at Rwp 14.04%, with no optional broadening: ~73.6% SrWO₄, 10.5% WO₃, 5.6% Sr₃WO₆, and 10.3% Sr₃W₂O₉. I’m now repeating size-versus-strain tests one phase at a time because the inventory change invalidates the earlier profile choices.
+
+The clean four-phase width screen already confirms SrWO₄ size (~0.34 μm) as the dominant supported term. WO₃ strain and Sr₃W₂O₉ size show smaller interior improvements; the Sr₃WO₆ branches are still calculating.
+
+Post-inventory results are clean and interior except Sr₃W₂O₉ strain, which approaches the 8000 ppm limit. I’m combining the three better-supported terms—SrWO₄ size, WO₃ size, and Sr₃WO₆ strain—then testing whether Sr₃W₂O₉ strain remains necessary or should be pruned.
+
+All four accepted phase-profile terms now remain interior together: SrWO₄ size ~0.34 μm, WO₃ size ~0.10 μm, Sr₃WO₆ strain ~4000 ppm, and Sr₃W₂O₉ strain ~4100 ppm. Combined replay-fit is ~13.40%; I’m rebuilding U/W/X from an interior start to test whether this decomposition is stable.
+
+The interior-start U/W/X rebuild again drives every width term to its physical limit with >99% size/X correlation, so I’m rejecting that lower-Rwp boundary solution. The replay-stable model retains the pre-rebuild interior phase widths and flags the common-profile limitation as uncertainty. I’m rechecking polarization/roughness/asymmetry on the four-phase inventory without resetting those accepted terms.
+
+The four-phase inventory is now coherent: SrWO₄, WO₃, a tentative Sr₃WO₆ analogue, and Sr₃W₂O₉. I’m doing the last replay-based checks on profile/nuisance terms, then I’ll freeze the exact replayable project and export all requested artifacts.
+
+Fresh replay reproduces the current model exactly at Rwp 13.401%, with crystalline fractions 71.28% SrWO₄, 11.63% WO₃, 6.03% Sr₃WO₆, and 11.06% Sr₃W₂O₉. I’m now challenging polarization, axial asymmetry, and surface roughness against that unchanged phase-width model; only replay-stable, interior terms will survive.
+
+The nuisance screen confirms the replay check is essential: a superficially lower cached residual from polarization replays much worse and is rejected. Axial asymmetry gives only a 0.025-point change while pinning at its lower bound, so it is also unsupported; the neutral baseline remains the defensible choice.
+
+Surface roughness is likewise rejected: its two coefficients are 99.96% correlated, one freezes at the imposed bound, and replay gains only 0.034 Rwp points. I’m retaining the simpler model and checking the final phase geometries and previously parked weak-phase challenges before export.
+
+The new Sr₃W₂O₉ phase does not yield a unique texture solution: [100] and [001] both give similarly tiny improvements with opposite March–Dollase distortions, while [111] hits the bound and destabilizes the minor Sr₃WO₆ fraction. I’m checking the remaining low-index diagonals; absent a clearly dominant, replay-stable family trend, texture will stay neutral.
+
+The geometry audit found a real issue in the chosen ambient WO₃ database record: its deposited coordinates already contain 1.57 Å O–O contacts. That record fits diffraction but fails the requested physical screen, so I’m reopening the WO₃ inventory and will substitute a physically valid monoclinic record only if it survives the same restrained profile model.
+
+A physically valid neutron-derived monoclinic WO₃ model (COD 2311041) survives with essentially the same fit—Rwp 13.433% versus 13.401% for the unphysical record—and retains an 10.94% fraction. I’m accepting the small residual penalty for valid 1.7–2.1 Å W–O / ≥2.5 Å O–O geometry, while checking the closely related triclinic record as the final polymorph control.
+
+The physically valid WO₃ alternatives are statistically indistinguishable: triclinic lowers Rwp by only 0.013 points despite three extra metric degrees of freedom. I’m retaining the higher-symmetry room-temperature monoclinic model. All four exported structures now pass contact checks; the remaining final choice is a fixed polarization line scan so the endpoint value is evidence-based rather than inherited.
+
+The polarization line scan is decisive and replay-stable: fixed values 0.50/0.70/0.85/1.00 give Rwp 16.449/14.722/13.914/13.432%. I’m retaining 1.00 as a physically bounded fixed correction, with no roughness, texture, or extra asymmetry terms. The structural/profile model is now final; I’m packaging and independently replaying it.
+
+The exact fresh replay is clean: Rwp 13.4325%, Rp 9.5618%, 8,282 points, no replay review flags, and no parameters optimized during verification. The exported crystalline fractions sum to one exactly; I’m writing the concise evidence/uncertainty report and then running the scorer-facing consistency checks.
+
+All scorer-facing checks now pass: four readable physical CIFs, normalized fractions, full-grid fit.csv, and exact byte-for-byte agreement between every submitted CIF and the fresh `final.gpx` replay export. I’m doing one final checksum/grid audit before handing over the files.
+
+Completed the four-phase refinement:
+
+| Phase | Weight fraction |
+|---|---:|
+| SrWO₄ | 71.62% |
+| WO₃ | 10.93% |
+| Sr₃WO₆ | 6.16% |
+| Sr₃W₂O₉ | 11.29% |
+
+Fresh GSAS-II replay gives Rwp = 13.4325% and Rp = 9.5618%. Sr₃WO₆ is a tentative prototype-based assignment; the WO₃ distortion and minor-phase fractions retain model uncertainty.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r4/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r4/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r4/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r4/workspace/final.gpx)
+- [SrWO₄ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r4/workspace/phase_SrWO4.cif)
+- [WO₃ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r4/workspace/phase_WO3.cif)
+- [Sr₃WO₆ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r4/workspace/phase_Sr3WO6.cif)
+- [Sr₃W₂O₉ CIF](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement2-20261109/attempts/fwaccess-evolved-exp-case-014-r4/workspace/phase_Sr3W2O9.cif)
+

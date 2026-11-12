@@ -1,0 +1,28 @@
+I’ll inspect the measurement metadata and diffraction profile first, then identify candidate phases and build/refine a multiphase GSAS-II model. I’ll preserve the final refinement project and export all requested artifacts with explicit uncertainty notes.
+
+The chemistry strongly suggests a nickel tungstate product, but the unknown phase count means I’ll test that hypothesis against all resolved peaks and check explicitly for residual NiO, WO₃, or polymorphic/secondary tungstates before fixing the model. Next I’m mapping the available indexing, database-search, and GSAS-II interfaces.
+
+Peak-position matching confirms two chemically plausible crystalline components: wolframite-type NiWO₄ accounts for the dominant pattern, while the distinctive WO₃ cluster near 23.1–24.4° and supporting lines near 28.8°, 33.2°, and 34.1° require residual monoclinic WO₃. I’m now refining both phases and testing whether NiO contributes beyond overlap/noise.
+
+The two-phase refinement is in progress. I’m comparing one-, two-, and three-phase models on the same counting-statistics weights; the key decision is whether adding NiO yields a stable positive fraction and removes its unique reflections, rather than merely improving the fit through overlap.
+
+The two-phase model improves weighted profile agreement from 13.97% to about 6.5% and gives roughly 76:24 wt% NiWO₄:WO₃. A trial phase-dependent broadening model exposed two parameter correlations, so I’m removing the redundant overall scale degree of freedom and fixing the correlated global width term before the final covariance calculation; this is necessary for defensible fraction uncertainties.
+
+The final model converged cleanly after removing the redundant scale and width correlations. It contains 76.07 wt% NiWO₄ and 23.93 wt% WO₃, with Rwp 6.40% and GOF 1.84; the NiO trial collapsed to zero and was excluded. I’m doing a final cross-check that the saved project, CIFs, JSON fractions, and exported profile all agree numerically.
+
+Analysis complete. The crystalline composition is:
+
+- NiWO₄ (wolframite, P 2/c): 76.07 wt%
+- WO₃ (monoclinic, P 2₁/n): 23.93 wt%
+
+Fractions are normalized over modeled crystalline phases. Final fit: Rwp 6.40%, Rp 4.83%, GOF 1.84. NiO was tested but refined to zero and was excluded. Practical fraction uncertainty is likely a few wt%-points despite the smaller formal errors.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_NiWO4.cif](<ATTEMPT_WORKSPACE>/phase_NiWO4.cif)
+- [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+

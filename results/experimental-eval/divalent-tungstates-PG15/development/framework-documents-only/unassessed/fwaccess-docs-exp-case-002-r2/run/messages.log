@@ -1,0 +1,12 @@
+I’ll inspect the measurement metadata, pattern, and the provided tungstate framework notes first, then identify candidate phases and build/refine them in GSAS-II. I’ll keep the final artifacts tied to the actual saved project and verify that the exported profiles, CIFs, fractions, and statistics agree.
+
+The context points to a low-temperature BaO₂/WO₃ reaction, so the leading chemical possibilities are unreacted BaO₂ and WO₃, with BaWO₄ and peroxide-decomposition products as alternatives. I’m now extracting the peak fingerprint and locating the frozen structure library/GSAS-II interfaces so those possibilities can be tested against the whole profile rather than inferred from chemistry alone.
+
+The peak positions now give a strong two-phase assignment: monoclinic WO₃ accounts for the 23.4/23.9/24.65° triplet, while tetragonal BaO₂ accounts for 27.05, 33.55, 42.97, 46.64, and related lines. I’m testing the closely related WO₃ reference models and refining the instrument/specimen terms; that distinction matters because several WO₃ settings have nearly identical headline peaks but different weaker reflections.
+
+The standard monoclinic P2₁/n WO₃ model refines cleanly and reaches about 9% Rwp with BaO₂, while the old triclinic WO₃ entry is numerically unstable and already fits worse before cell refinement. The first unconstrained trial also showed why physical parameter limits are essential—the optimizer traded crystallite broadening against impossible instrumental values—so I’m constraining the instrument and specimen terms before comparing the remaining WO₃ models and finalizing fractions.
+
+The bounded refinement confirms the same two phases and stabilizes the cell solution, but GSAS-II has frozen one trial parameter at its physical limit and is taking unusually long in the later correlated profile step. I’m checking that run rather than accepting a superficially lower Rwp from an unphysical parameter trade-off; the phase assignment itself remains unchanged.
+
+The residual pattern is fully accounted for by WO₃ + BaO₂—there are no independent peaks demanding a third phase—but the broadening is direction-dependent: BaO₂ 00ℓ lines are much sharper than mixed-index lines. I’m testing the corresponding uniaxial strain model now; this is the main remaining route to improve the whole-profile fit without distorting the structure or phase fractions.
+

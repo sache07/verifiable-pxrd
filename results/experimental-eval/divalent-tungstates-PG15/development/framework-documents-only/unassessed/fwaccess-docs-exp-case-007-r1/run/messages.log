@@ -1,0 +1,30 @@
+I’ll inspect the measurement, chemical context, and the supplied framework notes first, then identify candidate phases and build/refine the multiphase GSAS-II model. I’ll keep the final artifacts tied to the saved `final.gpx` and verify that the exported profile and fractions reproduce that project.
+
+The chemistry points first to MgWO₄, but the raw scan has a high, strongly sloping background and could contain residual MgO/WO₃ or an intermediate. I’m now separating the peak inventory from that background and querying the permitted crystallographic library for Mg–W–O candidates before committing to a phase count.
+
+Peak positions establish three chemically coherent fingerprints: wolframite-type MgWO₄ dominates; monoclinic room-temperature WO₃ accounts for the 23–35° triplets/splittings; and MgO is supported independently at about 43.21°, 62.54°, and 75.00°. I’m carrying all three into quantitative refinement and will test whether the MgO scale remains significant once overlap and background are modeled.
+
+The three-phase scales are all positive and well determined in the first Rietveld pass (roughly 77.6% MgWO₄, 14.1% WO₃, 8.2% MgO), so MgO is not an overlap artifact. The remaining mismatch is dominated by a low-angle intensity deficit and phase-dependent peak widths—exactly the specimen roughness and crystallite-size/microstrain effects indicated by this measurement geometry—so I’m refining those before touching atomic coordinates.
+
+A Le Bail check confirms that the remaining residual is profile-shape limited rather than an omitted phase: no new unmatched peak family appears when intensities are freed. The isotropic broadening model drives common `U` to its physical ceiling, so I’m testing the three symmetry-allowed uniaxial microstrain directions for the dominant MgWO₄ phase; this should separate real anisotropy from common instrumental width without letting parameters go negative.
+
+The best profile model selects MgWO₄ microstrain along [100], while MgO and WO₃ remain adequately isotropic. Because profile terms are partially correlated without an external standard, I’m now holding that physically bounded profile and refining the quantities the pattern constrains more directly: common per-phase displacement parameters, W-site coordinates first, then oxygen coordinates. This also tests whether the 1960 WO₃ reference is structurally adequate rather than merely peak-position compatible.
+
+The heavy-atom refinements stay chemically modest, but the WO₃ reflection-intensity residuals remain strongly hkl-specific (for example, 020 is underpredicted while 022 is overpredicted). That is evidence to test the alternative room-temperature monoclinic/triclinic WO₃ references in the frozen COD, rather than forcing oxygen coordinates to unphysical shifts. I’m comparing those parents under the same fixed profile model now.
+
+I’ve narrowed the pattern to three crystalline phases—wolframite MgWO₄, monoclinic WO₃, and periclase MgO. I’m now finishing the constrained structure/profile refinement, with special care not to let the oxygen coordinates or peak-broadening terms drift into chemically implausible values.
+
+The current limiting mismatch is angle-dependent intensity, not unindexed peaks. I’m testing a physically constrained Bragg–Brentano surface-roughness correction; this chiefly determines whether the phase fractions move by a few percent, while the three-phase identification itself remains stable.
+
+The data strongly support two real specimen/instrument effects: a small MgWO₄ [001] texture term and low effective polarization. Both improve the fit without changing phase identity; the phase fractions are currently near 75.2% MgWO₄, 15.5% WO₃, and 9.4% MgO. I’m now separating angular calibration from sample displacement so the refined unit cells are not forced to absorb peak-position errors.
+
+The constant zero-offset and specimen-height terms are almost perfectly correlated, so I’m treating that decomposition as a calibration uncertainty instead of accepting an unstable simultaneous refinement. A bounded grid is being used to select the geometry that best preserves the full-range peak positions; this is the main uncertainty on the absolute unit-cell values, not on phase identification.
+
+The physically bounded replay is now around 8% Rwp; the earlier lower number depended on a polarization value outside the stated instrument range, so I discarded it. I’m refining instrument and phase broadening in separate stages now, keeping all size and strain terms inside the known laboratory ranges.
+
+The phase-temperature factors can be constrained from the angular intensity falloff for MgWO₄ and WO₃, but MgO has only six reflections and its temperature factor is strongly coupled to its scale. The best constrained model is converging near 74.7 wt% MgWO₄, 15.6 wt% WO₃, and 9.7 wt% MgO; I’ll report an additional systematic uncertainty for that MgO fraction rather than treating the small least-squares error as complete.
+
+The structural choice is now stable: the monoclinic WO₃ parent fits materially better than the common alternative setting/orthorhombic model, while an unconstrained triclinic model only gains a negligible amount by adding cell degrees of freedom. I’ve retained the chemically justified monoclinic structure and am writing the final replayable project and exports from a last constrained refinement.
+
+The final constrained refinement converged cleanly with no residual parameter shifts: Rwp = 7.86%, Rp = 5.48%, and GOF = 2.75. The normalized result is 74.92 wt% MgWO₄, 15.46 wt% monoclinic WO₃, and 9.62 wt% MgO; I’m validating project/CIF/profile consistency and chemical geometry before writing the brief uncertainty report.
+

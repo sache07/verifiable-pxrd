@@ -1,0 +1,78 @@
+I’ll inspect the diffraction data, metadata, and the reusable analysis tools first, then screen phase candidates and build a staged GSAS‑II refinement with audited exports. I’ll preserve stable project checkpoints as I test competing structural/profile models.
+
+The chemistry is a 900 °C WO₃/ZnO reaction measured in reflection geometry with Cu Kα₁/Kα₂ over 9.9–100.1° 2θ. I’m now locating the GSAS‑II runtime and reading the supplied audit/export conventions so the refinement and final files remain replay-safe.
+
+The working hypothesis is ZnWO₄ formation with possible residual ZnO and/or WO₃, but I will not assume that inventory. I’m extracting peak positions and screening all source-supported O–W–Zn, O–W, and O–Zn structures against the complete pattern, including polymorphs and near-tied alternatives.
+
+The peak family is not explained by ZnWO₄ alone: the residual triplet near 23–25° and independent lines near 26.7°, 28.9°, 33.4°, and 34.3° match monoclinic WO₃. I rejected one older WO₃ model because its expanded structure contains 1.575 Å O–O contacts; two clean P2₁/c alternatives will be carried through matched refinements. ZnO remains a separate leave-one-in test because most of its strongest lines overlap.
+
+The first matched comparison clearly favors the larger Z = 8 monoclinic WO₃ cell (Rwp 15.16%) over the clean Z = 4 P2₁/c alternative (17.54%); the latter also distorts substantially on refinement. I’m finishing equivalent tests of the triclinic and orthorhombic models with quieter logs, then I’ll lock the phase inventory and test ZnO as a leave-one-in component.
+
+ZnO is real and specifically wurtzite: adding it gives a stable positive 7.31 wt% contribution and lowers Rwp from 15.16% to 14.66%, with support from several line families. Rocksalt contributes only ~0.5 wt% at overlap positions with negligible gain, while zincblende collapses to zero scale and an invalid cell. The working inventory is therefore ZnWO₄ + monoclinic WO₃ + wurtzite ZnO.
+
+The angular comparison is behaving as expected: zero and specimen-displacement corrections are individually stable, while the joint branch is >99.9% correlated and will be rejected. The helper is completing matched reconvergence before selecting between the two single-parameter descriptions.
+
+The peak-width residual is strongly angle-dependent. A two-term Gaussian Caglioti model is materially better than one-term branches, while the full U–V–W model is rejected because U and V correlate at 98.2%. I’m testing the remaining two-parameter parametrizations with no arbitrary fixed contribution before choosing the smallest stable width model.
+
+The Lorentzian X and Z additions offer only numerical-scale gains, and X refines negative, so neither is supported. The Y-only test is converging slowly; I’m letting it finish because a positive high-angle Lorentzian term is the one physically plausible remaining branch.
+
+Surface roughness is the supported intensity-envelope correction: it reaches Rwp 5.14% with positive, finite Suortti parameters and improves every major angular region. Free polarization reaches an impossible 1.42, so that branch is rejected. I’m now testing axial asymmetry and phase-specific size/strain terms independently from this stable roughness baseline.
+
+WO₃ isotropic microstrain is strongly supported (~3900 µstrain), while its size term becomes boundary-seeking when combined and is rejected. After adding WO₃ strain, a ZnWO₄ size term becomes reproducibly useful (~0.32 µm; Rwp 4.81%); ZnO size/strain remain negligible. I’m checking the two remaining joint microstructure combinations before moving to texture and coordinates.
+
+The three-phase model is now well supported at roughly 75% ZnWO₄, 18% WO₃, and 7% ZnO. I’m at the final discrimination stage: testing whether atomic-coordinate refinement is justified, rerunning the angular choice on the mature model, and challenging the WO₃ assignment with its nearest structural alternative before freezing exports.
+
+The current source coordinates are chemically sensible, but the WO₃ file carries zero displacement parameters because its reference CIF did not report them. I’ll treat coordinates and displacement parameters as explicit model tests—accepting them only if they improve multiple regions without unstable correlations or damaged geometry.
+
+The coordinate tests are behaving as expected for overlapping laboratory data: ZnO’s internal coordinate is unsupported, and unconstrained WO₃ oxygen refinement does not converge. ZnWO₄ shows a small, distributed improvement; I’m separating cation and oxygen contributions and checking parameter significance before deciding whether that refinement is defensible.
+
+The defensible coordinate update is limited: ZnWO₄ positions and the two WO₃ tungsten sites improve several angle regions and converge; WO₃ oxygen and ZnO coordinate refinements are being rejected. Next I’m replacing the accepted WO₃ topology, one at a time, with each clean near-match under the same mature nuisance model and staged scale/cell/strain treatment.
+
+The replacement refinements are still converging; each branch is rebuilding reflection lists and refining scale, cell, then strain from the same saved model. No branch result is being accepted on a partial stage.
+
+Two alternatives are decisively inferior on the complete pattern: P2₁/c (Z=4) stalls near 11.6% Rwp and Pnma near 7.2%, versus 4.74% for the selected monoclinic Z=8 model. The low-symmetry P-1 challenger is slower because of its larger cell parameter set; I’m letting that last near-tie finish rather than judging it early.
+
+The triclinic WO₃ alternative is a genuine near-tie, not a spurious cell match: with extra tungsten-coordinate freedom it reaches 4.724% Rwp versus 4.742% for P2₁/c, but needs eight more refined variables and still has a shift/esd above the stability cutoff. Given room-temperature WO₃ chemistry and the monoclinic model’s tighter convergence, I’m retaining P2₁/c while documenting this symmetry ambiguity. I’m now replacing its zero placeholder ADPs with a constrained, element-wise test.
+
+The matched ADP treatment changed the WO₃ decision. With one positive shared isotropic ADP and fixed reference coordinates, P-1 converges tightly at 4.720% Rwp versus 4.736% for P2₁/c, improves four of five angle bands, and remains preferred after the two extra cell variables are penalized (ΔBIC ≈ 68). I’m therefore switching the submitted WO₃ model to triclinic P-1; the monoclinic model remains the principal uncertainty, not an unreported discarded fit.
+
+The clean three-phase project now contains only ZnWO₄, ZnO, and triclinic WO₃; it reconverges at 4.7203% Rwp with positive fractions and the WO₃ ADP constraint intact. I’m rerunning the mandated angular selector on this updated structural model, then I’ll retest retained broadening terms and leave-one-phase-out behavior before freezing it.
+
+The angular rerun is exercising complete refinements, not just a one-parameter shortcut. The zero and displacement branches have both reconverged without singular variables; the helper is finishing the joint branch and correlation check.
+
+The mature microstructure challenge is running eight matched copies: removal and replacement of ZnWO₄ size broadening, removal and replacement of WO₃ strain broadening, and independent ZnO size/strain tests. This is the final optional-term screen; each result must remain positive and improve the whole range.
+
+The final microstructure screen keeps only two terms: ZnWO₄ isotropic size broadening and WO₃ isotropic microstrain. Removing either materially worsens the fit; alternatives are worse, negligible, or nonphysical (the ZnWO₄ size+strain branch drives strain negative). ZnO broadening and joint WO₃ size+strain are rejected. I’m now doing the last profile/envelope and triclinic texture removal tests.
+
+The triclinic texture ratios remain essentially unity (0.996–1.005) with ≤0.0011 percentage-point Rwp changes, so no preferred-orientation term is justified. Polarization without roughness refines to an impossible 1.45 and fits substantially worse, confirming that the roughness envelope cannot be replaced by that explanation.
+
+All remaining optional profile branches are rejected: adding Gaussian U is 98.2% correlated with V; Lorentzian terms either fail tight convergence, drive retained size to its boundary, or produce a negative width/NaN; axial divergence is 96.6% correlated with specimen displacement. Removing roughness raises Rwp from 4.72% to 8.92% (B-only gives 4.81%), so both retained roughness coefficients have matched-removal support. Next is the three phase leave-one-out test.
+
+WO₃ is unequivocally required: omitting it raises Rwp to 14.45% with large residuals across 20–80°. The other two leave-out fits are still reconverging; omission of the dominant ZnWO₄ phase is already destabilizing the envelope, itself a strong indication that the remaining phases cannot absorb its peak family.
+
+ZnO omission raises Rwp to 6.42% and does not reach tight convergence. The unconstrained ZnWO₄ leave-out branch drives the surface-envelope parameters into overflow, so I rolled that failed branch back and am repeating it with the already-selected roughness values fixed; this yields a finite, conservative leave-out comparison without allowing an unphysical nuisance escape.
+
+The inventory is now fully challenged: removing ZnWO₄, WO₃, or ZnO gives conservative Rwp values of 40.58%, 14.45%, and 6.42%, respectively. Mature rocksalt and zincblende ZnO additions collapse to ~0.002% and effectively zero fraction (one also collapses its cell), so neither is retained. I’m freezing the selected three-phase project and generating the cross-checked deliverables now.
+
+The frozen project passes the GSAS-II audit with no flags: exact saved/regenerated profile agreement, finite positive widths for every reflection, no dropped variables, and max shift/esd 0.00535. I’m exporting CIFs and the full 8,301-point profile from that audited file, then will audit every CIF and verify cross-file fractions/statistics.
+
+All three final CIFs pass the required audits with chemically plausible contacts and no occupancy, duplication, or symmetry flags. The submission schema audit also passes with three unique CIF paths and fractions summing exactly to 1.000000. I’m doing one final numerical readback of the GPX, CSV, CIF list, and JSON before handing over.
+
+Resolved three crystalline phases, normalized over modeled crystalline material:
+
+- ZnWO₄, wolframite P2/c: 73.97 ± 0.13 wt%
+- WO₃, triclinic P-1: 19.21 ± 0.12 wt%
+- ZnO, wurtzite P6₃mc: 6.82 ± 0.08 wt%
+
+Final fit: Rwp 4.720%, Rp 3.602%, GOF 1.248. The principal uncertainty is triclinic versus closely related monoclinic WO₃; P-1 is statistically preferred, but not unequivocal at this resolution. Fractions exclude any unquantified amorphous content.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [ZnWO4.cif](<ATTEMPT_WORKSPACE>/ZnWO4.cif), [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif), [ZnO.cif](<ATTEMPT_WORKSPACE>/ZnO.cif)
+
+All CIF, GPX, profile-regeneration, schema, and cross-file consistency audits passed.
+

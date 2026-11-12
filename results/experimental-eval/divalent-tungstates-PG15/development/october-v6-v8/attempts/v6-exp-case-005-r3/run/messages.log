@@ -1,0 +1,115 @@
+I’ll first inspect the measurement metadata, pattern range/resolution, and the supplied analysis utilities. Then I’ll screen candidate phases, audit atomistic models, and refine competing complete-pattern models with rollback points before exporting the required files.
+
+The chemical inventory points to the Co–W–O system, with CoWO₄ and unreacted precursor polymorphs as obvious hypotheses, but I’ll let the diffraction pattern decide. I’m now mapping peak positions and checking the available search/refinement interfaces so candidate retrieval and refinements are reproducible.
+
+The observed pattern has a distinctive low-angle triplet at 23.46/23.95/24.71° plus many resolved high-angle lines, so this is not a simple cubic spinel-only product. I’ll compare all available Co–W–O, Co–O, and W–O atomistic entries against the full peak set, including polymorph alternatives, rather than assigning from the strongest line alone.
+
+Initial extinction/intensity screening strongly supports two precursor phases: cubic spinel Co₃O₄ and monoclinic WO₃. Several WO₃ database models are metrically similar, so I’m carrying the plausible room-temperature monoclinic alternatives into matched refinements; a malformed Co–W–O entry was rejected by the required CIF audit before fitting.
+
+The first matched refinement reaches Rwp ≈ 4.45%, and both phases remain positive, but the initial three-term Gaussian profile branch is over-correlated. I’ve rolled that nuisance model back to a single refined Gaussian width term and fixed the redundant overall sample scale. I also transformed the clean WO₃ model to a conventional near-orthogonal cell without changing its structure; its audit is clean.
+
+The matched screen cleanly rejects the orthorhombic and small-cell monoclinic WO₃ alternatives (Rwp ≈ 7.78% and 17.62%). The triclinic WO₃ model is competitive at ≈4.45% with no numerical singularity, so I’m retaining it against the clean monoclinic P2₁/c model for a direct replacement test before choosing the structural symmetry.
+
+The source-supported CoWO₄ product hypothesis fails the required add-phase test: its scale refines to the numerical floor and Rwp does not improve. At this stage all strong and medium lines are explained by Co₃O₄ + WO₃; I’ll now check chemically plausible oxide alternatives and the two spinel occupancy models, then proceed to angular/profile branches on the stable two-phase inventory.
+
+The broader oxide inventory tests are running as add-one-phase branches from the same mature baseline, while cobalt-vacancy spinel models are being tested as full replacements. The key acceptance criteria remain positive scale, support beyond overlapped WO₃ peaks, and a stable complete-pattern improvement.
+
+The cobalt-vacancy spinels fit worse than stoichiometric Co₃O₄. CoO, W₁₈O₄₉, W₃O₈, and CoWO₄ refine to zero scale. W₁₀O₂₉ gives a small nominal gain, but it earns that gain mainly by overlapping the WO₃ family and introduces several predicted peaks where the residual is already negative; I’m rejecting it provisionally and will retest it after the profile model matures.
+
+The stable two-phase model has converged without dropped variables (Rwp 4.453%, max shift/esd 0.039). The mandated angular comparison is now evaluating zero-only, specimen-displacement-only, and joint branches while restoring the same cells, scales, background, and width model in each branch.
+
+The angular helper selects specimen displacement only (−577 µm at the default 200 mm radius, Rwp 4.431%); the joint zero/displacement branch is rejected at 99.99% correlation. I’ve now zeroed the hidden default phase broadening contributions and am comparing minimal global width/asymmetry branches from that common state.
+
+The profile branches are computationally slower because resetting the default phase broadening changes every reflection width. Early completions show the machinery is stable; I’m waiting for the correlated multi-term branches to finish so they can be judged on covariance and positivity, not Rwp alone.
+
+All global Gaussian/Lorentzian branches have completed; only the axial-divergence branch is running anomalously slowly, consistent with an unstable asymmetry width expansion. I’m treating runtime/parameter behavior as part of the stability check and will stop that branch if it does not terminate cleanly.
+
+The best global profile so far is the compact W+X pseudo-Voigt branch (Rwp 3.610%, positive widths, no ≥0.90 covariance correlations). W-only degrades to 4.858%; V-containing branches are highly correlated, and U-only angle dependence remains much poorer. I’m now checking whether any additional term or envelope correction survives on top of W+X.
+
+On the W+X baseline, adding Y is stable and gives a multi-angle improvement, so W+X+Y is retained. The surface-roughness explanation lowers Rwp further but is strongly correlated with the WO₃ scale (96.9%) and is not converged; it is rejected. Polarization refines toward a plausible ≈0.69 without that correlation, and I’m reconverging it before phase-specific broadening tests.
+
+The first simultaneous envelope refinements wandered between local profile solutions, so I restarted them with staged nuisance restoration: envelope alone, then scales/background, then cells/displacement, then the retained W+X+Y profile. This is the integrity-preserving comparison; the earlier simultaneous results will not be used.
+
+Both envelope branches fail the stability test once the selected profile is restored: roughness remains 96.8% correlated with WO₃ scale, while polarization cycles among nearby minima. I’ve rolled back to the stable no-envelope W+X+Y model and am testing size and microstrain independently for Co₃O₄ and WO₃.
+
+Phase-specific tests reject Co₃O₄ size (boundary/unstable) and strain (negative microstrain). For WO₃, both positive isotropic size (~0.185 µm) and microstrain (~2623 µstrain) independently improve the full pattern by ≈0.055–0.059 Rwp points, with strain marginally better. I’m testing the permitted joint WO₃ model and retesting Co₃O₄ terms from the updated baseline.
+
+The joint WO₃ size+strain model is unstable and correlated; WO₃ strain alone is retained. Retesting from that state confirms no Co₃O₄ broadening term survives. I’m now screening one-axis March–Dollase texture for low-index directions of each phase, one phase at a time as required.
+
+The WO₃ texture axes have completed; the Co₃O₄ axes are taking longer because their March–Dollase branches are not settling quickly. I’m allowing the matched iteration cap to decide stability and will reject any boundary or oscillatory solution even if it lowers Rwp.
+
+No March–Dollase term is retained: all WO₃ axes are effectively random (MD 0.997–1.004 with ≤0.004 Rwp improvement), and the cubic Co₃O₄ branches diverge. I’m now testing chemically constrained isotropic ADPs by element; this also addresses the zero-ADP values in the literature WO₃ CIF without introducing one free parameter per atom.
+
+Element-separated ADPs are not physically admissible: Co₃O₄ oxygen and WO₃ tungsten both refine negative, so those branches are rejected. I’m checking the smaller one-ADP-per-phase model; if that also fails, ADPs will be fixed at conservative positive values and explicitly reported as not determined by this powder dataset.
+
+The one-ADP model is admissible only for Co₃O₄, but its Rwp gain is negligible and its refined value shifts the phase fraction disproportionately; WO₃ still demands a negative ADP. I’m therefore treating ADPs as undetermined, retaining fixed positive values for export, and testing only limited coordinate subsets (Co₃O₄ oxygen and WO₃ tungsten) with staged nuisance restoration.
+
+The limited Co₃O₄ oxygen-coordinate branch has completed. The four-site WO₃ tungsten-coordinate branch is slower because symmetry leaves substantially more variables; I’m waiting for its staged profile restoration and will audit geometry before accepting any coordinate movement.
+
+The WO₃ coordinate branch is not settling within a normal refinement timescale. That is already a warning sign for a 12-coordinate powder refinement; I’ll allow the bounded stage to complete once, but it will be rejected if covariance, shifts, or geometry are not clean.
+
+Neither coordinate branch is retained: the Co₃O₄ oxygen shift gives negligible improvement, while the WO₃ tungsten branch remains unconverged with correlated coordinate pairs. I’m freezing literature coordinates and setting conservative fixed positive WO₃ ADPs (W 0.005 Å², O 0.010 Å²), then reconverging and repeating the required profile/microstructure checks from that physically admissible state.
+
+The phase inventory is now strongly narrowed to spinel Co₃O₄ plus triclinic WO₃; CoWO₄ and reduced tungsten oxides have not survived the full-pattern tests so far. I’m finishing the matched profile/phase-model removals, then I’ll freeze and audit the replayable GSAS-II project and exports.
+
+The physically reasonable fixed displacement parameters exposed a nuisance-profile instability: the nominal converged project still had a 0.40 shift/esd and the extra Lorentzian angle term changed sign. I’m simplifying that branch and requiring the same model to reconverge with positive generated peak widths before accepting it.
+
+The simpler W–X profile now reconverges cleanly with no strong parameter correlations. I’m giving the lower-Rwp W–X–Y branch one fair extended convergence attempt; if it cannot meet the shift/esd criterion, the stable simpler branch will be retained despite its slightly higher residual.
+
+The W–X–Y branch is definitively rejected: it alternates between two solutions for 20 consecutive refinements. I’ve retained W–X and am now checking whether any single added profile term gives a stable, non-correlated improvement from that mature baseline.
+
+The Gaussian/Lorentzian alternatives have finished; the axial-divergence branch is slower because it is struggling to settle, which itself is a warning sign. Once that branch ends, I’ll compare the complete diagnostics together rather than select on Rwp alone.
+
+None of the extra profile terms qualifies: U and V worsen the fit, Z is 99.35% correlated with X, and axial divergence is 98.58% correlated with specimen displacement. The selected nuisance model remains the compact W–X profile; polarization and surface roughness are now being rechecked against that exact baseline.
+
+Surface roughness is rejected because it is 97.1% correlated with the WO₃ scale. Polarization is more interesting: its refined value is physically plausible and improves the whole-pattern fit substantially, so I’m extending convergence before deciding whether it is genuine envelope information or another oscillatory nuisance solution.
+
+The polarization branch is taking repeated refinements to settle. I’m letting the prescribed stability test finish because this term materially affects the inferred Co₃O₄/WO₃ ratio; it will only be kept if the final covariance and shift diagnostics are clean.
+
+Polarization is also rejected: over 20 refinements it repeats a four-state cycle (max shift/esd 0.21–6.27) and drives the WO₃ microstrain and phase ratio substantially. The mature stable baseline is therefore fixed-polarization W–X, and I’m now performing the final leave-one-out test of WO₃ strain plus independent Co₃O₄ size/strain retests.
+
+The WO₃-strain leave-out branch has completed, and its matched size-only replacement is now running. These tests are deliberately from the same converged baseline so any retained broadening term must earn a reproducible whole-pattern benefit.
+
+The microstructure verdict is stable: removing WO₃ microstrain worsens Rwp from 3.6443% to 3.6847%; size-only is poorer and correlated with X, while joint size/strain and both Co₃O₄ terms are unstable (the Co strain also becomes negative). I’m retaining only isotropic WO₃ microstrain and rerunning the required angular-branch selector from this mature model.
+
+The final angular selector is testing zero offset, specimen displacement, and their joint model with the mature profile held comparable. Its earlier pass favored displacement alone; this rerun checks that downstream profile and microstrain decisions did not change that conclusion.
+
+The joint angular branch is the costly one because zero and displacement can mimic each other. I’m waiting for its covariance check; any near-degeneracy will force the single-parameter displacement model even if the joint Rwp is marginally lower.
+
+The mature angular rerun again selects displacement alone; the lower joint Rwp is invalid because zero and displacement are 99.97% correlated. With nuisance terms now frozen, I’m retesting the chemically relevant CoWO₄ product and the only reduced-W candidate that previously showed a nonzero scale, one at a time from this same baseline.
+
+Both late-addition tests collapse to the numerical scale floor: CoWO₄ contributes <10⁻¹³ modeled weight fraction and W₁₀O₂₉ likewise. Their boundary solutions also worsen Rwp, so neither has independent multi-peak support. I’m doing a short final check of the remaining reduced/secondary oxide candidates before freezing the two-phase inventory.
+
+The remaining CoO, W₁₈O₄₉, and W₃O₈ candidates also collapse to the scale floor. I’m now doing the last structural replacement tests—monoclinic versus triclinic WO₃ and vacancy-spinel versus stoichiometric Co₃O₄—while preserving the mature nuisance model and phase-specific broadening.
+
+The monoclinic WO₃ replacement has finished; both vacancy-spinel alternatives are still converging. Each replacement inherits the selected broadening and fixed displacement parameters, so the comparison tests structure/intensity consistency rather than granting the candidate extra nuisance freedom.
+
+The replacement tests decisively preserve the selected structures: monoclinic WO₃ gives Rwp 3.7695% versus 3.6443% and has a 0.94 cell correlation; the two vacancy spinels give 3.6986% and 3.9553%. The accepted atomistic model is therefore stoichiometric Co₃O₄ plus triclinic WO₃. I’m freezing one final converged project now, then exporting directly from it.
+
+The frozen project converged cleanly (Rwp 3.6443%, GOF 2.1189, max shift/esd 0.0029, no SVD drops or ≥0.90 correlations). Its refined crystalline fractions are 25.997% Co₃O₄ and 74.003% WO₃. I’m regenerating the full-grid profile/reflection lists and running the numerical width audit before export.
+
+Both exported CIFs pass composition, occupancy, symmetry-expansion, duplicate-site, and contact audits with no flags; the regenerated project also passes every total-width and replay check. I’m assembling `fit.csv`, the machine-readable result, and the concise evidence/uncertainty report from this exact audited project.
+
+All required files now exist and the submission schema audit passes with two phases and fractions summing exactly to 1.000. I’m doing one final residual-peak sanity check and cross-file readback before declaring the package complete.
+
+The residual check confirms the remaining large excursions are paired lobes at already modeled strong reflections, not a coherent family of new peaks. Cross-file readback also passes: the CIF paths exist, the fractions exactly match `final.gpx`, and all 8,301 exported calculated/difference values match the regenerated project arrays.
+
+Completed the quantitative Rietveld analysis.
+
+- Co₃O₄ spinel: **25.997 wt%**
+- Triclinic WO₃: **74.003 wt%**
+- Fit: **Rwp 3.6443%, Rp 2.6025%, GOF 2.1189**
+
+No supported CoWO₄ or reduced tungsten-oxide phase was found. Fractions are normalized over modeled crystalline material; amorphous content is not determined. Formal fraction uncertainty is ±0.19 wt%, though practical systematic uncertainty may be a few wt%.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [phase_Co3O4.cif](<ATTEMPT_WORKSPACE>/phase_Co3O4.cif)
+- [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+
+The final GPX, both CIFs, cross-file consistency, and submission schema all passed their supplied audits without flags.
+

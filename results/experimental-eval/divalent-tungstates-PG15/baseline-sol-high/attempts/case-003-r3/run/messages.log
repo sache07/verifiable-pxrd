@@ -1,0 +1,30 @@
+I’ll inspect the measurement metadata and diffraction pattern first, then identify candidate phases and carry the best model through a full GSAS-II refinement. I’ll keep phase count conservative and report any ambiguity rather than forcing unsupported components.
+
+The chemistry strongly suggests scheelite CaWO₄ as the reaction product, but 500 °C is low enough that residual CaCO₃ and WO₃ are plausible. I’m now testing those phases—and nearby polymorphs—against the full peak list, rather than relying on the nominal reaction alone.
+
+The three-phase model is fitting all major peak families: monoclinic WO₃ dominates, with clear calcite and scheelite CaWO₄ contributions. The refinement has reached about 11.5% Rwp before phase-specific broadening; I’m checking that the final broadening terms remain physically sensible and do not distort the quantitative fractions.
+
+The initial fraction estimates are approximately 12 wt% CaWO₄, 54 wt% WO₃, and 34 wt% CaCO₃. I found and removed an exact scale-factor redundancy in the first project pass; the final pass fixes the global sample scale and leaves only identifiable phase scales, so the reported fraction uncertainties and saved covariance matrix are meaningful.
+
+The redundancy is resolved and the fractions are stable to about 0.2 wt% across passes. One remaining numerical issue is a 97% correlation between two global peak-width coefficients; I’m fixing one at its refined value and completing convergence, which preserves the fitted line shape while removing that ill-conditioned direction.
+
+The final project now converges cleanly with no singular parameters. The modeled crystalline composition is 54.35 wt% WO₃, 33.72 wt% calcite, and 11.93 wt% scheelite CaWO₄; the fractions sum exactly to 100%, and the exported profile is arithmetic-consistent (`difference = observed − calculated`) over the refined range.
+
+Completed the three-phase GSAS-II refinement:
+
+- Monoclinic WO₃: 54.35 wt%
+- Calcite CaCO₃: 33.72 wt%
+- Scheelite CaWO₄: 11.93 wt%
+
+Fit: Rwp 10.46%, Rp 7.66%, GOF 4.38. Fractions are normalized over crystalline phases; realistic uncertainty is a few wt% due to profile calibration, overlap, and possible microabsorption.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [WO3_monoclinic.cif](<ATTEMPT_WORKSPACE>/WO3_monoclinic.cif)
+- [CaCO3_calcite.cif](<ATTEMPT_WORKSPACE>/CaCO3_calcite.cif)
+- [CaWO4_scheelite.cif](<ATTEMPT_WORKSPACE>/CaWO4_scheelite.cif)
+

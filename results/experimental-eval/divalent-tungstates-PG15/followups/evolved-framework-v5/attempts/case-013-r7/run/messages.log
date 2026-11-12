@@ -1,0 +1,98 @@
+I’ll first inspect the specimen metadata, pattern format, and the frozen analysis toolkit/reference index. Then I’ll establish the chemically ordinary phase inventory, refine it in GSAS-II, and only investigate residual families that remain coherent.
+
+The chemistry points first to Pb–W–O products plus residual PbO/WO₃, but I won’t assume that inventory. I’m now extracting peak families and querying only the frozen COD index for exact Pb/W/O compositions and precursor structures.
+
+Three coherent families are already evident: scheelite PbWO₄ dominates; monoclinic WO₃ accounts for the 23–25° triplet and related lines; orthorhombic massicot PbO accounts for the 29.3/30.6/38.1/53.4/60.5/63.3° series. I’m taking those three into a full-profile refinement before considering any additional phase.
+
+The first GSAS-II setup exposed a missing optional background package, not a scientific failure. I’m replacing that convenience call with a local rolling-quantile baseline and keeping the same replayable Chebyshev background in the project.
+
+The three-phase screen converged to a positive inventory and roughly 79/10/12 wt% before unstable broadening terms were introduced. Those later terms drove outside physical bounds, so I’m treating them as diagnostic only and rolling back to the physical cell/profile checkpoint. Next I’m comparing same-composition references and mapping its residual peak families.
+
+The remaining family is now indexed: its strongest lines at 25.92, 29.18, 30.63/31.04, 34.86, 43.41, 47.29, 51.95 and 53.89° match the C2/m Pb₂MoO₅ framework across the pattern. With Mo→W this is Pb₂WO₅, a chemically supported Pb-rich intermediate in a 1:1 PbO/WO₃ reaction. I’m adding that analogue-derived model and will require a stable positive scale and physical Pb–O/W–O geometry before accepting it.
+
+All coherent reflection families now index to five accepted phases, so I’m stopping phase/prototype search. The room-temperature monoclinic WO₃ neutron model gives a marginally better checkpoint than the rounded alternative, while triclinic WO₃ drives nonphysical calibration and fits worse. I’m now refining the accepted inventory from the physical pre-profile checkpoint, with bounded parameters and geometry checks after heavy- and oxygen-coordinate stages.
+
+The five-phase inventory is now indexed. Before final refinement, I’m checking a setting-dependent litharge multiplicity issue so its PbO stoichiometry—and therefore its weight fraction—is correct, then I’ll rerun the bounded physical profile refinement.
+
+The check confirmed a real import trap: the COD litharge file is in P4/nmm origin choice 1, and GSAS-II had interpreted it as Pb₂O. I converted it explicitly to the equivalent origin-2 sites; GSAS-II now gives PbO with multiplicities 2+2 and the expected 2.31 Å Pb–O contact. I’m rebuilding the five-phase checkpoint from that corrected model before any fractions are finalized.
+
+The corrected litharge model is not a cosmetic change: it lowers the diagnostic five-phase Rwp from about 12.3% to 11.2% and gives a stable positive litharge contribution near 4–5 wt%. The bounded branch is now separating common instrumental width from phase-specific size/strain without allowing negative broadening terms.
+
+The refinement is still converging through the staged width terms. I’m retaining each checkpoint independently, so any later parameter that reaches a bound or destabilizes geometry can be discarded without losing the best physical state.
+
+No failure has surfaced; this branch is simply expensive because all 8,282 points and five phase profiles are being recalculated at each least-squares cycle. I’ll inspect the physical bounds and covariance as soon as the final checkpoint returns.
+
+The best clean checkpoint is the polarization stage at Rwp 10.49% (GOF 3.00). I’m rejecting the roughness branch: it drove sample displacement and SH/L to bounds and made the two roughness terms 99.95% correlated. Three width terms also landed exactly at physical boundaries; I’ll fix those at the boundary instead of pretending they are independently determined.
+
+I’m screening only the five physically allowed March–Dollase axes, with 0.7–1.4 bounds and all structures fixed. Each test reoptimizes scales, so an apparent texture gain must come from relative reflection intensities rather than a simple scale shift.
+
+The texture screen is still running, with no numerical error. I’ll accept an axis only if the ratio stays interior to the generator’s physical range and the same phase’s alternative axes fit materially worse.
+
+This screen is slower than expected because GSAS-II rebuilds reflection lists for each branch. The branch count is finite (25) and each result is preserved, so I’m letting it complete rather than drawing conclusions from a partial axis ranking.
+
+The full axis ranking is nearly the last model-selection step. After it returns, I’ll combine only supported texture terms, do one final joint refinement, validate all interatomic distances, and export directly from that exact project.
+
+The screen has exceeded the quick estimate but remains bounded; I’m not widening the search. Its purpose is specifically to avoid an unsupported intensity correction in the final model.
+
+All 25 branches use the same starting checkpoint and bounded one-parameter model; no branch can silently replace the accepted phase inventory. I’ll report the final texture choice and reject any boundary-clamped candidates.
+
+The long runtime reflects repeated full-pattern least squares, not additional phase searching. I’m at the end of the predefined texture set and will move straight to the final joint checkpoint once it completes.
+
+Two texture terms are genuinely supported and axis-specific: Pb₂WO₅ [100] (MD ≈ 1.14) and massicot PbO [100] (MD ≈ 0.86). Their individual Rwp gains are 0.134 and 0.098 points; all PbWO₄ axes are effectively unity, and the apparent litharge [111] solution hits the 0.7 bound, so those are rejected.
+
+A joint all-parameter texture refinement improved Rwp to 10.19%, but I’m not accepting that checkpoint: it pushed displacement and axial divergence to their limits and collapsed two crystallite sizes. I’m transferring the two supported texture ratios onto the prior physical profile checkpoint and reoptimizing only scales and texture, which keeps the calibrated widths intact.
+
+I found a GSAS-II scripting quirk in the screening harness: clearing the background first returns early, leaving calibration flags active. The physical checkpoint itself is unaffected, but the axis screen was partially coupled to calibration. I’ve corrected the flag order and am rerunning the finite texture comparison with calibration truly fixed.
+
+The corrected branches now vary only five phase scales plus one bounded MD ratio; no zero, displacement, or profile variable is active. This gives a clean test of reflection-intensity support.
+
+No numerical failures are occurring. Once the corrected ranking returns, I’ll discard the earlier coupled texture branches and use only this fixed-profile evidence.
+
+The rerun remains within the predefined 25 branches. Its results will determine whether one, two, or no texture terms survive into the final project.
+
+The pure intensity screen is confirming the same fixed structural state on every branch; the runtime is dominated by full-profile recalculation rather than extra model complexity.
+
+The corrected ranking confirms both selections cleanly: Pb₂WO₅ [100] gains 0.128 Rwp points and massicot [100] gains 0.093, while other accepted phases are negligible or boundary-clamped. I’m now producing the combined fixed-profile checkpoint from this validated result.
+
+The fixed-profile combined model is stable at Rwp 10.27% with no frozen variables. I’m doing one last finite profile test: uniaxial microstrain along the three generator-supported axes for only the three phases that actually showed nonzero strain.
+
+Each anisotropy branch starts from the same isotropic profile and refines only two bounded strain widths plus scales and the already accepted texture ratios. Boundary or implausible axial ratios will be rejected.
+
+The anisotropy screen is still converging without failures. This is the final optional complexity test; no further phase or prototype search is being performed.
+
+Because only nine branches are tested, I’m waiting for the complete ranking rather than selecting from a partial result. The final model will retain isotropic strain unless one axis is both interior and clearly superior.
+
+The remaining calculation is still the same bounded nine-branch screen. Once it finishes, I’ll either transfer a supported axis or close the profile model at the clean isotropic checkpoint.
+
+Only one anisotropic term survives the physical test: Pb₂WO₅ microstrain along [100], with axial/equatorial ratio 0.267 (inside the allowed 0.25–4 range), no frozen variables, and a phase-specific 0.036-point Rwp gain. All massicot solutions hit limits; litharge’s best ratio falls below the physical range. I’m retaining only the Pb₂WO₅ term.
+
+The final joint checkpoint is stable: Rwp 10.236%, GOF 2.923, no frozen or dropped variables, both texture ratios interior, and Pb₂WO₅ strain ratio 0.312. I’m now validating exported stoichiometries and nearest-neighbor geometry before freezing the deliverables.
+
+All structural exports passed the chemistry/geometry check. The profile export has all 8,282 points, but an exact binary float comparison against the decimal CSV grid tripped on representation-level differences; I’m quantifying that tolerance and then rerunning the export validation.
+
+The export now validates exactly: 8,282 original counts are unchanged, the 2θ grid differs only by ≤1.4×10⁻¹⁴° binary roundoff, all phase fractions sum to 1.000000, and the final project has no frozen variables. I’m writing the concise evidence/uncertainty record and machine-readable result next.
+
+The requested files are written. I’m doing the final consistency pass now: reload and replay `final.gpx`, compare its fractions/statistics to `result.json`, verify every CIF formula, and check every `fit.csv` row against the project arrays.
+
+Completed the five-phase GSAS-II refinement.
+
+| Crystalline phase | Weight fraction |
+|---|---:|
+| PbWO₄, scheelite | 60.72(22)% |
+| Pb₂WO₅, C2/m analogue | 14.89(24)% |
+| PbO, massicot | 7.79(13)% |
+| PbO, litharge | 7.30(12)% |
+| WO₃, monoclinic | 9.30(15)% |
+
+Final fit: Rwp 10.236%, Rp 6.845%, GOF 2.923. The project replays successfully with no frozen variables.
+
+The principal uncertainty is Pb₂WO₅: its topology is strongly supported, but its CIF is derived from the isostructural Pb₂MoO₅ framework, so exact oxygen positions are not reliably determined. Fractions exclude any amorphous content.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r7/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r7/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r7/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r7/workspace/final.gpx)
+- CIFs: [PbWO₄](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r7/workspace/phase_PbWO4.cif), [Pb₂WO₅](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r7/workspace/phase_Pb2WO5.cif), [massicot](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r7/workspace/phase_PbO_massicot.cif), [litharge](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r7/workspace/phase_PbO_litharge.cif), [WO₃](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-013-r7/workspace/phase_WO3.cif)
+

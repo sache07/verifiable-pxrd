@@ -1,0 +1,44 @@
+I’ll inspect the pattern, metadata, and available crystallographic tooling first, then identify candidate phases and carry the best model through a full GSAS‑II refinement. I’ll keep phase identification and quantitative fractions evidence-based, and flag anything the diffraction data cannot support reliably.
+
+The synthesis context points first to Sr–W–O products (most plausibly scheelite SrWO₄), but I’m treating that only as a hypothesis: residual precursors or secondary strontium tungstates could materially affect the refinement. I’m now extracting the peak set and checking it against the local structure-search resources before building the GSAS‑II model.
+
+The peak evidence now separates into at least two families: scheelite SrWO₄ accounts for the dominant reflections across the full 10–100° range, while the 23–25° triplet is characteristic of monoclinic WO₃. Several additional strong lines (notably near 29.75, 32.56, and 44.62°) are not explained by either, so I’m testing Sr-rich ternary candidates and residual SrCO₃ rather than forcing those lines into the background.
+
+The first GSAS‑II fit recovers a physically coherent global zero shift (~+0.350°) and expanded SrWO₄ cell, confirming the peak-position assignment. Its Rwp is still ~19.7%, as expected for an incomplete one-phase model. I’ve also removed an exact scale-factor correlation in the trial setup; the next comparisons will therefore yield meaningful phase-scale and weight-fraction tests.
+
+The monoclinic WO₃ addition lowers Rwp by about one absolute percentage point and refines to a nonzero scale, while quick tests of SrO and high-pressure Sr₃W₂O₉ collapse toward zero or become unstable. I’m finishing a polymorph comparison and minor-phase audit now; this is important because WO₃ variants share many peaks, but only one should reproduce the resolved 23–25° triplet and the higher-angle splitting.
+
+A key structural clue has emerged: the unexplained line sequence is perovskite-like. Peaks near 22.09, 30.90, 44.67, 48.57, 54.1, and 62.54° follow the even-reflection series of an ordered double-perovskite cell, which is chemically consistent with Sr₃WO₆ (equivalently Sr₂(SrW)O₆). I’m now testing cubic and tilted double-perovskite models, including lower-symmetry templates, because the extra 29.75 and 32.63° lines indicate that a simple cubic model may be insufficient.
+
+The three-phase model is now robust to starting scale and gives about 79.8 wt% SrWO₄, 12.0 wt% WO₃, and 8.2 wt% monoclinic Sr₃WO₆. The Sr₃WO₆ assignment is especially strong: one P2₁/n cell simultaneously places the distinctive 29.75, 30.895, and 32.63° split group plus the 22.09 and 44.67° lines. I’m testing only physically motivated intensity corrections and limited coordinate refinements now; I’ll reject any variant that improves Rwp by overfitting or produces implausible geometry.
+
+The three-phase model is now chemically and diffraction-consistent: scheelite SrWO₄, monoclinic WO₃, and a minor ordered Sr₃WO₆ phase. I’m doing the final convergence pass and then exporting every requested artifact directly from that same GSAS-II project so the CIFs, fractions, and profile remain internally consistent.
+
+The fit is stable, with one expected profile-parameter correlation (U/V peak-width terms) but no singular variables. The minor Sr₃WO₆ assignment is the least certain part: its lattice and diagnostic reflections are resolved, while its atomic coordinates must remain fixed to an isostructural Sr₂CaWO₆ analogue because this laboratory pattern does not constrain them independently.
+
+The final consistency check exposed a meaningful limitation rather than a file problem: peak positions are well explained, but several low-angle intensities—especially around 30°—remain imperfect, driving Rwp to 14.35%. I’m checking whether this is a defensible texture/microstructure effect or evidence for an omitted crystalline phase before I lock the report.
+
+The residual is not a fourth phase: allowing a single March–Dollase texture term for the minor Sr₃WO₆ phase along its [100] direction reduces Rwp from 14.35% to 12.57% and specifically restores the otherwise-underpredicted 200 reflection at 29.75°. That is physically plausible for a pressed reflection specimen, but the texture is fairly strong, so its correlation with the minor-phase fraction will be called out explicitly.
+
+The selected refinement is now genuinely converged (maximum shift/σ = 0.010). The final crystalline normalization is 79.76 wt% SrWO₄, 12.38 wt% WO₃, and 7.86 wt% Sr₃WO₆, with Rwp = 12.53%; I’m recording the model-dependent uncertainty—especially the texture-sensitive minor phase—rather than presenting the formal least-squares errors as absolute accuracy.
+
+Completed the GSAS-II Rietveld analysis.
+
+| Phase | Space group | Crystalline wt.% |
+|---|---|---:|
+| SrWO₄ | I 41/a | 79.76 |
+| WO₃ | P 21/n | 12.38 |
+| Sr₃WO₆ | P 21/n | 7.86 |
+
+Final fit: Rwp 12.53%, Rp 8.59%, GOF 3.55. Fractions are normalized over modeled crystalline phases. Sr₃WO₆ is texture-sensitive and its coordinate model is analogue-based; its realistic systematic uncertainty is approximately 2–3 wt.%. Amorphous content cannot be quantified without an internal standard.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r6/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r6/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r6/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r6/workspace/final.gpx)
+- [SrWO4.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r6/workspace/SrWO4.cif)
+- [WO3.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r6/workspace/WO3.cif)
+- [Sr3WO6.cif](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement3-20261111/attempts/P0-exp-case-014-r6/workspace/Sr3WO6.cif)
+

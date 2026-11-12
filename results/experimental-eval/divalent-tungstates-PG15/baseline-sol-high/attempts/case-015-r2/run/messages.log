@@ -1,0 +1,38 @@
+I’ll inspect the diffraction data, metadata, and available crystallography tooling first, then identify candidate phases and build a quantitative GSAS-II refinement. I’ll preserve uncertainty explicitly if the pattern does not support a unique phase assignment.
+
+The chemistry points naturally toward zinc tungstate, but that is only a starting hypothesis: unreacted WO₃/ZnO or polymorphs could contribute. I’m now checking peak positions and the locally installed indexing/database/refinement interfaces before choosing structural candidates.
+
+The observed peak set is consistent with wolframite-type monoclinic ZnWO₄: the characteristic low-angle line near 15.7° and the dense groups at 23–25°, 30–31°, and 36.5° all align with that model. The available COD alternatives labeled “ZnWO₄” are actually Cu-substituted triclinic compounds, so I’m using the chemically correct pure-Zn P2/c structure as the refinement seed and will test whether any precursor phase is still required by residual peaks.
+
+The first GSAS-II run is underway with Poisson counting weights, a 12-term smooth background, the specified Cu Kα doublet, and the ZnWO₄ structural model. I’m staging scale/background, lattice and zero, profile/broadening, then coordinates so unstable parameter correlations are easier to catch.
+
+The initial refinement confirms the phase assignment but exposed an avoidable exact correlation between the project scale and the one-phase scale. I’ll remove that redundant degree of freedom and simplify profile refinement before treating the statistics as final; the current intermediate Rwp has already dropped from 38% to about 18%.
+
+The residual analysis reveals a second crystalline phase that the one-phase fit cannot absorb: clear maxima at about 23.28°, 26.68°, 28.9°, 33.35°, 34.30°, 41.56°, and 50.02° form the fingerprint of monoclinic WO₃. I’m adding WO₃ and will then test ZnO separately; this is a genuine phase-content correction, not merely a profile adjustment.
+
+The three-phase model is now well supported: ZnO contributes its independent lines near 31.9°, 36.3°, 47.6°, 56.7°, and 62.9°, while WO₃ accounts for the 23.2–24.4° triplet and its higher-angle series. At matched refinement stages, adding ZnO lowers Rwp and refines to a positive fraction well above its formal uncertainty. The current approximate crystalline fractions are 77% ZnWO₄, 16% WO₃, and 7% ZnO; I’m now converging the model and checking that residuals do not justify a fourth phase.
+
+The three-phase refinement is stable and the remaining mismatch is dominated by peak-shape/intensity systematics rather than unmatched peak positions. I’m limiting coordinate refinement to W/Zn heavy-atom positions supported by Cu XRD; refining all oxygen coordinates would create precision the data do not justify.
+
+The deliverables have been generated once, but extending the refinement from the rounded 10–100° interval to the exact measured endpoints perturbed convergence slightly (maximum shift/s.u. 2.62). I’m doing one final convergence pass on the exact full range before validating the CIF/project consistency and file schemas.
+
+The exact-range project is now converged cleanly (maximum shift/s.u. 0.036). I fixed the previously determined profile coefficients in the final pass because the instrument profile was not independently calibrated; this removes the U/V correlation from the final normal matrix while retaining the fitted line shape. Final crystalline fractions are 76.31% ZnWO₄, 16.45% WO₃, and 7.24% ZnO.
+
+Identified three crystalline phases:
+
+- ZnWO₄: 76.31 wt%
+- Monoclinic WO₃: 16.45 wt%
+- Wurtzite ZnO: 7.24 wt%
+
+Fractions are normalized over modeled crystalline material. Final fit: Rwp 11.681%, Rp 9.079%, GOF 3.086. Formal uncertainties are optimistic; realistic fraction uncertainty is discussed in the report.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [ZnWO4.cif](<ATTEMPT_WORKSPACE>/ZnWO4.cif)
+- [WO3.cif](<ATTEMPT_WORKSPACE>/WO3.cif)
+- [ZnO.cif](<ATTEMPT_WORKSPACE>/ZnO.cif)
+

@@ -1,0 +1,78 @@
+I’ll first inspect the measurement metadata, pattern shape, and the supplied tungstate guidance, then identify candidate phases and build/refine the final GSAS-II model. I’ll keep phase assignments tied to specific peak and refinement evidence, and flag anything the data cannot support reliably.
+
+The chemistry points first toward Zn–W–O products, but I won’t assume a single ZnWO₄ phase: at 900 °C the scan can still contain residual ZnO/WO₃ or another zinc tungstate. I’m now mapping the installed COD search and GSAS-II interfaces and extracting the observed peak list before choosing structures.
+
+The COD inventory is unusually compact for this chemistry: one monoclinic ZnWO₄ reference, two lower-symmetry ZnWO₄-derived models, plus ZnO and several WO₃ polymorphs. I’m comparing all of them against the full scan, including Kα₂ splitting and a free angular offset, rather than selecting by formula alone.
+
+The dominant phase is now clear: monoclinic wolframite-type ZnWO₄ (P2/c). Several weaker reflections are not explained by that phase—especially near 23.24°, 26.70°, 28.89°, and 33.40°—so I’m testing residual WO₃ and ZnO explicitly. Those weak peaks, not the precursor list by itself, will decide whether the final model is one, two, or three phases.
+
+The first GSAS-II trials confirm P2/c is far better than the triclinic alternatives even before profile refinement (the wrong model remains around 42% Rwp while P2/c drops near 22%). I also found two refinement-control issues—duplicate overall/phase scales and near-singular zero/height terms—and am tightening those controls before comparing minor phases, so the reported fractions are not artifacts of parameter correlation.
+
+The controlled screening refinements are running for four inventories: ZnWO₄ alone, +WO₃, +ZnO, and +both precursors. This directly tests whether each weak-peak family earns a positive phase scale and a meaningful Rwp reduction under the same background/profile model.
+
+The trials are still converging; the scan’s 8,301 points make each full-profile cycle somewhat slow. I’m letting all four use identical refinement depth so the model comparison remains fair.
+
+No intervention is needed yet—the jobs are active rather than stalled. Once they finish, I’ll compare both fit improvement and whether the inferred minor-phase fractions are chemically/structurally stable across alternative WO₃ polymorphs.
+
+The simultaneous fits are CPU-bound but progressing. I’ll avoid adding more refinement jobs until these finish; the next pass will be narrower and focused only on the supported minor phase(s).
+
+These are taking longer than expected because four refinements are sharing the available cores, but they remain within a normal full-pattern runtime. I’ll use their saved intermediate projects even if one model fails a late cycle, so the comparison work is not lost.
+
+At least one model is still in its final broadening cycles; the projects autosave after each refinement, so there is no risk of losing the completed comparisons. I’ll inspect convergence histories immediately after the batch returns.
+
+The batch remains active and saved. The long runtime itself is informative: for subsequent tests I’ll reuse the best completed project and add/swap only one phase, instead of rebuilding every model from raw data.
+
+The three-phase trial is likely the slow member because its scale/cell/broadening covariance is much larger. I’m giving this batch one more interval; if it still does not return, I’ll stop only the orchestration and recover the already-saved project states individually.
+
+I stopped the overlong batch orchestration after confirming that each GSAS-II project had been autosaved. I’m now reading the saved residuals directly and will continue from the best state rather than rerunning the completed early cycles.
+
+The model comparison is decisive: ZnWO₄+WO₃ reaches 9.60% Rwp, and adding ZnO lowers it to 7.96%; ZnO without WO₃ is only 13.62%. The three fitted fractions also satisfy the 1:1 precursor mass balance closely, independently supporting all three phases. I’m now replacing the screening broadening solution—which allowed nonphysical signed strain—with bounded, phase-specific crystallite size/strain refinement before final export.
+
+The physical-profile refinement is now running from the saved three-phase solution with bounded instrument terms, 0.04–1.5 µm crystallite sizes, and nonnegative microstrain. This is the key check that the 7.96% screening fit was not bought by unphysical peak narrowing.
+
+The bounded model is still converging normally. Because the common instrument profile and three phase-specific broadening terms are coupled, I’m keeping the staged sequence intact rather than interrupting it at an intermediate local minimum.
+
+The constrained fit remains chemically valid but worsens to 12.83% Rwp and drives crystallite sizes to the lower bound; unexpectedly, the common U/W/X terms stayed exactly at their reset values. That indicates those terms remained frozen from the screening project despite their flags. I’m clearing the saved frozen-variable objects explicitly and reactivating the common profile before judging the physical fit.
+
+The corrected run now includes U, W, X, and axial divergence in the varying set; the earlier issue was an API control-flow quirk where combining `Background=True` with instrument settings skipped the latter. The rerun is proceeding from the same three-phase starting point.
+
+The common-profile stage has completed and the run is now in phase-specific broadening. I’m retaining the physical bounds throughout; any phase that remains pinned at a limit will be reported as a model limitation rather than silently accepted as a precise microstructural result.
+
+The final bounded cycle is slower because several parameters are approaching constraints and GSAS-II is recomputing the active set. The project is saved between stages, so I can compare the common-profile and phase-profile states even if the last cycle offers no improvement.
+
+With the instrument terms genuinely active, the physical model converges to 10.36% Rwp with fractions 75.4% ZnWO₄, 16.8% WO₃, and 7.8% ZnO. The common Gaussian width reaches its allowed upper bound, while all phase sizes remain positive (~0.06–0.08 µm) and isotropic strain goes to zero. Next I’m checking residual shape, WO₃ polymorph uniqueness, and physically plausible anisotropy/texture before selecting the final refinement.
+
+I’m reproducing and saving the physically bounded 7.77% minimum as its own project, stopping before the later unstable cycle that worsened the fit. This gives a clean checkpoint for small, one-effect-at-a-time tests of roughness, texture, and coordinates.
+
+The reproducibility run has passed the common-profile stage and is in its single phase-broadening stage. Once saved, all subsequent variants will branch from exactly this checkpoint, making any claimed improvement attributable to the added physical effect.
+
+The saved checkpoint is reproducible at 7.7708% Rwp with fully physical broadening and fractions 76.17/16.93/6.90 wt%. I’m branching from it with every existing flag frozen, then testing only one new effect per branch: specimen roughness, angular shift, ZnWO₄ coordinates, and each allowed March–Dollase texture axis.
+
+The one-effect branches all appeared to worsen the fit, even when only linear phase scales moved. That exposes an important GSAS-II detail: the 7.77% value was the residual before the last parameter update, while the saved project may require a fresh forward calculation. I’m now replaying each checkpoint with zero refinement cycles; only replay-consistent statistics will be used for the final result.
+
+Replay confirms the unbounded screening project is internally consistent at 7.57% Rwp, while the bounded projects are 10.36–14.86%. The remaining issue is specifically signed microstrain, not phase identity or fractions. I’m testing whether a broader but still valid common profile plus positive crystallite-size broadening can reproduce the same line shapes without negative strain.
+
+Two line-shape variants are running from the replay-consistent 10.36% model: one refines only positive crystallite size plus its Gaussian/Lorentzian mixing, and the other also allows the common instrument profile to rebalance. Both retain zero microstrain and explicit bounds.
+
+The size-mixing fits are still active; this is expected because each peak now has derivatives with respect to both size and profile mixing. The projects are isolated, so one branch cannot contaminate the other.
+
+Allowing Gaussian/Lorentzian size mixing improves the replayed physical model to 9.31% Rwp. The Gaussian width is positive over the measured range despite a negative Caglioti U term, so the profile is mathematically valid; however ZnO size reached the exploratory lower bound. I’m continuing with a stricter 0.04 µm floor, small damping, and replay after every short iteration.
+
+The all-at-once continuation is over-correlated (W/X and size/mixing pairs), so GSAS-II correctly rejects the step rather than improving it. I’m splitting the optimization into orthogonal blocks—common width, size, and mixing—while keeping the current 9.26% replayed model fixed as the baseline.
+
+Blockwise refinement is stable and replay-consistent at 9.074% Rwp. I’m now retesting specimen and structural effects from this valid baseline; the earlier tests branched from a non-replayed checkpoint and were therefore not diagnostic.
+
+Surface roughness is strongly supported: its replayed Rwp falls from 9.07% to 7.36%, while coordinate refinement alone gives 8.66%. The roughness A parameter reached my exploratory 0.01 floor, so I’m tightening it to the laboratory’s physically plausible 0.05 floor and testing roughness together with the independently helpful ZnWO₄ coordinate adjustment.
+
+The combined physical model now replays at 6.98% Rwp. ZnWO₄ coordinate shifts are only about 0.003–0.05 Å and statistically supported, consistent with a modest reference mismatch rather than a different structure. I’m checking whether the remaining residual belongs to WO₃/ZnO coordinates, texture, or specimen shift; unsupported additions will be discarded.
+
+The marginal WO₃/ZnO coordinate gains are not defensible: WO₃ oxygen sites move by up to ~0.8 Å and ZnO’s oxygen shifts ~0.21 Å, far beyond what this minor-phase data support. I’m rejecting those models. The fitted specimen shift is small (21 ± 10 µm) and plausible; I’m testing only WO₃ heavy-atom coordinates and the remaining texture axes before finalizing.
+
+I’ve narrowed the pattern to monoclinic ZnWO₄ with residual monoclinic WO₃ and wurtzite ZnO. I’m checking the last physically constrained refinements now, then I’ll freeze the best replay-consistent GSAS-II model and validate the exported CIFs and profile.
+
+The texture tests refined essentially to unity, so there is no evidence for preferred orientation. Refining only the two WO₃ tungsten positions gives a small, replayable improvement with sub-0.1 Å shifts; I’m testing whether the modest specimen-displacement correction remains justified alongside that model.
+
+The displacement correction shifts the lattice constants slightly, so I re-equilibrated the three unit cells. That lowers Rwp to 6.80% and converges cleanly; I’m doing one final blockwise pass to remove any order-of-refinement bias before export.
+
+The final profile pass exposed a better surface-roughness solution that is interior to the physical bounds (rather than pinned at a limit), improving Rwp to 6.58%. I’m converging that correction and then will stop adding effects—the preferred-orientation and extra-coordinate tests were unsupported.
+

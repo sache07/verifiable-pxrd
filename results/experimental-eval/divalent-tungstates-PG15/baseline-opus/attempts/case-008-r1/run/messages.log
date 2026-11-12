@@ -1,0 +1,33 @@
+I'll start by examining the inputs.
+
+Clear wolframite (MnWO4) match, plus extra lines consistent with residual WO3. Let me verify the WO3 hypothesis quantitatively.
+
+Now let me build the input files and starting structures.
+
+Now set up the GSAS-II refinement.
+
+Now the report.
+
+Done. Summary of the analysis:
+
+## Result
+
+**Two crystalline phases**, from the MnO + WO₃ 900 °C product:
+
+| phase | space group | weight fraction |
+|---|---|---|
+| MnWO₄ (wolframite / hübnerite) | *P*2/*c* | **0.978** ± 0.005 |
+| γ-WO₃ (unreacted precursor) | *P*2₁/*n* | **0.022** ± 0.005 |
+
+Rietveld fit (GSAS-II 5.7.8): **R_wp = 3.98 %**, R_p = 3.02 %, GOF = 1.44, R_F = 1.14 % (MnWO₄) / 4.1 % (WO₃).
+
+## Key evidence
+- Every strong line indexes on the wolframite cell (refined a = 4.83209(4), b = 5.75822(4), c = 4.99749(4) Å, β = 91.2184(5)°), and the refined coordinates stay within ~0.005 fractional units of the published hübnerite structure, giving sensible Mn–O (2.10–2.29 Å) and W–O (1.80–2.14 Å) distances.
+- Four weak lines (23.46°, 24.68°, and the 33.55/33.86/34.47° triplet) cannot belong to MnWO₄ and match γ-WO₃. Including it drops R_wp 4.60 → 3.98 % (χ² 23107 → 17235); its scale is 45σ from zero.
+- MnO, Mn₃O₄, Mn₂O₃ ruled out: trial third phases refine to zero (MnO 0.07(5) wt%, i.e. < ~0.2 wt% at 3σ), and their strongest lines in clean regions leave ≤ 0.1 % of the main peak in residual.
+
+## Stated limits
+WO₃'s atomic coordinates were held at literature values (2 wt%, fully overlapped — not determinable here), and the β angle had to be held to keep the cell stable; the polymorph assignment rests on peak positions, so the closely related triclinic/orthorhombic WO₃ distortions and slight WO₃₋ₓ sub-stoichiometry can't be excluded. Fractions are normalized over modelled crystalline phases only — no internal standard, so amorphous content is unquantified. A large specimen displacement (−0.6 mm) correction and an empirical Suortti roughness correction were needed; the latter is correlated with U_iso, and the displacement limits absolute cell accuracy to ~0.03 % despite the small statistical esds.
+
+Deliverables in the workspace root: `MnWO4.cif`, `WO3.cif`, `fit.csv`, `result.json`, `report.md`, `final.gpx`, plus `fit.png` and the scripts in `scripts/` (`refine_final.py` regenerates the project; intermediate projects are kept in `work/`).
+

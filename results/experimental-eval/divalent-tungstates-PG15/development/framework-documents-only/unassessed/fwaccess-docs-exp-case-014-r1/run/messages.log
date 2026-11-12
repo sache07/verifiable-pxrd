@@ -1,0 +1,36 @@
+I’ll inspect the pattern, metadata, and the frozen framework notes first, then identify candidate phases and refine them against the data in GSAS-II. I’ll preserve a reproducible project and validate that every submitted fraction/profile comes directly from that final project.
+
+The chemistry makes SrWO₄ the obvious principal candidate, but the task explicitly allows residual SrCO₃/WO₃ and intermediate strontium tungstates. I’m now extracting peak positions and checking the local filtered structure library so the phase inventory is driven by the entire pattern, not just the strongest lines.
+
+Peak positions now show a consistent specimen-displacement/cell-strain trend for scheelite SrWO₄ across 18–95° 2θ. The remaining triplet near 23.5–24.7° and its higher-angle companions are characteristic of monoclinic WO₃; I’m screening all local WO₃ references in actual GSAS-II refinements to distinguish the closely related polymorph/settings and to test whether any third phase is warranted.
+
+The candidate screen is computationally heavier than a stick-pattern match because each trial is being refined through background, phase scales, specimen shift, cells, and phase broadening. Three WO₃ references have finished; the remaining closely related cells are still converging. I’m keeping the instrument profile fixed during this comparison to prevent it from masking a wrong phase choice.
+
+The residual pattern resolves into a chemically coherent third component: cubic SrO. Its reflections coincide with the otherwise unexplained series near 30.2, 35.3, 50.2, 59.6, 62.5, 73.8, 83.9, and 94.1°. That gives the expected partial-reaction inventory—SrWO₄ plus paired residual/decomposition products WO₃ and SrO—so I’m testing the full three-phase model now.
+
+The local library lacks Sr₃WO₆ itself, but it contains two independent isostructural parents: Ca₃WO₆ and Sr₃UO₆ match at 0.014 normalized coordinate RMS. I’ve generated Sr/W-substituted P2₁/c models from both lineages and bracketed the expected Sr-expanded cell; this is the most plausible explanation for the residual cluster, and it provides a defensible analogue-derived structure rather than an unconstrained indexing fit.
+
+All six analogue-derived Sr₃WO₆ trials imported successfully after preserving the parent P2₁/n setting. They are still refining because the added monoclinic cell introduces four lattice variables; I’m comparing both parent lineages and several starting volumes so the result is not an artifact of one starting model.
+
+The Sr₃WO₆ model lowers Rwp, but its Bragg residual remains high enough that I’m treating it as provisional. A more controlled add-phase test is now starting from the same converged SrWO₄+WO₃ project for every candidate; this removes the large start-model bias seen in the first screens and directly compares Sr₃WO₆ against the available Sr₃W₂O₉ model.
+
+The controlled comparison favors monoclinic Sr₃W₂O₉ over Sr₃WO₆ (Rwp 16.26% versus 17.10–17.69%), with a physical crystallite size and much stronger coverage of the 22.1°, 29.8°, and 32.6° residual peaks. I’m proceeding with SrWO₄ + WO₃ + Sr₃W₂O₉ and now refining the angle-dependent intensity bias, instrumental profile, and phase-specific size/strain in separate stages.
+
+The profile refinement is still running through the joint broadening stage. Each stage is saved independently, so I can reject any unphysical minimum (for example, negative width terms or implausible roughness) rather than accepting a lower Rwp blindly.
+
+The first correction is decisive and physical: Suortti surface roughness lowers Rwp from 16.26% to 14.39% with \(A=0.148\), \(B=0.231\). Later unconstrained width refinement tried negative U/X and negative roughness, so I’m rejecting those minima. I’ll continue from the physical roughness checkpoint with bounded, one-at-a-time profile terms and then test phase texture/coordinates.
+
+A residual-library search supports one more check: Sr₃WO₆ is the strongest match to peaks left outside the three-phase calculation, while SrO and the monoclinic SrWO₄ polymorph are weaker alternatives. I’m testing each as a fourth phase from the identical physical three-phase checkpoint; only a stable nonzero scale, physical size/cell, and broad multi-peak improvement will justify inclusion.
+
+The fourth-phase test is discriminating: monoclinic SrWO₄ refines to zero, and SrO only survives by collapsing to a 4.5 nm size, so both are rejected. An Sr₃WO₆ analogue retains 4.3 wt%, a 0.162 µm size, a stable monoclinic cell, and lowers Rwp to 13.99%; I’m retaining it provisionally and now screening March–Dollase texture axis-by-axis for each accepted phase.
+
+The phase identification is converging on four crystalline components: dominant scheelite SrWO₄, residual WO₃, Sr₃W₂O₉, and a tentative low-level Sr₃WO₆-like phase. I’m now finishing model-selection checks—especially preferred orientation and coordinate stability—before freezing the physically defensible refinement and exporting the required files.
+
+The orientation refinements for the two minor phases hit a resource limit when launched ten at once; no scientific result was lost. I’m rerunning them in smaller batches, then I’ll retain texture only if it produces a reproducible, nontrivial improvement.
+
+A strong, physically plausible March–Dollase correction emerges specifically for Sr₃W₂O₉ along [111] (ratio ≈2.16), lowering Rwp from 13.99% to 13.57%; the other phases’ texture tests were negligible or unstable. I’m testing atomic-coordinate freedom phase-by-phase now, with each trial starting from that same checkpoint so an apparent gain cannot leak in from unrelated parameters.
+
+The coordinate trials are still refining; the extra time is expected because the WO₃ and ternary phases have many independent atomic positions. I’ll reject any nominal fit gain that creates implausible W–O/Sr–O distances or poorly determined parameters.
+
+The unconstrained coordinate trials confirmed the guardrail was necessary: only the SrWO₄ oxygen coordinate converged to sensible tetrahedra (W–O ≈1.79 Å). Coordinate freedom in WO₃ and the two minor ternaries produced sub-ångström contacts, so those changes are rejected. Jointly moving all four unit cells is also mildly unstable; I’m isolating cell and line-broadening terms one phase at a time.
+

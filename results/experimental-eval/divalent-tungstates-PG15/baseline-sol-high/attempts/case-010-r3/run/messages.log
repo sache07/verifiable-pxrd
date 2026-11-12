@@ -1,0 +1,32 @@
+I’ll inspect the measurement metadata and diffraction profile first, then identify candidate phases and build a quantitative multiphase refinement. I’ll preserve the final refinement project and derive every submitted CIF, fraction, and profile from that same model.
+
+The chemistry points toward manganese tungstates, but at 500 °C residual Mn₂O₃/WO₃ or intermediate oxides are plausible. I’m now extracting peak positions and querying the locally available crystallographic database by composition before committing to a phase set.
+
+The dominant fingerprint is monoclinic/triclinic WO₃: the diagnostic 23–25° triplet and the 33–35° multiplet account for the strongest features. MnWO₄ and Mn₃WO₆ would require strong peaks near 30–31° or 20–21° that are not evident. I’ll quantify that conclusion by refining WO₃ first, then inspect the residual specifically for Mn-bearing crystalline phases.
+
+The initial full-pattern refinement is running against the low-symmetry WO₃ model. After it converges I’ll compare residual peak positions and fit improvement from adding each chemically plausible Mn phase; this guards against reporting a trace phase merely because it can absorb background or peak-shape error.
+
+The WO₃-only model has converged to \(R_{wp}\approx10.7\%\) with a triclinic cell very close to the reference. Three controlled two-phase tests (residual Mn₂O₃, MnWO₄, and Mn₃WO₆) are now refining with the candidate lattices held fixed during screening, so their scale factors must be supported by their actual diagnostic reflections.
+
+The two-phase model is strongly supported: adding bixbyite Mn₂O₃ lowers \(R_{wp}\) from 10.7% to 7.1%, while MnWO₄ and Mn₃WO₆ refine to effectively zero and fail at their diagnostic peaks. The provisional crystalline-only fractions are about 73.2 wt% WO₃ and 26.8 wt% Mn₂O₃. I’m tightening the final model now—refining the Mn₂O₃ cell and testing only physically interpretable profile/structure adjustments.
+
+The final project is being rebuilt cleanly with descriptive phase names and a conservative profile model. Both phase scales and cells are refined, while oxygen coordinates remain fixed because the Cu X-ray data do not constrain them well; this keeps the submitted CIFs defensible rather than over-parameterized.
+
+The clean final refinement has converged at \(R_{wp}=7.09\%\), with 73.49 wt% triclinic WO₃ and 26.51 wt% bixbyite Mn₂O₃ on a crystalline-only basis. I’m doing a final consistency audit now: reloading the GPX, validating both CIFs, and checking that every row of `fit.csv` exactly matches the observed/calculated/difference arrays stored in the project.
+
+Identified two crystalline phases:
+
+- Triclinic WO₃, P-1: **73.49 wt%**
+- Bixbyite Mn₂O₃, Ia-3: **26.51 wt%**
+
+Fractions are normalized over modeled crystalline material. Final fit: \(R_{wp}=7.09\%\), \(R_p=5.09\%\), \(R_{exp}=2.66\%\), GOF = 2.66. Realistic fraction uncertainty is approximately 1–2 wt%; amorphous content cannot be quantified.
+
+Deliverables:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+- [wo3_triclinic.cif](<ATTEMPT_WORKSPACE>/wo3_triclinic.cif)
+- [mn2o3_bixbyite.cif](<ATTEMPT_WORKSPACE>/mn2o3_bixbyite.cif)
+

@@ -1,0 +1,46 @@
+I’ll inspect the metadata, diffraction pattern, and the provided analysis/refinement utilities first, then screen candidate phases and build the GSAS-II model through auditable branches. I’ll preserve stable project checkpoints and validate the final CIFs, fractions, profile, and project together.
+
+The chemical context points first to manganese tungstates and possible unreacted Mn/WO oxides, but I’ll let the full peak set—not the precursor list—decide the inventory. The pattern is raw Cu Kα data with no supplied uncertainty or calibrated profile, so profile and background terms will need conservative refinement.
+
+The dominant phase is already strongly constrained: the observed line sequence from 15.66° through the dense 30–65° region matches monoclinic wolframite MnWO₄ (P2/c) reflection-for-reflection. Mn₃WO₆ is incompatible because its strongest 19.95°, 20.49°, 28.75°, and 35.24° lines are absent. I’m now testing whether weak residuals require unreacted Mn₃O₄/WO₃ or are fully explained by profile and Cu Kα doublet effects.
+
+The first conservative MnWO₄-only refinement gives Rwp ≈21.0% before profile optimization. The required angular test is finding a real specimen-position correction, but the helper’s strict shift/esd criterion is taking several reconvergence passes; I’m checking branch stability before accepting it.
+
+After the profile term was stabilized, the mandated angular rerun selected specimen displacement alone: −0.418 mm, with zero fixed. This branch is converged, has positive total widths, no dropped variables, and lowers Rwp to 11.64%; the zero+displacement fit was rejected at 99.99% correlation. I’m now mapping the remaining residual peaks against precursor and competing oxide structures before deciding the phase count.
+
+The residual map is dominated by systematic under/over-shoot at MnWO₄ reflections rather than a new coherent peak family. I am still giving each chemically supported alternative an explicit matched scale test (Mn₃O₄, Mn₃WO₆, and three valid WO₃ polymorphs); malformed WO₃ CIFs flagged by the contact audit have been excluded.
+
+The precursor/oxide scale tests all collapsed to GSAS-II’s positive lower bound (10⁻¹²), with no Rwp gain, so the crystalline inventory remains one phase. For the profile, surface roughness is strongly supported (Rwp 11.64→6.33%); polarization refined to an impossible 2.04 and the two-parameter roughness form was 97% correlated, so I retained the one-parameter roughness correction. Negative microstrain and profile branches with nonpositive total widths were rejected.
+
+The one-phase model now fits the complete pattern at Rwp ≈5.19% with positive widths. A constant Lorentzian term was retained over its near-tied alternative; axial divergence was rejected because it correlated 98% with displacement. Isotropic size was 99.7% correlated with that Lorentzian term and microstrain refined negative, so neither sample-broadening term is retained. Coordinate refinement gives a small, stable improvement with chemically plausible Mn–O and W–O distances; I’m testing whether any ADP refinement is actually supported or merely substitutes for the roughness envelope.
+
+The cleaner profile reset eliminated arbitrary fixed U/Y starting terms: the smallest valid model uses only Gaussian W and Lorentzian Z, both positive. A 607(52) microstrain term gives a modest multi-region improvement and remains positive/stable; adding other global terms either makes that strain negative, creates ≥99.8% correlations, or drops variables. The coordinate model remains P2/c with plausible contacts. I’m retaining only cation isotropic ADPs—the oxygen ADP gain is negligible—and will now perform the final matched retests from that state.
+
+I’m finishing the last integrity pass now: the angular branch is running after the ADP refinement, then I’ll re-check sample-broadening defaults so the final size/strain interpretation is physically neutral rather than an artifact of GSAS-II’s fixed starting values.
+
+The angular rerun retained the displacement-only baseline; freeing zero and displacement together lowered Rwp slightly but produced 99.99% correlation, so that branch is rejected. I also confirmed from GSAS-II’s equations that fixed `Size=1 µm` and `Mustrain=1000` are not neutral values, so I’m rebuilding the profile comparison from effectively zero sample broadening before making the final choice.
+
+With neutral sample broadening, isotropic microstrain is independently supported and stable (~669 µstrain; Rwp 5.155% → 5.099%) across several high-angle regions. The apparent size term reaches a mathematically finite value but is 98.1% correlated with the Lorentzian `Z` width, so I’m rejecting it as non-identifiable and retaining the effectively neutral 10 µm fixed value.
+
+The matched removals are decisive for the main terms: removing roughness raises Rwp to 6.373%, removing `Z` raises it to 5.689%, and restoring source coordinates raises it to 5.141%. By contrast, refining Mn/W ADPs now improves Rwp by only 0.001%, so I’m simplifying back to the source isotropic-equivalent ADPs; polarization and axial-divergence additions give only tiny, correlated gains and will remain fixed.
+
+The mature phase retest confirms Mn₃WO₆ and orthorhombic WO₃ collapse to zero scale, and Mn₃O₄ changes Rwp by only 0.00001%. Triclinic WO₃ gives a small positive scale and a 0.009% Rwp reduction, so I’m treating it as a trace-phase hypothesis—not accepting it yet—and checking its scale significance and whether several non-overlapped WO₃ peaks are actually present.
+
+The final retest is stable: all extra width terms either force negative microstrain/negative widths, become singular, or correlate at 99.8–100%; size is 99.8% correlated with `Z`. Texture remains non-unique (near-unity March ratios on competing axes). I’m now doing exact leave-one-term-out checks from the simplified final baseline, then exporting and auditing the deliverables.
+
+A final audit caught that the selected baseline had been saved one refinement cycle before the covariance shifts fully settled. I reconverged it (maximum shift/esd 0.037, no dropped variables; Rwp unchanged at 5.0997%) and am rerunning the angular selector once more before replacing the exports.
+
+Completed. The accepted model is monoclinic wolframite MnWO₄, P 2/c, at 1.0000 weight fraction among modeled crystalline phases. Rwp = 5.0997% and GOF = 1.4763.
+
+A possible trace residual component remains unassigned; tested Mn/W oxide models failed absent-peak or significance checks. Amorphous content is not quantified.
+
+Files:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [phase_1_MnWO4.cif](<ATTEMPT_WORKSPACE>/phase_1_MnWO4.cif)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+
+CIF, GPX, profile-regeneration, and submission audits passed.
+

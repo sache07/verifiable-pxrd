@@ -1,0 +1,28 @@
+I’ll inspect the measurement metadata and pattern first, then identify candidate phases, refine them against the full profile, and export the requested CIFs, profile, JSON, report, and GSAS-II project. I’ll keep phase-count decisions conservative and flag any ambiguous fraction or structure.
+
+The chemistry points toward manganese tungstate formation, but the 300 °C treatment makes unreacted oxides and polymorph ambiguity plausible. I’m now extracting the experimental peak list and searching the local crystallographic database for Mn–W–O and precursor structures before committing to a phase set.
+
+The peak positions and systematic fingerprints support a two-phase model: monoclinic γ-WO₃ dominates, while tetragonal pyrolusite MnO₂ accounts for the distinct 37.67°, 43.12°, 56.96°, and 59.66° peaks. MnWO₄ is not supported—the diagnostic ~18.5° and 30.0/30.4° reflections are absent. I’m moving to a GSAS-II Rietveld refinement of WO₃ + MnO₂, including the Cu Kα doublet and the evident specimen zero shift.
+
+The initial two-phase refinement reaches a good profile match, but the first broadening pass exposed parameter correlations because no calibrated instrumental profile was supplied. I’m tightening the model now: removing the redundant global scale, retaining only physically interpretable broadening terms, and rerunning to ensure the final project is converged rather than merely low-R. This matters more than squeezing out a cosmetically smaller residual.
+
+The constrained final model is now stable and converged (maximum shift/e.s.d. 0.044, no singular parameters), with a physically positive profile over the measured range. It gives 71.29 wt% γ-WO₃ and 28.71 wt% pyrolusite MnO₂, Rwp 7.80%. I’m doing the final cross-check now: validating the exported CIFs/project, checking residual peaks for any omitted crystalline phase, and then writing the machine-readable result and uncertainty report.
+
+Completed the two-phase GSAS-II refinement:
+
+- γ-WO₃: 71.29 wt%
+- Pyrolusite MnO₂: 28.71 wt%
+- Rwp: 7.80%; Rp: 5.58%; GOF: 2.90
+- No crystalline MnWO₄ was detected reliably.
+
+Outputs:
+
+- [result.json](<ATTEMPT_WORKSPACE>/result.json)
+- [report.md](<ATTEMPT_WORKSPACE>/report.md)
+- [fit.csv](<ATTEMPT_WORKSPACE>/fit.csv)
+- [phase_WO3.cif](<ATTEMPT_WORKSPACE>/phase_WO3.cif)
+- [phase_MnO2.cif](<ATTEMPT_WORKSPACE>/phase_MnO2.cif)
+- [final.gpx](<ATTEMPT_WORKSPACE>/final.gpx)
+
+The formal fraction uncertainty is about 0.19 wt%, though a few wt% systematic uncertainty is more realistic because no calibrated instrumental profile or supplied point uncertainties were available.
+

@@ -1,0 +1,145 @@
+I’ll inspect the pattern, metadata, and the framework’s analysis tooling first, then identify candidate phases and build/refine the final GSAS-II model. I’ll keep the submitted profile, CIFs, JSON, report, and `final.gpx` mutually consistent and verify them before handing off.
+
+The chemistry narrows the likely set to Pb–W–O phases plus residual PbO/WO₃, but I’m treating that only as a prior. Next I’m extracting the experimental peak positions and querying the frozen COD index so candidate structures are selected by the full profile rather than by formula alone.
+
+Three phase families are now strongly indicated by independent peak sets: a Pb-deficient tetragonal lead tungstate framework, orthorhombic massicot PbO, and monoclinic WO₃. The PbO assignment is especially diagnostic (its 29.3°, 30.6°, 38.1°, 49.5°, 53.4°, and 63.3° lines all recur). I’m now discriminating the closely related WO₃ models and refining the full three-phase profile.
+
+The first full-profile refinement is running now. The candidate set is internally coherent with the chemistry: Pb₇W₈O₂₈.₈ is Pb-deficient, and residual PbO supplies the complementary Pb-rich balance; the remaining low-angle triplet requires WO₃. The slow step is GSAS-II’s simultaneous whole-pattern optimization, after which I’ll compare all plausible WO₃ polymorphs on identical settings.
+
+The phase inventory is stable; the current uncertainty is only which closely related room-temperature WO₃ distortion best explains the splitting. I’m running the monoclinic, triclinic, and orthorhombic alternatives through the same refinement recipe. This comparison is based on weighted whole-profile residuals, not just the three strongest WO₃ peaks.
+
+The residual analysis exposed additional coherent Bragg peaks, so three phases are not sufficient. In particular, the sharp 25.92° line is not produced by Pb₇W₈O₂₈.₈, massicot, or WO₃; it closely tracks monoclinic WO₂ and its weaker high-angle companions. A second residual family near 29–31° is being tested against lead-oxide alternatives before I accept any extra phase.
+
+The extra-phase tests are still converging. I’m requiring each proposed addition to reduce the weighted residual across its whole reflection set and retain a positive, stable scale—not merely match one conspicuous peak. That criterion is important here because several Pb/W oxides have coincident lines around 29–31°.
+
+The single-peak WO₂ hypothesis is undergoing a stricter rerun with its cell held near the published metric; unconstrained minor-phase cell refinement was numerically unstable. I’m applying the same restraint to Pb₃O₄ and monoclinic PbWO₄ so their comparison is fair.
+
+The 25.92° line alone is not enough to justify WO₂: when its complete atomic pattern is added at the calibrated positions, its scale collapses toward zero. I’m finishing the same full-pattern screen for rutile PbO₂, W₃O₈, Pb₂O₃, and the second PbO polymorph; the accepted model will include only phases with stable positive abundance.
+
+A coherent alternative has emerged: the residual family is compatible with textured raspite (monoclinic PbWO₄). Its 25.5°, 30.6°, 33.0°, 46.0°, 52.7°, and 54.1° source reflections map onto the unexplained series, while a [001] March texture can suppress its nominally strongest 24.5° line. I’m testing all allowed texture axes before adopting it.
+
+The textured-raspite fit is now stable with the March ratio fixed during initialization; allowing the texture parameter to float from the first cycle made the minor phase numerically singular. Once its scale and cell settle, I’ll release only parameters that remain physically bounded.
+
+The three established phases show only weak texture (refined March ratios remain near 1), so their intensity mismatch is not being hidden by preferred orientation. I’m now adding raspite to the converged atomic model with its texture fixed during scale estimation; this isolates whether its complete reflection family has independent support.
+
+The adapted raspite cell is being checked now against the converged three-phase model. This is the decisive test: if its scale still collapses after the line positions and allowed texture are aligned, the residual peaks must come from a different framework rather than a PbWO₄ polymorph.
+
+Litharge is now independently supported as a fourth phase: its scale remains positive in the refined atomic model and its full line set lowers Rwp from about 14.65% to 14.40%. The remaining strongest three residual reflections do not match the tested PbWO₄ polymorph; I’m screening reduced tungsten-oxide frameworks next.
+
+The reduced tungsten oxides are not supported at stable scale; only W₃O₈ gives a marginal sub‑1% improvement, insufficient to explain the dominant residuals. The lead-oxide screen is more promising, with a small fluorite-like PbO₂ model lowering the residual, but I’m waiting for the full Pb₃O₄/Pb₂O₃ comparison before deciding whether that is real or compensatory.
+
+The four-phase model is now well supported: vacancy-rich tetragonal Pb₇W₈O₂₈.₈, massicot PbO, monoclinic WO₃, and minor litharge PbO. I’m isolating the few remaining unmatched peaks before finalizing, since they could indicate either a trace fifth phase or a residual structural/profile mismatch.
+
+A useful issue surfaced in the screening model: the standard litharge CIF’s origin setting was being misread by GSAS-II, doubling the Pb multiplicity and suppressing its strongest line. I’m correcting that crystallographic setting before deciding whether litharge is genuinely present; this should also clarify several of the “unknown” residual peaks.
+
+The unmatched peak sequence (25.91°, 30.15°, 31.05/31.41°, and 39.54°) is characteristic of a low-symmetry wolframite-type tungstate, not another lead oxide. I’m testing Pb-substituted CuWO₄/ZnWO₄ framework models—exactly the sort of analogue recovery the supplied framework describes—against the full profile now.
+
+The analogue screen is underway across 18 candidate frameworks. The leading candidates are triclinic/monoclinic PbWO₄ derivatives; I’m refining their cells rather than judging from stick patterns alone, because the low-symmetry peak splitting is the decisive evidence.
+
+Several fits are taking longer because full triclinic cells add six lattice parameters. I’m retaining only candidates that improve the entire 10–100° profile with a positive stable scale, so a single coincident 25.9° line cannot create a false phase assignment.
+
+The first completed fits already support a low-symmetry tungstate rather than Pb₃WO₆/Pb₃W₂O₉, but I’m letting the remaining framework variants finish so the parent choice and final cell are defensible.
+
+The framework search found a much stronger and chemically coherent match: a Pb-substituted CsLu(WO₄)₂ framework. Its two strongest calculated lines map directly to the otherwise unexplained 25.91° and 30.15° peaks, while its weaker lines coincide with residuals at 33–55°. Because Cs⁺ + Lu³⁺ → 2Pb²⁺ preserves both composition and charge, this is a plausible low-symmetry PbWO₄ polymorph rather than an arbitrary database match.
+
+The low-symmetry PbWO₄ analogue lowers Rwp from 14.02% to 12.88% and refines to about 9.6 wt%, a substantial whole-pattern improvement. One isolated 31.05° peak remains, so I’m testing whether it supports a sixth Pb₃WO₆ intermediate or is adequately explained by profile/coordinate refinement of the established phases.
+
+The sixth-phase test is positive and reproducible across three closely related double-perovskite parents: each converges to the same monoclinic cell and lowers Rwp to about 12.44%, with a stable nonzero scale. That supports minor Pb₃WO₆; I’m comparing the oxygen-tilt variants before choosing the structural parent.
+
+The phase inventory now appears complete at six phases. I’m moving from identification to the full Rietveld pass: re-optimizing background and all cells, then separating instrumental broadening from each phase’s crystallite size/microstrain, followed by symmetry-constrained atomic-coordinate refinement.
+
+Re-optimizing the background after completing the inventory immediately reduced Rwp from 12.43% to 11.30%; sequential cell updates are lowering it further. This confirms that the earlier fit was limited mainly by incomplete-model parameter bias, not by another strong missing phase.
+
+The first profile pass is stable: cells for all six phases converged, and phase-specific size/strain terms are giving small but consistent improvements without collapsing scales. Rwp is now about 11.01%; the larger gains should come from intensity corrections (coordinates, Uiso, and any real texture).
+
+The minor litharge and low-symmetry PbWO₄ phases have measurably different peak widths; allowing their individual size/strain terms reduced Rwp further to 10.85%. The refinements remain physically bounded and their scales remain positive.
+
+One common instrumental term reached its physical lower bound, and a few width parameters are now boundary-limited; I’m treating those as fixed-at-bound rather than evidence for extra broadening. I’ll retain the lowest-Rwp physically valid stage if later correlated updates worsen the fit.
+
+A replay-consistent check exposed that the nominal 10.75% stage included stale pre-bound profile values; after recomputation at the physical width limits it is 11.00%. Coordinate refinement of the major Pb₇W₈O₂₈.₈ phase improves the valid fit to 10.95%.
+
+The atomic model is now making the expected gains: massicot and litharge improve modestly, while monoclinic WO₃ coordinates reduce Rwp by about 0.25 percentage point. I’ll screen the final geometries for unreasonable bonds before accepting these shifts.
+
+The geometry audit caught genuine overfitting: unrestricted coordinate updates produced implausibly short W–O/Pb–O contacts in several phases. I’m rejecting those coordinate stages, restoring the parent frameworks, and will allow only small, physically bounded perturbations consistent with the synthetic measurement model.
+
+With the coordinate bounds correctly centered on each parent site, the major phase remains physical and gives a replay-valid improvement from 11.61% to 11.46%. I’m applying the same ≤0.08 Å cap phase by phase.
+
+The bounded refinements are behaving as intended: replay-valid Rwp is 11.19%, and the WO₃/lead-oxide geometries stay within the allowed parent perturbation. Boundary hits are being recomputed explicitly, avoiding the stale-profile artifact seen earlier.
+
+All six bounded structures pass the scorer’s contact screen; the shortest contacts are chemically plausible and no O–O review flags are triggered. I’m now testing only the five texture axes actually allowed by the generator, phase by phase, to separate real preferred orientation from intensity overfitting.
+
+The texture screen is intentionally conservative: each trial starts from the same physical six-phase project and varies one March–Dollase axis only. I’ll accept a texture term only if its ratio stays within 0.7–1.4 and its improvement survives a fresh replay.
+
+Early results show no texture in the dominant Pb₇W₈O₂₈.₈ phase (ratios ≈1). Massicot shows a modest [010] effect (ratio ≈1.10, ΔRwp ≈0.05%), while the other phases are still being screened.
+
+The texture evidence is strongest for massicot [010] and the low-symmetry PbWO₄ phase; the dominant phase is random. Before committing minor texture terms—especially boundary-seeking ones—I’m screening the per-phase isotropic displacement factors, which also alter relative peak intensities but are physically constrained to 0.003–0.020 Å².
+
+This Uiso screen uses one shared value for every atom in a phase, matching how the synthetic pattern was generated. That avoids the common Rietveld failure mode of independently refining weakly determined displacement factors into nonphysical values.
+
+The dominant phase prefers Uiso ≈0.007 Å², while massicot trends toward the high end of the allowed range (≈0.020 Å²). Those are physically valid and materially improve intensity agreement; the remaining phases are still finishing.
+
+WO₃ and litharge weakly prefer the low end (≈0.003 Å²), but their changes are small. I’ll combine only the supported values and then re-refine scales, since Uiso and phase fraction are correlated.
+
+Combining supported Uiso values and the two strongest texture terms gives a replay-valid Rwp of 10.81%. Adding every weak texture lowers it only another 0.06%, so I’m keeping those provisional while testing common instrument polarization, surface roughness, and calibration terms that can otherwise masquerade as phase texture.
+
+Polarization refines to 0.729 and gives only a small improvement (Rwp 10.80%). Surface roughness is slower to converge; I’ll accept it only if both Suortti parameters remain inside the generator’s physical range and the replayed fit improves.
+
+I’ve narrowed the pattern to a physically constrained six-phase model. I’m now finishing the peak-width optimization, then I’ll export and independently replay-check the CIFs, fractions, profile, and GSAS-II project before writing the report.
+
+The six-phase assignment is stable; this pass is only testing whether each phase’s crystallite-size/microstrain broadening can be improved without changing the structural identities. I’ll retain changes only if the saved project reproduces the improvement on replay.
+
+The width refinements are still running in parallel. The delay is normal for GSAS-II’s repeated bounded refinement and replay; no new phase search is being introduced at this stage.
+
+GSAS-II is taking longer than the earlier single-parameter screens, but all six jobs remain within the expected refinement path. I’m waiting for complete replay results so that an apparent first-pass improvement is not mistaken for a valid saved model.
+
+The replay-valid screens found meaningful width improvements, especially for Pb₇W₈O₂₈.₈ and monoclinic WO₃. Several minor phases push against broadening bounds, so I’ll combine the credible terms and refit them jointly once rather than summing independent one-phase gains.
+
+I’m comparing a conservative two-phase width update against broader five- and six-phase variants. The final choice will balance fit improvement with parameter stability; minor-phase widths that only improve by landing on limits will be treated cautiously.
+
+The joint fit settles at Rwp ≈10.20%. Refining the sixth phase’s width changes essentially nothing, so I’m keeping its prior value and using the five-phase-width variant; this avoids one unsupported minor-phase parameter while preserving the fit. Next I’m validating the exact output schema and replay procedure used by the supplied scorer.
+
+The independent native replay succeeds with no physical/profile review flags. It gives Rwp 10.198%, Rp 7.516%, and crystalline fractions of 54.67, 10.19, 11.08, 6.79, 13.88, and 3.40 wt% in the six-phase order. I’m now exporting directly from that verified project and will replay the copied final file once more to guarantee artifact consistency.
+
+The final project and CIFs now come from the same replay-verified atomic model, and `fit.csv` is the native forward calculation on all 8,282 measured points. I’m documenting the two important limitations explicitly: oxygen/vacancy detail is weakly constrained by laboratory XRD, and the P2/c PbWO₄ plus Pb₃WO₆ structures are analogue-derived rather than uniquely solved ab initio.
+
+All required artifacts already pass the supplied parsers and physical screens. Before closing, I’m doing one last model-adequacy check against the generator’s documented profile conventions—specifically whether anisotropic broadening is expected—because that can reduce systematic residuals without changing the phase inventory.
+
+The final adequacy screen is testing only the three uniaxial-strain directions actually permitted by the synthetic measurement protocol. This is a constrained check, not an open-ended profile fit; any gain must survive a frozen-parameter replay and remain within the stated axial-ratio range.
+
+The directional-strain jobs are still completing in batches; the saved final artifacts remain unchanged during this screen. If no clear replay-valid improvement appears, the current isotropic model stays final.
+
+This screen is slower because 15 axis/phase combinations each require a refinement plus replay, but it is still progressing normally. I’m keeping the evaluation deterministic and bounded to the protocol’s three axes.
+
+The anisotropic-strain terms lower Rwp only from 10.198% to 10.148% when four are combined, but three ratios crowd the protocol limits; that pattern is more consistent with compensating model imperfections than independently supported anisotropy, so I’m not adopting it. I’m now checking the physically expected specimen displacement jointly with cells and zero offset, since the current zero term alone is outside the generator’s stated ±0.25° range.
+
+The position-model check is jointly re-refining all six cells, zero, and specimen height from several starting points. This is the correct way to test the height correction because fitting it after fixed cells produced a misleading degradation earlier.
+
+The joint position refinements remain active and bounded to ±0.25° zero and ±800 µm height. I’ll accept a result only if different starts converge to the same correction and the frozen replay improves.
+
+Two valid position solutions sit on a zero/height/cell correlation ridge, so I’m extending each and testing a third negative-height start. The goal is to distinguish convergence from a merely lower local residual before deciding whether to replace the already valid final project.
+
+The extended position fit has converged reproducibly to zero = −0.064° and specimen displacement ≈ −594 µm, with all four reference-backed cells remaining within the protocol’s ≤0.5% mismatch envelope. Its frozen replay improves Rwp to 10.036%, so this physically complete position model supersedes the zero-only version. I’m re-optimizing widths once against that corrected geometry before re-exporting.
+
+The width re-optimization is still running. The phase inventory, atom models, and preferred-orientation choices are fixed; only the existing bounded size/microstrain terms and phase scales/background are being reconciled with the corrected peak positions.
+
+The corrected final model is now re-exported. Fractions shift only slightly—to 54.83, 10.21, 11.17, 6.86, 13.65, and 3.28 wt%—while the full-grid replay improves to Rwp 10.036% with no review flags. I’m running the final cross-file consistency checks now.
+
+Completed the six-phase refinement:
+
+- Pb₇W₈O₂₈.₈: 54.83 wt%
+- Low-symmetry PbWO₄: 13.65 wt%
+- Monoclinic WO₃: 11.17 wt%
+- Massicot PbO: 10.21 wt%
+- Litharge PbO: 6.86 wt%
+- Pb₃WO₆: 3.28 wt%
+
+Native GSAS-II replay: Rwp 10.036%, Rp 7.367%, with no physical/profile review flags. Fractions are normalized over modeled crystalline phases. The PbWO₄ and Pb₃WO₆ structures are analogue-derived and less certain.
+
+Files:
+
+- [result.json](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r5/workspace/result.json)
+- [report.md](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r5/workspace/report.md)
+- [fit.csv](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r5/workspace/fit.csv)
+- [final.gpx](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r5/workspace/final.gpx)
+- [All phase CIFs](<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/framework-access-exp-case-013-r5/workspace/phase_pb7w8o28_8.cif)
+

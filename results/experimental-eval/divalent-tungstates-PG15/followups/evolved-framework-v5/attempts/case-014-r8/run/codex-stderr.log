@@ -1,0 +1,13 @@
+2026-11-09T14:04:53.446625Z ERROR codex_core::tools::router: error=unable to locate image at `<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r8/workspace/.tmp/srwo4_wo3_1528915/fit.png`: No such file or directory (os error 2)
+2026-11-09T14:17:54.494057Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in <RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r8/workspace/.tmp/refine_coordinates.py:
+def set_coordinate_bounds(project, phase, atom, delta):
+2026-11-09T14:28:20.832816Z ERROR codex_core::tools::router: error=unable to locate image at `<RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r8/workspace/.tmp/profile_mid/fit.png`: No such file or directory (os error 2)
+2026-11-09T14:57:22.496609Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in <RAW_ARCHIVE>/results/experimental-eval/divalent-tungstates-PG15/pxrd-pg15-recovery-supplement-20261109/attempts/fwaccess-v5-exp-case-014-r8/workspace/.tmp/refine_common_wo3_uiso.py:
+project.set_Controls("parmMax", 0.60, variable=f":{hist.id}:SurfRoughA")
+project.set_Controls("parmMin", 0.02, variable=f":{hist.id}:SurfRoughB")
+project.set_Controls("parmMax", 0.50, variable=f":{hist.id}:SurfRoughB")
+project.set_Controls("cycles", 8)
+for iteration in range(1, 5):
+    project.refine()
+    cov = project.data.get("Covariance", {}).get("data", {})
+    result = {
